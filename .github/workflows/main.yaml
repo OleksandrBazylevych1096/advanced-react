@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  ci:
+  runs-on: ubuntu-latest
+
+  steps::
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20.x"
+        cache: "npm"
+
+    - name: Install dependecies
+      uses: npm ci
+
+    - name: TypeScript
+      uses: npm run lint:ts
+
+    - name: Eslint
+      uses: npm run lint
+
+    - name: Stylelint
+      uses: npm run lint:scss
+
+    - name: Unit tests
+      uses: npm run test:unit
+
+    - name: Regression tests
+      uses: chromaui/action@latest
+      with:
+        projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+    - name: Build
+      uses: npm run build
