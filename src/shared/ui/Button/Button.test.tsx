@@ -1,6 +1,8 @@
-import { describe, expect, test, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, test, vi } from "vitest";
+
 import { Button } from "./Button";
+
 describe("Button", () => {
   test("render", () => {
     render(<Button>test</Button>);
