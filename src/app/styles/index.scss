@@ -1,7 +1,7 @@
-@use "themes/blue.scss";
-@use "themes/pink.scss";
-@use "global.scss";
-@use "reset.scss";
+@use "themes/blue";
+@use "themes/pink";
+@use "global";
+@use "reset";
 
 body {
   font: var(--font-m);
