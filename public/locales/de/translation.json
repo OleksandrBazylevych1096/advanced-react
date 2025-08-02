@@ -1,0 +1,42 @@
+{
+  "header": {
+    "cart": "Warenkorb",
+    "searchBy": "Suchen nac",
+    "login": "Einloggen"
+  },
+  "footer": {
+    "about": "Über uns",
+    "aboutUs": "Über uns",
+    "ourBranches": "Unsere Filialen",
+    "changelog": "Änderungsprotokoll",
+    "quickLinks": "Schnellzugriff",
+    "faqs": "Häufige Fragen",
+    "recipes": "Rezepte",
+    "contactUs": "Kontakt",
+    "helpSupport": "Hilfe & Support",
+    "termsOfService": "Nutzungsbedingungen",
+    "privacyPolicy": "Datenschutzerklärung",
+    "security": "Sicherheit",
+    "company": "Unternehmen",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "social": "Soziale",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "twitter": "Twitter",
+    "copyright": "Alle Rechte vorbehalten © {{year}} {{company}}"
+  },
+  "pageLoader": {
+    "loading": "Wird gelanden..."
+  },
+  "pageError": {
+    "title": "Etwas ist schiefgelaufen",
+    "description": "Es tut uns leid – ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie, die Seite zu aktualisieren oder kommen Sie später zurück.",
+    "reload": "Erneut versuchen"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Die Seite, die Sie suchen, ist nicht verfügbar. Versuchen Sie es erneut oder verwenden Sie die Zurück-Schaltfläche unten.",
+    "goBack": "Zurück"
+  }
+}

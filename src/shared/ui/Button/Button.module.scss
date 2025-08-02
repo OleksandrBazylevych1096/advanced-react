@@ -1,0 +1,147 @@
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.2s linear;
+  color: var(--black);
+  outline: none;
+}
+
+.primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+
+  svg {
+    fill: var(--white);
+  }
+
+  &:hover {
+    background-color: var(--primary-color-dark);
+  }
+}
+
+.secondary {
+  background-color: var(--primary-color-light);
+  border: 1px solid var(--primary-color-light);
+
+  &:hover {
+    border-color: var(--primary-color);
+  }
+}
+
+.tertiary {
+  background-color: var(--white);
+  border: 1px solid var(--gray-100);
+
+  &:hover {
+    background-color: var(--gray-50);
+    border-color: var(--gray-200);
+  }
+}
+
+.outline {
+  background-color: var(--white);
+  border: 1px solid var(--primary-color);
+
+  &:hover {
+    background-color: var(--primary-color-light);
+    border-color: var(--primary-color-dark);
+  }
+
+  &.disabled {
+    border-color: var(--gray-200);
+  }
+}
+
+.ghost {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-weight: 500;
+}
+
+.disabled {
+  color: var(--gray-400);
+  background-color: var(--gray-100);
+  pointer-events: none;
+
+  svg {
+    fill: var(--gray-400);
+  }
+}
+
+.pill {
+  border-radius: 39px;
+}
+
+.circle {
+  border-radius: 100%;
+  aspect-ratio: 1;
+}
+
+.xs {
+  padding: 8px 16px;
+  font: var(--font-xs);
+
+  svg {
+    height: 16px;
+    width: 16px;
+  }
+
+  &.circle {
+    padding: 8px;
+  }
+}
+
+.sm {
+  padding: 10px 20px;
+  font: var(--font-s);
+
+  svg {
+    height: 20px;
+    width: 20px;
+  }
+
+  &.circle {
+    padding: 10px;
+  }
+}
+
+.md {
+  padding: 12px 24px;
+  font: var(--font-m);
+
+  svg {
+    height: 20px;
+    width: 20px;
+  }
+
+  &.circle {
+    padding: 12px;
+  }
+}
+
+.lg {
+  padding: 16px 32px;
+  font: var(--font-base);
+
+  svg {
+    height: 24px;
+    width: 24px;
+  }
+
+  &.circle {
+    padding: 16px;
+  }
+}
+
+.xs,
+.sm,
+.md,
+.lg {
+  font-weight: 600;
+}

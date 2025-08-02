@@ -1,0 +1,42 @@
+{
+  "header": {
+    "cart": "Cart",
+    "searchBy": "Search by",
+    "login": "Login"
+  },
+  "footer": {
+    "about": "About",
+    "aboutUs": "About Us",
+    "ourBranches": "Our Branches",
+    "changelog": "Changelog",
+    "quickLinks": "Quick Links",
+    "faqs": "FAQs",
+    "recipes": "Recipes",
+    "contactUs": "Contact Us",
+    "helpSupport": "Help & Support",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "security": "Security",
+    "company": "Company",
+    "blog": "Blog",
+    "contact": "Contact",
+    "social": "Social",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "twitter": "Twitter",
+    "copyright": "All rights reserved © {{year}} {{company}}"
+  },
+  "pageLoader": {
+    "loading": "Loading..."
+  },
+  "pageError": {
+    "title": "Something went wrong",
+    "description": "Sorry – an unexpected error occurred. Please try refreshing the page or come back later.",
+    "reload": "Try again"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for isn't available. Try to search again or use the go back button below.",
+    "goBack": "Go Back"
+  }
+}
