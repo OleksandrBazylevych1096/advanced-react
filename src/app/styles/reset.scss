@@ -10,3 +10,24 @@ select,
 button {
   font: inherit;
 }
+
+.react-international-phone-input-container .react-international-phone-input {
+  height: auto;
+  padding: 0;
+  border: none;
+  margin: 0;
+  background-color: inherit;
+  color: var(--gray-800);
+  font: inherit;
+}
+
+.react-international-phone-input-container
+  .react-international-phone-country-selector-button {
+  height: auto;
+  border: none;
+  background: inherit;
+
+  &:hover {
+    background: inherit;
+  }
+}

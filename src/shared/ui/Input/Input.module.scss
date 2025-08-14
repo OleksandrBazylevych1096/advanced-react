@@ -17,6 +17,11 @@
   &.disabled {
     background-color: var(--gray-50);
   }
+
+  &.error {
+    border-color: var(--red-500);
+    background-color: var(--red-50);
+  }
 }
 
 .rounded {
@@ -39,5 +44,19 @@
     &::placeholder {
       color: var(--gray-300);
     }
+  }
+
+  &.error {
+    background: var(--red-50);
+  }
+}
+
+.label {
+  font: var(--font-s);
+  font-weight: 600;
+  margin-bottom: 8px;
+
+  &.error {
+    color: var(--red-500);
   }
 }

@@ -1,13 +1,22 @@
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
+import { LoginForm, loginReducer } from "@/features/login";
+
+import { DynamicModuleLoader } from "@/shared/lib";
+
+import styles from "./LoginPage.module.scss";
 
 const LoginPage = () => {
-  const { t } = useTranslation("login");
   return (
-    <>
-      {t("login")}
-      <Link to={"/"}>Home page</Link>
-    </>
+    <div className={styles.wrapper}>
+      <div className={styles.main}>
+        <h1 className={styles.title}>Sign in</h1>
+        <DynamicModuleLoader
+          reducers={{ loginForm: loginReducer }}
+          removeAfterUnmount
+        >
+          <LoginForm />
+        </DynamicModuleLoader>
+      </div>
+    </div>
   );
 };
 

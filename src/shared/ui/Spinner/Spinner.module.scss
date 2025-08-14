@@ -6,6 +6,24 @@
   animation: l20-1 0.8s infinite linear alternate, l20-2 1.6s infinite linear;
 }
 
+.secondary {
+  border-color: var(--white);
+}
+
+.lg {
+  width: 50px;
+}
+
+.md {
+  width: 32px;
+  border-width: 6px;
+}
+
+.sm {
+  width: 20px;
+  border-width: 3px;
+}
+
 @keyframes l20-1 {
   0% {
     clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
