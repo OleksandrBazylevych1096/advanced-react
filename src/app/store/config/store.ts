@@ -5,6 +5,8 @@ import {
   type UnknownAction,
 } from "@reduxjs/toolkit";
 
+import { authByGoogleReducer } from "@/features/authByGoogle";
+
 import { userReducer } from "@/entities/user";
 
 import type { DeepPartial } from "@/shared/lib";
@@ -18,6 +20,7 @@ export const createStore = (
 ): ReduxStoreWithManager => {
   const rootReducer: ReducersMapObject<StateSchema> = {
     user: userReducer,
+    authByGoogle: authByGoogleReducer,
     ...(asyncReducers as Partial<ReducersMapObject<StateSchema>>),
   };
 

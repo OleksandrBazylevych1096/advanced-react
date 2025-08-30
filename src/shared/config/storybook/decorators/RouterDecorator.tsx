@@ -1,10 +1,14 @@
 import type { Decorator } from "@storybook/react-vite";
-import { BrowserRouter } from "react-router";
+import { MemoryRouter } from "react-router";
 
 export const RouterDecorator: Decorator = (Story, context) => {
+  const parameters = context.parameters as { route?: string };
+
+  const route = parameters.route || "/";
+
   return (
-    <BrowserRouter>
+    <MemoryRouter initialEntries={[route]}>
       <Story {...context} />
-    </BrowserRouter>
+    </MemoryRouter>
   );
 };

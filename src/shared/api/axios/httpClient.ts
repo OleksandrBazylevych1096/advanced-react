@@ -10,7 +10,7 @@ interface ExtendedAxiosRequestConfig extends AxiosRequestConfig {
 type QueueCallback = (success: boolean, error?: AxiosError) => void;
 
 interface RefreshError extends Error {
-  isRefreshedError: true;
+  isRefreshError: true;
   originalError: AxiosError;
 }
 
@@ -40,7 +40,7 @@ const flushQueue = (error: AxiosError | null, success: boolean) => {
 
 const createRefreshError = (originalError: AxiosError): RefreshError => {
   const refreshError = new Error("Token refresh failed") as RefreshError;
-  refreshError.isRefreshedError = true;
+  refreshError.isRefreshError = true;
   refreshError.originalError = originalError;
   return refreshError;
 };
@@ -81,7 +81,7 @@ httpClient.interceptors.response.use(
     }
 
     if (status !== 401 || originalConfig?._retry) {
-      Promise.reject(error);
+      return Promise.reject(error);
     }
 
     if (originalConfig?.url?.includes("/auth/refresh")) {

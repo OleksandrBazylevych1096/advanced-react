@@ -5,19 +5,24 @@ import { Button } from "@/shared/ui";
 
 import styles from "./PageError.module.scss";
 
-export const PageError = () => {
+interface PageErrorProps {
+  error?: string;
+}
+
+export const PageError = ({ error }: PageErrorProps) => {
   const { t } = useTranslation();
 
   const handleReloadClick = () => {
     location.reload();
   };
+  const description = error ?? t("pageError.description");
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <PageErrorIcon className={styles.icon} />
         <h3 className={styles.title}>{t("pageError.title")}</h3>
-        <p className={styles.description}>{t("pageError.description")}</p>
+        <p className={styles.description}>{description}</p>
         <Button
           onClick={handleReloadClick}
           theme="primary"

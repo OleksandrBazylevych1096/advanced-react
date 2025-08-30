@@ -14,7 +14,10 @@ import { Button } from "../Button/Button";
 
 import styles from "./Input.module.scss";
 
-type HTMLInputType = Omit<InputHTMLAttributes<HTMLInputElement>, "onChange">;
+export type HTMLInputType = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "onChange"
+>;
 
 export interface InputProps extends HTMLInputType {
   className?: string;

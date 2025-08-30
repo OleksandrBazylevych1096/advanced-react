@@ -19,6 +19,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^24.1.0",
     "axios": "^1.11.0",
     "i18next": "^25.3.2",

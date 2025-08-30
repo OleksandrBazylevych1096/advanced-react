@@ -1,4 +1,5 @@
 import type { FormEvent } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
 import ArrowRight from "@/shared/assets/icons/ArrowRight.svg?react";
@@ -15,12 +16,13 @@ import { selectLoginIsLoading } from "../../model/selectors/selectLoginIsLoading
 import { selectLoginMethod } from "../../model/selectors/selectLoginMethod/selectLoginMethod";
 import { selectLoginPassword } from "../../model/selectors/selectLoginPassword/selectLoginPassword";
 import { selectLoginPhone } from "../../model/selectors/selectLoginPhone/selectLoginPhone";
-import { login } from "../../model/services/login";
+import { login } from "../../model/services/login/login";
 import { loginActions } from "../../model/slice/loginSlice";
 
 import styles from "./LoginForm.module.scss";
 
 export const LoginForm = () => {
+  const { t } = useTranslation("auth");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -64,54 +66,65 @@ export const LoginForm = () => {
     <form onSubmit={onSubmit} className={styles.form}>
       <Tabs onChange={handleTabChange} defaultValue={method}>
         <Tabs.List>
-          <Tabs.Trigger value={AuthMethod.EMAIL}>
+          <Tabs.Trigger value={AuthMethod.EMAIL} data-testid="email-tab">
             <AppIcon Icon={MailIcon} />
-            Email
+            {t("login.email")}
           </Tabs.Trigger>
-          <Tabs.Trigger value={AuthMethod.PHONE}>
+          <Tabs.Trigger value={AuthMethod.PHONE} data-testid="phone-tab">
             <AppIcon Icon={PhoneIcon} />
-            Phone
+            {t("login.phone")}
           </Tabs.Trigger>
         </Tabs.List>
-        <Tabs.Content value={AuthMethod.EMAIL}>
+        <Tabs.Content value={AuthMethod.EMAIL} data-testid="email-content">
           <Input
-            label="Email"
+            label={t("login.email")}
+            disabled={isLoading}
             error={!!error}
             value={email}
             onChange={handleChangeEmail}
             type="email"
             className={styles.input}
-            placeholder="Enter your email"
+            placeholder={t("login.enterEmail")}
+            data-testid="email-input"
           />
         </Tabs.Content>
-        <Tabs.Content value={AuthMethod.PHONE}>
+        <Tabs.Content value={AuthMethod.PHONE} data-testid="phone-content">
           <PhoneInput
-            label="Phone"
+            label={t("login.phone")}
             error={!!error}
             onChange={handleChangePhone}
+            disabled={isLoading}
             value={phone}
             className={styles.input}
-            placeholder="Enter your phone"
+            data-testid="phone-input"
           />
         </Tabs.Content>
       </Tabs>
       <Input
         onChange={handleChangePassword}
-        label="Password"
+        label={t("login.password")}
         value={password}
         type="password"
         className={styles.input}
-        placeholder="Enter your password"
+        placeholder={t("login.enterPassword")}
+        disabled={isLoading}
+        data-testid="password-input"
       />
-      {error && <div className={styles.error}>{error}</div>}
+      {error && (
+        <div className={styles.error} data-testid="error-message">
+          {error}
+        </div>
+      )}
       <Button
         isLoading={isLoading}
         fullWidth
         type="submit"
         className={styles.button}
         size="md"
+        data-testid="submit-button"
       >
-        Login <AppIcon Icon={ArrowRight} />
+        {t("login.loginButton")}
+        <AppIcon Icon={ArrowRight} />
       </Button>
     </form>
   );

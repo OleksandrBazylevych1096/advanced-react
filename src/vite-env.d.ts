@@ -10,6 +10,7 @@ interface ViteTypeOptions {
 
 interface ImportMetaEnv {
   readonly VITE_API_URL: string;
+  readonly VITE_PROJECT_ENV: "client" | "storybook";
 }
 
 interface ImportMeta {

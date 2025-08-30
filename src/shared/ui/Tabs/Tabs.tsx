@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react";
 
 import { cn } from "@/shared/lib";
 
@@ -11,7 +17,7 @@ interface TabsContextType {
   handleChangeActiveTab: (tab: string) => void;
 }
 
-interface TabsProps {
+interface TabsProps extends HTMLAttributes<HTMLDivElement> {
   defaultValue: string;
   children: ReactNode;
   onChange?: () => void;
@@ -20,7 +26,7 @@ interface TabsProps {
 const TabsContext = createContext<TabsContextType | undefined>(undefined);
 
 export const Tabs = (props: TabsProps) => {
-  const { children, defaultValue, onChange } = props;
+  const { children, defaultValue, onChange, ...rest } = props;
   const [activeTab, setActiveTab] = useState(defaultValue);
 
   const handleChangeActiveTab = (tab: string) => {
@@ -32,24 +38,28 @@ export const Tabs = (props: TabsProps) => {
 
   return (
     <TabsContext.Provider value={{ activeTab, handleChangeActiveTab }}>
-      <div>{children}</div>
+      <div {...rest}>{children}</div>
     </TabsContext.Provider>
   );
 };
-interface TabsListProps {
+interface TabsListProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-const TabsList = ({ children }: TabsListProps) => {
-  return <div className={styles.list}>{children}</div>;
+const TabsList = ({ children, ...rest }: TabsListProps) => {
+  return (
+    <div className={styles.list} {...rest}>
+      {children}
+    </div>
+  );
 };
 
-interface TabTriggerProps {
+interface TabTriggerProps extends HTMLAttributes<HTMLButtonElement> {
   value: string;
   children: ReactNode;
 }
 
-const TabTrigger = ({ children, value }: TabTriggerProps) => {
+const TabTrigger = ({ children, value, ...rest }: TabTriggerProps) => {
   const context = useContext(TabsContext);
   if (!context) throw new Error("TabTrigger must be within Tabs");
 
@@ -61,6 +71,7 @@ const TabTrigger = ({ children, value }: TabTriggerProps) => {
 
   return (
     <Button
+      {...rest}
       type="button"
       theme={isActive ? "outline" : "tertiary"}
       form="rounded"
@@ -72,12 +83,12 @@ const TabTrigger = ({ children, value }: TabTriggerProps) => {
   );
 };
 
-interface TabContentProps {
+interface TabContentProps extends HTMLAttributes<HTMLDivElement> {
   value: string;
   children: ReactNode;
 }
 
-const TabContent = ({ children, value }: TabContentProps) => {
+const TabContent = ({ children, value, ...rest }: TabContentProps) => {
   const context = useContext(TabsContext);
   if (!context) throw new Error("TabContent must be within Tabs");
 
@@ -85,7 +96,11 @@ const TabContent = ({ children, value }: TabContentProps) => {
 
   if (!isActive) return null;
 
-  return <div className={cn(styles.content)}>{children}</div>;
+  return (
+    <div {...rest} className={cn(styles.content)}>
+      {children}
+    </div>
+  );
 };
 
 Tabs.List = TabsList;

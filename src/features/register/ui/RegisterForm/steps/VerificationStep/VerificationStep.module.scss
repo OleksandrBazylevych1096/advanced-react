@@ -1,0 +1,47 @@
+.form {
+  width: 420px;
+  padding: 24px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--gray-50);
+  border-radius: 24px;
+}
+
+.title {
+  color: var(--gray-600);
+  margin-bottom: 24px;
+
+  span {
+    font-weight: 600;
+    color: var(--black);
+  }
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.error {
+  color: var(--red-500);
+  font: var(--font-s);
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.resendCodeButton,
+.resendCodeText {
+  font: var(--font-m);
+  font-weight: 600;
+}
+
+.resendCodeText {
+  display: flex;
+  justify-content: center;
+}
+.resendCodeButton {
+  margin-left: 8px;
+  color: var(--primary-color);
+  width: auto;
+}

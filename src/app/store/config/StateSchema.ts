@@ -5,13 +5,17 @@ import type {
   UnknownAction,
 } from "@reduxjs/toolkit";
 
+import type { AuthByGoogleSchema } from "@/features/authByGoogle";
 import type { LoginFormSchema } from "@/features/login";
+import type { RegisterFormSchema } from "@/features/register";
 
 import type { UserSchema } from "@/entities/user";
 
 export interface StateSchema {
   user: UserSchema;
+  authByGoogle: AuthByGoogleSchema;
   loginForm?: LoginFormSchema;
+  registerForm?: RegisterFormSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

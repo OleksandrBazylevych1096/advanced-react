@@ -1,11 +1,13 @@
 import type { Preview } from "@storybook/react-vite";
 
-import "../src/app/styles/index.scss";
 import {
   ThemeDecorator,
   RouterDecorator,
   LanguageDecorator,
+  StoreDecorator,
 } from "../src/shared/config/storybook";
+
+import "../src/app/styles/index.scss";
 
 const preview: Preview = {
   globalTypes: {
@@ -51,7 +53,12 @@ const preview: Preview = {
       test: "todo",
     },
   },
-  decorators: [ThemeDecorator, RouterDecorator, LanguageDecorator],
+  decorators: [
+    ThemeDecorator,
+    RouterDecorator,
+    LanguageDecorator,
+    StoreDecorator,
+  ],
 };
 
 export default preview;

@@ -2,7 +2,8 @@
   "header": {
     "cart": "Warenkorb",
     "searchBy": "Suchen nac",
-    "login": "Einloggen"
+    "login": "Einloggen",
+    "logout": "Admelden"
   },
   "footer": {
     "about": "Über uns",
@@ -29,14 +30,34 @@
   "pageLoader": {
     "loading": "Wird gelanden..."
   },
+
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Die Seite, die Sie suchen, ist nicht verfügbar. Versuchen Sie es erneut oder verwenden Sie die Zurück-Schaltfläche unten.",
+    "goBack": "Zurück"
+  },
   "pageError": {
     "title": "Etwas ist schiefgelaufen",
     "description": "Es tut uns leid – ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie, die Seite zu aktualisieren oder kommen Sie später zurück.",
     "reload": "Erneut versuchen"
   },
-  "notFound": {
-    "title": "Seite nicht gefunden",
-    "description": "Die Seite, die Sie suchen, ist nicht verfügbar. Versuchen Sie es erneut oder verwenden Sie die Zurück-Schaltfläche unten.",
-    "goBack": "Zurück"
+  "errors": {
+    "CONTACT_REQUIRED": "Bitte E-Mail oder Telefon angeben",
+    "USER_NOT_FOUND": "Benutzer nicht gefunden",
+    "USER_ALREADY_EXISTS": "Benutzer existiert bereits",
+    "USER_ALREADY_VERIFIED": "Benutzer ist bereits verifiziert",
+    "GOOGLE_USER_NO_VERIFICATION": "Google-Nutzer benötigen keine Verifizierung",
+    "VERIFICATION_TOO_MANY_CODES": "Zu viele Codes angefordert. Bitte später erneut versuchen.",
+    "GOOGLE_AUTH_FAILED": "Google-Authentifizierung fehlgeschlagen",
+    "GOOGLE_CODE_INVALID": "Ungültiger oder abgelaufener Google-Code",
+    "LOGIN_USE_GOOGLE": "Dieses Konto verwendet Google-Anmeldung. Bitte mit Google fortfahren.",
+    "ACCOUNT_NOT_VERIFIED": "Bitte verifizieren Sie Ihr Konto vor dem Login",
+    "INVALID_CREDENTIALS": "Ungültige Anmeldedaten",
+    "REFRESH_TOKEN_MISSING": "Refresh-Token fehlt",
+    "REFRESH_TOKEN_INVALID": "Ungültiger Refresh-Token",
+    "REFRESH_TOKEN_REVOKED": "Refresh-Token widerrufen",
+    "REFRESH_TOKEN_EXPIRED": "Refresh-Token abgelaufen",
+    "REFRESH_TOKEN_MISMATCH": "Refresh-Token stimmt nicht überein",
+    "CODE_REQUIRED": "Code ist erforderlich"
   }
 }

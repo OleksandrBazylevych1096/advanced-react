@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.otpInput {
+  border-radius: 16px;
+  min-width: unset;
+  width: 80px;
+  height: 80px;
+
+  input {
+    text-align: center;
+    font: var(--font-xl);
+    font-weight: 700;
+  }
+}

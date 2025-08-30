@@ -2,7 +2,8 @@
   "header": {
     "cart": "Cart",
     "searchBy": "Search by",
-    "login": "Login"
+    "login": "Login",
+    "logout": "Logout"
   },
   "footer": {
     "about": "About",
@@ -29,14 +30,33 @@
   "pageLoader": {
     "loading": "Loading..."
   },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for isn't available. Try to search again or use the go back button below.",
+    "goBack": "Go Back"
+  },
   "pageError": {
     "title": "Something went wrong",
     "description": "Sorry – an unexpected error occurred. Please try refreshing the page or come back later.",
     "reload": "Try again"
   },
-  "notFound": {
-    "title": "Page Not Found",
-    "description": "The page you're looking for isn't available. Try to search again or use the go back button below.",
-    "goBack": "Go Back"
+  "errors": {
+    "CONTACT_REQUIRED": "Please provide email or phone",
+    "USER_NOT_FOUND": "User not found",
+    "USER_ALREADY_EXISTS": "User already exists",
+    "USER_ALREADY_VERIFIED": "User is already verified",
+    "GOOGLE_USER_NO_VERIFICATION": "Google users do not need verification",
+    "VERIFICATION_TOO_MANY_CODES": "Too many verification codes requested. Try later.",
+    "GOOGLE_AUTH_FAILED": "Google authentication failed",
+    "GOOGLE_CODE_INVALID": "Invalid or expired Google code",
+    "LOGIN_USE_GOOGLE": "This account uses Google Sign-In. Please continue with Google.",
+    "ACCOUNT_NOT_VERIFIED": "Please verify your account before logging in",
+    "INVALID_CREDENTIALS": "Invalid credentials",
+    "REFRESH_TOKEN_MISSING": "Refresh token missing",
+    "REFRESH_TOKEN_INVALID": "Invalid refresh token",
+    "REFRESH_TOKEN_REVOKED": "Refresh token revoked",
+    "REFRESH_TOKEN_EXPIRED": "Refresh token expired",
+    "REFRESH_TOKEN_MISMATCH": "Refresh token mismatch",
+    "CODE_REQUIRED": "Code is required"
   }
 }
