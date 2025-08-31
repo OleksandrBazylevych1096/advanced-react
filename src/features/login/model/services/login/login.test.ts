@@ -7,7 +7,7 @@ import { testAsyncThunk } from "@/shared/lib/test/testAsyncThunk";
 
 import { login } from "./login";
 
-vi.mock("@/entities/User", () => ({
+vi.mock("@/entities/user", () => ({
   applyUserSession: vi.fn(),
 }));
 
