@@ -1,4 +1,29 @@
 {
+  "carousel": {
+    "imageError": "Fehler",
+    "imageAlt": "Werbebanner"
+  },
+  "products": {
+    "viewAll": "Alle anzeigen",
+    "bestSellers": "Bestseller",
+    "trendingFavorites": "Beliebte Produkte",
+    "unexpectedError": "Unerwarteter Fehler",
+    "tryAgain": "Erneut versuchen",
+    "noProducts": "Keine Produkte",
+    "itemsLeft": "Noch {{count}} verfügbar",
+    "loadCategoriesError": "Kategorien konnten nicht geladen werden"
+  },
+  "firstOrderSection": {
+    "errorLoading": "Fehler beim Laden der Produkte",
+    "tryAgain": "Erneut versuchen",
+    "noProducts": "Keine Produkte verfügbar",
+    "discountOffer": "10% Rabatt auf Ihre erste Bestellung",
+    "orderTitle": "Bestellen Sie jetzt Ihre Lebensmittel!",
+    "items": "Artikel",
+    "minutes": "Minuten",
+    "upToOffers": "Bis zu Angebote",
+    "orderNow": "Jetzt bestellen"
+  },
   "header": {
     "cart": "Warenkorb",
     "searchBy": "Suchen nac",
@@ -27,6 +52,7 @@
     "twitter": "Twitter",
     "copyright": "Alle Rechte vorbehalten © {{year}} {{company}}"
   },
+
   "pageLoader": {
     "loading": "Wird gelanden..."
   },

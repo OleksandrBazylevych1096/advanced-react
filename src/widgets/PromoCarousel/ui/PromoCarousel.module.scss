@@ -1,0 +1,29 @@
+.slideImg {
+  border-radius: 32px;
+  display: block;
+  height: var(--promo-carousel-height);
+  width: 100%;
+  object-fit: cover;
+}
+
+.skeletonItem {
+  width: 600px;
+  height: 240px;
+  border-radius: 32px;
+  background-color: var(--gray-200);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

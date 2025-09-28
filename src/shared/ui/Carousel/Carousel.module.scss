@@ -1,0 +1,26 @@
+.carousel {
+  margin: auto;
+}
+
+.carouselViewport {
+  overflow: hidden;
+}
+
+.carouselContainer {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+}
+
+.carouselSlide {
+  flex: 0 0 auto;
+  min-width: 0;
+  transform: translate3d(0, 0, 0);
+  cursor: pointer;
+  padding-left: 16px;
+  position: relative;
+}
+
+.emblaButtons {
+  display: flex;
+  gap: 8px;
+}
