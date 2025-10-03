@@ -1,0 +1,82 @@
+.button {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+}
+
+.imgContainer {
+  width: 240px;
+  height: 240px;
+  background-color: var(--primary-color-light);
+  border-radius: 32px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.card {
+  max-width: 240px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgb(0 0 0 / 8%);
+
+    .button {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .imgContainer {
+      box-shadow: 0 4px 20px rgb(0 0 0 / 8%);
+    }
+  }
+
+  &:focus-within {
+    .button {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+.title {
+  font: var(--font-base);
+  font-weight: 600;
+  margin: 8px 0;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subtitle {
+  font: var(--font-m);
+  margin-bottom: 4px;
+}
+
+
+
+.metadata {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.amountLeft {
+  font-weight: 600;
+  color: var(--primary-color);
+}

@@ -1,0 +1,67 @@
+.image {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.hidden {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gray-50);
+  border-radius: 16px;
+  color: var(--gray-500);
+  position: relative;
+  overflow: hidden;
+}
+
+.loading {
+  background-color: var(--gray-100);
+}
+
+.shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    var(--gray-200) 50%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.placeholderIcon {
+  margin-bottom: 8px;
+  color: var(--gray-400);
+}
+
+.placeholderText {
+  font-size: var(--font-s);
+  color: var(--gray-500);
+  text-align: center;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}

@@ -1,3 +1,4 @@
+import { BestSellingProducts } from "@/widgets/BestSellingProducts";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
 
@@ -10,6 +11,7 @@ const HomePage = () => {
       <Header />
       <main className={styles.content}>
         <PromoBanners />
+        <BestSellingProducts />
       </main>
       <Footer />
     </div>

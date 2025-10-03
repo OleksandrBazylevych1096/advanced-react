@@ -1,4 +1,4 @@
-import type { AuthProvidersType } from "@/shared/config";
+import type { AuthProvidersType, CurrencyType } from "@/shared/config";
 
 export interface User {
   id: string;
@@ -10,4 +10,5 @@ export interface User {
 
 export interface UserSchema {
   userData?: User;
+  currency: CurrencyType;
 }

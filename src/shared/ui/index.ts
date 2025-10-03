@@ -7,6 +7,7 @@ import { useAutoScroll } from "./Carousel/hooks/useAutoScroll";
 import { Input } from "./Input/Input";
 import { OTPInput } from "./Input/OTPInput/OTPInput";
 import { PhoneInput } from "./Input/PhoneInput/PhoneInput";
+import { Price } from "./Price/Price";
 import { Spinner } from "./Spinner/Spinner";
 import { Tabs } from "./Tabs/Tabs";
 
@@ -22,4 +23,5 @@ export {
   CarouselControls,
   useAutoScroll,
   CarouselSkeleton,
+  Price,
 };

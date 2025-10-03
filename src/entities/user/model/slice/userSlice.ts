@@ -1,11 +1,12 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-import { LOCAL_STORAGE_USER_KEY } from "@/shared/config";
+import { LOCAL_STORAGE_USER_KEY, type CurrencyType } from "@/shared/config";
 
 import type { User, UserSchema } from "../types/UserSchema";
 
 const initialState: UserSchema = {
   userData: undefined,
+  currency: "USD",
 };
 
 export const userSlice = createSlice({
@@ -17,6 +18,9 @@ export const userSlice = createSlice({
     },
     clearUserData: (state) => {
       state.userData = undefined;
+    },
+    setCurrency: (state, action: PayloadAction<CurrencyType>) => {
+      state.currency = action.payload;
     },
     initUserData: (state) => {
       const user = localStorage.getItem(LOCAL_STORAGE_USER_KEY);

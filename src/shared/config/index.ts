@@ -7,6 +7,10 @@ import {
   type AuthProvidersType,
 } from "./auth/auth";
 import {
+  languageCurrencyList,
+  type CurrencyType,
+} from "./i18n/LanguageCurrencyList";
+import {
   languageIconList,
   type SupportedLngsType,
 } from "./i18n/LanguageIconList";
@@ -31,6 +35,8 @@ export {
   AuthProviders,
   AuthMethod,
   API_URL,
+  languageCurrencyList,
+  type CurrencyType,
   type AuthProvidersType,
   type AuthMethodType,
   type ThemeType,
