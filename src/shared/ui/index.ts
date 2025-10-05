@@ -4,6 +4,7 @@ import { Carousel } from "./Carousel/Carousel";
 import { CarouselControls } from "./Carousel/CarouselControls";
 import { CarouselSkeleton } from "./Carousel/CarouselSkeleton";
 import { useAutoScroll } from "./Carousel/hooks/useAutoScroll";
+import { Counter } from "./Counter/Counter";
 import { Input } from "./Input/Input";
 import { OTPInput } from "./Input/OTPInput/OTPInput";
 import { PhoneInput } from "./Input/PhoneInput/PhoneInput";
@@ -24,4 +25,5 @@ export {
   useAutoScroll,
   CarouselSkeleton,
   Price,
+  Counter,
 };

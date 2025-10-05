@@ -5,11 +5,13 @@ import { useGetPromoBannersQuery } from "../../api/homePageApi";
 import styles from "./PromoBanners.module.scss";
 
 export const PromoBanners = () => {
-  const { data: banners, isFetching, error } = useGetPromoBannersQuery();
+  const { data, isFetching, error } = useGetPromoBannersQuery();
 
-  if (!banners || error) {
+  if (error) {
     return null;
   }
+
+  const banners = data || [];
 
   const middle = Math.ceil(banners.length / 2);
   const firstPart = banners.slice(0, middle);

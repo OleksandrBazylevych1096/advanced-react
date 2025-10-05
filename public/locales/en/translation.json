@@ -6,7 +6,7 @@
   "products": {
     "viewAll": "View All",
     "bestSellers": "Best Sellers",
-    "trendingFavorites": "Trending Store Favorites",
+    "trendingProducts": "Trending Store Favorites",
     "unexpectedError": "Unexpected error",
     "tryAgain": "Try Again",
     "noProducts": "No products",
