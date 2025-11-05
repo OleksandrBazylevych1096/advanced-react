@@ -1,0 +1,15 @@
+.container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: var(--toast-z-index);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 420px;
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
+}

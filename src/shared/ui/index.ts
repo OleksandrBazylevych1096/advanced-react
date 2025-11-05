@@ -8,6 +8,8 @@ import { Counter } from "./Counter/Counter";
 import { Input } from "./Input/Input";
 import { OTPInput } from "./Input/OTPInput/OTPInput";
 import { PhoneInput } from "./Input/PhoneInput/PhoneInput";
+import { Modal } from "./Modal/Modal";
+import { Portal } from "./Portal/Portal";
 import { Price } from "./Price/Price";
 import { Spinner } from "./Spinner/Spinner";
 import { Tabs } from "./Tabs/Tabs";
@@ -26,4 +28,6 @@ export {
   CarouselSkeleton,
   Price,
   Counter,
+  Modal,
+  Portal,
 };

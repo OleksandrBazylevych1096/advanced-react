@@ -4,7 +4,12 @@ import { BrowserRouter } from "react-router";
 
 import App from "@/app/App.tsx";
 
-import { ErrorBoundary, StoreProvider, ThemeProvider } from "./app/providers";
+import {
+  ErrorBoundary,
+  StoreProvider,
+  ThemeProvider,
+  ToastProvider,
+} from "./app/providers";
 
 import "@/shared/config/i18n/i18n";
 import "@/app/styles/index.scss";
@@ -15,6 +20,7 @@ createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <ThemeProvider>
           <ErrorBoundary>
+            <ToastProvider />
             <App />
           </ErrorBoundary>
         </ThemeProvider>

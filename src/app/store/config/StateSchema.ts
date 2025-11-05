@@ -13,9 +13,12 @@ import type { UserSchema } from "@/entities/user";
 
 import type { baseAPI } from "@/shared/api";
 
+import type { ToastSchema } from "../../providers/toast/model/types/toast";
+
 export interface StateSchema {
   user: UserSchema;
   authByGoogle: AuthByGoogleSchema;
+  toast: ToastSchema;
   [baseAPI.reducerPath]: ReturnType<typeof baseAPI.reducer>;
   loginForm?: LoginFormSchema;
   registerForm?: RegisterFormSchema;

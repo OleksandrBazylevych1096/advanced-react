@@ -1,0 +1,82 @@
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0 0 0 / 60%);
+}
+
+.contentWrapper {
+  padding: 24px;
+  border-radius: 32px;
+  background-color: var(--gray-50);
+  min-width: 680px;
+  max-height: 90vh;
+  transform: scale(0.3);
+  transition: transform 0.3s ease-in-out; /* Змінив на 0.3s для синхронізації */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: var(--font-l);
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-bottom: 16px;
+}
+
+.closeButton {
+  svg {
+    stroke: var(--gray-500);
+    transition: stroke 0.3s linear;
+
+    &:hover {
+      stroke: var(--black);
+    }
+  }
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  padding-right: 8px;
+}
+
+.footer {
+  flex-shrink: 0;
+  margin-top: 16px;
+}
+
+.opened {
+  opacity: 1;
+  pointer-events: all;
+  z-index: var(--modal-z-index);
+
+  .contentWrapper {
+    transform: scale(1);
+  }
+}
+
+.isClosing {
+  .contentWrapper {
+    transform: scale(0.3);
+  }
+}
