@@ -1,0 +1,131 @@
+.addressList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.addressItem {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-radius: 12px;
+  transition: all 0.3s linear;
+
+  &.selected {
+    background-color: var(--primary-color-light);
+  }
+}
+
+.addressInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.radioContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.radioButton {
+  width: 18px;
+  height: 18px;
+  background-color: var(--primary-color);
+  accent-color: var(--primary-color);
+}
+
+.addressDetails {
+  flex: 1;
+}
+
+.addressType {
+  font: var(--font-s);
+  font-weight: 600;
+}
+
+.addressText {
+  font: var(--font-s);
+  color: var(--gray-400);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.action {
+  color: var(--primary-color);
+  font-size: 14px;
+  padding: 4px 8px;
+
+  svg {
+    stroke: var(--primary-color);
+    fill: none;
+  }
+}
+
+.deleteAction {
+  svg {
+    stroke: none;
+    fill: var(--primary-color);
+  }
+}
+
+.body {
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.addAddressButton {
+  font-weight: 600;
+  color: var(--primary-color);
+  padding: 12px;
+}
+
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.emptyTitle {
+  font: var(--font-base);
+  font-weight: 600;
+}
+
+.emptyDescription {
+  color: var(--gray-400);
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+  text-align: center;
+}
+
+.errorText {
+  font: var(--font-l);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.deleteModal {
+  width: 400px;
+  min-width: unset;
+}
+
+.deleteModalFooter {
+  gap: 16px;
+  justify-content: end;
+  display: flex;
+}

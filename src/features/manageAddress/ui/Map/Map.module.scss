@@ -1,0 +1,56 @@
+.map {
+  height: 420px;
+  width: 100%;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+
+  svg {
+    fill: var(--primary-color);
+    stroke: var(--primary-color);
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.controlButton {
+  color: var(--primary-color);
+  pointer-events: auto;
+}
+
+.zoomButtons {
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  z-index: var(--map-controls-z-index);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gpsIcon {
+  stroke: var(--primary-color);
+}
+
+.tooltip {
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.locate {
+  position: absolute;
+  bottom: 40px;
+  right: 10px;
+  z-index: var(--map-controls-z-index);
+}
+
+.mapLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 420px;
+  width: 100%;
+}

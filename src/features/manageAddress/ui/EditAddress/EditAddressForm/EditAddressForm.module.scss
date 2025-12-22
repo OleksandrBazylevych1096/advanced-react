@@ -1,0 +1,66 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  min-height: unset;
+  margin-top: 24px;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+}
+
+.containerWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: unset;
+  flex: 1;
+}
+
+.container {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.detailsInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.suggestions {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  margin-top: 8px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+.suggestionItem {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+  border-bottom: 1px solid var(--gray-200);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: var(--gray-100);
+  }
+}

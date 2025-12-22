@@ -1,0 +1,33 @@
+.content {
+  max-width: 680px;
+}
+
+.address {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.addressButton {
+  max-width: 60%;
+
+  &:hover {
+    color: var(--primary-color);
+    fill: var(--primary-color);
+  }
+}
+
+.signInPrompt {
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  font: var(--font-base);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
