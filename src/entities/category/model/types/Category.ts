@@ -1,6 +1,11 @@
-export interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  icon?: string;
+export interface Category extends BaseCategory {
+    icon?: string;
+    children?: Category[]
+}
+
+
+export interface BaseCategory {
+    id: string;
+    name: string;
+    slug: string;
 }

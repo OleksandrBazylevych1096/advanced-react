@@ -24,6 +24,31 @@
     "upToOffers": "Up to offers",
     "orderNow": "Order Now"
   },
+  "manageAddress": {
+    "deleteConfirm": "Are you sure you want to delete this address?",
+    "edit": "Edit",
+    "delete": "Delete",
+    "failedToLoad": "Failed to load addresses",
+    "tryAgain": "Try Again",
+    "noAddressesTitle": "No addresses added yet",
+    "noAddressesDescription": "Add your first address to start shopping!",
+    "addNewAddress": "Add New Address",
+    "addAddress": "Add Address",
+    "streetAddress": "Street Address",
+    "city": "City",
+    "apartment": "Apartment",
+    "zipCode": "Zip Code",
+    "update": "Update",
+    "save": "Save",
+    "loadingMap": "Loading map...",
+    "mode": {
+      "choose": "Choose Address",
+      "add": "Add New Address",
+      "edit": "Edit Address"
+    },
+    "signInPrompt": "Please sign in to manage your addresses.",
+    "signIn": "Sign in"
+  },
   "header": {
     "cart": "Cart",
     "searchBy": "Search by",

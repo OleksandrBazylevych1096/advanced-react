@@ -1,72 +1,62 @@
-import { type EmblaCarouselType, type EmblaOptionsType } from "embla-carousel";
-import AutoScroll, {
-  type AutoScrollOptionsType,
-} from "embla-carousel-auto-scroll";
-import { useState, type SyntheticEvent } from "react";
-import { useTranslation } from "react-i18next";
+import {type EmblaCarouselType, type EmblaOptionsType} from "embla-carousel";
+import AutoScroll, {type AutoScrollOptionsType,} from "embla-carousel-auto-scroll";
+import {useState} from "react";
+import {useTranslation} from "react-i18next";
 
-import { Carousel, CarouselSkeleton, useAutoScroll } from "@/shared/ui";
+import {useGetPromoBannersQuery} from "@/widgets/PromoCarousel/api/promoCarouselApi.ts";
+import {generatePlaceholder} from "@/widgets/PromoCarousel/lib/generatePlaceholder/generatePlaceholder.ts";
+import {PromoSlide} from "@/widgets/PromoCarousel/ui/PromoSlide.tsx";
 
-import styles from "./PromoCarousel.module.scss";
+import {Carousel, CarouselSkeleton, useAutoScroll} from "@/shared/ui";
+
+import styles from './PromoCarousel.module.scss'
 
 interface PromoCarouselProps {
-  bannersUrl: string[];
-  autoScrollOptions?: AutoScrollOptionsType;
-  fallbackImg?: string;
-  isLoading?: boolean;
+    autoScrollOptions?: AutoScrollOptionsType;
 }
 
 export const PromoCarousel = (props: PromoCarouselProps) => {
-  const { t } = useTranslation();
-  const {
-    bannersUrl,
-    isLoading,
-    autoScrollOptions = {},
-    fallbackImg = `https://placehold.co/600x200?text=${t(
-      "carousel.imageError"
-    )}`,
-  } = props;
+    const {t} = useTranslation();
+    const {data: bannerUrls, isLoading} = useGetPromoBannersQuery()
+    const dynamicFallbackImg = generatePlaceholder(t("carousel.imageError"))
 
-  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | undefined>();
-  const { handleMouseEnter, handleMouseLeave } = useAutoScroll(emblaApi);
+    const {
+        autoScrollOptions = {},
+    } = props;
 
-  const handleImageError = (event: SyntheticEvent<HTMLImageElement>) => {
-    event.currentTarget.src = fallbackImg;
-  };
+    const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | undefined>();
+    const {handleMouseEnter, handleMouseLeave} = useAutoScroll(emblaApi);
 
-  const plugins = [
-    AutoScroll({ ...autoScrollOptions, playOnInit: true, speed: 1 }),
-  ];
+    const plugins = [
+        AutoScroll({...autoScrollOptions, playOnInit: true, speed: 1}),
+    ];
 
-  const options: EmblaOptionsType = {
-    dragFree: true,
-    align: "start",
-    loop: true,
-  };
+    const options: EmblaOptionsType = {
+        dragFree: true,
+        align: "start",
+        loop: true,
+    };
 
-  if (isLoading)
+    if (isLoading) {
+        return <CarouselSkeleton ItemSkeletonComponent={<div className={styles.skeletonItem}/>}/>
+    }
+
+    if (!bannerUrls || bannerUrls.length === 0) {
+        return null
+    }
+
+
     return (
-      <CarouselSkeleton
-        ItemSkeletonComponent={<div className={styles.skeletonItem} />}
-      />
+        <Carousel
+            options={options}
+            plugins={plugins}
+            onEmblaInit={setEmblaApi}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
+            {bannerUrls.map((bannerUrl, index) => (
+                <PromoSlide key={index} src={bannerUrl} fallbackSrc={dynamicFallbackImg}/>
+            ))}
+        </Carousel>
     );
-
-  return (
-    <Carousel
-      options={options}
-      plugins={plugins}
-      onEmblaInit={setEmblaApi}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {bannersUrl.map((bannerUrl, index) => (
-        <img
-          key={index}
-          className={styles.slideImg}
-          src={bannerUrl}
-          onError={handleImageError}
-        />
-      ))}
-    </Carousel>
-  );
 };

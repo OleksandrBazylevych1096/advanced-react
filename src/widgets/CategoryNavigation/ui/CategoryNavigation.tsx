@@ -1,56 +1,64 @@
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
+import {useParams} from "react-router";
 
-import { Button, Carousel, CarouselSkeleton } from "@/shared/ui";
+import {useGetCategoryNavigationQuery} from "@/widgets/CategoryNavigation/api/categoryNavigationApi.ts";
+import {CategoryNavigationGoBackItem} from "@/widgets/CategoryNavigation/ui/CategoryNavigationGoBackItem.tsx";
 
-import { useGetTopLevelCategoriesQuery } from "../api/categoryNavigationApi";
+import {Button, Carousel, CarouselSkeleton} from "@/shared/ui";
 
 import styles from "./CategoryNavigation.module.scss";
-import { CategoryNavigationItem } from "./CategoryNavigationItem";
+import {CategoryNavigationItem} from "./CategoryNavigationItem";
+
 
 export const CategoryNavigation = () => {
-  const { i18n, t } = useTranslation();
-  const {
-    data: categories,
-    isFetching,
-    isError,
-    refetch,
-  } = useGetTopLevelCategoriesQuery({ locale: i18n.language });
+    const {i18n, t} = useTranslation();
+    const {slug} = useParams();
 
-  const handleRetry = () => {
-    refetch();
-  };
+    const {
+        data,
+        isLoading,
+        isError,
+        refetch,
+    } = useGetCategoryNavigationQuery({
+        slug: slug,
+        locale: i18n.language
+    });
 
-  if (isFetching) {
+
+    if (isLoading) {
+        return (
+            <CarouselSkeleton
+                className={styles.categorySkeletonContainer}
+                count={15}
+                ItemSkeletonComponent={<div className={styles.categorySkeleton}/>}
+            />
+        );
+    }
+
+    if (isError) {
+        return (
+            <div className={styles.errorContainer}>
+                <p className={styles.errorText}>{t("products.loadCategoriesError")}</p>
+                <Button onClick={refetch}>{t("products.tryAgain")}</Button>
+            </div>
+        );
+    }
+
+    if (!data?.items?.length) {
+        return null;
+    }
+
     return (
-      <CarouselSkeleton
-        count={15}
-        ItemSkeletonComponent={<div className={styles.categorySkeleton} />}
-      />
+        <Carousel className={styles.categories}>
+            {data.isShowingSubcategories && <CategoryNavigationGoBackItem parentSlug={data?.parentCategory?.slug}/>}
+            {data.items.map((item) => (
+                <CategoryNavigationItem
+                    key={item.slug}
+                    title={item.name}
+                    slug={item.slug}
+                    icon={item.icon}
+                />
+            ))}
+        </Carousel>
     );
-  }
-
-  if (isError) {
-    return (
-      <div className={styles.errorContainer}>
-        <p className={styles.errorText}>{t("products.loadCategoriesError")}</p>
-        <Button onClick={handleRetry}>{t("products.tryAgain")}</Button>
-      </div>
-    );
-  }
-
-  if (!categories || categories.length === 0) {
-    return null;
-  }
-
-  return (
-    <Carousel>
-      {categories?.map((category) => (
-        <CategoryNavigationItem
-          title={category.name}
-          slug={category.slug}
-          icon={category.icon}
-        />
-      ))}
-    </Carousel>
-  );
 };

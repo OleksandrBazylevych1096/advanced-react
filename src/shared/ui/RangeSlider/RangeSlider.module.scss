@@ -1,0 +1,99 @@
+.rangeSlider {
+  width: 100%;
+}
+
+.inputs {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.inputGroup {
+  flex: 1;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  color: var(--gray-600);
+  margin-bottom: 8px;
+}
+
+.input {
+  width: 100%;
+}
+
+.sliderContainer {
+  position: relative;
+  height: 40px;
+}
+
+.track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gray-300);
+  border-radius: 2px;
+  transform: translateY(-50%);
+}
+
+.range {
+  position: absolute;
+  height: 100%;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.slider {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  pointer-events: none;
+  top: 50%;
+  transform: translateY(-50%);
+  appearance: none;
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: all;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: all;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.min {
+  z-index: 1;
+}
+
+.max {
+  z-index: 2;
+}

@@ -1,19 +1,21 @@
 export const AppRoutes = {
-  HOME: "home",
-  LOGIN: "login",
-  register: "register",
-  AUTH_CALLBACK: "auth_callback",
-  NOT_FOUND: "not_found",
+    HOME: "home",
+    LOGIN: "login",
+    REGISTER: "register",
+    AUTH_CALLBACK: "auth_callback",
+    CATEGORY: 'category',
+    NOT_FOUND: "not_found",
 } as const;
 
 type AppRoutes = (typeof AppRoutes)[keyof typeof AppRoutes];
 
 export const routePaths: Record<AppRoutes, string> = {
-  [AppRoutes.HOME]: "/",
-  [AppRoutes.LOGIN]: "/login",
-  [AppRoutes.register]: "/register",
-  [AppRoutes.AUTH_CALLBACK]: "/oauth",
+    [AppRoutes.HOME]: "/",
+    [AppRoutes.LOGIN]: "/login",
+    [AppRoutes.REGISTER]: "/register",
+    [AppRoutes.AUTH_CALLBACK]: "/oauth",
+    [AppRoutes.CATEGORY]: '/category/:slug',
 
-  // last
-  [AppRoutes.NOT_FOUND]: "*",
+    // last
+    [AppRoutes.NOT_FOUND]: "*",
 };

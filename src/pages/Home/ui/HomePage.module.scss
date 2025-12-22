@@ -1,10 +1,6 @@
-.pageWrapper {
-  min-height: 100vh;
+
+.promo {
   display: flex;
   flex-direction: column;
-}
-
-.content {
-  flex: 1;
-  padding: 0 var(--container-padding);
+  gap: 20px;
 }

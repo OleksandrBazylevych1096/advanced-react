@@ -1,4 +1,5 @@
 .carousel {
+  width: 100%;
   margin: auto;
 }
 
@@ -16,8 +17,8 @@
   min-width: 0;
   transform: translate3d(0, 0, 0);
   cursor: pointer;
-  padding-left: 16px;
   position: relative;
+  padding-right: 16px;
 }
 
 .emblaButtons {

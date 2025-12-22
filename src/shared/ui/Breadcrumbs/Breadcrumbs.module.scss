@@ -1,0 +1,38 @@
+.root {
+  display: block;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+
+  color: var(--gray-500);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.link {
+  color: var(--gray-500);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}
+
+.current {
+  color: var(--primary-color);
+}
+
+.separator {
+  opacity: 0.8;
+  user-select: none;
+}

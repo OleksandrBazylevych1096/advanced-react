@@ -23,3 +23,25 @@
 .tagsContainer {
   margin-bottom: 24px;
 }
+.emptyContainer,
+.errorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+  text-align: center;
+}
+
+.emptyText,
+.errorText {
+  font: var(--font-l);
+  font-weight: 600;
+}
+
+.errorText {
+  margin-bottom: 16px;
+}
+
+.errorContainer {
+  flex-direction: column;
+}

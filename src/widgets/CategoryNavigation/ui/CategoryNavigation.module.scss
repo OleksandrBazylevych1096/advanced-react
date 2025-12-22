@@ -1,9 +1,24 @@
+.categories {
+  margin: 20px 0;
+}
+
+.category {
+  &.active {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+}
+
 .categorySkeleton {
   width: 120px;
   height: 42px;
   background-color: var(--gray-200);
   border-radius: 24px;
   animation: pulse 1.5s ease-in-out infinite;
+}
+
+.categorySkeletonContainer {
+  margin: 20px 0;
 }
 
 .errorContainer {

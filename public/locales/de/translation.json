@@ -6,7 +6,7 @@
   "products": {
     "viewAll": "Alle anzeigen",
     "bestSellers": "Bestseller",
-    "trendingProducts": "Beliebte Produkte",
+    "trendingFavorites": "Beliebte Produkte",
     "unexpectedError": "Unerwarteter Fehler",
     "tryAgain": "Erneut versuchen",
     "noProducts": "Keine Produkte",
@@ -23,6 +23,31 @@
     "minutes": "Minuten",
     "upToOffers": "Bis zu Angebote",
     "orderNow": "Jetzt bestellen"
+  },
+  "manageAddress": {
+    "deleteConfirm": "Möchten Sie diese Adresse wirklich löschen?",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "failedToLoad": "Adressen konnten nicht geladen werden",
+    "tryAgain": "Erneut versuchen",
+    "noAddressesTitle": "Noch keine Adressen hinzugefügt",
+    "noAddressesDescription": "Fügen Sie Ihre erste Adresse hinzu, um mit dem Einkaufen zu beginnen!",
+    "addNewAddress": "Neue Adresse hinzufügen",
+    "addAddress": "Adresse hinzufügen",
+    "streetAddress": "Straßenadresse",
+    "city": "Stadt",
+    "apartment": "Wohnung",
+    "zipCode": "Postleitzahl",
+    "update": "Aktualisieren",
+    "save": "Speichern",
+    "loadingMap": "Karte wird geladen...",
+    "mode": {
+      "choose": "Adresse wählen",
+      "add": "Neue Adresse hinzufügen",
+      "edit": "Adresse bearbeiten"
+    },
+    "signInPrompt": "Bitte melden Sie sich an, um Ihre Adressen zu verwalten.",
+    "signIn": "Anmelden"
   },
   "header": {
     "cart": "Warenkorb",

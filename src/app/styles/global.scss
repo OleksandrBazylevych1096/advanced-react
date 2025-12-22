@@ -8,8 +8,7 @@
   --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
   --font-size-base: 18px;
   --font-line-base: 26px;
-  --font-base: var(--font-size-base) / var(--font-line-base)
-    var(--font-family-main);
+  --font-base: var(--font-size-base) / var(--font-line-base) var(--font-family-main);
   --font-size-m: 16px;
   --font-line-m: 24px;
   --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
@@ -46,6 +45,7 @@
 
   --container-padding: 80px;
   --promo-carousel-height: 248px;
+  --sidebar-width: 300px;
 
   --modal-z-index: 1000;
   --toast-z-index: 9999;
