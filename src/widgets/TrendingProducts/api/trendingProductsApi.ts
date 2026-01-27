@@ -1,9 +1,10 @@
 import type {Tag} from "@/entities/tag";
 
 import {baseAPI} from "@/shared/api";
+import type {SupportedLngsType} from "@/shared/config";
 
 interface TrendingTagQueryArgs {
-    locale: string;
+    locale: SupportedLngsType;
 }
 
 

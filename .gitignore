@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 
+TODO.txt
+
 .env
 
 # Editor directories and files

@@ -14,7 +14,7 @@ import {routePaths} from "@/shared/config";
 import {useAppDispatch, useAppSelector} from "@/shared/lib";
 
 export const useManageAddress = () => {
-    const navigator = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const userData = useAppSelector(selectUserData);
     const mode = useAppSelector(selectManageAddressMode);
@@ -33,7 +33,7 @@ export const useManageAddress = () => {
     };
 
     const handleClickSignIn = () => {
-        navigator(routePaths.login);
+        navigate(routePaths.login);
     };
 
     const handleGoBackClick = () => {

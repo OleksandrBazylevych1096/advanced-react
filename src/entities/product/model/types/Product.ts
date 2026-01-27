@@ -40,6 +40,7 @@ export interface ProductsApiResponse {
 export interface ProductQuery {
     search?: string
     categorySlug?: string
+    categoryId?: string
     tagId?: string
     minPrice?: number
     maxPrice?: number
@@ -51,5 +52,5 @@ export interface ProductQuery {
     currency?: CurrencyType
 }
 
-export type FacetItemType = { value: string, count: number }
+export type FacetItemType = { label?: string, value: string, count: number }
 export type PriceRangeType = { min?: number, max?: number }

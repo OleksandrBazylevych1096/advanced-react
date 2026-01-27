@@ -1,22 +1,22 @@
-import type { ProductsApiResponse } from "@/entities/product";
+import type {ProductsApiResponse} from "@/entities/product";
 
-import { baseAPI } from "@/shared/api";
-import type { CurrencyType } from "@/shared/config";
+import {baseAPI} from "@/shared/api";
+import type {CurrencyType, SupportedLngsType} from "@/shared/config";
 
 interface Args {
-  locale: string;
-  currency: CurrencyType;
+    locale: SupportedLngsType;
+    currency: CurrencyType;
 }
 
 const bestSellingProductsApi = baseAPI.injectEndpoints({
-  endpoints: (build) => ({
-    getBestSellingProducts: build.query<ProductsApiResponse, Args>({
-      query: (params) => ({
-        url: "/products/best-sellers",
-        params,
-      }),
+    endpoints: (build) => ({
+        getBestSellingProducts: build.query<ProductsApiResponse, Args>({
+            query: (params) => ({
+                url: "/products/best-sellers",
+                params,
+            }),
+        }),
     }),
-  }),
 });
 
-export const { useGetBestSellingProductsQuery } = bestSellingProductsApi;
+export const {useGetBestSellingProductsQuery} = bestSellingProductsApi;

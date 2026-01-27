@@ -32,7 +32,8 @@ export const productApi = baseAPI.injectEndpoints({
                 url: '/products',
                 params: {
                     ...queryArg,
-                    page: pageParam
+                    page: pageParam,
+                    limit: queryArg.limit || 20
                 },
             }),
 

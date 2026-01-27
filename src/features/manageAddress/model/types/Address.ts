@@ -1,61 +1,61 @@
-import type { LatLngTuple } from "leaflet";
+import type {LatLngTuple} from "leaflet";
 
 export interface ManageAddressSchema {
-  editingAddressId?: string;
+    editingAddressId?: string;
 
-  location: LatLngTuple;
+    location: LatLngTuple;
 
-  form: AddressForm;
+    form: AddressForm;
 
-  mode: AddressMode;
+    mode: AddressMode;
 }
 
 export type AddressMode = "choose" | "edit" | "add";
 
 export interface ShippingAddress {
-  id: string;
-  streetAddress: string;
-  city: string;
-  numberOfApartment: string;
-  zipCode: string;
-  isDefault: boolean;
-  latitude: number;
-  longitude: number;
+    id: string;
+    streetAddress: string;
+    city: string;
+    numberOfApartment: string;
+    zipCode: string;
+    isDefault: boolean;
+    latitude: number;
+    longitude: number;
 }
 
 export interface CreateShippingAddress extends AddressForm {
-  latitude: number;
-  longitude: number;
+    latitude: number;
+    longitude: number;
 }
 
 export interface UpdateShippingAddress extends Partial<AddressForm> {
-  latitude?: number;
-  longitude?: number;
+    latitude?: number;
+    longitude?: number;
 }
 
 export interface AddressForm {
-  streetAddress: string;
-  city: string;
-  numberOfApartment: string;
-  zipCode: string;
+    streetAddress: string;
+    city: string;
+    numberOfApartment: string;
+    zipCode: string;
 }
 
 export interface AddressSearchResult {
-  lat: number;
-  lon: number;
-  displayName: string;
+    lat: number;
+    lon: number;
+    displayName: string;
 }
 
 export interface ReverseGeocodeResult extends BaseAddress {
-  label: string;
+    label: string;
 }
 
 export interface BaseAddress {
-  country: string;
-  state: string;
-  postcode?: string;
-  city: string;
-  street?: string;
-  housenumber?: string;
-  name?: string;
+    country: string;
+    state?: string;
+    postcode?: string;
+    city: string;
+    street?: string;
+    housenumber?: string;
+    name?: string;
 }

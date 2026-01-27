@@ -1,64 +1,55 @@
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useState} from "react";
+
+import {useIntersectionObserver} from "@/shared/lib";
+
 
 interface CounterProps {
-  from?: number;
-  to: number;
-  durationMs?: number;
-  formatter?: (value: number) => string;
-  once?: boolean;
+    from?: number;
+    to: number;
+    durationMs?: number;
+    formatter?: (value: number) => string;
+    once?: boolean;
 }
 
 export const Counter = (props: CounterProps) => {
-  const { from = 0, to, durationMs = 2000, formatter, once = true } = props;
+    const {
+        from = 0,
+        to,
+        durationMs = 2000,
+        formatter,
+        once = true,
+    } = props;
 
-  const [value, setValue] = useState(from);
-  const [started, setStarted] = useState(false);
-  const ref = useRef<HTMLSpanElement | null>(null);
+    const [value, setValue] = useState(from);
 
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
+    const [ref, isIntersecting] = useIntersectionObserver({
+        threshold: 0.5,
+        freezeOnceVisible: once,
+    });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          setStarted(true);
-          if (once) observer.disconnect();
-        }
-      },
+    useEffect(() => {
+        if (!isIntersecting) return;
 
-      { threshold: 0.5, rootMargin: "0px" }
-    );
+        let start: number | null = null;
+        let animationFrameId: number;
 
-    observer.observe(element);
+        const step = (timestamp: number) => {
+            if (start === null) start = timestamp;
 
-    return () => observer.disconnect();
-  }, [once]);
+            const progress = Math.min((timestamp - start) / durationMs, 1);
+            const current = Math.floor(from + (to - from) * progress);
 
-  useEffect(() => {
-    if (!started) return;
+            setValue(current);
 
-    let start: number | null = null;
-    let animationFrameId: number;
+            if (progress < 1) {
+                animationFrameId = requestAnimationFrame(step);
+            }
+        };
 
-    const step = (timestamp: number) => {
-      if (!start) {
-        start = timestamp;
-      }
-      const progress = Math.min((timestamp - start) / durationMs, 1);
-      const current = Math.floor(from + (to - from) * progress);
-      setValue(current);
-
-      if (progress < 1) {
         animationFrameId = requestAnimationFrame(step);
-      }
-    };
 
-    animationFrameId = requestAnimationFrame(step);
+        return () => cancelAnimationFrame(animationFrameId);
+    }, [isIntersecting, from, to, durationMs]);
 
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [from, to, durationMs, started]);
-
-  return <span ref={ref}>{formatter ? formatter(value) : value}</span>;
+    return <span ref={ref}>{formatter ? formatter(value) : value}</span>;
 };

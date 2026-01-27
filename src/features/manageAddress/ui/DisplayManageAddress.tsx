@@ -1,4 +1,3 @@
-import {DEFAULT_FALLBACK_ADDRESS} from "@/features/manageAddress/consts/defaults.ts";
 import styles from "@/features/manageAddress/ui/ManageAddress.module.scss";
 
 interface DisplayManageAddressProps {
@@ -15,8 +14,8 @@ export const DisplayManageAddress = (props: DisplayManageAddressProps) => {
     if (isError || !streetAddress) {
         return (
             <span className={styles.fallbackAddress}>
-          {DEFAULT_FALLBACK_ADDRESS}
-        </span>
+                Delivery Address
+            </span>
         );
     }
 

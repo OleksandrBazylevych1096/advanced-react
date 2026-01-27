@@ -4,16 +4,16 @@ import {useTranslation} from "react-i18next";
 import {MapContainer, Marker, TileLayer, Tooltip} from "react-leaflet";
 
 import {MAP_CONFIG, TILE_LAYER_CONFIG,} from "@/features/manageAddress/consts/defaults";
-import {useMap} from "@/features/manageAddress/lib/useMap.ts";
+import {useMap} from "@/features/manageAddress/model/services/useMap.ts";
 
 import MapPinIcon from "@/shared/assets/icons/MapPinFilled.svg?raw";
 import {Spinner} from "@/shared/ui";
 
 import styles from "./Map.module.scss";
 import "leaflet/dist/leaflet.css";
-import {MapCenterUpdater} from "./MapCenterUpdater";
-import {MapClickHandler} from "./MapClickHandler";
-import {MapControls} from "./MapControls";
+import {MapCenterUpdater} from "./MapHelpers/MapCenterUpdater.tsx";
+import {MapClickHandler} from "./MapHelpers/MapClickHandler.tsx";
+import {MapControls} from "./MapHelpers/MapControls.tsx";
 
 const createCustomIcon = () =>
     L.divIcon({
@@ -26,7 +26,8 @@ const createCustomIcon = () =>
 export const Map = () => {
     const customIcon = useMemo(() => createCustomIcon(), []);
     const {t} = useTranslation()
-    const {zoomLevel, handleMapClick, markerPosition, geocodeLabel, geocodeIsFetching} = useMap()
+    const {zoomLevel, handleMapClick, markerPosition, geocodeLabel, geocodeIsFetching, geocodeIsError} = useMap()
+
 
     if (!markerPosition) {
         return (
@@ -53,14 +54,14 @@ export const Map = () => {
             <MapCenterUpdater center={markerPosition}/>
 
             <Marker position={markerPosition} icon={customIcon}>
-                {geocodeLabel && (
+                {(geocodeLabel || geocodeIsFetching || geocodeIsError) && (
                     <Tooltip
                         className={styles.tooltip}
                         permanent
                         direction="top"
                         offset={MAP_CONFIG.TOOLTIP_OFFSET}
                     >
-                        {geocodeIsFetching ? <Spinner size="sm"/> : geocodeLabel}
+                        {geocodeIsFetching ? <Spinner size="sm"/> : geocodeIsError ? 'Error' : geocodeLabel}
                     </Tooltip>
                 )}
             </Marker>

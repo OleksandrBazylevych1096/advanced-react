@@ -1,37 +1,31 @@
-import type { CurrencyType } from "@/shared/config";
-import { cn } from "@/shared/lib";
+import type {CurrencyType, SupportedLngsType} from "@/shared/config";
+import {cn, formatCurrency} from "@/shared/lib";
 
 import styles from "./Price.module.scss";
 
 interface PriceProps {
-  price: number;
-  oldPrice?: number;
-  language: string;
-  currency: CurrencyType;
+    price: number;
+    oldPrice?: number;
+    language: SupportedLngsType;
+    currency: CurrencyType;
 }
 
 export const Price = (props: PriceProps) => {
-  const { currency, language, price, oldPrice } = props;
+    const {currency, language, price, oldPrice} = props;
 
-  return (
-    <div className={styles.prices}>
+    return (
+        <div className={styles.prices}>
       <span
-        className={cn(styles.price, {
-          [styles.hasDiscount]: !!oldPrice,
-        })}
+          className={cn(styles.price, {
+              [styles.hasDiscount]: !!oldPrice,
+          })}
       >
-        {new Intl.NumberFormat(language, {
-          style: "currency",
-          currency: currency,
-        }).format(price)}
+        {formatCurrency(currency, language, price)}
       </span>
-      <span className={styles.oldPrice}>
+            <span className={styles.oldPrice}>
         {oldPrice &&
-          new Intl.NumberFormat(language, {
-            style: "currency",
-            currency: currency,
-          }).format(oldPrice)}
+            formatCurrency(currency, language, oldPrice)}
       </span>
-    </div>
-  );
+        </div>
+    );
 };

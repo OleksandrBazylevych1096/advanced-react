@@ -1,7 +1,7 @@
-import {useTranslation} from "react-i18next";
 import {useParams} from "react-router";
 
-import {useGetCategoryBreadcrumbsQuery} from "@/pages/Category/api/categoryPageApi.ts";
+import {useGetCategoryBreadcrumbsQuery, useGetCategoryBySlugQuery} from "@/pages/Category/api/categoryPageApi.ts";
+import {useCategorySlugSync} from "@/pages/Category/lib/useCategorySlugSync.ts";
 
 import {CategoryNavigation} from "@/widgets/CategoryNavigation";
 import {Footer} from "@/widgets/Footer";
@@ -10,9 +10,11 @@ import {PromoCarousel} from "@/widgets/PromoCarousel";
 
 import {productFiltersReducer} from "@/features/productFilters";
 import {ProductFilters} from "@/features/productFilters/ui/ProductFilters/ProductFilters.tsx";
+import {ProductFiltersControls} from "@/features/productFilters/ui/ProductFiltersControls/ProductFiltersControls.tsx";
 
 import {Catalog} from "@/entities/product";
 
+import type {SupportedLngsType} from "@/shared/config";
 import {DynamicModuleLoader} from "@/shared/lib";
 import {AppPage} from "@/shared/ui";
 import {Breadcrumbs} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
@@ -20,24 +22,32 @@ import {Breadcrumbs} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
 import styles from "./CategoryPage.module.scss";
 
 const CategoryPage = () => {
-    const {slug} = useParams()
-    const {i18n} = useTranslation()
-    const {data: breadcrumbs} = useGetCategoryBreadcrumbsQuery({slug: slug!, locale: i18n.language}, {skip: !slug})
+
+    const {slug, lng} = useParams<{ slug: string, lng: SupportedLngsType }>()
+    const {data: category, isSuccess} = useGetCategoryBySlugQuery({slug: slug!, locale: lng!})
+    const {data: breadcrumbs} = useGetCategoryBreadcrumbsQuery({
+        slug: slug!,
+        locale: lng!
+    })
+
+    useCategorySlugSync({
+        languageParam: lng,
+        category,
+        enabled: isSuccess
+    })
 
 
     return (
-        <DynamicModuleLoader reducers={{productFilters: productFiltersReducer}}>
+        <DynamicModuleLoader removeAfterUnmount reducers={{productFilters: productFiltersReducer}}>
             <AppPage>
                 <Header/>
-
                 <AppPage.Content className={styles.content}>
-                    <div className={styles.sidebar}>
-                        <ProductFilters/>
-                    </div>
+                    <ProductFilters/>
                     <div className={styles.wrapper}>
                         <Breadcrumbs className={styles.breadcrumbs} items={breadcrumbs}/>
                         <PromoCarousel/>
                         <CategoryNavigation/>
+                        <ProductFiltersControls/>
                         <Catalog/>
                     </div>
                 </AppPage.Content>

@@ -1,168 +1,101 @@
-import {useEffect, useState} from 'react';
-
+import {useProductFilters} from "@/features/productFilters/model/services/useProductFilters.ts";
 import {
-    selectFacets,
-    selectSelectedBrands,
-    selectSelectedCountries,
-    selectSelectedPriceRange
-} from "@/features/productFilters/model/selectors/productFiltersSelectors.ts";
-import {productFiltersActions} from "@/features/productFilters/model/slice/productFiltersSlice.ts";
-import {PriceRange} from "@/features/productFilters/ui/ProductFilters/PriceRange.tsx";
+    CheckboxFilterSection
+} from "@/features/productFilters/ui/ProductFilters/CheckboxFilterSection/CheckboxFilterSection.tsx";
+import {
+    RangeFilterSection
+} from "@/features/productFilters/ui/ProductFilters/RangeFilterSection/RangeFilterSection.tsx";
 
-import type {PriceRangeType} from "@/entities/product/model/types/Product";
-
-import {useAppDispatch, useAppSelector} from "@/shared/lib";
-import {Button, Checkbox} from "@/shared/ui";
+import CloseIcon from '@/shared/assets/icons/Close.svg?react'
+import {cn} from "@/shared/lib";
+import {AppIcon, Button} from "@/shared/ui";
 import {Accordion} from "@/shared/ui/Accordion/Accordion.tsx";
 
-import styles from './ProductFilters.module.scss'
 
-export const ProductFilters = () => {
-    const dispatch = useAppDispatch();
-    const facets = useAppSelector(selectFacets);
-    const appliedCountries = useAppSelector(selectSelectedCountries);
-    const appliedBrands = useAppSelector(selectSelectedBrands);
-    const appliedPriceRange = useAppSelector(selectSelectedPriceRange);
+import styles from './ProductFilters.module.scss';
 
-    const [tempCountries, setTempCountries] = useState<string[]>([]);
-    const [tempBrands, setTempBrands] = useState<string[]>([]);
-    const [tempPriceRange, setTempPriceRange] = useState<PriceRangeType>({min: undefined, max: undefined});
+export type ProductFiltersSections = "countries" | 'brands' | 'price'
 
-    useEffect(() => {
-        setTempCountries(appliedCountries);
-        setTempBrands(appliedBrands);
-        setTempPriceRange(appliedPriceRange || {min: undefined, max: undefined});
-    }, [appliedCountries, appliedBrands, appliedPriceRange]);
+interface ProductFiltersProps {
+    defaultOpenFilters?: ProductFiltersSections[]
+}
 
-    const handleCountryChange = (countryValue: string) => {
-        setTempCountries(prev => {
-            const index = prev.indexOf(countryValue);
-            if (index > -1) {
-                return prev.filter(c => c !== countryValue);
-            } else {
-                return [...prev, countryValue];
-            }
-        });
-    };
+export const ProductFilters = ({defaultOpenFilters}: ProductFiltersProps) => {
+    const {
+        facets,
+        currentCountries,
+        currentBrands,
+        localPriceRange,
+        currency,
+        isSidebarOpen,
+        locale,
+        isLoading,
+        hasError,
+        hasActiveFilters,
+        handleCountryChange,
+        handleBrandChange,
+        handlePriceRangeChange,
+        handleReset,
+        handleSidebarClose
+    } = useProductFilters();
 
-    const handleBrandChange = (brandValue: string) => {
-        setTempBrands(prev => {
-            const index = prev.indexOf(brandValue);
-            if (index > -1) {
-                return prev.filter(b => b !== brandValue);
-            } else {
-                return [...prev, brandValue];
-            }
-        });
-    };
 
-    const handlePriceRangeChange = (priceRange: PriceRangeType) => {
-        setTempPriceRange(priceRange);
-    };
-
-    const handleApply = () => {
-        dispatch(productFiltersActions.setSelectedCountries(tempCountries));
-        dispatch(productFiltersActions.setSelectedBrands(tempBrands));
-        dispatch(productFiltersActions.setSelectedPriceRange(tempPriceRange));
-    };
-
-    const handleReset = () => {
-
-        setTempCountries([]);
-        setTempBrands([]);
-        setTempPriceRange({
-            min: facets?.priceRange.min,
-            max: facets?.priceRange.max
-        });
-    };
-
-    const hasChanges =
-        JSON.stringify([...tempCountries].sort()) !== JSON.stringify([...appliedCountries].sort()) ||
-        JSON.stringify([...tempBrands].sort()) !== JSON.stringify([...appliedBrands].sort()) ||
-        tempPriceRange.min !== appliedPriceRange?.min ||
-        tempPriceRange.max !== appliedPriceRange?.max;
-
-    if (!facets) return null;
+    if (hasError && !facets) {
+        return (
+            <div className={styles.errorContainer}>
+                <p className={styles.errorMessage}>
+                    Error while loading the data
+                </p>
+            </div>
+        );
+    }
 
     return (
-        <div>
-            <Accordion>
-                {facets.countries && facets.countries.length > 0 &&
-                    <Accordion.Item value="countries">
-                        <Accordion.Header>
-                            Countries {tempCountries.length > 0 && `(${tempCountries.length})`}
-                        </Accordion.Header>
-                        <Accordion.Content className={styles.accordionContent}>
-                            {facets.countries.map(({value, count}) => {
-                                const isChecked = tempCountries.includes(value);
-                                return (
-                                    <Checkbox
-                                        className={styles.checkbox}
-                                        label={`${value} (${count})`}
-                                        key={value}
-                                        checked={isChecked}
-                                        onChange={() => handleCountryChange(value)}
-                                    />
-                                );
-                            })}
-                        </Accordion.Content>
-                    </Accordion.Item>
-                }
-
-                {facets.brands && facets.brands.length > 0 &&
-                    <Accordion.Item value="brands">
-                        <Accordion.Header>
-                            Brands {tempBrands.length > 0 && `(${tempBrands.length})`}
-                        </Accordion.Header>
-                        <Accordion.Content className={styles.accordionContent}>
-                            {facets.brands.map(({value, count}) => {
-                                const isChecked = tempBrands.includes(value);
-
-                                return (
-                                    <Checkbox
-                                        className={styles.checkbox}
-                                        label={`${value} (${count})`}
-                                        key={value}
-                                        checked={isChecked}
-                                        onChange={() => handleBrandChange(value)}
-                                    />
-                                );
-                            })}
-                        </Accordion.Content>
-                    </Accordion.Item>
-                }
-
-                <Accordion.Item value={'price'}>
-                    <Accordion.Header>
-                        Price
-                    </Accordion.Header>
-                    <Accordion.Content className={styles.accordionContent}>
-                        <PriceRange
-                            value={tempPriceRange}
-                            onChange={handlePriceRangeChange}
-                        />
-                    </Accordion.Content>
-                </Accordion.Item>
-            </Accordion>
-
-            <div className={styles.actions}>
-                <Button
-                    fullWidth={true}
-                    onClick={handleApply}
-                    disabled={!hasChanges}
-                >
-                    Apply
+        <div className={cn(styles.sidebar, {[styles.open]: isSidebarOpen})}>
+            <div className={styles.header}>
+                <h4 className={styles.title}>Filters</h4>
+                <Button onClick={handleSidebarClose} theme={'ghost'}>
+                    <AppIcon className={styles.closeIcon} Icon={CloseIcon}/>
                 </Button>
-                {hasChanges && (
-                    <Button
-                        fullWidth={true}
-                        theme="outline"
-                        onClick={handleReset}
-                    >
-                        Reset
-                    </Button>
-                )}
             </div>
+            <Accordion defaultValue={defaultOpenFilters}>
+                <CheckboxFilterSection
+                    title="Countries"
+                    value="countries"
+                    options={facets?.countries}
+                    selectedValues={currentCountries}
+                    onToggle={handleCountryChange}
+                    isLoading={isLoading}
+                    error={hasError}
+                />
+
+                <CheckboxFilterSection
+                    title="Brands"
+                    value="brands"
+                    options={facets?.brands}
+                    selectedValues={currentBrands}
+                    onToggle={handleBrandChange}
+                    isLoading={isLoading}
+                    error={hasError}
+                />
+
+                <RangeFilterSection
+                    title="Price"
+                    value="price"
+                    rangeValue={localPriceRange}
+                    availableRange={facets?.priceRange}
+                    onChange={handlePriceRangeChange}
+                    isLoading={isLoading}
+                    error={hasError}
+                    inputType="currency"
+                    currency={currency}
+                    locale={locale}
+                    step={1}
+                    minRange={5}
+                    decimalPlaces={0}
+                />
+            </Accordion>
+            <Button disabled={!hasActiveFilters} fullWidth theme={"outline"} onClick={handleReset}>Reset</Button>
         </div>
     );
 };

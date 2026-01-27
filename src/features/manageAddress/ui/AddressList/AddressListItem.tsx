@@ -1,6 +1,6 @@
 import {useTranslation} from "react-i18next";
 
-import {useAddressListItem} from "@/features/manageAddress/lib/useAddressListItem.ts";
+import {useAddressListItem} from "@/features/manageAddress/model/services/useAddressListItem.ts";
 
 import EditIcon from "@/shared/assets/icons/Edit.svg?react";
 import {cn} from "@/shared/lib";

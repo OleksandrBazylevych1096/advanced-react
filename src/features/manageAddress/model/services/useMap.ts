@@ -35,7 +35,7 @@ export const useMap = () => {
         return mode === "edit" ? MAP_CONFIG.EDIT_ZOOM : MAP_CONFIG.DEFAULT_ZOOM;
     }, [mode]);
 
-    const {data: geocodeData, isFetching} = useGetReverseGeocodeQuery(
+    const {data: geocodeData, isFetching, isError} = useGetReverseGeocodeQuery(
         {
             coords: markerPosition,
             locale: i18n.language,
@@ -83,6 +83,7 @@ export const useMap = () => {
         markerPosition,
         handleMapClick,
         geocodeLabel: geocodeData?.label,
-        geocodeIsFetching: isFetching
+        geocodeIsFetching: isFetching,
+        geocodeIsError: isError
     }
 }

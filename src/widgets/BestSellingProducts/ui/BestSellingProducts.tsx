@@ -2,6 +2,8 @@ import type {EmblaCarouselType} from "embla-carousel";
 import {useState} from "react";
 import {useTranslation} from "react-i18next";
 
+import {BestSellingProductsSkeleton} from "@/widgets/BestSellingProducts/ui/BestSellingProductsSkeleton.tsx";
+
 import {ProductCard, ProductCardSkeleton} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
@@ -20,7 +22,7 @@ export const BestSellingProducts = () => {
         undefined
     );
 
-    const {data, isError, isFetching, refetch} = useGetBestSellingProductsQuery(
+    const {data, isError, isFetching, isLoading, refetch} = useGetBestSellingProductsQuery(
         {locale: i18n.language, currency}
     );
 
@@ -32,8 +34,8 @@ export const BestSellingProducts = () => {
     };
 
 
-    if (isFetching) {
-        return <CarouselSkeleton ItemSkeletonComponent={<ProductCardSkeleton/>}/>;
+    if (isLoading) {
+        return <BestSellingProductsSkeleton/>
     }
 
     if (isError) {
@@ -65,14 +67,16 @@ export const BestSellingProducts = () => {
                     <CarouselControls emblaApi={emblaApi}/>
                 </div>
             </div>
-            <Carousel
-                options={{slidesToScroll: "auto"}}
-                onEmblaInit={handleEmblaInit}
-            >
-                {products.map((product) => (
-                    <ProductCard product={product} key={product.id}/>
-                ))}
-            </Carousel>
+            {isFetching
+                ? <CarouselSkeleton ItemSkeletonComponent={<ProductCardSkeleton/>}/>
+                : <Carousel
+                    options={{slidesToScroll: "auto"}}
+                    onEmblaInit={handleEmblaInit}
+                >
+                    {products.map((product) => (
+                        <ProductCard product={product} key={product.id}/>
+                    ))}
+                </Carousel>}
         </section>
     );
 };

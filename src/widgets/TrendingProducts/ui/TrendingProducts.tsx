@@ -2,6 +2,8 @@ import type {EmblaCarouselType} from "embla-carousel";
 import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 
+import {TrendingProductsSkeleton} from "@/widgets/TrendingProducts/ui/TrendingProductsSkeleton.tsx";
+
 import {ProductCard, ProductCardSkeleton} from "@/entities/product";
 import {useGetProducts} from "@/entities/product/api/productApi.ts";
 import {TagList} from "@/entities/tag";
@@ -23,12 +25,14 @@ export const TrendingProducts = () => {
         data: tags,
         isError: tagsIsError,
         isFetching: tagsIsFetching,
+        isLoading: tagsIsLoading
     } = useGetTrendingProductTagsQuery({locale: i18n.language});
 
     const {
         data: productsData,
         isError: productsIsError,
         isFetching: productsIsFetching,
+        isLoading: productsIsLoading,
         refetch,
     } = useGetProducts(
         {
@@ -61,8 +65,8 @@ export const TrendingProducts = () => {
     }, [currentTagId, tags]);
 
 
-    if (productsIsFetching) {
-        return <CarouselSkeleton ItemSkeletonComponent={<ProductCardSkeleton/>}/>;
+    if (productsIsLoading || tagsIsLoading) {
+        return <TrendingProductsSkeleton/>
     }
 
     if (tagsIsError || productsIsError) {
@@ -103,14 +107,16 @@ export const TrendingProducts = () => {
                     onTagChange={handleTagChange}
                 />
             </div>
-            <Carousel
-                options={{slidesToScroll: "auto"}}
-                onEmblaInit={handleEmblaInit}
-            >
-                {products.map((product) => (
-                    <ProductCard product={product} key={product.id}/>
-                ))}
-            </Carousel>
+            {productsIsFetching
+                ? <CarouselSkeleton ItemSkeletonComponent={<ProductCardSkeleton/>}/>
+                : <Carousel
+                    options={{slidesToScroll: "auto"}}
+                    onEmblaInit={handleEmblaInit}
+                >
+                    {products.map((product) => (
+                        <ProductCard product={product} key={product.id}/>
+                    ))}
+                </Carousel>}
         </section>
     );
 };

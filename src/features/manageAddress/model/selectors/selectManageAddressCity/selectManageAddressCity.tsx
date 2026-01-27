@@ -1,4 +1,4 @@
-import type { StateSchema } from "@/app/store";
+import type {StateSchema} from "@/app/store";
 
 export const selectManageAddressCity = (state: StateSchema) =>
-  state.manageAddress?.form.city ?? "";
+    state.manageAddress?.form?.city ?? "";

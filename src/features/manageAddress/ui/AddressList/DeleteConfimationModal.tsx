@@ -1,6 +1,6 @@
 import {t} from "i18next";
 
-import {UseDeleteConfirmationModal} from "@/features/manageAddress/lib/useDeleteConfirmationModal.ts";
+import {UseDeleteConfirmationModal} from "@/features/manageAddress/model/services/useDeleteConfirmationModal.ts";
 
 import DeleteIcon from "@/shared/assets/icons/Delete.svg?react";
 import {cn} from "@/shared/lib";

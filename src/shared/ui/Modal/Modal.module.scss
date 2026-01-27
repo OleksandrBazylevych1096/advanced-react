@@ -23,9 +23,10 @@
   border-radius: 32px;
   background-color: var(--gray-50);
   min-width: 680px;
+  max-width: 90%;
   max-height: 90vh;
   transform: scale(0.3);
-  transition: transform 0.3s ease-in-out; /* Змінив на 0.3s для синхронізації */
+  transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   overflow: hidden;

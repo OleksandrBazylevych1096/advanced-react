@@ -12,6 +12,7 @@ interface CheckboxProps {
     disabled?: boolean;
     id?: string;
     className?: string
+    readOnly?: boolean
 }
 
 export const Checkbox = (props: CheckboxProps) => {
@@ -21,6 +22,7 @@ export const Checkbox = (props: CheckboxProps) => {
         checked = false,
         onChange,
         disabled = false,
+        readOnly = false,
         id: externalId
     } = props
 
@@ -32,14 +34,14 @@ export const Checkbox = (props: CheckboxProps) => {
     }, [checked]);
 
     const handleChange = () => {
-        if (disabled) return;
+        if (disabled || readOnly) return;
+
         const newValue = !isChecked;
         setIsChecked(newValue);
         onChange?.(newValue);
     };
 
     const checkboxId = externalId || id
-
 
     return (
         <div className={cn(styles.wrapper, className)}>
@@ -50,18 +52,37 @@ export const Checkbox = (props: CheckboxProps) => {
                     checked={isChecked}
                     onChange={handleChange}
                     disabled={disabled}
+                    readOnly={readOnly}
                     className={styles.input}
                 />
-                <div onClick={handleChange}
-                     className={cn(styles.box, {[styles.checked]: isChecked, [styles.disabled]: disabled})}>
+
+                <div
+                    onClick={handleChange}
+                    className={cn(
+                        styles.box,
+                        {
+                            [styles.checked]: isChecked,
+                            [styles.disabled]: disabled,
+                            [styles.readOnly]: readOnly
+                        }
+                    )}
+                >
                     <CheckedIcon
-                        className={cn(styles.icon, {[styles.visible]: isChecked})}/>
+                        className={cn(styles.icon, {[styles.visible]: isChecked})}
+                    />
                 </div>
             </div>
+
             {label && (
                 <label
                     htmlFor={checkboxId}
-                    className={cn(styles.label, {[styles.disabled]: disabled})}
+                    className={cn(
+                        styles.label,
+                        {
+                            [styles.disabled]: disabled,
+                            [styles.readOnly]: readOnly
+                        }
+                    )}
                 >
                     {label}
                 </label>

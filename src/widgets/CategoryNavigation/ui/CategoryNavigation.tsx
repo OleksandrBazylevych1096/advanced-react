@@ -4,6 +4,7 @@ import {useParams} from "react-router";
 import {useGetCategoryNavigationQuery} from "@/widgets/CategoryNavigation/api/categoryNavigationApi.ts";
 import {CategoryNavigationGoBackItem} from "@/widgets/CategoryNavigation/ui/CategoryNavigationGoBackItem.tsx";
 
+import type {SupportedLngsType} from "@/shared/config";
 import {Button, Carousel, CarouselSkeleton} from "@/shared/ui";
 
 import styles from "./CategoryNavigation.module.scss";
@@ -11,8 +12,8 @@ import {CategoryNavigationItem} from "./CategoryNavigationItem";
 
 
 export const CategoryNavigation = () => {
-    const {i18n, t} = useTranslation();
-    const {slug} = useParams();
+    const {t, i18n} = useTranslation();
+    const {slug, lng} = useParams<{ slug: string, lng: SupportedLngsType }>();
 
     const {
         data,
@@ -21,7 +22,7 @@ export const CategoryNavigation = () => {
         refetch,
     } = useGetCategoryNavigationQuery({
         slug: slug,
-        locale: i18n.language
+        locale: lng || i18n.language
     });
 
 
@@ -50,7 +51,8 @@ export const CategoryNavigation = () => {
 
     return (
         <Carousel className={styles.categories}>
-            {data.isShowingSubcategories && <CategoryNavigationGoBackItem parentSlug={data?.parentCategory?.slug}/>}
+            {data.isShowingSubcategories &&
+                <CategoryNavigationGoBackItem parentSlug={data?.parentCategory?.slug}/>}
             {data.items.map((item) => (
                 <CategoryNavigationItem
                     key={item.slug}

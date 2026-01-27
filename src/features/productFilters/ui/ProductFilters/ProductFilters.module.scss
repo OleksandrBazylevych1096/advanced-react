@@ -1,16 +1,45 @@
-.accordionContent {
+.sidebar {
+  width: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  transform: translateX(-10px);
+  transition: width 0.3s ease,
+  opacity 0.2s ease,
+  visibility 0.2s ease,
+  transform 0.3s ease,
+  padding 0.2s ease;
+
+  &.open {
+    width: var(--sidebar-width);
+    opacity: 1;
+    visibility: visible;
+    padding: 0 16px;
+    transform: translateX(0);
+  }
 }
 
-.checkbox {
+.header {
   display: flex;
-}
+  align-items: center;
+  justify-content: space-between;
 
-.actions {
-  margin-top: 32px;
-  display: flex;
-  gap: 16px;
-  flex-direction: column
+  .title {
+    font: var(--font-l);
+    font-weight: 600;
+  }
+
+  .closeIcon {
+    stroke: var(--black);
+    transition: stroke 0.2s linear;
+
+    &:hover {
+      stroke: var(--primary-color);
+    }
+  }
+
 }

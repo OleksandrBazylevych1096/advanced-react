@@ -1,3 +1,9 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .inputContainer {
   display: flex;
   align-items: center;
@@ -23,12 +29,11 @@
   }
 
   input[type='number'] {
-    -moz-appearance: textfield;
     appearance: textfield;
 
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
-      -webkit-appearance: none;
+      appearance: none;
       margin: 0;
     }
   }

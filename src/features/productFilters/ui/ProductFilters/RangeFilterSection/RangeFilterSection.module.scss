@@ -1,0 +1,49 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.error {
+  color: var(--red-500);
+}
+
+.errorIcon {
+  font-size: 18px;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton {
+  height: 40px;
+  background: linear-gradient(
+                  90deg,
+                  #f0f0f0 25%,
+                  #e0e0e0 50%,
+                  #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}

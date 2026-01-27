@@ -29,15 +29,26 @@ export const Breadcrumbs = ({items, className, Separator = '/'}: BreadcrumbsProp
 
                 {items.map((item, index) => {
                     const isLast = index === items.length - 1
+                    const isLink = !isLast && !!item.href
 
                     return (
                         <li key={index} className={styles.item}>
-                            {!isLast && item.href ? (
-                                <Link to={item.href} className={styles.link}>
+                            {isLink && (
+                                <Link to={item.href!} className={styles.link}>
                                     {item.label}
                                 </Link>
-                            ) : (
-                                <span className={styles.current}>{item.label}</span>
+                            )}
+
+                            {!isLink && isLast && (
+                                <span className={styles.current}>
+                                    {item.label}
+                                </span>
+                            )}
+
+                            {!isLink && !isLast && (
+                                <span className={styles.text}>
+                                    {item.label}
+                                </span>
                             )}
 
                             {!isLast && (
@@ -46,6 +57,8 @@ export const Breadcrumbs = ({items, className, Separator = '/'}: BreadcrumbsProp
                         </li>
                     )
                 })}
+
+
             </ol>
         </nav>
     )

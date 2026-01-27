@@ -1,14 +1,15 @@
 import type {Category} from "@/entities/category";
 
 import {baseAPI} from "@/shared/api";
+import type {SupportedLngsType} from "@/shared/config";
 
 
 interface CategoryNavigationArgs {
-    locale: string;
+    locale: SupportedLngsType;
     slug?: string
 }
 
-interface CategoryNavigationReturn {
+export interface CategoryNavigationReturn {
     currentCategory: Category
     parentCategory: Category
     items: Category[]
@@ -18,7 +19,6 @@ interface CategoryNavigationReturn {
 
 const categoryNavigationApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-
         getCategoryNavigation: build.query<CategoryNavigationReturn, CategoryNavigationArgs>({
             query: ({slug, locale}) => ({
                 url: `categories/navigation/${slug}`,

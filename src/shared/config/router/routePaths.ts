@@ -14,7 +14,7 @@ export const routePaths: Record<AppRoutes, string> = {
     [AppRoutes.LOGIN]: "/login",
     [AppRoutes.REGISTER]: "/register",
     [AppRoutes.AUTH_CALLBACK]: "/oauth",
-    [AppRoutes.CATEGORY]: '/category/:slug',
+    [AppRoutes.CATEGORY]: '/:lng/category/:slug',
 
     // last
     [AppRoutes.NOT_FOUND]: "*",

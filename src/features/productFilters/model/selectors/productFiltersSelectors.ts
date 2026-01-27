@@ -1,92 +1,113 @@
 import {createSelector} from "@reduxjs/toolkit";
 
-import {type StateSchema} from "@/app/store";
+import type {StateSchema} from "@/app/store";
+
+import {DEFAULT_SORT_BY, DEFAULT_SORT_ORDER} from "@/features/productFilters/consts/defaults.ts";
+
 
 export const selectProductFilters = (state: StateSchema) => state.productFilters;
 
+export const selectProductFiltersIsOpen = createSelector(
+    selectProductFilters,
+    (state) => state?.isOpen ?? false
+);
+
 export const selectSelectedPriceRange = createSelector(
     selectProductFilters,
-    (productFilters) => productFilters?.selected.priceRange
-);
-
-export const selectAvailablePriceRange = createSelector(
-    selectProductFilters,
-    (productFilters) => productFilters?.facets?.priceRange ?? null
-);
-
-export const selectEffectivePriceRange = createSelector(
-    selectSelectedPriceRange,
-    selectAvailablePriceRange,
-    (selected, available) => {
-        if (!available || available.min === undefined ||
-            available.max === undefined || !selected) return null
-
-        return {
-            min: selected.min ?? available.min,
-            max: selected.max ?? available.max
-        };
-    }
+    (state) => state?.filters.priceRange ?? {min: undefined, max: undefined}
 );
 
 export const selectSelectedBrands = createSelector(
     selectProductFilters,
-    (filters) => filters?.selected.brands ?? []
+    (state) => state?.filters.brands ?? []
 );
 
 export const selectSelectedCountries = createSelector(
     selectProductFilters,
-    (filters) => filters?.selected.countries ?? []
+    (state) => state?.filters.countries ?? []
+);
+
+export const selectInStock = createSelector(
+    selectProductFilters,
+    (state) => state?.filters.inStock ?? true
 );
 
 export const selectSortSettings = createSelector(
     selectProductFilters,
-    (filters) => filters ? {
-        sortBy: filters.selected.sortBy,
-        sortOrder: filters.selected.sortOrder
-    } : null
+    (state) => ({
+        sortBy: state?.filters.sortBy ?? DEFAULT_SORT_BY,
+        sortOrder: state?.filters.sortOrder ?? DEFAULT_SORT_ORDER
+    })
 );
 
-export const selectFacets = createSelector(
+export const selectSortBy = createSelector(
     selectProductFilters,
-    (filters) => filters?.facets ?? null
+    (state) => state?.filters.sortBy ?? DEFAULT_SORT_BY
+);
+
+export const selectSortOrder = createSelector(
+    selectProductFilters,
+    (state) => state?.filters.sortOrder ?? DEFAULT_SORT_ORDER
 );
 
 export const selectActiveFilters = createSelector(
     selectProductFilters,
-    (filters) => {
-        if (!filters) return null;
+    (state) => ({
+        brands: state?.filters.brands,
+        countries: state?.filters.countries,
+        minPrice: state?.filters.priceRange.min,
+        maxPrice: state?.filters.priceRange.max,
+        inStock: state?.filters.inStock,
+        sortBy: state?.filters.sortBy,
+        sortOrder: state?.filters.sortOrder
+    })
+);
 
-        const {brands, countries, priceRange} = filters.selected;
+export const selectHasActiveFilters = createSelector(
+    selectProductFilters,
+    (state) => {
+        const filters = state?.filters;
+        if (!filters) return false;
 
-        return {
-            // Повертаємо масиви як є
-            brands: brands.length > 0 ? brands : undefined,
-            countries: countries.length > 0 ? countries : undefined,
-            minPrice: priceRange.min,
-            maxPrice: priceRange.max,
-        };
+        return (
+            (filters.brands?.length ?? 0) > 0 ||
+            (filters.countries?.length ?? 0) > 0 ||
+            filters.priceRange.min !== undefined ||
+            filters.priceRange.max !== undefined
+        );
     }
 );
 
-// Селектор для підрахунку кількості активних фільтрів
 export const selectActiveFiltersCount = createSelector(
     selectProductFilters,
-    (filters) => {
+    (state) => {
+        const filters = state?.filters;
         if (!filters) return 0;
 
         let count = 0;
-        const {brands, countries, priceRange} = filters.selected;
-        const {facets} = filters;
 
-        if (brands.length > 0) count += brands.length;
-        if (countries.length > 0) count += countries.length;
-
-        // Перевіряємо чи змінено ціновий діапазон
-        if (facets?.priceRange) {
-            if (priceRange.min !== undefined && priceRange.min !== facets.priceRange.min) count++;
-            if (priceRange.max !== undefined && priceRange.max !== facets.priceRange.max) count++;
-        }
+        if (filters.brands?.length) count += filters.brands.length;
+        if (filters.countries?.length) count += filters.countries.length;
+        if (filters.priceRange.min !== undefined) count += 1;
+        if (filters.priceRange.max !== undefined) count += 1;
 
         return count;
+    }
+);
+
+export const selectHasFilterChanges = createSelector(
+    selectProductFilters,
+    (state) => {
+        const filters = state?.filters;
+        if (!filters) return false;
+
+        return (
+            (filters.brands?.length ?? 0) > 0 ||
+            (filters.countries?.length ?? 0) > 0 ||
+            filters.priceRange.min !== undefined ||
+            filters.priceRange.max !== undefined ||
+            filters.sortBy !== DEFAULT_SORT_BY ||
+            filters.sortOrder !== DEFAULT_SORT_ORDER
+        );
     }
 );

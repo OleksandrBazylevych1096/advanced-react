@@ -1,12 +1,6 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
+  grid-gap: 16px;
 }
 
-.loadingTrigger {
-  width: 100%;
-  min-height: 50px;
-  padding: 20px 0;
-}

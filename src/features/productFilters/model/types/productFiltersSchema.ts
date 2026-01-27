@@ -1,7 +1,7 @@
-import type {PriceRangeType, ProductFacets} from "@/entities/product/model/types/Product.ts";
+import type {PriceRangeType} from "@/entities/product/model/types/Product.ts";
 
 export interface ProductFiltersSchema {
-    selected: {
+    filters: {
         priceRange: PriceRangeType
         countries: string[]
         brands: string[]
@@ -9,9 +9,9 @@ export interface ProductFiltersSchema {
         sortBy: SortType;
         sortOrder: OrderType;
     }
-    facets: ProductFacets | null
+    isOpen: boolean
 }
-
 
 export type SortType = 'price' | 'rating' | 'name'
 export type OrderType = 'asc' | 'desc'
+
