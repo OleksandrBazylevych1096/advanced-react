@@ -19,6 +19,7 @@ export const PromoCarousel = (props: PromoCarouselProps) => {
     const {t} = useTranslation();
     const {data: bannerUrls, isLoading} = useGetPromoBannersQuery()
     const dynamicFallbackImg = generatePlaceholder(t("carousel.imageError"))
+    const isClientEnv = import.meta.env.VITE_PROJECT_ENV === 'client'
 
     const {
         autoScrollOptions = {},
@@ -28,7 +29,7 @@ export const PromoCarousel = (props: PromoCarouselProps) => {
     const {handleMouseEnter, handleMouseLeave} = useAutoScroll(emblaApi);
 
     const plugins = [
-        AutoScroll({...autoScrollOptions, playOnInit: true, speed: 1}),
+        AutoScroll({...autoScrollOptions, playOnInit: isClientEnv, speed: 1}),
     ];
 
     const options: EmblaOptionsType = {
