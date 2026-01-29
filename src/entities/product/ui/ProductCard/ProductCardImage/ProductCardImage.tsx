@@ -7,7 +7,7 @@ import {AppIcon} from "@/shared/ui";
 import styles from "./ProductCardImage.module.scss";
 
 interface ProductCardImageProps {
-    src: string;
+    src?: string;
     alt?: string;
     className?: string;
     lazy?: boolean;
@@ -28,7 +28,7 @@ export const ProductCardImage = (props: ProductCardImageProps) => {
         setImageLoading(false);
     };
 
-    if (imageError) {
+    if (imageError || !src) {
         return (
             <div className={styles.placeholder}>
                 <AppIcon

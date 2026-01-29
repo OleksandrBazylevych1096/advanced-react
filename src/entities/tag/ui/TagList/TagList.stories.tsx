@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react-vite';
 import {fn} from "storybook/test";
 
-import type {Tag} from '../../model/types/Tag';
+import {createMockTag, mockTags} from "@/entities/tag/api/test/mockData.ts";
 
 import {TagList} from './TagList';
 
@@ -19,15 +19,6 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-const mockTags: Tag[] = [
-    {id: '1', name: 'Electronics', slug: 'electronics'},
-    {id: '2', name: 'Clothing', slug: 'clothing'},
-    {id: '3', name: 'Home & Garden', slug: 'home-garden'},
-    {id: '4', name: 'Sports', slug: 'sports'},
-    {id: '5', name: 'Books', slug: 'books'},
-    {id: '6', name: 'Toys', slug: 'toys'},
-];
 
 export const Default: Story = {
     args: {
@@ -52,7 +43,7 @@ export const Loading: Story = {
 
 export const SingleTag: Story = {
     args: {
-        tags: [{id: '1', name: 'Electronics', slug: 'electronics'}],
+        tags: createMockTag.createList(1),
         isLoading: false,
     },
 };
@@ -66,28 +57,9 @@ export const Empty: Story = {
 
 export const ManyTags: Story = {
     args: {
-        tags: [
-            ...mockTags,
-            {id: '7', name: 'Health & Beauty', slug: 'health-beauty'},
-            {id: '8', name: 'Automotive', slug: 'automotive'},
-            {id: '9', name: 'Pet Supplies', slug: 'pet-supplies'},
-            {id: '10', name: 'Office Products', slug: 'office-products'},
-            {id: '11', name: 'Grocery & Gourmet', slug: 'grocery-gourmet'},
-            {id: '12', name: 'Musical Instruments', slug: 'musical-instruments'},
-        ],
+        tags: createMockTag.createList(20),
         isLoading: false,
         currentTagId: '7',
-    },
-};
-
-export const LongTagNames: Story = {
-    args: {
-        tags: [
-            {id: '1', name: 'Consumer Electronics & Gadgets', slug: 'consumer-electronics-gadgets'},
-            {id: '2', name: 'Fashion & Apparel', slug: 'fashion-apparel'},
-            {id: '3', name: 'Home Improvement & Decoration', slug: 'home-improvement-decoration'},
-        ],
-        isLoading: false,
     },
 };
 

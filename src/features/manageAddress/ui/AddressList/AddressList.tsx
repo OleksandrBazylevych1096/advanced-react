@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import AddIcon from "@/shared/assets/icons/Add.svg?react";
 import MapPinIcon from "@/shared/assets/icons/MapPinFilled.svg?react";
 import { useAppDispatch } from "@/shared/lib";
-import { Button, AppIcon, Modal } from "@/shared/ui";
+import { Button, AppIcon, Modal, EmptyState, ErrorState } from "@/shared/ui";
 
 import { useGetShippingAddressesQuery } from "../../api/manageAddressApi";
 import { manageAddressActions } from "../../model/slice/addressSlice";
@@ -40,37 +40,33 @@ export const AddressList = () => {
 
   if (isError) {
     return (
-      <div className={styles.errorContainer}>
-        <p className={styles.errorText}>{t("manageAddress.failedToLoad")}</p>
-        <Button onClick={handleRetry} theme="outline" size="sm">
-          {t("manageAddress.tryAgain")}
-        </Button>
-      </div>
+      <ErrorState
+        message={t("manageAddress.failedToLoad")}
+        onRetry={handleRetry}
+      />
     );
   }
 
   if (!addresses || addresses.length === 0) {
     return (
-      <div className={styles.emptyContainer}>
-        <AppIcon Icon={MapPinIcon} size={40} theme="background" />
-        <h4 className={styles.emptyTitle}>
-          {t("manageAddress.noAddressesTitle")}
-        </h4>
-        <p className={styles.emptyDescription}>
-          {t("manageAddress.noAddressesDescription")}
-        </p>
-        <Button onClick={handleClickAdd}>
-          <AppIcon filled Icon={AddIcon} />
-          {t("manageAddress.addNewAddress")}
-        </Button>
-      </div>
+      <EmptyState
+        icon={MapPinIcon}
+        title={t("manageAddress.noAddressesTitle")}
+        description={t("manageAddress.noAddressesDescription")}
+        action={
+          <Button onClick={handleClickAdd}>
+            <AppIcon filled Icon={AddIcon} />
+            {t("manageAddress.addNewAddress")}
+          </Button>
+        }
+      />
     );
   }
 
   return (
     <>
       <Modal.Body className={styles.body}>
-        <div className={styles.addressList} role="radiogroup">
+        <div className={styles.addressList} role="radiogroup" data-testid="address-list">
           {addresses.map((address) => (
             <AddressListItem key={address.id} address={address} />
           ))}
@@ -81,6 +77,7 @@ export const AddressList = () => {
           theme="ghost"
           className={styles.addAddressButton}
           onClick={handleClickAdd}
+          data-testid="address-list-add-btn"
         >
           <AppIcon filled Icon={AddIcon} />
           {t("manageAddress.addAddress")}

@@ -1,49 +1,57 @@
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from '@storybook/react-vite';
 
-import type {StateSchema} from "@/app/store";
+import type {StateSchema} from '@/app/store';
 
-import {breadcrumbsHandlers} from "@/pages/Category/lib/test/handlers.ts";
 
-import {categoryNavigationHandlers} from "@/widgets/CategoryNavigation/lib/test/handlers.ts";
-import {promoCarouselHandlers} from "@/widgets/PromoCarousel/lib/test/handlers.ts";
+import {breadcrumbsHandlers} from '@/pages/Category/api/test/handlers';
 
-import {productFiltersReducer} from "@/features/productFilters";
+import {categoryNavigationHandlers} from '@/widgets/CategoryNavigation/api/test/handlers';
+import {promoCarouselHandlers} from '@/widgets/PromoCarousel/api/test/handlers';
 
-import {categoryHandlers} from "@/entities/category/lib/test/handlers.ts";
-import {productsHandlers} from "@/entities/product/lib/test/handlers.ts";
+import {productFiltersReducer} from '@/features/productFilters';
 
-import {routePaths} from "@/shared/config";
+import {categoryHandlers} from '@/entities/category/api/test/handlers';
+import {productsHandlers} from '@/entities/product/api/test/handlers';
 
-import CategoryPage from "./CategoryPage";
+import {routePaths} from '@/shared/config';
+
+import CategoryPage from './CategoryPage';
+import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
+
+
+const categoryPageHandlersMap = {
+    breadcrumbs: breadcrumbsHandlers,
+    products: productsHandlers,
+    category: categoryHandlers,
+    categoryNav: categoryNavigationHandlers,
+    promoCarousel: promoCarouselHandlers,
+};
+
 
 const meta = {
-    title: "pages/CategoryPage",
+    title: 'pages/CategoryPage',
     component: CategoryPage,
     parameters: {
         asyncReducers: {
-            productFilters: productFiltersReducer
+            productFilters: productFiltersReducer,
         },
         route: '/en/category/electronics',
-        routePath: routePaths.category
-    }
+        routePath: routePaths.category,
+    },
 } satisfies Meta<typeof CategoryPage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+
 export const Default: Story = {
     parameters: {
         msw: {
-            handlers: [
-                breadcrumbsHandlers.default,
-                productsHandlers.default,
-                categoryHandlers.default,
-                categoryNavigationHandlers.default,
-                promoCarouselHandlers.default,
-            ],
-        }
-    }
+            handlers: createHandlersScenario('default', categoryPageHandlersMap)
+        },
+    },
 };
+
 
 export const FiltersOpen: Story = {
     parameters: {
@@ -57,47 +65,30 @@ export const FiltersOpen: Story = {
                     sortBy: 'price',
                     sortOrder: 'asc',
                 },
-                isOpen: true
-            }
+                isOpen: true,
+            },
         } as Partial<StateSchema>,
         msw: {
-            handlers: [
-                breadcrumbsHandlers.default,
-                productsHandlers.default,
-                categoryHandlers.default,
-                categoryNavigationHandlers.default,
-                promoCarouselHandlers.default,
-            ],
+            handlers: createHandlersScenario('default', categoryPageHandlersMap)
         }
-    }
+    },
 };
-
 
 export const Loading: Story = {
     parameters: {
         msw: {
-            handlers: [
-                breadcrumbsHandlers.loading,
-                productsHandlers.loading,
-                categoryHandlers.default,
-                categoryNavigationHandlers.loading,
-                promoCarouselHandlers.loading,
-            ],
-        }
-    }
+            handlers: createHandlersScenario('loading', categoryPageHandlersMap, {category: categoryHandlers.default})
+        },
+    },
 };
+
 
 export const Error: Story = {
     parameters: {
         msw: {
-            handlers: [
-                breadcrumbsHandlers.error,
-                categoryHandlers.default,
-                productsHandlers.error,
-                categoryNavigationHandlers.error,
-                promoCarouselHandlers.error,
-            ],
-        }
-    }
+            handlers: createHandlersScenario('error', categoryPageHandlersMap, {category: categoryHandlers.default})
+        },
+    },
 };
+
 

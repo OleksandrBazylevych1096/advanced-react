@@ -18,6 +18,7 @@ export interface FilterSectionProps {
     error?: boolean;
     className?: string;
     renderOption?: (option: FacetItemType, isChecked: boolean) => ReactNode;
+    'data-testid'?: string;
 }
 
 export const CheckboxFilterSection = ({
@@ -30,6 +31,7 @@ export const CheckboxFilterSection = ({
                                           error = false,
                                           className,
                                           renderOption,
+                                          'data-testid': dataTestId,
                                       }: FilterSectionProps) => {
     const selectedCount = selectedValues.length;
 
@@ -40,7 +42,7 @@ export const CheckboxFilterSection = ({
                     {title}
                 </Accordion.Header>
                 <Accordion.Content className={styles.accordionContent}>
-                    <div className={styles.error}>
+                    <div className={styles.error} data-testid={dataTestId ? `${dataTestId}-error` : undefined}>
                         <span>Error</span>
                     </div>
                 </Accordion.Content>
@@ -55,7 +57,7 @@ export const CheckboxFilterSection = ({
                     {title}
                 </Accordion.Header>
                 <Accordion.Content className={styles.accordionContent}>
-                    <div className={styles.loading}>
+                    <div className={styles.loading} data-testid={dataTestId ? `${dataTestId}-loading` : undefined}>
                         <div className={styles.skeleton}/>
                         <div className={styles.skeleton}/>
                         <div className={styles.skeleton}/>
@@ -76,7 +78,7 @@ export const CheckboxFilterSection = ({
             </Accordion.Header>
             <Accordion.Content className={`${styles.accordionContent} ${className || ''}`}>
                 {options.length === 0 ? (
-                    <div className={styles.empty}>{"No available data"}</div>
+                    <div className={styles.empty} data-testid={dataTestId ? `${dataTestId}-empty` : undefined}>{"No available data"}</div>
                 ) : (
                     options.map((option) => {
                         const isChecked = selectedValues.includes(option.value);
@@ -97,6 +99,7 @@ export const CheckboxFilterSection = ({
                                 key={option.value}
                                 checked={isChecked}
                                 onChange={() => onToggle(option.value)}
+                                data-testid={dataTestId ? `${dataTestId}-option-${option.value}` : undefined}
                             />
                         );
                     })

@@ -2,7 +2,7 @@ import {useSelector} from "react-redux";
 
 import {productFiltersActions} from "@/features/productFilters";
 import {SORT_OPTIONS, type SortOptionValue} from "@/features/productFilters/consts/sortOptions.ts";
-import {createSortValue, parseSortValue} from "@/features/productFilters/lib/sortOptionsHelpers.ts";
+import {createSortValue, parseSortValue} from "@/features/productFilters/lib/sortOptionsHelpers/sortOptionsHelpers.ts";
 import {selectSortSettings} from "@/features/productFilters/model/selectors/productFiltersSelectors.ts";
 
 import {useAppDispatch} from "@/shared/lib";

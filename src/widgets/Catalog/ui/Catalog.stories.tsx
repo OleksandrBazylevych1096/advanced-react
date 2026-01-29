@@ -1,9 +1,12 @@
 import type {Meta, StoryObj} from '@storybook/react-vite';
 
-import {categoryHandlers} from "@/entities/category/lib/test/handlers.ts";
-import {productsHandlers} from "@/entities/product/lib/test/handlers.ts";
+
+import {categoryHandlers} from '@/entities/category/api/test/handlers';
+import {productsHandlers} from '@/entities/product/api/test/handlers';
+
 
 import {Catalog} from './Catalog';
+import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
 
 const meta: Meta<typeof Catalog> = {
     title: 'widgets/Catalog',
@@ -23,33 +26,41 @@ const meta: Meta<typeof Catalog> = {
 export default meta;
 type Story = StoryObj<typeof Catalog>;
 
+const catalogHandlersMap = {
+    products: productsHandlers,
+    category: categoryHandlers
+}
+
+
 export const Default: Story = {
     parameters: {
         msw: {
-            handlers: [productsHandlers.default, categoryHandlers.default],
+            handlers: createHandlersScenario('default', catalogHandlersMap)
         },
-    }
+    },
 };
+
 
 export const SmallWidth: Story = {
     decorators: [
         (Story) => (
-            <div style={{minHeight: '100vh', padding: '20px', width: "600px", margin: '0 auto'}}>
+            <div style={{minHeight: '100vh', padding: '20px', width: '600px', margin: '0 auto'}}>
                 <Story/>
             </div>
         ),
     ],
     parameters: {
         msw: {
-            handlers: [productsHandlers.default, categoryHandlers.default],
+            handlers: createHandlersScenario('default', catalogHandlersMap)
         },
-    }
+    },
 };
+
 
 export const Loading: Story = {
     parameters: {
         msw: {
-            handlers: [productsHandlers.loading, categoryHandlers.default],
+            handlers: createHandlersScenario('loading', catalogHandlersMap, {products: categoryHandlers.default})
         },
     },
 };
@@ -57,16 +68,17 @@ export const Loading: Story = {
 export const Error: Story = {
     parameters: {
         msw: {
-            handlers: [productsHandlers.error, categoryHandlers.default],
+            handlers: createHandlersScenario('error', catalogHandlersMap, {products: categoryHandlers.default})
         },
     },
 };
+
 
 export const Empty: Story = {
     parameters: {
         msw: {
-            handlers: [productsHandlers.empty, categoryHandlers.default],
+            handlers: createHandlersScenario('default', catalogHandlersMap, {products: productsHandlers.empty})
+
         },
     },
 };
-

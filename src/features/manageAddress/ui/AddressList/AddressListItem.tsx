@@ -27,6 +27,7 @@ export const AddressListItem = (props: AddressListItemProps) => {
             })}
             onClick={() => handleAddressSelect(address)}
             tabIndex={0}
+            data-testid={`address-item-${address.id}`}
         >
             <div className={styles.addressInfo}>
                 <div className={styles.radioContainer}>
@@ -36,11 +37,12 @@ export const AddressListItem = (props: AddressListItemProps) => {
                         checked={address.isDefault}
                         readOnly
                         className={styles.radioButton}
+                        data-testid={`address-item-${address.id}-radio`}
                     />
                 </div>
                 <div className={styles.addressDetails}>
-                    <h3 className={styles.addressType}>{address.streetAddress}</h3>
-                    <p className={styles.addressText}>
+                    <h3 className={styles.addressType} data-testid={`address-item-${address.id}-street`}>{address.streetAddress}</h3>
+                    <p className={styles.addressText} data-testid={`address-item-${address.id}-city`}>
                         {address.city}, {address.zipCode}
                     </p>
                 </div>
@@ -51,6 +53,7 @@ export const AddressListItem = (props: AddressListItemProps) => {
                     size="sm"
                     className={styles.action}
                     onClick={(e) => handleClickEdit(e, address)}
+                    data-testid={`address-item-${address.id}-edit-btn`}
                 >
                     <AppIcon Icon={EditIcon}/>
                     {t("manageAddress.edit")}

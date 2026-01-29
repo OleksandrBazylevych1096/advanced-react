@@ -157,17 +157,18 @@ export const RangeSlider = ({
             aria-valuemin={min}
             aria-valuemax={max}
             aria-valuenow={v}
+            data-testid={`slider-thumb-${idx}`}
         >
             {showTooltip && (
                 <div
                     className={cn(styles.tooltip, styles[tooltipPlacement])}
+                    data-testid={`slider-tooltip-${idx}`}
                 >
                     {idx === 0 ? Math.floor(v) : Math.ceil(v)}
                 </div>
             )}
         </div>
     );
-
     const getFilledStyle = () => {
         const leftPercent = percent(value[0]);
         const rightPercent = percent(value[1]);
@@ -176,20 +177,25 @@ export const RangeSlider = ({
             width: `${rightPercent - leftPercent}%`,
         };
     };
-
     return (
-        <div className={cn(styles.root, className)}>
-            {label && <label className={styles.label}>{label}</label>}
-            <div className={styles.sliderWrapper}>
+        <div className={cn(styles.root, className)} data-testid="range-slider">
+            {label && (
+                <label className={styles.label} data-testid="range-slider-label">
+                    {label}
+                </label>
+            )}
+            <div className={styles.sliderWrapper} data-testid="slider-wrapper">
                 <div
                     ref={sliderRef}
                     className={cn(styles.track, {
                         [styles.disabled]: disabled,
                     })}
+                    data-testid="slider-track"
                 >
                     <div
                         className={cn(styles.filled, styles.primary)}
                         style={getFilledStyle()}
+                        data-testid="slider-filled"
                     />
                     {renderThumb(value[0], 0)}
                     {renderThumb(value[1], 1)}

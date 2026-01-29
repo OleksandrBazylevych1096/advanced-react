@@ -13,6 +13,7 @@ interface CheckboxProps {
     id?: string;
     className?: string
     readOnly?: boolean
+    "data-testid"?: string
 }
 
 export const Checkbox = (props: CheckboxProps) => {
@@ -23,7 +24,8 @@ export const Checkbox = (props: CheckboxProps) => {
         onChange,
         disabled = false,
         readOnly = false,
-        id: externalId
+        id: externalId,
+        'data-testid': dataTestId = 'checkbox'
     } = props
 
     const id = useId()
@@ -47,6 +49,7 @@ export const Checkbox = (props: CheckboxProps) => {
         <div className={cn(styles.wrapper, className)}>
             <div className={styles.container}>
                 <input
+                    data-testid={dataTestId}
                     type="checkbox"
                     id={checkboxId}
                     checked={isChecked}

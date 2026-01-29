@@ -1,3 +1,4 @@
+import {useTranslation} from 'react-i18next';
 import {AutoSizer, Grid, WindowScroller, type WindowScrollerChildProps} from 'react-virtualized';
 
 import {CATALOG_PRODUCT_CARDS_SKELETON_COUNT, ROW_HEIGHT} from "@/widgets/Catalog/consts/defaults.ts";
@@ -7,6 +8,8 @@ import {CellRenderer} from "@/widgets/Catalog/ui/CellRenderer.tsx";
 
 import {type Product, ProductCardSkeleton} from "@/entities/product";
 
+import {EmptyState, ErrorState} from "@/shared/ui";
+
 import styles from './Catalog.module.scss';
 
 
@@ -14,11 +17,12 @@ export type CatalogItem = Product | undefined;
 
 
 export const Catalog = () => {
-    const {isFetchingNextPage, hasNextPage, isLoading, error, products, handleLoadMore, gridRef} = useCatalog();
+    const {t} = useTranslation();
+    const {isFetchingNextPage, hasNextPage, isLoading, error, products, handleLoadMore, gridRef, refetch} = useCatalog();
 
     if (isLoading) {
         return (
-            <div className={styles.grid}>
+            <div className={styles.grid} data-testid="catalog-loading">
                 {Array.from({length: CATALOG_PRODUCT_CARDS_SKELETON_COUNT}).map((_, index) => (
                     <ProductCardSkeleton key={`skeleton-${index}`}/>
                 ))}
@@ -27,11 +31,19 @@ export const Catalog = () => {
     }
 
     if (error) {
-        return <div>error</div>;
+        return (
+            <ErrorState
+                message={t('products.unexpectedError')}
+                onRetry={refetch}
+                data-testid="catalog-error"
+            />
+        );
     }
 
     if (!products || products.length === 0) {
-        return <div>No data</div>;
+        return (
+            <EmptyState title={t('products.noProducts')} data-testid="catalog-empty"/>
+        );
     }
 
     const allItems: CatalogItem[] = [
@@ -43,7 +55,7 @@ export const Catalog = () => {
             : [])]
 
     return (
-        <div>
+        <div data-testid="catalog-grid">
             <WindowScroller>
                 {({height, isScrolling, onChildScroll, scrollTop}: WindowScrollerChildProps) => (
                     <AutoSizer disableHeight>

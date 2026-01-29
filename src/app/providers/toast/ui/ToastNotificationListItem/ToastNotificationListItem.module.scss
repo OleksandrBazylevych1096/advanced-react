@@ -1,3 +1,5 @@
+@use '../../../../../app/styles/animations';
+
 .notification {
   display: flex;
   align-items: flex-start;
@@ -11,17 +13,6 @@
   min-width: 320px;
 }
 
-@keyframes slide-in {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
 
 .icon {
   flex-shrink: 0;

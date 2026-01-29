@@ -36,6 +36,7 @@ export interface RangeFilterSectionProps {
         onMinChange: (value: string) => void;
         onMaxChange: (value: string) => void;
     }) => ReactNode;
+    'data-testid'?: string;
 }
 
 export const RangeFilterSection = ({
@@ -54,6 +55,7 @@ export const RangeFilterSection = ({
                                        minRange = 5,
                                        decimalPlaces = 0,
                                        renderCustomInputs,
+                                       'data-testid': dataTestId,
                                    }: RangeFilterSectionProps) => {
     const {i18n} = useTranslation();
     const currentLocale = locale || i18n.language;
@@ -92,7 +94,7 @@ export const RangeFilterSection = ({
                     {title}
                 </Accordion.Header>
                 <Accordion.Content className={styles.accordionContent}>
-                    <div className={styles.error}>
+                    <div className={styles.error} data-testid={dataTestId ? `${dataTestId}-error` : undefined}>
                         <span>Error</span>
                     </div>
                 </Accordion.Content>
@@ -107,7 +109,7 @@ export const RangeFilterSection = ({
                     {title}
                 </Accordion.Header>
                 <Accordion.Content className={styles.accordionContent}>
-                    <div className={styles.loading}>
+                    <div className={styles.loading} data-testid={dataTestId ? `${dataTestId}-loading` : undefined}>
                         <div className={styles.skeleton}/>
                     </div>
                 </Accordion.Content>
@@ -148,6 +150,7 @@ export const RangeFilterSection = ({
                                 onChange={handleMinInput}
                                 decimal={{mode: 'floor', places: decimalPlaces}}
                                 label="Min"
+                                data-testid={dataTestId ? `${dataTestId}-min-input` : undefined}
                             />
                             <Input
                                 type={inputType}
@@ -157,6 +160,7 @@ export const RangeFilterSection = ({
                                 onChange={handleMaxInput}
                                 decimal={{mode: 'ceil', places: decimalPlaces}}
                                 label="Max"
+                                data-testid={dataTestId ? `${dataTestId}-max-input` : undefined}
                             />
                         </div>
                     )}
@@ -169,6 +173,7 @@ export const RangeFilterSection = ({
                         value={[effectiveMin, effectiveMax]}
                         onChange={handleSliderChange}
                         tooltip="never"
+                        data-testid={dataTestId ? `${dataTestId}-slider` : undefined}
                     />
                 </div>
             </Accordion.Content>

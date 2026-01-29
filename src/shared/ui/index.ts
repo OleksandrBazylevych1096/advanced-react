@@ -16,6 +16,7 @@ import {Portal} from "./Portal/Portal";
 import {Price} from "./Price/Price";
 import {RangeSlider} from "./RangeSlider/RangeSlider";
 import {Spinner} from "./Spinner/Spinner";
+import {EmptyState, ErrorState} from "./StateViews";
 import {Tabs} from "./Tabs/Tabs";
 
 export {
@@ -36,5 +37,7 @@ export {
     Portal,
     AppPage,
     Checkbox,
-    RangeSlider
+    RangeSlider,
+    ErrorState,
+    EmptyState
 };

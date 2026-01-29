@@ -85,6 +85,8 @@ export interface SelectProps<T = string | number> {
     'aria-label'?: string;
     'aria-labelledby'?: string;
     'aria-describedby'?: string;
+    'data-testid'?: string;
+
 }
 
 export function Select<T = string | number>({
@@ -128,6 +130,7 @@ export function Select<T = string | number>({
                                                 'aria-label': ariaLabel,
                                                 'aria-labelledby': ariaLabelledby,
                                                 'aria-describedby': ariaDescribedby,
+                                                'data-testid': dataTestId = 'select'
                                             }: SelectProps<T>) {
     const [internalValue, setInternalValue] = useState<T | T[]>(
         defaultValue ?? (multiple ? [] : ('' as T))
@@ -436,7 +439,8 @@ export function Select<T = string | number>({
             }
 
             return selectedOptions.map((opt) => (
-                <div key={String(opt.value)} className={styles.multiValue}>
+                <div key={String(opt.value)} data-testid={`${dataTestId}-multi-value-${opt.value}`}
+                     className={styles.multiValue}>
                     <span>{opt.label}</span>
                     {!disabled && !readonly && (
                         <Button
@@ -444,6 +448,7 @@ export function Select<T = string | number>({
                             theme={'ghost'}
                             type="button"
                             onClick={(e) => handleRemoveValue(opt.value, e)}
+                            data-testid={`${dataTestId}-remove-value-${opt.value}`}
                             aria-label={`Видалити ${opt.label}`}
                         >
                             <AppIcon Icon={CloseIcon}/>
@@ -473,7 +478,9 @@ export function Select<T = string | number>({
                 {multiple && (
                     <Checkbox
                         checked={isSelected(option)}
-                        className={styles.optionCheckbox}/>
+                        className={styles.optionCheckbox}
+                        data-testid={`${dataTestId}-checkbox-${option.value}`}
+                    />
 
                 )}
                 <span>{option.label}</span>
@@ -483,11 +490,13 @@ export function Select<T = string | number>({
 
     const renderOptions = () => {
         if (loading) {
-            return <div className={styles.noOptions}>{loadingMessage}</div>;
+            return <div data-testid={`${dataTestId}-loading-message`}
+                        className={styles.noOptions}>{loadingMessage}</div>;
         }
 
         if (visibleOptions.length === 0) {
-            return <div className={styles.noOptions}>{noOptionsMessage}</div>;
+            return <div data-testid={`${dataTestId}-no-options`}
+                        className={styles.noOptions}>{noOptionsMessage}</div>;
         }
 
         if (optionGroups) {
@@ -499,7 +508,9 @@ export function Select<T = string | number>({
                 if (groupOptions.length === 0) return null;
 
                 return (
-                    <div key={groupIndex} className={styles.optionGroup}>
+                    <div key={groupIndex} className={styles.optionGroup}
+                         data-testid={`${dataTestId}-group-${groupIndex}`}
+                    >
                         <div className={styles.optionGroupLabel}>{group.label}</div>
                         {groupOptions.map((option) => {
                             const globalIndex = visibleOptions.findIndex(
@@ -510,6 +521,7 @@ export function Select<T = string | number>({
                                 <div
                                     key={String(option.value)}
                                     data-option-index={globalIndex}
+                                    data-testid={`${dataTestId}-option-${option.value}`}
                                     role="option"
                                     aria-selected={isSelected(option)}
                                     aria-disabled={option.disabled}
@@ -539,6 +551,7 @@ export function Select<T = string | number>({
                 role="option"
                 aria-selected={isSelected(option)}
                 aria-disabled={option.disabled}
+                data-testid={`${dataTestId}-option-${option.value}`}
                 className={cn(
                     styles.option,
                     {
@@ -564,50 +577,52 @@ export function Select<T = string | number>({
     const errorId = `${id}-error`;
 
     return (
-        <div className={cn(
-            styles.select,
-            {[styles.fullWidth]: fullWidth},
-            className
-        )}>
-            <div
-                ref={controlRef}
-                className={cn(
-                    styles.control,
-                    styles[size],
-                    styles[theme],
-                    {
-                        [styles.focused]: isFocused,
-                        [styles.open]: isOpen,
-                        [styles.disabled]: disabled,
-                        [styles.readonly]: readonly,
-                        [styles.error]: error || !!errorMessage,
-                    }
-                )}
-                onClick={handleToggleOpen}
-                onKeyDown={handleKeyDown}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                tabIndex={disabled || readonly ? -1 : 0}
-                role="combobox"
-                aria-expanded={isOpen}
-                aria-haspopup="listbox"
-                aria-controls={`${id}-listbox`}
-                aria-label={ariaLabel}
-                aria-labelledby={ariaLabelledby}
-                aria-describedby={
-                    errorMessage ? errorId : helperText ? helperId : ariaDescribedby
-                }
-                aria-required={required}
-                aria-disabled={disabled}
-                aria-readonly={readonly}
+        <div data-testid={dataTestId}
+             className={cn(
+                 styles.select,
+                 {[styles.fullWidth]: fullWidth},
+                 className
+             )}>
+            <div data-testid={`${dataTestId}-control`}
+                 ref={controlRef}
+                 className={cn(
+                     styles.control,
+                     styles[size],
+                     styles[theme],
+                     {
+                         [styles.focused]: isFocused,
+                         [styles.open]: isOpen,
+                         [styles.disabled]: disabled,
+                         [styles.readonly]: readonly,
+                         [styles.error]: error || !!errorMessage,
+                     }
+                 )}
+                 onClick={handleToggleOpen}
+                 onKeyDown={handleKeyDown}
+                 onFocus={handleFocus}
+                 onBlur={handleBlur}
+                 tabIndex={disabled || readonly ? -1 : 0}
+                 role="combobox"
+                 aria-expanded={isOpen}
+                 aria-haspopup="listbox"
+                 aria-controls={`${id}-listbox`}
+                 aria-label={ariaLabel}
+                 aria-labelledby={ariaLabelledby}
+                 aria-describedby={
+                     errorMessage ? errorId : helperText ? helperId : ariaDescribedby
+                 }
+                 aria-required={required}
+                 aria-disabled={disabled}
+                 aria-readonly={readonly}
             >
-                <div className={styles.valueContainer}>
+                <div data-testid={`${dataTestId}-value`}
+                     className={styles.valueContainer}>
                     {renderSelectedValue()}
                 </div>
 
                 <div className={styles.indicators}>
                     {loading && (
-                        <Spinner size={'sm'}/>
+                        <Spinner data-testid={`${dataTestId}-loading-spinner`} size={'sm'}/>
                     )}
 
                     {showClear && (
@@ -615,7 +630,9 @@ export function Select<T = string | number>({
                             theme={'ghost'}
                             className={styles.clearIndicator}
                             onClick={handleClear}
-                            aria-label="Очистити"
+                            aria-label="Clear"
+                            data-testid={`${dataTestId}-clear-button`}
+
                         >
                             <AppIcon Icon={CloseIcon}/>
                         </Button>
@@ -644,6 +661,8 @@ export function Select<T = string | number>({
                 id={`${id}-listbox`}
                 role="listbox"
                 aria-multiselectable={multiple}
+                data-testid={`${dataTestId}-dropdown`}
+
             >
                 {searchable && (
                     <div className={styles.search}>
@@ -655,6 +674,8 @@ export function Select<T = string | number>({
                             Icon={<AppIcon size={18} Icon={SearchIcon} theme="background"/>}
                             placeholder="Search..."
                             aria-label="Search options"
+                            data-testid={`${dataTestId}-search-input`}
+
                         />
                     </div>
                 )}
@@ -667,6 +688,7 @@ export function Select<T = string | number>({
             {(helperText || errorMessage) && (
                 <div
                     id={errorMessage ? errorId : helperId}
+                    data-testid={errorMessage ? `${dataTestId}-error` : `${dataTestId}-helper-text`}
                     className={cn(styles.helperText, {
                         [styles.error]: !!errorMessage,
                     })}
@@ -678,6 +700,7 @@ export function Select<T = string | number>({
             {name && (
                 <input
                     type="hidden"
+                    data-testid={`${dataTestId}-hidden-input`}
                     name={name}
                     value={
                         Array.isArray(currentValue)

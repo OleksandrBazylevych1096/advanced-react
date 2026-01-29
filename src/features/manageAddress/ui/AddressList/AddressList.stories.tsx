@@ -1,25 +1,32 @@
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from '@storybook/react-vite';
 
 
-import {handlers} from "../../lib/test/handlers";
+import {listAddressHandlers} from "@/features/manageAddress/api/test/handlers.ts";
 
-import {AddressList} from "./AddressList";
+import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
+
+import {AddressList} from './AddressList';
 
 const meta = {
-    title: "features/manageAddress/AddressList",
+    title: 'features/manageAddress/AddressList',
     component: AddressList,
     parameters: {
-        layout: "centered",
+        layout: 'centered',
     },
 } satisfies Meta<typeof AddressList>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const AddressListHandlersMap = {
+    list: listAddressHandlers
+}
+
+
 export const WithAddresses: Story = {
     parameters: {
         msw: {
-            handlers: [handlers.listSuccess],
+            handlers: createHandlersScenario('default', AddressListHandlersMap)
         },
     },
 };
@@ -27,32 +34,36 @@ export const WithAddresses: Story = {
 export const SingleAddress: Story = {
     parameters: {
         msw: {
-            handlers: [handlers.listSingle],
+            handlers: createHandlersScenario('default', AddressListHandlersMap, {list: listAddressHandlers.single})
         },
     },
 };
+
 
 export const EmptyList: Story = {
     parameters: {
         msw: {
-            handlers: [handlers.listEmpty],
+            handlers: createHandlersScenario('default', AddressListHandlersMap, {list: listAddressHandlers.empty})
         },
     },
 };
+
 
 export const Loading: Story = {
     parameters: {
         msw: {
-            handlers: [handlers.listLoading],
+            handlers: createHandlersScenario('loading', AddressListHandlersMap)
         },
     },
 };
 
+
 export const Error: Story = {
     parameters: {
         msw: {
-            handlers: [handlers.listError],
+            handlers: createHandlersScenario('error', AddressListHandlersMap)
         },
     },
 };
+
 

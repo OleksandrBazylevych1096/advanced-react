@@ -8,7 +8,6 @@ import { userActions } from "../../slice/userSlice";
 
 import { logout } from "./logout";
 
-// Mock localStorage
 const localStorageMock = {
   getItem: vi.fn(),
   setItem: vi.fn(),
@@ -20,7 +19,7 @@ Object.defineProperty(window, "localStorage", {
   value: localStorageMock,
 });
 
-vi.mock("@/entities/User", () => ({
+vi.mock("../../slice/userSlice", () => ({
   userActions: {
     clearUserData: vi.fn(),
   },
@@ -41,7 +40,6 @@ const mockAction = {
 describe("logout thunk", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Reset all mocks properly
     localStorageMock.removeItem.mockClear();
     localStorageMock.getItem.mockClear();
     localStorageMock.setItem.mockClear();
@@ -69,7 +67,6 @@ describe("logout thunk", () => {
 
     const { result, dispatch } = await testAsyncThunk(logout, undefined);
 
-    // The key issue: these should still be called even when API fails
     expect(mockedHttpClient.post).toHaveBeenCalledWith("/auth/logout");
     expect(localStorageMock.removeItem).toHaveBeenCalledWith(
       LOCAL_STORAGE_USER_KEY
@@ -110,9 +107,7 @@ describe("logout thunk", () => {
     expect(result.payload).toBeUndefined();
   });
 
-  // Additional test to verify the actual LOCAL_STORAGE_USER_KEY value
   test("LOCAL_STORAGE_USER_KEY has expected value", () => {
-    // This will help debug if the constant has the expected value
     expect(LOCAL_STORAGE_USER_KEY).toBeDefined();
   });
 });

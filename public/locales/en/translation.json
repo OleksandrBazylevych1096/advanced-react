@@ -1,4 +1,9 @@
 {
+  "common": {
+    "errorDefault": "Something went wrong",
+    "tryAgain": "Try Again",
+    "noData": "No data available"
+  },
   "carousel": {
     "imageError": "error",
     "imageAlt": "Promotional banner"

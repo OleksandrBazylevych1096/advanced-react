@@ -1,12 +1,4 @@
-@keyframes shimmer {
-  0% {
-    background-position: -468px 0;
-  }
-
-  100% {
-    background-position: 468px 0;
-  }
-}
+@use '../../../../../app/styles/animations';
 
 .imgContainer {
   width: 240px;

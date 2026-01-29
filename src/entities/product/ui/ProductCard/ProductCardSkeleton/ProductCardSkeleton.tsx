@@ -10,7 +10,7 @@ export const ProductCardSkeleton = ({
   className,
 }: ProductCardSkeletonProps) => {
   return (
-    <div className={cn(styles.skeleton, className)}>
+    <div className={cn(styles.skeleton, className)} data-testid="product-card-skeleton">
       <div className={styles.imgContainer}>
         <div className={styles.imgSkeleton} />
         <div className={styles.buttonSkeleton} />

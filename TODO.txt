@@ -1,12 +1,3 @@
-1. Carousel Skeleton fix (X)
-2. Unit tests
+
 3. Integration tests
-4. Fix colors (vibe)
-5. Fix animations (vibe)
-6. Revisit manageAddress storybook (x)
-7. Fix handlers and mockData
-8. Fix category navigation api calls
 9. Check imports, api calls for FSD
-10. Add categoryNavigation active category stories for default and subcategories
-11. Fix error and no data ui states for all components
-12.? Add lng change support in msw handlers and storybook

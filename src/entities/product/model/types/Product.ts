@@ -23,10 +23,6 @@ export interface Product {
 export interface ProductFacets {
     brands: FacetItemType[];
     countries: FacetItemType[];
-    isStock: {
-        true: number
-        false: number
-    }
     priceRange: PriceRangeType;
 }
 

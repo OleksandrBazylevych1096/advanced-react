@@ -1,3 +1,5 @@
+@use '../../../../../app/styles/animations';
+
 .accordionContent {
   display: flex;
   flex-direction: column;
@@ -22,28 +24,20 @@
   height: 24px;
   background: linear-gradient(
                   90deg,
-                  #f0f0f0 25%,
-                  #e0e0e0 50%,
-                  #f0f0f0 75%
+                  var(--gray-100) 25%,
+                  var(--gray-200) 50%,
+                  var(--gray-100) 75%
   );
   background-size: 200% 100%;
-  animation: loading 1.5s infinite;
+  animation: shimmer 1.5s infinite;
   border-radius: 4px;
 }
 
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
 
-  100% {
-    background-position: -200% 0;
-  }
-}
 
 .empty {
   padding: 12px;
   text-align: center;
-  color: #757575;
+  color: var(--gray-500);
   font-size: 14px;
 }

@@ -6,8 +6,8 @@ import {useGetCategoryBySlugQuery} from "@/pages/Category/api/categoryPageApi.ts
 
 import {DEBOUNCE_DELAY} from "@/features/manageAddress/consts/defaults.ts";
 import {DEFAULT_SORT_BY, DEFAULT_SORT_ORDER, URL_PARAMS} from "@/features/productFilters/consts/defaults.ts";
-import {parsePriceRange} from "@/features/productFilters/lib/parsePriceRange.ts";
-import {isValidSortBy, isValidSortOrder} from "@/features/productFilters/lib/sortOptionsHelpers.ts";
+import {parsePriceRange} from "@/features/productFilters/lib/parsePriceRange/parsePriceRange.ts";
+import {isValidSortBy, isValidSortOrder} from "@/features/productFilters/lib/sortOptionsHelpers/sortOptionsHelpers.ts";
 import {validateFiltersFromURL} from "@/features/productFilters/lib/validateFiltersFromURL.ts";
 import {
     selectActiveFilters,
@@ -59,11 +59,7 @@ export const useProductFilters = () => {
         locale: i18n.language!
     });
 
-    const {
-        facets,
-        isLoading: isProductsLoading,
-        error: productsError
-    } = useGetInfiniteProducts({
+    const productsQuery = useGetInfiniteProducts({
         categoryId: category?.id,
         locale: i18n.language,
         currency,
@@ -77,6 +73,9 @@ export const useProductFilters = () => {
             error
         })
     });
+
+    const {facets, isLoading: isProductsLoading, error: productsError} = productsQuery;
+    const refetch = productsQuery.refetch;
 
     useEffect(() => {
         if (isInitialized || !isReducerReady || !facets) return;
@@ -243,6 +242,7 @@ export const useProductFilters = () => {
         handlePriceRangeChange,
         handleSortChange,
         handleReset,
-        handleSidebarClose
+        handleSidebarClose,
+        refetch
     };
 };

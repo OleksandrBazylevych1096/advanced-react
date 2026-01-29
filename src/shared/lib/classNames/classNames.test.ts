@@ -3,7 +3,7 @@ import {describe, expect, test} from "vitest";
 import {classNames} from "./classNames";
 
 describe("classNames", () => {
-    test("parsePriceRange.ts argument", () => {
+    test("parsePriceRange.test.ts.ts argument", () => {
         expect(classNames("class1")).toBe("class1");
     });
     test("conditional class", () => {

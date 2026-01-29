@@ -13,14 +13,14 @@ export const DisplayManageAddress = (props: DisplayManageAddressProps) => {
 
     if (isError || !streetAddress) {
         return (
-            <span className={styles.fallbackAddress}>
+            <span className={styles.fallbackAddress} data-testid="manage-address-fallback">
                 Delivery Address
             </span>
         );
     }
 
     return (
-        <span className={styles.address}>{streetAddress}</span>
+        <span className={styles.address} data-testid="manage-address-street">{streetAddress}</span>
     );
 
 }

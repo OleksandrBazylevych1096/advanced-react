@@ -31,7 +31,8 @@ export const useCatalog = () => {
         error,
         isFetchingNextPage,
         hasNextPage,
-        fetchNextPage
+        fetchNextPage,
+        refetch
     } = useGetInfiniteProducts({
         categoryId: category?.id,
         locale: i18n.language,
@@ -75,6 +76,7 @@ export const useCatalog = () => {
         isFetchingNextPage,
         hasNextPage,
         handleLoadMore,
-        gridRef
+        gridRef,
+        refetch
     }
 }

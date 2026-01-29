@@ -45,6 +45,7 @@ export interface InputProps extends HTMLInputProps {
     locale?: SupportedLngsType;
     decimal?: DecimalConfig;
     onDragEnd?: (value: string) => void
+    "data-testid"?: string;
     
 }
 
@@ -89,6 +90,7 @@ export const Input = (props: InputProps) => {
         onBlur,
         locale = 'en',
         decimal,
+        "data-testid": dataTestId,
         ...rest
     } = props;
 
@@ -207,6 +209,7 @@ export const Input = (props: InputProps) => {
                     disabled={disabled}
                     onChange={handleChange}
                     className={cn(styles.input, {[styles.error]: error})}
+                    data-testid={dataTestId}
                 />
 
                 {type === "password" && (

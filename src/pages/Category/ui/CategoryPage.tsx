@@ -1,7 +1,7 @@
 import {useParams} from "react-router";
 
 import {useGetCategoryBreadcrumbsQuery, useGetCategoryBySlugQuery} from "@/pages/Category/api/categoryPageApi.ts";
-import {useCategorySlugSync} from "@/pages/Category/lib/useCategorySlugSync.ts";
+import {useCategorySlugSync} from "@/pages/Category/lib/useCategorySlugSync/useCategorySlugSync.ts";
 
 import {CategoryNavigation} from "@/widgets/CategoryNavigation";
 import {Footer} from "@/widgets/Footer";

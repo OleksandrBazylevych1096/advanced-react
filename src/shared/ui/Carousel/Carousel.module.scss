@@ -1,3 +1,5 @@
+@use '../../../app/styles/animations';
+
 .carousel {
   width: 100%;
   margin: auto;
@@ -32,20 +34,11 @@
   border-radius: 50%;
   background: linear-gradient(
                   90deg,
-                  #e5e7eb 25%,
-                  #f3f4f6 37%,
-                  #e5e7eb 63%
+                  var(--gray-200) 25%,
+                  var(--gray-100) 37%,
+                  var(--gray-200) 63%
   );
   background-size: 400% 100%;
   animation: shimmer 1.4s ease infinite;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: 100% 0;
-  }
-
-  100% {
-    background-position: 0 0;
-  }
-}

@@ -204,10 +204,11 @@ const ModalTrigger = (props: ModalTriggerProps) => {
 interface ModalContentProps {
   children: ReactNode;
   className?: string;
+  "data-testid"?: string;
 }
 
 const ModalContent = (props: ModalContentProps) => {
-  const { children, className } = props;
+  const { children, className, "data-testid": testId } = props;
 
   const handleContentClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -217,6 +218,7 @@ const ModalContent = (props: ModalContentProps) => {
     <div
       onClick={handleContentClick}
       className={cn(styles.contentWrapper, className)}
+      data-testid={testId}
     >
       {children}
     </div>
@@ -227,15 +229,16 @@ interface ModalHeaderProps {
   children: ReactNode;
   className?: string;
   childContainerClassName?: string;
+  "data-testid"?: string;
 }
 
 const ModalHeader = (props: ModalHeaderProps) => {
-  const { children, className, childContainerClassName } = props;
+  const { children, className, childContainerClassName, "data-testid": testId } = props;
 
   const { onClose } = useModalContext();
 
   return (
-    <div className={cn(styles.header, className)}>
+    <div className={cn(styles.header, className)} data-testid={testId}>
       <div className={childContainerClassName}>{children}</div>
       <Button
         size="lg"
@@ -252,23 +255,25 @@ const ModalHeader = (props: ModalHeaderProps) => {
 interface ModalBodyProps {
   children: ReactNode;
   className?: string;
+  "data-testid"?: string;
 }
 
 const ModalBody = (props: ModalBodyProps) => {
-  const { children, className } = props;
+  const { children, className, "data-testid": testId } = props;
 
-  return <div className={cn(styles.body, className)}>{children}</div>;
+  return <div className={cn(styles.body, className)} data-testid={testId}>{children}</div>;
 };
 
 interface ModalFooterProps {
   children: ReactNode;
   className?: string;
+  "data-testid"?: string;
 }
 
 const ModalFooter = (props: ModalFooterProps) => {
-  const { children, className } = props;
+  const { children, className, "data-testid": testId } = props;
 
-  return <div className={cn(styles.footer, className)}>{children}</div>;
+  return <div className={cn(styles.footer, className)} data-testid={testId}>{children}</div>;
 };
 
 Modal.Trigger = ModalTrigger;

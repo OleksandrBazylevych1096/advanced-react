@@ -1,15 +1,16 @@
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from '@storybook/react-vite';
+
+import {promoCarouselHandlers} from '@/widgets/PromoCarousel/api/test/handlers';
 
 
-import {promoCarouselHandlers} from "@/widgets/PromoCarousel/lib/test/handlers.ts";
-
-import {PromoCarousel} from "./PromoCarousel";
+import {PromoCarousel} from './PromoCarousel';
+import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
 
 const meta: Meta<typeof PromoCarousel> = {
-    title: "widgets/PromoCarousel",
+    title: 'widgets/PromoCarousel',
     component: PromoCarousel,
     parameters: {
-        layout: "fullscreen",
+        layout: 'fullscreen',
     },
 };
 
@@ -17,32 +18,33 @@ export default meta;
 
 type Story = StoryObj<typeof PromoCarousel>;
 
+const promoCarouselHandlersMap = {
+    promoCarousel: promoCarouselHandlers
+}
+
+
 export const Default: Story = {
     parameters: {
         msw: {
-            handlers: [
-                promoCarouselHandlers.default
-            ],
+            handlers: createHandlersScenario('default', promoCarouselHandlersMap)
         },
     },
 };
+
 
 export const Loading: Story = {
     parameters: {
         msw: {
-            handlers: [
-                promoCarouselHandlers.loading
-            ],
+            handlers: createHandlersScenario('loading', promoCarouselHandlersMap)
         },
     },
 };
 
+
 export const Error: Story = {
     parameters: {
         msw: {
-            handlers: [
-                promoCarouselHandlers.error
-            ],
+            handlers: createHandlersScenario('error', promoCarouselHandlersMap)
         },
     },
 };

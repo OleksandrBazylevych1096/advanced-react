@@ -1,3 +1,5 @@
+@use '../../../app/styles/animations';
+
 .select {
   position: relative;
   display: inline-flex;
@@ -23,7 +25,7 @@
 }
 
 .singleValue {
-  color: #111827;
+  color: var(--gray-800);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -67,7 +69,7 @@
   svg {
     width: 16px;
     height: 16px;
-    color: #6b7280;
+    color: var(--gray-500);
     animation: spin 1s linear infinite;
   }
 }
@@ -77,7 +79,7 @@
   align-items: center;
   justify-content: center;
   transform: rotate(90deg);
-  color: #6b7280;
+  color: var(--gray-500);
   transition: transform 0.2s;
 
   .open & {
@@ -98,8 +100,8 @@
   }
 
   &:hover {
-    background: #f3f4f6;
-    color: #111827;
+    background: var(--gray-100);
+    color: var(--gray-800);
 
     svg {
       stroke: var(--primary-color);
@@ -365,7 +367,7 @@
     }
 
     &.focused {
-      background: #fff;
+      background: var(--white);
       border-color: var(--primary-color);
     }
 
@@ -380,12 +382,3 @@
 }
 
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}

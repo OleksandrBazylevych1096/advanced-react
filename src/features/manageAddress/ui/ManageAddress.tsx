@@ -37,17 +37,17 @@ export const ManageAddress = () => {
     return (
         <Modal onClose={handleClose}>
             <Modal.Trigger asChild>
-                <Button className={styles.addressButton} theme="ghost">
-                    {isLoading ? <Spinner size="sm"/> : <AppIcon Icon={MapPinIcon}/>}
+                <Button className={styles.addressButton} theme="ghost" data-testid="manage-address-trigger">
+                    {isLoading ? <Spinner size="sm" data-testid="manage-address-loading"/> : <AppIcon Icon={MapPinIcon}/>}
                     <DisplayManageAddress isLoading={isLoading} isError={isError}
                                           streetAddress={defaultAddress?.streetAddress}/>
                 </Button>
             </Modal.Trigger>
 
-            <Modal.Content className={styles.content}>
+            <Modal.Content className={styles.content} data-testid="manage-address-modal">
                 <Modal.Header childContainerClassName={styles.header}>
                     {mode !== "choose" && (
-                        <Button onClick={handleGoBackClick} theme="tertiary" form="circle">
+                        <Button onClick={handleGoBackClick} theme="tertiary" form="circle" data-testid="manage-address-back-btn">
                             <AppIcon Icon={ArrowLeft}/>
                         </Button>
                     )}
@@ -66,9 +66,9 @@ export const ManageAddress = () => {
                     </DynamicModuleLoader>
                 ) : (
                     <Modal.Body>
-                        <div className={styles.signInPrompt}>
+                        <div className={styles.signInPrompt} data-testid="manage-address-signin-prompt">
                             <p>{t("manageAddress.signInPrompt")}</p>
-                            <Button size="md" onClick={handleClickSignIn}>
+                            <Button size="md" onClick={handleClickSignIn} data-testid="manage-address-signin-btn">
                                 {t("manageAddress.signIn")}
                             </Button>
                         </div>

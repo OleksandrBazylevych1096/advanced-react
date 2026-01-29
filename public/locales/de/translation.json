@@ -1,4 +1,9 @@
 {
+  "common": {
+    "errorDefault": "Etwas ist schiefgelaufen",
+    "tryAgain": "Erneut versuchen",
+    "noData": "Keine Daten verfügbar"
+  },
   "carousel": {
     "imageError": "Fehler",
     "imageAlt": "Werbebanner"

@@ -5,7 +5,7 @@ import {useGetCategoryNavigationQuery} from "@/widgets/CategoryNavigation/api/ca
 import {CategoryNavigationGoBackItem} from "@/widgets/CategoryNavigation/ui/CategoryNavigationGoBackItem.tsx";
 
 import type {SupportedLngsType} from "@/shared/config";
-import {Button, Carousel, CarouselSkeleton} from "@/shared/ui";
+import {Carousel, CarouselSkeleton, ErrorState} from "@/shared/ui";
 
 import styles from "./CategoryNavigation.module.scss";
 import {CategoryNavigationItem} from "./CategoryNavigationItem";
@@ -38,10 +38,10 @@ export const CategoryNavigation = () => {
 
     if (isError) {
         return (
-            <div className={styles.errorContainer}>
-                <p className={styles.errorText}>{t("products.loadCategoriesError")}</p>
-                <Button onClick={refetch}>{t("products.tryAgain")}</Button>
-            </div>
+            <ErrorState
+                message={t("products.loadCategoriesError")}
+                onRetry={refetch}
+            />
         );
     }
 

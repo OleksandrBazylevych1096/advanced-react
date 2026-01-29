@@ -20,10 +20,10 @@ export const ProductCard = ({product}: ProductCardProps) => {
     const currency = useAppSelector(selectUserCurrency);
     const img = product.images?.find((img) => img.isMain);
     return (
-        <div className={styles.card}>
+        <div className={styles.card} data-testid={`product-card-${product.id}`}>
             <div className={styles.imgContainer}>
                 <ProductCardImage
-                    src={img?.url || ""}
+                    src={img?.url}
                     alt={img?.alt || product.name}
                     className={styles.img}
                 />

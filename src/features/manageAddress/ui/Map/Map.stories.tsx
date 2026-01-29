@@ -3,8 +3,10 @@ import type {LatLngTuple} from "leaflet";
 
 import type {StateSchema} from "@/app/store";
 
-import {handlers} from "@/features/manageAddress/lib/test/handlers.ts";
+import {geocodeHandlers} from "@/features/manageAddress/api/test/handlers.ts";
 import {manageAddressReducer} from "@/features/manageAddress/model/slice/addressSlice";
+
+import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
 
 
 import {Map} from "./Map";
@@ -48,13 +50,15 @@ const meta: Meta<typeof Map> = {
 export default meta;
 type Story = StoryObj<typeof Map>;
 
+const MapHandlersMap = {
+    geocode: geocodeHandlers
+}
+
 
 export const Default: Story = {
     parameters: {
         msw: {
-            handlers: [
-                handlers.geocodeSuccessLondon
-            ],
+            handlers: createHandlersScenario('default', MapHandlersMap)
         },
     },
 };
@@ -63,9 +67,8 @@ export const Default: Story = {
 export const LoadingGeocode: Story = {
     parameters: {
         msw: {
-            handlers: [
-                handlers.geocodeLoading
-            ],
+            handlers: createHandlersScenario('loading', MapHandlersMap)
+
         },
     },
 };
@@ -74,9 +77,8 @@ export const LoadingGeocode: Story = {
 export const GeocodeError: Story = {
     parameters: {
         msw: {
-            handlers: [
-                handlers.geocodeError
-            ],
+            handlers: createHandlersScenario('error', MapHandlersMap)
+
         },
     },
 };

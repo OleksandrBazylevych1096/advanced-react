@@ -1,8 +1,8 @@
 import {initialize, mswLoader} from 'msw-storybook-addon';
 
-import {handlers} from '../src/features/manageAddress/lib/test/handlers';
-
-// Initialize MSW
+/**
+ * Initialize MSW for Storybook
+ */
 initialize({
     onUnhandledRequest: 'bypass', // Don't warn about unhandled requests
     serviceWorker: {
@@ -10,17 +10,11 @@ initialize({
     },
 });
 
-// Add MSW loader to preview
+/**
+ * Add MSW loader to all stories
+ */
 export const loaders = [mswLoader];
-
-// Default MSW handlers for all stories
-export const parameters = {
-    msw: {
-        handlers: handlers,
-    },
-};
 
 export default {
     loaders,
-    parameters,
 };

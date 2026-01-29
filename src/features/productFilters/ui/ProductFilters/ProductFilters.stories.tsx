@@ -2,10 +2,12 @@ import type {Meta, StoryObj} from '@storybook/react-vite';
 
 import {productFiltersReducer} from "@/features/productFilters";
 
-import {categoryHandlers} from "@/entities/category/lib/test/handlers.ts";
-import {productsHandlers} from "@/entities/product/lib/test/handlers.ts";
+import {categoryHandlers} from "@/entities/category/api/test/handlers.ts";
+import {productsHandlers} from "@/entities/product/api/test/handlers.ts";
+
 
 import {ProductFilters} from './ProductFilters';
+import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
 
 
 const defaultInitialState = {
@@ -37,19 +39,24 @@ const meta: Meta<typeof ProductFilters> = {
             productFilters: productFiltersReducer
         },
         initialState: defaultInitialState,
-        msw: {
-            handlers: [
-                categoryHandlers.default,
-                productsHandlers.default,
-            ],
-        },
     },
 };
 
 export default meta;
 type Story = StoryObj<typeof ProductFilters>;
 
-export const Default: Story = {};
+const productFiltersHandlers = {
+    products: productsHandlers,
+    category: categoryHandlers,
+};
+
+export const Default: Story = {
+    parameters: {
+        msw: {
+            handlers: createHandlersScenario('default', productFiltersHandlers)
+        },
+    }
+};
 
 export const WithSelectedFilters: Story = {
     parameters: {
@@ -70,10 +77,7 @@ export const WithSelectedFilters: Story = {
             },
         },
         msw: {
-            handlers: [
-                categoryHandlers.default,
-                productsHandlers.withFilters,
-            ],
+            handlers: createHandlersScenario('default', productFiltersHandlers)
         },
     },
 };
@@ -81,10 +85,8 @@ export const WithSelectedFilters: Story = {
 export const Loading: Story = {
     parameters: {
         msw: {
-            handlers: [
-                categoryHandlers.loading,
-                productsHandlers.loading,
-            ],
+            handlers: createHandlersScenario('loading', productFiltersHandlers)
+
         },
     },
 };
@@ -92,10 +94,8 @@ export const Loading: Story = {
 export const Error: Story = {
     parameters: {
         msw: {
-            handlers: [
-                categoryHandlers.error,
-                productsHandlers.error,
-            ],
+            handlers: createHandlersScenario('error', productFiltersHandlers)
+
         },
     },
 };
@@ -119,10 +119,7 @@ export const WithEuroCurrency: Story = {
             },
         },
         msw: {
-            handlers: [
-                categoryHandlers.default,
-                productsHandlers.withEuroCurrency,
-            ],
+            handlers: createHandlersScenario('default', productFiltersHandlers, {products: productsHandlers.withEuroCurrency})
         },
     },
 };
@@ -130,10 +127,7 @@ export const WithEuroCurrency: Story = {
 export const EmptyFacets: Story = {
     parameters: {
         msw: {
-            handlers: [
-                categoryHandlers.default,
-                productsHandlers.empty,
-            ],
+            handlers: createHandlersScenario('default', productFiltersHandlers, {products: productsHandlers.empty})
         },
     },
 };

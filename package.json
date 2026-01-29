@@ -49,7 +49,7 @@
     "@storybook/addon-vitest": "^9.1.0",
     "@storybook/react-vite": "^9.1.0",
     "@testing-library/dom": "^10.4.1",
-    "@testing-library/react": "^16.3.0",
+    "@testing-library/react": "^16.3.2",
     "@types/leaflet": "^1.9.21",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",

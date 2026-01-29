@@ -57,7 +57,7 @@ export const EditAddressFormView = ({
                                     }: EditAddressFormUIProps) => {
     const {t} = useTranslation();
     return (
-        <form className={styles.form} onSubmit={onSubmit}>
+        <form className={styles.form} onSubmit={onSubmit} data-testid="edit-address-form">
             <div className={styles.inputWrapper}>
                 <Input
                     label={t("manageAddress.streetAddress")}
@@ -66,6 +66,7 @@ export const EditAddressFormView = ({
                     onFocus={onStreetFocus}
                     onBlur={onStreetBlur}
                     required
+                    data-testid="edit-address-street-input"
                 />
                 <SuggestionsList
                     suggestions={streetSuggestions}
@@ -84,6 +85,7 @@ export const EditAddressFormView = ({
                             onFocus={onCityFocus}
                             onBlur={onCityBlur}
                             required
+                            data-testid="edit-address-city-input"
                         />
                     </div>
                     <div className={styles.detailsInput}>
@@ -92,6 +94,7 @@ export const EditAddressFormView = ({
                             value={numberOfApartment}
                             onChange={onApartmentChange}
                             required
+                            data-testid="edit-address-apartment-input"
                         />
                     </div>
                     <div className={styles.detailsInput}>
@@ -100,6 +103,7 @@ export const EditAddressFormView = ({
                             value={zipCode}
                             onChange={onZipCodeChange}
                             required
+                            data-testid="edit-address-zipcode-input"
                         />
                     </div>
                 </div>
@@ -116,6 +120,7 @@ export const EditAddressFormView = ({
                 disabled={!canSave || isSubmitting}
                 fullWidth
                 type="submit"
+                data-testid="edit-address-submit-btn"
             >
                 {mode === "edit" ? t("manageAddress.update") : t("manageAddress.save")}
             </Button>
