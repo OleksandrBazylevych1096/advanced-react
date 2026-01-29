@@ -1,0 +1,61 @@
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@mixin skeleton-shimmer($duration: 1.2s) {
+  background: linear-gradient(
+                  90deg,
+                  var(--gray-200) 25%,
+                  var(--gray-100) 50%,
+                  var(--gray-200) 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer $duration ease-in-out infinite;
+}
+
+@mixin skeleton-pulse($duration: 1.5s) {
+  background-color: var(--gray-200);
+  animation: pulse $duration ease-in-out infinite;
+}

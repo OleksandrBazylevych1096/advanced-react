@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 16px;
+    text-align: center;
+    gap: 16px;
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+    color: var(--gray-400);
+}
+
+.errorIcon {
+    color: var(--error-color);
+}
+
+.title {
+    font: var(--font-l);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.description {
+    font: var(--font-m);
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 300px;
+}
