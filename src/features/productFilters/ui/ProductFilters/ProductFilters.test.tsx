@@ -64,6 +64,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["price", "brands", "countries"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -80,6 +81,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries", "brands", "price"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -95,6 +97,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries", "brands", "price"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -124,6 +127,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries", "brands", "price"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -143,6 +147,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -178,6 +183,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: stateWithSelectedCountry as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -202,6 +208,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -233,6 +240,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["brands"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -257,6 +265,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["brands"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -283,6 +292,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["price"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -300,6 +310,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["price"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -320,6 +331,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries", "brands", "price"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -349,6 +361,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries", "brands", "price"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: stateWithActiveFilters as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -381,6 +394,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries", "brands"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: stateWithActiveFilters as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -415,6 +429,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -432,6 +447,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -458,6 +474,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: closedState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -489,6 +506,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: stateWithPreselectedFilters as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -523,6 +541,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["brands"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: stateWithPreselectedFilters as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
@@ -551,6 +570,7 @@ describe("ProductFilters Integration Tests", () => {
                 <ProductFilters defaultOpenFilters={["countries", "brands"]}/>,
                 {
                     route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
                     initialState: defaultInitialState as StateSchema,
                     asyncReducers: {productFilters: productFiltersReducer},
                 }
