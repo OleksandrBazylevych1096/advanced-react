@@ -128,7 +128,7 @@ export const LargeList: Story = {
         options: Array.from({length: 50}, (_, i) => ({
             value: `Category-${i}`,
             label: `Category ${i + 1}`,
-            count: Math.floor(Math.random() * 100),
+            count: 10 + (i * 7) % 90, // Deterministic values between 10-100
         })),
         selectedValues: [],
     },

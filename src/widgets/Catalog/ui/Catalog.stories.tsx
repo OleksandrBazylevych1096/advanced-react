@@ -5,8 +5,9 @@ import {categoryHandlers} from '@/entities/category/api/test/handlers';
 import {productsHandlers} from '@/entities/product/api/test/handlers';
 
 
-import {Catalog} from './Catalog';
 import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
+
+import {Catalog} from './Catalog';
 
 const meta: Meta<typeof Catalog> = {
     title: 'widgets/Catalog',
@@ -60,7 +61,7 @@ export const SmallWidth: Story = {
 export const Loading: Story = {
     parameters: {
         msw: {
-            handlers: createHandlersScenario('loading', catalogHandlersMap, {products: categoryHandlers.default})
+            handlers: createHandlersScenario('loading', catalogHandlersMap, {category: categoryHandlers.default})
         },
     },
 };
@@ -68,7 +69,7 @@ export const Loading: Story = {
 export const Error: Story = {
     parameters: {
         msw: {
-            handlers: createHandlersScenario('error', catalogHandlersMap, {products: categoryHandlers.default})
+            handlers: createHandlersScenario('error', catalogHandlersMap, {category: categoryHandlers.default})
         },
     },
 };

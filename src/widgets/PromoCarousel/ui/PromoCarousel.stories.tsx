@@ -3,8 +3,9 @@ import type {Meta, StoryObj} from '@storybook/react-vite';
 import {promoCarouselHandlers} from '@/widgets/PromoCarousel/api/test/handlers';
 
 
-import {PromoCarousel} from './PromoCarousel';
 import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
+
+import {PromoCarousel} from './PromoCarousel';
 
 const meta: Meta<typeof PromoCarousel> = {
     title: 'widgets/PromoCarousel',

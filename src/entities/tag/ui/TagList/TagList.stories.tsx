@@ -31,7 +31,7 @@ export const WithSelectedTag: Story = {
     args: {
         tags: mockTags,
         isLoading: false,
-        currentTagId: '3',
+        currentTagId: mockTags[0].id,
     },
 };
 

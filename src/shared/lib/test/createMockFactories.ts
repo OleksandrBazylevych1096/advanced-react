@@ -65,17 +65,31 @@ export function createMockFactory<T extends object>(
     return factory;
 }
 
+let deterministicCounter = 0;
+
+export function resetDeterministicCounter(): void {
+    deterministicCounter = 0;
+}
+
 export const random = {
-    int: (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min,
-    element: <T>(items: T[]): T => items[Math.floor(Math.random() * items.length)],
-    boolean: (probability: number = 0.5) => Math.random() < probability,
-    oneOf: <T>(items: T[]) => () => items[Math.floor(Math.random() * items.length)],
-    shuffle: <T>(array: T[]): T[] => {
-        const result = [...array];
-        for (let i = result.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [result[i], result[j]] = [result[j], result[i]];
-        }
-        return result;
-    }
+    int: (min: number, max: number) => {
+        const value = min + (deterministicCounter % (max - min + 1));
+        deterministicCounter++;
+        return value;
+    },
+    element: <T>(items: T[]): T => {
+        const value = items[deterministicCounter % items.length];
+        deterministicCounter++;
+        return value;
+    },
+    boolean: (probability: number = 0.5) => {
+        const value = (deterministicCounter % 100) < probability * 100;
+        deterministicCounter++;
+        return value;
+    },
+    oneOf: <T>(items: T[]) => {
+        const startIndex = deterministicCounter;
+        return () => items[startIndex % items.length];
+    },
+
 };

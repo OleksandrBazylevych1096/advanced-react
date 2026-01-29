@@ -4,10 +4,11 @@ import {productFiltersReducer} from "@/features/productFilters";
 
 import {categoryHandlers} from "@/entities/category/api/test/handlers.ts";
 import {productsHandlers} from "@/entities/product/api/test/handlers.ts";
+import {mockProductBrands, mockProductCountries} from "@/entities/product/api/test/mockData.ts";
 
+import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
 
 import {ProductFilters} from './ProductFilters';
-import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
 
 
 const defaultInitialState = {
@@ -64,8 +65,8 @@ export const WithSelectedFilters: Story = {
             productFilters: {
                 filters: {
                     priceRange: {min: 200, max: 3000},
-                    countries: ['USA', 'Germany'],
-                    brands: ['apple', 'samsung'],
+                    countries: mockProductCountries.slice(0, 2),
+                    brands: mockProductBrands.slice(0, 2),
                     inStock: true,
                     sortBy: 'price',
                     sortOrder: 'asc',

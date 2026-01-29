@@ -86,15 +86,7 @@ export function useIntersectionObserver({
             observer.disconnect()
         }
 
-    }, [
-        ref,
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        JSON.stringify(threshold),
-        root,
-        rootMargin,
-        frozen,
-        freezeOnceVisible,
-    ])
+    }, [ref, root, rootMargin, frozen, freezeOnceVisible, threshold])
 
     const prevRef = useRef<Element | null>(null)
 

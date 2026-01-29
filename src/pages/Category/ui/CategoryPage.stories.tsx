@@ -14,9 +14,9 @@ import {categoryHandlers} from '@/entities/category/api/test/handlers';
 import {productsHandlers} from '@/entities/product/api/test/handlers';
 
 import {routePaths} from '@/shared/config';
+import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
 
 import CategoryPage from './CategoryPage';
-import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
 
 
 const categoryPageHandlersMap = {
