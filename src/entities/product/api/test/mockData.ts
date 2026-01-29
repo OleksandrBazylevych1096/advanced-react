@@ -27,8 +27,8 @@ export const createMockProduct = createMockFactory<Product>({
     description: (i) => mockProductDescriptions[i % mockProductDescriptions.length],
     shortDescription: 'Fresh quality groceries',
     slug: (i) => mockProductNames[i % mockProductNames.length].toLowerCase().replace(/\s+/g, '-'),
-    stock: (i) => 10 + (i * 15) % 190, // Deterministic values between 10-200
-    price: (i) => 1 + (i * 7) % 50, // Deterministic values between 1-50
+    stock: (i) => 10 + (i * 15) % 190,
+    price: (i) => 1 + (i * 7) % 50, 
     images: [{url: 'https://via.placeholder.com/300', alt: 'Product image', isMain: true}],
     brand: (i) => mockProductBrands[i % mockProductBrands.length],
     country: (i) => mockProductCountries[i % mockProductCountries.length],

@@ -10,6 +10,11 @@ import {PromoCarousel} from './PromoCarousel';
 const meta: Meta<typeof PromoCarousel> = {
     title: 'widgets/PromoCarousel',
     component: PromoCarousel,
+    args: {
+        autoScrollOptions: {
+            playOnInit: false,
+        },
+    },
     parameters: {
         layout: 'fullscreen',
     },
