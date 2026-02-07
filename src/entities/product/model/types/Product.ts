@@ -1,6 +1,6 @@
-import type {CurrencyType} from "@/shared/config";
+import type {CurrencyType, SupportedLngsType} from "@/shared/config";
 
-interface ProductImage {
+export interface ProductImage {
     url: string;
     alt: string;
     isMain: boolean;
@@ -18,6 +18,8 @@ export interface Product {
     images: ProductImage[];
     country?: string
     brand?: string
+    categoryId: string
+    slugMap: Record<SupportedLngsType, string>
 }
 
 export interface ProductFacets {

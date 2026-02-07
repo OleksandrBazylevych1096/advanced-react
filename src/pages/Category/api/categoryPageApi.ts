@@ -7,12 +7,12 @@ import {routePaths, type SupportedLngsType} from "@/shared/config";
 import type {BreadcrumbItem} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
 
 interface CategoryBreadcrumbsArgs {
-    slug: string
+    id?: string
     locale: SupportedLngsType
 }
 
 interface CategoryBySlugArgs {
-    slug: string
+    slug?: string
     locale: SupportedLngsType
 }
 
@@ -20,8 +20,8 @@ interface CategoryBySlugArgs {
 const categoryPageApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
         getCategoryBreadcrumbs: build.query<BreadcrumbItem[], CategoryBreadcrumbsArgs>({
-            query: ({locale, slug}) => ({
-                url: `/categories/breadcrumbs/${slug}`,
+            query: ({locale, id}) => ({
+                url: `/categories/breadcrumbs/${id}`,
                 params: {locale},
             }),
             transformResponse(breadcrumbsData: BaseCategory[], _meta, args): BreadcrumbItem[] {

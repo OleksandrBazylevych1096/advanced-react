@@ -5,6 +5,7 @@ export const AppRoutes = {
     AUTH_CALLBACK: "auth_callback",
     CATEGORY: 'category',
     NOT_FOUND: "not_found",
+    PRODUCT: 'product'
 } as const;
 
 type AppRoutes = (typeof AppRoutes)[keyof typeof AppRoutes];
@@ -15,6 +16,7 @@ export const routePaths: Record<AppRoutes, string> = {
     [AppRoutes.REGISTER]: "/register",
     [AppRoutes.AUTH_CALLBACK]: "/oauth",
     [AppRoutes.CATEGORY]: '/:lng/category/:slug',
+    [AppRoutes.PRODUCT]: '/:lng/product/:slug',
 
     // last
     [AppRoutes.NOT_FOUND]: "*",

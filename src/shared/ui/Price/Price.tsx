@@ -3,26 +3,29 @@ import {cn, formatCurrency} from "@/shared/lib";
 
 import styles from "./Price.module.scss";
 
+type PriceSize = 'xl' | 'l' | 'm' | 's'
+
 interface PriceProps {
     price: number;
     oldPrice?: number;
     language: SupportedLngsType;
     currency: CurrencyType;
+    size?: PriceSize;
 }
 
 export const Price = (props: PriceProps) => {
-    const {currency, language, price, oldPrice} = props;
+    const {currency, language, price, oldPrice, size = 'l'} = props;
 
     return (
         <div className={styles.prices}>
       <span
-          className={cn(styles.price, {
+          className={cn(styles.price, styles[size], {
               [styles.hasDiscount]: !!oldPrice,
           })}
       >
         {formatCurrency(currency, language, price)}
       </span>
-            <span className={styles.oldPrice}>
+            <span className={cn(styles.oldPrice, styles[size])}>
         {oldPrice &&
             formatCurrency(currency, language, oldPrice)}
       </span>

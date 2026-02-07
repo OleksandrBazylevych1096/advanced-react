@@ -1,0 +1,77 @@
+@import '../../../../app/styles/animations';
+
+
+.wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mainCarousel {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.mainViewport {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.mainContainer {
+  display: flex;
+}
+
+.mainSlide {
+  position: relative;
+  width: 100%;
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 550px;
+
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: var(--primary-color-light);
+}
+
+.skeletonMainSlide {
+  height: 550px;
+  width: 100%;
+  background: linear-gradient(
+                  90deg,
+                  var(--gray-200) 25%,
+                  var(--gray-100) 50%,
+                  var(--gray-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+.thumbnailsContainer {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.skeletonThumb {
+  width: 96px;
+  height: 96px;
+  background: linear-gradient(
+                  90deg,
+                  var(--gray-200) 25%,
+                  var(--gray-100) 50%,
+                  var(--gray-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+

@@ -1,7 +1,6 @@
 import {useParams} from "react-router";
 
 import {useGetCategoryBreadcrumbsQuery, useGetCategoryBySlugQuery} from "@/pages/Category/api/categoryPageApi.ts";
-import {useCategorySlugSync} from "@/pages/Category/lib/useCategorySlugSync/useCategorySlugSync.ts";
 
 import {CategoryNavigation} from "@/widgets/CategoryNavigation";
 import {Footer} from "@/widgets/Footer";
@@ -14,8 +13,9 @@ import {ProductFiltersControls} from "@/features/productFilters/ui/ProductFilter
 
 import {Catalog} from "@/entities/product";
 
-import type {SupportedLngsType} from "@/shared/config";
+import {routePaths, type SupportedLngsType} from "@/shared/config";
 import {DynamicModuleLoader} from "@/shared/lib";
+import {useSlugSync} from "@/shared/lib/hooks/useSlugSync.ts";
 import {AppPage} from "@/shared/ui";
 import {Breadcrumbs} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
 
@@ -26,14 +26,15 @@ const CategoryPage = () => {
     const {slug, lng} = useParams<{ slug: string, lng: SupportedLngsType }>()
     const {data: category, isSuccess} = useGetCategoryBySlugQuery({slug: slug!, locale: lng!})
     const {data: breadcrumbs} = useGetCategoryBreadcrumbsQuery({
-        slug: slug!,
+        id: category?.id,
         locale: lng!
-    })
+    }, {skip: !category?.id})
 
-    useCategorySlugSync({
+    useSlugSync({
         languageParam: lng,
-        category,
-        enabled: isSuccess
+        slugMap: category?.slugMap,
+        enabled: isSuccess,
+        routePath: routePaths.category
     })
 
 

@@ -1,6 +1,7 @@
 import {AppPage} from "@/shared/ui/AppPage/AppPage.tsx";
 
 import {AppIcon} from "./AppIcon/AppIcon";
+import {AppImage} from "./AppImage/AppImage";
 import {Button} from "./Button/Button";
 import {Carousel} from "./Carousel/Carousel";
 import {CarouselControls} from "./Carousel/CarouselControls";
@@ -23,6 +24,7 @@ export {
     Button,
     Input,
     AppIcon,
+    AppImage,
     Spinner,
     Tabs,
     PhoneInput,

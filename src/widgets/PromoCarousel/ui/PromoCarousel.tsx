@@ -5,9 +5,8 @@ import {useTranslation} from "react-i18next";
 
 import {useGetPromoBannersQuery} from "@/widgets/PromoCarousel/api/promoCarouselApi.ts";
 import {generatePlaceholder} from "@/widgets/PromoCarousel/lib/generatePlaceholder/generatePlaceholder.ts";
-import {PromoSlide} from "@/widgets/PromoCarousel/ui/PromoSlide.tsx";
 
-import {Carousel, CarouselSkeleton, useAutoScroll} from "@/shared/ui";
+import {AppImage, Carousel, CarouselSkeleton, useAutoScroll} from "@/shared/ui";
 
 import styles from './PromoCarousel.module.scss'
 
@@ -55,8 +54,18 @@ export const PromoCarousel = (props: PromoCarouselProps) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            {bannerUrls.map((bannerUrl, index) => (
-                <PromoSlide key={index} src={bannerUrl} fallbackSrc={dynamicFallbackImg}/>
+            {bannerUrls.map((bannerUrl) => (
+                <div className={styles.slideWrapper} key={bannerUrl}>
+                    <AppImage
+                        src={bannerUrl}
+                        fallbackSrc={dynamicFallbackImg}
+                        alt="Promo"
+                        objectFit="cover"
+                        className={styles.slideImg}
+                        containerClassName={styles.slideImgContainer}
+                        showErrorMessage={false}
+                    />
+                </div>
             ))}
         </Carousel>
     );

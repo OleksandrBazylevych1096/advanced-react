@@ -29,7 +29,7 @@ const categoryPageHandlersMap = {
 
 
 const meta = {
-    title: 'pages/CategoryPage',
+    title: 'pages/ProductPage',
     component: CategoryPage,
     parameters: {
         asyncReducers: {

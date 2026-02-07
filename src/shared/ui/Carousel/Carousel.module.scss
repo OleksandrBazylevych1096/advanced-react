@@ -23,6 +23,7 @@
   padding-right: 16px;
 }
 
+
 .emblaButtons {
   display: flex;
   gap: 8px;
@@ -42,3 +43,47 @@
   animation: shimmer 1.4s ease infinite;
 }
 
+
+.thumbs {
+  margin-top: 8px;
+}
+
+.thumbsViewport {
+  overflow: hidden;
+}
+
+.thumbsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  touch-action: pan-x pinch-zoom;
+}
+
+.thumbSlide {
+  flex: 0 0 auto;
+  height: 96px;
+  width: 96px;
+  border-radius: 12px;
+  opacity: 0.5;
+  transition: opacity 0.2s ease, border 0.2s ease;
+}
+
+.thumbSlideSelected {
+  opacity: 1;
+  border: 3px solid var(--primary-color);
+}
+
+.thumbButton {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.thumbImage {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  display: block;
+}
