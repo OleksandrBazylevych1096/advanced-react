@@ -3,16 +3,16 @@
 
 // eslint-disable-next-line
 interface ViteTypeOptions {
-  // By adding this line, you can make the type of ImportMetaEnv strict
-  // to disallow unknown keys.
-  // strictImportMetaEnv: unknown
+    // By adding this line, you can make the type of ImportMetaEnv strict
+    // to disallow unknown keys.
+    // strictImportMetaEnv: unknown
 }
 
 interface ImportMetaEnv {
-  readonly VITE_API_URL: string;
-  readonly VITE_PROJECT_ENV: "client" | "storybook";
+    readonly VITE_API_URL: string;
+    readonly VITE_PROJECT_ENV: "client" | "storybook";
 }
 
 interface ImportMeta {
-  readonly env: ImportMetaEnv;
+    readonly env: ImportMetaEnv;
 }

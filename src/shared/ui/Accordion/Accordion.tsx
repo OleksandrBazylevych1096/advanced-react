@@ -1,10 +1,10 @@
-import {createContext, type FC, type ReactNode, useContext, useMemo, useState,} from 'react';
+import {createContext, type FC, type ReactNode, useContext, useMemo, useState} from "react";
 
-import ChevronRight from '@/shared/assets/icons/ChevronRight.svg?react';
-import {cn} from '@/shared/lib';
-import {AppIcon, Button} from '@/shared/ui';
+import ChevronRight from "@/shared/assets/icons/ChevronRight.svg?react";
+import {cn} from "@/shared/lib";
+import {AppIcon, Button} from "@/shared/ui";
 
-import styles from './Accordion.module.scss';
+import styles from "./Accordion.module.scss";
 
 interface AccordionContextValue {
     openItems: string[];
@@ -17,13 +17,10 @@ const AccordionContext = createContext<AccordionContextValue | null>(null);
 const useAccordion = () => {
     const context = useContext(AccordionContext);
     if (!context) {
-        throw new Error(
-            'Accordion compound components must be used inside Accordion ',
-        );
+        throw new Error("Accordion compound components must be used inside Accordion ");
     }
     return context;
 };
-
 
 const AccordionItemContext = createContext<string | null>(null);
 
@@ -31,7 +28,7 @@ const useAccordionItem = () => {
     const value = useContext(AccordionItemContext);
     if (!value) {
         throw new Error(
-            'Accordion.Header and Accordion.Content must be used inside Accordion.Item',
+            "Accordion.Header and Accordion.Content must be used inside Accordion.Item",
         );
     }
     return value;
@@ -40,7 +37,7 @@ const useAccordionItem = () => {
 interface AccordionProps {
     children: ReactNode;
     defaultValue?: string[];
-    className?: string
+    className?: string;
 }
 
 export const Accordion: FC<AccordionProps> & {
@@ -51,10 +48,8 @@ export const Accordion: FC<AccordionProps> & {
     const [openItems, setOpenItems] = useState<string[]>(defaultValue);
 
     const toggle = (value: string) => {
-        setOpenItems(prev =>
-            prev.includes(value)
-                ? prev.filter(item => item !== value)
-                : [...prev, value],
+        setOpenItems((prev) =>
+            prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value],
         );
     };
 
@@ -77,7 +72,7 @@ export const Accordion: FC<AccordionProps> & {
 interface AccordionItemProps {
     value: string;
     children: ReactNode;
-    className?: string
+    className?: string;
 }
 
 const AccordionItem: FC<AccordionItemProps> = ({value, children, className}) => {
@@ -92,8 +87,7 @@ const AccordionItem: FC<AccordionItemProps> = ({value, children, className}) => 
 
 interface AccordionHeaderProps {
     children: ReactNode;
-    className?: string
-
+    className?: string;
 }
 
 const AccordionHeader: FC<AccordionHeaderProps> = ({children, className}) => {
@@ -109,21 +103,17 @@ const AccordionHeader: FC<AccordionHeaderProps> = ({children, className}) => {
             className={cn(styles.header, className, {[styles.open]: opened})}
             onClick={() => toggle(value)}
             aria-expanded={opened}
-
         >
             {children}
 
-            <AppIcon
-                Icon={ChevronRight}
-                className={cn(styles.icon, {[styles.open]: opened})}
-            />
+            <AppIcon Icon={ChevronRight} className={cn(styles.icon, {[styles.open]: opened})} />
         </Button>
     );
 };
 
 interface AccordionContentProps {
     children: ReactNode;
-    className?: string
+    className?: string;
 }
 
 const AccordionContent: FC<AccordionContentProps> = ({children, className}) => {
@@ -133,10 +123,7 @@ const AccordionContent: FC<AccordionContentProps> = ({children, className}) => {
     const opened = isOpen(value);
 
     return (
-        <div
-            className={cn(styles.content, {[styles.open]: opened})}
-            aria-hidden={!opened}
-        >
+        <div className={cn(styles.content, {[styles.open]: opened})} aria-hidden={!opened}>
             <div className={cn(styles.contentInner, className)}>{children}</div>
         </div>
     );

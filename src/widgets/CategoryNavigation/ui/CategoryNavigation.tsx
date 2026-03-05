@@ -1,48 +1,34 @@
 import {useTranslation} from "react-i18next";
-import {useParams} from "react-router";
 
-import {useGetCategoryNavigationQuery} from "@/widgets/CategoryNavigation/api/categoryNavigationApi.ts";
 import {CategoryNavigationGoBackItem} from "@/widgets/CategoryNavigation/ui/CategoryNavigationGoBackItem.tsx";
 
-import type {SupportedLngsType} from "@/shared/config";
 import {Carousel, CarouselSkeleton, ErrorState} from "@/shared/ui";
+
+import {useCategoryNavigationController} from "../model/controllers/useCategoryNavigationController";
 
 import styles from "./CategoryNavigation.module.scss";
 import {CategoryNavigationItem} from "./CategoryNavigationItem";
 
-
 export const CategoryNavigation = () => {
-    const {t, i18n} = useTranslation();
-    const {slug, lng} = useParams<{ slug: string, lng: SupportedLngsType }>();
-
+    const {t} = useTranslation();
     const {
-        data,
-        isLoading,
-        isError,
-        refetch,
-    } = useGetCategoryNavigationQuery({
-        slug: slug,
-        locale: lng || i18n.language
-    });
-
+        data: {data},
+        status: {isLoading, isError},
+        actions: {refetch},
+    } = useCategoryNavigationController();
 
     if (isLoading) {
         return (
             <CarouselSkeleton
                 className={styles.categorySkeletonContainer}
                 count={15}
-                ItemSkeletonComponent={<div className={styles.categorySkeleton}/>}
+                ItemSkeletonComponent={<div className={styles.categorySkeleton} />}
             />
         );
     }
 
     if (isError) {
-        return (
-            <ErrorState
-                message={t("products.loadCategoriesError")}
-                onRetry={refetch}
-            />
-        );
+        return <ErrorState message={t("products.loadCategoriesError")} onRetry={refetch} />;
     }
 
     if (!data?.items?.length) {
@@ -51,8 +37,9 @@ export const CategoryNavigation = () => {
 
     return (
         <Carousel className={styles.categories}>
-            {data.isShowingSubcategories &&
-                <CategoryNavigationGoBackItem parentSlug={data?.parentCategory?.slug}/>}
+            {data.isShowingSubcategories && (
+                <CategoryNavigationGoBackItem parentSlug={data?.parentCategory?.slug} />
+            )}
             {data.items.map((item) => (
                 <CategoryNavigationItem
                     key={item.slug}

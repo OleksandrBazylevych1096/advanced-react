@@ -11,8 +11,7 @@ const config: StorybookConfig = {
     env: (config) => ({
         ...config,
         VITE_PROJECT_ENV: "storybook",
-        VITE_API_URL: 'http://localhost:3000'
-
+        VITE_API_URL: "http://localhost:3000",
     }),
     framework: {
         name: "@storybook/react-vite",

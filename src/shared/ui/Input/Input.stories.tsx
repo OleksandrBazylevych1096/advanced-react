@@ -61,7 +61,7 @@ export const Rounded: Story = {
 
 export const WithIcon: Story = {
     args: {
-        Icon: <AppIcon size={20} Icon={SearchIcon}/>,
+        Icon: <AppIcon size={20} Icon={SearchIcon} />,
         placeholder: "Search...",
     },
 };
@@ -73,7 +73,6 @@ export const Error: Story = {
         label: "Email",
     },
 };
-
 
 export const Loading: Story = {
     args: {
@@ -112,4 +111,3 @@ export const CurrencyEuro: Story = {
         label: "Price (EUR)",
     },
 };
-

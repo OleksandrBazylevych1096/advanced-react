@@ -1,14 +1,14 @@
-import type {Meta, StoryObj} from '@storybook/react-vite';
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {RangeSlider} from './RangeSlider';
+import {RangeSlider} from "./RangeSlider";
 
 const meta: Meta<typeof RangeSlider> = {
-    title: 'shared/RangeSlider',
+    title: "shared/RangeSlider",
     component: RangeSlider,
     parameters: {
-        layout: 'padded',
+        layout: "padded",
     },
-    tags: ['autodocs'],
+    tags: ["autodocs"],
 };
 
 export default meta;
@@ -27,7 +27,7 @@ export const WithLabel: Story = {
         min: 0,
         max: 100,
         defaultValue: [25, 75],
-        label: 'Label',
+        label: "Label",
     },
 };
 
@@ -72,7 +72,7 @@ export const TooltipAlways: Story = {
         min: 0,
         max: 100,
         defaultValue: [25, 75],
-        tooltip: 'always',
+        tooltip: "always",
     },
 };
 
@@ -81,7 +81,7 @@ export const TooltipNever: Story = {
         min: 0,
         max: 100,
         defaultValue: [25, 75],
-        tooltip: 'never',
+        tooltip: "never",
     },
 };
 
@@ -90,8 +90,8 @@ export const TooltipBottom: Story = {
         min: 0,
         max: 100,
         defaultValue: [25, 75],
-        tooltip: 'always',
-        tooltipPlacement: 'bottom',
+        tooltip: "always",
+        tooltipPlacement: "bottom",
     },
 };
 

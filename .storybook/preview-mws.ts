@@ -1,12 +1,12 @@
-import {initialize, mswLoader} from 'msw-storybook-addon';
+import {initialize, mswLoader} from "msw-storybook-addon";
 
 /**
  * Initialize MSW for Storybook
  */
 initialize({
-    onUnhandledRequest: 'bypass', // Don't warn about unhandled requests
+    onUnhandledRequest: "bypass", // Don't warn about unhandled requests
     serviceWorker: {
-        url: '/mockServiceWorker.js',
+        url: "/mockServiceWorker.js",
     },
 });
 

@@ -1,20 +1,20 @@
-import type {Meta, StoryObj} from '@storybook/react-vite';
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {createMockProduct} from "@/entities/product/api/test/mockData.ts";
 
-import {ProductCard} from './ProductCard';
+import {ProductCard} from "./ProductCard";
 
 const meta = {
-    title: 'entities/product/ProductCard',
+    title: "entities/product/ProductCard",
     component: ProductCard,
     parameters: {
-        layout: 'centered',
+        layout: "centered",
     },
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     decorators: [
         (Story) => (
-            <div style={{padding: '20px'}}>
-                <Story/>
+            <div style={{padding: "20px"}}>
+                <Story />
             </div>
         ),
     ],
@@ -23,12 +23,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const baseProduct = createMockProduct({price: 100})
-
+const baseProduct = createMockProduct({price: 100});
 
 export const Default: Story = {
     args: {
         product: baseProduct,
+        currency: "USD",
     },
 };
 
@@ -38,6 +38,7 @@ export const WithDiscount: Story = {
             ...baseProduct,
             oldPrice: 149.99,
         },
+        currency: "USD",
     },
 };
 
@@ -47,6 +48,7 @@ export const LowStock: Story = {
             ...baseProduct,
             stock: 3,
         },
+        currency: "USD",
     },
 };
 
@@ -57,6 +59,7 @@ export const LowStockWithDiscount: Story = {
             stock: 5,
             oldPrice: 149.99,
         },
+        currency: "USD",
     },
 };
 
@@ -66,6 +69,7 @@ export const OutOfStock: Story = {
             ...baseProduct,
             stock: 0,
         },
+        currency: "USD",
     },
 };
 
@@ -73,8 +77,9 @@ export const LongProductName: Story = {
     args: {
         product: {
             ...baseProduct,
-            name: 'Premium Wireless Noise-Cancelling Over-Ear Headphones',
+            name: "Premium Wireless Noise-Cancelling Over-Ear Headphones",
         },
+        currency: "USD",
     },
 };
 
@@ -84,7 +89,6 @@ export const NoImage: Story = {
             ...baseProduct,
             images: [],
         },
+        currency: "USD",
     },
 };
-
-

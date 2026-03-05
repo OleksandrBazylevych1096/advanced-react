@@ -1,4 +1,4 @@
-import useEmblaCarousel from 'embla-carousel-react'
+import useEmblaCarousel from "embla-carousel-react";
 
 import {ProductImageCarouselSkeleton} from "@/pages/Product/ui/ProductImageCarousel/ProductImageCarouselSkeleton.tsx";
 
@@ -8,37 +8,30 @@ import {AppImage, EmptyState, ErrorState} from "@/shared/ui";
 import {CarouselThumbnails} from "@/shared/ui/Carousel/CarouselThumbnails.tsx";
 import {useCarouselThumbnails} from "@/shared/ui/Carousel/hooks/useThumbnails.ts";
 
-import styles from './ProductImageCarousel.module.scss'
+import styles from "./ProductImageCarousel.module.scss";
 
 type ProductImageCarouselProps = {
-    images?: ProductImage[]
-    isLoading?: boolean
-    error?: boolean
-}
+    images?: ProductImage[];
+    isLoading?: boolean;
+    error?: boolean;
+};
 
 export const ProductImageCarousel = ({images, isLoading, error}: ProductImageCarouselProps) => {
-
-    const [emblaMainRef, emblaMainApi] = useEmblaCarousel()
+    const [emblaMainRef, emblaMainApi] = useEmblaCarousel();
     const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
-        containScroll: 'keepSnaps',
+        containScroll: "keepSnaps",
         dragFree: true,
-    })
+    });
 
-    const {selectedIndex, onThumbClick} = useCarouselThumbnails(
-        emblaMainApi,
-        emblaThumbsApi,
-    )
+    const {selectedIndex, onThumbClick} = useCarouselThumbnails(emblaMainApi, emblaThumbsApi);
 
-    if (isLoading) return <ProductImageCarouselSkeleton/>
+    if (isLoading) return <ProductImageCarouselSkeleton />;
 
+    if (error) return <ErrorState />;
 
-    if (error) return <ErrorState/>
+    if (!images?.length) return <EmptyState title={"No images"} />;
 
-
-    if (!images?.length) return <EmptyState title={'No images'}/>
-
-    const slideUrls = images.map((img) => img.url)
-
+    const slideUrls = images.map((img) => img.url);
 
     return (
         <div className={styles.wrapper}>
@@ -66,5 +59,5 @@ export const ProductImageCarousel = ({images, isLoading, error}: ProductImageCar
                 emblaRef={emblaThumbsRef}
             />
         </div>
-    )
-}
+    );
+};

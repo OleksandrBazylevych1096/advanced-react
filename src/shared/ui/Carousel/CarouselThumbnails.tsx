@@ -1,21 +1,21 @@
-import {cn} from '@/shared/lib'
-import {AppImage, Button} from '@/shared/ui'
+import {cn} from "@/shared/lib";
+import {AppImage, Button} from "@/shared/ui";
 
-import styles from './Carousel.module.scss'
+import styles from "./Carousel.module.scss";
 
 type CarouselThumbnailsProps = {
-    slideUrls: string[]
-    selectedIndex: number
-    onThumbClick: (index: number) => void
-    emblaRef: (node: HTMLElement | null) => void
-}
+    slideUrls: string[];
+    selectedIndex: number;
+    onThumbClick: (index: number) => void;
+    emblaRef: (node: HTMLElement | null) => void;
+};
 
 export const CarouselThumbnails = ({
-                                       slideUrls,
-                                       selectedIndex,
-                                       onThumbClick,
-                                       emblaRef,
-                                   }: CarouselThumbnailsProps) => {
+    slideUrls,
+    selectedIndex,
+    onThumbClick,
+    emblaRef,
+}: CarouselThumbnailsProps) => {
     return (
         <div className={styles.thumbs}>
             <div className={styles.thumbsViewport} ref={emblaRef}>
@@ -39,7 +39,6 @@ export const CarouselThumbnails = ({
                                     className={styles.thumbImage}
                                     draggable={false}
                                     showErrorMessage={false}
-
                                 />
                             </Button>
                         </div>
@@ -47,5 +46,5 @@ export const CarouselThumbnails = ({
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

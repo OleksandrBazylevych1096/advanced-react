@@ -1,5 +1,13 @@
-import { extractErrorMessage } from "./axios/extractErrorMessage";
-import { httpClient, setAuthFailureHandler } from "./axios/httpClient";
-import { baseAPI } from "./rtk/baseAPI";
+import {extractErrorMessage} from "./axios/extractErrorMessage";
+import {extractApiErrorCode} from "./lib/extractApiErrorCode";
+import {extractApiErrorMessage} from "./lib/extractApiErrorMessage";
+import {baseAPI} from "./rtk/baseAPI";
+import {configureBaseQueryWithReauth} from "./rtk/baseQueryWithReauth";
 
-export { httpClient, setAuthFailureHandler, extractErrorMessage, baseAPI };
+export {
+    extractErrorMessage,
+    baseAPI,
+    configureBaseQueryWithReauth,
+    extractApiErrorCode,
+    extractApiErrorMessage,
+};

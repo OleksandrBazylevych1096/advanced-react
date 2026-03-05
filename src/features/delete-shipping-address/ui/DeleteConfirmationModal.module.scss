@@ -1,0 +1,28 @@
+.action {
+    color: var(--primary-color);
+    font-size: 14px;
+    padding: 4px 8px;
+
+    svg {
+        stroke: var(--primary-color);
+        fill: none;
+    }
+}
+
+.deleteAction {
+    svg {
+        stroke: none;
+        fill: var(--primary-color);
+    }
+}
+
+.deleteModal {
+    width: 400px;
+    min-width: unset;
+}
+
+.deleteModalFooter {
+    gap: 16px;
+    justify-content: end;
+    display: flex;
+}

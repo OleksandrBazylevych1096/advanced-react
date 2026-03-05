@@ -1,103 +1,100 @@
 .root {
-  width: 100%;
+    width: 100%;
 }
 
 .label {
-  font: var(--font-s);
-  font-weight: 600;
-  margin-bottom: 8px;
+    font: var(--font-s);
+    font-weight: 600;
+    margin-bottom: 8px;
 }
 
 .sliderWrapper {
-  padding: 16px 9px;
-
+    padding: 16px 9px;
 }
 
 .track {
-  position: relative;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--gray-300);
-  cursor: pointer;
+    position: relative;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--gray-300);
+    cursor: pointer;
 }
 
 .filled {
-  position: absolute;
-  height: 100%;
-  border-radius: inherit;
-  color: var(--primary-color);
-  background-color: var(--primary-color-dark);
+    position: absolute;
+    height: 100%;
+    border-radius: inherit;
+    color: var(--primary-color);
+    background-color: var(--primary-color-dark);
 }
 
 .primary {
-  color: var(--primary-color);
-  background-color: var(--primary-color-dark);
+    color: var(--primary-color);
+    background-color: var(--primary-color-dark);
 }
 
 .thumb {
-  position: absolute;
-  top: 50%;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  margin-left: -9px;
-  border: 2px solid currentcolor;
-  cursor: grab;
-  transition: transform 0.15s ease;
-  color: var(--primary-color);
-  background-color: var(--primary-color-dark);
+    position: absolute;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    margin-left: -9px;
+    border: 2px solid currentcolor;
+    cursor: grab;
+    transition: transform 0.15s ease;
+    color: var(--primary-color);
+    background-color: var(--primary-color-dark);
 }
 
-
 .thumb:hover {
-  transform: translateY(-50%) scale(1.1);
-  margin-left: -9px;
+    transform: translateY(-50%) scale(1.1);
+    margin-left: -9px;
 }
 
 .active {
-  transform: translateY(-50%) scale(1.25);
-  margin-left: -9px;
-  cursor: grabbing;
-  z-index: 2;
+    transform: translateY(-50%) scale(1.25);
+    margin-left: -9px;
+    cursor: grabbing;
+    z-index: 2;
 }
 
 .tooltip {
-  position: absolute;
-  background: var(--gray-800);
-  color: var(--white);
-  font-size: 12px;
-  padding: 4px 8px;
-  border-radius: 6px;
-  white-space: nowrap;
+    position: absolute;
+    background: var(--gray-800);
+    color: var(--white);
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
 }
 
 .top {
-  bottom: 140%;
-  left: 50%;
-  transform: translateX(-50%);
+    bottom: 140%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .bottom {
-  top: 140%;
-  left: 50%;
-  transform: translateX(-50%);
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .footer {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-top: 6px;
 }
 
 .disabled {
-  border-color: var(--gray-200);
-  background-color: var(--gray-200);
-  cursor: not-allowed;
+    border-color: var(--gray-200);
+    background-color: var(--gray-200);
+    cursor: not-allowed;
 
-  .filled {
-    background-color: var(--gray-300);
-
-  }
+    .filled {
+        background-color: var(--gray-300);
+    }
 }

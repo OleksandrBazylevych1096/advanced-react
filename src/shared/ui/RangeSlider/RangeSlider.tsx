@@ -4,15 +4,15 @@ import {
     useCallback,
     useEffect,
     useRef,
-    useState
+    useState,
 } from "react";
 
 import {clampRange, clampValue, cn} from "@/shared/lib";
 
 import styles from "./RangeSlider.module.scss";
 
-export type RangeSliderValue = [min: number, max: number]
-export type ThumbType = 1 | 0
+export type RangeSliderValue = [min: number, max: number];
+export type ThumbType = 1 | 0;
 
 export interface RangeSliderProps {
     min?: number;
@@ -31,20 +31,20 @@ export interface RangeSliderProps {
 }
 
 export const RangeSlider = ({
-                                min = 0,
-                                max = 100,
-                                step = 1,
-                                minRange = 0,
-                                value: controlledValue,
-                                defaultValue,
-                                disabled = false,
-                                label,
-                                tooltip = "auto",
-                                tooltipPlacement = "top",
-                                className,
-                                onChange,
-                                onChangeEnd,
-                            }: RangeSliderProps) => {
+    min = 0,
+    max = 100,
+    step = 1,
+    minRange = 0,
+    value: controlledValue,
+    defaultValue,
+    disabled = false,
+    label,
+    tooltip = "auto",
+    tooltipPlacement = "top",
+    className,
+    onChange,
+    onChangeEnd,
+}: RangeSliderProps) => {
     const initialValue = controlledValue ?? defaultValue ?? [0, 0];
     const [value, setValue] = useState<RangeSliderValue>(initialValue);
     const [activeThumb, setActiveThumb] = useState<ThumbType | null>(null);
@@ -59,41 +59,37 @@ export const RangeSlider = ({
 
     useEffect(() => {
         if (controlledValue) {
-            const clamped = clampRange(
-                controlledValue[0],
-                controlledValue[1],
-                min,
-                max,
-                minRange
-            );
+            const clamped = clampRange(controlledValue[0], controlledValue[1], min, max, minRange);
             setValue([clamped.min, clamped.max]);
-
         }
     }, [controlledValue, min, max, minRange]);
 
     const percent = (v: number) => ((v - min) / (max - min)) * 100;
 
-    const updateValue = useCallback((clientX: number, thumb: ThumbType) => {
-        if (disabled || !sliderRef.current) return thumb;
+    const updateValue = useCallback(
+        (clientX: number, thumb: ThumbType) => {
+            if (disabled || !sliderRef.current) return thumb;
 
-        const rect = sliderRef.current.getBoundingClientRect();
-        const ratio = clampValue((clientX - rect.left) / rect.width, 0, 1);
+            const rect = sliderRef.current.getBoundingClientRect();
+            const ratio = clampValue((clientX - rect.left) / rect.width, 0, 1);
 
-        let next = min + ratio * (max - min);
-        next = Math.round(next / step) * step;
-        next = clampValue(next, min, max);
+            let next = min + ratio * (max - min);
+            next = Math.round(next / step) * step;
+            next = clampValue(next, min, max);
 
-        const newMin = thumb === 0 ? next : value[0];
-        const newMax = thumb === 1 ? next : value[1];
+            const newMin = thumb === 0 ? next : value[0];
+            const newMax = thumb === 1 ? next : value[1];
 
-        const clamped = clampRange(newMin, newMax, min, max, minRange);
-        const nextRange: RangeSliderValue = [clamped.min, clamped.max];
+            const clamped = clampRange(newMin, newMax, min, max, minRange);
+            const nextRange: RangeSliderValue = [clamped.min, clamped.max];
 
-        setValue(nextRange);
-        onChange?.(nextRange);
+            setValue(nextRange);
+            onChange?.(nextRange);
 
-        return thumb;
-    }, [disabled, max, min, minRange, onChange, step, value]);
+            return thumb;
+        },
+        [disabled, max, min, minRange, onChange, step, value],
+    );
 
     useEffect(() => {
         if (!dragging || activeThumbRef.current === null) return;
@@ -128,9 +124,11 @@ export const RangeSlider = ({
         };
     }, [dragging, value, tooltip, onChangeEnd, updateValue]);
 
-    const handleThumbStart = (e: ReactMouseEvent | ReactTouchEvent<HTMLDivElement>, idx: ThumbType) => {
+    const startThumbDrag = (
+        e: ReactMouseEvent | ReactTouchEvent<HTMLDivElement>,
+        idx: ThumbType,
+    ) => {
         if (disabled) return;
-
 
         const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
 
@@ -151,8 +149,8 @@ export const RangeSlider = ({
             })}
             style={{left: `${percent(v)}%`}}
             tabIndex={disabled ? -1 : 0}
-            onMouseDown={(e) => handleThumbStart(e, idx)}
-            onTouchStart={(e) => handleThumbStart(e, idx)}
+            onMouseDown={(e) => startThumbDrag(e, idx)}
+            onTouchStart={(e) => startThumbDrag(e, idx)}
             role="slider"
             aria-valuemin={min}
             aria-valuemax={max}
@@ -203,4 +201,4 @@ export const RangeSlider = ({
             </div>
         </div>
     );
-}
+};

@@ -1,0 +1,54 @@
+.addressList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.body {
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.addAddressButton {
+    font-weight: 600;
+    color: var(--primary-color);
+    padding: 12px;
+}
+
+.emptyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.emptyTitle {
+    font: var(--font-base);
+    font-weight: 600;
+}
+
+.emptyDescription {
+    color: var(--gray-400);
+}
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 16px;
+    text-align: center;
+}
+
+.errorText {
+    font: var(--font-l);
+    margin-bottom: 16px;
+    font-weight: 600;
+}

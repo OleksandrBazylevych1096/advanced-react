@@ -1,31 +1,22 @@
 .wrapper {
-  width: 100%;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
-  max-width: 450px;
-  text-align: center;
+    max-width: 450px;
+    text-align: center;
 }
 
 .icon {
-  fill: var(--primary-color);
-}
-
-.title {
-  color: var(--primary-color);
-  font: var(--font-xl);
-  font-weight: 700;
+    fill: var(--primary-color);
 }
 
 .description {
-  font: var(--font-base);
-  font-weight: 600;
-  color: var(--gray-700);
-  margin: 16px 0 32px;
+    margin: 0 0 16px;
 }
 
 .button {
-  width: 100%;
+    width: 100%;
 }

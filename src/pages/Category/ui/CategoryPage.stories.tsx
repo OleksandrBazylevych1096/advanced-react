@@ -1,23 +1,19 @@
-import type {Meta, StoryObj} from '@storybook/react-vite';
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import type {StateSchema} from '@/app/store';
+import {breadcrumbsHandlers} from "@/pages/Category/api/test/handlers";
 
+import {categoryNavigationHandlers} from "@/widgets/CategoryNavigation";
+import {promoCarouselHandlers} from "@/widgets/PromoCarousel";
 
-import {breadcrumbsHandlers} from '@/pages/Category/api/test/handlers';
+import {productFiltersReducer} from "@/features/product-filters";
 
-import {categoryNavigationHandlers} from '@/widgets/CategoryNavigation/api/test/handlers';
-import {promoCarouselHandlers} from '@/widgets/PromoCarousel/api/test/handlers';
+import {categoryHandlers} from "@/entities/category";
+import {productsHandlers} from "@/entities/product";
 
-import {productFiltersReducer} from '@/features/productFilters';
+import {AppRoutes, routePaths} from "@/shared/config";
+import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario.ts";
 
-import {categoryHandlers} from '@/entities/category/api/test/handlers';
-import {productsHandlers} from '@/entities/product/api/test/handlers';
-
-import {routePaths} from '@/shared/config';
-import {createHandlersScenario} from "@/shared/lib/test/msw/createHandlersScenario.ts";
-
-import CategoryPage from './CategoryPage';
-
+import CategoryPage from "./CategoryPage";
 
 const categoryPageHandlersMap = {
     breadcrumbs: breadcrumbsHandlers,
@@ -27,31 +23,28 @@ const categoryPageHandlersMap = {
     promoCarousel: promoCarouselHandlers,
 };
 
-
 const meta = {
-    title: 'pages/ProductPage',
+    title: "pages/ProductPage",
     component: CategoryPage,
     parameters: {
         asyncReducers: {
             productFilters: productFiltersReducer,
         },
-        route: '/en/category/electronics',
-        routePath: routePaths.category,
+        route: "/en/category/electronics",
+        routePath: routePaths[AppRoutes.CATEGORY],
     },
 } satisfies Meta<typeof CategoryPage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-
 export const Default: Story = {
     parameters: {
         msw: {
-            handlers: createHandlersScenario('default', categoryPageHandlersMap)
+            handlers: createHandlersScenario("default", categoryPageHandlersMap),
         },
     },
 };
-
 
 export const FiltersOpen: Story = {
     parameters: {
@@ -62,33 +55,34 @@ export const FiltersOpen: Story = {
                     countries: [],
                     brands: [],
                     inStock: false,
-                    sortBy: 'price',
-                    sortOrder: 'asc',
+                    sortBy: "price",
+                    sortOrder: "asc",
                 },
                 isOpen: true,
             },
         } as Partial<StateSchema>,
         msw: {
-            handlers: createHandlersScenario('default', categoryPageHandlersMap)
-        }
+            handlers: createHandlersScenario("default", categoryPageHandlersMap),
+        },
     },
 };
 
 export const Loading: Story = {
     parameters: {
         msw: {
-            handlers: createHandlersScenario('loading', categoryPageHandlersMap, {category: categoryHandlers.default})
+            handlers: createHandlersScenario("loading", categoryPageHandlersMap, {
+                category: categoryHandlers.default,
+            }),
         },
     },
 };
-
 
 export const Error: Story = {
     parameters: {
         msw: {
-            handlers: createHandlersScenario('error', categoryPageHandlersMap, {category: categoryHandlers.default})
+            handlers: createHandlersScenario("error", categoryPageHandlersMap, {
+                category: categoryHandlers.default,
+            }),
         },
     },
 };
-
-

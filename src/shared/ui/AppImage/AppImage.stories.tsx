@@ -11,7 +11,7 @@ const meta: Meta<typeof AppImage> = {
     decorators: [
         (Story) => (
             <div style={{width: 300, height: 300}}>
-                <Story/>
+                <Story />
             </div>
         ),
     ],

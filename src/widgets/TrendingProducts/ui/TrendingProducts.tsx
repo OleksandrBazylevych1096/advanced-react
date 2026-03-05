@@ -1,120 +1,93 @@
 import type {EmblaCarouselType} from "embla-carousel";
-import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 
 import {TrendingProductsSkeleton} from "@/widgets/TrendingProducts/ui/TrendingProductsSkeleton.tsx";
 
-import {ProductCard, ProductCardSkeleton} from "@/entities/product";
-import {useGetProducts} from "@/entities/product/api/productApi.ts";
+import {ProductCardSkeleton} from "@/entities/product";
 import {TagList} from "@/entities/tag";
-import {selectUserCurrency} from "@/entities/user";
 
 import ArrowRightIcon from "@/shared/assets/icons/ArrowRight.svg?react";
-import {useAppSelector} from "@/shared/lib";
-import {AppIcon, Button, Carousel, CarouselControls, CarouselSkeleton, EmptyState, ErrorState} from "@/shared/ui";
-
-import {useGetTrendingProductTagsQuery,} from "../api/trendingProductsApi";
+import {
+    AppIcon,
+    Button,
+    Carousel,
+    CarouselControls,
+    CarouselSkeleton,
+    EmptyState,
+    ErrorState,
+    Stack,
+    Typography,
+} from "@/shared/ui";
 
 import styles from "./TrendingProducts.module.scss";
+import {useTrendingProductsController} from "../model/controllers/useTrendingProductsController";
 
 export const TrendingProducts = () => {
-    const {t, i18n} = useTranslation();
-    const [currentTagId, setCurrencyTagId] = useState<string>("");
-    const currency = useAppSelector(selectUserCurrency);
+    const {t} = useTranslation();
     const {
-        data: tags,
-        isError: tagsIsError,
-        isFetching: tagsIsFetching,
-        isLoading: tagsIsLoading
-    } = useGetTrendingProductTagsQuery({locale: i18n.language});
-
-    const {
-        data: productsData,
-        isError: productsIsError,
-        isFetching: productsIsFetching,
-        isLoading: productsIsLoading,
-        refetch,
-    } = useGetProducts(
-        {
-            locale: i18n.language,
-            currency,
-            tagId: currentTagId,
+        data: {tags, products, total, currentTagId, currency, emblaApi, ProductCardWithAddToCart},
+        status: {
+            tagsIsError,
+            tagsIsFetching,
+            tagsIsLoading,
+            productsIsError,
+            productsIsFetching,
+            productsIsLoading,
         },
-        {skip: !currentTagId}
-    );
-
-
-    const products = productsData?.products;
-    const total = productsData?.total || 0;
-
-    const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | undefined>(
-        undefined
-    );
-    const handleEmblaInit = (embla: EmblaCarouselType) => {
-        setEmblaApi(embla);
-    };
-
-    const handleTagChange = (tagId: string) => {
-        setCurrencyTagId(tagId);
-    };
-
-    useEffect(() => {
-        if (tags && tags.length > 0 && !currentTagId) {
-            setCurrencyTagId(tags[0].id);
-        }
-    }, [currentTagId, tags]);
-
+        actions: {refetch, changeTag, setCarouselApi},
+    } = useTrendingProductsController();
 
     if (productsIsLoading || tagsIsLoading) {
-        return <TrendingProductsSkeleton/>
+        return <TrendingProductsSkeleton />;
     }
 
     if (tagsIsError || productsIsError) {
-        return (
-            <ErrorState
-                message={t("products.unexpectedError")}
-                onRetry={refetch}
-            />
-        );
+        return <ErrorState message={t("products.unexpectedError")} onRetry={refetch} />;
     }
 
     if (!products || products.length === 0) {
-        return (
-            <EmptyState title={t("products.noProducts")}/>
-        );
+        return <EmptyState title={t("products.noProducts")} />;
     }
 
     return (
         <section className={styles.section}>
-            <div className={styles.header}>
-                <h3 className={styles.title}>{t("products.trendingProducts")}</h3>
-                <div className={styles.controls}>
+            <Stack className={styles.header} direction="row" align="center" justify="space-between">
+                <Typography as="h3" variant="display" weight="bold">
+                    {t("products.trendingProducts")}
+                </Typography>
+                <Stack direction="row" gap={16} align="center">
                     <Button size="sm" theme="outline">
                         {t("products.viewAll")}{" "}
                         {!productsIsFetching && <>({total < 100 ? total : "99+"})</>}
-                        <AppIcon Icon={ArrowRightIcon}/>
+                        <AppIcon Icon={ArrowRightIcon} />
                     </Button>
-                    <CarouselControls emblaApi={emblaApi}/>
-                </div>
-            </div>
+                    <CarouselControls emblaApi={emblaApi} />
+                </Stack>
+            </Stack>
             <div className={styles.tagsContainer}>
                 <TagList
                     tags={tags}
                     isLoading={tagsIsFetching}
                     currentTagId={currentTagId}
-                    onTagChange={handleTagChange}
+                    onTagChange={changeTag}
                 />
             </div>
-            {productsIsFetching
-                ? <CarouselSkeleton ItemSkeletonComponent={<ProductCardSkeleton/>}/>
-                : <Carousel
+            {productsIsFetching ? (
+                <CarouselSkeleton ItemSkeletonComponent={<ProductCardSkeleton />} />
+            ) : (
+                <Carousel
                     options={{slidesToScroll: "auto"}}
-                    onEmblaInit={handleEmblaInit}
+                    onEmblaInit={setCarouselApi as (embla: EmblaCarouselType) => void}
                 >
                     {products.map((product) => (
-                        <ProductCard product={product} key={product.id}/>
+                        <ProductCardWithAddToCart
+                            product={product}
+                            currency={currency}
+                            key={product.id}
+                        />
                     ))}
-                </Carousel>}
+                </Carousel>
+            )}
         </section>
     );
 };

@@ -1,0 +1,47 @@
+.addressItem {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-radius: 12px;
+    transition: all 0.3s linear;
+
+    &.selected {
+        background-color: var(--primary-color-light);
+    }
+}
+
+.addressInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.radioContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+}
+
+.radioButton {
+    width: 18px;
+    height: 18px;
+    background-color: var(--primary-color);
+    accent-color: var(--primary-color);
+}
+
+.addressDetails {
+    flex: 1;
+}
+
+.addressType {
+    font: var(--font-s);
+    font-weight: 600;
+}
+
+.addressText {
+    font: var(--font-s);
+    color: var(--gray-400);
+}

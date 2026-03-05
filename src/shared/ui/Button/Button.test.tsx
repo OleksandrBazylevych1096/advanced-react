@@ -1,23 +1,23 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, test, vi } from "vitest";
+import {fireEvent, render, screen} from "@testing-library/react";
+import {describe, expect, test, vi} from "vitest";
 
-import { Button } from "./Button";
+import {Button} from "./Button";
 
 describe("Button", () => {
-  test("render", () => {
-    render(<Button>test</Button>);
-    expect(screen.getByText("test")).toBeInTheDocument();
-  });
+    test("render", () => {
+        render(<Button>test</Button>);
+        expect(screen.getByText("test")).toBeInTheDocument();
+    });
 
-  test("calls onClick", () => {
-    const handleClick = vi.fn();
-    render(<Button onClick={handleClick}>test</Button>);
-    fireEvent.click(screen.getByText("test"));
-    expect(handleClick).toHaveBeenCalledTimes(1);
-  });
+    test("calls onClick", () => {
+        const clickSpy = vi.fn();
+        render(<Button onClick={clickSpy}>test</Button>);
+        fireEvent.click(screen.getByText("test"));
+        expect(clickSpy).toHaveBeenCalledTimes(1);
+    });
 
-  test("applies disabled", () => {
-    render(<Button disabled>test</Button>);
-    expect(screen.getByText("test")).toBeDisabled();
-  });
+    test("applies disabled", () => {
+        render(<Button disabled>test</Button>);
+        expect(screen.getByText("test")).toBeDisabled();
+    });
 });

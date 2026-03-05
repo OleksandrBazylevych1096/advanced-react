@@ -1,82 +1,86 @@
-import type {EmblaCarouselType} from "embla-carousel";
-import {useState} from "react";
 import {useTranslation} from "react-i18next";
 
 import {BestSellingProductsSkeleton} from "@/widgets/BestSellingProducts/ui/BestSellingProductsSkeleton.tsx";
 
-import {ProductCard, ProductCardSkeleton} from "@/entities/product";
-import {selectUserCurrency} from "@/entities/user";
+import {ProductCardWithAddToCart} from "@/features/add-to-cart";
+
+import {ProductCardSkeleton} from "@/entities/product";
 
 import ArrowRightIcon from "@/shared/assets/icons/ArrowRight.svg?react";
-import {useAppSelector} from "@/shared/lib";
-import {AppIcon, Button, Carousel, CarouselControls, CarouselSkeleton} from "@/shared/ui";
+import {
+    AppIcon,
+    Button,
+    Carousel,
+    CarouselControls,
+    CarouselSkeleton,
+    Stack,
+    Typography,
+} from "@/shared/ui";
 
-import {useGetBestSellingProductsQuery} from "../api/bestSellingProductsApi";
+import {useBestSellingProductsController} from "../model/controllers/useBestSellingProductsController";
 
 import styles from "./BestSellingProducts.module.scss";
 
 export const BestSellingProducts = () => {
-    const {t, i18n} = useTranslation();
-    const currency = useAppSelector(selectUserCurrency);
-    const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | undefined>(
-        undefined
-    );
-
-    const {data, isError, isFetching, isLoading, refetch} = useGetBestSellingProductsQuery(
-        {locale: i18n.language, currency}
-    );
-
-    const products = data?.products;
-    const total = data?.total || 0;
-
-    const handleEmblaInit = (embla: EmblaCarouselType) => {
-        setEmblaApi(embla);
-    };
-
+    const {t} = useTranslation();
+    const {
+        data: {products, total, currency, emblaApi},
+        status: {isError, isFetching, isLoading},
+        actions: {refetch, setCarouselApi},
+    } = useBestSellingProductsController();
 
     if (isLoading) {
-        return <BestSellingProductsSkeleton/>
+        return <BestSellingProductsSkeleton />;
     }
 
     if (isError) {
         return (
-            <div className={styles.errorContainer}>
-                <p className={styles.errorText}>{t("products.unexpectedError")}</p>
+            <Stack className={styles.errorContainer} gap={16} align="center" justify="center">
+                <Typography className={styles.errorText} variant="heading" weight="semibold">
+                    {t("products.unexpectedError")}
+                </Typography>
                 <Button onClick={refetch}>{t("products.tryAgain")}</Button>
-            </div>
+            </Stack>
         );
     }
 
     if (!products || products.length === 0) {
         return (
-            <div className={styles.emptyContainer}>
-                <p className={styles.emptyText}>{t("products.noProducts")}</p>
-            </div>
+            <Stack className={styles.emptyContainer} align="center" justify="center">
+                <Typography variant="heading" weight="semibold">
+                    {t("products.noProducts")}
+                </Typography>
+            </Stack>
         );
     }
     return (
         <section className={styles.section}>
-            <div className={styles.header}>
-                <h3 className={styles.title}>{t("products.bestSellers")}</h3>
-                <div className={styles.controls}>
+            <Stack className={styles.header} direction="row" align="center" justify="space-between">
+                <Typography as="h3" variant="display" weight="bold">
+                    {t("products.bestSellers")}
+                </Typography>
+                <Stack direction="row" gap={16} align="center">
                     <Button size="sm" theme="outline">
                         {t("products.viewAll")}{" "}
                         {!isFetching && <>({total < 100 ? total : "99+"})</>}
-                        <AppIcon Icon={ArrowRightIcon}/>
+                        <AppIcon Icon={ArrowRightIcon} />
                     </Button>
-                    <CarouselControls emblaApi={emblaApi}/>
-                </div>
-            </div>
-            {isFetching
-                ? <CarouselSkeleton ItemSkeletonComponent={<ProductCardSkeleton/>}/>
-                : <Carousel
-                    options={{slidesToScroll: "auto"}}
-                    onEmblaInit={handleEmblaInit}
-                >
+                    <CarouselControls emblaApi={emblaApi} />
+                </Stack>
+            </Stack>
+            {isFetching ? (
+                <CarouselSkeleton ItemSkeletonComponent={<ProductCardSkeleton />} />
+            ) : (
+                <Carousel options={{slidesToScroll: "auto"}} onEmblaInit={setCarouselApi}>
                     {products.map((product) => (
-                        <ProductCard product={product} key={product.id}/>
+                        <ProductCardWithAddToCart
+                            product={product}
+                            currency={currency}
+                            key={product.id}
+                        />
                     ))}
-                </Carousel>}
+                </Carousel>
+            )}
         </section>
     );
 };

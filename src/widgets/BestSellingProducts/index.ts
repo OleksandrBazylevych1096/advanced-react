@@ -1,3 +1,7 @@
-import { BestSellingProducts } from "./ui/BestSellingProducts";
+import {BestSellingProducts} from "./ui/BestSellingProducts";
+import {bestSellingProductsHandlers} from "./api/test/handlers";
 
-export { BestSellingProducts };
+export {BestSellingProducts};
+
+// Test-only exports
+export {bestSellingProductsHandlers};

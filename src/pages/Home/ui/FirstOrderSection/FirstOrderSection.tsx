@@ -1,109 +1,115 @@
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
-import { ProductCard } from "@/entities/product";
-import { ProductCardSkeleton } from "@/entities/product/ui/ProductCard/ProductCardSkeleton/ProductCardSkeleton";
-import { selectUserCurrency } from "@/entities/user/model/selectors/selectUserCurrency/selectUserCurrency";
+import {ProductCardWithAddToCart} from "@/features/add-to-cart";
+
+import {ProductCardSkeleton} from "@/entities/product";
 
 import ChevronRight from "@/shared/assets/icons/ChevronRight.svg?react";
-import { formatCompactNumber, useAppSelector } from "@/shared/lib";
-import { AppIcon, Button, Counter } from "@/shared/ui";
+import {formatCompactNumber} from "@/shared/lib";
+import {AppIcon, Button, Counter, Stack, Typography} from "@/shared/ui";
 
-import { useGetFirstOrderProductsQuery } from "../../api/homePageApi";
+import {useFirstOrderSectionController} from "../../model/controllers/useFirstOrderSectionController";
 
 import styles from "./FirstOrderSection.module.scss";
 
 export const FirstOrderSection = () => {
-  const { t, i18n } = useTranslation();
-  const currency = useAppSelector(selectUserCurrency);
+    const {t} = useTranslation();
+    const {
+        data: {products, currency},
+        status: {isFetching, isError},
+        actions: {retry},
+    } = useFirstOrderSectionController();
 
-  const {
-    data: products,
-    isFetching,
-    isError,
-    refetch,
-  } = useGetFirstOrderProductsQuery({ locale: i18n.language, currency });
+    const renderProductCards = () => {
+        if (isFetching) {
+            return (
+                <>
+                    <ProductCardSkeleton />
+                    <ProductCardSkeleton />
+                    <ProductCardSkeleton />
+                </>
+            );
+        }
 
-  const handleRetry = () => {
-    refetch();
-  };
+        if (isError) {
+            return (
+                <Stack className={styles.errorContainer} gap={16} align="center" justify="center">
+                    <Typography className={styles.errorText} variant="heading" weight="semibold">
+                        {t("firstOrderSection.errorLoading")}
+                    </Typography>
+                    <Button onClick={retry}>{t("firstOrderSection.tryAgain")}</Button>
+                </Stack>
+            );
+        }
 
-  const renderProductCards = () => {
-    if (isFetching) {
-      return (
-        <>
-          <ProductCardSkeleton />
-          <ProductCardSkeleton />
-          <ProductCardSkeleton />
-        </>
-      );
-    }
+        if (!products || products.length === 0) {
+            return (
+                <Stack className={styles.emptyContainer} align="center" justify="center">
+                    <Typography className={styles.emptyText} variant="heading" weight="semibold">
+                        {t("firstOrderSection.noProducts")}
+                    </Typography>
+                </Stack>
+            );
+        }
 
-    if (isError) {
-      return (
-        <div className={styles.errorContainer}>
-          <p className={styles.errorText}>
-            {t("firstOrderSection.errorLoading")}
-          </p>
-          <Button onClick={handleRetry}>
-            {t("firstOrderSection.tryAgain")}
-          </Button>
-        </div>
-      );
-    }
+        return products?.map((product) => (
+            <ProductCardWithAddToCart product={product} currency={currency} key={product.id} />
+        ));
+    };
 
-    if (!products || products.length === 0) {
-      return (
-        <div className={styles.emptyContainer}>
-          <p className={styles.emptyText}>
-            {t("firstOrderSection.noProducts")}
-          </p>
-        </div>
-      );
-    }
-
-    return products?.map((product) => (
-      <ProductCard product={product} key={product.id} />
-    ));
-  };
-
-  return (
-    <div className={styles.firstOrderSection}>
-      <div className={styles.productCards}>{renderProductCards()}</div>
-      <div className={styles.info}>
-        <div className={styles.offer}>
-          {t("firstOrderSection.discountOffer")}
-        </div>
-        <h3 className={styles.title}>{t("firstOrderSection.orderTitle")}</h3>
-        <div className={styles.stats}>
-          <div className={styles.statItem}>
-            <p className={styles.statItemTitle}>
-              <Counter formatter={formatCompactNumber} to={1400} />
-            </p>
-            <p className={styles.statItemDescription}>
-              {t("firstOrderSection.items")}
-            </p>
-          </div>
-          <div className={styles.statItem}>
-            <p className={styles.statItemTitle}>
-              <Counter to={20} />
-            </p>
-            <p className={styles.statItemDescription}>
-              {t("firstOrderSection.minutes")}
-            </p>
-          </div>
-          <div className={styles.statItem}>
-            <p className={styles.statItemTitle}>
-              <Counter formatter={(value) => `${value}%`} to={30} />
-            </p>
-            <p className={styles.statItemDescription}>
-              {t("firstOrderSection.upToOffers")}
-            </p>
-          </div>
-        </div>
-        <Button size="lg" className={styles.button}>
-          {t("firstOrderSection.orderNow")} <AppIcon Icon={ChevronRight} />
-        </Button>
-      </div>
-    </div>
-  );
+    return (
+        <Stack className={styles.firstOrderSection} direction="row" gap={64}>
+            <Stack direction="row" gap={24}>
+                {renderProductCards()}
+            </Stack>
+            <div className={styles.info}>
+                <Typography
+                    className={styles.offer}
+                    variant="bodySm"
+                    tone="primary"
+                    weight="semibold"
+                >
+                    {t("firstOrderSection.discountOffer")}
+                </Typography>
+                <Typography as="h3" className={styles.title} variant="display" weight="semibold">
+                    {t("firstOrderSection.orderTitle")}
+                </Typography>
+                <Stack className={styles.stats} direction="row" gap={32}>
+                    <Stack className={styles.statItem}>
+                        <Typography
+                            className={styles.statItemTitle}
+                            variant="heading"
+                            weight="semibold"
+                        >
+                            <Counter formatter={formatCompactNumber} to={1400} />
+                        </Typography>
+                        <Typography variant="body">{t("firstOrderSection.items")}</Typography>
+                    </Stack>
+                    <Stack className={styles.statItem}>
+                        <Typography
+                            className={styles.statItemTitle}
+                            variant="heading"
+                            weight="semibold"
+                        >
+                            <Counter to={20} />
+                        </Typography>
+                        <Typography variant="body">{t("firstOrderSection.minutes")}</Typography>
+                    </Stack>
+                    <Stack className={styles.statItem}>
+                        <Typography
+                            className={styles.statItemTitle}
+                            variant="heading"
+                            weight="semibold"
+                        >
+                            <Counter formatter={(value) => `${value}%`} to={30} />
+                        </Typography>
+                        <Typography variant="body">{t("firstOrderSection.upToOffers")}</Typography>
+                    </Stack>
+                </Stack>
+                <Button size="lg" className={styles.button}>
+                    {t("firstOrderSection.orderNow")} <AppIcon Icon={ChevronRight} />
+                </Button>
+            </div>
+        </Stack>
+    );
 };

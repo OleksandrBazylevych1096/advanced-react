@@ -1,19 +1,53 @@
-import {selectUserCurrency} from "@/entities/user/model/selectors/selectUserCurrency/selectUserCurrency.ts";
-
+import {selectAccessToken} from "./model/selectors/selectAccessToken/selectAccessToken";
+import {selectPendingMfaChallenge} from "./model/selectors/selectPendingMfaChallenge/selectPendingMfaChallenge";
+import {selectUserCurrency} from "./model/selectors/selectUserCurrency/selectUserCurrency";
 import {selectUserData} from "./model/selectors/selectUserData/selectUserData";
-import {applyUserSession} from "./model/services/applyUserSession/applyUserSession";
-import {logout} from "./model/services/logout/logout";
-import {refreshSession} from "./model/services/refreshSession/refreshSession";
+import {
+    applyAuthSession,
+    applyUserSession,
+} from "./model/services/applyUserSession/applyUserSession";
+import {clearUserSession} from "./model/services/clearUserSession/clearUserSession";
 import {userActions, userReducer} from "./model/slice/userSlice";
+import type {
+    AuthSessionResponse,
+    AuthSessionsListItem,
+    MfaChallengeResponse,
+    MfaMethod,
+    PendingMfaChallenge,
+} from "./model/types/AuthSession";
+import {isAuthSessionResponse, isMfaChallengeResponse} from "./model/types/AuthSession";
 import type {User, UserSchema} from "./model/types/UserSchema";
+import {useLogoutMutation, useRefreshSessionMutation} from "./api/sessionApi";
+import {
+    useGetAuthSessionsQuery,
+    useRevokeAllAuthSessionsMutation,
+    useRevokeAuthSessionMutation,
+} from "./api/authSessionsApi";
 
 export {
     userActions,
     userReducer,
-    refreshSession,
+    applyAuthSession,
     applyUserSession,
+    clearUserSession,
+    selectAccessToken,
+    selectPendingMfaChallenge,
     selectUserData,
     selectUserCurrency,
-    logout,
+    useRefreshSessionMutation,
+    useLogoutMutation,
+    useGetAuthSessionsQuery,
+    useRevokeAuthSessionMutation,
+    useRevokeAllAuthSessionsMutation,
+    isAuthSessionResponse,
+    isMfaChallengeResponse,
 };
-export type {User, UserSchema};
+export type {
+    User,
+    UserSchema,
+    AuthSessionResponse,
+    MfaChallengeResponse,
+    MfaMethod,
+    PendingMfaChallenge,
+    AuthSessionsListItem,
+};

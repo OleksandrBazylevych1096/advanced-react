@@ -1,19 +1,19 @@
-import {http, HttpResponse} from 'msw';
+import {http, HttpResponse} from "msw";
 
-import {API_URL} from '@/shared/config';
-import {createHandlers, extendHandlers} from "@/shared/lib/test/msw/createHandlers.ts";
+import {API_URL} from "@/shared/config";
+import {createHandlers, extendHandlers} from "@/shared/lib/testing/msw/createHandlers.ts";
 
-import {createMockProduct, emptyFacets, mockFacets, mockProducts} from './mockData.ts';
+import {createMockProduct, emptyFacets, mockFacets, mockProducts} from "./mockData.ts";
 
 const baseHandlers = createHandlers({
     endpoint: `${API_URL}/products`,
-    method: 'get',
+    method: "get",
     defaultData: {
         facets: mockFacets,
         products: mockProducts,
         total: 50,
     },
-    errorData: {error: 'Failed to load products'},
+    errorData: {error: "Failed to load products"},
     errorStatus: 500,
 });
 
@@ -24,7 +24,7 @@ export const productsHandlers = extendHandlers(baseHandlers, {
     withEuroCurrency: http.get(`${API_URL}/products`, () => {
         const euroProducts = mockProducts.map((p) => ({
             ...p,
-            currency: 'EUR',
+            currency: "EUR",
             price: Math.round(p.price * 0.92),
         }));
 
@@ -45,7 +45,7 @@ export const productsHandlers = extendHandlers(baseHandlers, {
 
     withPagination: http.get(`${API_URL}/products`, ({request}) => {
         const url = new URL(request.url);
-        const page = parseInt(url.searchParams.get('page') || '1', 10);
+        const page = parseInt(url.searchParams.get("page") || "1", 10);
 
         let products: typeof mockProducts;
         switch (page) {

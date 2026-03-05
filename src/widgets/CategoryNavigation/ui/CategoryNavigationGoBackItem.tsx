@@ -1,36 +1,37 @@
+import {useTranslation} from "react-i18next";
 import {generatePath, useNavigate, useParams} from "react-router";
 
-import ArrowLeft from '@/shared/assets/icons/ArrowLeft.svg?react'
-import {routePaths, type SupportedLngsType} from "@/shared/config";
+import ArrowLeft from "@/shared/assets/icons/ArrowLeft.svg?react";
+import {AppRoutes, routePaths} from "@/shared/config";
 import {AppIcon, Button} from "@/shared/ui";
 
 interface CategoryNavigationGoBackItemProps {
-    parentSlug?: string
-
+    parentSlug?: string;
 }
 
 export const CategoryNavigationGoBackItem = (props: CategoryNavigationGoBackItemProps) => {
-    const {parentSlug} = props
-    const {lng} = useParams<{ lng: SupportedLngsType }>()
+    const {parentSlug} = props;
+    const navigate = useNavigate();
+    const {lng} = useParams();
+    const {i18n} = useTranslation();
 
-    const navigate = useNavigate()
-
-    const handleClickBack = () => {
-
-        if (lng && parentSlug) {
-            const path = generatePath(routePaths.category, {
-                slug: parentSlug,
-                lng
-            })
-            navigate(path)
+    const goBack = () => {
+        if (parentSlug) {
+            navigate(
+                generatePath(routePaths[AppRoutes.CATEGORY], {
+                    lng: lng || i18n.language,
+                    slug: parentSlug,
+                }),
+            );
         } else {
-            navigate(routePaths.home)
+            navigate(routePaths[AppRoutes.HOME]);
         }
-    }
-
+    };
 
     return (
-        <Button theme={'secondary'} onClick={handleClickBack}><AppIcon Icon={ArrowLeft}/>Back</Button>
+        <Button theme={"secondary"} onClick={goBack}>
+            <AppIcon Icon={ArrowLeft}/>
+            Back
+        </Button>
     );
 };
-

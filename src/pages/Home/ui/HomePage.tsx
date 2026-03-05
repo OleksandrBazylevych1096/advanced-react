@@ -5,28 +5,25 @@ import {Header} from "@/widgets/Header";
 import {PromoCarousel} from "@/widgets/PromoCarousel";
 import {TrendingProducts} from "@/widgets/TrendingProducts";
 
-import {AppPage} from "@/shared/ui";
+import {AppPage, Stack} from "@/shared/ui";
 
 import {FirstOrderSection} from "./FirstOrderSection/FirstOrderSection";
-import styles from "./HomePage.module.scss";
 
 const HomePage = () => {
     return (
         <AppPage>
-            <Header/>
+            <Header />
             <AppPage.Content>
-                <div className={styles.promo}>
-                    <PromoCarousel/>
-                    <PromoCarousel
-                        autoScrollOptions={{direction: "backward"}}
-                    />
-                </div>
-                <CategoryNavigation/>
-                <BestSellingProducts/>
-                <FirstOrderSection/>
-                <TrendingProducts/>
+                <Stack gap={20}>
+                    <PromoCarousel />
+                    <PromoCarousel autoScrollOptions={{direction: "backward"}} />
+                </Stack>
+                <CategoryNavigation />
+                <BestSellingProducts />
+                <FirstOrderSection />
+                <TrendingProducts />
             </AppPage.Content>
-            <Footer/>
+            <Footer />
         </AppPage>
     );
 };

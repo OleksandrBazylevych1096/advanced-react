@@ -1,41 +1,23 @@
-import {useParams} from "react-router";
-
-import {useGetCategoryBreadcrumbsQuery, useGetCategoryBySlugQuery} from "@/pages/Category/api/categoryPageApi.ts";
-
+import {Catalog} from "@/widgets/Catalog";
 import {CategoryNavigation} from "@/widgets/CategoryNavigation";
 import {Footer} from "@/widgets/Footer";
 import {Header} from "@/widgets/Header";
 import {PromoCarousel} from "@/widgets/PromoCarousel";
 
-import {productFiltersReducer} from "@/features/productFilters";
-import {ProductFilters} from "@/features/productFilters/ui/ProductFilters/ProductFilters.tsx";
-import {ProductFiltersControls} from "@/features/productFilters/ui/ProductFiltersControls/ProductFiltersControls.tsx";
+import {ProductFilters, ProductFiltersControls, productFiltersReducer,} from "@/features/product-filters";
 
-import {Catalog} from "@/entities/product";
-
-import {routePaths, type SupportedLngsType} from "@/shared/config";
 import {DynamicModuleLoader} from "@/shared/lib";
-import {useSlugSync} from "@/shared/lib/hooks/useSlugSync.ts";
 import {AppPage} from "@/shared/ui";
 import {Breadcrumbs} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
+
+import {useCategoryPageController} from "../model/controllers/useCategoryPageController";
 
 import styles from "./CategoryPage.module.scss";
 
 const CategoryPage = () => {
-
-    const {slug, lng} = useParams<{ slug: string, lng: SupportedLngsType }>()
-    const {data: category, isSuccess} = useGetCategoryBySlugQuery({slug: slug!, locale: lng!})
-    const {data: breadcrumbs} = useGetCategoryBreadcrumbsQuery({
-        id: category?.id,
-        locale: lng!
-    }, {skip: !category?.id})
-
-    useSlugSync({
-        languageParam: lng,
-        slugMap: category?.slugMap,
-        enabled: isSuccess,
-        routePath: routePaths.category
-    })
+    const {
+        data: {breadcrumbs, categoryId},
+    } = useCategoryPageController();
 
 
     return (
@@ -43,13 +25,13 @@ const CategoryPage = () => {
             <AppPage>
                 <Header/>
                 <AppPage.Content className={styles.content}>
-                    <ProductFilters/>
+                    <ProductFilters categoryId={categoryId}/>
                     <div className={styles.wrapper}>
                         <Breadcrumbs className={styles.breadcrumbs} items={breadcrumbs}/>
                         <PromoCarousel/>
                         <CategoryNavigation/>
                         <ProductFiltersControls/>
-                        <Catalog/>
+                        <Catalog categoryId={categoryId}/>
                     </div>
                 </AppPage.Content>
                 <Footer/>

@@ -1,0 +1,168 @@
+.headerCart {
+    position: relative;
+}
+
+.trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: background 0.15s;
+
+    &:hover {
+        background: var(--gray-50);
+    }
+}
+
+.cartIcon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+}
+
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 9px;
+    background: var(--primary-color);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+
+    &.error {
+        background-color: var(--red-500);
+    }
+}
+
+.dropdownContent {
+    width: min(505px, calc(100vw - 24px));
+
+    > div {
+        border: none;
+        border-radius: 32px;
+        box-shadow: 0 4px 84px 8px rgb(27 14 24 / 8%);
+        overflow: hidden;
+    }
+}
+
+.panelHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 24px 16px;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.title {
+    margin: 0;
+}
+
+.dropdownBody {
+    max-height: 392px;
+    overflow-y: auto;
+    padding: 0 24px;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--gray-200);
+        border-radius: 2px;
+    }
+}
+
+.itemsList {
+    padding: 4px 0;
+}
+
+.loadingState {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 40px 0;
+}
+
+.dropdownFooter {
+    padding: 0 24px 24px;
+}
+
+.shippingSection {
+    padding: 18px 0 22px;
+    border-bottom: 1px solid var(--primary-color-light);
+    margin-bottom: 8px;
+}
+
+.shippingText {
+    margin: 0 0 18px;
+}
+
+.progressTrack {
+    height: 8px;
+    border-radius: 12px;
+    background: var(--gray-50);
+    overflow: hidden;
+}
+
+.progressFill {
+    width: 36%;
+    height: 100%;
+    border-radius: 12px;
+    background: var(--primary-color);
+}
+
+.subtotalRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 14px 0 8px;
+}
+
+.viewCartBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+}
+
+@media (width <= 768px) {
+    .trigger {
+        padding: 6px 8px;
+    }
+
+    .cartLabel {
+        display: none;
+    }
+
+    .panelHeader {
+        padding: 20px 20px 14px;
+    }
+
+    .dropdownBody,
+    .dropdownFooter {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}

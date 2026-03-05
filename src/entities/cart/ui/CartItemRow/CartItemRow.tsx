@@ -1,0 +1,157 @@
+import {useTranslation} from "react-i18next";
+
+import DeleteIcon from "@/shared/assets/icons/Delete.svg?react";
+import type {CurrencyType} from "@/shared/config";
+import {cn} from "@/shared/lib";
+import {AppIcon, AppImage, Button, Price, Typography} from "@/shared/ui";
+
+import type {CartItem} from "../../model/types/CartSchema";
+
+import styles from "./CartItemRow.module.scss";
+
+interface CartItemRowProps {
+    item: CartItem;
+    compact?: boolean;
+    validationIssues?: string[];
+    currency: CurrencyType;
+    onRemove?: (productId: string) => void;
+    onQuantityChange?: (productId: string, quantity: number) => void;
+}
+
+export const CartItemRow = (props: CartItemRowProps) => {
+    const {
+        item,
+        compact = false,
+        validationIssues = [],
+        currency,
+        onRemove,
+        onQuantityChange,
+    } = props;
+    const {i18n} = useTranslation();
+
+    const {product, quantity} = item;
+    const hasValidationIssues = validationIssues.length > 0;
+    const mainImage = product.images?.find((img) => img.isMain) ?? product.images?.[0];
+    const lineTotal = product.price * quantity;
+
+    const removeItem = () => onRemove?.(item.productId);
+    const decrementQuantity = () => {
+        if (quantity > 1) {
+            onQuantityChange?.(item.productId, quantity - 1);
+        }
+    };
+    const incrementQuantity = () => {
+        if (quantity < product.stock) {
+            onQuantityChange?.(item.productId, quantity + 1);
+        }
+    };
+
+    return (
+        <div className={styles.row} aria-invalid={hasValidationIssues}>
+            <div className={styles.imageWrapper}>
+                <AppImage
+                    src={mainImage?.url}
+                    alt={mainImage?.alt || product.name}
+                    className={styles.image}
+                    containerClassName={styles.imageContainer}
+                    showErrorMessage={false}
+                />
+                {hasValidationIssues && <span className={styles.badge}>!</span>}
+            </div>
+
+            <div className={styles.info}>
+                <Typography as="h4" className={styles.name} variant="bodySm" weight="medium">
+                    {product.name}
+                </Typography>
+                <Price
+                    currency={currency}
+                    language={i18n.language}
+                    price={product.price}
+                    oldPrice={product.oldPrice}
+                    size="s"
+                />
+                {hasValidationIssues && (
+                    <ul className={styles.validationList}>
+                        {validationIssues.map((issue, index) => (
+                            <li
+                                key={`${item.productId}-${index}-${issue}`}
+                                className={styles.validationIssue}
+                            >
+                                <Typography as="span" variant="caption" tone="danger">
+                                    {issue}
+                                </Typography>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+
+            {(onRemove || onQuantityChange) && (
+                <div className={cn(styles.controls, styles.compactControls)}>
+                    {onRemove && (
+                        <Button
+                            theme="ghost"
+                            size="xs"
+                            onClick={removeItem}
+                            className={styles.deleteBtn}
+                            aria-label="Remove item"
+                        >
+                            <AppIcon Icon={DeleteIcon} size={16} />
+                        </Button>
+                    )}
+                    {onQuantityChange && (
+                        <Button
+                            type="button"
+                            theme="tertiary"
+                            size="xs"
+                            form={"circle"}
+                            className={cn(
+                                styles.quantityBtn,
+                                styles.compactQuantityBtn,
+                                styles.compactDecrementBtn,
+                            )}
+                            onClick={decrementQuantity}
+                            disabled={quantity <= 1}
+                            aria-label="Decrease quantity"
+                        >
+                            -
+                        </Button>
+                    )}
+                    <Typography
+                        as="span"
+                        className={styles.quantity}
+                        variant="bodySm"
+                        weight="medium"
+                    >
+                        {quantity}
+                    </Typography>
+                    {onQuantityChange && (
+                        <Button
+                            type="button"
+                            size="xs"
+                            theme={"primary"}
+                            form={"circle"}
+                            className={cn(styles.quantityBtn, styles.compactQuantityBtn)}
+                            onClick={incrementQuantity}
+                            disabled={quantity >= product.stock}
+                            aria-label="Increase quantity"
+                        >
+                            +
+                        </Button>
+                    )}
+                </div>
+            )}
+
+            {!compact && (
+                <div className={styles.lineTotal}>
+                    <Price
+                        currency={currency}
+                        language={i18n.language}
+                        price={lineTotal}
+                        size="m"
+                    />
+                </div>
+            )}
+        </div>
+    );
+};

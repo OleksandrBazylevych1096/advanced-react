@@ -1,11 +1,11 @@
-import { Portal } from "@/shared/ui";
+import {Portal} from "@/shared/ui";
 
-import { ToastNotificationList } from "./ToastNotificationList/ToastNotificationList";
+import {ToastNotificationList} from "./ToastNotificationList/ToastNotificationList";
 
 export const ToastProvider = () => {
-  return (
-    <Portal>
-      <ToastNotificationList />
-    </Portal>
-  );
+    return (
+        <Portal>
+            <ToastNotificationList />
+        </Portal>
+    );
 };

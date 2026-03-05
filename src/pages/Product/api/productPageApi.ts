@@ -3,12 +3,10 @@ import type {Product} from "@/entities/product";
 import {baseAPI} from "@/shared/api";
 import {type SupportedLngsType} from "@/shared/config";
 
-
 interface ProductBySlugArgs {
-    slug: string
-    locale: SupportedLngsType
+    slug: string;
+    locale: SupportedLngsType;
 }
-
 
 const productPageApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
@@ -17,13 +15,8 @@ const productPageApi = baseAPI.injectEndpoints({
                 url: `/products/slug/${slug}`,
                 params: {locale},
             }),
-
         }),
-
     }),
+});
 
-})
-
-
-export const {useGetProductBySlugQuery} =
-    productPageApi;
+export const {useGetProductBySlugQuery} = productPageApi;

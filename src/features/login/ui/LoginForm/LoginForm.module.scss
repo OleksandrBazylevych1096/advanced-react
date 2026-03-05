@@ -1,17 +1,37 @@
 .form {
-  width: 420px;
-  padding: 24px;
-  background: var(--surface-color);
-  border: 1px solid var(--gray-50);
-  border-radius: 24px;
+    width: 420px;
+    padding: 24px;
+    background: var(--surface-color);
+    border: 1px solid var(--gray-50);
+    border-radius: 24px;
 }
 
 .button {
-  margin-top: 32px;
+    margin-top: 32px;
+}
+
+.meta {
+    margin-top: 12px;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.verifyEmailBox {
+    margin-top: 12px;
+    padding: 12px;
+    border: 1px solid var(--gray-100);
+    border-radius: 16px;
+    display: grid;
+    gap: 10px;
+    background: var(--surface-color);
 }
 
 .error {
-  font: var(--font-s);
-  font-weight: 600;
-  color: var(--red-500);
+    margin-top: 12px;
 }

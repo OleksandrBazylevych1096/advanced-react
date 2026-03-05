@@ -1,0 +1,17 @@
+.page {
+    width: min(420px, 100%);
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.buttonLink {
+    text-decoration: none;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}

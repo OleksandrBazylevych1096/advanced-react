@@ -7,7 +7,6 @@ interface TrendingTagQueryArgs {
     locale: SupportedLngsType;
 }
 
-
 const trendingProductsApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
         getTrendingProductTags: build.query<Tag[], TrendingTagQueryArgs>({
@@ -16,10 +15,7 @@ const trendingProductsApi = baseAPI.injectEndpoints({
                 params,
             }),
         }),
-
     }),
 });
 
-export const {
-    useGetTrendingProductTagsQuery,
-} = trendingProductsApi;
+export const {useGetTrendingProductTagsQuery} = trendingProductsApi;

@@ -11,13 +11,13 @@ interface PortalProps {
 export const Portal = (props: PortalProps) => {
     const {children, container: containerProp = document.body} = props;
 
-    let container = containerProp
+    let container = containerProp;
 
-    if (import.meta.env.VITE_PROJECT_ENV === 'storybook') {
-        const newContainer = document.getElementById(THEME_DECORATOR_CONTAINER_ID)
+    if (import.meta.env.VITE_PROJECT_ENV === "storybook") {
+        const newContainer = document.getElementById(THEME_DECORATOR_CONTAINER_ID);
 
         if (newContainer !== null) {
-            container = newContainer
+            container = newContainer;
         }
     }
 

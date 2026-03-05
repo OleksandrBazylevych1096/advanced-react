@@ -1,134 +1,122 @@
-@import '../../../../app/styles/animations';
+@import "../../../../app/styles/animations";
 
 .productInfo {
-  margin-left: 120px;
-  width: 35%;
+    margin-left: 120px;
+    width: 35%;
 }
 
 .title {
-  font: var(--font-xl);
-  font-weight: 700;
-  margin: 16px 0;
-
+    margin: 16px 0;
 }
 
 .subtitle {
-  font: var(--font-l);
-  margin-bottom: 16px;
+    margin-bottom: 16px;
 }
 
 .metadata {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  margin-top: 8px;
-  margin-bottom: 28px;
-
-}
-
-.amountLeft {
-  font: var(--font-l);
-  font-weight: 600;
-  color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    margin-bottom: 28px;
 }
 
 .skeleton {
-  width: 35%;
-  margin-left: 120px;
-  animation: pulse 1.5s ease-in-out infinite;
+    width: 35%;
+    margin-left: 120px;
+    animation: pulse 1.5s ease-in-out infinite;
 }
 
 .titleSkeleton {
-  height: 40px;
-  width: 70%;
-  background: linear-gradient(
-                  90deg,
-                  var(--gray-200) 25%,
-                  var(--gray-100) 50%,
-                  var(--gray-200) 75%
-  );
-  background-size: 400% 100%;
-  animation: shimmer 1.2s ease-in-out infinite;
-  border-radius: 4px;
-  margin: 16px 0;
+    height: 40px;
+    width: 70%;
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-100) 50%,
+        var(--gray-200) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+    border-radius: 4px;
+    margin: 16px 0;
 }
 
 .subtitleSkeleton {
-  height: 30px;
-  width: 90%;
-  background: linear-gradient(
-                  90deg,
-                  var(--gray-200) 25%,
-                  var(--gray-100) 50%,
-                  var(--gray-200) 75%
-  );
-  background-size: 400% 100%;
-  animation: shimmer 1.2s ease-in-out infinite;
-  border-radius: 4px;
-  margin-bottom: 16px;
+    height: 30px;
+    width: 90%;
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-100) 50%,
+        var(--gray-200) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+    border-radius: 4px;
+    margin-bottom: 16px;
 }
 
 .prices {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 8px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 8px;
 }
 
 .priceSkeleton {
-  height: 40px;
-  width: 100px;
-  background: linear-gradient(
-                  90deg,
-                  var(--gray-200) 25%,
-                  var(--gray-100) 50%,
-                  var(--gray-200) 75%
-  );
-  background-size: 400% 100%;
-  animation: shimmer 1.2s ease-in-out infinite;
-  border-radius: 4px;
+    height: 40px;
+    width: 100px;
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-100) 50%,
+        var(--gray-200) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+    border-radius: 4px;
 }
 
 .oldPriceSkeleton {
-  height: 30px;
-  width: 70px;
-  background: linear-gradient(
-                  90deg,
-                  var(--gray-200) 25%,
-                  var(--gray-100) 50%,
-                  var(--gray-200) 75%
-  );
-  background-size: 400% 100%;
-  animation: shimmer 1.2s ease-in-out infinite;
-  border-radius: 4px;
+    height: 30px;
+    width: 70px;
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-100) 50%,
+        var(--gray-200) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+    border-radius: 4px;
 }
 
 .amountLeftSkeleton {
-  height: 20px;
-  width: 80px;
-  background: linear-gradient(
-                  90deg,
-                  var(--gray-200) 25%,
-                  var(--gray-100) 50%,
-                  var(--gray-200) 75%
-  );
-  background-size: 400% 100%;
-  animation: shimmer 1.2s ease-in-out infinite;
-  border-radius: 4px;
+    height: 20px;
+    width: 80px;
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-100) 50%,
+        var(--gray-200) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+    border-radius: 4px;
 }
 
 .buttonSkeleton {
-  height: 60px;
-  width: 100%;
-  background: linear-gradient(
-                  90deg,
-                  var(--gray-200) 25%,
-                  var(--gray-100) 50%,
-                  var(--gray-200) 75%
-  );
-  background-size: 400% 100%;
-  animation: shimmer 1.2s ease-in-out infinite;
-  border-radius: 12px;
+    height: 60px;
+    width: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-100) 50%,
+        var(--gray-200) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+    border-radius: 12px;
 }
-

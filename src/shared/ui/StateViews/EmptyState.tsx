@@ -1,9 +1,11 @@
-import type {FC, ReactNode, SVGProps} from 'react';
+import type {FC, ReactNode, SVGProps} from "react";
 
-import {cn} from '@/shared/lib';
-import {AppIcon} from '@/shared/ui';
+import {cn} from "@/shared/lib";
+import {AppIcon} from "@/shared/ui/AppIcon/AppIcon";
+import {Stack} from "@/shared/ui/Stack/Stack";
+import {Typography} from "@/shared/ui/Typography/Typography";
 
-import styles from './StateViews.module.scss';
+import styles from "./StateViews.module.scss";
 
 interface EmptyStateProps {
     icon?: FC<SVGProps<SVGSVGElement>>;
@@ -11,7 +13,7 @@ interface EmptyStateProps {
     description?: string;
     action?: ReactNode;
     className?: string;
-    'data-testid'?: string;
+    "data-testid"?: string;
 }
 
 export const EmptyState = ({
@@ -20,18 +22,26 @@ export const EmptyState = ({
     description,
     action,
     className,
-    'data-testid': dataTestId = 'empty-state'
+    "data-testid": dataTestId = "empty-state",
 }: EmptyStateProps) => {
     return (
-        <div className={cn(styles.container, className)} data-testid={dataTestId}>
-            {icon && (
-                <AppIcon Icon={icon} className={styles.icon} />
-            )}
-            <p className={styles.title}>{title}</p>
+        <Stack
+            className={cn(styles.container, className)}
+            gap={16}
+            align="center"
+            justify="center"
+            data-testid={dataTestId}
+        >
+            {icon && <AppIcon Icon={icon} className={styles.icon} />}
+            <Typography variant="heading" weight="semibold">
+                {title}
+            </Typography>
             {description && (
-                <p className={styles.description}>{description}</p>
+                <Typography className={styles.description} variant="body" tone="muted">
+                    {description}
+                </Typography>
             )}
             {action}
-        </div>
+        </Stack>
     );
 };

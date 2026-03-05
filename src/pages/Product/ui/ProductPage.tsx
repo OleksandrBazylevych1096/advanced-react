@@ -1,8 +1,3 @@
-import {useParams} from "react-router";
-
-import {useGetCategoryBreadcrumbsQuery} from "@/pages/Category/api/categoryPageApi.ts";
-import {useGetProductBySlugQuery} from "@/pages/Product/api/productPageApi.ts";
-import {generateProductBreadcrumbs} from "@/pages/Product/lib/generateProductBreadcrumbs/generateProductBreadcrumbs.ts";
 import {ProductImageCarousel} from "@/pages/Product/ui/ProductImageCarousel/ProductImageCarousel.tsx";
 import {ProductInfo} from "@/pages/Product/ui/ProductInfo/ProductInfo.tsx";
 
@@ -10,49 +5,40 @@ import {BestSellingProducts} from "@/widgets/BestSellingProducts";
 import {Footer} from "@/widgets/Footer";
 import {Header} from "@/widgets/Header";
 
-import {routePaths, type SupportedLngsType} from "@/shared/config";
-import {useSlugSync} from "@/shared/lib/hooks/useSlugSync.ts";
-import {AppPage} from "@/shared/ui";
+import {AppPage, Stack} from "@/shared/ui";
 import {Breadcrumbs} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
+
+import {useProductPageController} from "../model/controllers/useProductPageController";
 
 import styles from "./ProductPage.module.scss";
 
 const ProductPage = () => {
-
-    const {slug, lng} = useParams<{ slug: string, lng: SupportedLngsType }>()
-    const {data: product, isSuccess, isFetching, isError} = useGetProductBySlugQuery({slug: slug!, locale: lng!})
-
-    const {data: categoryBreadcrumbs} = useGetCategoryBreadcrumbsQuery({
-        id: product?.categoryId,
-        locale: lng!
-    }, {
-        skip: !product?.categoryId
-    })
-
-    const breadcrumbs = generateProductBreadcrumbs(categoryBreadcrumbs, product?.name)
-
-    useSlugSync({
-        languageParam: lng,
-        slugMap: product?.slugMap,
-        enabled: isSuccess,
-        routePath: routePaths.product
-    })
+    const {
+        data: {product},
+        derived: {breadcrumbs},
+        status: {isFetching, isError},
+    } = useProductPageController();
 
     return (
         <AppPage>
-            <Header/>
-            <AppPage.Content className={styles.content}>
-                <Breadcrumbs className={styles.breadcrumbs} items={breadcrumbs}/>
-                <div className={styles.container}>
-                    <div className={styles.carouselContainer}>
-                        <ProductImageCarousel images={product?.images}
-                                              isLoading={isFetching} error={isError}/>
-                    </div>
-                    <ProductInfo product={product} error={isError} isLoading={isFetching}/>
-                </div>
-                <BestSellingProducts/>
+            <Header />
+            <AppPage.Content>
+                <Stack gap={16}>
+                    <Breadcrumbs items={breadcrumbs} />
+                    <Stack direction="row">
+                        <div className={styles.carouselContainer}>
+                            <ProductImageCarousel
+                                images={product?.images}
+                                isLoading={isFetching}
+                                error={isError}
+                            />
+                        </div>
+                        <ProductInfo product={product} error={isError} isLoading={isFetching} />
+                    </Stack>
+                    <BestSellingProducts />
+                </Stack>
             </AppPage.Content>
-            <Footer/>
+            <Footer />
         </AppPage>
     );
 };

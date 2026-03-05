@@ -1,14 +1,13 @@
 export const AuthProviders = {
-  LOCAL: "LOCAL",
-  GOOGLE: "GOOGLE",
+    LOCAL: "LOCAL",
+    GOOGLE: "GOOGLE",
 } as const;
 
-export type AuthProvidersType =
-  (typeof AuthProviders)[keyof typeof AuthProviders];
+export type AuthProvidersType = (typeof AuthProviders)[keyof typeof AuthProviders];
 
 export const AuthMethod = {
-  EMAIL: "email",
-  PHONE: "phone",
+    EMAIL: "email",
+    PHONE: "phone",
 };
 export type AuthMethodType = (typeof AuthMethod)[keyof typeof AuthMethod];
 

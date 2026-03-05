@@ -1,78 +1,87 @@
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .inputContainer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  box-shadow: 0 2px 80px 0 rgb(0 0 0 / 4%);
-  border-radius: 8px;
-  padding: 12px 16px;
-  transition: all 0.2s linear;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    box-shadow: 0 2px 80px 0 rgb(0 0 0 / 4%);
+    border-radius: 8px;
+    padding: 12px 16px;
+    transition: all 0.2s linear;
 
-  &.focus {
-    border-color: var(--primary-color);
-  }
-
-  &.disabled {
-    background: var(--gray-50);
-  }
-
-  &.error {
-    border-color: var(--red-500);
-    background-color: var(--red-50);
-  }
-
-  input[type='number'] {
-    appearance: textfield;
-
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-      appearance: none;
-      margin: 0;
+    &.focus {
+        border-color: var(--primary-color);
     }
-  }
+
+    &.disabled {
+        background: var(--gray-50);
+    }
+
+    &.error {
+        border-color: var(--red-500);
+        background-color: var(--red-50);
+    }
+
+    input[type="number"] {
+        appearance: textfield;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            appearance: none;
+            margin: 0;
+        }
+    }
 }
 
 .label {
-  font: var(--font-s);
-  font-weight: 600;
-  margin-bottom: 8px;
+    font: var(--font-s);
+    font-weight: 600;
+    margin-bottom: 8px;
 
-  &.error {
+    &.error {
+        color: var(--red-500);
+    }
+}
+
+.errorText {
+    margin-top: 6px;
     color: var(--red-500);
-  }
+    font: var(--font-xs);
 }
 
 .rounded {
-  border-radius: 32px;
+    border-radius: 32px;
 }
 
 .input {
-  width: 100%;
-  border: none;
-  outline: none;
-  color: var(--gray-800);
-
-  &::placeholder {
-    color: var(--gray-400);
-  }
-
-  &:disabled {
-    color: var(--gray-300);
-    cursor: not-allowed;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: var(--gray-800);
 
     &::placeholder {
-      color: var(--gray-400);
+        color: var(--gray-400);
     }
-  }
 
-  &.error {
-    background-color: var(--red-50);
-  }
+    &:disabled {
+        color: var(--gray-300);
+        cursor: not-allowed;
+
+        &::placeholder {
+            color: var(--gray-400);
+        }
+    }
+
+    &.error {
+        background-color: var(--red-50);
+    }
+}
+
+.fullWidth {
+    width: 100%;
 }

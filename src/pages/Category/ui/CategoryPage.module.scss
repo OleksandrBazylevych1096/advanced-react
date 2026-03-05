@@ -1,15 +1,12 @@
-
 .content {
-  display: flex;
-
+    display: flex;
 }
 
 .wrapper {
-  flex: 1;
-  width: calc(100% - var(--sidebar-width));
+    flex: 1;
+    width: calc(100% - var(--sidebar-width));
 }
 
 .breadcrumbs {
-  margin-bottom: 16px;
+    margin-bottom: 16px;
 }
-

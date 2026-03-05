@@ -1,3 +1,7 @@
-import { TrendingProducts } from "./ui/TrendingProducts";
+import {TrendingProducts} from "./ui/TrendingProducts";
+import {trendingProductsHandlers} from "./api/test/handlers";
 
-export { TrendingProducts };
+export {TrendingProducts};
+
+// Test-only exports
+export {trendingProductsHandlers};

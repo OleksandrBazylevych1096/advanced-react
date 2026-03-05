@@ -4,7 +4,7 @@ import {generatePath, useNavigate, useParams} from "react-router"
 
 import type {Category} from "@/entities/category"
 
-import {routePaths, type SupportedLngsType} from "@/shared/config"
+import {AppRoutes, routePaths, type SupportedLngsType} from "@/shared/config"
 
 interface Args {
     languageParam?: SupportedLngsType
@@ -52,7 +52,7 @@ export const useCategorySlugSync = ({
             (correctSlug !== currentSlug || currentLanguage !== languageParam)
 
         if (needsUpdate) {
-            const path = generatePath(routePaths.category, {
+            const path = generatePath(routePaths[AppRoutes.CATEGORY], {
                 lng: currentLanguage,
                 slug: correctSlug
             })

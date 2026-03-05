@@ -1,16 +1,10 @@
-import type {ProductsApiResponse} from "@/entities/product";
-import type {ProductQuery} from "@/entities/product/model/types/Product.ts";
+import type {ProductQuery, ProductsApiResponse} from "../model/types/Product";
 
 import {baseAPI} from "@/shared/api";
 
-
 export const productApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-        getInfiniteProducts: build.infiniteQuery<
-            ProductsApiResponse,
-            ProductQuery,
-            number
-        >({
+        getInfiniteProducts: build.infiniteQuery<ProductsApiResponse, ProductQuery, number>({
             infiniteQueryOptions: {
                 initialPageParam: 1,
 
@@ -20,7 +14,6 @@ export const productApi = baseAPI.injectEndpoints({
                     if (lastPageParam < totalPages) {
                         return lastPageParam + 1;
                     }
-
                 },
 
                 getPreviousPageParam: (_firstPage, _allPages, firstPageParam) => {
@@ -29,28 +22,24 @@ export const productApi = baseAPI.injectEndpoints({
             },
 
             query: ({queryArg, pageParam}) => ({
-                url: '/products',
+                url: "/products",
                 params: {
                     ...queryArg,
                     page: pageParam,
-                    limit: queryArg.limit || 20
+                    limit: queryArg.limit || 20,
                 },
             }),
-
         }),
-        getProducts: build.query<
-            ProductsApiResponse,
-            ProductQuery
-        >({
+        getProducts: build.query<ProductsApiResponse, ProductQuery>({
             query: (params) => ({
                 url: "/products",
                 params,
             }),
         }),
     }),
+});
 
-})
-
-
-export const {useGetInfiniteProductsInfiniteQuery: useGetInfiniteProducts, useGetProductsQuery: useGetProducts} =
-    productApi;
+export const {
+    useGetInfiniteProductsInfiniteQuery: useGetInfiniteProducts,
+    useGetProductsQuery: useGetProducts,
+} = productApi;

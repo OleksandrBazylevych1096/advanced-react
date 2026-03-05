@@ -1,9 +1,10 @@
 import {useEffect, useId, useState} from "react";
 
-import CheckedIcon from '@/shared/assets/icons/Checked.svg?react'
+import CheckedIcon from "@/shared/assets/icons/Checked.svg?react";
 import {cn} from "@/shared/lib";
+import {Stack} from "@/shared/ui/Stack/Stack";
 
-import styles from './Checkbox.module.scss'
+import styles from "./Checkbox.module.scss";
 
 interface CheckboxProps {
     label?: string;
@@ -11,9 +12,9 @@ interface CheckboxProps {
     onChange?: (checked: boolean) => void;
     disabled?: boolean;
     id?: string;
-    className?: string
-    readOnly?: boolean
-    "data-testid"?: string
+    className?: string;
+    readOnly?: boolean;
+    "data-testid"?: string;
 }
 
 export const Checkbox = (props: CheckboxProps) => {
@@ -25,17 +26,17 @@ export const Checkbox = (props: CheckboxProps) => {
         disabled = false,
         readOnly = false,
         id: externalId,
-        'data-testid': dataTestId = 'checkbox'
-    } = props
+        "data-testid": dataTestId = "checkbox",
+    } = props;
 
-    const id = useId()
+    const id = useId();
     const [isChecked, setIsChecked] = useState(checked);
 
     useEffect(() => {
         setIsChecked(checked);
     }, [checked]);
 
-    const handleChange = () => {
+    const toggleValue = () => {
         if (disabled || readOnly) return;
 
         const newValue = !isChecked;
@@ -43,49 +44,41 @@ export const Checkbox = (props: CheckboxProps) => {
         onChange?.(newValue);
     };
 
-    const checkboxId = externalId || id
+    const checkboxId = externalId || id;
 
     return (
         <div className={cn(styles.wrapper, className)}>
-            <div className={styles.container}>
+            <Stack className={styles.container} direction="row" align="center">
                 <input
                     data-testid={dataTestId}
                     type="checkbox"
                     id={checkboxId}
                     checked={isChecked}
-                    onChange={handleChange}
+                    onChange={toggleValue}
                     disabled={disabled}
                     readOnly={readOnly}
                     className={styles.input}
                 />
 
                 <div
-                    onClick={handleChange}
-                    className={cn(
-                        styles.box,
-                        {
-                            [styles.checked]: isChecked,
-                            [styles.disabled]: disabled,
-                            [styles.readOnly]: readOnly
-                        }
-                    )}
+                    onClick={toggleValue}
+                    className={cn(styles.box, {
+                        [styles.checked]: isChecked,
+                        [styles.disabled]: disabled,
+                        [styles.readOnly]: readOnly,
+                    })}
                 >
-                    <CheckedIcon
-                        className={cn(styles.icon, {[styles.visible]: isChecked})}
-                    />
+                    <CheckedIcon className={cn(styles.icon, {[styles.visible]: isChecked})} />
                 </div>
-            </div>
+            </Stack>
 
             {label && (
                 <label
                     htmlFor={checkboxId}
-                    className={cn(
-                        styles.label,
-                        {
-                            [styles.disabled]: disabled,
-                            [styles.readOnly]: readOnly
-                        }
-                    )}
+                    className={cn(styles.label, {
+                        [styles.disabled]: disabled,
+                        [styles.readOnly]: readOnly,
+                    })}
                 >
                     {label}
                 </label>

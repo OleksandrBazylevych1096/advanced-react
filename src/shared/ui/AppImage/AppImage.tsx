@@ -14,7 +14,7 @@ interface AppImageProps {
     containerClassName?: string;
     lazy?: boolean;
     draggable?: boolean;
-    objectFit?: 'contain' | 'cover';
+    objectFit?: "contain" | "cover";
     showErrorMessage?: boolean;
 }
 
@@ -27,7 +27,7 @@ export const AppImage = (props: AppImageProps) => {
         containerClassName,
         lazy = true,
         draggable = true,
-        objectFit = 'contain',
+        objectFit = "contain",
         showErrorMessage = true,
     } = props;
 
@@ -41,7 +41,7 @@ export const AppImage = (props: AppImageProps) => {
         setUseFallback(false);
     }, [src]);
 
-    const handleImageError = () => {
+    const showFallbackOnError = () => {
         if (!useFallback && fallbackSrc) {
             setUseFallback(true);
         } else {
@@ -50,7 +50,7 @@ export const AppImage = (props: AppImageProps) => {
         }
     };
 
-    const handleImageLoad = () => {
+    const markImageLoaded = () => {
         setImageLoading(false);
     };
 
@@ -59,11 +59,7 @@ export const AppImage = (props: AppImageProps) => {
     if (imageError || !currentSrc) {
         return (
             <div className={cn(styles.placeholder, containerClassName)}>
-                <AppIcon
-                    Icon={ImagePlaceholderIcon}
-                    size={48}
-                    className={styles.placeholderIcon}
-                />
+                <AppIcon Icon={ImagePlaceholderIcon} size={48} className={styles.placeholderIcon} />
                 {showErrorMessage && (
                     <span className={styles.placeholderText}>Image unavailable</span>
                 )}
@@ -75,22 +71,19 @@ export const AppImage = (props: AppImageProps) => {
         <div className={cn(styles.container, containerClassName)}>
             {imageLoading && (
                 <div className={cn(styles.placeholder, styles.loading)}>
-                    <div className={styles.shimmer}/>
+                    <div className={styles.shimmer} />
                 </div>
             )}
             <img
-                className={cn(
-                    styles.image,
-                    styles[objectFit],
-                    className,
-                    {[styles.hidden]: imageLoading}
-                )}
+                className={cn(styles.image, styles[objectFit], className, {
+                    [styles.hidden]: imageLoading,
+                })}
                 src={currentSrc}
                 alt={alt}
                 loading={lazy ? "lazy" : "eager"}
                 draggable={draggable}
-                onError={handleImageError}
-                onLoad={handleImageLoad}
+                onError={showFallbackOnError}
+                onLoad={markImageLoaded}
             />
         </div>
     );

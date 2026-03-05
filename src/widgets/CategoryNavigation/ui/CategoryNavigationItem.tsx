@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next";
 import {generatePath, useNavigate, useParams} from "react-router";
 
-import {routePaths} from "@/shared/config";
+import {AppRoutes, routePaths} from "@/shared/config";
 import {cn} from "@/shared/lib";
 import {AppIcon, Button} from "@/shared/ui";
 
@@ -24,7 +24,7 @@ export const CategoryNavigationItem = (props: CategoryNavigationItemProps) => {
     const isActive = slug === slugParam;
 
     const handleClick = () => {
-        const path = generatePath(routePaths.category, {
+        const path = generatePath(routePaths[AppRoutes.CATEGORY], {
             slug,
             lng: lng || i18n.language
         });

@@ -1,37 +1,46 @@
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 import PageErrorIcon from "@/shared/assets/icons/PageError.svg?react";
-import { Button } from "@/shared/ui";
+import {Button, Stack, Typography} from "@/shared/ui";
 
 import styles from "./PageError.module.scss";
 
 interface PageErrorProps {
-  error?: string;
+    error?: string;
 }
 
-export const PageError = ({ error }: PageErrorProps) => {
-  const { t } = useTranslation();
+export const PageError = ({error}: PageErrorProps) => {
+    const {t} = useTranslation();
 
-  const handleReloadClick = () => {
-    location.reload();
-  };
-  const description = error ?? t("pageError.description");
+    const reloadPage = () => {
+        location.reload();
+    };
+    const description = error ?? t("pageError.description");
 
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.content}>
-        <PageErrorIcon className={styles.icon} />
-        <h3 className={styles.title}>{t("pageError.title")}</h3>
-        <p className={styles.description}>{description}</p>
-        <Button
-          onClick={handleReloadClick}
-          theme="primary"
-          form="rounded"
-          className={styles.button}
-        >
-          {t("pageError.reload")}
-        </Button>
-      </div>
-    </div>
-  );
+    return (
+        <Stack className={styles.wrapper} align="center" justify="center">
+            <Stack className={styles.content} gap={16}>
+                <PageErrorIcon className={styles.icon} />
+                <Typography as="h3" variant="display" tone="primary" weight="bold">
+                    {t("pageError.title")}
+                </Typography>
+                <Typography
+                    className={styles.description}
+                    variant="body"
+                    tone="muted"
+                    weight="semibold"
+                >
+                    {description}
+                </Typography>
+                <Button
+                    onClick={reloadPage}
+                    theme="primary"
+                    form="rounded"
+                    className={styles.button}
+                >
+                    {t("pageError.reload")}
+                </Button>
+            </Stack>
+        </Stack>
+    );
 };

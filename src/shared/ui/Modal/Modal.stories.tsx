@@ -1,14 +1,14 @@
-import type {Meta, StoryObj} from '@storybook/react-vite';
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Button} from "@/shared/ui";
 
-import {Modal} from './Modal';
+import {Modal} from "./Modal";
 
 const meta: Meta<typeof Modal> = {
-    title: 'shared/Modal',
+    title: "shared/Modal",
     component: Modal,
     parameters: {
-        layout: 'centered',
+        layout: "centered",
     },
 };
 
@@ -21,9 +21,7 @@ export const Default: Story = {
             <Modal.Trigger>Open Modal</Modal.Trigger>
             <Modal.Content>
                 <Modal.Header>Title</Modal.Header>
-                <Modal.Body>
-                    Body
-                </Modal.Body>
+                <Modal.Body>Body</Modal.Body>
                 <Modal.Footer>Footer</Modal.Footer>
             </Modal.Content>
         </Modal>
@@ -36,9 +34,7 @@ export const Open: Story = {
             <Modal.Trigger>Open Modal</Modal.Trigger>
             <Modal.Content>
                 <Modal.Header>Title</Modal.Header>
-                <Modal.Body>
-                    Body
-                </Modal.Body>
+                <Modal.Body>Body</Modal.Body>
                 <Modal.Footer>Footer</Modal.Footer>
             </Modal.Content>
         </Modal>
@@ -54,15 +50,12 @@ export const CustomTrigger: Story = {
             <Modal.Content>
                 <Modal.Header>Title</Modal.Header>
                 <Modal.Body>
-                    <Modal.Body>
-                        Body
-                    </Modal.Body>
+                    <Modal.Body>Body</Modal.Body>
                 </Modal.Body>
             </Modal.Content>
         </Modal>
     ),
 };
-
 
 export const NestedModals: Story = {
     render: () => (
@@ -71,11 +64,11 @@ export const NestedModals: Story = {
             <Modal.Content>
                 <Modal.Header>Modal Title</Modal.Header>
                 <Modal.Body>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet..
-                    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum
-
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+                    vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                    no sea takimata sanctus est Lorem ipsum dolor sit amet.. Duis autem vel eum
+                    iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum
                     <Modal isDefaultOpen>
                         <Modal.Trigger>
                             <Button>Open Modal 2</Button>
@@ -92,4 +85,3 @@ export const NestedModals: Story = {
         </Modal>
     ),
 };
-

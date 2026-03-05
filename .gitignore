@@ -12,8 +12,12 @@ dist
 dist-ssr
 *.local
 
-TODO.txt
+AGENTS.md
+.ai
+.aiassistant
 
+TODO.txt
+.agent
 .env
 
 # Editor directories and files

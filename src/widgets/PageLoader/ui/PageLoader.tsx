@@ -1,16 +1,18 @@
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
-import { Spinner } from "@/shared/ui";
+import {Spinner, Stack, Typography} from "@/shared/ui";
 
 import styles from "./PageLoader.module.scss";
 
 export const PageLoader = () => {
-  const { t } = useTranslation();
+    const {t} = useTranslation();
 
-  return (
-    <div className={styles.wrapper}>
-      <h3 className={styles.title}>{t("pageLoader.loading")}</h3>
-      <Spinner size="lg" />
-    </div>
-  );
+    return (
+        <Stack className={styles.wrapper} gap={16} align="center" justify="center">
+            <Typography as="h3" variant="heading" tone="default" weight="bold">
+                {t("pageLoader.loading")}
+            </Typography>
+            <Spinner size="lg" />
+        </Stack>
+    );
 };

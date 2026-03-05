@@ -1,24 +1,29 @@
 import type {Preview} from "@storybook/react-vite";
-import {initialize, mswLoader} from 'msw-storybook-addon';
+import {initialize, mswLoader} from "msw-storybook-addon";
 
-import {LanguageDecorator, RouterDecorator, StoreDecorator, ThemeDecorator} from "../src/shared/config/storybook";
+import {
+    LanguageDecorator,
+    RouterDecorator,
+    StoreDecorator,
+    ThemeDecorator,
+} from "../src/shared/config/storybook";
 
 import "../src/app/styles/index.scss";
 
 initialize({
-    onUnhandledRequest: 'warn', // Bypass unhandled requests instead of warning
+    onUnhandledRequest: "warn", // Bypass unhandled requests instead of warning
     serviceWorker: {
-        url: '/mockServiceWorker.js',
+        url: "/mockServiceWorker.js",
         options: {
             // Don't intercept requests to these paths
-            scope: '/',
+            scope: "/",
         },
     },
 });
 
 const preview: Preview = {
     initialGlobals: {
-        backgrounds: {value: 'light'},
+        backgrounds: {value: "light"},
     },
     globalTypes: {
         theme: {
@@ -51,8 +56,8 @@ const preview: Preview = {
     parameters: {
         backgrounds: {
             options: {
-                dark: {name: 'Dark', value: '#333'},
-                light: {name: 'Light', value: '#fff'},
+                dark: {name: "Dark", value: "#333"},
+                light: {name: "Light", value: "#fff"},
             },
         },
         controls: {
@@ -64,14 +69,8 @@ const preview: Preview = {
         a11y: {
             test: "todo",
         },
-
     },
-    decorators: [
-        ThemeDecorator,
-        RouterDecorator,
-        LanguageDecorator,
-        StoreDecorator,
-    ],
+    decorators: [ThemeDecorator, RouterDecorator, LanguageDecorator, StoreDecorator],
     loaders: [mswLoader],
 };
 

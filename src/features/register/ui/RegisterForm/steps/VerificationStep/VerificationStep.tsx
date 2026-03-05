@@ -1,67 +1,93 @@
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
+import {useTranslation} from "react-i18next";
+import {Link} from "react-router";
 
-import { selectRegisterEmail } from "@/features/register/model/selectors/selectRegisterEmail/selectRegisterEmail";
-import { selectRegisterError } from "@/features/register/model/selectors/selectRegisterError/selectRegisterError";
-import { selectRegisterIsLoading } from "@/features/register/model/selectors/selectRegisterIsLoading/selectRegisterIsLoading";
-import { selectRegisterPhone } from "@/features/register/model/selectors/selectRegisterPhone/selectRegisterPhone.ts";
-import { resendCode } from "@/features/register/model/services/resendCode";
-import { verifyCode } from "@/features/register/model/services/verifyCode";
+import {AppRoutes, routePaths} from "@/shared/config";
+import {Button, Spinner, OTPInput, Typography} from "@/shared/ui";
 
-import { routePaths } from "@/shared/config";
-import { useAppDispatch, useAppSelector } from "@/shared/lib";
-import { Button, Spinner, OTPInput } from "@/shared/ui";
+import {useVerificationStepController} from "../../../../model/controllers/useVerificationStepController/useVerificationStepController";
 
 import styles from "./VerificationStep.module.scss";
 
 export const VerificationStep = () => {
-  const { t } = useTranslation("auth");
+    const {t} = useTranslation("auth");
+    const {
+        data: {email, phone, verificationRequired},
+        derived: {isPhoneVerification, isEmailVerification},
+        status: {error, isLoading},
+        actions: {submitVerification, resendCode, resetFlow},
+    } = useVerificationStepController();
 
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const email = useAppSelector(selectRegisterEmail);
-  const phone = useAppSelector(selectRegisterPhone);
-  const error = useAppSelector(selectRegisterError);
-  const isLoading = useAppSelector(selectRegisterIsLoading);
-
-  const onSubmit = async (code: string) => {
-    const result = await dispatch(verifyCode({ email, phone, code }));
-    if (verifyCode.fulfilled.match(result)) {
-      navigate(routePaths.home);
+    if (verificationRequired === null) {
+        return (
+            <div className={styles.form}>
+                <Typography as="div" className={styles.title} variant="body" tone="muted">
+                    {t("register.success.none", {
+                        defaultValue: "Account created successfully.",
+                    })}
+                </Typography>
+                <Link className={styles.link} to={routePaths[AppRoutes.LOGIN]}>
+                    <Typography as="span" variant="body" tone="primary" weight="semibold">
+                        {t("login.signIn")}
+                    </Typography>
+                </Link>
+            </div>
+        );
     }
-  };
 
-  const handleResend = () => {
-    dispatch(resendCode({ email, phone }));
-  };
-
-  return (
-    <>
-      <form className={styles.form}>
-        <div className={styles.title}>
-          {t("register.verification.sentTo")} <br />
-          <span>{email || phone}</span>
-        </div>
-        <OTPInput disabled={isLoading} error={!!error} onComplete={onSubmit} />
-        {error && <div className={styles.error}>{error}</div>}
-        {isLoading && (
-          <div className={styles.wrapper}>
-            <Spinner size="md" />
-          </div>
-        )}
-      </form>
-      <div className={styles.resendCodeText}>
-        <span>{t("register.verification.codeNotReceived")}</span>
-        <Button
-          onClick={handleResend}
-          disabled={isLoading}
-          className={styles.resendCodeButton}
-          theme="ghost"
-        >
-          {t("register.verification.resend")}
-        </Button>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <form className={styles.form}>
+                <Typography as="div" className={styles.title} variant="body" tone="muted">
+                    {t("register.verification.sentTo")} <br />
+                    <Typography as="span" variant="body" tone="default" weight="semibold">
+                        {email || phone}
+                    </Typography>
+                </Typography>
+                {(isPhoneVerification || isEmailVerification) && (
+                    <OTPInput
+                        length={4}
+                        disabled={isLoading}
+                        error={!!error}
+                        onComplete={submitVerification}
+                    />
+                )}
+                {error && (
+                    <Typography
+                        className={styles.error}
+                        variant="bodySm"
+                        tone="danger"
+                        weight="semibold"
+                    >
+                        {error}
+                    </Typography>
+                )}
+                {isLoading && (
+                    <div className={styles.wrapper}>
+                        <Spinner size="md" />
+                    </div>
+                )}
+            </form>
+            <div className={styles.resendCodeText}>
+                <span>{t("register.verification.codeNotReceived")}</span>
+                <Button
+                    onClick={resendCode}
+                    type="button"
+                    disabled={isLoading}
+                    className={styles.resendCodeButton}
+                    theme="ghost"
+                >
+                    <Typography as="span" variant="body" tone="primary" weight="semibold">
+                        {t("register.verification.resend")}
+                    </Typography>
+                </Button>
+            </div>
+            <Button onClick={resetFlow} theme="ghost" className={styles.resendCodeButton}>
+                <Typography as="span" variant="body" tone="primary" weight="semibold">
+                    {t("register.verification.changeContact", {
+                        defaultValue: "Change contact",
+                    })}
+                </Typography>
+            </Button>
+        </>
+    );
 };

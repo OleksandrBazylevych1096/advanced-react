@@ -6,7 +6,7 @@ import {
     type ReactNode,
     type Ref,
     useEffect,
-    useState
+    useState,
 } from "react";
 
 import type {CurrencyType, SupportedLngsType} from "@/shared/config";
@@ -21,13 +21,15 @@ import styles from "./Input.module.scss";
 
 export type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    "value" | "onChange" | 'onDragEnd'
+    "value" | "onChange" | "onDragEnd"
 >;
 
-export type DecimalConfig = number | {
-    places: number;
-    mode?: 'round' | 'floor' | 'ceil';
-};
+export type DecimalConfig =
+    | number
+    | {
+          places: number;
+          mode?: "round" | "floor" | "ceil";
+      };
 
 export interface InputProps extends HTMLInputProps {
     className?: string;
@@ -37,6 +39,7 @@ export interface InputProps extends HTMLInputProps {
     label?: string;
     Icon?: ReactNode;
     error?: boolean;
+    errorText?: string;
     onChange?: (value: string) => void;
     ref?: Ref<HTMLInputElement>;
     isLoading?: boolean;
@@ -44,24 +47,25 @@ export interface InputProps extends HTMLInputProps {
     currency?: CurrencyType;
     locale?: SupportedLngsType;
     decimal?: DecimalConfig;
-    onDragEnd?: (value: string) => void
+    fullWidth?: boolean;
+    onDragEnd?: (value: string) => void;
     "data-testid"?: string;
-    
 }
 
 const applyRounding = (value: number, config: DecimalConfig): number => {
-    const {places, mode} = typeof config === 'number'
-        ? {places: config, mode: 'round' as const}
-        : {places: config.places, mode: config.mode || 'round' as const};
+    const {places, mode} =
+        typeof config === "number"
+            ? {places: config, mode: "round" as const}
+            : {places: config.places, mode: config.mode || ("round" as const)};
 
     const multiplier = Math.pow(10, places);
 
     switch (mode) {
-        case 'floor':
+        case "floor":
             return Math.floor(value * multiplier) / multiplier;
-        case 'ceil':
+        case "ceil":
             return Math.ceil(value * multiplier) / multiplier;
-        case 'round':
+        case "round":
         default:
             return Math.round(value * multiplier) / multiplier;
     }
@@ -81,18 +85,21 @@ export const Input = (props: InputProps) => {
         ref,
         label,
         error = false,
+        errorText,
         disabled = false,
         rounded = false,
         type = "text",
         currency = "USD",
         isLoading,
         onFocus,
+        fullWidth = false,
         onBlur,
-        locale = 'en',
+        locale = "en",
         decimal,
         "data-testid": dataTestId,
         ...rest
     } = props;
+    const hasError = error || Boolean(errorText);
 
     useEffect(() => {
         if (type === "currency") {
@@ -112,16 +119,14 @@ export const Input = (props: InputProps) => {
         }
     }, [value, type, currency, locale, decimal, focus]);
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const changeInputValue = (event: ChangeEvent<HTMLInputElement>) => {
         const raw = event.target.value;
 
         if (type === "currency") {
             const cleaned = raw.replace(/[^\d.]/g, "");
             const parts = cleaned.split(".");
 
-            const formatted = parts.length > 2
-                ? parts[0] + "." + parts.slice(1).join("")
-                : cleaned;
+            const formatted = parts.length > 2 ? parts[0] + "." + parts.slice(1).join("") : cleaned;
 
             setDisplayValue(formatted);
             return;
@@ -130,7 +135,7 @@ export const Input = (props: InputProps) => {
         onChange?.(raw);
     };
 
-    const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    const notifyInputFocus = (e: FocusEvent<HTMLInputElement>) => {
         setFocus(true);
         if (type === "currency" && displayValue) {
             let numeric = displayValue.replace(/[^\d.,]/g, "").replace(/,/g, ".");
@@ -147,15 +152,14 @@ export const Input = (props: InputProps) => {
         onFocus?.(e);
     };
 
-    const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    const notifyInputBlur = (e: FocusEvent<HTMLInputElement>) => {
         setFocus(false);
         if (type === "currency" && displayValue) {
             const numeric = Number(displayValue.replace(/[^\d.]/g, ""));
 
             if (!isNaN(numeric)) {
-                const finalValue = decimal !== undefined
-                    ? applyRounding(numeric, decimal)
-                    : numeric;
+                const finalValue =
+                    decimal !== undefined ? applyRounding(numeric, decimal) : numeric;
 
                 setDisplayValue(formatCurrency(currency, locale, finalValue));
                 onChange?.(String(finalValue));
@@ -164,36 +168,35 @@ export const Input = (props: InputProps) => {
         onBlur?.(e);
     };
 
-    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
+    const processInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
             e.currentTarget.blur();
         }
         rest.onKeyDown?.(e);
     };
 
-    const handleDragEnd = () => {
+    const notifyDragEnd = () => {
         if (onDragEnd) {
             onDragEnd(displayValue);
         }
     };
 
     const toggleShowPassword = () => {
-        setShowPassword(prev => !prev);
+        setShowPassword((prev) => !prev);
     };
 
     return (
-        <div className={styles.wrapper}>
+        <div className={cn(styles.wrapper, {[styles.fullWidth]: fullWidth})}>
             {label && (
-                <label className={cn(styles.label, {[styles.error]: error})}>
-                    {label}
-                </label>
+                <label className={cn(styles.label, {[styles.error]: hasError})}>{label}</label>
             )}
             <div
                 className={cn(styles.inputContainer, className, {
                     [styles.disabled]: disabled,
                     [styles.rounded]: rounded,
                     [styles.focus]: focus,
-                    [styles.error]: error,
+                    [styles.error]: hasError,
+                    [styles.fullWidth]: fullWidth,
                 })}
             >
                 {Icon}
@@ -201,14 +204,20 @@ export const Input = (props: InputProps) => {
                     {...rest}
                     value={displayValue}
                     ref={ref}
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                    onKeyDown={handleKeyDown}
-                    onDragEnd={handleDragEnd}
-                    type={showPassword && type === "password" ? "text" : type === "currency" ? "text" : type}
+                    onFocus={notifyInputFocus}
+                    onBlur={notifyInputBlur}
+                    onKeyDown={processInputKeyDown}
+                    onDragEnd={notifyDragEnd}
+                    type={
+                        showPassword && type === "password"
+                            ? "text"
+                            : type === "currency"
+                              ? "text"
+                              : type
+                    }
                     disabled={disabled}
-                    onChange={handleChange}
-                    className={cn(styles.input, {[styles.error]: error})}
+                    onChange={changeInputValue}
+                    className={cn(styles.input, {[styles.error]: hasError})}
                     data-testid={dataTestId}
                 />
 
@@ -219,12 +228,13 @@ export const Input = (props: InputProps) => {
                         className={styles.toggleVisibility}
                         onClick={toggleShowPassword}
                     >
-                        {showPassword ? <HideIcon/> : <ShowIcon/>}
+                        {showPassword ? <HideIcon /> : <ShowIcon />}
                     </Button>
                 )}
 
-                {isLoading && <Spinner size="sm" theme="primary"/>}
+                {isLoading && <Spinner size="sm" theme="primary" />}
             </div>
+            {errorText && <div className={styles.errorText}>{errorText}</div>}
         </div>
     );
 };

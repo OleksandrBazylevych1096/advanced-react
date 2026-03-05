@@ -1,17 +1,17 @@
 import {useTranslation} from "react-i18next";
 import {useLocation, useNavigate} from "react-router";
 
-import {ManageAddress} from "@/features/manageAddress";
-
-import {logout, selectUserData} from "@/entities/user";
+import {ManageShippingAddress} from "@/widgets/ManageShippingAddress";
 
 import LogoIcon from "@/shared/assets/icons/Logo.svg?react";
 import SearchIcon from "@/shared/assets/icons/Search.svg?react";
 import UsersIcon from "@/shared/assets/icons/Users.svg?react";
-import {routePaths} from "@/shared/config";
-import {cn, useAppDispatch, useAppSelector} from "@/shared/lib";
-import {AppIcon, Button, Input} from "@/shared/ui";
+import {AppRoutes, routePaths} from "@/shared/config";
+import {AppIcon, Box, Button, Container, Input, Stack} from "@/shared/ui";
 
+import {useHeaderController} from "../model/controllers/useHeaderController";
+
+import {CartPreview} from "./CartPreview/CartPreview";
 import styles from "./Header.module.scss";
 import {LanguageSwitcher} from "./LanguageSwitcher/LanguageSwitcher";
 import {ThemeSwitcher} from "./ThemeSwitcher/ThemeSwitcher";
@@ -20,55 +20,58 @@ export const Header = () => {
     const {t} = useTranslation();
     const navigate = useNavigate();
     const {pathname} = useLocation();
-    const user = useAppSelector(selectUserData);
-    const dispatch = useAppDispatch();
+    const {
+        data: {user},
+        actions: {logout},
+    } = useHeaderController();
 
-    const handleLoginClick = () => {
-        navigate(routePaths.login);
+    const openLogin = () => {
+        navigate(routePaths[AppRoutes.LOGIN]);
     };
 
-    const handleLogout = () => {
-        dispatch(logout());
-    };
-
-    if (pathname === routePaths.login) return;
+    if (pathname.endsWith(routePaths[AppRoutes.LOGIN])) return;
 
     return (
         <header className={styles.header}>
-            <div className={cn(styles.section, styles.addressSection)}>
-                <LogoIcon className={styles.logo}/>
-                <ManageAddress/>
-            </div>
+            <Container>
+                <Box py={10}>
+                    <Stack direction="row" align="center" gap={20}>
+                        <Stack className={styles.section} direction="row" align="center" gap={20}>
+                            <LogoIcon className={styles.logo}/>
+                            <ManageShippingAddress/>
+                        </Stack>
 
-            <div className={styles.section}>
-                <Input
-                    className={styles.search}
-                    placeholder={t("header.searchBy")}
-                    Icon={<AppIcon size={18} Icon={SearchIcon} theme="background"/>}
-                    rounded
+                        <Stack className={styles.section} direction="row" align="center" gap={20}>
+                            <Input
+                                fullWidth
+                                placeholder={t("header.searchBy")}
+                                Icon={<AppIcon size={18} Icon={SearchIcon} theme="background"/>}
+                                rounded
+                            />
+                        </Stack>
+                        <Stack className={styles.section} direction="row" align="center" gap={20}>
+                            <CartPreview/>
 
-                />
-            </div>
-            <div className={styles.section}>
-                <Button theme="secondary">
-                    <span>{t("header.cart")}</span>
-                </Button>
-                {user?.id ? (
-                    <Button onClick={handleLogout} theme="outline">
-                        <AppIcon Icon={UsersIcon}/>
-                        <span>{t("header.logout")}</span>
-                    </Button>
-                ) : (
-                    <Button onClick={handleLoginClick} theme="outline">
-                        <AppIcon Icon={UsersIcon}/>
-                        <span>{t("header.login")}</span>
-                    </Button>
-                )}
+                            {user?.id ? (
+                                <Button onClick={logout} theme="outline">
+                                    <AppIcon Icon={UsersIcon}/>
+                                    <span>{t("header.logout")}</span>
+                                </Button>
+                            ) : (
+                                <Button onClick={openLogin} theme="outline">
+                                    <AppIcon Icon={UsersIcon}/>
+                                    <span>{t("header.login")}</span>
+                                </Button>
+                            )}
 
-                <ThemeSwitcher/>
-
-                <LanguageSwitcher/>
-            </div>
+                            <Stack direction="row" gap={8}>
+                                <ThemeSwitcher/>
+                                <LanguageSwitcher/>
+                            </Stack>
+                        </Stack>
+                    </Stack>
+                </Box>
+            </Container>
         </header>
     );
 };

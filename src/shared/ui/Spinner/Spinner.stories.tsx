@@ -9,7 +9,7 @@ const meta = {
         layout: "centered",
     },
     globals: {
-        backgrounds: {value: 'light'},
+        backgrounds: {value: "light"},
     },
     tags: ["autodocs"],
 } satisfies Meta<typeof Spinner>;
@@ -20,26 +20,26 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const Secondary: Story = {
-    args: {theme: 'secondary'},
+    args: {theme: "secondary"},
     globals: {
-        backgrounds: {value: 'dark'},
+        backgrounds: {value: "dark"},
     },
-}
+};
 
 export const Small: Story = {
     args: {
-        size: 'sm',
+        size: "sm",
     },
 };
 
 export const Medium: Story = {
     args: {
-        size: 'md',
+        size: "md",
     },
 };
 
 export const Large: Story = {
     args: {
-        size: 'lg',
+        size: "lg",
     },
 };

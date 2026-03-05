@@ -12,7 +12,7 @@ export const RouterDecorator: Decorator = (Story, context) => {
     return (
         <MemoryRouter initialEntries={[route]}>
             <Routes>
-                <Route path={path} element={<Story {...context} />}/>
+                <Route path={path} element={<Story {...context} />} />
             </Routes>
         </MemoryRouter>
     );

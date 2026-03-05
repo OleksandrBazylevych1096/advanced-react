@@ -1,28 +1,26 @@
-import type {AnyAction, EnhancedStore, Reducer, ReducersMapObject,} from "@reduxjs/toolkit";
+import type {AnyAction, EnhancedStore, Reducer, ReducersMapObject} from "@reduxjs/toolkit";
 
 import type {ToastSchema} from "@/app/providers/toast/model/types/toast";
+import type {ProductFiltersSchema} from "@/features/product-filters";
 
-import type {AuthByGoogleSchema} from "@/features/authByGoogle/model/types/authByGoogle";
-import type {LoginFormSchema} from "@/features/login";
-import type {ManageAddressSchema} from "@/features/manageAddress/model/types/Address";
-import type {ProductFiltersSchema} from "@/features/productFilters";
-import type {RegisterFormSchema} from "@/features/register";
-
+import type {CartSchema} from "@/entities/cart";
+import type {SaveShippingAddressSchema} from "@/entities/shipping-address";
 import type {UserSchema} from "@/entities/user";
 
 import type {baseAPI} from "@/shared/api/rtk/baseAPI";
 
+import type {AppDispatch} from "./store";
+import type {StoreServices} from "./StoreServices";
+
 export interface StateSchema {
     user: UserSchema;
-    authByGoogle: AuthByGoogleSchema;
     toast: ToastSchema;
+    cart: CartSchema;
     [baseAPI.reducerPath]: ReturnType<typeof baseAPI.reducer>;
 
     // Async reducers
-    loginForm?: LoginFormSchema;
-    registerForm?: RegisterFormSchema;
-    manageAddress?: ManageAddressSchema;
-    productFilters?: ProductFiltersSchema
+    saveShippingAddress?: SaveShippingAddressSchema;
+    productFilters?: ProductFiltersSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
@@ -35,6 +33,8 @@ export interface ReducerManager {
     getMountedReducers: () => Partial<Record<StateSchemaKey, boolean>>;
 }
 
-export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
+export interface AppStore extends EnhancedStore<StateSchema> {
     reducerManager: ReducerManager;
+    dispatch: AppDispatch;
+    services: StoreServices;
 }

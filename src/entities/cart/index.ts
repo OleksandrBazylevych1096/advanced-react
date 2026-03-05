@@ -1,0 +1,66 @@
+import {
+    cartApi,
+    useGetCartQuery,
+    useGetCartCountQuery,
+    useValidateCartQuery,
+    useSyncCartMutation,
+} from "./api/cartApi";
+import {
+    applyCartItemQuantityChange,
+    applyCartOptimisticUpdate,
+    findCartItemIndexByProductId,
+} from "./lib/cartOptimisticUpdate";
+import {clearGuestCart, getGuestCart, setGuestCart} from "./lib/cartStorage";
+import {broadcastCartClear, broadcastCartUpdate, onCartSync} from "./lib/cartSync";
+import {recalculateCartTotals} from "./lib/recalculateCartTotals";
+import {
+    selectGuestCartItems,
+    selectGuestCartItemCount,
+    selectGuestCartSubtotal,
+    selectIsCartInitialized,
+    selectGuestCartItemByProductId,
+} from "./model/selectors/cartSelectors";
+import {useCartController} from "./model/controllers/useCartController/useCartController";
+import {useCartValidationController} from "./model/controllers/useCartValidationController/useCartValidationController";
+import {cartActions, cartReducer} from "./model/slice/cartSlice";
+import type {
+    Cart,
+    CartItem,
+    CartSchema,
+    CartTotals,
+    CartValidationItem,
+    GuestCartItem,
+} from "./model/types/CartSchema";
+import {CartItemRow} from "./ui/CartItemRow/CartItemRow";
+import {CartList} from "./ui/CartList/CartList";
+
+export {
+    cartActions,
+    cartReducer,
+    cartApi,
+    useGetCartQuery,
+    useGetCartCountQuery,
+    useValidateCartQuery,
+    useSyncCartMutation,
+    selectGuestCartItems,
+    selectGuestCartItemCount,
+    selectGuestCartSubtotal,
+    selectIsCartInitialized,
+    selectGuestCartItemByProductId,
+    useCartController,
+    useCartValidationController,
+    clearGuestCart,
+    getGuestCart,
+    setGuestCart,
+    broadcastCartClear,
+    broadcastCartUpdate,
+    onCartSync,
+    applyCartOptimisticUpdate,
+    applyCartItemQuantityChange,
+    findCartItemIndexByProductId,
+    recalculateCartTotals,
+    CartItemRow,
+    CartList,
+};
+
+export type {Cart, CartItem, CartSchema, CartTotals, CartValidationItem, GuestCartItem};

@@ -16,10 +16,10 @@ export interface Product {
     oldPrice?: number;
     stock: number;
     images: ProductImage[];
-    country?: string
-    brand?: string
-    categoryId: string
-    slugMap: Record<SupportedLngsType, string>
+    country?: string;
+    brand?: string;
+    categoryId: string;
+    slugMap: Record<SupportedLngsType, string>;
 }
 
 export interface ProductFacets {
@@ -31,24 +31,24 @@ export interface ProductFacets {
 export interface ProductsApiResponse {
     products: Product[];
     total: number;
-    hasMore: boolean
+    hasMore: boolean;
     facets: ProductFacets;
 }
 
 export interface ProductQuery {
-    search?: string
-    categorySlug?: string
-    categoryId?: string
-    tagId?: string
-    minPrice?: number
-    maxPrice?: number
+    search?: string;
+    categorySlug?: string;
+    categoryId?: string;
+    tagId?: string;
+    minPrice?: number;
+    maxPrice?: number;
     brands?: string[];
     countries?: string[];
-    inStock?: boolean
-    limit?: number
-    locale?: string
-    currency?: CurrencyType
+    inStock?: boolean;
+    limit?: number;
+    locale?: string;
+    currency?: CurrencyType;
 }
 
-export type FacetItemType = { label?: string, value: string, count: number }
-export type PriceRangeType = { min?: number, max?: number }
+export type FacetItemType = {label?: string; value: string; count: number};
+export type PriceRangeType = {min?: number; max?: number};

@@ -1,0 +1,9 @@
+.action {
+    color: var(--primary-color);
+    padding: 4px 8px;
+
+    svg {
+        stroke: var(--primary-color);
+        fill: none;
+    }
+}

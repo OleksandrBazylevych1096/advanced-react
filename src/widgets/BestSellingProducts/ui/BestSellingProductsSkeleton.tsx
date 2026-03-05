@@ -2,18 +2,20 @@ import styles from "@/widgets/BestSellingProducts/ui/BestSellingProducts.module.
 
 import {ProductCardSkeleton} from "@/entities/product";
 
-import {CarouselSkeleton} from "@/shared/ui";
+import {CarouselSkeleton, Stack} from "@/shared/ui";
 import {CarouselControlsSkeleton} from "@/shared/ui/Carousel/CarouselControlsSkeleton.tsx";
 
 export const BestSellingProductsSkeleton = () => {
-    return <section className={styles.section}>
-        <div className={styles.header}>
-            <div className={styles.titleSkeleton}/>
-            <div className={styles.controls}>
-                <div className={styles.buttonSkeleton}/>
-                <CarouselControlsSkeleton/>
-            </div>
-        </div>
-        <CarouselSkeleton count={10} ItemSkeletonComponent={<ProductCardSkeleton/>}/>
-    </section>
-}
+    return (
+        <section className={styles.section}>
+            <Stack className={styles.header} direction="row" align="center" justify="space-between">
+                <div className={styles.titleSkeleton} />
+                <Stack direction="row" gap={16} align="center">
+                    <div className={styles.buttonSkeleton} />
+                    <CarouselControlsSkeleton />
+                </Stack>
+            </Stack>
+            <CarouselSkeleton count={10} ItemSkeletonComponent={<ProductCardSkeleton />} />
+        </section>
+    );
+};

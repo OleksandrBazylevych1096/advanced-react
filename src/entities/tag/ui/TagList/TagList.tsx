@@ -1,6 +1,6 @@
 import {TagListSkeleton} from "@/entities/tag/ui/TagList/TagListSkeleton.tsx";
 
-import {Button} from "@/shared/ui";
+import {Button, Stack} from "@/shared/ui";
 
 import type {Tag} from "../../model/types/Tag";
 
@@ -13,22 +13,19 @@ interface TagListProps {
     currentTagId?: string;
 }
 
-
 export const TagList = (props: TagListProps) => {
     const {isLoading, currentTagId, onTagChange, tags} = props;
 
-    const handleTagChange = (tagId: string) => {
+    const changeTag = (tagId: string) => {
         onTagChange?.(tagId);
     };
 
     if (isLoading) {
-        return (
-            <TagListSkeleton/>
-        );
+        return <TagListSkeleton />;
     }
 
     return (
-        <div className={styles.tags}>
+        <Stack direction="row" gap={12} align="center" wrap="wrap">
             {tags?.map((tag) => {
                 const isSelected = tag.id === currentTagId;
                 return (
@@ -36,12 +33,12 @@ export const TagList = (props: TagListProps) => {
                         key={tag.id}
                         theme={isSelected ? "outline" : "tertiary"}
                         className={styles.tag}
-                        onClick={() => handleTagChange(tag.id)}
+                        onClick={() => changeTag(tag.id)}
                     >
                         {tag.name}
                     </Button>
                 );
             })}
-        </div>
+        </Stack>
     );
 };

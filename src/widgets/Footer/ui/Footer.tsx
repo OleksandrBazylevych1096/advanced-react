@@ -1,121 +1,205 @@
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
+import {useTranslation} from "react-i18next";
+import {Link} from "react-router";
 
 import LogoIcon from "@/shared/assets/icons/Logo.svg?react";
-import { routePaths } from "@/shared/config";
+import {AppRoutes, routePaths} from "@/shared/config";
+import {Box, Container, Stack, Typography} from "@/shared/ui";
 
 import styles from "./Footer.module.scss";
 
 export const Footer = () => {
-  const { t } = useTranslation();
-  return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
-        <LogoIcon className={styles.icon} />
+    const {t} = useTranslation();
 
-        <div className={styles.links}>
-          <div className={styles.column}>
-            <h3 className={styles.columnTitle}>{t("footer.about")}</h3>
-            <ul className={styles.linkList}>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.aboutUs")}
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.ourBranches")}
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.changeLog")}
-                </Link>
-              </li>
-            </ul>
-          </div>
+    return (
+        <footer className={styles.footer}>
+            <Container>
+                <Box py={10}>
+                    <Stack direction="row" gap={140} align="flex-start">
+                        <LogoIcon className={styles.icon} />
 
-          <div className={styles.column}>
-            <h3 className={styles.columnTitle}>{t("footer.quickLinks")}</h3>
-            <ul className={styles.linkList}>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.faqs")}
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.recipes")}
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.contactUs")}
-                </Link>
-              </li>
-            </ul>
-          </div>
+                        <Stack className={styles.links} direction="row" gap={80}>
+                            <Box className={styles.column}>
+                                <Box mb={20}>
+                                    <Typography
+                                        as="h3"
+                                        variant="heading"
+                                        weight="bold"
+                                        tone="default"
+                                    >
+                                        {t("footer.about")}
+                                    </Typography>
+                                </Box>
+                                <ul className={styles.linkList}>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.aboutUs")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.ourBranches")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.changeLog")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </Box>
 
-          <div className={styles.column}>
-            <h3 className={styles.columnTitle}>{t("footer.helpSupport")}</h3>
-            <ul className={styles.linkList}>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.termsOfService")}
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.privacyPolicy")}
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.security")}
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className={styles.column}>
-            <h3 className={styles.columnTitle}>{t("footer.company")}</h3>
-            <ul className={styles.linkList}>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.blog")}
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.contact")}
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className={styles.column}>
-            <h3 className={styles.columnTitle}>{t("footer.social")}</h3>
-            <ul className={styles.linkList}>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.facebook")}
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.instagram")}
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} to={routePaths.home}>
-                  {t("footer.twitter")}
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className={styles.copyright}>
-        {t("footer.copyright", { year: "2024", company: "EmaStudio" })}
-      </div>
-    </footer>
-  );
+                            <Box className={styles.column}>
+                                <Box mb={20}>
+                                    <Typography
+                                        as="h3"
+                                        variant="heading"
+                                        weight="bold"
+                                        tone="default"
+                                    >
+                                        {t("footer.quickLinks")}
+                                    </Typography>
+                                </Box>
+                                <ul className={styles.linkList}>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.faqs")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.recipes")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.contactUs")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </Box>
+
+                            <Box className={styles.column}>
+                                <Box mb={20}>
+                                    <Typography
+                                        as="h3"
+                                        variant="heading"
+                                        weight="bold"
+                                        tone="default"
+                                    >
+                                        {t("footer.helpSupport")}
+                                    </Typography>
+                                </Box>
+                                <ul className={styles.linkList}>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.termsOfService")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.privacyPolicy")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.security")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </Box>
+
+                            <Box className={styles.column}>
+                                <Box mb={20}>
+                                    <Typography
+                                        as="h3"
+                                        variant="heading"
+                                        weight="bold"
+                                        tone="default"
+                                    >
+                                        {t("footer.company")}
+                                    </Typography>
+                                </Box>
+                                <ul className={styles.linkList}>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.blog")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.contact")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </Box>
+
+                            <Box className={styles.column}>
+                                <Box mb={20}>
+                                    <Typography
+                                        as="h3"
+                                        variant="heading"
+                                        weight="bold"
+                                        tone="default"
+                                    >
+                                        {t("footer.social")}
+                                    </Typography>
+                                </Box>
+                                <ul className={styles.linkList}>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.facebook")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.instagram")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                            <Typography as="span" variant="bodySm" tone="muted">
+                                                {t("footer.twitter")}
+                                            </Typography>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </Box>
+                        </Stack>
+                    </Stack>
+                </Box>
+            </Container>
+
+            <Box mt={32}>
+                <Typography className={styles.copyright} variant="bodySm" tone="muted">
+                    {t("footer.copyright", {year: "2024", company: "EmaStudio"})}
+                </Typography>
+            </Box>
+        </footer>
+    );
 };

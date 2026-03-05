@@ -1,18 +1,8 @@
-import { selectRegisterStep } from "./model/selectors/selectRegisterStep/selectRegisterStep";
-import { registerActions, registerReducer } from "./model/slice/registerSlice";
-import {
-  type RegisterFormSchema,
-  type FormStepsType,
-  FormSteps,
-} from "./model/types/registerForm";
-import { RegisterForm } from "./ui/RegisterForm/RegisterForm";
+import {useRegisterFlow} from "./model/registerFlowContext";
+import {type FormStepsType, FormSteps} from "./config/formSteps";
+import {RegisterFlowProvider} from "./ui/RegisterFlowProvider/RegisterFlowProvider";
+import {RegisterForm} from "./ui/RegisterForm/RegisterForm";
 
-export type { RegisterFormSchema, FormStepsType };
+export type {FormStepsType};
 
-export {
-  registerReducer,
-  registerActions,
-  RegisterForm,
-  FormSteps,
-  selectRegisterStep,
-};
+export {RegisterForm, FormSteps, RegisterFlowProvider, useRegisterFlow};

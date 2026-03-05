@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 
 import {useIntersectionObserver} from "@/shared/lib";
 
-
 interface CounterProps {
     from?: number;
     to: number;
@@ -12,13 +11,7 @@ interface CounterProps {
 }
 
 export const Counter = (props: CounterProps) => {
-    const {
-        from = 0,
-        to,
-        durationMs = 2000,
-        formatter,
-        once = true,
-    } = props;
+    const {from = 0, to, durationMs = 2000, formatter, once = true} = props;
 
     const [value, setValue] = useState(from);
 

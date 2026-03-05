@@ -6,7 +6,6 @@ import react from "@vitejs/plugin-react";
 import {defineConfig} from "vite";
 import svgr from "vite-plugin-svgr";
 
-
 export default defineConfig({
     plugins: [react(), svgr()],
     resolve: {
@@ -19,7 +18,7 @@ export default defineConfig({
         environment: "jsdom",
         setupFiles: ["./src/shared/config/test/setupTests.ts"],
         env: {
-            VITE_API_URL: 'http://localhost:3000'
-        }
+            VITE_API_URL: "http://localhost:3000",
+        },
     },
 });

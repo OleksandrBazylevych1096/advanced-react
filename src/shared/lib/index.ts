@@ -1,18 +1,27 @@
-import {clampOptionalRange, clampRange, clampValue} from "@/shared/lib/clampRange/clampRange.ts";
-import {useIntersectionObserver} from "@/shared/lib/hooks/useIntersectionObserver.ts";
+import {useIntersectionObserver} from "@/shared/lib/browser/intersectionObserver/useIntersectionObserver.ts";
+import {isAbortError} from "@/shared/lib/errors/isAbortError";
+import {clampOptionalRange, clampRange, clampValue} from "@/shared/lib/math/range/clampRange.ts";
+import {createControllerResult} from "@/shared/lib/state/controllerResult";
+import {createVersionGuard} from "@/shared/lib/state/optimisticTransaction/createVersionGuard/createVersionGuard.ts";
+import {runOptimisticTxn} from "@/shared/lib/state/optimisticTransaction/runOptimisticTxn/runOptimisticTxn.ts";
 
-import {classNames as cn} from "./classNames/classNames";
-import {DynamicModuleLoader} from "./DynamicModuleLoader/DynamicModuleLoader";
-import {formatCompactNumber} from "./formatCompactNumber/formatCompactNumber";
-import {formatCurrency} from "./formatCurrency/formatCurrency";
-import {useToast} from "./hooks/useToast";
-import {useAppDispatch, useAppSelector} from "./redux/hooks";
-import type {DeepPartial} from "./redux/types";
+import {formatCurrency} from "./formatting/currency/formatCurrency";
+import {formatCompactNumber} from "./formatting/number/formatCompactNumber";
+import {useToast} from "./notifications/toast/useToast";
+import {DynamicModuleLoader} from "./state/dynamicReducers/DynamicModuleLoader";
+import {useAppDispatch, useAppSelector, useAppStore} from "./state/redux/hooks";
+import {classNames as cn} from "./styling/classNames/classNames";
+import {
+    passwordRequirements,
+    getPasswordRequirementsState,
+    isPasswordValid,
+} from "./validation/passwordRequirements";
 
 export {
     cn,
     useAppDispatch,
     useAppSelector,
+    useAppStore,
     DynamicModuleLoader,
     formatCompactNumber,
     useToast,
@@ -20,6 +29,14 @@ export {
     formatCurrency,
     clampOptionalRange,
     clampRange,
-    clampValue
+    clampValue,
+    createVersionGuard,
+    runOptimisticTxn,
+    isAbortError,
+    createControllerResult,
+    passwordRequirements,
+    getPasswordRequirementsState,
+    isPasswordValid,
 };
-export type {DeepPartial};
+export type {DeepPartial} from "./state/redux/types";
+export type {ControllerResult} from "./state/controllerResult";

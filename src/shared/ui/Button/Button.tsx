@@ -10,7 +10,7 @@ type ButtonSize = "xs" | "sm" | "md" | "lg";
 type ButtonForm = "rounded" | "pill" | "circle";
 type ButtonTheme = "primary" | "secondary" | "tertiary" | "outline" | "ghost";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children?: ReactNode;
     className?: string;
     size?: ButtonSize;
@@ -37,20 +37,13 @@ export const Button = (props: ButtonProps) => {
         <button
             {...rest}
             disabled={disabled}
-            className={cn(
-                styles.button,
-                className,
-                styles[size],
-                styles[form],
-                styles[theme],
-                {
-                    [styles.disabled]: disabled,
-                    [styles.fullWidth]: fullWidth,
-                    [styles.isLoading]: isLoading,
-                }
-            )}
+            className={cn(styles.button, className, styles[size], styles[form], styles[theme], {
+                [styles.disabled]: disabled,
+                [styles.fullWidth]: fullWidth,
+                [styles.isLoading]: isLoading,
+            })}
         >
-            {isLoading && <Spinner size="sm" theme={disabled ? 'primary' : 'secondary'}/>}
+            {isLoading && <Spinner size="sm" theme={disabled ? "primary" : "secondary"} />}
             {children}
         </button>
     );

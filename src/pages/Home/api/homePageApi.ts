@@ -19,5 +19,4 @@ const homePageApi = baseAPI.injectEndpoints({
     }),
 });
 
-export const {useGetFirstOrderProductsQuery} =
-    homePageApi;
+export const {useGetFirstOrderProductsQuery} = homePageApi;

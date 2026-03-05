@@ -1,17 +1,17 @@
-import type {Meta, StoryObj} from '@storybook/react-vite';
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import {fn} from "storybook/test";
 
 import {createMockTag, mockTags} from "@/entities/tag/api/test/mockData.ts";
 
-import {TagList} from './TagList';
+import {TagList} from "./TagList";
 
 const meta = {
-    title: 'entities/tag/TagList',
+    title: "entities/tag/TagList",
     component: TagList,
     parameters: {
-        layout: 'padded',
+        layout: "padded",
     },
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
         onTagChange: fn(),
     },
@@ -59,8 +59,6 @@ export const ManyTags: Story = {
     args: {
         tags: createMockTag.createList(20),
         isLoading: false,
-        currentTagId: '7',
+        currentTagId: "7",
     },
 };
-
-

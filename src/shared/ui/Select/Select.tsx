@@ -7,16 +7,16 @@ import React, {
     useLayoutEffect,
     useMemo,
     useRef,
-    useState
-} from 'react';
+    useState,
+} from "react";
 
-import ChevronRightIcon from '@/shared/assets/icons/ChevronRight.svg?react';
-import CloseIcon from '@/shared/assets/icons/Close.svg?react'
-import SearchIcon from '@/shared/assets/icons/Search.svg?react';
+import ChevronRightIcon from "@/shared/assets/icons/ChevronRight.svg?react";
+import CloseIcon from "@/shared/assets/icons/Close.svg?react";
+import SearchIcon from "@/shared/assets/icons/Search.svg?react";
 import {cn} from "@/shared/lib";
 import {AppIcon, Button, Checkbox, Input, Spinner} from "@/shared/ui";
 
-import styles from './Select.module.scss';
+import styles from "./Select.module.scss";
 
 export interface SelectOption<T = string | number> {
     label: string | ReactNode;
@@ -30,9 +30,9 @@ export interface SelectOptionGroup<T = string | number> {
     options: SelectOption<T>[];
 }
 
-export type SelectSize = 'xs' | 'sm' | 'md' | 'lg';
-export type SelectTheme = 'outlined' | 'filled';
-export type DropdownAlign = 'left' | 'right' | 'center' | 'auto';
+export type SelectSize = "xs" | "sm" | "md" | "lg";
+export type SelectTheme = "outlined" | "filled";
+export type DropdownAlign = "left" | "right" | "center" | "auto";
 
 export interface SelectProps<T = string | number> {
     value?: T | T[];
@@ -82,61 +82,60 @@ export interface SelectProps<T = string | number> {
     id?: string;
     name?: string;
     required?: boolean;
-    'aria-label'?: string;
-    'aria-labelledby'?: string;
-    'aria-describedby'?: string;
-    'data-testid'?: string;
-
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    "aria-describedby"?: string;
+    "data-testid"?: string;
 }
 
 export function Select<T = string | number>({
-                                                value,
-                                                defaultValue,
-                                                onChange,
-                                                options = [],
-                                                optionGroups,
-                                                multiple = false,
-                                                searchable = false,
-                                                clearable = false,
-                                                disabled = false,
-                                                readonly = false,
-                                                loading = false,
-                                                isOpen: controlledIsOpen,
-                                                onOpenChange,
-                                                onOpen,
-                                                onClose,
-                                                searchValue: controlledSearchValue,
-                                                onSearch,
-                                                filterOption,
-                                                onFocus,
-                                                onBlur,
-                                                placeholder = 'Choose...',
-                                                helperText,
-                                                errorMessage,
-                                                noOptionsMessage = 'Nothing has been found',
-                                                loadingMessage = 'Loading...',
-                                                className,
-                                                size = 'sm',
-                                                theme = 'outlined',
-                                                error = false,
-                                                fullWidth = false,
-                                                dropdownAlign = 'auto',
-                                                renderOption,
-                                                renderValue,
-                                                renderPlaceholder,
-                                                id,
-                                                name,
-                                                required = false,
-                                                'aria-label': ariaLabel,
-                                                'aria-labelledby': ariaLabelledby,
-                                                'aria-describedby': ariaDescribedby,
-                                                'data-testid': dataTestId = 'select'
-                                            }: SelectProps<T>) {
+    value,
+    defaultValue,
+    onChange,
+    options = [],
+    optionGroups,
+    multiple = false,
+    searchable = false,
+    clearable = false,
+    disabled = false,
+    readonly = false,
+    loading = false,
+    isOpen: controlledIsOpen,
+    onOpenChange,
+    onOpen,
+    onClose,
+    searchValue: controlledSearchValue,
+    onSearch,
+    filterOption,
+    onFocus,
+    onBlur,
+    placeholder = "Choose...",
+    helperText,
+    errorMessage,
+    noOptionsMessage = "Nothing has been found",
+    loadingMessage = "Loading...",
+    className,
+    size = "sm",
+    theme = "outlined",
+    error = false,
+    fullWidth = false,
+    dropdownAlign = "auto",
+    renderOption,
+    renderValue,
+    renderPlaceholder,
+    id,
+    name,
+    required = false,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
+    "aria-describedby": ariaDescribedby,
+    "data-testid": dataTestId = "select",
+}: SelectProps<T>) {
     const [internalValue, setInternalValue] = useState<T | T[]>(
-        defaultValue ?? (multiple ? [] : ('' as T))
+        defaultValue ?? (multiple ? [] : ("" as T)),
     );
     const [internalIsOpen, setInternalIsOpen] = useState(false);
-    const [internalSearchValue, setInternalSearchValue] = useState('');
+    const [internalSearchValue, setInternalSearchValue] = useState("");
     const [focusedIndex, setFocusedIndex] = useState(-1);
     const [isFocused, setIsFocused] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState<{
@@ -150,25 +149,26 @@ export function Select<T = string | number>({
 
     const currentValue = value !== undefined ? value : internalValue;
     const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
-    const searchValue = controlledSearchValue !== undefined ? controlledSearchValue : internalSearchValue;
+    const searchValue =
+        controlledSearchValue !== undefined ? controlledSearchValue : internalSearchValue;
 
     const allOptions = useMemo(() => {
         if (optionGroups) {
-            return optionGroups.flatMap(group => group.options);
+            return optionGroups.flatMap((group) => group.options);
         }
         return options;
     }, [options, optionGroups]);
 
     const visibleOptions = useMemo(() => {
-        let filtered = allOptions.filter(opt => !opt.hidden);
+        let filtered = allOptions.filter((opt) => !opt.hidden);
 
         if (searchValue && searchable) {
             const query = searchValue.toLowerCase();
-            filtered = filtered.filter(opt => {
+            filtered = filtered.filter((opt) => {
                 if (filterOption) {
                     return filterOption(opt, searchValue);
                 }
-                const label = typeof opt.label === 'string' ? opt.label : String(opt.label);
+                const label = typeof opt.label === "string" ? opt.label : String(opt.label);
                 return label.toLowerCase().includes(query);
             });
         }
@@ -176,18 +176,21 @@ export function Select<T = string | number>({
         return filtered;
     }, [allOptions, searchValue, searchable, filterOption]);
 
-    const isSelected = useCallback((option: SelectOption<T>) => {
-        if (multiple && Array.isArray(currentValue)) {
-            return currentValue.includes(option.value);
-        }
-        return currentValue === option.value;
-    }, [currentValue, multiple]);
+    const isSelected = useCallback(
+        (option: SelectOption<T>) => {
+            if (multiple && Array.isArray(currentValue)) {
+                return currentValue.includes(option.value);
+            }
+            return currentValue === option.value;
+        },
+        [currentValue, multiple],
+    );
 
     const selectedOptions = useMemo(() => {
         if (multiple && Array.isArray(currentValue)) {
-            return allOptions.filter(opt => currentValue.includes(opt.value));
+            return allOptions.filter((opt) => currentValue.includes(opt.value));
         }
-        return allOptions.filter(opt => opt.value === currentValue);
+        return allOptions.filter((opt) => opt.value === currentValue);
     }, [currentValue, allOptions, multiple]);
 
     const calculateDropdownPosition = useCallback(() => {
@@ -200,32 +203,32 @@ export function Select<T = string | number>({
         const position: typeof dropdownPosition = {};
 
         switch (dropdownAlign) {
-            case 'left':
-                position.left = '0';
-                position.right = 'auto';
+            case "left":
+                position.left = "0";
+                position.right = "auto";
                 break;
 
-            case 'right':
-                position.right = '0';
-                position.left = 'auto';
+            case "right":
+                position.right = "0";
+                position.left = "auto";
                 break;
 
-            case 'center':
-                position.left = '50%';
-                position.right = 'auto';
+            case "center":
+                position.left = "50%";
+                position.right = "auto";
                 break;
 
-            case 'auto': {
+            case "auto": {
                 const spaceOnRight = viewportWidth - controlRect.left;
                 const spaceOnLeft = controlRect.right;
                 const dropdownWidth = dropdownRect.width || 0;
 
                 if (spaceOnRight >= dropdownWidth || spaceOnRight >= spaceOnLeft) {
-                    position.left = '0';
-                    position.right = 'auto';
+                    position.left = "0";
+                    position.right = "auto";
                 } else {
-                    position.right = '0';
-                    position.left = 'auto';
+                    position.right = "0";
+                    position.left = "auto";
                 }
                 break;
             }
@@ -234,7 +237,7 @@ export function Select<T = string | number>({
         setDropdownPosition(position);
     }, [dropdownAlign]);
 
-    const handleToggleOpen = () => {
+    const toggleOpen = () => {
         if (disabled || readonly) return;
 
         const newIsOpen = !isOpen;
@@ -250,12 +253,12 @@ export function Select<T = string | number>({
             }
         } else {
             onClose?.();
-            setInternalSearchValue('');
+            setInternalSearchValue("");
             setFocusedIndex(-1);
         }
     };
 
-    const handleSelectOption = (option: SelectOption<T>) => {
+    const selectOption = (option: SelectOption<T>) => {
         if (option.disabled) return;
 
         let newValue: T | T[];
@@ -263,7 +266,7 @@ export function Select<T = string | number>({
         if (multiple) {
             const currentArray = Array.isArray(currentValue) ? currentValue : [];
             if (currentArray.includes(option.value)) {
-                newValue = currentArray.filter(v => v !== option.value);
+                newValue = currentArray.filter((v) => v !== option.value);
             } else {
                 newValue = [...currentArray, option.value];
             }
@@ -282,27 +285,27 @@ export function Select<T = string | number>({
         onChange?.(newValue);
     };
 
-    const handleClear = (e: React.MouseEvent) => {
+    const clearSelection = (e: React.MouseEvent) => {
         e.stopPropagation();
-        const newValue = multiple ? [] : ('' as T);
+        const newValue = multiple ? [] : ("" as T);
         if (value === undefined) {
             setInternalValue(newValue);
         }
         onChange?.(newValue as T | T[]);
     };
 
-    const handleRemoveValue = (optionValue: T, e: React.MouseEvent) => {
+    const removeSelectedValue = (optionValue: T, e: React.MouseEvent) => {
         e.stopPropagation();
         if (!multiple || !Array.isArray(currentValue)) return;
 
-        const newValue = currentValue.filter(v => v !== optionValue);
+        const newValue = currentValue.filter((v) => v !== optionValue);
         if (value === undefined) {
             setInternalValue(newValue);
         }
         onChange?.(newValue);
     };
 
-    const handleSearchChange = (value: string) => {
+    const changeSearchQuery = (value: string) => {
         if (controlledSearchValue === undefined) {
             setInternalSearchValue(value);
         }
@@ -310,22 +313,22 @@ export function Select<T = string | number>({
         setFocusedIndex(-1);
     };
 
-    const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const processKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
         if (disabled || readonly) return;
 
         switch (e.key) {
-            case 'Enter':
-            case ' ':
+            case "Enter":
+            case " ":
                 if (!isOpen) {
                     e.preventDefault();
-                    handleToggleOpen();
+                    toggleOpen();
                 } else if (focusedIndex >= 0 && focusedIndex < visibleOptions.length) {
                     e.preventDefault();
-                    handleSelectOption(visibleOptions[focusedIndex]);
+                    selectOption(visibleOptions[focusedIndex]);
                 }
                 break;
 
-            case 'Escape':
+            case "Escape":
                 if (isOpen) {
                     e.preventDefault();
                     if (controlledIsOpen === undefined) {
@@ -337,27 +340,23 @@ export function Select<T = string | number>({
                 }
                 break;
 
-            case 'ArrowDown':
+            case "ArrowDown":
                 e.preventDefault();
                 if (!isOpen) {
-                    handleToggleOpen();
+                    toggleOpen();
                 } else {
-                    setFocusedIndex(prev =>
-                        prev < visibleOptions.length - 1 ? prev + 1 : 0
-                    );
+                    setFocusedIndex((prev) => (prev < visibleOptions.length - 1 ? prev + 1 : 0));
                 }
                 break;
 
-            case 'ArrowUp':
+            case "ArrowUp":
                 e.preventDefault();
                 if (isOpen) {
-                    setFocusedIndex(prev =>
-                        prev > 0 ? prev - 1 : visibleOptions.length - 1
-                    );
+                    setFocusedIndex((prev) => (prev > 0 ? prev - 1 : visibleOptions.length - 1));
                 }
                 break;
 
-            case 'Tab':
+            case "Tab":
                 if (isOpen) {
                     if (controlledIsOpen === undefined) {
                         setInternalIsOpen(false);
@@ -369,12 +368,12 @@ export function Select<T = string | number>({
         }
     };
 
-    const handleFocus = (e: FocusEvent<HTMLDivElement>) => {
+    const notifyFocus = (e: FocusEvent<HTMLDivElement>) => {
         setIsFocused(true);
         onFocus?.(e);
     };
 
-    const handleBlur = (e: FocusEvent<HTMLDivElement>) => {
+    const notifyBlur = (e: FocusEvent<HTMLDivElement>) => {
         setIsFocused(false);
         onBlur?.(e);
     };
@@ -382,7 +381,7 @@ export function Select<T = string | number>({
     useEffect(() => {
         if (!isOpen) return;
 
-        const handleClickOutside = (e: MouseEvent) => {
+        const closeOnOutsideClick = (e: MouseEvent) => {
             if (
                 controlRef.current &&
                 dropdownRef.current &&
@@ -397,18 +396,18 @@ export function Select<T = string | number>({
             }
         };
 
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
+        document.addEventListener("mousedown", closeOnOutsideClick);
+        return () => document.removeEventListener("mousedown", closeOnOutsideClick);
     }, [isOpen, controlledIsOpen, onOpenChange, onClose]);
 
     useEffect(() => {
         if (focusedIndex >= 0 && dropdownRef.current) {
             const optionElement = dropdownRef.current.querySelector(
-                `[data-option-index="${focusedIndex}"]`
+                `[data-option-index="${focusedIndex}"]`,
             ) as HTMLElement;
 
             if (optionElement) {
-                optionElement.scrollIntoView({block: 'nearest'});
+                optionElement.scrollIntoView({block: "nearest"});
             }
         }
     }, [focusedIndex]);
@@ -418,13 +417,12 @@ export function Select<T = string | number>({
 
         calculateDropdownPosition();
 
-        window.addEventListener('resize', calculateDropdownPosition);
+        window.addEventListener("resize", calculateDropdownPosition);
 
         return () => {
-            window.removeEventListener('resize', calculateDropdownPosition);
+            window.removeEventListener("resize", calculateDropdownPosition);
         };
     }, [isOpen, calculateDropdownPosition]);
-
 
     const renderSelectedValue = () => {
         if (renderValue) {
@@ -433,25 +431,30 @@ export function Select<T = string | number>({
 
         if (multiple && Array.isArray(currentValue)) {
             if (currentValue.length === 0) {
-                return renderPlaceholder ? renderPlaceholder() : (
+                return renderPlaceholder ? (
+                    renderPlaceholder()
+                ) : (
                     <span className={styles.placeholder}>{placeholder}</span>
                 );
             }
 
             return selectedOptions.map((opt) => (
-                <div key={String(opt.value)} data-testid={`${dataTestId}-multi-value-${opt.value}`}
-                     className={styles.multiValue}>
+                <div
+                    key={String(opt.value)}
+                    data-testid={`${dataTestId}-multi-value-${opt.value}`}
+                    className={styles.multiValue}
+                >
                     <span>{opt.label}</span>
                     {!disabled && !readonly && (
                         <Button
                             className={styles.multiValueRemove}
-                            theme={'ghost'}
+                            theme={"ghost"}
                             type="button"
-                            onClick={(e) => handleRemoveValue(opt.value, e)}
+                            onClick={(e) => removeSelectedValue(opt.value, e)}
                             data-testid={`${dataTestId}-remove-value-${opt.value}`}
                             aria-label={`Видалити ${opt.label}`}
                         >
-                            <AppIcon Icon={CloseIcon}/>
+                            <AppIcon Icon={CloseIcon} />
                         </Button>
                     )}
                 </div>
@@ -460,7 +463,9 @@ export function Select<T = string | number>({
 
         const selected = selectedOptions[0];
         if (!selected) {
-            return renderPlaceholder ? renderPlaceholder() : (
+            return renderPlaceholder ? (
+                renderPlaceholder()
+            ) : (
                 <span className={styles.placeholder}>{placeholder}</span>
             );
         }
@@ -481,7 +486,6 @@ export function Select<T = string | number>({
                         className={styles.optionCheckbox}
                         data-testid={`${dataTestId}-checkbox-${option.value}`}
                     />
-
                 )}
                 <span>{option.label}</span>
             </>
@@ -490,31 +494,39 @@ export function Select<T = string | number>({
 
     const renderOptions = () => {
         if (loading) {
-            return <div data-testid={`${dataTestId}-loading-message`}
-                        className={styles.noOptions}>{loadingMessage}</div>;
+            return (
+                <div data-testid={`${dataTestId}-loading-message`} className={styles.noOptions}>
+                    {loadingMessage}
+                </div>
+            );
         }
 
         if (visibleOptions.length === 0) {
-            return <div data-testid={`${dataTestId}-no-options`}
-                        className={styles.noOptions}>{noOptionsMessage}</div>;
+            return (
+                <div data-testid={`${dataTestId}-no-options`} className={styles.noOptions}>
+                    {noOptionsMessage}
+                </div>
+            );
         }
 
         if (optionGroups) {
             return optionGroups.map((group, groupIndex) => {
-                const groupOptions = group.options.filter(opt =>
-                    visibleOptions.some(visOpt => visOpt.value === opt.value)
+                const groupOptions = group.options.filter((opt) =>
+                    visibleOptions.some((visOpt) => visOpt.value === opt.value),
                 );
 
                 if (groupOptions.length === 0) return null;
 
                 return (
-                    <div key={groupIndex} className={styles.optionGroup}
-                         data-testid={`${dataTestId}-group-${groupIndex}`}
+                    <div
+                        key={groupIndex}
+                        className={styles.optionGroup}
+                        data-testid={`${dataTestId}-group-${groupIndex}`}
                     >
                         <div className={styles.optionGroupLabel}>{group.label}</div>
                         {groupOptions.map((option) => {
                             const globalIndex = visibleOptions.findIndex(
-                                opt => opt.value === option.value
+                                (opt) => opt.value === option.value,
                             );
 
                             return (
@@ -525,15 +537,12 @@ export function Select<T = string | number>({
                                     role="option"
                                     aria-selected={isSelected(option)}
                                     aria-disabled={option.disabled}
-                                    className={cn(
-                                        styles.option,
-                                        {
-                                            [styles.selected]: isSelected(option),
-                                            [styles.focused]: focusedIndex === globalIndex,
-                                            [styles.disabled]: !!option.disabled,
-                                        }
-                                    )}
-                                    onClick={() => handleSelectOption(option)}
+                                    className={cn(styles.option, {
+                                        [styles.selected]: isSelected(option),
+                                        [styles.focused]: focusedIndex === globalIndex,
+                                        [styles.disabled]: !!option.disabled,
+                                    })}
+                                    onClick={() => selectOption(option)}
                                 >
                                     {renderOptionContent(option)}
                                 </div>
@@ -552,117 +561,99 @@ export function Select<T = string | number>({
                 aria-selected={isSelected(option)}
                 aria-disabled={option.disabled}
                 data-testid={`${dataTestId}-option-${option.value}`}
-                className={cn(
-                    styles.option,
-                    {
-                        [styles.selected]: isSelected(option),
-                        [styles.focused]: focusedIndex === index,
-                        [styles.disabled]: !!option.disabled,
-                    }
-                )}
-                onClick={() => handleSelectOption(option)}
+                className={cn(styles.option, {
+                    [styles.selected]: isSelected(option),
+                    [styles.focused]: focusedIndex === index,
+                    [styles.disabled]: !!option.disabled,
+                })}
+                onClick={() => selectOption(option)}
             >
                 {renderOptionContent(option)}
             </div>
         ));
     };
 
-    const showClear = clearable && !disabled && !readonly && (
-        multiple
+    const showClear =
+        clearable &&
+        !disabled &&
+        !readonly &&
+        (multiple
             ? Array.isArray(currentValue) && currentValue.length > 0
-            : currentValue !== '' && currentValue !== null && currentValue !== undefined
-    );
+            : currentValue !== "" && currentValue !== null && currentValue !== undefined);
 
     const helperId = `${id}-helper`;
     const errorId = `${id}-error`;
 
     return (
-        <div data-testid={dataTestId}
-             className={cn(
-                 styles.select,
-                 {[styles.fullWidth]: fullWidth},
-                 className
-             )}>
-            <div data-testid={`${dataTestId}-control`}
-                 ref={controlRef}
-                 className={cn(
-                     styles.control,
-                     styles[size],
-                     styles[theme],
-                     {
-                         [styles.focused]: isFocused,
-                         [styles.open]: isOpen,
-                         [styles.disabled]: disabled,
-                         [styles.readonly]: readonly,
-                         [styles.error]: error || !!errorMessage,
-                     }
-                 )}
-                 onClick={handleToggleOpen}
-                 onKeyDown={handleKeyDown}
-                 onFocus={handleFocus}
-                 onBlur={handleBlur}
-                 tabIndex={disabled || readonly ? -1 : 0}
-                 role="combobox"
-                 aria-expanded={isOpen}
-                 aria-haspopup="listbox"
-                 aria-controls={`${id}-listbox`}
-                 aria-label={ariaLabel}
-                 aria-labelledby={ariaLabelledby}
-                 aria-describedby={
-                     errorMessage ? errorId : helperText ? helperId : ariaDescribedby
-                 }
-                 aria-required={required}
-                 aria-disabled={disabled}
-                 aria-readonly={readonly}
+        <div
+            data-testid={dataTestId}
+            className={cn(styles.select, {[styles.fullWidth]: fullWidth}, className)}
+        >
+            <div
+                data-testid={`${dataTestId}-control`}
+                ref={controlRef}
+                className={cn(styles.control, styles[size], styles[theme], {
+                    [styles.focused]: isFocused,
+                    [styles.open]: isOpen,
+                    [styles.disabled]: disabled,
+                    [styles.readonly]: readonly,
+                    [styles.error]: error || !!errorMessage,
+                })}
+                onClick={toggleOpen}
+                onKeyDown={processKeyDown}
+                onFocus={notifyFocus}
+                onBlur={notifyBlur}
+                tabIndex={disabled || readonly ? -1 : 0}
+                role="combobox"
+                aria-expanded={isOpen}
+                aria-haspopup="listbox"
+                aria-controls={`${id}-listbox`}
+                aria-label={ariaLabel}
+                aria-labelledby={ariaLabelledby}
+                aria-describedby={errorMessage ? errorId : helperText ? helperId : ariaDescribedby}
+                aria-required={required}
+                aria-disabled={disabled}
+                aria-readonly={readonly}
             >
-                <div data-testid={`${dataTestId}-value`}
-                     className={styles.valueContainer}>
+                <div data-testid={`${dataTestId}-value`} className={styles.valueContainer}>
                     {renderSelectedValue()}
                 </div>
 
                 <div className={styles.indicators}>
                     {loading && (
-                        <Spinner data-testid={`${dataTestId}-loading-spinner`} size={'sm'}/>
+                        <Spinner data-testid={`${dataTestId}-loading-spinner`} size={"sm"} />
                     )}
 
                     {showClear && (
                         <Button
-                            theme={'ghost'}
+                            theme={"ghost"}
                             className={styles.clearIndicator}
-                            onClick={handleClear}
+                            onClick={clearSelection}
                             aria-label="Clear"
                             data-testid={`${dataTestId}-clear-button`}
-
                         >
-                            <AppIcon Icon={CloseIcon}/>
+                            <AppIcon Icon={CloseIcon} />
                         </Button>
                     )}
 
                     {!loading && (
-                        <AppIcon
-                            Icon={ChevronRightIcon}
-                            className={styles.dropdownIndicator}
-                        />
+                        <AppIcon Icon={ChevronRightIcon} className={styles.dropdownIndicator} />
                     )}
                 </div>
             </div>
 
             <div
                 ref={dropdownRef}
-                className={cn(
-                    styles.dropdown,
-                    {
-                        [styles.hidden]: !isOpen,
-                        [styles.searchable]: searchable,
-                        [styles.alignCenter]: dropdownAlign === 'center',
-                    }
-                )}
+                className={cn(styles.dropdown, {
+                    [styles.hidden]: !isOpen,
+                    [styles.searchable]: searchable,
+                    [styles.alignCenter]: dropdownAlign === "center",
+                })}
                 style={dropdownPosition}
                 id={`${id}-listbox`}
                 role="listbox"
                 aria-multiselectable={multiple}
                 data-testid={`${dataTestId}-dropdown`}
-
             >
                 {searchable && (
                     <div className={styles.search}>
@@ -670,19 +661,16 @@ export function Select<T = string | number>({
                             ref={searchInputRef}
                             type="text"
                             value={searchValue}
-                            onChange={handleSearchChange}
-                            Icon={<AppIcon size={18} Icon={SearchIcon} theme="background"/>}
+                            onChange={changeSearchQuery}
+                            Icon={<AppIcon size={18} Icon={SearchIcon} theme="background" />}
                             placeholder="Search..."
                             aria-label="Search options"
                             data-testid={`${dataTestId}-search-input`}
-
                         />
                     </div>
                 )}
 
-                <div className={styles.optionsList}>
-                    {renderOptions()}
-                </div>
+                <div className={styles.optionsList}>{renderOptions()}</div>
             </div>
 
             {(helperText || errorMessage) && (

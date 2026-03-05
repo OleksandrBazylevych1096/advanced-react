@@ -1,89 +1,89 @@
-@use '../../../app/styles/animations';
+@use "../../../app/styles/animations";
 
 .carousel {
-  width: 100%;
-  margin: auto;
+    width: 100%;
+    margin: auto;
 }
 
 .carouselViewport {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .carouselContainer {
-  display: flex;
-  touch-action: pan-y pinch-zoom;
+    display: flex;
+    touch-action: pan-y pinch-zoom;
 }
 
 .carouselSlide {
-  flex: 0 0 auto;
-  min-width: 0;
-  transform: translate3d(0, 0, 0);
-  cursor: pointer;
-  position: relative;
-  padding-right: 16px;
+    flex: 0 0 auto;
+    min-width: 0;
+    transform: translate3d(0, 0, 0);
+    cursor: pointer;
+    position: relative;
+    padding-right: 16px;
 }
 
-
 .emblaButtons {
-  display: flex;
-  gap: 8px;
+    display: flex;
+    gap: 8px;
 }
 
 .buttonSkeleton {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(
-                  90deg,
-                  var(--gray-200) 25%,
-                  var(--gray-100) 37%,
-                  var(--gray-200) 63%
-  );
-  background-size: 400% 100%;
-  animation: shimmer 1.4s ease infinite;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-100) 37%,
+        var(--gray-200) 63%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
 }
 
-
 .thumbs {
-  margin-top: 8px;
+    margin-top: 8px;
 }
 
 .thumbsViewport {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .thumbsContainer {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  touch-action: pan-x pinch-zoom;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    touch-action: pan-x pinch-zoom;
 }
 
 .thumbSlide {
-  flex: 0 0 auto;
-  height: 96px;
-  width: 96px;
-  border-radius: 12px;
-  opacity: 0.5;
-  transition: opacity 0.2s ease, border 0.2s ease;
+    flex: 0 0 auto;
+    height: 96px;
+    width: 96px;
+    border-radius: 12px;
+    opacity: 0.5;
+    transition:
+        opacity 0.2s ease,
+        border 0.2s ease;
 }
 
 .thumbSlideSelected {
-  opacity: 1;
-  border: 3px solid var(--primary-color);
+    opacity: 1;
+    border: 3px solid var(--primary-color);
 }
 
 .thumbButton {
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  overflow: hidden;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    overflow: hidden;
 }
 
 .thumbImage {
-  width: 90%;
-  height: 90%;
-  object-fit: contain;
-  display: block;
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    display: block;
 }

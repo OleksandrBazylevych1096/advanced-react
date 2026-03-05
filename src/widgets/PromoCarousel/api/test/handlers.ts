@@ -1,13 +1,12 @@
-import {API_URL} from '@/shared/config';
-import {createHandlers} from "@/shared/lib/test/msw/createHandlers.ts";
+import {API_URL} from "@/shared/config";
+import {createHandlers} from "@/shared/lib/testing/msw/createHandlers.ts";
 
-import {mockBanners} from './mockData.ts';
-
+import {mockBanners} from "./mockData.ts";
 
 export const promoCarouselHandlers = createHandlers({
     endpoint: `${API_URL}/promo-banners/active`,
-    method: 'get',
+    method: "get",
     defaultData: mockBanners,
-    errorData: {error: 'Failed to load banners'},
+    errorData: {error: "Failed to load banners"},
     errorStatus: 500,
 });

@@ -13,31 +13,31 @@ const mockGetBoundingClientRect = (element: HTMLElement) => {
         height: 20,
         x: 0,
         y: 0,
-        toJSON: () => ({})
+        toJSON: () => ({}),
     }));
 };
 
 describe("RangeSlider", () => {
     describe("Rendering", () => {
         it("should render with default props", () => {
-            render(<RangeSlider/>);
+            render(<RangeSlider />);
             expect(screen.getByTestId("range-slider")).toBeInTheDocument();
             expect(screen.getByTestId("slider-thumb-0")).toBeInTheDocument();
             expect(screen.getByTestId("slider-thumb-1")).toBeInTheDocument();
         });
 
         it("should render with label", () => {
-            render(<RangeSlider label="Price Range"/>);
+            render(<RangeSlider label="Price Range" />);
             expect(screen.getByTestId("range-slider-label")).toHaveTextContent("Price Range");
         });
 
         it("should apply custom className", () => {
-            render(<RangeSlider className="custom-class"/>);
+            render(<RangeSlider className="custom-class" />);
             expect(screen.getByTestId("range-slider")).toHaveClass(/custom-class/);
         });
 
         it("should render with disabled state", () => {
-            render(<RangeSlider disabled/>);
+            render(<RangeSlider disabled />);
             const thumb0 = screen.getByTestId("slider-thumb-0");
             const thumb1 = screen.getByTestId("slider-thumb-1");
 
@@ -48,25 +48,25 @@ describe("RangeSlider", () => {
 
     describe("Initial values", () => {
         it("should use defaultValue when provided", () => {
-            render(<RangeSlider defaultValue={[20, 80]} min={0} max={100}/>);
+            render(<RangeSlider defaultValue={[20, 80]} min={0} max={100} />);
             expect(screen.getByTestId("slider-thumb-0")).toHaveAttribute("aria-valuenow", "20");
             expect(screen.getByTestId("slider-thumb-1")).toHaveAttribute("aria-valuenow", "80");
         });
 
         it("should use controlled value over defaultValue", () => {
-            render(<RangeSlider value={[30, 70]} defaultValue={[20, 80]} min={0} max={100}/>);
+            render(<RangeSlider value={[30, 70]} defaultValue={[20, 80]} min={0} max={100} />);
             expect(screen.getByTestId("slider-thumb-0")).toHaveAttribute("aria-valuenow", "30");
             expect(screen.getByTestId("slider-thumb-1")).toHaveAttribute("aria-valuenow", "70");
         });
 
         it("should clamp initial values to min/max bounds", () => {
-            render(<RangeSlider value={[-10, 110]} min={0} max={100}/>);
+            render(<RangeSlider value={[-10, 110]} min={0} max={100} />);
             expect(screen.getByTestId("slider-thumb-0")).toHaveAttribute("aria-valuenow", "0");
             expect(screen.getByTestId("slider-thumb-1")).toHaveAttribute("aria-valuenow", "100");
         });
 
         it("should respect minRange on initial values", () => {
-            render(<RangeSlider value={[40, 45]} minRange={10} min={0} max={100}/>);
+            render(<RangeSlider value={[40, 45]} minRange={10} min={0} max={100} />);
             const thumb0 = screen.getByTestId("slider-thumb-0");
             const thumb1 = screen.getByTestId("slider-thumb-1");
             const val1 = Number(thumb0.getAttribute("aria-valuenow"));
@@ -78,7 +78,7 @@ describe("RangeSlider", () => {
     describe("Thumb interactions", () => {
         it("should update value on thumb drag", () => {
             const onChange = vi.fn();
-            render(<RangeSlider min={0} max={100} value={[20, 80]} onChange={onChange}/>);
+            render(<RangeSlider min={0} max={100} value={[20, 80]} onChange={onChange} />);
 
             const thumb = screen.getByTestId("slider-thumb-0");
             const track = screen.getByTestId("slider-track");
@@ -93,7 +93,7 @@ describe("RangeSlider", () => {
 
         it("should call onChangeEnd when drag ends", () => {
             const onChangeEnd = vi.fn();
-            render(<RangeSlider min={0} max={100} value={[20, 80]} onChangeEnd={onChangeEnd}/>);
+            render(<RangeSlider min={0} max={100} value={[20, 80]} onChangeEnd={onChangeEnd} />);
 
             const thumb = screen.getByTestId("slider-thumb-0");
             const track = screen.getByTestId("slider-track");
@@ -108,7 +108,7 @@ describe("RangeSlider", () => {
 
         it("should not update value when disabled", () => {
             const onChange = vi.fn();
-            render(<RangeSlider disabled min={0} max={100} value={[20, 80]} onChange={onChange}/>);
+            render(<RangeSlider disabled min={0} max={100} value={[20, 80]} onChange={onChange} />);
 
             const thumb = screen.getByTestId("slider-thumb-0");
             const track = screen.getByTestId("slider-track");
@@ -123,7 +123,7 @@ describe("RangeSlider", () => {
 
         it("should support touch events", () => {
             const onChange = vi.fn();
-            render(<RangeSlider min={0} max={100} value={[20, 80]} onChange={onChange}/>);
+            render(<RangeSlider min={0} max={100} value={[20, 80]} onChange={onChange} />);
 
             const thumb = screen.getByTestId("slider-thumb-0");
             const track = screen.getByTestId("slider-track");
@@ -138,7 +138,7 @@ describe("RangeSlider", () => {
 
         it("should handle both thumbs independently", () => {
             const onChange = vi.fn();
-            render(<RangeSlider min={0} max={100} value={[20, 80]} onChange={onChange}/>);
+            render(<RangeSlider min={0} max={100} value={[20, 80]} onChange={onChange} />);
 
             const thumb0 = screen.getByTestId("slider-thumb-0");
             const thumb1 = screen.getByTestId("slider-thumb-1");
@@ -162,7 +162,9 @@ describe("RangeSlider", () => {
     describe("Step functionality", () => {
         it("should snap to step values", () => {
             const onChange = vi.fn();
-            render(<RangeSlider min={0} max={100} step={10} value={[20, 80]} onChange={onChange}/>);
+            render(
+                <RangeSlider min={0} max={100} step={10} value={[20, 80]} onChange={onChange} />,
+            );
 
             const thumb = screen.getByTestId("slider-thumb-0");
             const track = screen.getByTestId("slider-track");
@@ -190,7 +192,7 @@ describe("RangeSlider", () => {
                     minRange={20}
                     value={[40, 60]}
                     onChange={onChange}
-                />
+                />,
             );
 
             const minThumb = screen.getByTestId("slider-thumb-0");
@@ -210,14 +212,14 @@ describe("RangeSlider", () => {
 
     describe("Tooltip behavior", () => {
         it('should show tooltip always when tooltip="always"', () => {
-            render(<RangeSlider min={0} max={100} value={[20, 80]} tooltip="always"/>);
+            render(<RangeSlider min={0} max={100} value={[20, 80]} tooltip="always" />);
 
             expect(screen.getByTestId("slider-tooltip-0")).toBeInTheDocument();
             expect(screen.getByTestId("slider-tooltip-1")).toBeInTheDocument();
         });
 
         it('should not show tooltip when tooltip="never"', () => {
-            render(<RangeSlider min={0} max={100} value={[20, 80]} tooltip="never"/>);
+            render(<RangeSlider min={0} max={100} value={[20, 80]} tooltip="never" />);
 
             const thumb = screen.getByTestId("slider-thumb-0");
             const track = screen.getByTestId("slider-track");
@@ -230,7 +232,7 @@ describe("RangeSlider", () => {
         });
 
         it('should show tooltip on drag when tooltip="auto"', () => {
-            render(<RangeSlider min={0} max={100} value={[20, 80]} tooltip="auto"/>);
+            render(<RangeSlider min={0} max={100} value={[20, 80]} tooltip="auto" />);
 
             expect(screen.queryByTestId("slider-tooltip-0")).not.toBeInTheDocument();
 
@@ -244,7 +246,7 @@ describe("RangeSlider", () => {
         });
 
         it("should display floor value for min thumb and ceil for max thumb", () => {
-            render(<RangeSlider min={0} max={100} value={[20.7, 80.3]} tooltip="always"/>);
+            render(<RangeSlider min={0} max={100} value={[20.7, 80.3]} tooltip="always" />);
 
             expect(screen.getByTestId("slider-tooltip-0")).toHaveTextContent("20");
             expect(screen.getByTestId("slider-tooltip-1")).toHaveTextContent("81");
@@ -258,7 +260,7 @@ describe("RangeSlider", () => {
                     value={[20, 80]}
                     tooltip="always"
                     tooltipPlacement="top"
-                />
+                />,
             );
 
             const tooltip = screen.getByTestId("slider-tooltip-0");
@@ -271,7 +273,7 @@ describe("RangeSlider", () => {
                     value={[20, 80]}
                     tooltip="always"
                     tooltipPlacement="bottom"
-                />
+                />,
             );
 
             const tooltipBottom = screen.getByTestId("slider-tooltip-0");
@@ -281,12 +283,12 @@ describe("RangeSlider", () => {
 
     describe("Controlled component behavior", () => {
         it("should update when controlled value changes", () => {
-            const {rerender} = render(<RangeSlider min={0} max={100} value={[20, 80]}/>);
+            const {rerender} = render(<RangeSlider min={0} max={100} value={[20, 80]} />);
 
             expect(screen.getByTestId("slider-thumb-0")).toHaveAttribute("aria-valuenow", "20");
             expect(screen.getByTestId("slider-thumb-1")).toHaveAttribute("aria-valuenow", "80");
 
-            rerender(<RangeSlider min={0} max={100} value={[30, 70]}/>);
+            rerender(<RangeSlider min={0} max={100} value={[30, 70]} />);
 
             expect(screen.getByTestId("slider-thumb-0")).toHaveAttribute("aria-valuenow", "30");
             expect(screen.getByTestId("slider-thumb-1")).toHaveAttribute("aria-valuenow", "70");
@@ -295,7 +297,7 @@ describe("RangeSlider", () => {
 
     describe("Accessibility", () => {
         it("should have correct ARIA attributes", () => {
-            render(<RangeSlider min={0} max={100} value={[20, 80]}/>);
+            render(<RangeSlider min={0} max={100} value={[20, 80]} />);
 
             const thumb0 = screen.getByTestId("slider-thumb-0");
             const thumb1 = screen.getByTestId("slider-thumb-1");
@@ -309,14 +311,14 @@ describe("RangeSlider", () => {
         });
 
         it("should be keyboard accessible when not disabled", () => {
-            render(<RangeSlider min={0} max={100} value={[20, 80]}/>);
+            render(<RangeSlider min={0} max={100} value={[20, 80]} />);
 
             expect(screen.getByTestId("slider-thumb-0")).toHaveAttribute("tabIndex", "0");
             expect(screen.getByTestId("slider-thumb-1")).toHaveAttribute("tabIndex", "0");
         });
 
         it("should not be keyboard accessible when disabled", () => {
-            render(<RangeSlider disabled min={0} max={100} value={[20, 80]}/>);
+            render(<RangeSlider disabled min={0} max={100} value={[20, 80]} />);
 
             expect(screen.getByTestId("slider-thumb-0")).toHaveAttribute("tabIndex", "-1");
             expect(screen.getByTestId("slider-thumb-1")).toHaveAttribute("tabIndex", "-1");
@@ -325,7 +327,7 @@ describe("RangeSlider", () => {
 
     describe("Track styling", () => {
         it("should render filled track between thumbs", () => {
-            render(<RangeSlider min={0} max={100} value={[20, 80]}/>);
+            render(<RangeSlider min={0} max={100} value={[20, 80]} />);
 
             const filled = screen.getByTestId("slider-filled");
             expect(filled).toBeInTheDocument();
@@ -334,13 +336,13 @@ describe("RangeSlider", () => {
         });
 
         it("should update filled track on value change", () => {
-            const {rerender} = render(<RangeSlider min={0} max={100} value={[20, 80]}/>);
+            const {rerender} = render(<RangeSlider min={0} max={100} value={[20, 80]} />);
 
             let filled = screen.getByTestId("slider-filled");
             expect(filled.style.left).toBe("20%");
             expect(filled.style.width).toBe("60%");
 
-            rerender(<RangeSlider min={0} max={100} value={[30, 70]}/>);
+            rerender(<RangeSlider min={0} max={100} value={[30, 70]} />);
 
             filled = screen.getByTestId("slider-filled");
             expect(filled.style.left).toBe("30%");
@@ -350,7 +352,7 @@ describe("RangeSlider", () => {
 
     describe("Active state", () => {
         it("should mark thumb as active during drag", () => {
-            render(<RangeSlider min={0} max={100} value={[20, 80]}/>);
+            render(<RangeSlider min={0} max={100} value={[20, 80]} />);
 
             const thumb = screen.getByTestId("slider-thumb-0");
             const track = screen.getByTestId("slider-track");
@@ -370,25 +372,25 @@ describe("RangeSlider", () => {
 
     describe("Edge cases", () => {
         it("should handle min and max being equal", () => {
-            render(<RangeSlider min={50} max={50} value={[50, 50]}/>);
+            render(<RangeSlider min={50} max={50} value={[50, 50]} />);
             expect(screen.getByTestId("slider-thumb-0")).toBeInTheDocument();
             expect(screen.getByTestId("slider-thumb-1")).toBeInTheDocument();
         });
 
         it("should handle negative ranges", () => {
-            render(<RangeSlider min={-100} max={-50} value={[-80, -60]}/>);
+            render(<RangeSlider min={-100} max={-50} value={[-80, -60]} />);
             expect(screen.getByTestId("slider-thumb-0")).toHaveAttribute("aria-valuenow", "-80");
             expect(screen.getByTestId("slider-thumb-1")).toHaveAttribute("aria-valuenow", "-60");
         });
 
         it("should handle very small step values", () => {
-            render(<RangeSlider min={0} max={1} step={0.01} value={[0.25, 0.75]}/>);
+            render(<RangeSlider min={0} max={1} step={0.01} value={[0.25, 0.75]} />);
             expect(screen.getByTestId("slider-thumb-0")).toHaveAttribute("aria-valuenow", "0.25");
             expect(screen.getByTestId("slider-thumb-1")).toHaveAttribute("aria-valuenow", "0.75");
         });
 
         it("should handle decimal values correctly", () => {
-            render(<RangeSlider min={0} max={10} step={0.5} value={[2.5, 7.5]}/>);
+            render(<RangeSlider min={0} max={10} step={0.5} value={[2.5, 7.5]} />);
             expect(screen.getByTestId("slider-thumb-0")).toHaveAttribute("aria-valuenow", "2.5");
             expect(screen.getByTestId("slider-thumb-1")).toHaveAttribute("aria-valuenow", "7.5");
         });
@@ -396,12 +398,12 @@ describe("RangeSlider", () => {
 
     describe("Wrapper elements", () => {
         it("should render slider wrapper", () => {
-            render(<RangeSlider/>);
+            render(<RangeSlider />);
             expect(screen.getByTestId("slider-wrapper")).toBeInTheDocument();
         });
 
         it("should render track element", () => {
-            render(<RangeSlider/>);
+            render(<RangeSlider />);
             expect(screen.getByTestId("slider-track")).toBeInTheDocument();
         });
     });

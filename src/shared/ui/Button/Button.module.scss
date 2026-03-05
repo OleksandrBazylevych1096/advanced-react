@@ -1,152 +1,160 @@
 .button {
-  width: max-content;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  border: none;
-  border-radius: 8px;
-  transition: all 0.2s linear;
-  color: var(--black);
-  outline: none;
+    width: max-content;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.2s linear;
+    color: var(--black);
+    outline: none;
 }
 
 .primary {
-  background-color: var(--primary-color);
-  color: var(--white);
+    background-color: var(--primary-color);
+    color: var(--white);
 
-  svg {
-    fill: var(--white);
-  }
+    svg {
+        fill: var(--white);
+    }
 
-  &:hover {
-    background-color: var(--primary-color-dark);
-  }
+    &:hover {
+        background-color: var(--primary-color-dark);
+    }
 }
 
 .secondary {
-  background-color: var(--primary-color-light);
-  border: 1px solid var(--primary-color-light);
+    background-color: var(--primary-color-light);
+    border: 1px solid var(--primary-color-light);
 
-  &:hover {
-    border-color: var(--primary-color);
-  }
+    &:hover {
+        border-color: var(--primary-color);
+    }
 }
 
 .tertiary {
-  background-color: var(--white);
-  border: 1px solid var(--gray-100);
+    background-color: var(--white);
+    border: 1px solid var(--gray-100);
 
-  &:hover {
-    background-color: var(--gray-50);
-    border-color: var(--gray-200);
-  }
+    &:hover {
+        background-color: var(--gray-50);
+        border-color: var(--gray-200);
+    }
 }
 
 .outline {
-  background-color: var(--white);
-  border: 1px solid var(--primary-color);
+    background-color: var(--white);
+    border: 1px solid var(--primary-color);
 
-  &:hover {
-    background-color: var(--primary-color-light);
-    border-color: var(--primary-color-dark);
-  }
+    &:hover {
+        background-color: var(--primary-color-light);
+        border-color: var(--primary-color-dark);
+    }
 
-  &.disabled {
-    border-color: var(--gray-200);
-  }
+    &.disabled {
+        border-color: var(--gray-200);
+    }
 }
 
 .disabled {
-  color: var(--gray-400);
-  background-color: var(--gray-100);
-  pointer-events: none;
+    color: var(--gray-400);
+    background-color: var(--gray-200);
+    pointer-events: none;
 
-  svg {
-    fill: var(--gray-400);
-  }
+    svg {
+        fill: var(--gray-400);
+    }
 }
 
 .pill {
-  border-radius: 39px;
+    border-radius: 39px;
 }
 
 .circle {
-  border-radius: 100%;
-  aspect-ratio: 1;
+    border-radius: 100%;
+    flex-shrink: 0;
 }
 
 .xs {
-  padding: 8px 16px;
-  font: var(--font-xs);
+    padding: 8px 16px;
+    font: var(--font-xs);
 
-  svg {
-    height: 16px;
-    width: 16px;
-  }
+    svg {
+        height: 16px;
+        width: 16px;
+    }
 
-  &.circle {
-    padding: 8px;
-  }
+    &.circle {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+    }
 }
 
 .sm {
-  padding: 10px 20px;
-  font: var(--font-s);
+    padding: 10px 20px;
+    font: var(--font-s);
 
-  svg {
-    height: 20px;
-    width: 20px;
-  }
+    svg {
+        height: 20px;
+        width: 20px;
+    }
 
-  &.circle {
-    padding: 10px;
-  }
+    &.circle {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+    }
 }
 
 .md {
-  padding: 12px 24px;
-  font: var(--font-m);
+    padding: 12px 24px;
+    font: var(--font-m);
 
-  svg {
-    height: 20px;
-    width: 20px;
-  }
+    svg {
+        height: 20px;
+        width: 20px;
+    }
 
-  &.circle {
-    padding: 12px;
-  }
+    &.circle {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+    }
 }
 
 .lg {
-  padding: 16px 32px;
-  font: var(--font-base);
+    padding: 16px 32px;
+    font: var(--font-base);
 
-  svg {
-    height: 24px;
-    width: 24px;
-  }
+    svg {
+        height: 24px;
+        width: 24px;
+    }
 
-  &.circle {
-    padding: 16px;
-  }
+    &.circle {
+        width: 56px;
+        height: 56px;
+        padding: 0;
+    }
 }
 
 .xs,
 .sm,
 .md,
 .lg {
-  font-weight: 600;
+    font-weight: 600;
 }
 
 .ghost {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  font-weight: 500;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-weight: 500;
 }
 
 .fullWidth {
-  width: 100%;
+    width: 100%;
 }
