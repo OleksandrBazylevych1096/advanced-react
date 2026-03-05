@@ -1,6 +1,11 @@
 import {useIntersectionObserver} from "@/shared/lib/browser/intersectionObserver/useIntersectionObserver.ts";
 import {isAbortError} from "@/shared/lib/errors/isAbortError";
 import {clampOptionalRange, clampRange, clampValue} from "@/shared/lib/math/range/clampRange.ts";
+import {useLocalizedRoutePath} from "@/shared/lib/routing/localizedPath/useLocalizedRoutePath.ts";
+import {
+    useLanguageSync,
+    useLocalizedSlugSync,
+} from "@/shared/lib/routing/localizedSlug/useSlugSync.ts";
 import {createControllerResult} from "@/shared/lib/state/controllerResult";
 import {createVersionGuard} from "@/shared/lib/state/optimisticTransaction/createVersionGuard/createVersionGuard.ts";
 import {runOptimisticTxn} from "@/shared/lib/state/optimisticTransaction/runOptimisticTxn/runOptimisticTxn.ts";
@@ -33,10 +38,14 @@ export {
     createVersionGuard,
     runOptimisticTxn,
     isAbortError,
+    useLocalizedRoutePath,
     createControllerResult,
+    useLanguageSync,
+    useLocalizedSlugSync,
     passwordRequirements,
     getPasswordRequirementsState,
     isPasswordValid,
 };
 export type {DeepPartial} from "./state/redux/types";
 export type {ControllerResult} from "./state/controllerResult";
+

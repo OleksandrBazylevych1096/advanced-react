@@ -8,8 +8,8 @@ import {createControllerResult} from "@/shared/lib";
 
 export const useCategoryNavigationController = () => {
     const {i18n} = useTranslation();
-    const {slug} = useParams<{slug: string; lng: SupportedLngsType}>();
-    const locale = i18n.language as SupportedLngsType;
+    const {slug, lng} = useParams<{slug: string; lng: SupportedLngsType}>();
+    const locale = (lng || i18n.language) as SupportedLngsType;
 
     const {data, isLoading, isError, refetch} = useGetCategoryNavigationQuery(
         {

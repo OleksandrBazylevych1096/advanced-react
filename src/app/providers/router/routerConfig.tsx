@@ -70,7 +70,6 @@ export const routeConfig: RouteProps[] = [
         path: routePaths[AppRoutes.CART],
         element: <CartPage />,
     },
-
     {
         path: routePaths[AppRoutes.NOT_FOUND],
         element: <NotFoundPage />,

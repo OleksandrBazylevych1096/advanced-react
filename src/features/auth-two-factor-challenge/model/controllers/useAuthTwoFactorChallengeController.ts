@@ -7,7 +7,7 @@ import {type MfaMethod, selectPendingMfaChallenge, userActions} from "@/entities
 
 import {extractApiErrorMessage} from "@/shared/api";
 import {AppRoutes, i18n, routePaths} from "@/shared/config";
-import {createControllerResult, useAppDispatch, useAppSelector} from "@/shared/lib";
+import {createControllerResult, useAppDispatch, useAppSelector, useLocalizedRoutePath} from "@/shared/lib";
 
 import {
     useSendLoginOtpMutation,
@@ -17,6 +17,7 @@ import {
 
 export const useAuthTwoFactorChallengeController = () => {
     const navigate = useNavigate();
+    const getLocalizedPath = useLocalizedRoutePath();
     const dispatch = useAppDispatch();
     const pendingMfaChallenge = useAppSelector(selectPendingMfaChallenge);
 
@@ -36,7 +37,7 @@ export const useAuthTwoFactorChallengeController = () => {
 
     const onVerifySuccess = () => {
         dispatch(userActions.clearPendingMfaChallenge());
-        navigate(routePaths[AppRoutes.HOME]);
+        navigate(getLocalizedPath(routePaths[AppRoutes.HOME]));
     };
 
     const changeMethod = (value: string) => {
@@ -55,7 +56,7 @@ export const useAuthTwoFactorChallengeController = () => {
 
     const goToLogin = () => {
         dispatch(userActions.clearPendingMfaChallenge());
-        navigate(routePaths[AppRoutes.LOGIN]);
+        navigate(getLocalizedPath(routePaths[AppRoutes.LOGIN]));
     };
 
     const ensureChallenge = () => {

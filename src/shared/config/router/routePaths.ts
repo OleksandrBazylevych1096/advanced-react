@@ -18,19 +18,19 @@ export const AppRoutes = {
 type AppRoutes = (typeof AppRoutes)[keyof typeof AppRoutes];
 
 export const routePaths: Record<AppRoutes, string> = {
-    [AppRoutes.HOME]: "/",
-    [AppRoutes.LOGIN]: "/login",
-    [AppRoutes.REGISTER]: "/register",
-    [AppRoutes.AUTH_CALLBACK]: "/oauth",
-    [AppRoutes.AUTH_2FA]: "/two-factor",
-    [AppRoutes.FORGOT_PASSWORD]: "/forgot-password",
-    [AppRoutes.RESET_PASSWORD]: "/reset-password",
-    [AppRoutes.VERIFY_EMAIL_SUCCESS]: "/verify-email-success",
-    [AppRoutes.VERIFY_EMAIL_ERROR]: "/verify-email-error",
-    [AppRoutes.SESSIONS]: "/sessions",
+    [AppRoutes.HOME]: "/:lng",
+    [AppRoutes.LOGIN]: "/:lng/login",
+    [AppRoutes.REGISTER]: "/:lng/register",
+    [AppRoutes.AUTH_CALLBACK]: "/:lng/oauth",
+    [AppRoutes.AUTH_2FA]: "/:lng/two-factor",
+    [AppRoutes.FORGOT_PASSWORD]: "/:lng/forgot-password",
+    [AppRoutes.RESET_PASSWORD]: "/:lng/reset-password",
+    [AppRoutes.VERIFY_EMAIL_SUCCESS]: "/:lng/verify-email-success",
+    [AppRoutes.VERIFY_EMAIL_ERROR]: "/:lng/verify-email-error",
+    [AppRoutes.SESSIONS]: "/:lng/sessions",
     [AppRoutes.CATEGORY]: "/:lng/category/:slug",
     [AppRoutes.PRODUCT]: "/:lng/product/:slug",
-    [AppRoutes.CART]: "/cart",
+    [AppRoutes.CART]: "/:lng/cart",
 
     // last
     [AppRoutes.NOT_FOUND]: "*",

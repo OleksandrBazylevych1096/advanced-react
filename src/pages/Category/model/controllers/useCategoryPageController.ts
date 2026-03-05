@@ -6,7 +6,9 @@ import {useGetCategoryBySlugQuery} from "@/entities/category";
 
 import {AppRoutes, routePaths, type SupportedLngsType} from "@/shared/config";
 import {createControllerResult} from "@/shared/lib";
-import {useSlugSync} from "@/shared/lib/routing/localizedSlug/useSlugSync.ts";
+import {
+    useLocalizedSlugSync,
+} from "@/shared/lib/routing/localizedSlug/useSlugSync.ts";
 
 export const useCategoryPageController = () => {
     const {slug, lng} = useParams<{ slug: string; lng: SupportedLngsType }>();
@@ -16,12 +18,12 @@ export const useCategoryPageController = () => {
         locale: lng!
     }, {skip: !category?.id})
 
-    useSlugSync({
+    useLocalizedSlugSync({
         languageParam: lng,
         slugMap: category?.slugMap,
         enabled: isSuccess,
         routePath: routePaths[AppRoutes.CATEGORY]
-    })
+    });
 
     return createControllerResult({
         data: {
@@ -30,3 +32,4 @@ export const useCategoryPageController = () => {
         },
     });
 };
+

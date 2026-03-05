@@ -3,12 +3,15 @@ import {Link} from "react-router";
 
 import LogoIcon from "@/shared/assets/icons/Logo.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib";
 import {Box, Container, Stack, Typography} from "@/shared/ui";
 
 import styles from "./Footer.module.scss";
 
 export const Footer = () => {
     const {t} = useTranslation();
+    const getLocalizedPath = useLocalizedRoutePath();
+    const homePath = getLocalizedPath(routePaths[AppRoutes.HOME]);
 
     return (
         <footer className={styles.footer}>
@@ -31,21 +34,21 @@ export const Footer = () => {
                                 </Box>
                                 <ul className={styles.linkList}>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.aboutUs")}
                                             </Typography>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.ourBranches")}
                                             </Typography>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.changeLog")}
                                             </Typography>
@@ -67,21 +70,21 @@ export const Footer = () => {
                                 </Box>
                                 <ul className={styles.linkList}>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.faqs")}
                                             </Typography>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.recipes")}
                                             </Typography>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.contactUs")}
                                             </Typography>
@@ -103,21 +106,21 @@ export const Footer = () => {
                                 </Box>
                                 <ul className={styles.linkList}>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.termsOfService")}
                                             </Typography>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.privacyPolicy")}
                                             </Typography>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.security")}
                                             </Typography>
@@ -139,14 +142,14 @@ export const Footer = () => {
                                 </Box>
                                 <ul className={styles.linkList}>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.blog")}
                                             </Typography>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.contact")}
                                             </Typography>
@@ -168,21 +171,21 @@ export const Footer = () => {
                                 </Box>
                                 <ul className={styles.linkList}>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.facebook")}
                                             </Typography>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.instagram")}
                                             </Typography>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={styles.link} to={routePaths[AppRoutes.HOME]}>
+                                        <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
                                                 {t("footer.twitter")}
                                             </Typography>
@@ -203,3 +206,4 @@ export const Footer = () => {
         </footer>
     );
 };
+

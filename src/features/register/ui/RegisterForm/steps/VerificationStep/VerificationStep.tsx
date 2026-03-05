@@ -2,6 +2,7 @@ import {useTranslation} from "react-i18next";
 import {Link} from "react-router";
 
 import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib";
 import {Button, Spinner, OTPInput, Typography} from "@/shared/ui";
 
 import {useVerificationStepController} from "../../../../model/controllers/useVerificationStepController/useVerificationStepController";
@@ -10,6 +11,7 @@ import styles from "./VerificationStep.module.scss";
 
 export const VerificationStep = () => {
     const {t} = useTranslation("auth");
+    const getLocalizedPath = useLocalizedRoutePath();
     const {
         data: {email, phone, verificationRequired},
         derived: {isPhoneVerification, isEmailVerification},
@@ -25,7 +27,7 @@ export const VerificationStep = () => {
                         defaultValue: "Account created successfully.",
                     })}
                 </Typography>
-                <Link className={styles.link} to={routePaths[AppRoutes.LOGIN]}>
+                <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}>
                     <Typography as="span" variant="body" tone="primary" weight="semibold">
                         {t("login.signIn")}
                     </Typography>

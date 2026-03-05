@@ -3,7 +3,7 @@ import {useNavigate} from "react-router";
 
 import {extractApiErrorMessage} from "@/shared/api";
 import {AppRoutes, i18n, routePaths} from "@/shared/config";
-import {createControllerResult, getPasswordRequirementsState} from "@/shared/lib";
+import {createControllerResult, getPasswordRequirementsState, useLocalizedRoutePath} from "@/shared/lib";
 
 import {useResetPasswordMutation} from "../../api/resetPasswordApi";
 
@@ -13,6 +13,7 @@ const REDIRECT_DELAY_SECONDS = 5;
 
 export const useResetPasswordFormController = (token: string | null) => {
     const navigate = useNavigate();
+    const getLocalizedPath = useLocalizedRoutePath();
     const [newPassword, setNewPassword] = useState("");
     const [error, setError] = useState<string | undefined>(undefined);
     const [fieldError, setFieldError] = useState<string | undefined>(undefined);
@@ -31,7 +32,7 @@ export const useResetPasswordFormController = (token: string | null) => {
             setRedirectCountdown((prev) => {
                 if (prev <= 1) {
                     clearInterval(timerRef.current);
-                    navigate(routePaths[AppRoutes.LOGIN]);
+                    navigate(getLocalizedPath(routePaths[AppRoutes.LOGIN]));
                     return 0;
                 }
                 return prev - 1;

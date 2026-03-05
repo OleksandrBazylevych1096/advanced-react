@@ -7,7 +7,7 @@ import {isAuthSessionResponse, isMfaChallengeResponse, userActions} from "@/enti
 
 import {extractApiErrorCode, extractApiErrorMessage} from "@/shared/api";
 import {AppRoutes, AuthMethod, type AuthMethodType, routePaths} from "@/shared/config";
-import {createControllerResult, useAppDispatch} from "@/shared/lib";
+import {createControllerResult, useAppDispatch, useLocalizedRoutePath} from "@/shared/lib";
 
 import {useLoginMutation} from "../../api/loginApi";
 
@@ -16,6 +16,7 @@ import {loginFormSchema, type LoginFormValues} from "./loginFormSchema";
 export const useLoginFormController = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const getLocalizedPath = useLocalizedRoutePath();
     const [method, setMethod] = useState<AuthMethodType>(AuthMethod.EMAIL);
     const [submitError, setSubmitError] = useState<string | undefined>(undefined);
     const [submitErrorCode, setSubmitErrorCode] = useState<string | undefined>(undefined);
@@ -73,12 +74,12 @@ export const useLoginFormController = () => {
                         availableMethods: response.availableMethods,
                     }),
                 );
-                navigate(routePaths[AppRoutes.AUTH_2FA]);
+                navigate(getLocalizedPath(routePaths[AppRoutes.AUTH_2FA]));
                 return;
             }
 
             if (isAuthSessionResponse(response)) {
-                navigate(routePaths[AppRoutes.HOME]);
+                navigate(getLocalizedPath(routePaths[AppRoutes.HOME]));
                 return;
             }
         } catch (error) {

@@ -10,13 +10,14 @@ import {selectAccessToken, selectUserCurrency, selectUserData} from "@/entities/
 
 import ShoppingCartIcon from "@/shared/assets/icons/ShoppingCart.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
-import {cn, formatCurrency, useAppSelector, useToast} from "@/shared/lib";
+import {cn, formatCurrency, useAppSelector, useLocalizedRoutePath, useToast} from "@/shared/lib";
 import {AppIcon, Button, Dropdown, Progress, Typography} from "@/shared/ui";
 
 import styles from "./CartPreview.module.scss";
 
 export const CartPreview = () => {
     const navigate = useNavigate();
+    const getLocalizedPath = useLocalizedRoutePath();
     const {i18n} = useTranslation();
     const currency = useAppSelector(selectUserCurrency);
     const toast = useToast();
@@ -45,7 +46,7 @@ export const CartPreview = () => {
     } = useCartValidationController(cart?.items ?? [], {isAuthenticated});
 
     const openCart = () => {
-        navigate(routePaths[AppRoutes.CART]);
+        navigate(getLocalizedPath(routePaths[AppRoutes.CART]));
     };
 
     const hasItems = !!cart && cart.items.length > 0;

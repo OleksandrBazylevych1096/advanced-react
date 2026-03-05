@@ -2,12 +2,14 @@ import {Link} from "react-router";
 import {useTranslation} from "react-i18next";
 
 import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib";
 import {AppPage, Button, Stack, Typography} from "@/shared/ui";
 
 import styles from "./VerifyEmailSuccessPage.module.scss";
 
 const VerifyEmailSuccessPage = () => {
     const {t} = useTranslation("auth");
+    const getLocalizedPath = useLocalizedRoutePath();
 
     return (
         <AppPage>
@@ -18,7 +20,7 @@ const VerifyEmailSuccessPage = () => {
                 <Typography variant="body" tone="muted">
                     {t("verifyEmail.successDescription")}
                 </Typography>
-                <Link className={styles.buttonLink} to={routePaths[AppRoutes.LOGIN]}>
+                <Link className={styles.buttonLink} to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}>
                     <Button type="button">{t("verifyEmail.goToLogin")}</Button>
                 </Link>
             </Stack>

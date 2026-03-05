@@ -4,6 +4,7 @@ import {useNavigate} from "react-router";
 
 import NotFoundIcon from "@/shared/assets/icons/NotFound.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib";
 import {AppPage, Button, Stack, Typography} from "@/shared/ui";
 
 import styles from "./NotFoundPage.module.scss";
@@ -11,10 +12,11 @@ import styles from "./NotFoundPage.module.scss";
 const NotFoundPage = () => {
     const {t} = useTranslation();
     const navigate = useNavigate();
+    const getLocalizedPath = useLocalizedRoutePath();
 
     const goBack = () => {
         if (window.history.length < 1) {
-            navigate(routePaths[AppRoutes.HOME]);
+            navigate(getLocalizedPath(routePaths[AppRoutes.HOME]));
             return;
         }
         navigate(-1);

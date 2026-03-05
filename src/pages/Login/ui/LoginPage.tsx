@@ -5,12 +5,14 @@ import {AuthByGoogleButton} from "@/features/auth-by-google";
 import {LoginForm} from "@/features/login";
 
 import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib";
 import {AppPage, Stack, Typography} from "@/shared/ui";
 
 import styles from "./LoginPage.module.scss";
 
 const LoginPage = () => {
     const {t} = useTranslation("auth");
+    const getLocalizedPath = useLocalizedRoutePath();
 
     return (
         <AppPage className={styles.wrapper}>
@@ -43,7 +45,7 @@ const LoginPage = () => {
                 </Stack>
                 <Typography as="span" className={styles.footer} variant="bodySm" weight="semibold">
                     {t("login.dontHaveAccount")}{" "}
-                    <Link className={styles.link} to={routePaths[AppRoutes.REGISTER]}>
+                    <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.REGISTER])}>
                         <Typography as="span" variant="bodySm" weight="semibold" tone="primary">
                             {t("register.signUp")}
                         </Typography>

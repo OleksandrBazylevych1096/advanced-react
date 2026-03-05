@@ -36,11 +36,11 @@ describe("useCategoryNavigationController", () => {
         });
     });
 
-    test("uses i18n language and exposes refetch", () => {
+    test("prefers route language and exposes refetch", () => {
         const {result} = renderHook(() => useCategoryNavigationController());
 
         expect(testCtx.queryMock).toHaveBeenCalledWith(
-            {slug: "phones", locale: "uk"},
+            {slug: "phones", locale: "en"},
             {skip: false},
         );
         expect(result.current.data.data).toEqual([{id: "c1"}]);

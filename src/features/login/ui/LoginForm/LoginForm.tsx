@@ -5,6 +5,7 @@ import ArrowRight from "@/shared/assets/icons/ArrowRight.svg?react";
 import MailIcon from "@/shared/assets/icons/Mail.svg?react";
 import PhoneIcon from "@/shared/assets/icons/Phone.svg?react";
 import {AppRoutes, AuthMethod, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib";
 import {AppIcon, Button, Input, PhoneInput, Tabs, Typography} from "@/shared/ui";
 import "react-international-phone/style.css";
 
@@ -14,6 +15,7 @@ import styles from "./LoginForm.module.scss";
 
 export const LoginForm = () => {
     const {t} = useTranslation("auth");
+    const getLocalizedPath = useLocalizedRoutePath();
     const {
         data: {email, phone, password, method},
         derived: {isEmailNotVerified},
@@ -71,7 +73,7 @@ export const LoginForm = () => {
                 data-testid="password-input"
             />
             <div className={styles.meta}>
-                <Link className={styles.link} to={routePaths[AppRoutes.FORGOT_PASSWORD]}>
+                <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.FORGOT_PASSWORD])}>
                     <Typography as="span" variant="bodySm" weight="semibold" tone="primary">
                         {t("login.forgotPassword", {defaultValue: "Forgot password?"})}
                     </Typography>

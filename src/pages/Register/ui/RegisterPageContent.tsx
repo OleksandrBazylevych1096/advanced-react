@@ -6,6 +6,7 @@ import {FormSteps, RegisterForm, useRegisterFlow} from "@/features/register";
 
 import ArrowLeft from "@/shared/assets/icons/ArrowLeft.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib";
 import {AppIcon, Button, Stack, Typography} from "@/shared/ui";
 
 import styles from "./RegisterPage.module.scss";
@@ -13,6 +14,7 @@ import styles from "./RegisterPage.module.scss";
 export const RegisterPageContent = () => {
     const {t} = useTranslation("auth");
     const {step, goToPreviousStep} = useRegisterFlow();
+    const getLocalizedPath = useLocalizedRoutePath();
 
     const titleByStep = {
         [FormSteps.CREDENTIALS]: t("register.credentials.title"),
@@ -73,7 +75,7 @@ export const RegisterPageContent = () => {
                         weight="semibold"
                     >
                         {t("register.alreadyHaveAccount")}{" "}
-                        <Link className={styles.link} to={routePaths[AppRoutes.LOGIN]}>
+                        <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}>
                             <Typography as="span" variant="bodySm" weight="semibold" tone="primary">
                                 {t("login.signIn")}
                             </Typography>

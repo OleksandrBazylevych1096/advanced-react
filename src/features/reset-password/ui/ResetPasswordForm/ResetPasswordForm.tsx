@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 
 import CheckIcon from "@/shared/assets/icons/Check.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
-import {cn} from "@/shared/lib";
+import {cn, useLocalizedRoutePath} from "@/shared/lib";
 import {AppIcon, Button, Grid, Input, Stack, Typography} from "@/shared/ui";
 
 import {useResetPasswordFormController} from "../../model/controllers/useResetPasswordFormController";
@@ -17,6 +17,7 @@ interface ResetPasswordFormProps {
 
 export const ResetPasswordForm = ({token}: ResetPasswordFormProps) => {
     const {t} = useTranslation("auth");
+    const getLocalizedPath = useLocalizedRoutePath();
     const {
         data: {newPassword, isSuccess, redirectCountdown},
         derived: {passwordRequirementsState},
@@ -35,7 +36,7 @@ export const ResetPasswordForm = ({token}: ResetPasswordFormProps) => {
                 <Typography variant="body" tone="muted">
                     {t("resetPassword.missingToken")}
                 </Typography>
-                <Link className={styles.link} to={routePaths[AppRoutes.FORGOT_PASSWORD]}>
+                <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.FORGOT_PASSWORD])}>
                     <Typography as="span" variant="bodySm" tone="primary" weight="semibold">
                         {t("resetPassword.requestNewLink")}
                     </Typography>
@@ -53,7 +54,7 @@ export const ResetPasswordForm = ({token}: ResetPasswordFormProps) => {
                 <Typography variant="body" tone="muted">
                     {t("resetPassword.redirectingIn", {seconds: redirectCountdown})}
                 </Typography>
-                <Link className={styles.link} to={routePaths[AppRoutes.LOGIN]}>
+                <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}>
                     <Typography as="span" variant="bodySm" tone="primary" weight="semibold">
                         {t("resetPassword.goToLogin")}
                     </Typography>
@@ -98,7 +99,7 @@ export const ResetPasswordForm = ({token}: ResetPasswordFormProps) => {
                 <Button type="submit" isLoading={isLoading} disabled={!isPasswordValid}>
                     {t("resetPassword.submit")}
                 </Button>
-                <Link className={styles.link} to={routePaths[AppRoutes.LOGIN]}>
+                <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}>
                     <Typography as="span" variant="bodySm" tone="primary" weight="semibold">
                         {t("resetPassword.backToLogin")}
                     </Typography>

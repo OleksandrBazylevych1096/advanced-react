@@ -11,10 +11,11 @@ import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
 import {selectUserData} from "@/entities/user";
 
 import {AppRoutes, routePaths} from "@/shared/config";
-import {createControllerResult, useAppDispatch, useAppSelector} from "@/shared/lib";
+import {createControllerResult, useAppDispatch, useAppSelector, useLocalizedRoutePath} from "@/shared/lib";
 
 export const useManageShippingAddressController = () => {
     const navigate = useNavigate();
+    const getLocalizedPath = useLocalizedRoutePath();
     const dispatch = useAppDispatch();
     const userData = useAppSelector(selectUserData);
     const mode = useAppSelector(selectSaveShippingAddressMode);
@@ -33,7 +34,7 @@ export const useManageShippingAddressController = () => {
     };
 
     const openSignIn = () => {
-        navigate(routePaths[AppRoutes.LOGIN]);
+        navigate(getLocalizedPath(routePaths[AppRoutes.LOGIN]));
     };
 
     const goBack = () => {

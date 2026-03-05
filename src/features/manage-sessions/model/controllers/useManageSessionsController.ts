@@ -10,10 +10,11 @@ import {
 
 import {extractApiErrorMessage} from "@/shared/api";
 import {AppRoutes, routePaths} from "@/shared/config";
-import {createControllerResult, useAppDispatch} from "@/shared/lib";
+import {createControllerResult, useAppDispatch, useLocalizedRoutePath} from "@/shared/lib";
 
 export const useManageSessionsController = () => {
     const navigate = useNavigate();
+    const getLocalizedPath = useLocalizedRoutePath();
     const dispatch = useAppDispatch();
     const [actionError, setActionError] = useState<string | undefined>(undefined);
 
@@ -29,7 +30,7 @@ export const useManageSessionsController = () => {
             await revokeSession(sessionId).unwrap();
             if (isCurrent) {
                 clearUserSession(dispatch);
-                navigate(routePaths[AppRoutes.LOGIN]);
+                navigate(getLocalizedPath(routePaths[AppRoutes.LOGIN]));
             }
         } catch (requestError) {
             setActionError(extractApiErrorMessage(requestError));
@@ -42,7 +43,7 @@ export const useManageSessionsController = () => {
             await revokeAllSessions({includeCurrent}).unwrap();
             if (includeCurrent) {
                 clearUserSession(dispatch);
-                navigate(routePaths[AppRoutes.LOGIN]);
+                navigate(getLocalizedPath(routePaths[AppRoutes.LOGIN]));
             }
         } catch (requestError) {
             setActionError(extractApiErrorMessage(requestError));

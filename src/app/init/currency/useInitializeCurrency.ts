@@ -11,11 +11,7 @@ export const useInitializeCurrency = () => {
 
     useEffect(() => {
         const handler = (lng: string) => {
-            dispatch(
-                userActions.setCurrency(
-                    languageCurrencyList[lng as SupportedLngsType]
-                )
-            );
+            dispatch(userActions.setCurrency(languageCurrencyList[lng as SupportedLngsType]));
         };
 
         i18n.on("languageChanged", handler);

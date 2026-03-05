@@ -1,8 +1,8 @@
-import {useTranslation} from "react-i18next";
-import {generatePath, useNavigate, useParams} from "react-router";
+import {useNavigate} from "react-router";
 
 import ArrowLeft from "@/shared/assets/icons/ArrowLeft.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib";
 import {AppIcon, Button} from "@/shared/ui";
 
 interface CategoryNavigationGoBackItemProps {
@@ -12,19 +12,17 @@ interface CategoryNavigationGoBackItemProps {
 export const CategoryNavigationGoBackItem = (props: CategoryNavigationGoBackItemProps) => {
     const {parentSlug} = props;
     const navigate = useNavigate();
-    const {lng} = useParams();
-    const {i18n} = useTranslation();
+    const getLocalizedPath = useLocalizedRoutePath();
 
     const goBack = () => {
         if (parentSlug) {
             navigate(
-                generatePath(routePaths[AppRoutes.CATEGORY], {
-                    lng: lng || i18n.language,
+                getLocalizedPath(routePaths[AppRoutes.CATEGORY], {
                     slug: parentSlug,
                 }),
             );
         } else {
-            navigate(routePaths[AppRoutes.HOME]);
+            navigate(getLocalizedPath(routePaths[AppRoutes.HOME]));
         }
     };
 

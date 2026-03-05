@@ -6,7 +6,9 @@ import {generateProductBreadcrumbs} from "@/pages/Product/lib/generateProductBre
 
 import {AppRoutes, routePaths, type SupportedLngsType} from "@/shared/config";
 import {createControllerResult} from "@/shared/lib";
-import {useSlugSync} from "@/shared/lib/routing/localizedSlug/useSlugSync.ts";
+import {
+    useLocalizedSlugSync,
+} from "@/shared/lib/routing/localizedSlug/useSlugSync.ts";
 
 export const useProductPageController = () => {
     const {slug, lng} = useParams<{slug: string; lng: SupportedLngsType}>();
@@ -28,7 +30,7 @@ export const useProductPageController = () => {
 
     const breadcrumbs = generateProductBreadcrumbs(categoryBreadcrumbs, product?.name);
 
-    useSlugSync({
+    useLocalizedSlugSync({
         languageParam: lng,
         slugMap: product?.slugMap,
         enabled: isSuccess,
@@ -48,3 +50,4 @@ export const useProductPageController = () => {
         },
     });
 };
+

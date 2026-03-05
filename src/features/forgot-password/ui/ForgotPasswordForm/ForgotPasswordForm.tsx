@@ -3,6 +3,7 @@ import {Link} from "react-router";
 import {useTranslation} from "react-i18next";
 
 import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib";
 import {Button, Grid, Input, Stack, Typography} from "@/shared/ui";
 
 import {useForgotPasswordFormController} from "../../model/controllers/useForgotPasswordFormController";
@@ -11,6 +12,7 @@ import styles from "./ForgotPasswordForm.module.scss";
 
 export const ForgotPasswordForm = () => {
     const {t} = useTranslation("auth");
+    const getLocalizedPath = useLocalizedRoutePath();
     const {
         data: {identifier, isSuccess},
         status: {isLoading, error, fieldError},
@@ -48,7 +50,7 @@ export const ForgotPasswordForm = () => {
                 <Button type="submit" isLoading={isLoading}>
                     {t("forgotPassword.submit")}
                 </Button>
-                <Link className={styles.link} to={routePaths[AppRoutes.LOGIN]}>
+                <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}>
                     <Typography as="span" variant="bodySm" tone="primary" weight="semibold">
                         {t("forgotPassword.backToLogin")}
                     </Typography>

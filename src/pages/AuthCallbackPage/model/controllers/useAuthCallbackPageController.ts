@@ -5,11 +5,12 @@ import {type MfaMethod, userActions, useRefreshSessionMutation} from "@/entities
 
 import {extractApiErrorMessage} from "@/shared/api";
 import {AppRoutes, i18n, routePaths} from "@/shared/config";
-import {createControllerResult, useAppDispatch} from "@/shared/lib";
+import {createControllerResult, useAppDispatch, useLocalizedRoutePath} from "@/shared/lib";
 
 export const useAuthCallbackPageController = () => {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
+    const getLocalizedPath = useLocalizedRoutePath();
     const dispatch = useAppDispatch();
     const [callbackError, setCallbackError] = useState<string | undefined>(undefined);
 
@@ -45,7 +46,7 @@ export const useAuthCallbackPageController = () => {
                             parsedAvailableMethods.length > 0 ? parsedAvailableMethods : undefined,
                     }),
                 );
-                navigate(routePaths[AppRoutes.AUTH_2FA], {replace: true});
+                navigate(getLocalizedPath(routePaths[AppRoutes.AUTH_2FA]), {replace: true});
                 return;
             }
 
@@ -53,7 +54,7 @@ export const useAuthCallbackPageController = () => {
                 void refreshSession(undefined)
                     .unwrap()
                     .then(() => {
-                        navigate(routePaths[AppRoutes.HOME], {replace: true});
+                        navigate(getLocalizedPath(routePaths[AppRoutes.HOME]), {replace: true});
                     })
                     .catch((error) => {
                         setCallbackError(extractApiErrorMessage(error));

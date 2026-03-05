@@ -9,6 +9,7 @@ const testCtx = vi.hoisted(() => {
     const i18nMock = {
         language: "de",
         resolvedLanguage: "de",
+        options: {fallbackLng: "en"},
         on: vi.fn((event: string, cb: (lng: string) => void) => {
             if (event === "languageChanged") {
                 listeners.add(cb);

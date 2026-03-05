@@ -4,7 +4,7 @@ import {useSendRegistrationOtpMutation, useVerifyRegistrationOtpMutation,} from 
 
 import {extractApiErrorMessage} from "@/shared/api";
 import {AppRoutes, AuthMethod, routePaths} from "@/shared/config";
-import {createControllerResult} from "@/shared/lib";
+import {createControllerResult, useLocalizedRoutePath} from "@/shared/lib";
 
 import {useRegisterFlow} from "../../registerFlowContext";
 
@@ -12,6 +12,7 @@ import {registerVerificationSchema} from "./registerVerificationSchema";
 
 export const useVerificationStepController = () => {
     const navigate = useNavigate();
+    const getLocalizedPath = useLocalizedRoutePath();
     const {form, error, setError, verificationRequired, resetFlow} = useRegisterFlow();
     const [verifyRegistrationOtp, verifyRegistrationOtpState] = useVerifyRegistrationOtpMutation();
     const [sendRegistrationOtp, sendRegistrationOtpState] = useSendRegistrationOtpMutation();
@@ -50,7 +51,7 @@ export const useVerificationStepController = () => {
                 identifier,
                 code,
             }).unwrap();
-            navigate(routePaths[AppRoutes.LOGIN]);
+            navigate(getLocalizedPath(routePaths[AppRoutes.LOGIN]));
         } catch (requestError) {
             setError(extractApiErrorMessage(requestError));
         }

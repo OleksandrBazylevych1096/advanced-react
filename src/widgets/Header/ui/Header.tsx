@@ -7,6 +7,7 @@ import LogoIcon from "@/shared/assets/icons/Logo.svg?react";
 import SearchIcon from "@/shared/assets/icons/Search.svg?react";
 import UsersIcon from "@/shared/assets/icons/Users.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib";
 import {AppIcon, Box, Button, Container, Input, Stack} from "@/shared/ui";
 
 import {useHeaderController} from "../model/controllers/useHeaderController";
@@ -20,16 +21,17 @@ export const Header = () => {
     const {t} = useTranslation();
     const navigate = useNavigate();
     const {pathname} = useLocation();
+    const getLocalizedPath = useLocalizedRoutePath();
     const {
         data: {user},
         actions: {logout},
     } = useHeaderController();
 
     const openLogin = () => {
-        navigate(routePaths[AppRoutes.LOGIN]);
+        navigate(getLocalizedPath(routePaths[AppRoutes.LOGIN]));
     };
 
-    if (pathname.endsWith(routePaths[AppRoutes.LOGIN])) return;
+    if (pathname.endsWith(getLocalizedPath(routePaths[AppRoutes.LOGIN]))) return;
 
     return (
         <header className={styles.header}>

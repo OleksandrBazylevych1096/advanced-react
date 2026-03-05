@@ -17,8 +17,9 @@ vi.mock("react-i18next", () => ({
     initReactI18next: {type: "3rdParty", init: vi.fn()},
 }));
 
-vi.mock("react-router-dom", () => ({
+vi.mock("react-router", () => ({
     useNavigate: () => testCtx.navigateMock,
+    useParams: () => ({lng: "en"}),
 }));
 
 vi.mock("@/features/save-shipping-address", () => ({
@@ -44,6 +45,7 @@ vi.mock("@/entities/user", () => ({
 
 vi.mock("@/shared/lib", () => ({
     createControllerResult: <T>(value: T) => value,
+    useLocalizedRoutePath: () => (path: string) => path.replace(":lng", "en"),
     useAppDispatch: () => testCtx.dispatchMock,
     useAppSelector: (selector: (state: StateSchema) => unknown) =>
         selector(testCtx.state as StateSchema),
@@ -83,7 +85,7 @@ describe("useManageShippingAddressController", () => {
             result.current.actions.goBack();
         });
 
-        expect(testCtx.navigateMock).toHaveBeenCalledWith(routePaths[AppRoutes.LOGIN]);
+        expect(testCtx.navigateMock).toHaveBeenCalledWith("/en/login");
         expect(testCtx.dispatchMock).toHaveBeenCalledWith({
             type: "shipping/returnToChoose",
         });
