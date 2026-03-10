@@ -1,5 +1,5 @@
 import {ErrorBoundary} from "./ErrorBounary/ui/ErrorBoundary";
-import {AppRouter} from "./router/ui/AppRouter";
+import {AppRouter} from "./router/AppRouter";
 import {StoreProvider} from "./StoreProvider/ui/StoreProvider";
 import {ThemeProvider} from "./theme/ThemeProvider";
 import {toastActions} from "./toast/model/slice/toastSlice";

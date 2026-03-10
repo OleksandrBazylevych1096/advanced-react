@@ -17,7 +17,11 @@ import {VerifyEmailSuccessPage} from "@/pages/VerifyEmailSuccess";
 
 import {AppRoutes, routePaths} from "@/shared/config";
 
-export const routeConfig: RouteProps[] = [
+export type AppRouteConfig = RouteProps & {
+    hasLocalizedParams?: boolean;
+};
+
+export const routeConfig: AppRouteConfig[] = [
     {
         path: routePaths[AppRoutes.HOME],
         element: <HomePage />,
@@ -61,10 +65,12 @@ export const routeConfig: RouteProps[] = [
     {
         path: routePaths[AppRoutes.CATEGORY],
         element: <CategoryPage />,
+        hasLocalizedParams: true,
     },
     {
         path: routePaths[AppRoutes.PRODUCT],
         element: <ProductPage />,
+        hasLocalizedParams: true,
     },
     {
         path: routePaths[AppRoutes.CART],

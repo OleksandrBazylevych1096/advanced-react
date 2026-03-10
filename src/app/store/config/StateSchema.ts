@@ -1,6 +1,7 @@
 import type {AnyAction, EnhancedStore, Reducer, ReducersMapObject} from "@reduxjs/toolkit";
 
 import type {ToastSchema} from "@/app/providers/toast/model/types/toast";
+
 import type {ProductFiltersSchema} from "@/features/product-filters";
 
 import type {CartSchema} from "@/entities/cart";

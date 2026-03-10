@@ -6,7 +6,7 @@ import type {SupportedLngsType} from "@/shared/config";
 
 interface UseRouteLanguageSyncArgs {
     languageParam?: SupportedLngsType;
-    slugParamName?: string;
+    hasLocalizedParams?: boolean;
 }
 
 interface UseLocalizedSlugSyncArgs {
@@ -19,14 +19,12 @@ interface UseLocalizedSlugSyncArgs {
 
 export const useLanguageSync = ({
     languageParam,
-    slugParamName = "slug",
+    hasLocalizedParams = false,
 }: UseRouteLanguageSyncArgs) => {
     const {i18n} = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
-    const params = useParams();
     const currentLanguage = i18n.language as SupportedLngsType;
-    const hasSlugParam = Boolean(params[slugParamName]);
     const previousLanguageParamRef = useRef(languageParam);
     const isRouteSyncInitializedRef = useRef(false);
     const isUrlSyncInitializedRef = useRef(false);
@@ -50,7 +48,7 @@ export const useLanguageSync = ({
     }, [languageParam, i18n]);
 
     useEffect(() => {
-        if (!languageParam || hasSlugParam) return;
+        if (!languageParam || hasLocalizedParams) return;
 
         const previousLanguage = previousLanguageRef.current;
         const languageChanged = previousLanguage !== currentLanguage;
@@ -77,7 +75,7 @@ export const useLanguageSync = ({
     }, [
         languageParam,
         currentLanguage,
-        hasSlugParam,
+        hasLocalizedParams,
         location.hash,
         location.pathname,
         location.search,

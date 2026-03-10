@@ -77,6 +77,23 @@ describe("useSlugSync split hooks", () => {
         expect(mockNavigate).toHaveBeenCalledWith("/de", {replace: true});
     });
 
+    it("does not update route language when route has localized params", () => {
+        mockParams = {lng: "en", slug: "electronics"};
+        mockLocation = {
+            pathname: "/en/category/electronics",
+            search: "",
+            hash: "",
+        };
+        const {rerender} = renderHook(() =>
+            useLanguageSync({languageParam: "en", hasLocalizedParams: true}),
+        );
+
+        mockLanguage = "de";
+        rerender();
+
+        expect(mockNavigate).not.toHaveBeenCalled();
+    });
+
     it("redirects to localized slug when slug does not match current i18n language", () => {
         mockLanguage = "de";
 

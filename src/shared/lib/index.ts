@@ -1,5 +1,7 @@
 import {useIntersectionObserver} from "@/shared/lib/browser/intersectionObserver/useIntersectionObserver.ts";
 import {isAbortError} from "@/shared/lib/errors/isAbortError";
+import {getFallbackLanguage} from "@/shared/lib/i18n/getFallbackLanguage.ts";
+import {isSupportedLanguage} from "@/shared/lib/i18n/isSupportedLanguage.ts";
 import {clampOptionalRange, clampRange, clampValue} from "@/shared/lib/math/range/clampRange.ts";
 import {useLocalizedRoutePath} from "@/shared/lib/routing/localizedPath/useLocalizedRoutePath.ts";
 import {
@@ -38,6 +40,8 @@ export {
     createVersionGuard,
     runOptimisticTxn,
     isAbortError,
+    getFallbackLanguage,
+    isSupportedLanguage,
     useLocalizedRoutePath,
     createControllerResult,
     useLanguageSync,
