@@ -3,7 +3,7 @@ import {useCallback} from "react";
 import {broadcastCartClear, cartActions, clearGuestCart} from "@/entities/cart";
 
 import {useClearCartMutation} from "../../api/clearCartApi";
-import {selectAccessToken, selectUserData} from "@/entities/user";
+import {selectIsAuthenticated} from "@/entities/user";
 
 import {createControllerResult, useAppDispatch, useAppSelector, useToast} from "@/shared/lib";
 
@@ -11,9 +11,7 @@ export const useClearCartController = () => {
     const dispatch = useAppDispatch();
     const toast = useToast();
 
-    const user = useAppSelector(selectUserData);
-    const accessToken = useAppSelector(selectAccessToken);
-    const isAuthenticated = Boolean(user && accessToken);
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
     const [clearCartMutation, {isLoading: isClearing}] = useClearCartMutation();
 

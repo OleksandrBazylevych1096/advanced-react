@@ -1,7 +1,7 @@
 import {useCallback} from "react";
 
 import {broadcastCartUpdate, cartActions, setGuestCart} from "@/entities/cart";
-import {selectAccessToken, selectUserData} from "@/entities/user";
+import {selectIsAuthenticated} from "@/entities/user";
 
 import {
     createControllerResult,
@@ -19,9 +19,7 @@ export const useRemoveFromCartController = () => {
     const store = useAppStore();
     const toast = useToast();
 
-    const user = useAppSelector(selectUserData);
-    const accessToken = useAppSelector(selectAccessToken);
-    const isAuthenticated = Boolean(user && accessToken);
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
     const [removeItemMutation] = useRemoveFromCartMutation();
 

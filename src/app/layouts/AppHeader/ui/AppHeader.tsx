@@ -6,7 +6,7 @@ import {ManageShippingAddress} from "@/widgets/ManageShippingAddress";
 
 import {LogoutButton} from "@/features/logout";
 
-import {selectUserData} from "@/entities/user";
+import {selectIsAuthenticated} from "@/entities/user";
 
 import LogoIcon from "@/shared/assets/icons/Logo.svg?react";
 import SearchIcon from "@/shared/assets/icons/Search.svg?react";
@@ -22,7 +22,7 @@ import {ThemeSwitcher} from "./ThemeSwitcher/ThemeSwitcher";
 export const AppHeader = () => {
     const {t} = useTranslation();
     const navigate = useNavigate();
-    const user = useAppSelector(selectUserData);
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
     const getLocalizedPath = useLocalizedRoutePath();
 
     const openLogin = () => {
@@ -50,7 +50,7 @@ export const AppHeader = () => {
                         <Stack className={styles.section} direction="row" align="center" gap={20}>
                             <CartPreview />
 
-                            {user?.id ? (
+                            {isAuthenticated ? (
                                 <LogoutButton />
                             ) : (
                                 <Button onClick={openLogin} theme="outline">

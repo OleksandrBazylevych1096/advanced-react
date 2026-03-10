@@ -5,6 +5,7 @@ import {
 } from "./api/authSessionsApi";
 import {useRefreshSessionMutation} from "./api/sessionApi";
 import {selectAccessToken} from "./model/selectors/selectAccessToken/selectAccessToken";
+import {selectIsAuthenticated} from "./model/selectors/selectIsAuthenticated/selectIsAuthenticated";
 import {selectPendingMfaChallenge} from "./model/selectors/selectPendingMfaChallenge/selectPendingMfaChallenge";
 import {selectUserCurrency} from "./model/selectors/selectUserCurrency/selectUserCurrency";
 import {selectUserData} from "./model/selectors/selectUserData/selectUserData";
@@ -31,6 +32,7 @@ export {
     applyUserSession,
     clearUserSession,
     selectAccessToken,
+    selectIsAuthenticated,
     selectPendingMfaChallenge,
     selectUserData,
     selectUserCurrency,

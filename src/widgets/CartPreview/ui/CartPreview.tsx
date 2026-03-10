@@ -6,7 +6,7 @@ import {useRemoveFromCartController} from "@/features/remove-from-cart";
 import {useUpdateCartItemQuantityController} from "@/features/update-cart-item-quantity";
 
 import {CartList, useCartController, useCartValidationController} from "@/entities/cart";
-import {selectAccessToken, selectUserCurrency, selectUserData} from "@/entities/user";
+import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import ShoppingCartIcon from "@/shared/assets/icons/ShoppingCart.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
@@ -21,9 +21,7 @@ export const CartPreview = () => {
     const {i18n} = useTranslation();
     const currency = useAppSelector(selectUserCurrency);
     const toast = useToast();
-    const user = useAppSelector(selectUserData);
-    const accessToken = useAppSelector(selectAccessToken);
-    const isAuthenticated = Boolean(user && accessToken);
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
     const {
         data: {cart},

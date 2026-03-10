@@ -9,7 +9,7 @@ import {
     useGetCartQuery,
 } from "@/entities/cart";
 import type {Product} from "@/entities/product";
-import {selectAccessToken, selectUserData} from "@/entities/user";
+import {selectIsAuthenticated} from "@/entities/user";
 
 import {
     createControllerResult,
@@ -29,9 +29,7 @@ export const useAddToCartController = (product: Product) => {
     const store = useAppStore();
     const toast = useToast();
 
-    const currentUser = useAppSelector(selectUserData);
-    const accessToken = useAppSelector(selectAccessToken);
-    const isAuthenticated = Boolean(currentUser && accessToken);
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
     const [pendingCount, setPendingCount] = useState(0);
 

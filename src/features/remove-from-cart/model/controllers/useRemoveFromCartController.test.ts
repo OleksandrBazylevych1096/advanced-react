@@ -12,7 +12,7 @@ const testCtx = vi.hoisted(() => ({
 }));
 
 vi.mock("@/entities/user", () => ({
-    selectUserData: (state: StateSchema) => state.user?.userData,
+    selectIsAuthenticated: (state: StateSchema) => Boolean(state.user?.userData),
 }));
 
 vi.mock("@/entities/cart", () => ({

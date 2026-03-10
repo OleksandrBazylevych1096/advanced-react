@@ -1,7 +1,7 @@
 import {useCallback, useEffect} from "react";
 
 import {broadcastCartUpdate, cartApi, cartActions, setGuestCart} from "@/entities/cart";
-import {selectAccessToken, selectUserData} from "@/entities/user";
+import {selectIsAuthenticated} from "@/entities/user";
 
 import {createControllerResult, useAppDispatch, useAppSelector, useAppStore} from "@/shared/lib";
 
@@ -19,9 +19,7 @@ export const useUpdateCartItemQuantityController = (
     const store = useAppStore();
     const coordinator = store.services.cartQuantityCoordinator;
 
-    const user = useAppSelector(selectUserData);
-    const accessToken = useAppSelector(selectAccessToken);
-    const isAuthenticated = Boolean(user && accessToken);
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
     const [updateItem] = useUpdateCartItemMutation();
 
