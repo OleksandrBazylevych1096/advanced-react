@@ -1,4 +1,4 @@
-import {useSaveShippingAddressFormController} from "@/features/save-shipping-address/model/controllers/useSaveShippingAddressFormController/useSaveShippingAddressFormController.ts";
+import {useSaveShippingAddressFormController} from "../../../model/controllers/useSaveShippingAddressFormController/useSaveShippingAddressFormController";
 
 import {EditAddressFormView} from "./EditAddressFormView";
 

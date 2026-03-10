@@ -11,7 +11,7 @@ import {globalIgnores} from "eslint/config";
 
 export default tseslint.config(
     [
-        globalIgnores(["dist"]),
+        globalIgnores(["dist", "storybook-static"]),
         {
             plugins: {
                 "@conarti/feature-sliced": featureSliced,

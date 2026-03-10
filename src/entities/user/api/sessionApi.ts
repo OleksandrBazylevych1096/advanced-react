@@ -21,19 +21,7 @@ export const sessionApi = baseAPI.injectEndpoints({
                 }
             },
         }),
-        logout: build.mutation<void, void>({
-            query: () => ({
-                url: "/auth/logout",
-                method: "POST",
-            }),
-            async onQueryStarted(_, {dispatch, queryFulfilled}) {
-                clearUserSession(dispatch);
-                try {
-                    await queryFulfilled;
-                } catch {}
-            },
-        }),
     }),
 });
 
-export const {useRefreshSessionMutation, useLogoutMutation} = sessionApi;
+export const {useRefreshSessionMutation} = sessionApi;

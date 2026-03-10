@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 
 import {ProductCardWithAddToCart} from "@/features/add-to-cart";
 
-import {useGetProducts} from "@/entities/product/api/productApi.ts";
+import {useGetProducts} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
 import {createControllerResult, useAppSelector} from "@/shared/lib";

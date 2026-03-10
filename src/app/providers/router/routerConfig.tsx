@@ -19,6 +19,7 @@ import {AppRoutes, routePaths} from "@/shared/config";
 
 export type AppRouteConfig = RouteProps & {
     hasLocalizedParams?: boolean;
+    withoutDefaultLayout?: boolean;
 };
 
 export const routeConfig: AppRouteConfig[] = [
@@ -29,38 +30,47 @@ export const routeConfig: AppRouteConfig[] = [
     {
         path: routePaths[AppRoutes.LOGIN],
         element: <LoginPage />,
+        withoutDefaultLayout: true,
     },
     {
         path: routePaths[AppRoutes.REGISTER],
         element: <RegisterPage />,
+        withoutDefaultLayout: true,
     },
     {
         path: routePaths[AppRoutes.AUTH_CALLBACK],
         element: <AuthCallbackPage />,
+        withoutDefaultLayout: true,
     },
     {
         path: routePaths[AppRoutes.AUTH_2FA],
         element: <AuthTwoFactorPage />,
+        withoutDefaultLayout: true,
     },
     {
         path: routePaths[AppRoutes.FORGOT_PASSWORD],
         element: <ForgotPasswordPage />,
+        withoutDefaultLayout: true,
     },
     {
         path: routePaths[AppRoutes.RESET_PASSWORD],
         element: <ResetPasswordPage />,
+        withoutDefaultLayout: true,
     },
     {
         path: routePaths[AppRoutes.VERIFY_EMAIL_SUCCESS],
         element: <VerifyEmailSuccessPage />,
+        withoutDefaultLayout: true,
     },
     {
         path: routePaths[AppRoutes.VERIFY_EMAIL_ERROR],
         element: <VerifyEmailErrorPage />,
+        withoutDefaultLayout: true,
     },
     {
         path: routePaths[AppRoutes.SESSIONS],
         element: <SessionsPage />,
+        withoutDefaultLayout: true,
     },
     {
         path: routePaths[AppRoutes.CATEGORY],
@@ -79,5 +89,6 @@ export const routeConfig: AppRouteConfig[] = [
     {
         path: routePaths[AppRoutes.NOT_FOUND],
         element: <NotFoundPage />,
+        withoutDefaultLayout: true,
     },
 ];

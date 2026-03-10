@@ -1,3 +1,9 @@
+import {
+    useGetAuthSessionsQuery,
+    useRevokeAllAuthSessionsMutation,
+    useRevokeAuthSessionMutation,
+} from "./api/authSessionsApi";
+import {useRefreshSessionMutation} from "./api/sessionApi";
 import {selectAccessToken} from "./model/selectors/selectAccessToken/selectAccessToken";
 import {selectPendingMfaChallenge} from "./model/selectors/selectPendingMfaChallenge/selectPendingMfaChallenge";
 import {selectUserCurrency} from "./model/selectors/selectUserCurrency/selectUserCurrency";
@@ -17,12 +23,6 @@ import type {
 } from "./model/types/AuthSession";
 import {isAuthSessionResponse, isMfaChallengeResponse} from "./model/types/AuthSession";
 import type {User, UserSchema} from "./model/types/UserSchema";
-import {useLogoutMutation, useRefreshSessionMutation} from "./api/sessionApi";
-import {
-    useGetAuthSessionsQuery,
-    useRevokeAllAuthSessionsMutation,
-    useRevokeAuthSessionMutation,
-} from "./api/authSessionsApi";
 
 export {
     userActions,
@@ -35,7 +35,6 @@ export {
     selectUserData,
     selectUserCurrency,
     useRefreshSessionMutation,
-    useLogoutMutation,
     useGetAuthSessionsQuery,
     useRevokeAuthSessionMutation,
     useRevokeAllAuthSessionsMutation,

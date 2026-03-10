@@ -137,9 +137,7 @@ export const CartPreview = () => {
                             className={styles.viewCartBtn}
                         >
                             <AppIcon Icon={ShoppingCartIcon} size={16}/>
-                            <Typography as="span" variant="bodySm" weight="semibold">
                                 View Cart
-                            </Typography>
                         </Button>
                     </div>
                 )}

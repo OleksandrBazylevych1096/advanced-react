@@ -11,9 +11,10 @@ export const LanguageSwitcher = () => {
         const newLng = i18n.language === "en" ? "de" : "en";
         await i18n.changeLanguage(newLng);
     };
+
     return (
         <Button onClick={toggleLanguage} theme="ghost">
-            <AppIcon Icon={languageIconList[currentLanguage]}/>
+            <AppIcon Icon={languageIconList[currentLanguage]} />
         </Button>
     );
 };

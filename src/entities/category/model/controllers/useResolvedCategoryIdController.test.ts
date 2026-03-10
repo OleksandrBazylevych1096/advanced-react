@@ -1,5 +1,5 @@
-import {renderHook} from "@testing-library/react";
 import {skipToken} from "@reduxjs/toolkit/query";
+import {renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
 import {useResolvedCategoryIdController} from "./useResolvedCategoryIdController";
@@ -25,7 +25,11 @@ describe("useResolvedCategoryIdController", () => {
 
     test("skips category query when categoryId is already provided", () => {
         const {result} = renderHook(() =>
-            useResolvedCategoryIdController({categoryId: "cat-provided", slug: "phones", locale: "en"}),
+            useResolvedCategoryIdController({
+                categoryId: "cat-provided",
+                slug: "phones",
+                locale: "en",
+            }),
         );
 
         expect(testCtx.queryMock).toHaveBeenCalledWith(skipToken);

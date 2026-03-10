@@ -1,7 +1,7 @@
 import styles from "@/widgets/TrendingProducts/ui/TrendingProducts.module.scss";
 
 import {ProductCardSkeleton} from "@/entities/product";
-import {TagListSkeleton} from "@/entities/tag/ui/TagList/TagListSkeleton.tsx";
+import {TagListSkeleton} from "@/entities/tag";
 
 import {CarouselSkeleton, Stack} from "@/shared/ui";
 import {CarouselControlsSkeleton} from "@/shared/ui/Carousel/CarouselControlsSkeleton.tsx";

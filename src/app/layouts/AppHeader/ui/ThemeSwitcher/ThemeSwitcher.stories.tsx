@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {ThemeSwitcher} from "./ThemeSwitcher";
 
 const meta = {
-    title: "widgets/Header/ThemeSwitcher",
+    title: "layouts/AppHeader/ThemeSwitcher",
     component: ThemeSwitcher,
     parameters: {
         layout: "centered",
