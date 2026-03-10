@@ -1,0 +1,32 @@
+.root {
+    width: 100%;
+}
+
+.stateContainer {
+    min-height: 180px;
+}
+
+.itemControls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.deleteBtn {
+    color: var(--gray-400);
+    transition: color 0.2s;
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background: var(--gray-50);
+
+    &:hover {
+        color: var(--red-500);
+    }
+}
+
+.quantityStepper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

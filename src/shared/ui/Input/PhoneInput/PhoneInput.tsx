@@ -1,14 +1,32 @@
 import "react-international-phone/style.css";
 
-import {useState} from "react";
-import {PhoneInput as ReactPhoneInput} from "react-international-phone";
+import {type FocusEvent, useState} from "react";
+import {
+    PhoneInput as ReactPhoneInput,
+    type PhoneInputProps as ReactPhoneInputProps,
+} from "react-international-phone";
 
 import {cn} from "@/shared/lib";
 
-import type {InputProps} from "../Input";
+import type {HTMLInputProps} from "../Input";
 import styles from "../Input.module.scss";
 
-export const PhoneInput = (props: InputProps) => {
+interface PhoneInputProps extends HTMLInputProps {
+    className?: string;
+    value?: string;
+    disabled?: boolean;
+    rounded?: boolean;
+    label?: string;
+    error?: boolean;
+    errorText?: string;
+    fullWidth?: boolean;
+    onChange?: (value: string) => void;
+    defaultCountry?: ReactPhoneInputProps["defaultCountry"];
+    forceDialCode?: ReactPhoneInputProps["forceDialCode"];
+    disableCountryGuess?: ReactPhoneInputProps["disableCountryGuess"];
+}
+
+export const PhoneInput = (props: PhoneInputProps) => {
     const {
         className,
         value,
@@ -18,17 +36,25 @@ export const PhoneInput = (props: InputProps) => {
         disabled = false,
         error = false,
         errorText,
+        fullWidth = false,
+        defaultCountry = "us",
+        forceDialCode = true,
+        disableCountryGuess = true,
+        onFocus,
+        onBlur,
         ...rest
     } = props;
     const hasError = error || Boolean(errorText);
     const [focus, setFocus] = useState<boolean>(false);
 
-    const notifyFocus = () => {
+    const notifyFocus = (event: FocusEvent<HTMLInputElement>) => {
         setFocus(true);
+        onFocus?.(event);
     };
 
-    const notifyBlur = () => {
+    const notifyBlur = (event: FocusEvent<HTMLInputElement>) => {
         setFocus(false);
+        onBlur?.(event);
     };
 
     const changePhone = (phone: string) => {
@@ -43,10 +69,10 @@ export const PhoneInput = (props: InputProps) => {
 
             <ReactPhoneInput
                 inputProps={{...rest}}
-                defaultCountry="us"
-                forceDialCode
-                disableCountryGuess
-                value={value}
+                defaultCountry={defaultCountry}
+                forceDialCode={forceDialCode}
+                disableCountryGuess={disableCountryGuess}
+                value={value ?? ""}
                 disabled={disabled}
                 onChange={changePhone}
                 onFocus={notifyFocus}
@@ -60,6 +86,7 @@ export const PhoneInput = (props: InputProps) => {
                     [styles.disabled]: disabled,
                     [styles.focus]: focus,
                     [styles.error]: hasError,
+                    [styles.fullWidth]: fullWidth,
                 })}
             />
             {errorText && <div className={styles.errorText}>{errorText}</div>}

@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router";
 
-import {CartPreview} from "@/widgets/CartPreview";
+import {CartPreview} from "@/widgets/Cart";
 import {ManageShippingAddress} from "@/widgets/ManageShippingAddress";
 
 import {LogoutButton} from "@/features/logout";
@@ -13,7 +13,7 @@ import SearchIcon from "@/shared/assets/icons/Search.svg?react";
 import UsersIcon from "@/shared/assets/icons/Users.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
 import {useAppSelector, useLocalizedRoutePath} from "@/shared/lib";
-import {AppIcon, Box, Button, Container, Input, Stack} from "@/shared/ui";
+import {AppIcon, Box, Button, Container, Input, Stack, Typography} from "@/shared/ui";
 
 import styles from "./AppHeader.module.scss";
 import {LanguageSwitcher} from "./LanguageSwitcher/LanguageSwitcher";
@@ -55,7 +55,7 @@ export const AppHeader = () => {
                             ) : (
                                 <Button onClick={openLogin} theme="outline">
                                     <AppIcon Icon={UsersIcon} />
-                                    <span>{t("header.login")}</span>
+                                    <Typography as="span" weight="medium">{t("header.login")}</Typography>
                                 </Button>
                             )}
 

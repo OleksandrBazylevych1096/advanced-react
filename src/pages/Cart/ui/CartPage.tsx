@@ -1,51 +1,38 @@
 import {useTranslation} from "react-i18next";
 
 import {BestSellingProducts} from "@/widgets/BestSellingProducts";
+import {CartItems} from "@/widgets/Cart";
 
-import {useClearCartController} from "@/features/clear-cart";
-import {useRemoveFromCartController} from "@/features/remove-from-cart";
-import {useUpdateCartItemQuantityController} from "@/features/update-cart-item-quantity";
+import {ClearCartButton, useClearCartController} from "@/features/clear-cart";
 
-import {CartList, useCartController, useCartValidationController} from "@/entities/cart";
+import {useCartController, useCartValidationController} from "@/entities/cart";
 import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import ShoppingCartIcon from "@/shared/assets/icons/ShoppingCart.svg?react";
-import {cn, formatCurrency, useAppSelector, useToast} from "@/shared/lib";
-import {AppIcon, Button, Grid, Progress, Typography} from "@/shared/ui";
+import {cn, formatCurrency, useAppSelector} from "@/shared/lib";
+import {AppIcon, Button, Grid, Progress, Stack, Typography} from "@/shared/ui";
 
 import styles from "./CartPage.module.scss";
 
 const CartPage = () => {
     const {i18n} = useTranslation();
-    const currency = useAppSelector(selectUserCurrency);
-    const toast = useToast();
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
+    const currency = useAppSelector(selectUserCurrency);
 
     const {
         data: {cart},
         status: {isLoading, isError},
-        actions: {refetch},
     } = useCartController({isAuthenticated});
+    const {
+        derived: {hasIssues},
+        status: {isValidating},
+    } = useCartValidationController(cart?.items ?? [], {isAuthenticated});
     const {
         status: {isClearing},
         actions: {clearCart},
     } = useClearCartController();
-    const {
-        actions: {removeItem},
-    } = useRemoveFromCartController();
-    const {
-        actions: {updateQuantity},
-    } = useUpdateCartItemQuantityController({
-        onError: () => toast.error("Failed to update cart"),
-    });
 
-    const {
-        derived: {hasIssues},
-        status: {isValidating},
-        actions: {getItemValidation},
-    } = useCartValidationController(cart?.items ?? [], {isAuthenticated});
-
-    const proceedToCheckout = async () => {
+    const proceedToCheckout = () => {
         console.log("Proceeding to checkout...");
     };
 
@@ -56,34 +43,21 @@ const CartPage = () => {
     return (
         <>
             {isEmpty && !isLoading && !isError ? (
-                <CartList items={[]} currency={currency} />
+                <CartItems />
             ) : (
                 <Grid className={styles.content} gap={32}>
                     <div className={styles.itemsSection}>
                         <div className={styles.itemsList}>
-                            <CartList
-                                items={cart?.items ?? []}
-                                currency={currency}
-                                isLoading={isLoading}
-                                isError={isError}
-                                onRetry={refetch}
-                                onRemove={removeItem}
-                                onQuantityChange={updateQuantity}
-                                getItemValidation={getItemValidation}
-                            />
+                            <CartItems />
                         </div>
 
                         {!isEmpty && !isLoading && !isError && (
                             <div className={styles.itemsFooter}>
-                                <Button
-                                    theme="ghost"
-                                    size="sm"
-                                    onClick={clearCart}
+                                <ClearCartButton
+                                    onClear={clearCart}
                                     isLoading={isClearing}
                                     className={styles.clearBtn}
-                                >
-                                    Clear Cart
-                                </Button>
+                                />
                             </div>
                         )}
                     </div>
@@ -109,49 +83,49 @@ const CartPage = () => {
                                     Order Summary
                                 </Typography>
 
-                                <div className={styles.summaryRows}>
-                                    <div className={styles.summaryRow}>
-                                        <span>Items total</span>
-                                        <span>
+                                <Stack className={styles.summaryRows}>
+                                    <Stack className={styles.summaryRow} direction="row" justify="space-between" align="center">
+                                        <Typography as="span">Items total</Typography>
+                                        <Typography as="span" weight="medium">
                                             {formatCurrency(
                                                 currency,
                                                 i18n.language,
                                                 cart.totals.subtotal,
                                             )}
-                                        </span>
-                                    </div>
-                                    <div className={styles.summaryRow}>
-                                        <span>Delivery fee</span>
-                                        <span>
+                                        </Typography>
+                                    </Stack>
+                                    <Stack className={styles.summaryRow} direction="row" justify="space-between" align="center">
+                                        <Typography as="span">Delivery fee</Typography>
+                                        <Typography as="span" weight="medium">
                                             {formatCurrency(
                                                 currency,
                                                 i18n.language,
                                                 cart.totals.estimatedShipping,
                                             )}
-                                        </span>
-                                    </div>
+                                        </Typography>
+                                    </Stack>
                                     {cart.totals.estimatedTax > 0 && (
-                                        <div className={styles.summaryRow}>
-                                            <span>Estimated tax</span>
-                                            <span>
+                                        <Stack className={styles.summaryRow} direction="row" justify="space-between" align="center">
+                                            <Typography as="span">Estimated tax</Typography>
+                                            <Typography as="span" weight="medium">
                                                 {formatCurrency(
                                                     currency,
                                                     i18n.language,
                                                     cart.totals.estimatedTax,
                                                 )}
-                                            </span>
-                                        </div>
+                                            </Typography>
+                                        </Stack>
                                     )}
-                                </div>
+                                </Stack>
 
                                 <div className={styles.summaryDivider} />
 
-                                <div className={cn(styles.summaryRow, styles.summaryTotal)}>
-                                    <span>Subtotal</span>
-                                    <span>
+                                <Stack className={cn(styles.summaryRow, styles.summaryTotal)} direction="row" justify="space-between" align="center">
+                                    <Typography as="span" weight="bold">Subtotal</Typography>
+                                    <Typography as="span" weight="bold">
                                         {formatCurrency(currency, i18n.language, cart.totals.total)}
-                                    </span>
-                                </div>
+                                    </Typography>
+                                </Stack>
 
                                 <Button
                                     fullWidth

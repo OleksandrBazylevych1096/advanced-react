@@ -1,9 +1,9 @@
+import type {ReactNode} from "react";
 import {useTranslation} from "react-i18next";
 
-import DeleteIcon from "@/shared/assets/icons/Delete.svg?react";
 import type {CurrencyType} from "@/shared/config";
 import {cn} from "@/shared/lib";
-import {AppIcon, AppImage, Button, Price, Typography} from "@/shared/ui";
+import {AppImage, Price, Typography} from "@/shared/ui";
 
 import type {CartItem} from "../../model/types/CartSchema";
 
@@ -14,37 +14,17 @@ interface CartItemRowProps {
     compact?: boolean;
     validationIssues?: string[];
     currency: CurrencyType;
-    onRemove?: (productId: string) => void;
-    onQuantityChange?: (productId: string, quantity: number) => void;
+    controls?: ReactNode;
 }
 
 export const CartItemRow = (props: CartItemRowProps) => {
-    const {
-        item,
-        compact = false,
-        validationIssues = [],
-        currency,
-        onRemove,
-        onQuantityChange,
-    } = props;
+    const {item, compact = false, validationIssues = [], currency, controls} = props;
     const {i18n} = useTranslation();
 
     const {product, quantity} = item;
     const hasValidationIssues = validationIssues.length > 0;
     const mainImage = product.images?.find((img) => img.isMain) ?? product.images?.[0];
     const lineTotal = product.price * quantity;
-
-    const removeItem = () => onRemove?.(item.productId);
-    const decrementQuantity = () => {
-        if (quantity > 1) {
-            onQuantityChange?.(item.productId, quantity - 1);
-        }
-    };
-    const incrementQuantity = () => {
-        if (quantity < product.stock) {
-            onQuantityChange?.(item.productId, quantity + 1);
-        }
-    };
 
     return (
         <div className={styles.row} aria-invalid={hasValidationIssues}>
@@ -86,37 +66,10 @@ export const CartItemRow = (props: CartItemRowProps) => {
                 )}
             </div>
 
-            {(onRemove || onQuantityChange) && (
-                <div className={cn(styles.controls, styles.compactControls)}>
-                    {onRemove && (
-                        <Button
-                            theme="ghost"
-                            size="xs"
-                            onClick={removeItem}
-                            className={styles.deleteBtn}
-                            aria-label="Remove item"
-                        >
-                            <AppIcon Icon={DeleteIcon} size={16} />
-                        </Button>
-                    )}
-                    {onQuantityChange && (
-                        <Button
-                            type="button"
-                            theme="tertiary"
-                            size="xs"
-                            form={"circle"}
-                            className={cn(
-                                styles.quantityBtn,
-                                styles.compactQuantityBtn,
-                                styles.compactDecrementBtn,
-                            )}
-                            onClick={decrementQuantity}
-                            disabled={quantity <= 1}
-                            aria-label="Decrease quantity"
-                        >
-                            -
-                        </Button>
-                    )}
+            <div className={cn(styles.controls, styles.compactControls)}>
+                {controls ? (
+                    controls
+                ) : (
                     <Typography
                         as="span"
                         className={styles.quantity}
@@ -125,22 +78,8 @@ export const CartItemRow = (props: CartItemRowProps) => {
                     >
                         {quantity}
                     </Typography>
-                    {onQuantityChange && (
-                        <Button
-                            type="button"
-                            size="xs"
-                            theme={"primary"}
-                            form={"circle"}
-                            className={cn(styles.quantityBtn, styles.compactQuantityBtn)}
-                            onClick={incrementQuantity}
-                            disabled={quantity >= product.stock}
-                            aria-label="Increase quantity"
-                        >
-                            +
-                        </Button>
-                    )}
-                </div>
-            )}
+                )}
+            </div>
 
             {!compact && (
                 <div className={styles.lineTotal}>

@@ -18,7 +18,7 @@ export const Default: Story = {};
 
 export const WithValue: Story = {
     args: {
-        value: "+parsePriceRange.test.ts.ts 111 111 111",
+        value: "+ 111 111 111",
     },
 };
 

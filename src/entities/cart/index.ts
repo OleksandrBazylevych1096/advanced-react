@@ -32,7 +32,6 @@ import type {
     GuestCartItem,
 } from "./model/types/CartSchema";
 import {CartItemRow} from "./ui/CartItemRow/CartItemRow";
-import {CartList} from "./ui/CartList/CartList";
 
 export {
     cartActions,
@@ -60,7 +59,6 @@ export {
     findCartItemIndexByProductId,
     recalculateCartTotals,
     CartItemRow,
-    CartList,
 };
 
 export type {Cart, CartItem, CartSchema, CartTotals, CartValidationItem, GuestCartItem};
