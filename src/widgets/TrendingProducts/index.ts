@@ -1,5 +1,5 @@
-import {TrendingProducts} from "./ui/TrendingProducts";
 import {trendingProductsHandlers} from "./api/test/handlers";
+import {TrendingProducts} from "./ui/TrendingProducts";
 
 export {TrendingProducts};
 

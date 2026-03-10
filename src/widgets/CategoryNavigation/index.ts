@@ -1,5 +1,5 @@
-import {CategoryNavigation} from "./ui/CategoryNavigation";
 import {categoryNavigationHandlers} from "./api/test/handlers";
+import {CategoryNavigation} from "./ui/CategoryNavigation";
 
 export {CategoryNavigation};
 

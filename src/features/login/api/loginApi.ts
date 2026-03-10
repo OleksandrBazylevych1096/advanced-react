@@ -1,10 +1,11 @@
-import {baseAPI} from "@/shared/api";
-
 import {
     applyAuthSession,
     type AuthSessionResponse,
     type MfaChallengeResponse,
 } from "@/entities/user";
+
+import {baseAPI} from "@/shared/api";
+
 
 type LoginArgs = {
     identifier: string;

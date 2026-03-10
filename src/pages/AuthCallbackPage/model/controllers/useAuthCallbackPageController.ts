@@ -65,6 +65,7 @@ export const useAuthCallbackPageController = () => {
             setCallbackError(i18n.t("auth:oauth.callbackPayloadInvalid"));
         }
     }, [
+        getLocalizedPath,
         accessToken,
         accessTokenExpiresAt,
         availableMethods,

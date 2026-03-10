@@ -1,7 +1,8 @@
-import {useSearchParams} from "react-router";
 import {useTranslation} from "react-i18next";
+import {useSearchParams} from "react-router";
 
 import {ResetPasswordForm} from "@/features/reset-password";
+
 import {AppPage, Stack, Typography} from "@/shared/ui";
 
 import styles from "./ResetPasswordPage.module.scss";

@@ -1,5 +1,5 @@
-import type {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import type {SerializedError} from "@reduxjs/toolkit";
+import type {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 
 interface ApiErrorData {
     code: string;

@@ -1,6 +1,6 @@
 import type {FormEvent} from "react";
-import {Link} from "react-router";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router";
 
 import CheckIcon from "@/shared/assets/icons/Check.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";

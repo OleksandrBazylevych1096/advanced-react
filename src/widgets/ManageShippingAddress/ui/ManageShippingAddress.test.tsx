@@ -3,6 +3,8 @@ import userEvent from "@testing-library/user-event";
 import {setupServer} from "msw/node";
 import {afterAll, afterEach, beforeAll, beforeEach, describe, expect, test, vi} from "vitest";
 
+import {saveShippingAddressReducer} from "@/features/save-shipping-address";
+
 import {
     defaultAddressHandlers,
     deleteAddressHandlers,
@@ -14,7 +16,6 @@ import {
     setDefaultAddressHandlers,
 } from "@/entities/shipping-address/testing";
 
-import {saveShippingAddressReducer} from "@/features/save-shipping-address";
 
 import type {DeepPartial} from "@/shared/lib";
 import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario.ts";

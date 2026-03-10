@@ -1,6 +1,8 @@
+import {Stack} from "@/shared/ui";
+
 import {useToastNotificationListController} from "../../model/controllers/useToastNotificationListController";
 import {ToastNotificationListItem} from "../ToastNotificationListItem/ToastNotificationListItem";
-import {Stack} from "@/shared/ui";
+
 
 import styles from "./ToastNotificationList.module.scss";
 

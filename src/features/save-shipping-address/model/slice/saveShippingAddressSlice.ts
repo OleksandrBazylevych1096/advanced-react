@@ -6,6 +6,7 @@ import type {
     AddressMode,
     SaveShippingAddressSchema,
 } from "@/entities/shipping-address";
+
 import {DEFAULT_LOCATION} from "../../consts/defaults";
 
 export const initialState: SaveShippingAddressSchema = {

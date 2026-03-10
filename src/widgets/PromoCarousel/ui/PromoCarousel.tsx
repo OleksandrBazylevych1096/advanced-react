@@ -4,8 +4,9 @@ import {useState} from "react";
 
 import {AppImage, Carousel, CarouselSkeleton, useAutoScroll} from "@/shared/ui";
 
-import styles from "./PromoCarousel.module.scss";
 import {usePromoCarouselController} from "../model/controllers/usePromoCarouselController";
+
+import styles from "./PromoCarousel.module.scss";
 
 interface PromoCarouselProps {
     autoScrollOptions?: AutoScrollOptionsType;

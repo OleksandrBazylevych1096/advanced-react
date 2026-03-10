@@ -1,6 +1,7 @@
 import {Button, Stack} from "@/shared/ui";
 
 import {useProductFiltersControlsController} from "../../model/controllers/useProductFiltersControlsController/useProductFiltersControlsController";
+
 import styles from "./ProductFiltersControls.module.scss";
 import {SortOptionsSelect} from "./SortOptionsSelect/SortOptionsSelect";
 

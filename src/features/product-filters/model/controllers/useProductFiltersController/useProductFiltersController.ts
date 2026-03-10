@@ -2,7 +2,6 @@ import {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useParams, useSearchParams} from "react-router";
 
-import {useResolvedCategoryIdController} from "@/entities/category";
 
 import {
     DEBOUNCE_DELAY,
@@ -32,17 +31,18 @@ import type {
     SortType,
 } from "@/features/product-filters/model/types/productFiltersSchema.ts";
 
+import {useResolvedCategoryIdController} from "@/entities/category";
 import {useGetInfiniteProducts} from "@/entities/product";
 import type {PriceRangeType} from "@/entities/product/model/types/Product.ts";
 import {selectUserCurrency} from "@/entities/user";
 
+import type {SupportedLngsType} from "@/shared/config";
 import {
     clampOptionalRange,
     createControllerResult,
     useAppDispatch,
     useAppSelector,
 } from "@/shared/lib";
-import type {SupportedLngsType} from "@/shared/config";
 import {useDebounce} from "@/shared/lib/async/debounce/useDebounce.ts";
 
 interface UseProductFiltersControllerArgs {

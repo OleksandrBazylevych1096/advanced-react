@@ -1,7 +1,5 @@
 import type {LatLngTuple} from "leaflet";
 
-import {baseAPI} from "@/shared/api/rtk/baseAPI";
-
 import type {
     AddressSearchResult,
     CreateShippingAddress,
@@ -9,6 +7,9 @@ import type {
     ShippingAddress,
     UpdateShippingAddress,
 } from "@/entities/shipping-address";
+
+import {baseAPI} from "@/shared/api/rtk/baseAPI";
+
 
 export const saveShippingAddressApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({

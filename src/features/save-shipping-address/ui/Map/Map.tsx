@@ -1,8 +1,8 @@
 import L from "leaflet";
 import {MapContainer, Marker, TileLayer, Tooltip} from "react-leaflet";
 
-import {Spinner} from "@/shared/ui";
 import MapPinIcon from "@/shared/assets/icons/MapPinFilled.svg?raw";
+import {Spinner} from "@/shared/ui";
 
 import {MAP_CONFIG, TILE_LAYER_CONFIG} from "../../consts/defaults";
 import {useMapController} from "../../model/controllers/useMapController/useMapController";

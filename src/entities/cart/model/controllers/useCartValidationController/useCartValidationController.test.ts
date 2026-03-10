@@ -2,6 +2,7 @@ import {renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
 import type {CartItem, CartValidationItem} from "../../types/CartSchema";
+
 import {useCartValidationController} from "./useCartValidationController";
 
 const testCtx = vi.hoisted(() => ({

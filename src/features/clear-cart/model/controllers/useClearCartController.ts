@@ -1,11 +1,11 @@
 import {useCallback} from "react";
 
 import {broadcastCartClear, cartActions, clearGuestCart} from "@/entities/cart";
-
-import {useClearCartMutation} from "../../api/clearCartApi";
 import {selectIsAuthenticated} from "@/entities/user";
 
 import {createControllerResult, useAppDispatch, useAppSelector, useToast} from "@/shared/lib";
+
+import {useClearCartMutation} from "../../api/clearCartApi";
 
 export const useClearCartController = () => {
     const dispatch = useAppDispatch();

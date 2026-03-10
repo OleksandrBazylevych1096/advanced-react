@@ -4,9 +4,9 @@ import AddIcon from "@/shared/assets/icons/Add.svg?react";
 import MapPinIcon from "@/shared/assets/icons/MapPinFilled.svg?react";
 import {AppIcon, Button, EmptyState, ErrorState, Modal} from "@/shared/ui";
 
+import {useShippingAddressListController} from "../../model/controllers/useShippingAddressListController/useShippingAddressListController";
 import {Loader} from "../Loader/Loader";
 
-import {useShippingAddressListController} from "../../model/controllers/useShippingAddressListController/useShippingAddressListController";
 import styles from "./ShippingAddressList.module.scss";
 import {ShippingAddressListItem} from "./ShippingAddressListItem";
 

@@ -1,5 +1,5 @@
-import {Link} from "react-router";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router";
 
 import {AppRoutes, routePaths} from "@/shared/config";
 import {useLocalizedRoutePath} from "@/shared/lib";

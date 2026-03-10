@@ -19,8 +19,9 @@ import {
     Typography,
 } from "@/shared/ui";
 
-import styles from "./TrendingProducts.module.scss";
 import {useTrendingProductsController} from "../model/controllers/useTrendingProductsController";
+
+import styles from "./TrendingProducts.module.scss";
 
 export const TrendingProducts = () => {
     const {t} = useTranslation();

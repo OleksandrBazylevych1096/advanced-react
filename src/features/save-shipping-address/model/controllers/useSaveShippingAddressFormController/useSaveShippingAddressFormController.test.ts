@@ -1,9 +1,11 @@
 import {act, renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
-import {saveShippingAddressActions} from "../../slice/saveShippingAddressSlice";
-import {useSaveShippingAddressFormController} from "./useSaveShippingAddressFormController";
 import type {DeepPartial} from "@/shared/lib";
+
+import {saveShippingAddressActions} from "../../slice/saveShippingAddressSlice";
+
+import {useSaveShippingAddressFormController} from "./useSaveShippingAddressFormController";
 
 const testCtx = vi.hoisted(() => ({
     mockState: undefined as DeepPartial<StateSchema> | undefined,

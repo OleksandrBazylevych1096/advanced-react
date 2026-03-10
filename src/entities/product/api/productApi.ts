@@ -1,6 +1,7 @@
+import {baseAPI} from "@/shared/api";
+
 import type {ProductQuery, ProductsApiResponse} from "../model/types/Product";
 
-import {baseAPI} from "@/shared/api";
 
 export const productApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({

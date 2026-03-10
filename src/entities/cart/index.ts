@@ -1,9 +1,9 @@
 import {
     cartApi,
-    useGetCartQuery,
     useGetCartCountQuery,
-    useValidateCartQuery,
+    useGetCartQuery,
     useSyncCartMutation,
+    useValidateCartQuery,
 } from "./api/cartApi";
 import {
     applyCartItemQuantityChange,
@@ -13,15 +13,15 @@ import {
 import {clearGuestCart, getGuestCart, setGuestCart} from "./lib/cartStorage";
 import {broadcastCartClear, broadcastCartUpdate, onCartSync} from "./lib/cartSync";
 import {recalculateCartTotals} from "./lib/recalculateCartTotals";
-import {
-    selectGuestCartItems,
-    selectGuestCartItemCount,
-    selectGuestCartSubtotal,
-    selectIsCartInitialized,
-    selectGuestCartItemByProductId,
-} from "./model/selectors/cartSelectors";
 import {useCartController} from "./model/controllers/useCartController/useCartController";
 import {useCartValidationController} from "./model/controllers/useCartValidationController/useCartValidationController";
+import {
+    selectGuestCartItemByProductId,
+    selectGuestCartItemCount,
+    selectGuestCartItems,
+    selectGuestCartSubtotal,
+    selectIsCartInitialized,
+} from "./model/selectors/cartSelectors";
 import {cartActions, cartReducer} from "./model/slice/cartSlice";
 import type {
     Cart,

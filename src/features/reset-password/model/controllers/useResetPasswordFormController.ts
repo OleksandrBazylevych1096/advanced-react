@@ -40,7 +40,7 @@ export const useResetPasswordFormController = (token: string | null) => {
         }, 1000);
 
         return () => clearInterval(timerRef.current);
-    }, [isSuccess, navigate]);
+    }, [getLocalizedPath, isSuccess, navigate]);
 
     const changeNewPassword = (value: string) => {
         setNewPassword(value);

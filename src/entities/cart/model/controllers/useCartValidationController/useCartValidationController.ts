@@ -1,6 +1,7 @@
 import {useMemo} from "react";
 
 import {createControllerResult} from "@/shared/lib";
+
 import {useValidateCartQuery} from "../../../api/cartApi";
 import type {CartItem} from "../../types/CartSchema";
 
@@ -46,10 +47,10 @@ export const useCartValidationController = (
     const validation =
         isAuthenticated && serverValidation
             ? serverValidation.map((sv) => ({
-                  productId: sv.productId,
-                  issues: sv.issues,
-                  isValid: sv.isValid,
-              }))
+                productId: sv.productId,
+                issues: sv.issues,
+                isValid: sv.isValid,
+            }))
             : clientValidation;
 
     const hasIssues = validation.some((v) => !v.isValid);

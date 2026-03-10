@@ -1,4 +1,5 @@
 import {type SortOptionValue} from "@/features/product-filters/consts/sortOptions.ts";
+
 import {Select} from "@/shared/ui/Select/Select.tsx";
 
 import {useSortOptionsSelectController} from "../../../model/controllers/useSortOptionsSelectController/useSortOptionsSelectController";

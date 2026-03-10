@@ -8,6 +8,7 @@ import {
 } from "react";
 
 import {Stack} from "@/shared/ui/Stack/Stack";
+
 import {type HTMLInputProps, Input} from "../Input";
 
 import styles from "./OTPInput.module.scss";

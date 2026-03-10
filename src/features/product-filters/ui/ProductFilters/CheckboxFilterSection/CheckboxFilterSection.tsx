@@ -2,9 +2,8 @@ import {type ReactNode} from "react";
 
 import type {FacetItemType} from "@/entities/product/model/types/Product.ts";
 
-import {Checkbox} from "@/shared/ui";
+import {Checkbox,Stack, Typography} from "@/shared/ui";
 import {Accordion} from "@/shared/ui/Accordion/Accordion.tsx";
-import {Stack, Typography} from "@/shared/ui";
 
 import styles from "./CheckboxFilterSection.module.scss";
 
