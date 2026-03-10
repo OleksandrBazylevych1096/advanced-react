@@ -1,5 +1,5 @@
 import {Suspense} from "react";
-import {Navigate, Route, Routes} from "react-router";
+import {Navigate, Route, Routes, useLocation} from "react-router";
 
 import {PageLoader} from "@/widgets/PageLoader";
 
@@ -9,24 +9,27 @@ import {routeConfig} from "./routerConfig";
 
 export const AppRouter = () => {
     const missingLanguageRedirectPath = useMissingLanguageRedirect();
+    const location = useLocation();
 
     if (missingLanguageRedirectPath) {
         return <Navigate to={missingLanguageRedirectPath} replace />;
     }
 
     return (
-        <Routes>
-            {routeConfig.map(({path, element, hasLocalizedParams}) => (
-                <Route
-                    key={path}
-                    path={path}
-                    element={
-                        <LanguageSyncWrapper hasLocalizedParams={hasLocalizedParams}>
-                            <Suspense fallback={<PageLoader />}>{element}</Suspense>
-                        </LanguageSyncWrapper>
-                    }
-                />
-            ))}
-        </Routes>
+        <Suspense key={location.key} fallback={<PageLoader />}>
+            <Routes>
+                {routeConfig.map(({path, element, hasLocalizedParams}) => (
+                    <Route
+                        key={path}
+                        path={path}
+                        element={
+                            <LanguageSyncWrapper hasLocalizedParams={hasLocalizedParams}>
+                                {element}
+                            </LanguageSyncWrapper>
+                        }
+                    />
+                ))}
+            </Routes>
+        </Suspense>
     );
 };

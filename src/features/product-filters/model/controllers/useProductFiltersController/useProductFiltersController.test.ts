@@ -7,7 +7,7 @@ const testCtx = vi.hoisted(() => ({
     state: undefined as StateSchema | undefined,
     dispatchMock: vi.fn(),
     setSearchParamsMock: vi.fn(),
-    categoryQueryMock: vi.fn(),
+    resolveCategoryIdMock: vi.fn(),
     infiniteProductsMock: vi.fn(),
     refetchMock: vi.fn(),
 }));
@@ -22,7 +22,7 @@ vi.mock("react-router", () => ({
 }));
 
 vi.mock("@/entities/category", () => ({
-    useGetCategoryBySlugQuery: (...args: unknown[]) => testCtx.categoryQueryMock(...args),
+    useResolvedCategoryIdController: (...args: unknown[]) => testCtx.resolveCategoryIdMock(...args),
 }));
 
 vi.mock("@/entities/product", () => ({
@@ -120,10 +120,9 @@ describe("useProductFiltersController", () => {
                 isOpen: true,
             },
         } as StateSchema;
-        testCtx.categoryQueryMock.mockReturnValue({
-            currentData: {id: "cat-1"},
-            isLoading: false,
-            error: null,
+        testCtx.resolveCategoryIdMock.mockReturnValue({
+            data: {resolvedCategoryId: "cat-1"},
+            status: {isLoading: false, error: null},
         });
         testCtx.infiniteProductsMock.mockReturnValue({
             facets: undefined,
@@ -185,10 +184,11 @@ describe("useProductFiltersController", () => {
     test("uses provided category context and skips slug category lookup", () => {
         renderHook(() => useProductFiltersController({categoryId: "cat-1"}));
 
-        expect(testCtx.categoryQueryMock).toHaveBeenCalledWith(
-            {slug: "phones", locale: "en"},
-            {skip: true},
-        );
+        expect(testCtx.resolveCategoryIdMock).toHaveBeenCalledWith({
+            categoryId: "cat-1",
+            slug: "phones",
+            locale: "en",
+        });
         expect(testCtx.infiniteProductsMock).toHaveBeenCalledWith(
             {
                 categoryId: "cat-1",

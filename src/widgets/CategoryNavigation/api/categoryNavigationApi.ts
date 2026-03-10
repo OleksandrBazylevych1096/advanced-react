@@ -1,3 +1,5 @@
+import type {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+
 import type {Category} from "@/entities/category";
 
 import {baseAPI} from "@/shared/api";
@@ -9,8 +11,8 @@ interface CategoryNavigationArgs {
 }
 
 export interface CategoryNavigationReturn {
-    currentCategory: Category;
-    parentCategory: Category;
+    currentCategory: Category | null;
+    parentCategory: Category | null;
     items: Category[];
     isShowingSubcategories: boolean;
 }
@@ -18,10 +20,38 @@ export interface CategoryNavigationReturn {
 const categoryNavigationApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
         getCategoryNavigation: build.query<CategoryNavigationReturn, CategoryNavigationArgs>({
-            query: ({slug, locale}) => ({
-                url: `categories/navigation/${slug}`,
-                params: {locale},
-            }),
+            async queryFn({slug, locale}, _api, _extraOptions, baseQuery) {
+                if (!slug) {
+                    const topLevelResponse = await baseQuery({
+                        url: "/categories/top-level",
+                        params: {locale},
+                    });
+
+                    if (topLevelResponse.error) {
+                        return {error: topLevelResponse.error as FetchBaseQueryError};
+                    }
+
+                    return {
+                        data: {
+                            currentCategory: null,
+                            parentCategory: null,
+                            items: topLevelResponse.data as Category[],
+                            isShowingSubcategories: false,
+                        },
+                    };
+                }
+
+                const navigationResponse = await baseQuery({
+                    url: `/categories/navigation/${slug}`,
+                    params: {locale},
+                });
+
+                if (navigationResponse.error) {
+                    return {error: navigationResponse.error as FetchBaseQueryError};
+                }
+
+                return {data: navigationResponse.data as CategoryNavigationReturn};
+            },
         }),
     }),
 });

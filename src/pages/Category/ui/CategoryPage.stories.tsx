@@ -1,13 +1,11 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {breadcrumbsHandlers} from "@/pages/Category/api/test/handlers";
-
 import {categoryNavigationHandlers} from "@/widgets/CategoryNavigation";
 import {promoCarouselHandlers} from "@/widgets/PromoCarousel";
 
 import {productFiltersReducer} from "@/features/product-filters";
 
-import {categoryHandlers} from "@/entities/category";
+import {categoryBreadcrumbsHandlers, categoryHandlers} from "@/entities/category";
 import {productsHandlers} from "@/entities/product";
 
 import {AppRoutes, routePaths} from "@/shared/config";
@@ -16,7 +14,7 @@ import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersSce
 import CategoryPage from "./CategoryPage";
 
 const categoryPageHandlersMap = {
-    breadcrumbs: breadcrumbsHandlers,
+    breadcrumbs: categoryBreadcrumbsHandlers,
     products: productsHandlers,
     category: categoryHandlers,
     categoryNav: categoryNavigationHandlers,

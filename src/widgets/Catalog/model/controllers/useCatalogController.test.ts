@@ -5,7 +5,7 @@ import {useCatalogController} from "./useCatalogController";
 
 const testCtx = vi.hoisted(() => ({
     state: undefined as StateSchema | undefined,
-    categoryQueryMock: vi.fn(),
+    resolveCategoryIdMock: vi.fn(),
     infiniteProductsMock: vi.fn(),
     fetchNextPageMock: vi.fn(),
     refetchMock: vi.fn(),
@@ -24,7 +24,7 @@ vi.mock("@/features/product-filters", () => ({
 }));
 
 vi.mock("@/entities/category", () => ({
-    useGetCategoryBySlugQuery: (...args: unknown[]) => testCtx.categoryQueryMock(...args),
+    useResolvedCategoryIdController: (...args: unknown[]) => testCtx.resolveCategoryIdMock(...args),
 }));
 
 vi.mock("@/entities/product", () => ({
@@ -50,7 +50,10 @@ describe("useCatalogController", () => {
         } as StateSchema;
         testCtx.fetchNextPageMock = vi.fn().mockResolvedValue(undefined);
         testCtx.refetchMock = vi.fn();
-        testCtx.categoryQueryMock.mockReturnValue({currentData: {id: "cat-1"}});
+        testCtx.resolveCategoryIdMock.mockReturnValue({
+            data: {resolvedCategoryId: "cat-1"},
+            status: {isLoading: false, error: null},
+        });
         testCtx.infiniteProductsMock.mockReturnValue({
             data: {pages: [{products: [{id: "p1"}]}]},
             isLoading: false,
@@ -66,10 +69,11 @@ describe("useCatalogController", () => {
     test("returns products and loads more near list end", async () => {
         const {result} = renderHook(() => useCatalogController());
 
-        expect(testCtx.categoryQueryMock).toHaveBeenCalledWith(
-            {slug: "phones", locale: "en"},
-            {skip: false},
-        );
+        expect(testCtx.resolveCategoryIdMock).toHaveBeenCalledWith({
+            categoryId: undefined,
+            slug: "phones",
+            locale: "en",
+        });
         expect(testCtx.infiniteProductsMock).toHaveBeenCalledWith(
             {
                 categoryId: "cat-1",
@@ -114,10 +118,11 @@ describe("useCatalogController", () => {
     test("uses provided category context and skips slug category lookup", () => {
         renderHook(() => useCatalogController({categoryId: "cat-1"}));
 
-        expect(testCtx.categoryQueryMock).toHaveBeenCalledWith(
-            {slug: "phones", locale: "en"},
-            {skip: true},
-        );
+        expect(testCtx.resolveCategoryIdMock).toHaveBeenCalledWith({
+            categoryId: "cat-1",
+            slug: "phones",
+            locale: "en",
+        });
         expect(testCtx.infiniteProductsMock).toHaveBeenCalledWith(
             {
                 categoryId: "cat-1",
@@ -127,5 +132,36 @@ describe("useCatalogController", () => {
             },
             {skip: false},
         );
+    });
+
+    test("keeps loading while category id is being resolved", () => {
+        testCtx.resolveCategoryIdMock.mockReturnValue({
+            data: {resolvedCategoryId: undefined},
+            status: {isLoading: true, error: null},
+        });
+
+        testCtx.infiniteProductsMock.mockReturnValue({
+            data: undefined,
+            isLoading: false,
+            isFetching: false,
+            error: null,
+            isFetchingNextPage: false,
+            hasNextPage: false,
+            fetchNextPage: testCtx.fetchNextPageMock,
+            refetch: testCtx.refetchMock,
+        });
+
+        const {result} = renderHook(() => useCatalogController());
+
+        expect(testCtx.infiniteProductsMock).toHaveBeenCalledWith(
+            {
+                categoryId: undefined,
+                locale: "en",
+                currency: "USD",
+                brands: ["Apple"],
+            },
+            {skip: true},
+        );
+        expect(result.current.status.isLoading).toBe(true);
     });
 });

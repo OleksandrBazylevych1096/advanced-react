@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useParams, useSearchParams} from "react-router";
 
-import {useGetCategoryBySlugQuery} from "@/entities/category";
+import {useResolvedCategoryIdController} from "@/entities/category";
 
 import {
     DEBOUNCE_DELAY,
@@ -75,17 +75,17 @@ export const useProductFiltersController = ({
     const isReducerReady = filtersState !== undefined;
 
     const debouncedPriceRange = useDebounce(localPriceRange, DEBOUNCE_DELAY);
-    const shouldResolveCategoryBySlug = !categoryId;
-
     const {
-        currentData: category,
-        isLoading: isCategoryLoading,
-        error: categoryError,
-    } = useGetCategoryBySlugQuery(
-        {slug: slug!, locale},
-        {skip: !shouldResolveCategoryBySlug},
-    );
-    const resolvedCategoryId = categoryId ?? category?.id;
+        data: {resolvedCategoryId},
+        status: {
+            isLoading: isCategoryLoading,
+            error: categoryError,
+        },
+    } = useResolvedCategoryIdController({
+        categoryId,
+        slug,
+        locale,
+    });
 
     const productsQuery = useGetInfiniteProducts(
         {
@@ -252,7 +252,7 @@ export const useProductFiltersController = ({
         dispatch(productFiltersActions.setIsOpen(false));
     };
 
-    const isLoading = (shouldResolveCategoryBySlug && isCategoryLoading) || isProductsLoading;
+    const isLoading = isCategoryLoading || isProductsLoading;
     const hasError = Boolean(categoryError || productsError);
 
     return createControllerResult({

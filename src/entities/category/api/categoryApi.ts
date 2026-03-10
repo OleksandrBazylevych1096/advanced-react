@@ -1,10 +1,17 @@
 import {baseAPI} from "@/shared/api";
 import type {SupportedLngsType} from "@/shared/config";
+import type {BreadcrumbItem} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
 
-import type {Category} from "../model/types/Category";
+import {generateCategoryHref} from "../lib/generateCategoryHref";
+import type {BaseCategory, Category} from "../model/types/Category";
 
 interface CategoryBySlugArgs {
-    slug?: string;
+    slug: string;
+    locale: SupportedLngsType;
+}
+
+interface CategoryBreadcrumbsArgs {
+    id: string;
     locale: SupportedLngsType;
 }
 
@@ -16,7 +23,19 @@ const categoryApi = baseAPI.injectEndpoints({
                 params: {locale},
             }),
         }),
+        getCategoryBreadcrumbs: build.query<BreadcrumbItem[], CategoryBreadcrumbsArgs>({
+            query: ({locale, id}) => ({
+                url: `/categories/breadcrumbs/${id}`,
+                params: {locale},
+            }),
+            transformResponse(breadcrumbsData: BaseCategory[], _meta, args): BreadcrumbItem[] {
+                return breadcrumbsData.map((item) => ({
+                    label: item.name,
+                    href: generateCategoryHref(item.slug, args.locale),
+                }));
+            },
+        }),
     }),
 });
 
-export const {useGetCategoryBySlugQuery} = categoryApi;
+export const {useGetCategoryBySlugQuery, useGetCategoryBreadcrumbsQuery} = categoryApi;

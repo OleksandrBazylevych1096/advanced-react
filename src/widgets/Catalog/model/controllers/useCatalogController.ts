@@ -5,7 +5,7 @@ import type {Grid as GridType} from "react-virtualized";
 
 import {selectActiveFilters} from "@/features/product-filters";
 
-import {useGetCategoryBySlugQuery} from "@/entities/category";
+import {useResolvedCategoryIdController} from "@/entities/category";
 import {useGetInfiniteProducts} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
@@ -24,13 +24,14 @@ export const useCatalogController = ({categoryId}: UseCatalogControllerArgs = {}
     const isLoadingMore = useRef(false);
     const gridRef = useRef<GridType>(null);
     const locale = i18n.language as SupportedLngsType;
-    const shouldResolveCategoryBySlug = !categoryId;
-
-    const {currentData: category} = useGetCategoryBySlugQuery(
-        {slug: slug!, locale},
-        {skip: !shouldResolveCategoryBySlug},
-    );
-    const resolvedCategoryId = categoryId ?? category?.id;
+    const {
+        data: {resolvedCategoryId},
+        status: {isLoading: isCategoryLoading, error: categoryError},
+    } = useResolvedCategoryIdController({
+        categoryId,
+        slug,
+        locale,
+    });
 
     const {
         data: productsData,
@@ -85,8 +86,8 @@ export const useCatalogController = ({categoryId}: UseCatalogControllerArgs = {}
             hasNextPage,
         },
         status: {
-            isLoading: isLoading || isRefetching,
-            error,
+            isLoading: isCategoryLoading || isLoading || isRefetching,
+            error: categoryError ?? error,
             isFetchingNextPage,
         },
         actions: {

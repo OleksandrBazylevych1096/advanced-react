@@ -1,14 +1,14 @@
+import {skipToken} from "@reduxjs/toolkit/query";
 import {useParams} from "react-router";
 
-import {useGetCategoryBreadcrumbsQuery} from "@/pages/Category/api/categoryPageApi.ts";
 import {useGetProductBySlugQuery} from "@/pages/Product/api/productPageApi.ts";
 import {generateProductBreadcrumbs} from "@/pages/Product/lib/generateProductBreadcrumbs/generateProductBreadcrumbs.ts";
 
+import {useGetCategoryBreadcrumbsQuery} from "@/entities/category";
+
 import {AppRoutes, routePaths, type SupportedLngsType} from "@/shared/config";
 import {createControllerResult} from "@/shared/lib";
-import {
-    useLocalizedSlugSync,
-} from "@/shared/lib/routing/localizedSlug/useSlugSync.ts";
+import {useLocalizedSlugSync} from "@/shared/lib/routing/localizedSlug/useSlugSync.ts";
 
 export const useProductPageController = () => {
     const {slug, lng} = useParams<{slug: string; lng: SupportedLngsType}>();
@@ -18,15 +18,11 @@ export const useProductPageController = () => {
         isSuccess,
         isFetching,
         isError,
-    } = useGetProductBySlugQuery({slug: slug!, locale: lng!});
+    } = useGetProductBySlugQuery(slug && lng ? {slug, locale: lng} : skipToken);
 
-    const {data: categoryBreadcrumbs} = useGetCategoryBreadcrumbsQuery(
-        {
-            id: product?.categoryId,
-            locale: lng!,
-        },
-        {skip: !product?.categoryId},
-    );
+    const categoryBreadcrumbsArgs =
+        product?.categoryId && lng ? {id: product.categoryId, locale: lng} : skipToken;
+    const {data: categoryBreadcrumbs} = useGetCategoryBreadcrumbsQuery(categoryBreadcrumbsArgs);
 
     const breadcrumbs = generateProductBreadcrumbs(categoryBreadcrumbs, product?.name);
 
@@ -50,4 +46,3 @@ export const useProductPageController = () => {
         },
     });
 };
-

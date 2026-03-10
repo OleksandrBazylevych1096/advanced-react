@@ -10,3 +10,11 @@ export const categoryHandlers = createHandlers({
     errorData: {error: "Failed to load category"},
     errorStatus: 500,
 });
+
+export const categoryBreadcrumbsHandlers = createHandlers({
+    endpoint: `${API_URL}/categories/breadcrumbs/:id`,
+    method: "get",
+    defaultData: mockCategories,
+    errorData: {error: "Failed to load breadcrumbs"},
+    errorStatus: 500,
+});
