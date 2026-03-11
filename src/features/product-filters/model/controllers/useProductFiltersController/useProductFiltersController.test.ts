@@ -61,14 +61,31 @@ vi.mock("@/features/product-filters/lib/validateFiltersFromURL.ts", () => ({
 }));
 
 vi.mock("@/features/product-filters/model/selectors/productFiltersSelectors.ts", () => ({
-    selectActiveFilters: (state: StateSchema) => state.productFilters?.activeFilters,
-    selectHasActiveFilters: (state: StateSchema) => state.productFilters?.hasActiveFilters,
+    selectActiveFilters: (state: StateSchema) => ({
+        brands: state.productFilters?.filters.brands ?? [],
+        countries: state.productFilters?.filters.countries ?? [],
+        minPrice: state.productFilters?.filters.priceRange.min,
+        maxPrice: state.productFilters?.filters.priceRange.max,
+        inStock: state.productFilters?.filters.inStock ?? true,
+        sortBy: state.productFilters?.filters.sortBy ?? "createdAt",
+        sortOrder: state.productFilters?.filters.sortOrder ?? "desc",
+    }),
+    selectHasActiveFilters: (state: StateSchema) =>
+        Boolean(
+            (state.productFilters?.filters.brands.length ?? 0) > 0 ||
+            (state.productFilters?.filters.countries.length ?? 0) > 0 ||
+            state.productFilters?.filters.priceRange.min !== undefined ||
+            state.productFilters?.filters.priceRange.max !== undefined,
+        ),
     selectProductFilters: (state: StateSchema) => state.productFilters,
     selectProductFiltersIsOpen: (state: StateSchema) => state.productFilters?.isOpen,
-    selectSelectedBrands: (state: StateSchema) => state.productFilters?.selectedBrands,
-    selectSelectedCountries: (state: StateSchema) => state.productFilters?.selectedCountries,
-    selectSelectedPriceRange: (state: StateSchema) => state.productFilters?.selectedPriceRange,
-    selectSortSettings: (state: StateSchema) => state.productFilters?.sortSettings,
+    selectSelectedBrands: (state: StateSchema) => state.productFilters?.filters.brands,
+    selectSelectedCountries: (state: StateSchema) => state.productFilters?.filters.countries,
+    selectSelectedPriceRange: (state: StateSchema) => state.productFilters?.filters.priceRange,
+    selectSortSettings: (state: StateSchema) => ({
+        sortBy: state.productFilters?.filters.sortBy ?? "createdAt",
+        sortOrder: state.productFilters?.filters.sortOrder ?? "desc",
+    }),
 }));
 
 vi.mock("@/features/product-filters/model/slice/productFiltersSlice.ts", () => ({
@@ -110,16 +127,21 @@ describe("useProductFiltersController", () => {
         testCtx.refetchMock = vi.fn();
         testCtx.state = {
             user: {currency: "USD"},
+            toast: {toasts: []},
+            cart: {guestItems: [], isInitialized: true},
+            baseAPI: {},
             productFilters: {
-                activeFilters: {},
-                hasActiveFilters: false,
-                selectedCountries: [],
-                selectedBrands: [],
-                selectedPriceRange: {min: undefined, max: undefined},
-                sortSettings: {sortBy: "createdAt", sortOrder: "desc"},
+                filters: {
+                    priceRange: {min: undefined, max: undefined},
+                    countries: [],
+                    brands: [],
+                    inStock: true,
+                    sortBy: "price",
+                    sortOrder: "asc",
+                },
                 isOpen: true,
             },
-        } as StateSchema;
+        } as unknown as StateSchema;
         testCtx.resolveCategoryIdMock.mockReturnValue({
             data: {resolvedCategoryId: "cat-1"},
             status: {isLoading: false, error: null},
@@ -194,10 +216,18 @@ describe("useProductFiltersController", () => {
                 categoryId: "cat-1",
                 locale: "en",
                 currency: "USD",
-                sortBy: "createdAt",
-                sortOrder: "desc",
+                brands: [],
+                countries: [],
+                minPrice: undefined,
+                maxPrice: undefined,
+                inStock: true,
+                sortBy: "price",
+                sortOrder: "asc",
             },
-            expect.objectContaining({skip: false}),
+            {
+                skip: false,
+                selectFromResult: expect.any(Function),
+            },
         );
     });
 });

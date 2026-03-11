@@ -2,8 +2,6 @@ import {beforeEach, describe, expect, test, vi} from "vitest";
 
 import {createStore} from "@/app/store";
 
-import {deleteShippingAddressApi} from "./deleteShippingAddressApi";
-
 const mocks = vi.hoisted(() => {
     const capturedTxns: Array<{
         rollbackOnError?: (error: unknown) => boolean;
@@ -66,14 +64,15 @@ vi.mock("@/app/providers", async () => {
     };
 });
 
-vi.mock("@/shared/lib", async () => {
-    const actual = await vi.importActual<typeof import("@/shared/lib")>("@/shared/lib");
-
-    return {
-        ...actual,
-        runOptimisticTxn: mocks.runOptimisticTxnMock,
-    };
-});
+vi.mock("@/shared/lib", () => ({
+    runOptimisticTxn: mocks.runOptimisticTxnMock,
+    isAbortError: (error: unknown) => error instanceof Error && error.name === "AbortError",
+    createVersionGuard: () => ({
+        next: () => 1,
+        isCurrent: () => true,
+        clear: () => undefined,
+    }),
+}));
 
 vi.mock("@/entities/shipping-address", async () => {
     const actual = await vi.importActual<typeof import("@/entities/shipping-address")>(
@@ -88,7 +87,9 @@ vi.mock("@/entities/shipping-address", async () => {
 });
 
 describe("deleteShippingAddressApi", () => {
-    beforeEach(() => {
+    let deleteShippingAddressApi: typeof import("./deleteShippingAddressApi").deleteShippingAddressApi;
+
+    beforeEach(async () => {
         vi.clearAllMocks();
         mocks.capturedTxns.length = 0;
         mocks.pendingResolves.length = 0;
@@ -102,6 +103,8 @@ describe("deleteShippingAddressApi", () => {
                 headers: {"Content-Type": "application/json"},
             });
         });
+
+        ({deleteShippingAddressApi} = await import("./deleteShippingAddressApi"));
     });
 
     test("ignores stale rollback and stale error toast", async () => {
@@ -118,9 +121,9 @@ describe("deleteShippingAddressApi", () => {
             }),
         );
 
-        await Promise.resolve();
-
-        expect(mocks.capturedTxns).toHaveLength(2);
+        await vi.waitFor(() => {
+            expect(mocks.capturedTxns).toHaveLength(2);
+        });
         expect(mocks.capturedTxns[0].rollbackOnError?.(new Error("stale failure"))).toBe(false);
         expect(mocks.capturedTxns[1].rollbackOnError?.(new Error("current failure"))).toBe(true);
 
@@ -146,9 +149,9 @@ describe("deleteShippingAddressApi", () => {
             }),
         );
 
-        await Promise.resolve();
-
-        expect(mocks.capturedTxns).toHaveLength(1);
+        await vi.waitFor(() => {
+            expect(mocks.capturedTxns).toHaveLength(1);
+        });
 
         const abortError = new Error("aborted");
         abortError.name = "AbortError";
@@ -170,7 +173,9 @@ describe("deleteShippingAddressApi", () => {
             }),
         );
 
-        await Promise.resolve();
+        await vi.waitFor(() => {
+            expect(mocks.capturedTxns).toHaveLength(1);
+        });
 
         expect(mocks.shippingGuardMock.next).toHaveBeenNthCalledWith(
             1,
@@ -180,7 +185,6 @@ describe("deleteShippingAddressApi", () => {
             2,
             "shipping-addresses-domain",
         );
-        expect(mocks.capturedTxns).toHaveLength(1);
         expect(mocks.capturedTxns[0].rollbackOnError?.(new Error("current failure"))).toBe(true);
 
         mocks.pendingResolves.forEach((resolve) => resolve());

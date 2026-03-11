@@ -7,7 +7,7 @@ import {AppRoutes, routePaths} from "@/shared/config";
 import {cn, useLocalizedRoutePath} from "@/shared/lib";
 import {AppIcon, Button, Grid, Input, Stack, Typography} from "@/shared/ui";
 
-import {useResetPasswordFormController} from "../../model/controllers/useResetPasswordFormController";
+import {useResetPasswordFormController} from "../../model/controllers/useResetPasswordFormController/useResetPasswordFormController";
 
 import styles from "./ResetPasswordForm.module.scss";
 

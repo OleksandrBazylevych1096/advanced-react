@@ -66,7 +66,12 @@ export const CreatePasswordStep = () => {
                 })}
             </Stack>
             {error && (
-                <Typography className={styles.error} variant="bodySm" tone="danger" weight="semibold">
+                <Typography
+                    className={styles.error}
+                    variant="bodySm"
+                    tone="danger"
+                    weight="semibold"
+                >
                     {error}
                 </Typography>
             )}

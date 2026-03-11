@@ -1,8 +1,8 @@
 import {baseAPI} from "@/shared/api";
 
-import {applyAuthSession} from "../model/services/applyUserSession/applyUserSession";
-import {clearUserSession} from "../model/services/clearUserSession/clearUserSession";
-import type {AuthSessionResponse} from "../model/types/AuthSession";
+import {applyAuthSession} from "../../model/services/applyUserSession/applyUserSession";
+import {clearUserSession} from "../../model/services/clearUserSession/clearUserSession";
+import type {AuthSessionResponse} from "../../model/types/AuthSession";
 
 export const sessionApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({

@@ -40,6 +40,8 @@ vi.mock("@/entities/user", () => ({
 
 vi.mock("@/shared/lib", () => ({
     useAppDispatch: () => testCtx.dispatchMock,
+    isSupportedLanguage: (language?: string) => language === "en" || language === "de",
+    getFallbackLanguage: () => "en",
 }));
 
 vi.mock("@/shared/config/i18n/i18n", () => ({

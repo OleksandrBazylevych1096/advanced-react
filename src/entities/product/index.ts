@@ -1,4 +1,4 @@
-import {useGetInfiniteProducts, useGetProducts} from "./api/productApi";
+import {useGetInfiniteProducts, useGetProducts} from "./api/productApi/productApi";
 import {productsHandlers} from "./api/test/handlers";
 import {
     createMockFacets,

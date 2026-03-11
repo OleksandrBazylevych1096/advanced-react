@@ -4,9 +4,8 @@ import {extractApiErrorMessage} from "@/shared/api";
 import {i18n} from "@/shared/config";
 import {createControllerResult} from "@/shared/lib";
 
-import {useForgotPasswordMutation} from "../../api/forgotPasswordApi";
-
-import {forgotPasswordSchema} from "./forgotPasswordSchema";
+import {useForgotPasswordMutation} from "../../../api/forgotPasswordApi";
+import {forgotPasswordSchema} from "../forgotPasswordSchema";
 
 export const useForgotPasswordFormController = () => {
     const [identifier, setIdentifier] = useState("");

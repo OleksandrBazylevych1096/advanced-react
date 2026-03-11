@@ -11,6 +11,7 @@ const testCtx = vi.hoisted(() => ({
 }));
 
 vi.mock("react-i18next", () => ({
+    initReactI18next: {type: "3rdParty", init: () => {}},
     useTranslation: () => ({i18n: {language: "en"}}),
 }));
 
@@ -18,7 +19,7 @@ vi.mock("@/features/add-to-cart", () => ({
     ProductCardWithAddToCart: "ProductCardWithAddToCartMock",
 }));
 
-vi.mock("@/entities/product/api/productApi.ts", () => ({
+vi.mock("@/entities/product/api/productApi/productApi.ts", () => ({
     useGetProducts: (...args: unknown[]) => testCtx.productsQueryMock(...args),
 }));
 

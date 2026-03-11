@@ -2,8 +2,8 @@ import {
     useGetAuthSessionsQuery,
     useRevokeAllAuthSessionsMutation,
     useRevokeAuthSessionMutation,
-} from "./api/authSessionsApi";
-import {useRefreshSessionMutation} from "./api/sessionApi";
+} from "./api/authSessionsApi/authSessionsApi";
+import {useRefreshSessionMutation} from "./api/sessionApi/sessionApi";
 import {selectAccessToken} from "./model/selectors/selectAccessToken/selectAccessToken";
 import {selectIsAuthenticated} from "./model/selectors/selectIsAuthenticated/selectIsAuthenticated";
 import {selectPendingMfaChallenge} from "./model/selectors/selectPendingMfaChallenge/selectPendingMfaChallenge";

@@ -1,6 +1,6 @@
 import {baseAPI} from "@/shared/api";
 
-import type {AuthSessionsListItem} from "../model/types/AuthSession";
+import type {AuthSessionsListItem} from "../../model/types/AuthSession";
 
 type RevokeAllSessionsArgs = {
     includeCurrent?: boolean;

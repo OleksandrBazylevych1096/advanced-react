@@ -1,11 +1,13 @@
 import {useNavigate} from "react-router";
 
-import {useSendRegistrationOtpMutation, useVerifyRegistrationOtpMutation,} from "@/features/register/api/registerApi";
-
 import {extractApiErrorMessage} from "@/shared/api";
 import {AppRoutes, AuthMethod, routePaths} from "@/shared/config";
 import {createControllerResult, useLocalizedRoutePath} from "@/shared/lib";
 
+import {
+    useSendRegistrationOtpMutation,
+    useVerifyRegistrationOtpMutation,
+} from "../../../api/registerApi";
 import {useRegisterFlow} from "../../registerFlowContext";
 
 import {registerVerificationSchema} from "./registerVerificationSchema";

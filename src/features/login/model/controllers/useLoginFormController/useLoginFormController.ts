@@ -9,7 +9,7 @@ import {extractApiErrorCode, extractApiErrorMessage} from "@/shared/api";
 import {AppRoutes, AuthMethod, type AuthMethodType, routePaths} from "@/shared/config";
 import {createControllerResult, useAppDispatch, useLocalizedRoutePath} from "@/shared/lib";
 
-import {useLoginMutation} from "../../api/loginApi";
+import {useLoginMutation} from "../../../api/loginApi";
 
 import {loginFormSchema, type LoginFormValues} from "./loginFormSchema";
 

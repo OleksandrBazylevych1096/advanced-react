@@ -1,6 +1,6 @@
 import {baseAPI} from "@/shared/api/rtk/baseAPI";
 
-import type {ShippingAddress} from "../model/types/types";
+import type {ShippingAddress} from "../../model/types/types";
 
 export const shippingAddressApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({

@@ -3,7 +3,7 @@ import {
     useGetShippingAddressesQuery,
     useGetDefaultShippingAddressQuery,
     useLazyGetDefaultShippingAddressQuery,
-} from "./api/shippingAddressApi";
+} from "./api/shippingAddressApi/shippingAddressApi";
 import {
     SHIPPING_ADDRESSES_DOMAIN_KEY,
     shippingAddressOptimisticVersionGuard,

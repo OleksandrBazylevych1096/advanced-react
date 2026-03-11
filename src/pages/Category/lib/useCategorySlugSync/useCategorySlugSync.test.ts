@@ -21,6 +21,7 @@ let mockLanguage = 'en'
 const mockChangeLanguage = vi.fn()
 
 vi.mock('react-i18next', () => ({
+    initReactI18next: {type: "3rdParty", init: () => {}},
     useTranslation: () => ({
         i18n: {
             language: mockLanguage,

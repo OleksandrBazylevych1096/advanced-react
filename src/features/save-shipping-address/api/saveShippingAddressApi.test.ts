@@ -2,6 +2,8 @@ import {beforeEach, describe, expect, test, vi} from "vitest";
 
 import {createStore} from "@/app/store";
 
+import {parseRequestUrl} from "@/shared/lib/testing/http/requestUrl";
+
 import {saveShippingAddressApi} from "./saveShippingAddressApi";
 
 describe("saveShippingAddressApi", () => {
@@ -12,14 +14,12 @@ describe("saveShippingAddressApi", () => {
     test("searchAddresses sends default limit and locale query params", async () => {
         const store = createStore();
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input) => {
-            const requestUrl = typeof input === "string" ? input : input.url;
+            const requestUrl = parseRequestUrl(input);
 
-            expect(requestUrl).toContain("/shipping-addresses/search");
-
-            const url = new URL(requestUrl, "http://localhost");
-            expect(url.searchParams.get("searchQuery")).toBe("Main St, London");
-            expect(url.searchParams.get("locale")).toBe("en");
-            expect(url.searchParams.get("limit")).toBe("5");
+            expect(requestUrl.toString()).toContain("/shipping-addresses/search");
+            expect(requestUrl.searchParams.get("searchQuery")).toBe("Main St, London");
+            expect(requestUrl.searchParams.get("locale")).toBe("en");
+            expect(requestUrl.searchParams.get("limit")).toBe("5");
 
             return new Response(JSON.stringify([]), {
                 status: 200,
@@ -41,14 +41,12 @@ describe("saveShippingAddressApi", () => {
     test("getReverseGeocode maps tuple coords to lat/lon params", async () => {
         const store = createStore();
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input) => {
-            const requestUrl = typeof input === "string" ? input : input.url;
+            const requestUrl = parseRequestUrl(input);
 
-            expect(requestUrl).toContain("/shipping-addresses/reverse-geocode");
-
-            const url = new URL(requestUrl, "http://localhost");
-            expect(url.searchParams.get("lat")).toBe("50.45");
-            expect(url.searchParams.get("lon")).toBe("30.52");
-            expect(url.searchParams.get("locale")).toBe("uk");
+            expect(requestUrl.toString()).toContain("/shipping-addresses/reverse-geocode");
+            expect(requestUrl.searchParams.get("lat")).toBe("50.45");
+            expect(requestUrl.searchParams.get("lon")).toBe("30.52");
+            expect(requestUrl.searchParams.get("locale")).toBe("uk");
 
             return new Response(
                 JSON.stringify({

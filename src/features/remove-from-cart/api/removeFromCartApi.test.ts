@@ -2,8 +2,6 @@ import {beforeEach, describe, expect, test, vi} from "vitest";
 
 import {createStore} from "@/app/store";
 
-import {removeFromCartApi} from "./removeFromCartApi";
-
 const mocks = vi.hoisted(() => {
     const capturedTxns: Array<{
         rollbackOnError?: (error: unknown) => boolean;
@@ -46,18 +44,16 @@ const mocks = vi.hoisted(() => {
     };
 });
 
-vi.mock("@/shared/lib", async () => {
-    const actual = await vi.importActual<typeof import("@/shared/lib")>("@/shared/lib");
-
-    return {
-        ...actual,
-        createVersionGuard: () => mocks.mockGuard,
-        runOptimisticTxn: mocks.runOptimisticTxnMock,
-    };
-});
+vi.mock("@/shared/lib", () => ({
+    createVersionGuard: () => mocks.mockGuard,
+    runOptimisticTxn: mocks.runOptimisticTxnMock,
+    isAbortError: (error: unknown) => error instanceof Error && error.name === "AbortError",
+}));
 
 describe("removeFromCartApi", () => {
-    beforeEach(() => {
+    let removeFromCartApi: typeof import("./removeFromCartApi").removeFromCartApi;
+
+    beforeEach(async () => {
         vi.clearAllMocks();
         mocks.capturedTxns.length = 0;
         mocks.pendingResolves.length = 0;
@@ -71,6 +67,8 @@ describe("removeFromCartApi", () => {
                 headers: {"Content-Type": "application/json"},
             });
         });
+
+        ({removeFromCartApi} = await import("./removeFromCartApi"));
     });
 
     test("uses last-write-wins checks so stale rollback/error handlers are ignored", async () => {
@@ -83,9 +81,9 @@ describe("removeFromCartApi", () => {
             removeFromCartApi.endpoints.removeFromCart.initiate("product-1"),
         );
 
-        await Promise.resolve();
-
-        expect(mocks.capturedTxns).toHaveLength(2);
+        await vi.waitFor(() => {
+            expect(mocks.capturedTxns).toHaveLength(2);
+        });
         expect(mocks.capturedTxns[0].rollbackOnError?.(new Error("stale failure"))).toBe(false);
         expect(mocks.capturedTxns[1].rollbackOnError?.(new Error("current failure"))).toBe(true);
 
@@ -104,9 +102,9 @@ describe("removeFromCartApi", () => {
             removeFromCartApi.endpoints.removeFromCart.initiate("product-1"),
         );
 
-        await Promise.resolve();
-
-        expect(mocks.capturedTxns).toHaveLength(1);
+        await vi.waitFor(() => {
+            expect(mocks.capturedTxns).toHaveLength(1);
+        });
 
         const abortError = new Error("aborted");
         abortError.name = "AbortError";

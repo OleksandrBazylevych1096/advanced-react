@@ -9,7 +9,7 @@ import {useLocalizedRoutePath} from "@/shared/lib";
 import {AppIcon, Button, Input, PhoneInput, Tabs, Typography} from "@/shared/ui";
 import "react-international-phone/style.css";
 
-import {useLoginFormController} from "../../model/controllers/useLoginFormController";
+import {useLoginFormController} from "../../model/controllers/useLoginFormController/useLoginFormController";
 
 import styles from "./LoginForm.module.scss";
 

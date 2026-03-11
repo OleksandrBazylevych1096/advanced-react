@@ -1,8 +1,6 @@
 import {act, renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
-import {AppRoutes, routePaths} from "@/shared/config";
-
 import {useManageShippingAddressController} from "./useManageShippingAddressController";
 
 const testCtx = vi.hoisted(() => ({

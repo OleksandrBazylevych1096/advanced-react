@@ -15,12 +15,12 @@ vi.mock("../../api/categoryApi", () => ({
 describe("useResolvedCategoryIdController", () => {
     beforeEach(() => {
         vi.clearAllMocks();
-        testCtx.queryMock.mockReturnValue({
-            currentData: {id: "cat-1"},
+        testCtx.queryMock.mockImplementation((args: unknown) => ({
+            currentData: args === skipToken ? undefined : {id: "cat-1"},
             isLoading: false,
             isSuccess: true,
             error: null,
-        });
+        }));
     });
 
     test("skips category query when categoryId is already provided", () => {

@@ -5,9 +5,8 @@ import {extractApiErrorMessage} from "@/shared/api";
 import {AppRoutes, i18n, routePaths} from "@/shared/config";
 import {createControllerResult, getPasswordRequirementsState, useLocalizedRoutePath} from "@/shared/lib";
 
-import {useResetPasswordMutation} from "../../api/resetPasswordApi";
-
-import {resetPasswordSchema} from "./resetPasswordSchema";
+import {useResetPasswordMutation} from "../../../api/resetPasswordApi";
+import {resetPasswordSchema} from "../resetPasswordSchema";
 
 const REDIRECT_DELAY_SECONDS = 5;
 

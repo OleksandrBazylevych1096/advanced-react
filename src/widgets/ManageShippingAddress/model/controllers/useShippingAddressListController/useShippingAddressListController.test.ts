@@ -7,6 +7,7 @@ const testCtx = vi.hoisted(() => ({
     dispatchMock: vi.fn(),
     queryMock: vi.fn(),
     refetchMock: vi.fn(),
+    state: undefined as StateSchema | undefined,
 }));
 
 vi.mock("@/features/save-shipping-address", () => ({
@@ -19,14 +20,23 @@ vi.mock("@/entities/shipping-address", () => ({
     useGetShippingAddressesQuery: () => testCtx.queryMock(),
 }));
 
+vi.mock("@/entities/user", () => ({
+    selectUserData: (state: StateSchema) => state.user?.authData,
+}));
+
 vi.mock("@/shared/lib", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppDispatch: () => testCtx.dispatchMock,
+    useAppSelector: (selector: (state: StateSchema) => unknown) =>
+        selector(testCtx.state as StateSchema),
 }));
 
 describe("useShippingAddressListController", () => {
     beforeEach(() => {
         vi.clearAllMocks();
+        testCtx.state = {
+            user: {authData: {id: "u1"}},
+        } as StateSchema;
         testCtx.refetchMock = vi.fn();
         testCtx.queryMock.mockReturnValue({
             data: [{id: "a1"}],

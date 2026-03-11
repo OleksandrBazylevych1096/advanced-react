@@ -6,7 +6,7 @@ import {AppRoutes, routePaths} from "@/shared/config";
 import {useLocalizedRoutePath} from "@/shared/lib";
 import {Button, Grid, Input, Stack, Typography} from "@/shared/ui";
 
-import {useForgotPasswordFormController} from "../../model/controllers/useForgotPasswordFormController";
+import {useForgotPasswordFormController} from "../../model/controllers/useForgotPasswordFormController/useForgotPasswordFormController";
 
 import styles from "./ForgotPasswordForm.module.scss";
 

@@ -1,9 +1,8 @@
-import {useRegisterMutation} from "@/features/register/api/registerApi";
-
 import {extractApiErrorMessage} from "@/shared/api";
 import {AuthMethod} from "@/shared/config";
 import {createControllerResult} from "@/shared/lib";
 
+import {useRegisterMutation} from "../../../api/registerApi";
 import {FormSteps} from "../../../config/formSteps";
 import {useRegisterFlow} from "../../registerFlowContext";
 
