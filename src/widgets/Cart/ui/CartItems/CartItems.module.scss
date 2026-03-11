@@ -2,14 +2,20 @@
     width: 100%;
 }
 
-.stateContainer {
-    min-height: 180px;
+.panelHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 0 16px;
+    border-bottom: 1px solid var(--gray-100);
 }
 
-.itemControls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.title {
+    margin: 0;
+}
+
+.stateContainer {
+    min-height: 180px;
 }
 
 .deleteBtn {

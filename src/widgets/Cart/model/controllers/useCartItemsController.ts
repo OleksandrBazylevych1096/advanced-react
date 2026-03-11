@@ -33,13 +33,15 @@ export const useCartItemsController = () => {
 
     return createControllerResult({
         data: {
-            cart,
             items: cart?.items ?? [],
             currency,
         },
         status: {
             isLoading,
             isError,
+        },
+        derived: {
+            itemsCount: cart?.items.length ?? 0,
         },
         actions: {
             refetch,

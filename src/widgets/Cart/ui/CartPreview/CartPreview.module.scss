@@ -19,9 +19,6 @@
 
 .cartIcon {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: var(--primary-color);
 }
 
@@ -56,18 +53,6 @@
         box-shadow: 0 4px 84px 8px rgb(27 14 24 / 8%);
         overflow: hidden;
     }
-}
-
-.panelHeader {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 24px 24px 16px;
-    border-bottom: 1px solid var(--gray-100);
-}
-
-.title {
-    margin: 0;
 }
 
 .dropdownBody {
@@ -132,10 +117,6 @@
 
     .cartLabel {
         display: none;
-    }
-
-    .panelHeader {
-        padding: 20px 20px 14px;
     }
 
     .dropdownBody,

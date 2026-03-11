@@ -4,7 +4,7 @@ import {CartQuantityStepper} from "@/features/update-cart-item-quantity";
 import {CartItemRow} from "@/entities/cart";
 
 import {cn} from "@/shared/lib";
-import {EmptyState, ErrorState, Spinner, Stack} from "@/shared/ui";
+import {EmptyState, ErrorState, Spinner, Stack, Typography} from "@/shared/ui";
 
 import {useCartItemsController} from "../../model/controllers/useCartItemsController";
 
@@ -18,6 +18,7 @@ interface CartItemsProps {
 export const CartItems = ({compact, className}: CartItemsProps) => {
     const {
         data: {items, currency},
+        derived: {itemsCount},
         status: {isLoading, isError},
         actions: {refetch, removeItem, updateQuantity, getItemValidation},
     } = useCartItemsController();
@@ -57,6 +58,14 @@ export const CartItems = ({compact, className}: CartItemsProps) => {
 
     return (
         <Stack className={cn(styles.root, className)}>
+            <Stack className={styles.panelHeader}>
+                <Typography as="h3" className={styles.title} variant="heading" weight="semibold">
+                    My Cart
+                </Typography>
+                <Typography as="span" variant="caption" tone="muted">
+                    {itemsCount} Items
+                </Typography>
+            </Stack>
             {items.map((item) => (
                 <CartItemRow
                     key={item.id}
@@ -65,7 +74,7 @@ export const CartItems = ({compact, className}: CartItemsProps) => {
                     compact={compact}
                     validationIssues={getItemValidation(item.productId)?.issues}
                     controls={
-                        <Stack className={styles.itemControls} direction="row" align="center" gap={12}>
+                        <Stack direction="row" align="center" gap={12}>
                             <RemoveFromCartButton
                                 productId={item.productId}
                                 onRemove={removeItem}

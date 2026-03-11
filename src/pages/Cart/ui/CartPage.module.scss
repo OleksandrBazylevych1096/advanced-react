@@ -1,46 +1,10 @@
-.cartPage {
-    padding-bottom: 80px;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 32px;
-}
-
-.headerLeft {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.headerIcon {
-    color: var(--black);
-}
-
-.title {
-    font: var(--font-xxl);
-    font-weight: 700;
-    color: var(--black);
-    margin: 0;
-}
-
-.itemCount {
-    font: var(--font-m);
-    color: var(--gray-500);
-    margin-top: 4px;
-}
-
-.loadingState {
-    display: flex;
-    justify-content: center;
-    padding: 100px 0;
-}
-
 .content {
-    grid-template-columns: 1fr 380px;
+    grid-template-columns: minmax(0, 1fr) 380px;
     align-items: start;
+}
+
+.leftColumn {
+    min-width: 0;
 }
 
 .itemsSection {
@@ -48,30 +12,6 @@
     border-radius: 20px;
     border: 1px solid var(--gray-100);
     overflow: hidden;
-}
-
-.itemsHeader {
-    grid-template-columns: 1fr 120px 100px;
-    padding: 16px 24px;
-    background: var(--gray-50);
-    border-bottom: 1px solid var(--gray-100);
-}
-
-.columnLabel {
-    font: var(--font-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    letter-spacing: 0.02em;
-}
-
-.qtyColumn {
-    text-align: center;
-    padding-right: 18px; /* Optical center for controls */
-}
-
-.totalColumn {
-    text-align: right;
 }
 
 .itemsList {
@@ -92,11 +32,6 @@
     }
 }
 
-.summary {
-    position: sticky;
-    top: 100px;
-}
-
 .summaryCard {
     background: var(--white);
     border-radius: 20px;
@@ -113,16 +48,10 @@
 }
 
 .summaryRows {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
     margin-bottom: 24px;
 }
 
 .summaryRow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     font: var(--font-m);
     color: var(--gray-600);
 
@@ -159,7 +88,7 @@
 }
 
 .checkoutTotal {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgb(255 255 255 / 20%);
     padding: 4px 8px;
     border-radius: 6px;
     font-size: 14px;
@@ -170,12 +99,8 @@
     text-align: center;
 }
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     .content {
         grid-template-columns: 1fr;
-    }
-
-    .summary {
-        position: static;
     }
 }

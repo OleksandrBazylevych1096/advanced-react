@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next";
 
 import {BestSellingProducts} from "@/widgets/BestSellingProducts";
-import {CartItems} from "@/widgets/Cart";
+import {CartItems, CartProgressSection} from "@/widgets/Cart";
 
 import {ClearCartButton, useClearCartController} from "@/features/clear-cart";
 
@@ -10,7 +10,7 @@ import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import ShoppingCartIcon from "@/shared/assets/icons/ShoppingCart.svg?react";
 import {cn, formatCurrency, useAppSelector} from "@/shared/lib";
-import {AppIcon, Button, Grid, Progress, Stack, Typography} from "@/shared/ui";
+import {AppIcon, Button, Grid, Stack, Typography} from "@/shared/ui";
 
 import styles from "./CartPage.module.scss";
 
@@ -43,32 +43,39 @@ const CartPage = () => {
     return (
         <>
             {isEmpty && !isLoading && !isError ? (
-                <CartItems />
+                <Stack direction="column" gap={32}>
+                    <CartItems />
+                    <BestSellingProducts />
+                </Stack>
             ) : (
                 <Grid className={styles.content} gap={32}>
-                    <div className={styles.itemsSection}>
-                        <div className={styles.itemsList}>
-                            <CartItems />
+                    <Stack direction="column" gap={32} className={styles.leftColumn}>
+                        <div className={styles.itemsSection}>
+                            <div className={styles.itemsList}>
+                                <CartItems />
+                            </div>
+
+                            {!isEmpty && !isLoading && !isError && (
+                                <div className={styles.itemsFooter}>
+                                    <ClearCartButton
+                                        onClear={clearCart}
+                                        isLoading={isClearing}
+                                        className={styles.clearBtn}
+                                    />
+                                </div>
+                            )}
                         </div>
 
-                        {!isEmpty && !isLoading && !isError && (
-                            <div className={styles.itemsFooter}>
-                                <ClearCartButton
-                                    onClear={clearCart}
-                                    isLoading={isClearing}
-                                    className={styles.clearBtn}
-                                />
-                            </div>
-                        )}
-                    </div>
+                        <BestSellingProducts />
+                    </Stack>
 
                     {!isEmpty && !isLoading && !isError && cart && (
-                        <aside className={styles.summary}>
+                        <aside>
                             <div className={styles.summaryCard}>
                                 <div className={styles.summaryProgress}>
-                                    <Progress
+                                    <CartProgressSection
                                         value={summaryProgressValue}
-                                        max={progressTarget}
+                                        target={progressTarget}
                                         ariaLabel="Order completion progress"
                                     />
                                 </div>
@@ -83,7 +90,7 @@ const CartPage = () => {
                                     Order Summary
                                 </Typography>
 
-                                <Stack className={styles.summaryRows}>
+                                <Stack className={styles.summaryRows} gap={12}>
                                     <Stack className={styles.summaryRow} direction="row" justify="space-between" align="center">
                                         <Typography as="span">Items total</Typography>
                                         <Typography as="span" weight="medium">
@@ -155,7 +162,6 @@ const CartPage = () => {
                     )}
                 </Grid>
             )}
-            <BestSellingProducts />
         </>
     );
 };
