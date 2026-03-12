@@ -14,6 +14,7 @@ export const logoutApi = baseAPI.injectEndpoints({
                 void queryFulfilled.catch(() => undefined);
             },
         }),
+
     }),
 });
 

@@ -32,6 +32,7 @@ export const CartPreview = () => {
     } = useCartValidationController(cart?.items ?? [], {isAuthenticated});
 
     const openCart = () => {
+
         navigate(getLocalizedPath(routePaths[AppRoutes.CART]));
     };
 
@@ -83,10 +84,18 @@ export const CartPreview = () => {
                             </Typography>
                         </Stack>
 
-                        <Button onClick={openCart} fullWidth theme="primary" size="md" className={styles.viewCartBtn}>
-                            <AppIcon Icon={ShoppingCartIcon} size={16}/>
-                            View Cart
-                        </Button>
+                        <Dropdown.Close asChild>
+                            <Button
+                                onClick={openCart}
+                                fullWidth
+                                theme="primary"
+                                size="md"
+                                className={styles.viewCartBtn}
+                            >
+                                <AppIcon Icon={ShoppingCartIcon} size={16}/>
+                                View Cart
+                            </Button>
+                        </Dropdown.Close>
                     </Stack>
                 )}
             </Dropdown.Content>

@@ -97,6 +97,7 @@ describe("ManageShippingAddress Integration Tests", () => {
             renderManageShippingAddress();
 
             expect(screen.getByTestId("manage-address-loading")).toBeInTheDocument();
+            expect(screen.getByText("Loading")).toBeInTheDocument();
         });
 
         test("should render fallback address on error", async () => {
@@ -107,6 +108,9 @@ describe("ManageShippingAddress Integration Tests", () => {
             await waitFor(() => {
                 expect(screen.getByTestId("manage-address-fallback")).toBeInTheDocument();
             });
+            expect(screen.getByTestId("manage-address-fallback")).toHaveTextContent(
+                "Select your address",
+            );
         });
 
         test("should render sign-in prompt when user is not logged in", async () => {

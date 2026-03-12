@@ -61,4 +61,11 @@ export {
     CartItemRow,
 };
 
-export type {Cart, CartItem, CartSchema, CartTotals, CartValidationItem, GuestCartItem};
+export type {
+    Cart,
+    CartItem,
+    CartSchema,
+    CartTotals,
+    CartValidationItem,
+    GuestCartItem,
+};

@@ -1,0 +1,105 @@
+@import "../../../../app/styles/animations";
+
+.content {
+    width: 100%;
+}
+
+.errorState {
+    min-height: 160px;
+}
+
+.emptyState {
+    min-height: 160px;
+}
+
+.guestState {
+    align-items: flex-start;
+}
+
+.skeletonLabel {
+    height: 20px;
+    width: 240px;
+    border-radius: 8px;
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-100) 50%,
+        var(--gray-200) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+}
+
+.dateGrid {
+    flex-wrap: wrap;
+}
+
+.dateButtonSkeleton {
+    width: 84px;
+    min-height: 84px;
+    border-radius: 16px;
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-100) 50%,
+        var(--gray-200) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+}
+
+.dateButton {
+    width: 84px;
+    min-height: 84px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.dayName {
+    text-transform: capitalize;
+}
+
+.dayDate {
+    font: var(--font-s);
+    font-weight: 500;
+}
+
+.timeSlots {
+    flex-wrap: wrap;
+}
+
+.timeSlotSkeleton {
+    width: 96px;
+    height: 42px;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-100) 50%,
+        var(--gray-200) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+}
+
+.timeSlot {
+    padding: 10px 16px;
+    font: var(--font-s);
+    font-weight: 500;
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+@media (width <= 768px) {
+    .dateButton {
+        width: calc((100% - 16px) / 2);
+    }
+}

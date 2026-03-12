@@ -6,11 +6,12 @@ import {Loader} from "@/widgets/ManageShippingAddress/ui/Loader/Loader.tsx";
 import {EditAddressAsync, saveShippingAddressReducer} from "@/features/save-shipping-address";
 
 import ArrowLeft from "@/shared/assets/icons/ArrowLeft.svg?react";
-import MapPinIcon from "@/shared/assets/icons/MapPin.svg?react";
 import {DynamicModuleLoader} from "@/shared/lib";
 import {AppIcon, Button, Modal} from "@/shared/ui";
 
-import {useManageShippingAddressController} from "../model/controllers/useManageShippingAddressController/useManageShippingAddressController";
+import {
+    useManageShippingAddressController
+} from "../model/controllers/useManageShippingAddressController/useManageShippingAddressController";
 
 import {DisplayShippingAddress} from "./DisplayShippingAddress";
 import styles from "./ManageShippingAddress.module.scss";
@@ -39,7 +40,6 @@ export const ManageShippingAddress = () => {
                         className={styles.addressButton}
                         data-testid="manage-address-trigger"
                     >
-                        <AppIcon Icon={MapPinIcon} />
                         <DisplayShippingAddress
                             isLoading={isLoading}
                             streetAddress={defaultAddress?.streetAddress}
@@ -58,7 +58,7 @@ export const ManageShippingAddress = () => {
                                     onClick={goBack}
                                     data-testid="manage-address-back-btn"
                                 >
-                                    <AppIcon Icon={ArrowLeft} />
+                                    <AppIcon Icon={ArrowLeft}/>
                                 </Button>
                             )}
                             {modalTitle}
@@ -80,11 +80,11 @@ export const ManageShippingAddress = () => {
                             </div>
                         </Modal.Body>
                     ) : shouldShowEditForm ? (
-                        <Suspense fallback={<Loader />}>
-                            <EditAddressAsync />
+                        <Suspense fallback={<Loader/>}>
+                            <EditAddressAsync/>
                         </Suspense>
                     ) : (
-                        <ShippingAddressList />
+                        <ShippingAddressList/>
                     )}
                 </Modal.Content>
             </Modal>

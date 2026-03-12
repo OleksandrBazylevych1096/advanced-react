@@ -98,6 +98,7 @@ export const selectDefaultShippingAddressApi = baseAPI.injectEndpoints({
                     shippingAddressOptimisticVersionGuard.clear(SHIPPING_ADDRESSES_DOMAIN_KEY);
                 }
             },
+            invalidatesTags: ["ShippingAddress", "DeliverySelection"],
         }),
     }),
 });

@@ -3,6 +3,7 @@ import {
     createContext,
     type HTMLAttributes,
     isValidElement,
+    type MouseEvent as ReactMouseEvent,
     type ReactNode,
     useCallback,
     useContext,
@@ -131,6 +132,34 @@ const Trigger = ({children, className, asChild = false}: TriggerProps) => {
     );
 };
 
+interface CloseProps {
+    children: ReactNode;
+    asChild?: boolean;
+    className?: string;
+}
+
+const Close = ({children, asChild = false, className}: CloseProps) => {
+    const {close} = useDropdownContext();
+
+    if (asChild && isValidElement<HTMLAttributes<HTMLElement>>(children)) {
+        const originalOnClick = children.props.onClick;
+
+        return cloneElement(children, {
+            onClick: (event: ReactMouseEvent<HTMLElement>) => {
+                originalOnClick?.(event);
+                close();
+            },
+            className: cn(children.props.className, className),
+        });
+    }
+
+    return (
+        <Button theme="ghost" className={cn(styles.close, className)} onClick={close}>
+            {children}
+        </Button>
+    );
+};
+
 interface ContentProps {
     children: ReactNode;
     className?: string;
@@ -182,6 +211,7 @@ const Body = ({children, className}: BodyProps) => {
 };
 
 Dropdown.Trigger = Trigger;
+Dropdown.Close = Close;
 Dropdown.Content = Content;
 Dropdown.Header = Header;
 Dropdown.Footer = Footer;

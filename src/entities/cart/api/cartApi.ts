@@ -30,5 +30,9 @@ export const cartApi = baseAPI.injectEndpoints({
     }),
 });
 
-export const {useGetCartQuery, useGetCartCountQuery, useValidateCartQuery, useSyncCartMutation} =
-    cartApi;
+export const {
+    useGetCartQuery,
+    useGetCartCountQuery,
+    useValidateCartQuery,
+    useSyncCartMutation,
+} = cartApi;

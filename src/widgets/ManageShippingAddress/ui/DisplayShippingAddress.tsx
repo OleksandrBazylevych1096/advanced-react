@@ -1,3 +1,6 @@
+import MapPinIcon from "@/shared/assets/icons/MapPin.svg?react";
+import {AppIcon, Spinner, Stack, Typography} from "@/shared/ui";
+
 import styles from "./ManageShippingAddress.module.scss";
 
 interface DisplayShippingAddressProps {
@@ -10,20 +13,44 @@ export const DisplayShippingAddress = (props: DisplayShippingAddressProps) => {
     const {isLoading, streetAddress, isError} = props;
 
     if (isLoading) {
-        return <span data-testid="manage-address-loading" />;
+        return (
+            <Stack direction="row" align="center" gap={8} data-testid="manage-address-loading">
+                <Spinner size="sm"/>
+                <Typography as="span" variant="body">
+                    Loading
+                </Typography>
+            </Stack>
+        );
     }
 
     if (isError || !streetAddress) {
         return (
-            <span className={styles.fallbackAddress} data-testid="manage-address-fallback">
-                Delivery Address
-            </span>
+            <Stack direction="row" align="center" gap={8}>
+                <AppIcon Icon={MapPinIcon}/>
+                <Typography
+                    as="span"
+                    variant="body"
+                    className={styles.address}
+                    data-testid="manage-address-fallback"
+                >
+                    Select your address
+                </Typography>
+            </Stack>
         );
     }
 
     return (
-        <span className={styles.address} data-testid="manage-address-street">
-            {streetAddress}
-        </span>
+        <Stack direction="row" align="center" gap={8}>
+            <AppIcon Icon={MapPinIcon}/>
+
+            <Typography
+                as="span"
+                variant="body"
+                className={styles.address}
+                data-testid="manage-address-street"
+            >
+                {streetAddress}
+            </Typography>
+        </Stack>
     );
 };

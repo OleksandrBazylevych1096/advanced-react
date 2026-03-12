@@ -3,6 +3,7 @@ import {useTranslation} from "react-i18next";
 import {BestSellingProducts} from "@/widgets/BestSellingProducts";
 import {CartItems, CartProgressSection} from "@/widgets/Cart";
 
+import {ChooseDeliveryDate} from "@/features/choose-delivery-date";
 import {ClearCartButton, useClearCartController} from "@/features/clear-cart";
 
 import {useCartController, useCartValidationController} from "@/entities/cart";
@@ -44,15 +45,18 @@ const CartPage = () => {
         <>
             {isEmpty && !isLoading && !isError ? (
                 <Stack direction="column" gap={32}>
-                    <CartItems />
-                    <BestSellingProducts />
+                    <CartItems/>
+                    <BestSellingProducts/>
                 </Stack>
             ) : (
                 <Grid className={styles.content} gap={32}>
                     <Stack direction="column" gap={32} className={styles.leftColumn}>
                         <div className={styles.itemsSection}>
+                            {!isEmpty && !isLoading && !isError && (
+                                <ChooseDeliveryDate className={styles.deliveryDateTrigger}/>
+                            )}
                             <div className={styles.itemsList}>
-                                <CartItems />
+                                <CartItems/>
                             </div>
 
                             {!isEmpty && !isLoading && !isError && (
@@ -65,8 +69,6 @@ const CartPage = () => {
                                 </div>
                             )}
                         </div>
-
-                        <BestSellingProducts />
                     </Stack>
 
                     {!isEmpty && !isLoading && !isError && cart && (
@@ -91,7 +93,8 @@ const CartPage = () => {
                                 </Typography>
 
                                 <Stack className={styles.summaryRows} gap={12}>
-                                    <Stack className={styles.summaryRow} direction="row" justify="space-between" align="center">
+                                    <Stack className={styles.summaryRow} direction="row" justify="space-between"
+                                           align="center">
                                         <Typography as="span">Items total</Typography>
                                         <Typography as="span" weight="medium">
                                             {formatCurrency(
@@ -101,18 +104,21 @@ const CartPage = () => {
                                             )}
                                         </Typography>
                                     </Stack>
-                                    <Stack className={styles.summaryRow} direction="row" justify="space-between" align="center">
-                                        <Typography as="span">Delivery fee</Typography>
-                                        <Typography as="span" weight="medium">
-                                            {formatCurrency(
-                                                currency,
-                                                i18n.language,
-                                                cart.totals.estimatedShipping,
-                                            )}
-                                        </Typography>
-                                    </Stack>
+                                    {cart.totals.estimatedShipping > 0 &&
+                                        <Stack className={styles.summaryRow} direction="row" justify="space-between"
+                                               align="center">
+                                            <Typography as="span">Delivery fee</Typography>
+                                            <Typography as="span" weight="medium">
+                                                {formatCurrency(
+                                                    currency,
+                                                    i18n.language,
+                                                    cart.totals.estimatedShipping,
+                                                )}
+                                            </Typography>
+                                        </Stack>}
                                     {cart.totals.estimatedTax > 0 && (
-                                        <Stack className={styles.summaryRow} direction="row" justify="space-between" align="center">
+                                        <Stack className={styles.summaryRow} direction="row" justify="space-between"
+                                               align="center">
                                             <Typography as="span">Estimated tax</Typography>
                                             <Typography as="span" weight="medium">
                                                 {formatCurrency(
@@ -125,9 +131,10 @@ const CartPage = () => {
                                     )}
                                 </Stack>
 
-                                <div className={styles.summaryDivider} />
+                                <div className={styles.summaryDivider}/>
 
-                                <Stack className={cn(styles.summaryRow, styles.summaryTotal)} direction="row" justify="space-between" align="center">
+                                <Stack className={cn(styles.summaryRow, styles.summaryTotal)} direction="row"
+                                       justify="space-between" align="center">
                                     <Typography as="span" weight="bold">Subtotal</Typography>
                                     <Typography as="span" weight="bold">
                                         {formatCurrency(currency, i18n.language, cart.totals.total)}
@@ -142,7 +149,7 @@ const CartPage = () => {
                                     onClick={proceedToCheckout}
                                     disabled={hasIssues || isValidating}
                                 >
-                                    <AppIcon Icon={ShoppingCartIcon} size={18} />
+                                    <AppIcon Icon={ShoppingCartIcon} size={18}/>
                                     <span>Checkout</span>
                                     <span className={styles.checkoutTotal}>
                                         {formatCurrency(currency, i18n.language, cart.totals.total)}
@@ -160,8 +167,12 @@ const CartPage = () => {
                             </div>
                         </aside>
                     )}
+
                 </Grid>
+
             )}
+            <BestSellingProducts/>
+
         </>
     );
 };

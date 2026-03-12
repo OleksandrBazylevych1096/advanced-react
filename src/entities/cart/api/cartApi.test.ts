@@ -19,21 +19,43 @@ describe("cartApi", () => {
         vi.clearAllMocks();
     });
 
-    test("getCart requests /cart", async () => {
+    test("getCart requests /cart and returns cart payload", async () => {
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input) => {
             const requestUrl = getRequestUrl(input);
             expect(requestUrl).toContain("/cart");
 
-            return new Response(JSON.stringify({items: [], totals: {totalItems: 0}}), {
-                status: 200,
-                headers: {"Content-Type": "application/json"},
-            });
+            return new Response(
+                JSON.stringify({
+                    items: [],
+                    totals: {
+                        subtotal: 0,
+                        totalItems: 0,
+                        estimatedShipping: 0,
+                        estimatedTax: 0,
+                        total: 0,
+                    },
+                }),
+                {
+                    status: 200,
+                    headers: {"Content-Type": "application/json"},
+                },
+            );
         });
 
         const store = createApiStore();
-        await store.dispatch(cartApi.endpoints.getCart.initiate());
+        const result = await store.dispatch(cartApi.endpoints.getCart.initiate());
 
         expect(fetchSpy).toHaveBeenCalledTimes(1);
+        expect(result.data).toEqual({
+            items: [],
+            totals: {
+                subtotal: 0,
+                totalItems: 0,
+                estimatedShipping: 0,
+                estimatedTax: 0,
+                total: 0,
+            },
+        });
     });
 
     test("getCartCount requests /cart/count", async () => {
