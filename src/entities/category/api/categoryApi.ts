@@ -1,19 +1,16 @@
-import {baseAPI} from "@/shared/api";
-import type {SupportedLngsType} from "@/shared/config";
+import {baseAPI, type ApiLocaleParams} from "@/shared/api";
 import type {BreadcrumbItem} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
 
 import {generateCategoryHref} from "../lib/generateCategoryHref";
 import type {BaseCategory, Category} from "../model/types/Category";
 
-interface CategoryBySlugArgs {
+type CategoryBySlugArgs = ApiLocaleParams & {
     slug: string;
-    locale: SupportedLngsType;
-}
+};
 
-interface CategoryBreadcrumbsArgs {
+type CategoryBreadcrumbsArgs = ApiLocaleParams & {
     id: string;
-    locale: SupportedLngsType;
-}
+};
 
 const categoryApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({

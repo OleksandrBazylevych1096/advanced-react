@@ -8,32 +8,35 @@ import type {
     UpdateShippingAddress,
 } from "@/entities/shipping-address";
 
-import {baseAPI} from "@/shared/api/rtk/baseAPI";
+import {baseAPI, type ApiLocaleParams} from "@/shared/api";
 
+interface SearchAddressesParams extends ApiLocaleParams {
+    searchQuery: string;
+    limit?: number;
+}
+
+interface ReverseGeocodeParams extends ApiLocaleParams {
+    coords: LatLngTuple;
+}
 
 export const saveShippingAddressApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-        searchAddresses: build.query<
-            AddressSearchResult[],
-            {searchQuery: string; limit?: number; locale: string}
-        >({
+        searchAddresses: build.query<AddressSearchResult[], SearchAddressesParams>({
             query: ({searchQuery, limit = 5, locale}) => ({
                 url: "/shipping-addresses/search",
                 params: {searchQuery, limit, locale},
             }),
         }),
-        getReverseGeocode: build.query<ReverseGeocodeResult, {coords: LatLngTuple; locale: string}>(
-            {
-                query: ({coords, locale}) => ({
-                    url: "/shipping-addresses/reverse-geocode",
-                    params: {
-                        lat: coords[0],
-                        lon: coords[1],
-                        locale,
-                    },
-                }),
-            },
-        ),
+        getReverseGeocode: build.query<ReverseGeocodeResult, ReverseGeocodeParams>({
+            query: ({coords, locale}) => ({
+                url: "/shipping-addresses/reverse-geocode",
+                params: {
+                    lat: coords[0],
+                    lon: coords[1],
+                    locale,
+                },
+            }),
+        }),
         createShippingAddress: build.mutation<ShippingAddress, CreateShippingAddress>({
             query: (body) => ({
                 url: "/shipping-addresses",

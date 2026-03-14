@@ -4,11 +4,12 @@ import {CartQuantityStepper} from "@/features/update-cart-item-quantity";
 import {CartItemRow} from "@/entities/cart";
 
 import {cn} from "@/shared/lib";
-import {EmptyState, ErrorState, Spinner, Stack, Typography} from "@/shared/ui";
+import {EmptyState, ErrorState, Stack, Typography} from "@/shared/ui";
 
 import {useCartItemsController} from "../../model/controllers/useCartItemsController";
 
 import styles from "./CartItems.module.scss";
+import {CartItemsSkeleton} from "./CartItemsSkeleton";
 
 interface CartItemsProps {
     compact?: boolean;
@@ -26,9 +27,7 @@ export const CartItems = ({compact, className}: CartItemsProps) => {
     if (isLoading) {
         return (
             <Stack className={cn(styles.root, className)}>
-                <Stack className={styles.stateContainer} align="center" justify="center">
-                    <Spinner size="lg" />
-                </Stack>
+                <CartItemsSkeleton compact={compact} />
             </Stack>
         );
     }

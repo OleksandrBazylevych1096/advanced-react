@@ -57,17 +57,26 @@ export const ChooseDeliveryDate = ({className}: ChooseDeliveryDateProps) => {
                         gap={4}
                         className={styles.triggerContent}
                     >
-                        <Typography as="h4" variant="heading" weight="bold">
-                            Delivery
-                        </Typography>
-                        <Typography
-                            as="span"
-                            variant="body"
-                            weight="semibold"
-                            className={styles.triggerLabel}
-                        >
-                            {triggerLabel}
-                        </Typography>
+                        {isLoading ? (
+                            <div className={styles.triggerTextSkeleton}>
+                                <div className={styles.triggerTitleSkeleton}/>
+                                <div className={styles.triggerLabelSkeleton}/>
+                            </div>
+                        ) : (
+                            <>
+                                <Typography as="h4" variant="heading" weight="bold">
+                                    Delivery
+                                </Typography>
+                                <Typography
+                                    as="span"
+                                    variant="body"
+                                    weight="semibold"
+                                    className={styles.triggerLabel}
+                                >
+                                    {triggerLabel}
+                                </Typography>
+                            </>
+                        )}
                     </Stack>
                 </Button>
             </Modal.Trigger>

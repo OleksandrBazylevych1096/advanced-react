@@ -15,6 +15,18 @@ vi.mock("@/shared/lib", () => ({
         selector(testCtx.state as StateSchema),
 }));
 
+vi.mock("react-i18next", () => ({
+    initReactI18next: {
+        type: "3rdParty",
+        init: () => undefined,
+    },
+    useTranslation: () => ({
+        i18n: {
+            language: "en",
+        },
+    }),
+}));
+
 vi.mock("../../../api/cartApi", () => ({
     useGetCartQuery: (...args: unknown[]) => testCtx.getCartQueryMock(...args),
 }));
@@ -24,6 +36,7 @@ describe("useCartController", () => {
         vi.clearAllMocks();
 
         testCtx.state = {
+            user: {currency: "USD"},
             cart: {
                 guestItems: [
                     {
@@ -56,7 +69,10 @@ describe("useCartController", () => {
     test("builds guest cart data from local state and disables server statuses", () => {
         const {result} = renderHook(() => useCartController({isAuthenticated: false}));
 
-        expect(testCtx.getCartQueryMock).toHaveBeenCalledWith(undefined, {skip: true});
+        expect(testCtx.getCartQueryMock).toHaveBeenCalledWith(
+            {locale: "en", currency: "USD"},
+            {skip: true},
+        );
         expect(result.current.derived.itemCount).toBe(2);
         expect(result.current.data.cart).toMatchObject({
             items: [
@@ -102,7 +118,10 @@ describe("useCartController", () => {
 
         const {result} = renderHook(() => useCartController({isAuthenticated: true}));
 
-        expect(testCtx.getCartQueryMock).toHaveBeenCalledWith(undefined, {skip: false});
+        expect(testCtx.getCartQueryMock).toHaveBeenCalledWith(
+            {locale: "en", currency: "USD"},
+            {skip: false},
+        );
         expect(result.current.data.cart).toBe(serverCart);
         expect(result.current.derived.itemCount).toBe(4);
         expect(result.current.status).toEqual({

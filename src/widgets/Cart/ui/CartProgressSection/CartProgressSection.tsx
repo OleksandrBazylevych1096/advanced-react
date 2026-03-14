@@ -1,3 +1,8 @@
+import {useTranslation} from "react-i18next";
+
+import {selectUserCurrency} from "@/entities/user";
+
+import {formatCurrency, useAppSelector} from "@/shared/lib";
 import {Progress, Stack, Typography} from "@/shared/ui";
 
 interface CartProgressSectionProps {
@@ -11,22 +16,27 @@ interface CartProgressSectionProps {
 }
 
 export const CartProgressSection = ({
-                                        value,
-                                        target,
-                                        ariaLabel,
-                                        className,
-                                        textClassName,
-                                        trackClassName,
-                                        fillClassName,
-                                    }: CartProgressSectionProps) => {
-    const normalizedTarget = Math.max(target, 1);
-    const progressPercent = Math.round((Math.min(value, normalizedTarget) / normalizedTarget) * 100);
+    value,
+    target,
+    ariaLabel,
+    className,
+    textClassName,
+    trackClassName,
+    fillClassName,
+}: CartProgressSectionProps) => {
+    const currency = useAppSelector(selectUserCurrency);
+    const {i18n} = useTranslation();
+
+    if (target <= 0) return null;
+
+    const fullfilled = value >= target;
 
     return (
         <Stack direction="column" gap={12} className={className}>
-
             <Typography className={textClassName} variant="body" weight="semibold">
-                Cart value coverage: {progressPercent}% of {target}
+                {fullfilled
+                    ? "Free delivery"
+                    : `Get free delivery (${formatCurrency(currency, i18n.language, target - value)} more)`}
             </Typography>
             <Progress
                 value={value}

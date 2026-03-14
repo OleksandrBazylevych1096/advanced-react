@@ -37,8 +37,9 @@ export const CartPreview = () => {
     };
 
     const hasItems = !!cart && cart.items.length > 0;
-    const progressTarget = 800;
     const subtotal = cart?.totals.subtotal ?? 0;
+    const progressTarget = cart?.totals.freeShippingTarget ?? 0;
+    const showFooter = hasItems && !isError;
 
     return (
         <Dropdown className={styles.headerCart}>
@@ -63,39 +64,59 @@ export const CartPreview = () => {
                     <CartItems compact/>
                 </Stack>
 
-                {hasItems && !isLoading && !isError && (
+                {showFooter && (
                     <Stack className={styles.footer}>
-                        <CartProgressSection
-                            className={styles.shippingSection}
-                            value={subtotal}
-                            target={progressTarget}
-                            ariaLabel="Cart subtotal progress"
-                            textClassName={styles.shippingText}
-                            trackClassName={styles.progressTrack}
-                            fillClassName={styles.progressFill}
-                        />
+                        {isLoading ? (
+                            <>
+                                <div className={styles.shippingSection}>
+                                    <div className={styles.skeletonShippingLabel} />
+                                    <div className={styles.skeletonShippingTrack} />
+                                </div>
 
-                        <Stack className={styles.subtotalRow} direction="row" align="center" justify="space-between">
-                            <Typography as="span" variant="body" weight="medium" tone="muted">
-                                Subtotal
-                            </Typography>
-                            <Typography as="span" variant="heading" weight="semibold">
-                                {formatCurrency(currency, i18n.language, subtotal)}
-                            </Typography>
-                        </Stack>
+                                <Stack className={styles.subtotalRow} direction="row" align="center"
+                                       justify="space-between">
+                                    <div className={styles.skeletonSubtotalLabel} />
+                                    <div className={styles.skeletonSubtotalValue} />
+                                </Stack>
 
-                        <Dropdown.Close asChild>
-                            <Button
-                                onClick={openCart}
-                                fullWidth
-                                theme="primary"
-                                size="md"
-                                className={styles.viewCartBtn}
-                            >
-                                <AppIcon Icon={ShoppingCartIcon} size={16}/>
-                                View Cart
-                            </Button>
-                        </Dropdown.Close>
+                                <div className={styles.skeletonViewCartBtn} />
+                            </>
+                        ) : (
+                            <>
+                                <CartProgressSection
+                                    className={styles.shippingSection}
+                                    value={subtotal}
+                                    target={progressTarget}
+                                    ariaLabel="Cart subtotal progress"
+                                    textClassName={styles.shippingText}
+                                    trackClassName={styles.progressTrack}
+                                    fillClassName={styles.progressFill}
+                                />
+
+                                <Stack className={styles.subtotalRow} direction="row" align="center"
+                                       justify="space-between">
+                                    <Typography as="span" variant="body" weight="medium" tone="muted">
+                                        Subtotal
+                                    </Typography>
+                                    <Typography as="span" variant="heading" weight="semibold">
+                                        {formatCurrency(currency, i18n.language, subtotal)}
+                                    </Typography>
+                                </Stack>
+
+                                <Dropdown.Close asChild>
+                                    <Button
+                                        onClick={openCart}
+                                        fullWidth
+                                        theme="primary"
+                                        size="md"
+                                        className={styles.viewCartBtn}
+                                    >
+                                        <AppIcon Icon={ShoppingCartIcon} size={16}/>
+                                        View Cart
+                                    </Button>
+                                </Dropdown.Close>
+                            </>
+                        )}
                     </Stack>
                 )}
             </Dropdown.Content>

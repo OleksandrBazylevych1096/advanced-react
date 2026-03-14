@@ -19,6 +19,19 @@ const testCtx = vi.hoisted(() => ({
 
 vi.mock("@/entities/user", () => ({
     selectIsAuthenticated: (state: StateSchema) => Boolean(state.user?.userData),
+    selectUserCurrency: (state: StateSchema) => state.user?.currency,
+}));
+
+vi.mock("react-i18next", () => ({
+    initReactI18next: {
+        type: "3rdParty",
+        init: () => undefined,
+    },
+    useTranslation: () => ({
+        i18n: {
+            language: "en",
+        },
+    }),
 }));
 
 vi.mock("@/entities/cart", () => ({
@@ -65,7 +78,7 @@ describe("useUpdateCartItemQuantityController", () => {
         vi.clearAllMocks();
 
         testCtx.state = {
-            user: {userData: undefined},
+            user: {userData: undefined, currency: "USD"},
         } as StateSchema;
 
         testCtx.storeGetStateMock.mockReturnValue({
@@ -145,7 +158,7 @@ describe("useUpdateCartItemQuantityController", () => {
 
     test("enqueues authenticated updates with coordinator contracts", () => {
         testCtx.state = {
-            user: {userData: {id: "u1"}},
+            user: {userData: {id: "u1"}, currency: "USD"},
         } as StateSchema;
 
         const onError = vi.fn();

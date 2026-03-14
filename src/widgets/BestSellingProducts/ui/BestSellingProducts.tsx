@@ -69,7 +69,7 @@ export const BestSellingProducts = () => {
                 </Stack>
             </Stack>
             {isFetching ? (
-                <CarouselSkeleton ItemSkeletonComponent={<ProductCardSkeleton />} />
+                <CarouselSkeleton count={20} ItemSkeletonComponent={<ProductCardSkeleton />} />
             ) : (
                 <Carousel options={{slidesToScroll: "auto"}} onEmblaInit={setCarouselApi}>
                     {products.map((product) => (

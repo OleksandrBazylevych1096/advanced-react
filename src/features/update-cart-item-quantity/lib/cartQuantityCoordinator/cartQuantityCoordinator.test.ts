@@ -52,7 +52,7 @@ describe("cartQuantityCoordinator", () => {
         );
 
         applyCartOptimisticUpdateMock.mockImplementation(
-            (_dispatch: unknown, updater: (draft: unknown) => void) => {
+            (_dispatch: unknown, _cartQueryArgs: unknown, updater: (draft: unknown) => void) => {
                 updater({} as never);
                 return {undo: vi.fn()};
             },
@@ -105,7 +105,7 @@ describe("cartQuantityCoordinator", () => {
         let undoIndex = 0;
 
         applyCartOptimisticUpdateMock.mockImplementation(
-            (_dispatch: unknown, updater: (draft: unknown) => void) => {
+            (_dispatch: unknown, _cartQueryArgs: unknown, updater: (draft: unknown) => void) => {
                 updater({} as never);
                 undoIndex += 1;
                 const currentUndoIndex = undoIndex;
@@ -165,11 +165,11 @@ describe("cartQuantityCoordinator", () => {
         );
 
         applyCartOptimisticUpdateMock
-            .mockImplementationOnce((_dispatch: unknown, updater: (draft: unknown) => void) => {
+            .mockImplementationOnce((_dispatch: unknown, _cartQueryArgs: unknown, updater: (draft: unknown) => void) => {
                 updater({} as never);
                 return {undo: vi.fn()};
             })
-            .mockImplementationOnce((_dispatch: unknown, updater: (draft: unknown) => void) => {
+            .mockImplementationOnce((_dispatch: unknown, _cartQueryArgs: unknown, updater: (draft: unknown) => void) => {
                 updater({} as never);
                 return {undo: vi.fn()};
             });
@@ -222,7 +222,7 @@ describe("cartQuantityCoordinator", () => {
             }));
 
         applyCartOptimisticUpdateMock.mockImplementation(
-            (_dispatch: unknown, updater: (draft: unknown) => void) => {
+            (_dispatch: unknown, _cartQueryArgs: unknown, updater: (draft: unknown) => void) => {
                 updater({} as never);
                 return {undo: vi.fn()};
             },
@@ -274,7 +274,7 @@ describe("cartQuantityCoordinator", () => {
         );
 
         applyCartOptimisticUpdateMock.mockImplementation(
-            (_dispatch: unknown, updater: (draft: unknown) => void) => {
+            (_dispatch: unknown, _cartQueryArgs: unknown, updater: (draft: unknown) => void) => {
                 updater({} as never);
                 return {undo: vi.fn()};
             },
@@ -307,7 +307,7 @@ describe("cartQuantityCoordinator", () => {
         );
 
         applyCartOptimisticUpdateMock.mockImplementation(
-            (_dispatch: unknown, updater: (draft: unknown) => void) => {
+            (_dispatch: unknown, _cartQueryArgs: unknown, updater: (draft: unknown) => void) => {
                 updater({} as never);
                 return {undo: vi.fn()};
             },
@@ -359,7 +359,7 @@ describe("cartQuantityCoordinator", () => {
         );
 
         applyCartOptimisticUpdateMock.mockImplementation(
-            (_dispatch: unknown, updater: (draft: unknown) => void) => {
+            (_dispatch: unknown, _cartQueryArgs: unknown, updater: (draft: unknown) => void) => {
                 updater({} as never);
                 return {undo: vi.fn()};
             },

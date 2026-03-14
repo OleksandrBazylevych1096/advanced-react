@@ -1,7 +1,9 @@
+import type {ApiLocaleCurrencyParams} from "@/shared/api";
+
 import {cartApi} from "../api/cartApi";
 import type {Cart} from "../model/types/CartSchema";
 
-import {recalculateCartTotals} from "./recalculateCartTotals";
+import {recalculateCartTotals} from "./recalculateCartTotals/recalculateCartTotals";
 
 export const findCartItemIndexByProductId = (cart: Cart, productId: string): number =>
     cart.items.findIndex((item) => item.productId === productId || item.product.id === productId);
@@ -23,5 +25,8 @@ export const applyCartItemQuantityChange = (
     recalculateCartTotals(cart);
 };
 
-export const applyCartOptimisticUpdate = (dispatch: AppDispatch, updater: (draft: Cart) => void) =>
-    dispatch(cartApi.util.updateQueryData("getCart", undefined, updater));
+export const applyCartOptimisticUpdate = (
+    dispatch: AppDispatch,
+    cartQueryArgs: ApiLocaleCurrencyParams,
+    updater: (draft: Cart) => void,
+) => dispatch(cartApi.util.updateQueryData("getCart", cartQueryArgs, updater));

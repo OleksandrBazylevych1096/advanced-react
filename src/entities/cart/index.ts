@@ -12,7 +12,7 @@ import {
 } from "./lib/cartOptimisticUpdate";
 import {clearGuestCart, getGuestCart, setGuestCart} from "./lib/cartStorage";
 import {broadcastCartClear, broadcastCartUpdate, onCartSync} from "./lib/cartSync";
-import {recalculateCartTotals} from "./lib/recalculateCartTotals";
+import {recalculateCartTotals} from "./lib/recalculateCartTotals/recalculateCartTotals";
 import {useCartController} from "./model/controllers/useCartController/useCartController";
 import {useCartValidationController} from "./model/controllers/useCartValidationController/useCartValidationController";
 import {
@@ -61,11 +61,4 @@ export {
     CartItemRow,
 };
 
-export type {
-    Cart,
-    CartItem,
-    CartSchema,
-    CartTotals,
-    CartValidationItem,
-    GuestCartItem,
-};
+export type {Cart, CartItem, CartSchema, CartTotals, CartValidationItem, GuestCartItem};

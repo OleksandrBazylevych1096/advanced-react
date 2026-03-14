@@ -2,6 +2,7 @@ import type {Dispatch} from "@reduxjs/toolkit";
 
 import {applyCartItemQuantityChange, applyCartOptimisticUpdate} from "@/entities/cart";
 
+import type {ApiLocaleCurrencyParams} from "@/shared/api";
 import {isAbortError} from "@/shared/lib/errors/isAbortError";
 
 import {createCartQuantityEngine} from "../../model/services/cartQuantityEngine/cartQuantityEngine";
@@ -19,6 +20,7 @@ type SendUpdateFn = (args: {productId: string; quantity: number}) => MutationReq
 export type EnqueueArgs = {
     productId: string;
     quantity: number;
+    cartQueryArgs: ApiLocaleCurrencyParams;
     dispatch: Dispatch;
     send: SendUpdateFn;
     getConfirmedQuantity: (productId: string) => number;
@@ -29,6 +31,7 @@ type ProductRuntimeSession = {
     inFlight: MutationRequest | null;
     timer: Timer | null;
     optimisticUndo: (() => void) | null;
+    cartQueryArgs: ApiLocaleCurrencyParams;
     dispatch: Dispatch;
     send: SendUpdateFn;
     onError?: (error: unknown) => void;
@@ -65,9 +68,13 @@ export const createCartQuantityCoordinator = (
         session.optimisticUndo?.();
         session.optimisticUndo = null;
 
-        const patch = applyCartOptimisticUpdate(session.dispatch, (draft) => {
-            applyCartItemQuantityChange(draft, productId, quantity);
-        });
+        const patch = applyCartOptimisticUpdate(
+            session.dispatch,
+            session.cartQueryArgs,
+            (draft) => {
+                applyCartItemQuantityChange(draft, productId, quantity);
+            },
+        );
 
         session.optimisticUndo = patch.undo;
     };
@@ -79,7 +86,7 @@ export const createCartQuantityCoordinator = (
         const rollback = engine.rollbackToConfirmed(productId);
         if (!rollback || !rollback.didChange) return;
 
-        applyCartOptimisticUpdate(session.dispatch, (draft) => {
+        applyCartOptimisticUpdate(session.dispatch, session.cartQueryArgs, (draft) => {
             applyCartItemQuantityChange(draft, productId, rollback.rollbackQuantity);
         });
     };
@@ -180,6 +187,7 @@ export const createCartQuantityCoordinator = (
     const enqueue = ({
         productId,
         quantity,
+        cartQueryArgs,
         dispatch,
         send,
         getConfirmedQuantity,
@@ -192,11 +200,13 @@ export const createCartQuantityCoordinator = (
                 inFlight: null,
                 timer: null,
                 optimisticUndo: null,
+                cartQueryArgs,
                 dispatch,
                 send,
                 onError,
             });
         } else {
+            currentSession.cartQueryArgs = cartQueryArgs;
             currentSession.dispatch = dispatch;
             currentSession.send = send;
             currentSession.onError = onError;

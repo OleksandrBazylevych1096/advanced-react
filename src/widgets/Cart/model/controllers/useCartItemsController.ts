@@ -31,6 +31,7 @@ export const useCartItemsController = () => {
         onError: () => toast.error("Failed to update cart"),
     });
 
+
     return createControllerResult({
         data: {
             items: cart?.items ?? [],

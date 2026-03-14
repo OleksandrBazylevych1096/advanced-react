@@ -1,7 +1,8 @@
-import {useCallback, useEffect} from "react";
+import {useCallback, useEffect, useMemo} from "react";
+import {useTranslation} from "react-i18next";
 
 import {broadcastCartUpdate, cartApi, cartActions, setGuestCart} from "@/entities/cart";
-import {selectIsAuthenticated} from "@/entities/user";
+import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import {createControllerResult, useAppDispatch, useAppSelector, useAppStore} from "@/shared/lib";
 
@@ -14,12 +15,21 @@ interface UseUpdateCartItemQuantityControllerOptions {
 export const useUpdateCartItemQuantityController = (
     options: UseUpdateCartItemQuantityControllerOptions = {},
 ) => {
+    const {i18n} = useTranslation();
     const {onError} = options;
     const dispatch = useAppDispatch();
     const store = useAppStore();
     const coordinator = store.services.cartQuantityCoordinator;
 
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
+    const currency = useAppSelector(selectUserCurrency);
+    const cartQueryArgs = useMemo(
+        () => ({
+            locale: i18n.language,
+            currency,
+        }),
+        [currency, i18n.language],
+    );
 
     const [updateItem] = useUpdateCartItemMutation();
 
@@ -67,11 +77,14 @@ export const useUpdateCartItemQuantityController = (
             coordinator.enqueue({
                 productId,
                 quantity,
+                cartQueryArgs,
                 dispatch,
                 send: (args) => updateItem(args),
                 onError,
                 getConfirmedQuantity: (targetProductId: string) => {
-                    const cartQueryState = cartApi.endpoints.getCart.select()(store.getState());
+                    const cartQueryState = cartApi.endpoints.getCart.select(cartQueryArgs)(
+                        store.getState(),
+                    );
                     const item = cartQueryState.data?.items.find(
                         (cartItem) =>
                             cartItem.productId === targetProductId ||
@@ -82,7 +95,16 @@ export const useUpdateCartItemQuantityController = (
                 },
             });
         },
-        [coordinator, dispatch, isAuthenticated, store, syncGuestStorage, updateItem, onError],
+        [
+            cartQueryArgs,
+            coordinator,
+            dispatch,
+            isAuthenticated,
+            onError,
+            store,
+            syncGuestStorage,
+            updateItem,
+        ],
     );
 
     return createControllerResult({

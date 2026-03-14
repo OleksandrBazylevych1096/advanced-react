@@ -1,19 +1,13 @@
 import type {Product} from "@/entities/product";
 
-import {baseAPI} from "@/shared/api";
-import type {CurrencyType} from "@/shared/config";
-
-interface FirstOrderProductsQueryArgs {
-    locale: string;
-    currency: CurrencyType;
-}
+import {baseAPI, type ApiLocaleCurrencyParams} from "@/shared/api";
 
 const homePageApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-        getFirstOrderProducts: build.query<Product[], FirstOrderProductsQueryArgs>({
+        getFirstOrderProducts: build.query<Product[], ApiLocaleCurrencyParams>({
             query: (params) => ({
                 url: "/products/first-order-discount",
-                params: params,
+                params,
             }),
         }),
     }),

@@ -1,15 +1,10 @@
 import type {Tag} from "@/entities/tag";
 
-import {baseAPI} from "@/shared/api";
-import type {SupportedLngsType} from "@/shared/config";
-
-interface TrendingTagQueryArgs {
-    locale: SupportedLngsType;
-}
+import {baseAPI, type ApiLocaleParams} from "@/shared/api";
 
 const trendingProductsApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-        getTrendingProductTags: build.query<Tag[], TrendingTagQueryArgs>({
+        getTrendingProductTags: build.query<Tag[], ApiLocaleParams>({
             query: (params) => ({
                 url: "/tags/popular",
                 params,

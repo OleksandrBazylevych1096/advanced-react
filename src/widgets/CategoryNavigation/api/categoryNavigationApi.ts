@@ -2,11 +2,9 @@ import type {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 
 import type {Category} from "@/entities/category";
 
-import {baseAPI} from "@/shared/api";
-import type {SupportedLngsType} from "@/shared/config";
+import {baseAPI, type ApiLocaleParams} from "@/shared/api";
 
-interface CategoryNavigationArgs {
-    locale: SupportedLngsType;
+interface CategoryNavigationArgs extends ApiLocaleParams {
     slug?: string;
 }
 

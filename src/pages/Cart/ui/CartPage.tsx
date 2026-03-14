@@ -1,179 +1,41 @@
-import {useTranslation} from "react-i18next";
-
 import {BestSellingProducts} from "@/widgets/BestSellingProducts";
-import {CartItems, CartProgressSection} from "@/widgets/Cart";
 
-import {ChooseDeliveryDate} from "@/features/choose-delivery-date";
-import {ClearCartButton, useClearCartController} from "@/features/clear-cart";
+import {useCartController} from "@/entities/cart";
+import {selectIsAuthenticated} from "@/entities/user";
 
-import {useCartController, useCartValidationController} from "@/entities/cart";
-import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
-
-import ShoppingCartIcon from "@/shared/assets/icons/ShoppingCart.svg?react";
-import {cn, formatCurrency, useAppSelector} from "@/shared/lib";
-import {AppIcon, Button, Grid, Stack, Typography} from "@/shared/ui";
+import {useAppSelector} from "@/shared/lib";
+import {Grid, Stack} from "@/shared/ui";
 
 import styles from "./CartPage.module.scss";
+import {CartPageItemsSection} from "./CartPageItemsSection";
+import {CartSummaryCard} from "./CartSummaryCard";
 
 const CartPage = () => {
-    const {i18n} = useTranslation();
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
-    const currency = useAppSelector(selectUserCurrency);
 
     const {
         data: {cart},
-        status: {isLoading, isError},
+        status: {isError},
     } = useCartController({isAuthenticated});
-    const {
-        derived: {hasIssues},
-        status: {isValidating},
-    } = useCartValidationController(cart?.items ?? [], {isAuthenticated});
-    const {
-        status: {isClearing},
-        actions: {clearCart},
-    } = useClearCartController();
 
-    const proceedToCheckout = () => {
-        console.log("Proceeding to checkout...");
-    };
-
-    const isEmpty = !cart || cart.items.length === 0;
-    const progressTarget = 800;
-    const summaryProgressValue = cart?.totals.subtotal ?? 0;
+    const isEmpty = !cart || cart.items.length === 0 || isError;
 
     return (
-        <>
-            {isEmpty && !isLoading && !isError ? (
-                <Stack direction="column" gap={32}>
-                    <CartItems/>
-                    <BestSellingProducts/>
-                </Stack>
+        <Stack direction="column" gap={32}>
+            {isEmpty ? (
+                <CartPageItemsSection isCartReady={false}/>
             ) : (
                 <Grid className={styles.content} gap={32}>
                     <Stack direction="column" gap={32} className={styles.leftColumn}>
-                        <div className={styles.itemsSection}>
-                            {!isEmpty && !isLoading && !isError && (
-                                <ChooseDeliveryDate className={styles.deliveryDateTrigger}/>
-                            )}
-                            <div className={styles.itemsList}>
-                                <CartItems/>
-                            </div>
-
-                            {!isEmpty && !isLoading && !isError && (
-                                <div className={styles.itemsFooter}>
-                                    <ClearCartButton
-                                        onClear={clearCart}
-                                        isLoading={isClearing}
-                                        className={styles.clearBtn}
-                                    />
-                                </div>
-                            )}
-                        </div>
+                        <CartPageItemsSection/>
                     </Stack>
 
-                    {!isEmpty && !isLoading && !isError && cart && (
-                        <aside>
-                            <div className={styles.summaryCard}>
-                                <div className={styles.summaryProgress}>
-                                    <CartProgressSection
-                                        value={summaryProgressValue}
-                                        target={progressTarget}
-                                        ariaLabel="Order completion progress"
-                                    />
-                                </div>
-
-                                <Typography
-                                    as="h2"
-                                    className={styles.summaryTitle}
-                                    variant="display"
-                                    tone="default"
-                                    weight="bold"
-                                >
-                                    Order Summary
-                                </Typography>
-
-                                <Stack className={styles.summaryRows} gap={12}>
-                                    <Stack className={styles.summaryRow} direction="row" justify="space-between"
-                                           align="center">
-                                        <Typography as="span">Items total</Typography>
-                                        <Typography as="span" weight="medium">
-                                            {formatCurrency(
-                                                currency,
-                                                i18n.language,
-                                                cart.totals.subtotal,
-                                            )}
-                                        </Typography>
-                                    </Stack>
-                                    {cart.totals.estimatedShipping > 0 &&
-                                        <Stack className={styles.summaryRow} direction="row" justify="space-between"
-                                               align="center">
-                                            <Typography as="span">Delivery fee</Typography>
-                                            <Typography as="span" weight="medium">
-                                                {formatCurrency(
-                                                    currency,
-                                                    i18n.language,
-                                                    cart.totals.estimatedShipping,
-                                                )}
-                                            </Typography>
-                                        </Stack>}
-                                    {cart.totals.estimatedTax > 0 && (
-                                        <Stack className={styles.summaryRow} direction="row" justify="space-between"
-                                               align="center">
-                                            <Typography as="span">Estimated tax</Typography>
-                                            <Typography as="span" weight="medium">
-                                                {formatCurrency(
-                                                    currency,
-                                                    i18n.language,
-                                                    cart.totals.estimatedTax,
-                                                )}
-                                            </Typography>
-                                        </Stack>
-                                    )}
-                                </Stack>
-
-                                <div className={styles.summaryDivider}/>
-
-                                <Stack className={cn(styles.summaryRow, styles.summaryTotal)} direction="row"
-                                       justify="space-between" align="center">
-                                    <Typography as="span" weight="bold">Subtotal</Typography>
-                                    <Typography as="span" weight="bold">
-                                        {formatCurrency(currency, i18n.language, cart.totals.total)}
-                                    </Typography>
-                                </Stack>
-
-                                <Button
-                                    fullWidth
-                                    theme="primary"
-                                    size="lg"
-                                    className={styles.checkoutBtn}
-                                    onClick={proceedToCheckout}
-                                    disabled={hasIssues || isValidating}
-                                >
-                                    <AppIcon Icon={ShoppingCartIcon} size={18}/>
-                                    <span>Checkout</span>
-                                    <span className={styles.checkoutTotal}>
-                                        {formatCurrency(currency, i18n.language, cart.totals.total)}
-                                    </span>
-                                </Button>
-                                {hasIssues && (
-                                    <Typography
-                                        className={styles.checkoutError}
-                                        variant="bodySm"
-                                        tone="danger"
-                                    >
-                                        Please resolve cart issues before checkout
-                                    </Typography>
-                                )}
-                            </div>
-                        </aside>
-                    )}
-
+                    <CartSummaryCard cart={cart} error={isError}/>
                 </Grid>
-
             )}
-            <BestSellingProducts/>
 
-        </>
+            <BestSellingProducts/>
+        </Stack>
     );
 };
 

@@ -1,4 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
+import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router";
 
 import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
@@ -26,6 +27,7 @@ const toDateOnly = (value: string): string => {
 };
 
 export const useChooseDeliveryDateController = () => {
+    const {i18n} = useTranslation();
     const navigate = useNavigate();
     const getLocalizedPath = useLocalizedRoutePath();
     const toast = useToast();
@@ -41,7 +43,7 @@ export const useChooseDeliveryDateController = () => {
         data: deliverySelection,
         isFetching: isSelectionLoading,
         isError: isSelectionError,
-    } = useGetDeliverySelectionQuery(undefined, {
+    } = useGetDeliverySelectionQuery({locale: i18n.language}, {
         skip: !isAuthenticated,
     });
 
@@ -76,6 +78,7 @@ export const useChooseDeliveryDateController = () => {
         {
             addressId: addressId ?? "",
             days: DEFAULT_DAYS,
+            locale: i18n.language,
         },
         {
             skip: !isAuthenticated || !isOpen || !addressId,
@@ -156,6 +159,7 @@ export const useChooseDeliveryDateController = () => {
                 deliveryDate: selectedDate,
                 deliveryTime: selectedTime,
                 addressId,
+                locale: i18n.language,
             }).unwrap();
 
             setSavedSelection({date: selectedDate, time: selectedTime});

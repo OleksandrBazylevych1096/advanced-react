@@ -1,6 +1,10 @@
 import {useMemo} from "react";
+import {useTranslation} from "react-i18next";
 
-import {createControllerResult} from "@/shared/lib";
+import {selectUserCurrency} from "@/entities/user";
+
+import type {SupportedLngsType} from "@/shared/config";
+import {createControllerResult, useAppSelector} from "@/shared/lib";
 
 import {useValidateCartQuery} from "../../../api/cartApi";
 import type {CartItem} from "../../types/CartSchema";
@@ -20,11 +24,16 @@ export const useCartValidationController = (
     options: UseCartValidationOptions,
 ) => {
     const {isAuthenticated} = options;
+    const {i18n} = useTranslation();
+    const currency = useAppSelector(selectUserCurrency);
 
-    const {data: serverValidation, isLoading: isValidating} = useValidateCartQuery(undefined, {
-        skip: !isAuthenticated,
-        pollingInterval: 60_000,
-    });
+    const {data: serverValidation, isLoading: isValidating} = useValidateCartQuery(
+        {locale: i18n.language, currency},
+        {
+            skip: !isAuthenticated,
+            pollingInterval: 60_000,
+        },
+    );
 
     const clientValidation = useMemo((): CartItemValidation[] => {
         return items.map((item) => {
@@ -47,10 +56,10 @@ export const useCartValidationController = (
     const validation =
         isAuthenticated && serverValidation
             ? serverValidation.map((sv) => ({
-                productId: sv.productId,
-                issues: sv.issues,
-                isValid: sv.isValid,
-            }))
+                  productId: sv.productId,
+                  issues: sv.issues,
+                  isValid: sv.isValid,
+              }))
             : clientValidation;
 
     const hasIssues = validation.some((v) => !v.isValid);

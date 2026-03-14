@@ -7,16 +7,26 @@ import {useCartValidationController} from "./useCartValidationController";
 
 const testCtx = vi.hoisted(() => ({
     validateQueryMock: vi.fn(),
+    state: undefined as StateSchema | undefined,
 }));
 
-vi.mock("@/shared/lib", async () => {
-    const actual = await vi.importActual<typeof import("@/shared/lib")>("@/shared/lib");
+vi.mock("@/shared/lib", () => ({
+    createControllerResult: <T>(value: T) => value,
+    useAppSelector: (selector: (state: StateSchema) => unknown) =>
+        selector(testCtx.state as StateSchema),
+}));
 
-    return {
-        ...actual,
-        createControllerResult: <T>(value: T) => value,
-    };
-});
+vi.mock("react-i18next", () => ({
+    initReactI18next: {
+        type: "3rdParty",
+        init: () => undefined,
+    },
+    useTranslation: () => ({
+        i18n: {
+            language: "en",
+        },
+    }),
+}));
 
 vi.mock("../../../api/cartApi", () => ({
     useValidateCartQuery: (...args: unknown[]) => testCtx.validateQueryMock(...args),
@@ -25,6 +35,7 @@ vi.mock("../../../api/cartApi", () => ({
 describe("useCartValidationController", () => {
     beforeEach(() => {
         vi.clearAllMocks();
+        testCtx.state = {user: {currency: "USD"}} as StateSchema;
         testCtx.validateQueryMock.mockReturnValue({
             data: undefined,
             isLoading: false,
@@ -63,10 +74,13 @@ describe("useCartValidationController", () => {
             useCartValidationController(items, {isAuthenticated: false}),
         );
 
-        expect(testCtx.validateQueryMock).toHaveBeenCalledWith(undefined, {
-            skip: true,
-            pollingInterval: 60_000,
-        });
+        expect(testCtx.validateQueryMock).toHaveBeenCalledWith(
+            {locale: "en", currency: "USD"},
+            {
+                skip: true,
+                pollingInterval: 60_000,
+            },
+        );
         expect(result.current.derived.hasIssues).toBe(true);
         expect(result.current.actions.getItemValidation("p1")?.issues).toEqual([
             "Only 2 available (you have 5)",
@@ -105,10 +119,13 @@ describe("useCartValidationController", () => {
             useCartValidationController(items, {isAuthenticated: true}),
         );
 
-        expect(testCtx.validateQueryMock).toHaveBeenCalledWith(undefined, {
-            skip: false,
-            pollingInterval: 60_000,
-        });
+        expect(testCtx.validateQueryMock).toHaveBeenCalledWith(
+            {locale: "en", currency: "USD"},
+            {
+                skip: false,
+                pollingInterval: 60_000,
+            },
+        );
         expect(result.current.status.isValidating).toBe(true);
         expect(result.current.actions.getItemValidation("p1")).toEqual({
             productId: "p1",

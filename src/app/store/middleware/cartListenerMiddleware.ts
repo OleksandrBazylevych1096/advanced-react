@@ -9,6 +9,8 @@ import {
 } from "@/entities/cart";
 import {userActions} from "@/entities/user";
 
+import {i18n} from "@/shared/config";
+
 export const cartListenerMiddleware = createListenerMiddleware();
 
 const startAppListening = cartListenerMiddleware.startListening.withTypes<
@@ -20,10 +22,15 @@ startAppListening({
     actionCreator: userActions.setAccessToken,
     effect: async (_action, listenerApi) => {
         const guestItems = getGuestCart();
+        const state = listenerApi.getState();
+        const requestParams = {
+            locale: i18n.language,
+            currency: state.user.currency,
+        };
 
         if (guestItems.length === 0) {
             listenerApi.dispatch(
-                cartApi.endpoints.getCart.initiate(undefined, {forceRefetch: true}),
+                cartApi.endpoints.getCart.initiate(requestParams, {forceRefetch: true}),
             );
             return;
         }
@@ -36,6 +43,7 @@ startAppListening({
                             productId: item.productId,
                             quantity: item.quantity,
                         })),
+                        ...requestParams,
                     }),
                 )
                 .unwrap();

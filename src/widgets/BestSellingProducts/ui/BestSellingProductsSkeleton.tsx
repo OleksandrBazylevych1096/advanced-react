@@ -15,7 +15,7 @@ export const BestSellingProductsSkeleton = () => {
                     <CarouselControlsSkeleton />
                 </Stack>
             </Stack>
-            <CarouselSkeleton count={10} ItemSkeletonComponent={<ProductCardSkeleton />} />
+            <CarouselSkeleton count={20} ItemSkeletonComponent={<ProductCardSkeleton />} />
         </section>
     );
 };

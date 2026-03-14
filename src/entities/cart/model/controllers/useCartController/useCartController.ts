@@ -1,13 +1,12 @@
 import {useMemo} from "react";
+import {useTranslation} from "react-i18next";
+
+import {selectUserCurrency} from "@/entities/user";
 
 import {createControllerResult, useAppSelector} from "@/shared/lib";
 
 import {useGetCartQuery} from "../../../api/cartApi";
-import {
-    selectGuestCartItemCount,
-    selectGuestCartItems,
-    selectGuestCartSubtotal,
-} from "../../selectors/cartSelectors";
+import {selectGuestCartItemCount, selectGuestCartItems, selectGuestCartSubtotal,} from "../../selectors/cartSelectors";
 import type {Cart} from "../../types/CartSchema";
 
 interface UseCartOptions {
@@ -16,10 +15,12 @@ interface UseCartOptions {
 
 export const useCartController = (options: UseCartOptions) => {
     const {isAuthenticated} = options;
+    const {i18n} = useTranslation();
 
     const guestItems = useAppSelector(selectGuestCartItems);
     const guestItemCount = useAppSelector(selectGuestCartItemCount);
     const guestSubtotal = useAppSelector(selectGuestCartSubtotal);
+    const currency = useAppSelector(selectUserCurrency);
 
     const {
         data: serverCart,
@@ -27,7 +28,7 @@ export const useCartController = (options: UseCartOptions) => {
         isFetching,
         isError,
         refetch,
-    } = useGetCartQuery(undefined, {skip: !isAuthenticated});
+    } = useGetCartQuery({locale: i18n.language, currency}, {skip: !isAuthenticated});
 
     const cart = useMemo(() => {
         if (isAuthenticated) return serverCart;

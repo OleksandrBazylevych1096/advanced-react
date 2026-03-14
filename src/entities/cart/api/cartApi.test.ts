@@ -23,6 +23,8 @@ describe("cartApi", () => {
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input) => {
             const requestUrl = getRequestUrl(input);
             expect(requestUrl).toContain("/cart");
+            expect(requestUrl).toContain("locale=en");
+            expect(requestUrl).toContain("currency=USD");
 
             return new Response(
                 JSON.stringify({
@@ -43,7 +45,9 @@ describe("cartApi", () => {
         });
 
         const store = createApiStore();
-        const result = await store.dispatch(cartApi.endpoints.getCart.initiate());
+        const result = await store.dispatch(
+            cartApi.endpoints.getCart.initiate({locale: "en", currency: "USD"}),
+        );
 
         expect(fetchSpy).toHaveBeenCalledTimes(1);
         expect(result.data).toEqual({
@@ -62,6 +66,8 @@ describe("cartApi", () => {
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input) => {
             const requestUrl = getRequestUrl(input);
             expect(requestUrl).toContain("/cart/count");
+            expect(requestUrl).toContain("locale=en");
+            expect(requestUrl).toContain("currency=USD");
 
             return new Response(JSON.stringify(3), {
                 status: 200,
@@ -70,7 +76,9 @@ describe("cartApi", () => {
         });
 
         const store = createApiStore();
-        const result = await store.dispatch(cartApi.endpoints.getCartCount.initiate());
+        const result = await store.dispatch(
+            cartApi.endpoints.getCartCount.initiate({locale: "en", currency: "USD"}),
+        );
 
         expect(fetchSpy).toHaveBeenCalledTimes(1);
         expect(result.data).toBe(3);
@@ -83,6 +91,8 @@ describe("cartApi", () => {
                 input instanceof Request ? input.method : (init?.method ?? "GET");
 
             expect(requestUrl).toContain("/cart/sync");
+            expect(requestUrl).toContain("locale=en");
+            expect(requestUrl).toContain("currency=USD");
             expect(requestMethod).toBe("POST");
 
             return new Response(JSON.stringify({items: [], totals: {totalItems: 0}}), {
@@ -95,6 +105,8 @@ describe("cartApi", () => {
         await store.dispatch(
             cartApi.endpoints.syncCart.initiate({
                 guestCartItems: [{productId: "p1", quantity: 2}],
+                locale: "en",
+                currency: "USD",
             }),
         );
 

@@ -18,6 +18,19 @@ const testCtx = vi.hoisted(() => ({
 
 vi.mock("@/entities/user", () => ({
     selectIsAuthenticated: (state: StateSchema) => Boolean(state.user?.userData),
+    selectUserCurrency: (state: StateSchema) => state.user?.currency,
+}));
+
+vi.mock("react-i18next", () => ({
+    initReactI18next: {
+        type: "3rdParty",
+        init: () => undefined,
+    },
+    useTranslation: () => ({
+        i18n: {
+            language: "en",
+        },
+    }),
 }));
 
 vi.mock("@/entities/cart", () => ({
@@ -73,7 +86,7 @@ describe("useAddToCartController", () => {
         vi.clearAllMocks();
 
         testCtx.state = {
-            user: {userData: undefined},
+            user: {userData: undefined, currency: "USD"},
             cart: {guestItems: []},
         } as StateSchema;
         testCtx.serverCartData = undefined;
@@ -122,7 +135,7 @@ describe("useAddToCartController", () => {
 
     test("clamps guest quantity by remaining stock", async () => {
         testCtx.state = {
-            user: {userData: undefined},
+            user: {userData: undefined, currency: "USD"},
             cart: {
                 guestItems: [
                     {
@@ -153,7 +166,7 @@ describe("useAddToCartController", () => {
 
     test("sends authenticated add-to-cart mutation instead of guest dispatch", async () => {
         testCtx.state = {
-            user: {userData: {id: "u1"}},
+            user: {userData: {id: "u1"}, currency: "USD"},
             cart: {guestItems: []},
         } as StateSchema;
         testCtx.serverCartData = {

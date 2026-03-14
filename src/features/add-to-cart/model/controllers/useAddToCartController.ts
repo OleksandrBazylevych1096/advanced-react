@@ -1,4 +1,5 @@
 import {useCallback, useEffect, useRef, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 import {
     broadcastCartUpdate,
@@ -9,7 +10,7 @@ import {
     useGetCartQuery,
 } from "@/entities/cart";
 import type {Product} from "@/entities/product";
-import {selectIsAuthenticated} from "@/entities/user";
+import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import {
     createControllerResult,
@@ -25,11 +26,13 @@ import {useAddToCartMutation} from "../../api/addToCartApi";
 const DEBOUNCE_MS = 400;
 
 export const useAddToCartController = (product: Product) => {
+    const {i18n} = useTranslation();
     const dispatch = useAppDispatch();
     const store = useAppStore();
     const toast = useToast();
 
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
+    const currency = useAppSelector(selectUserCurrency);
 
     const [pendingCount, setPendingCount] = useState(0);
 
@@ -41,7 +44,10 @@ export const useAddToCartController = (product: Product) => {
         selectGuestCartItemByProductId(state, product.id),
     );
 
-    const {data: serverCart} = useGetCartQuery(undefined, {skip: !isAuthenticated});
+    const {data: serverCart} = useGetCartQuery(
+        {locale: i18n.language, currency},
+        {skip: !isAuthenticated},
+    );
     const [addToCartMutation] = useAddToCartMutation();
 
     const serverQuantity =

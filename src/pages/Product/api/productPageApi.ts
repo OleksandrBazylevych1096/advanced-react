@@ -1,12 +1,10 @@
 import type {Product} from "@/entities/product";
 
-import {baseAPI} from "@/shared/api";
-import {type SupportedLngsType} from "@/shared/config";
+import {baseAPI, type ApiLocaleParams} from "@/shared/api";
 
-interface ProductBySlugArgs {
+type ProductBySlugArgs = ApiLocaleParams & {
     slug: string;
-    locale: SupportedLngsType;
-}
+};
 
 const productPageApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({

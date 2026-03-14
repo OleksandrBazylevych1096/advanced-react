@@ -25,6 +25,7 @@ describe("chooseDeliveryDateApi", () => {
             expect(requestUrl).toContain("/delivery-selection/slots");
             expect(requestUrl).toContain("addressId=addr-1");
             expect(requestUrl).toContain("days=5");
+            expect(requestUrl).toContain("locale=en");
 
             return new Response(
                 JSON.stringify({
@@ -42,6 +43,7 @@ describe("chooseDeliveryDateApi", () => {
             chooseDeliveryDateApi.endpoints.getDeliverySlots.initiate({
                 addressId: "addr-1",
                 days: 5,
+                locale: "en",
             }),
         );
 
@@ -55,6 +57,7 @@ describe("chooseDeliveryDateApi", () => {
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input) => {
             const requestUrl = getRequestUrl(input);
             expect(requestUrl).toContain("/delivery-selection");
+            expect(requestUrl).toContain("locale=en");
 
             return new Response(
                 JSON.stringify({
@@ -70,7 +73,7 @@ describe("chooseDeliveryDateApi", () => {
 
         const store = createApiStore();
         const result = await store.dispatch(
-            chooseDeliveryDateApi.endpoints.getDeliverySelection.initiate(),
+            chooseDeliveryDateApi.endpoints.getDeliverySelection.initiate({locale: "en"}),
         );
 
         expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -87,6 +90,7 @@ describe("chooseDeliveryDateApi", () => {
                 input instanceof Request ? input.method : (init?.method ?? "GET");
 
             if (requestUrl.includes("/delivery-selection") && requestMethod === "PATCH") {
+                expect(requestUrl).toContain("locale=en");
                 const bodyText =
                     input instanceof Request
                         ? await input.clone().text()
@@ -127,6 +131,7 @@ describe("chooseDeliveryDateApi", () => {
                 deliveryDate: "2026-03-20",
                 deliveryTime: "18:00",
                 addressId: "addr-1",
+                locale: "en",
             }),
         );
 

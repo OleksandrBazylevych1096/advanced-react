@@ -1,16 +1,10 @@
 import type {ProductsApiResponse} from "@/entities/product";
 
-import {baseAPI} from "@/shared/api";
-import type {CurrencyType, SupportedLngsType} from "@/shared/config";
-
-interface Args {
-    locale: SupportedLngsType;
-    currency: CurrencyType;
-}
+import {baseAPI, type ApiLocaleCurrencyParams} from "@/shared/api";
 
 const bestSellingProductsApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-        getBestSellingProducts: build.query<ProductsApiResponse, Args>({
+        getBestSellingProducts: build.query<ProductsApiResponse, ApiLocaleCurrencyParams>({
             query: (params) => ({
                 url: "/products/best-sellers",
                 params,

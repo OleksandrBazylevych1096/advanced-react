@@ -260,6 +260,7 @@ describe("useChooseDeliveryDateController", () => {
             deliveryDate: "2026-03-12",
             deliveryTime: "12:00",
             addressId: "addr-1",
+            locale: "en",
         });
         expect(result.current.data.isOpen).toBe(false);
         expect(result.current.data.savedSelection).toEqual({date: "2026-03-12", time: "12:00"});
@@ -372,7 +373,7 @@ describe("useChooseDeliveryDateController", () => {
     test("requests saved selection for authenticated user even when modal is closed", () => {
         renderHook(() => useChooseDeliveryDateController());
 
-        expect(testCtx.deliverySelectionQueryMock).toHaveBeenCalledWith(undefined, {
+        expect(testCtx.deliverySelectionQueryMock).toHaveBeenCalledWith({locale: "en"}, {
             skip: false,
         });
     });
@@ -384,7 +385,7 @@ describe("useChooseDeliveryDateController", () => {
 
         renderHook(() => useChooseDeliveryDateController());
 
-        expect(testCtx.deliverySelectionQueryMock).toHaveBeenCalledWith(undefined, {
+        expect(testCtx.deliverySelectionQueryMock).toHaveBeenCalledWith({locale: "en"}, {
             skip: true,
         });
     });

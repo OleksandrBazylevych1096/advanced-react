@@ -11,6 +11,7 @@ export interface CartItem {
 
 export interface CartTotals {
     subtotal: number;
+    freeShippingTarget: number;
     totalItems: number;
     estimatedShipping: number;
     estimatedTax: number;
