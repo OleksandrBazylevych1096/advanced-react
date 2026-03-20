@@ -10,6 +10,7 @@ import i18n from "./i18n/i18n";
 import {languageCurrencyList, type CurrencyType} from "./i18n/LanguageCurrencyList";
 import {languageIconList, type SupportedLngsType} from "./i18n/LanguageIconList";
 import {routePaths, AppRoutes} from "./router/routePaths";
+import {stripePromise} from "./stripe/stripe";
 import {Theme, ThemeContext, LOCAL_STORAGE_THEME_KEY, type ThemeType} from "./theme/ThemeContext";
 import {useTheme} from "./theme/useTheme";
 
@@ -27,6 +28,7 @@ export {
     API_URL,
     languageCurrencyList,
     i18n,
+    stripePromise,
     type CurrencyType,
     type AuthProvidersType,
     type AuthMethodType,

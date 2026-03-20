@@ -40,8 +40,7 @@ describe("authSessionsApi", () => {
     test("revokeAuthSession calls DELETE /auth/sessions/:id", async () => {
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input, init) => {
             const requestUrl = getRequestUrl(input);
-            const requestMethod =
-                input instanceof Request ? input.method : (init?.method ?? "GET");
+            const requestMethod = input instanceof Request ? input.method : (init?.method ?? "GET");
             expect(requestUrl).toContain("/auth/sessions/s-1");
             expect(requestMethod).toBe("DELETE");
 
@@ -63,8 +62,7 @@ describe("authSessionsApi", () => {
     test("revokeAllAuthSessions sends includeCurrent query param", async () => {
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input, init) => {
             const requestUrl = getRequestUrl(input);
-            const requestMethod =
-                input instanceof Request ? input.method : (init?.method ?? "GET");
+            const requestMethod = input instanceof Request ? input.method : (init?.method ?? "GET");
             const url = parseRequestUrl(requestUrl);
 
             expect(url.pathname).toContain("/auth/sessions");

@@ -75,7 +75,10 @@ export const RegisterPageContent = () => {
                         weight="semibold"
                     >
                         {t("register.alreadyHaveAccount")}{" "}
-                        <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}>
+                        <Link
+                            className={styles.link}
+                            to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}
+                        >
                             <Typography as="span" variant="bodySm" weight="semibold" tone="primary">
                                 {t("login.signIn")}
                             </Typography>

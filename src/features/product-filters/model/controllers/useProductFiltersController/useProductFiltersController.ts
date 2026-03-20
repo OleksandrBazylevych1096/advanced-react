@@ -2,7 +2,6 @@ import {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useParams, useSearchParams} from "react-router";
 
-
 import {
     DEBOUNCE_DELAY,
     DEFAULT_SORT_BY,
@@ -49,9 +48,7 @@ interface UseProductFiltersControllerArgs {
     categoryId?: string;
 }
 
-export const useProductFiltersController = ({
-    categoryId,
-}: UseProductFiltersControllerArgs = {}) => {
+export const useProductFiltersController = ({categoryId}: UseProductFiltersControllerArgs = {}) => {
     const {i18n} = useTranslation();
     const {slug} = useParams<{slug: string; lng: SupportedLngsType}>();
     const locale = i18n.language as SupportedLngsType;
@@ -77,10 +74,7 @@ export const useProductFiltersController = ({
     const debouncedPriceRange = useDebounce(localPriceRange, DEBOUNCE_DELAY);
     const {
         data: {resolvedCategoryId},
-        status: {
-            isLoading: isCategoryLoading,
-            error: categoryError,
-        },
+        status: {isLoading: isCategoryLoading, error: categoryError},
     } = useResolvedCategoryIdController({
         categoryId,
         slug,

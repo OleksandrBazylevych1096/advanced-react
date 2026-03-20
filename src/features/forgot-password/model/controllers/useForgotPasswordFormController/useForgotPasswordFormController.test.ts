@@ -85,4 +85,3 @@ describe("useForgotPasswordFormController", () => {
         expect(result.current.data.isSuccess).toBe(false);
     });
 });
-

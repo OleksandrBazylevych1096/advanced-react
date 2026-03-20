@@ -1,0 +1,66 @@
+{
+    "checkoutTitle": "Kasse",
+    "summary": {
+        "title": "Bestellubersicht",
+        "itemsTotal": "Zwischensumme",
+        "deliveryFee": "Liefergebuhr",
+        "serviceFee": "Servicegebuhr",
+        "tip": "Trinkgeld",
+        "coupon": "Gutschein",
+        "total": "Gesamt"
+    },
+    "deliveryTip": {
+        "title": "Trinkgeld fur die Lieferung",
+        "other": "Andere",
+        "customPlaceholder": "Eigenes Trinkgeld eingeben"
+    },
+    "coupon": {
+        "title": "Gutschein",
+        "add": "Gutschein hinzufugen",
+        "enterCode": "Gutscheincode eingeben",
+        "cancel": "Abbrechen",
+        "apply": "Anwenden",
+        "removeAriaLabel": "Gutschein entfernen"
+    },
+    "chooseDeliveryDate": {
+        "trigger": "Lieferdatum auswahlen",
+        "loading": "Wird geladen ...",
+        "modalTitle": "Lieferdatum auswahlen",
+        "cancel": "Abbrechen",
+        "apply": "Anwenden",
+        "signInPrompt": "Bitte melden Sie sich an, um Lieferdatum und Zeit auszuwahlen.",
+        "signIn": "Anmelden",
+        "failedToLoadSlots": "Lieferzeitfenster konnten nicht geladen werden.",
+        "noDefaultAddressTitle": "Keine Standardadresse ausgewahlt",
+        "noDefaultAddressDescription": "Wahlen Sie eine Standardlieferadresse aus, um Zeitfenster zu sehen.",
+        "noDeliverySlotsTitle": "Keine Lieferzeitfenster verfugbar",
+        "noDeliverySlotsDescription": "Versuchen Sie ein anderes Datum oder schauen Sie spater erneut vorbei.",
+        "selectDate": "Datum auswahlen",
+        "selectDeliveryTimeSlotOn": "Lieferzeit fur {{date}} auswahlen"
+    },
+    "checkoutMainSection": {
+        "goBack": "Zuruck",
+        "failedToLoadSummary": "Checkout-Zusammenfassung konnte nicht geladen werden.",
+        "deliveryInfo": "Lieferinformationen",
+        "deliverTo": "Liefern an",
+        "addressNotSpecified": "Adresse nicht angegeben",
+        "deliveryDate": "Lieferdatum"
+    },
+    "reviewOrderTitle": "Bestellung prufen",
+    "itemsName": "Artikel",
+    "itemsCount": "Anzahl der Artikel: {{count}}",
+    "proceedToStripe": "Weiter zu Stripe",
+    "preparingPayment": "Zahlung wird vorbereitet...",
+    "stripeCheckoutUrlMissing": "Stripe-Checkout-URL fehlt.",
+    "stripeSessionCreateFailed": "Stripe-Checkout-Sitzung konnte nicht erstellt werden.",
+    "result": {
+        "title": "Checkout-Ergebnis",
+        "missingSessionId": "Checkout-Session-ID in der URL fehlt.",
+        "orderNumber": "Bestellnummer: {{orderNumber}}",
+        "pending": "Die Zahlung ist ausstehend. Wir bestatigen Ihre Bestellung.",
+        "success": "Zahlung erfolgreich",
+        "failed": "Zahlung fehlgeschlagen. Bitte kontaktieren Sie den Support.",
+        "systemError": "Der Zahlungsstatus konnte wegen eines Serverproblems nicht verifiziert werden. Bitte versuchen Sie es gleich erneut.",
+        "continueShopping": "Weiter einkaufen"
+    }
+}

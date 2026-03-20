@@ -35,4 +35,3 @@ describe("useLogoutController", () => {
         expect(testCtx.logoutRequestMock).toHaveBeenCalledTimes(1);
     });
 });
-

@@ -3,50 +3,5 @@
 }
 
 .oldPrice {
-    color: var(--gray-600);
     text-decoration: line-through;
-
-    &.xl {
-        font: var(--font-l);
-        font-weight: 700;
-    }
-
-    &.l {
-        font: var(--font-m);
-        font-weight: 600;
-    }
-
-    &.m {
-        font: var(--font-s);
-        font-weight: 600;
-    }
-
-    &.s {
-        font: var(--font-xs);
-    }
-}
-
-.hasDiscount {
-    color: var(--green-500);
-}
-
-.price {
-    &.xl {
-        font: var(--font-xl);
-        font-weight: 700;
-    }
-
-    &.l {
-        font: var(--font-l);
-        font-weight: 600;
-    }
-
-    &.m {
-        font: var(--font-m);
-        font-weight: 600;
-    }
-
-    &.s {
-        font: var(--font-s);
-    }
 }

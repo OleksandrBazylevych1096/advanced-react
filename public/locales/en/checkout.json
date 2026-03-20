@@ -1,0 +1,66 @@
+{
+    "checkoutTitle": "Checkout",
+    "summary": {
+        "title": "Order Summary",
+        "itemsTotal": "Items total",
+        "deliveryFee": "Delivery fee",
+        "serviceFee": "Service fee",
+        "tip": "Tip",
+        "coupon": "Coupon",
+        "total": "Total"
+    },
+    "deliveryTip": {
+        "title": "Delivery tip",
+        "other": "Other",
+        "customPlaceholder": "Enter custom tip"
+    },
+    "coupon": {
+        "title": "Coupon",
+        "add": "Add coupon",
+        "enterCode": "Enter coupon code",
+        "cancel": "Cancel",
+        "apply": "Apply",
+        "removeAriaLabel": "Remove coupon"
+    },
+    "chooseDeliveryDate": {
+        "trigger": "Choose delivery date",
+        "loading": "Loading ...",
+        "modalTitle": "Choose delivery date",
+        "cancel": "Cancel",
+        "apply": "Apply",
+        "signInPrompt": "Please sign in to choose delivery date and time.",
+        "signIn": "Sign in",
+        "failedToLoadSlots": "Failed to load delivery slots.",
+        "noDefaultAddressTitle": "No default address selected",
+        "noDefaultAddressDescription": "Select a default shipping address to see delivery slots.",
+        "noDeliverySlotsTitle": "No delivery slots available",
+        "noDeliverySlotsDescription": "Try another date or come back later.",
+        "selectDate": "Select date",
+        "selectDeliveryTimeSlotOn": "Select delivery time on {{date}}"
+    },
+    "checkoutMainSection": {
+        "goBack": "Go back",
+        "failedToLoadSummary": "Failed to load checkout summary.",
+        "deliveryInfo": "Delivery info",
+        "deliverTo": "Deliver to",
+        "addressNotSpecified": "Address not specified",
+        "deliveryDate": "Delivery date"
+    },
+    "reviewOrderTitle": "Review Order",
+    "itemsName": "Items Name",
+    "itemsCount": "N of items: {{count}}",
+    "proceedToStripe": "Proceed to Stripe",
+    "preparingPayment": "Preparing payment...",
+    "stripeCheckoutUrlMissing": "Stripe checkout URL is missing.",
+    "stripeSessionCreateFailed": "Failed to create Stripe checkout session.",
+    "result": {
+        "title": "Checkout Result",
+        "missingSessionId": "Missing checkout session id in URL.",
+        "orderNumber": "Order number: {{orderNumber}}",
+        "pending": "Payment is pending. We are confirming your order.",
+        "success": "Payment successful",
+        "failed": "Payment failed. Please contact support.",
+        "systemError": "We could not verify payment status because the server is unavailable. Please try again in a moment.",
+        "continueShopping": "Continue shopping"
+    }
+}

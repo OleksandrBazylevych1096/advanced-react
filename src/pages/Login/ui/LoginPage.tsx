@@ -45,7 +45,10 @@ const LoginPage = () => {
                 </Stack>
                 <Typography as="span" className={styles.footer} variant="bodySm" weight="semibold">
                     {t("login.dontHaveAccount")}{" "}
-                    <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.REGISTER])}>
+                    <Link
+                        className={styles.link}
+                        to={getLocalizedPath(routePaths[AppRoutes.REGISTER])}
+                    >
                         <Typography as="span" variant="bodySm" weight="semibold" tone="primary">
                             {t("register.signUp")}
                         </Typography>

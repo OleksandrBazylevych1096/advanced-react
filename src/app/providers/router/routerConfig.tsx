@@ -4,6 +4,8 @@ import {AuthCallbackPage} from "@/pages/AuthCallbackPage";
 import {AuthTwoFactorPage} from "@/pages/AuthTwoFactor";
 import {CartPage} from "@/pages/Cart";
 import {CategoryPage} from "@/pages/Category";
+import {CheckoutPage} from "@/pages/Checkout";
+import {CheckoutResultPage} from "@/pages/CheckoutResult";
 import {ForgotPasswordPage} from "@/pages/ForgotPassword";
 import {HomePage} from "@/pages/Home";
 import {LoginPage} from "@/pages/Login";
@@ -85,6 +87,14 @@ export const routeConfig: AppRouteConfig[] = [
     {
         path: routePaths[AppRoutes.CART],
         element: <CartPage />,
+    },
+    {
+        path: routePaths[AppRoutes.CHECKOUT],
+        element: <CheckoutPage />,
+    },
+    {
+        path: routePaths[AppRoutes.CHECKOUT_RESULT],
+        element: <CheckoutResultPage />,
     },
     {
         path: routePaths[AppRoutes.NOT_FOUND],

@@ -36,7 +36,7 @@ export const ProductCard = ({product, currency, action}: ProductCardProps) => {
             data-testid={`product-card-${product.id}`}
         >
             <div className={styles.imgContainer}>
-                <AppImage src={img?.url} alt={img?.alt || product.name} className={styles.img}/>
+                <AppImage src={img?.url} alt={img?.alt || product.name} className={styles.img} />
                 {action && (
                     <div className={styles.action} onClick={(e) => e.stopPropagation()}>
                         {action}

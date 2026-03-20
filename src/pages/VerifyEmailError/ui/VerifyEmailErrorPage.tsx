@@ -23,10 +23,16 @@ const VerifyEmailErrorPage = () => {
                     {t("verifyEmail.errorReason", {reason})}
                 </Typography>
                 <Stack direction="row" gap={12} align="center" wrap="wrap">
-                    <Link className={styles.buttonLink} to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}>
+                    <Link
+                        className={styles.buttonLink}
+                        to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}
+                    >
                         <Button type="button">{t("verifyEmail.login")}</Button>
                     </Link>
-                    <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.REGISTER])}>
+                    <Link
+                        className={styles.link}
+                        to={getLocalizedPath(routePaths[AppRoutes.REGISTER])}
+                    >
                         <Typography as="span" variant="bodySm" weight="semibold" tone="primary">
                             {t("verifyEmail.registerAgain")}
                         </Typography>

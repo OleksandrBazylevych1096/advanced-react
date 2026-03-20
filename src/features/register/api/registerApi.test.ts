@@ -89,4 +89,3 @@ describe("registerApi", () => {
         expect(result.data).toEqual({success: true});
     });
 });
-

@@ -21,12 +21,10 @@ export interface UpdateShippingAddress extends Partial<AddressForm> {
     longitude?: number;
 }
 
-export interface AddressForm {
-    streetAddress: string;
-    city: string;
-    numberOfApartment: string;
-    zipCode: string;
-}
+export type AddressForm = Pick<
+    ShippingAddress,
+    "streetAddress" | "city" | "numberOfApartment" | "zipCode"
+>;
 
 export interface AddressSearchResult {
     lat: number;
@@ -55,4 +53,5 @@ export interface SaveShippingAddressSchema {
     location: LatLngTuple;
     form: AddressForm;
     mode: AddressMode;
+    isManageShippingAddressModalOpen: boolean;
 }

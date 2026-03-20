@@ -60,4 +60,3 @@ describe("updateCartItemApi", () => {
         expect(fetchSpy).toHaveBeenCalledTimes(1);
     });
 });
-

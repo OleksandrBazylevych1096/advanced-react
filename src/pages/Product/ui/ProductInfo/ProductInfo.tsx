@@ -21,11 +21,11 @@ export const ProductInfo = ({product, error, isLoading}: ProductInfoProps) => {
     const currency = useAppSelector(selectUserCurrency);
     const {i18n, t} = useTranslation();
 
-    if (isLoading) return <ProductInfoSkeleton/>;
+    if (isLoading) return <ProductInfoSkeleton />;
 
-    if (error) return <ErrorState/>;
+    if (error) return <ErrorState />;
 
-    if (!product) return <EmptyState title={"Products"}/>;
+    if (!product) return <EmptyState title={"Products"} />;
 
     return (
         <div className={styles.productInfo}>
@@ -49,7 +49,7 @@ export const ProductInfo = ({product, error, isLoading}: ProductInfoProps) => {
                     </Typography>
                 )}
             </div>
-            <AddToCartButton product={product}/>
+            <AddToCartButton product={product} />
         </div>
     );
 };

@@ -40,14 +40,16 @@ vi.mock("@/entities/shipping-address", () => ({
 }));
 
 vi.mock("../../api/chooseDeliveryDateApi", () => ({
-    useGetDeliverySelectionQuery: (...args: unknown[]) => testCtx.deliverySelectionQueryMock(...args),
+    useGetDeliverySelectionQuery: (...args: unknown[]) =>
+        testCtx.deliverySelectionQueryMock(...args),
     useGetDeliverySlotsQuery: (...args: unknown[]) => testCtx.deliverySlotsQueryMock(...args),
     useSetDeliverySlotMutation: () => [testCtx.setDeliverySlotMock, {isLoading: false}],
 }));
 
 vi.mock("@/shared/lib", () => ({
     createControllerResult: <T>(value: T) => value,
-    useAppSelector: (selector: (state: StateSchema) => unknown) => selector(testCtx.state as StateSchema),
+    useAppSelector: (selector: (state: StateSchema) => unknown) =>
+        selector(testCtx.state as StateSchema),
     useLocalizedRoutePath: () => testCtx.localizedPathMock,
     useToast: () => ({
         error: testCtx.toastErrorMock,
@@ -373,9 +375,12 @@ describe("useChooseDeliveryDateController", () => {
     test("requests saved selection for authenticated user even when modal is closed", () => {
         renderHook(() => useChooseDeliveryDateController());
 
-        expect(testCtx.deliverySelectionQueryMock).toHaveBeenCalledWith({locale: "en"}, {
-            skip: false,
-        });
+        expect(testCtx.deliverySelectionQueryMock).toHaveBeenCalledWith(
+            {locale: "en"},
+            {
+                skip: false,
+            },
+        );
     });
 
     test("skips saved selection query for guest user", () => {
@@ -385,8 +390,11 @@ describe("useChooseDeliveryDateController", () => {
 
         renderHook(() => useChooseDeliveryDateController());
 
-        expect(testCtx.deliverySelectionQueryMock).toHaveBeenCalledWith({locale: "en"}, {
-            skip: true,
-        });
+        expect(testCtx.deliverySelectionQueryMock).toHaveBeenCalledWith(
+            {locale: "en"},
+            {
+                skip: true,
+            },
+        );
     });
 });

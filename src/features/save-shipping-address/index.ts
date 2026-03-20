@@ -1,6 +1,7 @@
 import {ADDRESS_MODE_TITLES} from "./consts/defaults";
 import {
     selectSaveShippingAddressMode,
+    selectIsManageShippingAddressModalOpen,
     selectSaveShippingAddressCity,
     selectSaveShippingAddressId,
     selectSaveShippingAddressLocation,
@@ -24,6 +25,7 @@ export {
 
     // Selectors
     selectSaveShippingAddressMode,
+    selectIsManageShippingAddressModalOpen,
     selectSaveShippingAddressCity,
     selectSaveShippingAddressId,
     selectSaveShippingAddressLocation,

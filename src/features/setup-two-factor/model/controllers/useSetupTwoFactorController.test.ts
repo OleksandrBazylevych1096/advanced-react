@@ -100,4 +100,3 @@ describe("useSetupTwoFactorController", () => {
         expect(result.current.data.isEnabled).toBe(true);
     });
 });
-

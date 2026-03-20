@@ -1,12 +1,6 @@
 import {createListenerMiddleware} from "@reduxjs/toolkit";
 
-import {
-    broadcastCartClear,
-    cartActions,
-    cartApi,
-    clearGuestCart,
-    getGuestCart,
-} from "@/entities/cart";
+import {cartApi, clearCartState, getGuestCart} from "@/entities/cart";
 import {userActions} from "@/entities/user";
 
 import {i18n} from "@/shared/config";
@@ -48,9 +42,7 @@ startAppListening({
                 )
                 .unwrap();
 
-            listenerApi.dispatch(cartActions.clearCart());
-            clearGuestCart();
-            broadcastCartClear();
+            clearCartState(listenerApi.dispatch);
         } catch (error) {
             console.error("[Cart] Failed to sync guest cart on login:", error);
         }

@@ -21,7 +21,8 @@ vi.mock("@/pages/Product/api/productPageApi.ts", () => ({
 }));
 
 vi.mock("@/pages/Product/lib/generateProductBreadcrumbs/generateProductBreadcrumbs.ts", () => ({
-    generateProductBreadcrumbs: (...args: unknown[]) => testCtx.generateProductBreadcrumbsMock(...args),
+    generateProductBreadcrumbs: (...args: unknown[]) =>
+        testCtx.generateProductBreadcrumbsMock(...args),
 }));
 
 vi.mock("@/entities/category", () => ({
@@ -109,4 +110,3 @@ describe("useProductPageController", () => {
         expect(testCtx.productBySlugQueryMock).toHaveBeenCalledWith(skipToken);
     });
 });
-

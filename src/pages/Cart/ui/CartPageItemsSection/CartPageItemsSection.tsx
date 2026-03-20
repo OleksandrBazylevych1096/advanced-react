@@ -3,7 +3,9 @@ import {CartItems} from "@/widgets/Cart";
 import {ChooseDeliveryDate} from "@/features/choose-delivery-date";
 import {ClearCartButton, useClearCartController} from "@/features/clear-cart";
 
-import styles from "./CartPage.module.scss";
+import {Stack, Typography} from "@/shared/ui";
+
+import styles from "../CartPage.module.scss";
 
 interface CartPageItemsSectionProps {
     isCartReady?: boolean;
@@ -17,7 +19,14 @@ export const CartPageItemsSection = ({isCartReady = true}: CartPageItemsSectionP
 
     return (
         <div className={styles.itemsSection}>
-            {isCartReady && <ChooseDeliveryDate className={styles.deliveryDateTrigger} />}
+            {isCartReady && (
+                <Stack gap={8} className={styles.deliveryDateSection}>
+                    <Typography as="h3" variant="body" weight="semibold">
+                        Delivery Date
+                    </Typography>
+                    <ChooseDeliveryDate className={styles.deliveryDateTrigger} />
+                </Stack>
+            )}
 
             <div className={styles.itemsList}>
                 <CartItems />

@@ -22,7 +22,6 @@ export const formatSelectedDateTitle = (dateValue: string, locale: string) => {
     }).format(date);
 };
 
-
 interface DeliverySelectionLike {
     date: string;
     time: string;
@@ -31,8 +30,9 @@ interface DeliverySelectionLike {
 export const formatDeliveryTriggerLabel = (
     locale: string,
     selection: DeliverySelectionLike | null,
+    defaultLabel = "Choose delivery date",
 ): string => {
-    if (!selection) return "Choose your delivery date";
+    if (!selection) return defaultLabel;
 
     const date = new Date(`${selection.date}T00:00:00`);
     const dateLabel = new Intl.DateTimeFormat(locale, {

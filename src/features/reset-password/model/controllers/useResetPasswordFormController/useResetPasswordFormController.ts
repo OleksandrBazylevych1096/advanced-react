@@ -3,7 +3,11 @@ import {useNavigate} from "react-router";
 
 import {extractApiErrorMessage} from "@/shared/api";
 import {AppRoutes, i18n, routePaths} from "@/shared/config";
-import {createControllerResult, getPasswordRequirementsState, useLocalizedRoutePath} from "@/shared/lib";
+import {
+    createControllerResult,
+    getPasswordRequirementsState,
+    useLocalizedRoutePath,
+} from "@/shared/lib";
 
 import {useResetPasswordMutation} from "../../../api/resetPasswordApi";
 import {resetPasswordSchema} from "../resetPasswordSchema";

@@ -28,7 +28,7 @@ export const CategoryNavigationGoBackItem = (props: CategoryNavigationGoBackItem
 
     return (
         <Button theme={"secondary"} onClick={goBack}>
-            <AppIcon Icon={ArrowLeft}/>
+            <AppIcon Icon={ArrowLeft} />
             Back
         </Button>
     );

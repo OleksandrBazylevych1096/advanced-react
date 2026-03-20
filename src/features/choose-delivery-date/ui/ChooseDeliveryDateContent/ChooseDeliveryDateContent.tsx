@@ -12,7 +12,7 @@ interface ChooseDeliveryDateContentProps {
     isAuthenticated: boolean;
     isLoading: boolean;
     isError: boolean;
-    availableDates: { date: string; slots: string[] }[];
+    availableDates: {date: string; slots: string[]}[];
     selectedDate: string | null;
     selectedDateSlots: string[];
     selectedTime: string | null;
@@ -24,7 +24,7 @@ interface ChooseDeliveryDateContentProps {
 }
 
 export const ChooseDeliveryDateContent = (props: ChooseDeliveryDateContentProps) => {
-    const {i18n} = useTranslation();
+    const {i18n, t} = useTranslation("checkout");
 
     const {
         isUserHaveDefaultAddress,
@@ -46,23 +46,23 @@ export const ChooseDeliveryDateContent = (props: ChooseDeliveryDateContentProps)
         return (
             <Stack className={styles.guestState} gap={12}>
                 <Typography variant="body" tone="muted">
-                    Sign in to choose delivery date and time slot.
+                    {t("chooseDeliveryDate.signInPrompt")}
                 </Typography>
                 <Button type="button" theme="primary" size="md" onClick={onNavigateToLogin}>
-                    Sign In
+                    {t("chooseDeliveryDate.signIn")}
                 </Button>
             </Stack>
         );
     }
 
     if (isLoading) {
-        return <ChooseDeliveryDateContentSkeleton/>;
+        return <ChooseDeliveryDateContentSkeleton />;
     }
 
     if (isError) {
         return (
             <ErrorState
-                message="Failed to load delivery slots."
+                message={t("chooseDeliveryDate.failedToLoadSlots")}
                 onRetry={onRetrySlots}
                 className={styles.errorState}
             />
@@ -72,8 +72,8 @@ export const ChooseDeliveryDateContent = (props: ChooseDeliveryDateContentProps)
     if (!isUserHaveDefaultAddress) {
         return (
             <EmptyState
-                title="No default address"
-                description="Please add a address to choose delivery date and time slot."
+                title={t("chooseDeliveryDate.noDefaultAddressTitle")}
+                description={t("chooseDeliveryDate.noDefaultAddressDescription")}
                 className={styles.emptyState}
             />
         );
@@ -82,8 +82,8 @@ export const ChooseDeliveryDateContent = (props: ChooseDeliveryDateContentProps)
     if (!availableDates.length) {
         return (
             <EmptyState
-                title="No delivery slots"
-                description="No delivery slots are available for your default address."
+                title={t("chooseDeliveryDate.noDeliverySlotsTitle")}
+                description={t("chooseDeliveryDate.noDeliverySlotsDescription")}
                 className={styles.emptyState}
             />
         );
@@ -93,7 +93,7 @@ export const ChooseDeliveryDateContent = (props: ChooseDeliveryDateContentProps)
         <Stack gap={24} className={styles.content}>
             <Stack gap={12}>
                 <Typography as="h4" variant="heading" weight="bold">
-                    Select date
+                    {t("chooseDeliveryDate.selectDate")}
                 </Typography>
                 <Stack direction="row" gap={16} className={styles.dateGrid}>
                     {availableDates.map((dateItem) => {
@@ -121,7 +121,9 @@ export const ChooseDeliveryDateContent = (props: ChooseDeliveryDateContentProps)
             {selectedDate && (
                 <Stack gap={12}>
                     <Typography as="h4" variant="heading" weight="bold">
-                        {`Select delivery time slot on ${formatSelectedDateTitle(selectedDate, i18n.language)}`}
+                        {t("chooseDeliveryDate.selectDeliveryTimeSlotOn", {
+                            date: formatSelectedDateTitle(selectedDate, i18n.language),
+                        })}
                     </Typography>
                     <Stack direction="row" gap={16} className={styles.timeSlots}>
                         {selectedDateSlots.map((slot) => {

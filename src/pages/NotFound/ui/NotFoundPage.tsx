@@ -1,7 +1,6 @@
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router";
 
-
 import NotFoundIcon from "@/shared/assets/icons/NotFound.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
 import {useLocalizedRoutePath} from "@/shared/lib";
@@ -25,7 +24,7 @@ const NotFoundPage = () => {
     return (
         <AppPage className={styles.wrapper}>
             <Stack className={styles.content} gap={16}>
-                <NotFoundIcon className={styles.icon}/>
+                <NotFoundIcon className={styles.icon} />
                 <Typography as="h3" variant="display" tone="primary" weight="bold">
                     {t("notFound.title")}
                 </Typography>

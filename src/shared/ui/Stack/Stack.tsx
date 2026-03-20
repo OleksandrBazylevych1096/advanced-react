@@ -21,7 +21,6 @@ type PolymorphicProps<C extends ElementType> = StackOwnProps & {
     as?: C;
 } & Omit<ComponentPropsWithoutRef<C>, keyof StackOwnProps | "as">;
 
-
 export const Stack = <C extends ElementType = "div">(props: PolymorphicProps<C>) => {
     const {
         as,

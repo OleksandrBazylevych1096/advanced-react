@@ -52,7 +52,7 @@ const CheckboxFilterWrapper = (args: FilterSectionProps) => {
 export const Default: Story = {
     render: (args) => <CheckboxFilterWrapper {...args} />,
     args: {
-        title: "Category",
+        title: "features/product-filters/CheckboxFilterSection",
         value: "category",
         options: mockCategories,
         selectedValues: [],
@@ -62,7 +62,7 @@ export const Default: Story = {
 export const WithSelected: Story = {
     render: (args) => <CheckboxFilterWrapper {...args} />,
     args: {
-        title: "Category",
+        title: "features/product-filters/CheckboxFilterSection",
         value: "category",
         options: mockCategories,
         selectedValues: ["1", "2", "5"],
@@ -72,7 +72,7 @@ export const WithSelected: Story = {
 export const WithDisabledOptions: Story = {
     render: (args) => <CheckboxFilterWrapper {...args} />,
     args: {
-        title: "Category",
+        title: "features/product-filters/CheckboxFilterSection",
         value: "category",
         options: mockCategories.map((cat) => (cat.value === "1" ? {...cat, count: 0} : cat)),
         selectedValues: [],
@@ -82,7 +82,7 @@ export const WithDisabledOptions: Story = {
 export const Loading: Story = {
     render: (args) => <CheckboxFilterWrapper {...args} />,
     args: {
-        title: "Category",
+        title: "features/product-filters/CheckboxFilterSection",
         value: "category",
         options: mockCategories,
         selectedValues: [],
@@ -93,7 +93,7 @@ export const Loading: Story = {
 export const Error: Story = {
     render: (args) => <CheckboxFilterWrapper {...args} />,
     args: {
-        title: "Category",
+        title: "features/product-filters/CheckboxFilterSection",
         value: "category",
         options: mockCategories,
         selectedValues: [],
@@ -104,7 +104,7 @@ export const Error: Story = {
 export const NoOptions: Story = {
     render: (args) => <CheckboxFilterWrapper {...args} />,
     args: {
-        title: "Category",
+        title: "features/product-filters/CheckboxFilterSection",
         value: "category",
         selectedValues: [],
     },
@@ -113,7 +113,7 @@ export const NoOptions: Story = {
 export const LargeList: Story = {
     render: (args) => <CheckboxFilterWrapper {...args} />,
     args: {
-        title: "Category",
+        title: "features/product-filters/CheckboxFilterSection",
         value: "category",
         options: Array.from({length: 50}, (_, i) => ({
             value: `Category-${i}`,
@@ -127,7 +127,7 @@ export const LargeList: Story = {
 export const AllDisabled: Story = {
     render: (args) => <CheckboxFilterWrapper {...args} />,
     args: {
-        title: "Category",
+        title: "features/product-filters/CheckboxFilterSection",
         value: "category",
         options: mockCategories.map((cat) => ({...cat, count: 0})),
         selectedValues: [],
@@ -137,7 +137,7 @@ export const AllDisabled: Story = {
 export const SelectedDisabledOption: Story = {
     render: (args) => <CheckboxFilterWrapper {...args} />,
     args: {
-        title: "Category",
+        title: "features/product-filters/CheckboxFilterSection",
         value: "category",
         options: mockCategories.map((cat) => (cat.value === "1" ? {...cat, count: 0} : cat)),
         selectedValues: ["1"],

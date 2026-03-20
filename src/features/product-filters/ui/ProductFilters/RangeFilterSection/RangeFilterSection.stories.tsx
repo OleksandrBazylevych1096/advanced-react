@@ -39,7 +39,7 @@ const RangeFilterWrapper = (args: RangeFilterSectionProps) => {
 export const Default: Story = {
     render: (args) => <RangeFilterWrapper {...args} />,
     args: {
-        title: "Price Range",
+        title: "features/product-filters/RangeFilterSection",
         value: "price",
         rangeValue: {min: 100, max: 500},
         availableRange: {min: 0, max: 1000},
@@ -54,7 +54,7 @@ export const Default: Story = {
 export const Loading: Story = {
     render: (args) => <RangeFilterWrapper {...args} />,
     args: {
-        title: "Price Range",
+        title: "features/product-filters/RangeFilterSection",
         value: "price",
         rangeValue: {min: 100, max: 500},
         availableRange: {min: 0, max: 1000},
@@ -68,7 +68,7 @@ export const Loading: Story = {
 export const Error: Story = {
     render: (args) => <RangeFilterWrapper {...args} />,
     args: {
-        title: "Price Range",
+        title: "features/product-filters/RangeFilterSection",
         value: "price",
         rangeValue: {min: 100, max: 500},
         availableRange: {min: 0, max: 1000},
@@ -82,7 +82,7 @@ export const Error: Story = {
 export const NoAvailableRange: Story = {
     render: (args) => <RangeFilterWrapper {...args} />,
     args: {
-        title: "Price Range",
+        title: "features/product-filters/RangeFilterSection",
         value: "price",
         rangeValue: {min: 100, max: 500},
         inputType: "number",
@@ -94,7 +94,7 @@ export const NoAvailableRange: Story = {
 export const SmallRange: Story = {
     render: (args) => <RangeFilterWrapper {...args} />,
     args: {
-        title: "Price Range",
+        title: "features/product-filters/RangeFilterSection",
         value: "price",
         rangeValue: {min: 3, max: 4.5},
         availableRange: {min: 0, max: 5},
@@ -110,7 +110,7 @@ export const SmallRange: Story = {
 export const LargeRange: Story = {
     render: (args) => <RangeFilterWrapper {...args} />,
     args: {
-        title: "Price Range",
+        title: "features/product-filters/RangeFilterSection",
         value: "price",
         rangeValue: {min: 100000, max: 5000000},
         availableRange: {min: 0, max: 10000000},

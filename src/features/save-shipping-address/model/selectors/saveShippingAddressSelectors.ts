@@ -12,6 +12,9 @@ export const selectSaveShippingAddressLocation = (state: StateSchema) =>
 export const selectSaveShippingAddressMode = (state: StateSchema) =>
     state.saveShippingAddress?.mode ?? "choose";
 
+export const selectIsManageShippingAddressModalOpen = (state: StateSchema) =>
+    state.saveShippingAddress?.isManageShippingAddressModalOpen ?? false;
+
 export const selectSaveShippingAddressNumberOfApartment = (state: StateSchema) =>
     state.saveShippingAddress?.form?.numberOfApartment ?? "";
 

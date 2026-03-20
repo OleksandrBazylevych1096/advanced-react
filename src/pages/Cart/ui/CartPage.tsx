@@ -7,8 +7,8 @@ import {useAppSelector} from "@/shared/lib";
 import {Grid, Stack} from "@/shared/ui";
 
 import styles from "./CartPage.module.scss";
-import {CartPageItemsSection} from "./CartPageItemsSection";
-import {CartSummaryCard} from "./CartSummaryCard";
+import {CartPageItemsSection} from "./CartPageItemsSection/CartPageItemsSection";
+import {CartSummaryCard} from "./CartSummaryCard/CartSummaryCard";
 
 const CartPage = () => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
@@ -23,18 +23,18 @@ const CartPage = () => {
     return (
         <Stack direction="column" gap={32}>
             {isEmpty ? (
-                <CartPageItemsSection isCartReady={false}/>
+                <CartPageItemsSection isCartReady={false} />
             ) : (
                 <Grid className={styles.content} gap={32}>
                     <Stack direction="column" gap={32} className={styles.leftColumn}>
-                        <CartPageItemsSection/>
+                        <CartPageItemsSection />
                     </Stack>
 
-                    <CartSummaryCard cart={cart} error={isError}/>
+                    <CartSummaryCard cart={cart} error={isError} />
                 </Grid>
             )}
 
-            <BestSellingProducts/>
+            <BestSellingProducts />
         </Stack>
     );
 };

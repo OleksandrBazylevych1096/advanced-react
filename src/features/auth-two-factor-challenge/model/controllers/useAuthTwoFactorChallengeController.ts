@@ -7,7 +7,12 @@ import {type MfaMethod, selectPendingMfaChallenge, userActions} from "@/entities
 
 import {extractApiErrorMessage} from "@/shared/api";
 import {AppRoutes, i18n, routePaths} from "@/shared/config";
-import {createControllerResult, useAppDispatch, useAppSelector, useLocalizedRoutePath} from "@/shared/lib";
+import {
+    createControllerResult,
+    useAppDispatch,
+    useAppSelector,
+    useLocalizedRoutePath,
+} from "@/shared/lib";
 
 import {
     useSendLoginOtpMutation,

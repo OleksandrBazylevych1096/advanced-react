@@ -112,4 +112,3 @@ describe("authTwoFactorChallengeApi", () => {
         expect(applyAuthSession).toHaveBeenCalledTimes(1);
     });
 });
-

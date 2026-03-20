@@ -2,6 +2,8 @@ import type {AnyAction, EnhancedStore, Reducer, ReducersMapObject} from "@reduxj
 
 import type {ToastSchema} from "@/app/providers/toast/model/types/toast";
 
+import type {ApplyCouponSchema} from "@/features/apply-coupon";
+import type {ChooseDeliveryTipSchema} from "@/features/choose-delivery-tip";
 import type {ProductFiltersSchema} from "@/features/product-filters";
 
 import type {CartSchema} from "@/entities/cart";
@@ -22,6 +24,8 @@ export interface StateSchema {
     // Async reducers
     saveShippingAddress?: SaveShippingAddressSchema;
     productFilters?: ProductFiltersSchema;
+    chooseDeliveryTip?: ChooseDeliveryTipSchema;
+    applyCoupon?: ApplyCouponSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

@@ -12,7 +12,7 @@ import {isAbortError, runOptimisticTxn} from "@/shared/lib";
 
 export const deleteShippingAddressApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-        deleteShippingAddress: build.mutation<ShippingAddress[], { id: string }>({
+        deleteShippingAddress: build.mutation<ShippingAddress[], {id: string}>({
             query: ({id}) => ({
                 url: `/shipping-addresses/${id}`,
                 method: "DELETE",
@@ -129,7 +129,7 @@ export const deleteShippingAddressApi = baseAPI.injectEndpoints({
                     shippingAddressOptimisticVersionGuard.clear(SHIPPING_ADDRESSES_DOMAIN_KEY);
                 }
             },
-            invalidatesTags: ['ShippingAddress', "DeliverySelection"]
+            invalidatesTags: ["ShippingAddress", "DeliverySelection"],
         }),
     }),
 });

@@ -3,6 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {productFiltersReducer} from "@/features/product-filters";
 
 import {categoryHandlers} from "@/entities/category/api/test/handlers.ts";
+import {mockCategories} from "@/entities/category/api/test/mockData.ts";
 import {productsHandlers} from "@/entities/product/api/test/handlers.ts";
 import {mockProductBrands, mockProductCountries} from "@/entities/product/api/test/mockData.ts";
 
@@ -32,6 +33,7 @@ const meta: Meta<typeof ProductFilters> = {
     component: ProductFilters,
     args: {
         defaultOpenFilters: ["price", "brands", "countries"],
+        categoryId: mockCategories[0].id,
     },
     parameters: {
         layout: "fullscreen",

@@ -59,6 +59,20 @@ export const Rounded: Story = {
     },
 };
 
+export const FullWidth: Story = {
+    args: {
+        fullWidth: true,
+        placeholder: "Full width input",
+    },
+    decorators: [
+        (Story) => (
+            <div style={{width: "420px"}}>
+                <Story />
+            </div>
+        ),
+    ],
+};
+
 export const WithIcon: Story = {
     args: {
         Icon: <AppIcon size={20} Icon={SearchIcon} />,
@@ -69,6 +83,7 @@ export const WithIcon: Story = {
 export const Error: Story = {
     args: {
         error: true,
+        errorText: "Invalid email format",
         value: "invalid@",
         label: "Email",
     },
@@ -91,14 +106,25 @@ export const Currency: Story = {
     },
 };
 
-export const CurrencyWithDecimal: Story = {
+export const CurrencyRounded: Story = {
     args: {
         type: "currency",
-        value: "9999.99",
+        value: "9999.999",
         currency: "USD",
         locale: "en",
         decimal: 2,
-        label: "Amount",
+        label: "Rounded amount",
+    },
+};
+
+export const CurrencyFloor: Story = {
+    args: {
+        type: "currency",
+        value: "10.789",
+        currency: "USD",
+        locale: "en",
+        decimal: {places: 2, mode: "floor"},
+        label: "Floor amount",
     },
 };
 
@@ -107,7 +133,7 @@ export const CurrencyEuro: Story = {
         type: "currency",
         value: "5000",
         currency: "EUR",
-        locale: "en",
+        locale: "de",
         label: "Price (EUR)",
     },
 };

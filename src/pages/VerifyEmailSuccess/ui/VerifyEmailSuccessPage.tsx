@@ -20,7 +20,10 @@ const VerifyEmailSuccessPage = () => {
                 <Typography variant="body" tone="muted">
                     {t("verifyEmail.successDescription")}
                 </Typography>
-                <Link className={styles.buttonLink} to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}>
+                <Link
+                    className={styles.buttonLink}
+                    to={getLocalizedPath(routePaths[AppRoutes.LOGIN])}
+                >
                     <Button type="button">{t("verifyEmail.goToLogin")}</Button>
                 </Link>
             </Stack>

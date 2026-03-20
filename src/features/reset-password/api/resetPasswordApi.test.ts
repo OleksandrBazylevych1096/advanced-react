@@ -42,4 +42,3 @@ describe("resetPasswordApi", () => {
         expect(result.data).toEqual({success: true});
     });
 });
-

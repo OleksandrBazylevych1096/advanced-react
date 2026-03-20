@@ -29,14 +29,12 @@ vi.mock("react-hook-form", () => ({
         },
         getValues: () => ({...testCtx.formValues}),
         clearErrors: vi.fn(),
-        handleSubmit:
-            (cb: () => Promise<void>) =>
-            async (e?: unknown) => {
-                if (e && typeof e === "object" && "preventDefault" in (e as object)) {
-                    (e as {preventDefault?: () => void}).preventDefault?.();
-                }
-                await cb();
-            },
+        handleSubmit: (cb: () => Promise<void>) => async (e?: unknown) => {
+            if (e && typeof e === "object" && "preventDefault" in (e as object)) {
+                (e as {preventDefault?: () => void}).preventDefault?.();
+            }
+            await cb();
+        },
         formState: {errors: {}},
     }),
 }));

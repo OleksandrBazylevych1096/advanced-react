@@ -15,7 +15,7 @@ export const DisplayShippingAddress = (props: DisplayShippingAddressProps) => {
     if (isLoading) {
         return (
             <Stack direction="row" align="center" gap={8} data-testid="manage-address-loading">
-                <Spinner size="sm"/>
+                <Spinner size="sm" />
                 <Typography as="span" variant="body">
                     Loading
                 </Typography>
@@ -26,7 +26,7 @@ export const DisplayShippingAddress = (props: DisplayShippingAddressProps) => {
     if (isError || !streetAddress) {
         return (
             <Stack direction="row" align="center" gap={8}>
-                <AppIcon Icon={MapPinIcon}/>
+                <AppIcon Icon={MapPinIcon} className={styles.addressIcon} />
                 <Typography
                     as="span"
                     variant="body"
@@ -41,7 +41,7 @@ export const DisplayShippingAddress = (props: DisplayShippingAddressProps) => {
 
     return (
         <Stack direction="row" align="center" gap={8}>
-            <AppIcon Icon={MapPinIcon}/>
+            <AppIcon Icon={MapPinIcon} className={styles.addressIcon} />
 
             <Typography
                 as="span"

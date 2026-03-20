@@ -36,7 +36,10 @@ export const ResetPasswordForm = ({token}: ResetPasswordFormProps) => {
                 <Typography variant="body" tone="muted">
                     {t("resetPassword.missingToken")}
                 </Typography>
-                <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.FORGOT_PASSWORD])}>
+                <Link
+                    className={styles.link}
+                    to={getLocalizedPath(routePaths[AppRoutes.FORGOT_PASSWORD])}
+                >
                     <Typography as="span" variant="bodySm" tone="primary" weight="semibold">
                         {t("resetPassword.requestNewLink")}
                     </Typography>

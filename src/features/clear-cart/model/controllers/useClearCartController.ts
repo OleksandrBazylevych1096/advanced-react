@@ -1,6 +1,6 @@
 import {useCallback} from "react";
 
-import {broadcastCartClear, cartActions, clearGuestCart} from "@/entities/cart";
+import {clearCartState} from "@/entities/cart";
 import {selectIsAuthenticated} from "@/entities/user";
 
 import {createControllerResult, useAppDispatch, useAppSelector, useToast} from "@/shared/lib";
@@ -17,9 +17,7 @@ export const useClearCartController = () => {
 
     const clearCart = useCallback(async () => {
         if (!isAuthenticated) {
-            dispatch(cartActions.clearCart());
-            clearGuestCart();
-            broadcastCartClear();
+            clearCartState(dispatch);
             return;
         }
 

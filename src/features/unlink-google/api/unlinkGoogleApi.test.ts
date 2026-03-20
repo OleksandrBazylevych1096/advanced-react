@@ -37,4 +37,3 @@ describe("unlinkGoogleApi", () => {
         expect(result.data).toEqual({success: true});
     });
 });
-

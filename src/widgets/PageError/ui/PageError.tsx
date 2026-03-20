@@ -19,7 +19,7 @@ export const PageError = ({error}: PageErrorProps) => {
 
     return (
         <Stack className={styles.wrapper} align="center" justify="center">
-            <Stack className={styles.content} gap={16}>
+            <Stack className={styles.content} align="center" justify="center" gap={16}>
                 <PageErrorIcon className={styles.icon} />
                 <Typography as="h3" variant="display" tone="primary" weight="bold">
                     {t("pageError.title")}

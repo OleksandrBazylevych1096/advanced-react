@@ -1,117 +1,117 @@
 {
-  "common": {
-    "errorDefault": "Something went wrong",
-    "tryAgain": "Try Again",
-    "noData": "No data available"
-  },
-  "carousel": {
-    "imageError": "error",
-    "imageAlt": "Promotional banner"
-  },
-  "products": {
-    "viewAll": "View All",
-    "bestSellers": "Best Sellers",
-    "trendingProducts": "Trending Store Favorites",
-    "unexpectedError": "Unexpected error",
-    "tryAgain": "Try Again",
-    "noProducts": "No products",
-    "itemsLeft": "{{count}} left",
-    "loadCategoriesError": "Failed to load categories"
-  },
-  "firstOrderSection": {
-    "errorLoading": "Error loading best selling products",
-    "tryAgain": "Try Again",
-    "noProducts": "No products available",
-    "discountOffer": "Get 10% OFF On Your First Order",
-    "orderTitle": "Order Now Your Grocery!",
-    "items": "Items",
-    "minutes": "Minutes",
-    "upToOffers": "Up to offers",
-    "orderNow": "Order Now"
-  },
-  "manageAddress": {
-    "deleteConfirm": "Are you sure you want to delete this address?",
-    "edit": "Edit",
-    "delete": "Delete",
-    "failedToLoad": "Failed to load addresses",
-    "tryAgain": "Try Again",
-    "noAddressesTitle": "No addresses added yet",
-    "noAddressesDescription": "Add your first address to start shopping!",
-    "addNewAddress": "Add New Address",
-    "addAddress": "Add Address",
-    "streetAddress": "Street Address",
-    "city": "City",
-    "apartment": "Apartment",
-    "zipCode": "Zip Code",
-    "update": "Update",
-    "save": "Save",
-    "loadingMap": "Loading map...",
-    "mode": {
-      "choose": "Choose Address",
-      "add": "Add New Address",
-      "edit": "Edit Address"
+    "common": {
+        "errorDefault": "Something went wrong",
+        "tryAgain": "Try Again",
+        "noData": "No data available"
     },
-    "signInPrompt": "Please sign in to manage your addresses.",
-    "signIn": "Sign in"
-  },
-  "header": {
-    "cart": "Cart",
-    "searchBy": "Search by",
-    "login": "Login",
-    "logout": "Logout"
-  },
-  "footer": {
-    "about": "About",
-    "aboutUs": "About Us",
-    "ourBranches": "Our Branches",
-    "changelog": "Changelog",
-    "quickLinks": "Quick Links",
-    "faqs": "FAQs",
-    "recipes": "Recipes",
-    "contactUs": "Contact Us",
-    "helpSupport": "Help & Support",
-    "termsOfService": "Terms of Service",
-    "privacyPolicy": "Privacy Policy",
-    "security": "Security",
-    "company": "Company",
-    "blog": "Blog",
-    "contact": "Contact",
-    "social": "Social",
-    "facebook": "Facebook",
-    "instagram": "Instagram",
-    "twitter": "Twitter",
-    "copyright": "All rights reserved © {{year}} {{company}}"
-  },
-  "pageLoader": {
-    "loading": "Loading..."
-  },
-  "notFound": {
-    "title": "Page Not Found",
-    "description": "The page you're looking for isn't available. Try to search again or use the go back button below.",
-    "goBack": "Go Back"
-  },
-  "pageError": {
-    "title": "Something went wrong",
-    "description": "Sorry – an unexpected error occurred. Please try refreshing the page or come back later.",
-    "reload": "Try again"
-  },
-  "errors": {
-    "CONTACT_REQUIRED": "Please provide email or phone",
-    "USER_NOT_FOUND": "User not found",
-    "USER_ALREADY_EXISTS": "User already exists",
-    "USER_ALREADY_VERIFIED": "User is already verified",
-    "GOOGLE_USER_NO_VERIFICATION": "Google users do not need verification",
-    "VERIFICATION_TOO_MANY_CODES": "Too many verification codes requested. Try later.",
-    "GOOGLE_AUTH_FAILED": "Google authentication failed",
-    "GOOGLE_CODE_INVALID": "Invalid or expired Google code",
-    "LOGIN_USE_GOOGLE": "This account uses Google Sign-In. Please continue with Google.",
-    "ACCOUNT_NOT_VERIFIED": "Please verify your account before logging in",
-    "INVALID_CREDENTIALS": "Invalid credentials",
-    "REFRESH_TOKEN_MISSING": "Refresh token missing",
-    "REFRESH_TOKEN_INVALID": "Invalid refresh token",
-    "REFRESH_TOKEN_REVOKED": "Refresh token revoked",
-    "REFRESH_TOKEN_EXPIRED": "Refresh token expired",
-    "REFRESH_TOKEN_MISMATCH": "Refresh token mismatch",
-    "CODE_REQUIRED": "Code is required"
-  }
+    "carousel": {
+        "imageError": "error",
+        "imageAlt": "Promotional banner"
+    },
+    "products": {
+        "viewAll": "View All",
+        "bestSellers": "Best Sellers",
+        "trendingProducts": "Trending Store Favorites",
+        "unexpectedError": "Unexpected error",
+        "tryAgain": "Try Again",
+        "noProducts": "No products",
+        "itemsLeft": "{{count}} left",
+        "loadCategoriesError": "Failed to load categories"
+    },
+    "firstOrderSection": {
+        "errorLoading": "Error loading best selling products",
+        "tryAgain": "Try Again",
+        "noProducts": "No products available",
+        "discountOffer": "Get 10% OFF On Your First Order",
+        "orderTitle": "Order Now Your Grocery!",
+        "items": "Items",
+        "minutes": "Minutes",
+        "upToOffers": "Up to offers",
+        "orderNow": "Order Now"
+    },
+    "manageAddress": {
+        "deleteConfirm": "Are you sure you want to delete this address?",
+        "edit": "Edit",
+        "delete": "Delete",
+        "failedToLoad": "Failed to load addresses",
+        "tryAgain": "Try Again",
+        "noAddressesTitle": "No addresses added yet",
+        "noAddressesDescription": "Add your first address to start shopping!",
+        "addNewAddress": "Add New Address",
+        "addAddress": "Add Address",
+        "streetAddress": "Street Address",
+        "city": "City",
+        "apartment": "Apartment",
+        "zipCode": "Zip Code",
+        "update": "Update",
+        "save": "Save",
+        "loadingMap": "Loading map...",
+        "mode": {
+            "choose": "Choose Address",
+            "add": "Add New Address",
+            "edit": "Edit Address"
+        },
+        "signInPrompt": "Please sign in to manage your addresses.",
+        "signIn": "Sign in"
+    },
+    "header": {
+        "cart": "Cart",
+        "searchBy": "Search by",
+        "login": "Login",
+        "logout": "Logout"
+    },
+    "footer": {
+        "about": "About",
+        "aboutUs": "About Us",
+        "ourBranches": "Our Branches",
+        "changelog": "Changelog",
+        "quickLinks": "Quick Links",
+        "faqs": "FAQs",
+        "recipes": "Recipes",
+        "contactUs": "Contact Us",
+        "helpSupport": "Help \u0026 Support",
+        "termsOfService": "Terms of Service",
+        "privacyPolicy": "Privacy Policy",
+        "security": "Security",
+        "company": "Company",
+        "blog": "Blog",
+        "contact": "Contact",
+        "social": "Social",
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "twitter": "Twitter",
+        "copyright": "All rights reserved © {{year}} {{company}}"
+    },
+    "pageLoader": {
+        "loading": "Loading..."
+    },
+    "notFound": {
+        "title": "Page Not Found",
+        "description": "The page you\u0027re looking for isn\u0027t available. Try to search again or use the go back button below.",
+        "goBack": "Go Back"
+    },
+    "pageError": {
+        "title": "Something went wrong",
+        "description": "Sorry – an unexpected error occurred. Please try refreshing the page or come back later.",
+        "reload": "Try again"
+    },
+    "errors": {
+        "CONTACT_REQUIRED": "Please provide email or phone",
+        "USER_NOT_FOUND": "User not found",
+        "USER_ALREADY_EXISTS": "User already exists",
+        "USER_ALREADY_VERIFIED": "User is already verified",
+        "GOOGLE_USER_NO_VERIFICATION": "Google users do not need verification",
+        "VERIFICATION_TOO_MANY_CODES": "Too many verification codes requested. Try later.",
+        "GOOGLE_AUTH_FAILED": "Google authentication failed",
+        "GOOGLE_CODE_INVALID": "Invalid or expired Google code",
+        "LOGIN_USE_GOOGLE": "This account uses Google Sign-In. Please continue with Google.",
+        "ACCOUNT_NOT_VERIFIED": "Please verify your account before logging in",
+        "INVALID_CREDENTIALS": "Invalid credentials",
+        "REFRESH_TOKEN_MISSING": "Refresh token missing",
+        "REFRESH_TOKEN_INVALID": "Invalid refresh token",
+        "REFRESH_TOKEN_REVOKED": "Refresh token revoked",
+        "REFRESH_TOKEN_EXPIRED": "Refresh token expired",
+        "REFRESH_TOKEN_MISMATCH": "Refresh token mismatch",
+        "CODE_REQUIRED": "Code is required"
+    }
 }

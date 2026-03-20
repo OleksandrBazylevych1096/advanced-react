@@ -4,6 +4,7 @@ import {useNavigate} from "react-router";
 import {
     ADDRESS_MODE_TITLES,
     saveShippingAddressActions,
+    selectIsManageShippingAddressModalOpen,
     selectSaveShippingAddressMode,
 } from "@/features/save-shipping-address";
 
@@ -11,7 +12,12 @@ import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
 import {selectUserData} from "@/entities/user";
 
 import {AppRoutes, routePaths} from "@/shared/config";
-import {createControllerResult, useAppDispatch, useAppSelector, useLocalizedRoutePath} from "@/shared/lib";
+import {
+    createControllerResult,
+    useAppDispatch,
+    useAppSelector,
+    useLocalizedRoutePath,
+} from "@/shared/lib";
 
 export const useManageShippingAddressController = () => {
     const navigate = useNavigate();
@@ -19,6 +25,7 @@ export const useManageShippingAddressController = () => {
     const dispatch = useAppDispatch();
     const userData = useAppSelector(selectUserData);
     const mode = useAppSelector(selectSaveShippingAddressMode);
+    const isModalOpen = useAppSelector(selectIsManageShippingAddressModalOpen);
     const {t} = useTranslation();
 
     const {
@@ -31,6 +38,11 @@ export const useManageShippingAddressController = () => {
 
     const closeModal = () => {
         dispatch(saveShippingAddressActions.returnToChoose());
+        dispatch(saveShippingAddressActions.closeManageShippingAddressModal());
+    };
+
+    const openModal = () => {
+        dispatch(saveShippingAddressActions.openManageShippingAddressModal());
     };
 
     const openSignIn = () => {
@@ -51,6 +63,7 @@ export const useManageShippingAddressController = () => {
             shouldShowEditForm,
             mode,
             userData,
+            isModalOpen,
         },
         status: {
             isLoading,
@@ -58,6 +71,7 @@ export const useManageShippingAddressController = () => {
         },
         actions: {
             openSignIn,
+            openModal,
             closeModal,
             goBack,
         },

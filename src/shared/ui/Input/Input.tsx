@@ -129,7 +129,6 @@ export const Input = (props: InputProps) => {
             const formatted = parts.length > 2 ? parts[0] + "." + parts.slice(1).join("") : cleaned;
 
             setDisplayValue(formatted);
-            return;
         }
 
         onChange?.(raw);

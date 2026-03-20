@@ -28,8 +28,12 @@ vi.mock("@/features/save-shipping-address", () => ({
     },
     saveShippingAddressActions: {
         returnToChoose: () => ({type: "shipping/returnToChoose"}),
+        openManageShippingAddressModal: () => ({type: "shipping/openManageShippingAddressModal"}),
+        closeManageShippingAddressModal: () => ({type: "shipping/closeManageShippingAddressModal"}),
     },
     selectSaveShippingAddressMode: (state: StateSchema) => state.saveShippingAddress?.mode,
+    selectIsManageShippingAddressModalOpen: (state: StateSchema) =>
+        Boolean(state.saveShippingAddress?.isManageShippingAddressModalOpen),
 }));
 
 vi.mock("@/entities/shipping-address", () => ({
@@ -54,7 +58,7 @@ describe("useManageShippingAddressController", () => {
         vi.clearAllMocks();
         testCtx.state = {
             user: {userData: {id: "u1"}},
-            saveShippingAddress: {mode: "edit"},
+            saveShippingAddress: {mode: "edit", isManageShippingAddressModalOpen: false},
         } as StateSchema;
         testCtx.defaultAddressQueryMock.mockReturnValue({
             isLoading: false,
@@ -75,10 +79,12 @@ describe("useManageShippingAddressController", () => {
             shouldShowEditForm: true,
             mode: "edit",
             userData: {id: "u1"},
+            isModalOpen: false,
         });
 
         act(() => {
             result.current.actions.openSignIn();
+            result.current.actions.openModal();
             result.current.actions.closeModal();
             result.current.actions.goBack();
         });
@@ -87,6 +93,12 @@ describe("useManageShippingAddressController", () => {
         expect(testCtx.dispatchMock).toHaveBeenCalledWith({
             type: "shipping/returnToChoose",
         });
-        expect(testCtx.dispatchMock).toHaveBeenCalledTimes(2);
+        expect(testCtx.dispatchMock).toHaveBeenCalledWith({
+            type: "shipping/openManageShippingAddressModal",
+        });
+        expect(testCtx.dispatchMock).toHaveBeenCalledWith({
+            type: "shipping/closeManageShippingAddressModal",
+        });
+        expect(testCtx.dispatchMock).toHaveBeenCalledTimes(4);
     });
 });

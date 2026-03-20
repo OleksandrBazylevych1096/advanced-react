@@ -3,7 +3,6 @@ import {Stack} from "@/shared/ui";
 import {useToastNotificationListController} from "../../model/controllers/useToastNotificationListController";
 import {ToastNotificationListItem} from "../ToastNotificationListItem/ToastNotificationListItem";
 
-
 import styles from "./ToastNotificationList.module.scss";
 
 export const ToastNotificationList = () => {

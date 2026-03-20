@@ -40,7 +40,7 @@ export const CartItemRow = (props: CartItemRowProps) => {
             </div>
 
             <div className={styles.info}>
-                <Typography as="h4" className={styles.name} variant="bodySm" weight="medium">
+                <Typography as="h4" className={styles.name} variant="body" weight="bold">
                     {product.name}
                 </Typography>
                 <Price
@@ -48,7 +48,7 @@ export const CartItemRow = (props: CartItemRowProps) => {
                     language={i18n.language}
                     price={product.price}
                     oldPrice={product.oldPrice}
-                    size="s"
+                    size="m"
                 />
                 {hasValidationIssues && (
                     <ul className={styles.validationList}>
@@ -73,10 +73,10 @@ export const CartItemRow = (props: CartItemRowProps) => {
                     <Typography
                         as="span"
                         className={styles.quantity}
-                        variant="bodySm"
+                        variant="body"
                         weight="medium"
                     >
-                        {quantity}
+                        {quantity}x
                     </Typography>
                 )}
             </div>

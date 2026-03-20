@@ -46,4 +46,3 @@ describe("addToCartApi", () => {
         expect(fetchSpy).toHaveBeenCalledTimes(1);
     });
 });
-

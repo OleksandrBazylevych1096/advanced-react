@@ -12,4 +12,3 @@ export const parseRequestUrl = (
 ): URL => {
     return new URL(getRequestUrl(input), baseOrigin);
 };
-

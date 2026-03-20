@@ -3,7 +3,6 @@ import {useTranslation} from "react-i18next";
 
 import {selectUserCurrency} from "@/entities/user";
 
-import type {SupportedLngsType} from "@/shared/config";
 import {createControllerResult, useAppSelector} from "@/shared/lib";
 
 import {useValidateCartQuery} from "../../../api/cartApi";
@@ -30,7 +29,7 @@ export const useCartValidationController = (
     const {data: serverValidation, isLoading: isValidating} = useValidateCartQuery(
         {locale: i18n.language, currency},
         {
-            skip: !isAuthenticated,
+            skip: !isAuthenticated || items.length === 0,
             pollingInterval: 60_000,
         },
     );

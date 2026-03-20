@@ -18,10 +18,7 @@ interface ProductFiltersProps {
     categoryId?: string;
 }
 
-export const ProductFilters = ({
-    defaultOpenFilters,
-    categoryId,
-}: ProductFiltersProps) => {
+export const ProductFilters = ({defaultOpenFilters, categoryId}: ProductFiltersProps) => {
     const {t} = useTranslation();
     const {
         data: {

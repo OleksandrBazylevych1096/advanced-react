@@ -1,6 +1,7 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {categoryHandlers} from "@/entities/category";
+import {mockCategories} from "@/entities/category/api/test/mockData";
 import {productsHandlers} from "@/entities/product";
 
 import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario.ts";
@@ -10,6 +11,9 @@ import {Catalog} from "./Catalog";
 const meta: Meta<typeof Catalog> = {
     title: "widgets/Catalog",
     component: Catalog,
+    args: {
+        categoryId: mockCategories[0].id,
+    },
     parameters: {
         layout: "fullscreen",
     },

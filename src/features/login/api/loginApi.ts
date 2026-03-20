@@ -6,7 +6,6 @@ import {
 
 import {baseAPI} from "@/shared/api";
 
-
 type LoginArgs = {
     identifier: string;
     password: string;

@@ -3,7 +3,7 @@ import {baseAPI, type ApiLocaleCurrencyParams} from "@/shared/api";
 import type {Cart, CartValidationItem} from "../model/types/CartSchema";
 
 interface SyncCartRequest extends ApiLocaleCurrencyParams {
-    guestCartItems: { productId: string; quantity: number }[];
+    guestCartItems: {productId: string; quantity: number}[];
 }
 
 export const cartApi = baseAPI.injectEndpoints({
@@ -44,9 +44,5 @@ export const cartApi = baseAPI.injectEndpoints({
     }),
 });
 
-export const {
-    useGetCartQuery,
-    useGetCartCountQuery,
-    useValidateCartQuery,
-    useSyncCartMutation,
-} = cartApi;
+export const {useGetCartQuery, useGetCartCountQuery, useValidateCartQuery, useSyncCartMutation} =
+    cartApi;

@@ -73,7 +73,10 @@ export const LoginForm = () => {
                 data-testid="password-input"
             />
             <div className={styles.meta}>
-                <Link className={styles.link} to={getLocalizedPath(routePaths[AppRoutes.FORGOT_PASSWORD])}>
+                <Link
+                    className={styles.link}
+                    to={getLocalizedPath(routePaths[AppRoutes.FORGOT_PASSWORD])}
+                >
                     <Typography as="span" variant="bodySm" weight="semibold" tone="primary">
                         {t("login.forgotPassword", {defaultValue: "Forgot password?"})}
                     </Typography>

@@ -21,9 +21,21 @@ export const Default: Story = {
         <AppPage>
             <AppPage.Content>
                 <Typography as="h1" variant="display" weight="bold">
-                    Title
+                    Checkout
                 </Typography>
-                <Typography>Content</Typography>
+                <Typography>Page-level wrapper around routed content.</Typography>
+            </AppPage.Content>
+        </AppPage>
+    ),
+};
+
+export const WithCustomWrapperClass: Story = {
+    render: () => (
+        <AppPage className="story-custom-page-wrapper">
+            <AppPage.Content>
+                <Typography as="h2" variant="heading" weight="semibold">
+                    Custom wrapper class
+                </Typography>
             </AppPage.Content>
         </AppPage>
     ),

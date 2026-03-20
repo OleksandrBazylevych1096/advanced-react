@@ -1,3 +1,5 @@
+import {clearCartState} from "@/entities/cart/lib/clearCartState/clearCartState.ts";
+
 import {
     cartApi,
     useGetCartCountQuery,
@@ -57,6 +59,7 @@ export {
     applyCartOptimisticUpdate,
     applyCartItemQuantityChange,
     findCartItemIndexByProductId,
+    clearCartState,
     recalculateCartTotals,
     CartItemRow,
 };

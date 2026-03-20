@@ -23,4 +23,3 @@ describe("clearUserSession", () => {
         expect(dispatchMock).toHaveBeenCalledTimes(3);
     });
 });
-

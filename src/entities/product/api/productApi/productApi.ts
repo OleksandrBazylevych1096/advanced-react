@@ -2,7 +2,6 @@ import {baseAPI} from "@/shared/api";
 
 import type {ProductQuery, ProductsApiResponse} from "../../model/types/Product";
 
-
 export const productApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
         getInfiniteProducts: build.infiniteQuery<ProductsApiResponse, ProductQuery, number>({

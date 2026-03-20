@@ -1,10 +1,7 @@
 import {renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, it, vi} from "vitest";
 
-import {
-    useLanguageSync,
-    useLocalizedSlugSync,
-} from "./useSlugSync.ts";
+import {useLanguageSync, useLocalizedSlugSync} from "./useSlugSync.ts";
 
 const mockNavigate = vi.fn();
 const mockChangeLanguage = vi.fn();
@@ -162,4 +159,3 @@ describe("useSlugSync split hooks", () => {
         expect(mockNavigate).not.toHaveBeenCalled();
     });
 });
-

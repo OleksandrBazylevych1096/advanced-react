@@ -143,4 +143,3 @@ describe("useAuthTwoFactorChallengeController", () => {
         expect(testCtx.verifyLoginOtpMutationMock).not.toHaveBeenCalled();
     });
 });
-

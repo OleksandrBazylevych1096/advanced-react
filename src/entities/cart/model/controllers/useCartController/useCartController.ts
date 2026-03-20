@@ -6,7 +6,11 @@ import {selectUserCurrency} from "@/entities/user";
 import {createControllerResult, useAppSelector} from "@/shared/lib";
 
 import {useGetCartQuery} from "../../../api/cartApi";
-import {selectGuestCartItemCount, selectGuestCartItems, selectGuestCartSubtotal,} from "../../selectors/cartSelectors";
+import {
+    selectGuestCartItemCount,
+    selectGuestCartItems,
+    selectGuestCartSubtotal,
+} from "../../selectors/cartSelectors";
 import type {Cart} from "../../types/CartSchema";
 
 interface UseCartOptions {

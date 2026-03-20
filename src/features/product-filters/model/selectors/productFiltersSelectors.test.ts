@@ -19,7 +19,7 @@ import {
 
 describe("productFiltersSelectors", () => {
     const createState = (productFilters?: StateSchema["productFilters"]) =>
-        ({productFilters} as unknown as StateSchema);
+        ({productFilters}) as unknown as StateSchema;
 
     test("returns defaults when reducer is not mounted", () => {
         const state = {} as StateSchema;

@@ -17,7 +17,10 @@ vi.mock("@/shared/api", () => ({
 }));
 
 vi.mock("../../api/unlinkGoogleApi", () => ({
-    useUnlinkGoogleMutation: () => [testCtx.unlinkGoogleMutationMock, {isLoading: false, isSuccess: false}],
+    useUnlinkGoogleMutation: () => [
+        testCtx.unlinkGoogleMutationMock,
+        {isLoading: false, isSuccess: false},
+    ],
 }));
 
 describe("useUnlinkGoogleController", () => {
@@ -53,4 +56,3 @@ describe("useUnlinkGoogleController", () => {
         expect(result.current.status.error).toBe("Unlink failed");
     });
 });
-

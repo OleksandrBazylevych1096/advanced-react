@@ -32,7 +32,6 @@ export const CartPreview = () => {
     } = useCartValidationController(cart?.items ?? [], {isAuthenticated});
 
     const openCart = () => {
-
         navigate(getLocalizedPath(routePaths[AppRoutes.CART]));
     };
 
@@ -46,14 +45,19 @@ export const CartPreview = () => {
             <Dropdown.Trigger className={styles.cartTrigger}>
                 <Stack className={styles.trigger} direction="row" align="center" gap={6}>
                     <Stack className={styles.cartIcon} align="center" justify="center">
-                        <AppIcon Icon={ShoppingCartIcon} size={22}/>
+                        <AppIcon Icon={ShoppingCartIcon} size={22} />
                         {itemCount > 0 && (
                             <span className={cn(styles.badge, {[styles.error]: hasIssues})}>
                                 {hasIssues ? "!" : itemCount > 99 ? "99+" : itemCount}
                             </span>
                         )}
                     </Stack>
-                    <Typography as="span" className={styles.cartLabel} variant="bodySm" weight="medium">
+                    <Typography
+                        as="span"
+                        className={styles.cartLabel}
+                        variant="bodySm"
+                        weight="medium"
+                    >
                         Cart
                     </Typography>
                 </Stack>
@@ -61,7 +65,7 @@ export const CartPreview = () => {
 
             <Dropdown.Content align="end" className={styles.dropdownContent}>
                 <Stack className={styles.dropdownBody}>
-                    <CartItems compact/>
+                    <CartItems compact />
                 </Stack>
 
                 {showFooter && (
@@ -73,8 +77,12 @@ export const CartPreview = () => {
                                     <div className={styles.skeletonShippingTrack} />
                                 </div>
 
-                                <Stack className={styles.subtotalRow} direction="row" align="center"
-                                       justify="space-between">
+                                <Stack
+                                    className={styles.subtotalRow}
+                                    direction="row"
+                                    align="center"
+                                    justify="space-between"
+                                >
                                     <div className={styles.skeletonSubtotalLabel} />
                                     <div className={styles.skeletonSubtotalValue} />
                                 </Stack>
@@ -93,9 +101,18 @@ export const CartPreview = () => {
                                     fillClassName={styles.progressFill}
                                 />
 
-                                <Stack className={styles.subtotalRow} direction="row" align="center"
-                                       justify="space-between">
-                                    <Typography as="span" variant="body" weight="medium" tone="muted">
+                                <Stack
+                                    className={styles.subtotalRow}
+                                    direction="row"
+                                    align="center"
+                                    justify="space-between"
+                                >
+                                    <Typography
+                                        as="span"
+                                        variant="body"
+                                        weight="medium"
+                                        tone="muted"
+                                    >
                                         Subtotal
                                     </Typography>
                                     <Typography as="span" variant="heading" weight="semibold">
@@ -111,7 +128,7 @@ export const CartPreview = () => {
                                         size="md"
                                         className={styles.viewCartBtn}
                                     >
-                                        <AppIcon Icon={ShoppingCartIcon} size={16}/>
+                                        <AppIcon Icon={ShoppingCartIcon} size={16} />
                                         View Cart
                                     </Button>
                                 </Dropdown.Close>

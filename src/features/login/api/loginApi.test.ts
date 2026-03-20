@@ -78,4 +78,3 @@ describe("loginApi", () => {
         expect(testCtx.applyAuthSessionMock).not.toHaveBeenCalled();
     });
 });
-

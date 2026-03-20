@@ -87,8 +87,7 @@ describe("cartApi", () => {
     test("syncCart posts guest cart items to /cart/sync", async () => {
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input, init) => {
             const requestUrl = getRequestUrl(input);
-            const requestMethod =
-                input instanceof Request ? input.method : (init?.method ?? "GET");
+            const requestMethod = input instanceof Request ? input.method : (init?.method ?? "GET");
 
             expect(requestUrl).toContain("/cart/sync");
             expect(requestUrl).toContain("locale=en");

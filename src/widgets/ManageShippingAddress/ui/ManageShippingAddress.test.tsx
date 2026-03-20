@@ -16,7 +16,6 @@ import {
     setDefaultAddressHandlers,
 } from "@/entities/shipping-address/testing";
 
-
 import type {DeepPartial} from "@/shared/lib";
 import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario.ts";
 import {renderWithProviders} from "@/shared/lib/testing/react/renderWithProviders";

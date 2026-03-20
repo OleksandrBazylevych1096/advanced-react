@@ -5,7 +5,7 @@ import {AppRoutes, routePaths} from "@/shared/config";
 import {useLocalizedRoutePath} from "@/shared/lib";
 import {Button, Spinner, OTPInput, Typography} from "@/shared/ui";
 
-import {useVerificationStepController} from "../../../../model/controllers/useVerificationStepController/useVerificationStepController/useVerificationStepController";
+import {useVerificationStepController} from "../../../../model/controllers/useVerificationStepController/useVerificationStepController";
 
 import styles from "./VerificationStep.module.scss";
 

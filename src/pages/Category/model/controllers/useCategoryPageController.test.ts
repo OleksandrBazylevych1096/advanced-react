@@ -85,4 +85,3 @@ describe("useCategoryPageController", () => {
         expect(testCtx.breadcrumbsQueryMock).toHaveBeenCalledWith(skipToken);
     });
 });
-

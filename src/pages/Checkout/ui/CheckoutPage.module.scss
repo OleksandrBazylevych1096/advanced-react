@@ -1,0 +1,12 @@
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    align-items: start;
+    margin-top: 36px;
+}
+
+@media (width <= 980px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}

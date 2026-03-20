@@ -16,13 +16,7 @@ vi.mock("@/entities/user", () => ({
 }));
 
 vi.mock("@/entities/cart", () => ({
-    cartActions: {
-        clearCart: () => ({
-            type: "cart/clearCart",
-        }),
-    },
-    clearGuestCart: vi.fn(),
-    broadcastCartClear: vi.fn(),
+    clearCartState: vi.fn(),
 }));
 
 vi.mock("@/shared/lib", () => ({
@@ -67,13 +61,12 @@ describe("useClearCartController", () => {
             await result.current.actions.clearCart();
         });
 
-        expect(testCtx.dispatchMock).toHaveBeenCalledWith({type: "cart/clearCart"});
+        expect(cartModule.clearCartState).toHaveBeenCalledWith(testCtx.dispatchMock);
         expect(testCtx.clearCartMutationMock).not.toHaveBeenCalled();
-        expect(cartModule.clearGuestCart).toHaveBeenCalledTimes(1);
-        expect(cartModule.broadcastCartClear).toHaveBeenCalledTimes(1);
     });
 
     test("calls API for authenticated user", async () => {
+        const cartModule = await import("@/entities/cart");
         testCtx.state = {
             user: {userData: {id: "u1"}},
         } as StateSchema;
@@ -85,7 +78,7 @@ describe("useClearCartController", () => {
         });
 
         expect(testCtx.clearCartMutationMock).toHaveBeenCalledTimes(1);
-        expect(testCtx.dispatchMock).not.toHaveBeenCalledWith({type: "cart/clearCart"});
+        expect(cartModule.clearCartState).not.toHaveBeenCalled();
     });
 
     test("shows toast on authenticated API failure", async () => {

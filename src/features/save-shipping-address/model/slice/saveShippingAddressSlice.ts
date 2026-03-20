@@ -19,6 +19,7 @@ export const initialState: SaveShippingAddressSchema = {
     location: DEFAULT_LOCATION,
     mode: "choose",
     editingAddressId: undefined,
+    isManageShippingAddressModalOpen: false,
 };
 
 export const saveShippingAddressSlice = createSlice({
@@ -78,6 +79,12 @@ export const saveShippingAddressSlice = createSlice({
             state.mode = "choose";
             state.editingAddressId = undefined;
             state.form = initialState.form;
+        },
+        openManageShippingAddressModal: (state) => {
+            state.isManageShippingAddressModalOpen = true;
+        },
+        closeManageShippingAddressModal: (state) => {
+            state.isManageShippingAddressModalOpen = false;
         },
         reset: () => initialState,
     },

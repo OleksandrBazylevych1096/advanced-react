@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {firstOrderProductsHandlers} from "@/pages/Home/api/test/handlers";
 
 import {bestSellingProductsHandlers} from "@/widgets/BestSellingProducts";
-import {categoryNavigationHandlers} from "@/widgets/CategoryNavigation";
+import {categoryNavigationHandlers, topLevelCategoriesHandlers} from "@/widgets/CategoryNavigation";
 import {promoCarouselHandlers} from "@/widgets/PromoCarousel";
 import {trendingProductsHandlers} from "@/widgets/TrendingProducts";
 
@@ -17,6 +17,7 @@ const homePageHandlersMap = {
     bestSelling: bestSellingProductsHandlers,
     products: productsHandlers,
     categoryNav: categoryNavigationHandlers,
+    topLevelCategories: topLevelCategoriesHandlers,
     promoCarousel: promoCarouselHandlers,
     trending: trendingProductsHandlers,
     firstOrder: firstOrderProductsHandlers,

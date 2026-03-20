@@ -52,4 +52,3 @@ describe("logoutApi", () => {
         expect(clearUserSession).toHaveBeenCalledTimes(1);
     });
 });
-

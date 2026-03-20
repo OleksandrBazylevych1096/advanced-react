@@ -2,7 +2,11 @@ import {Catalog} from "@/widgets/Catalog";
 import {CategoryNavigation} from "@/widgets/CategoryNavigation";
 import {PromoCarousel} from "@/widgets/PromoCarousel";
 
-import {ProductFilters, ProductFiltersControls, productFiltersReducer,} from "@/features/product-filters";
+import {
+    ProductFilters,
+    ProductFiltersControls,
+    productFiltersReducer,
+} from "@/features/product-filters";
 
 import {DynamicModuleLoader} from "@/shared/lib";
 import {Breadcrumbs} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
@@ -16,17 +20,16 @@ const CategoryPage = () => {
         data: {breadcrumbs, categoryId},
     } = useCategoryPageController();
 
-
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={{productFilters: productFiltersReducer}}>
             <div className={styles.content}>
-                <ProductFilters categoryId={categoryId}/>
+                <ProductFilters categoryId={categoryId} />
                 <div className={styles.wrapper}>
-                    <Breadcrumbs className={styles.breadcrumbs} items={breadcrumbs}/>
-                    <PromoCarousel/>
-                    <CategoryNavigation/>
-                    <ProductFiltersControls/>
-                    <Catalog categoryId={categoryId}/>
+                    <Breadcrumbs className={styles.breadcrumbs} items={breadcrumbs} />
+                    <PromoCarousel />
+                    <CategoryNavigation />
+                    <ProductFiltersControls />
+                    <Catalog categoryId={categoryId} />
                 </div>
             </div>
         </DynamicModuleLoader>

@@ -19,30 +19,29 @@ export const CategoryNavigationItem = (props: CategoryNavigationItemProps) => {
     const {title, icon, slug} = props;
     const {slug: slugParam, lng} = useParams();
     const navigate = useNavigate();
-    const {i18n} = useTranslation()
+    const {i18n} = useTranslation();
 
     const isActive = slug === slugParam;
 
     const handleClick = () => {
         const path = generatePath(routePaths[AppRoutes.CATEGORY], {
             slug,
-            lng: lng || i18n.language
+            lng: lng || i18n.language,
         });
         navigate(path);
     };
 
-    const CategoryIcon =
-        CategoriesIconMap[icon || ""] ?? CategoriesIconMap.fallback;
+    const CategoryIcon = CategoriesIconMap[icon || ""] ?? CategoriesIconMap.fallback;
 
     return (
         <Button
             onClick={handleClick}
             className={cn(styles.category, {
-                [styles.active]: isActive
+                [styles.active]: isActive,
             })}
             theme={"secondary"}
         >
-            <AppIcon Icon={CategoryIcon}/>
+            <AppIcon Icon={CategoryIcon} />
             {title}
         </Button>
     );

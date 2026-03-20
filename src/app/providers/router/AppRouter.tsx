@@ -1,6 +1,5 @@
 import {Navigate, Route, Routes} from "react-router";
 
-
 import {buildRouteElement} from "./lib/buildRouteElement";
 import {useMissingLanguageRedirect} from "./lib/useMissingLanguageRedirect";
 import {routeConfig} from "./routerConfig";

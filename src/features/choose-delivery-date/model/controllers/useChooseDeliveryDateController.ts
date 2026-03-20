@@ -6,7 +6,12 @@ import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
 import {selectIsAuthenticated} from "@/entities/user";
 
 import {AppRoutes, routePaths} from "@/shared/config";
-import {createControllerResult, useAppSelector, useLocalizedRoutePath, useToast} from "@/shared/lib";
+import {
+    createControllerResult,
+    useAppSelector,
+    useLocalizedRoutePath,
+    useToast,
+} from "@/shared/lib";
 
 import {
     useGetDeliverySelectionQuery,
@@ -43,9 +48,12 @@ export const useChooseDeliveryDateController = () => {
         data: deliverySelection,
         isFetching: isSelectionLoading,
         isError: isSelectionError,
-    } = useGetDeliverySelectionQuery({locale: i18n.language}, {
-        skip: !isAuthenticated,
-    });
+    } = useGetDeliverySelectionQuery(
+        {locale: i18n.language},
+        {
+            skip: !isAuthenticated,
+        },
+    );
 
     useEffect(() => {
         if (!deliverySelection?.deliveryDate || !deliverySelection?.deliveryTime) {
@@ -109,7 +117,7 @@ export const useChooseDeliveryDateController = () => {
     }, [availableDates, isSlotsLoading, selectedDate]);
 
     const selectedDateSlots = selectedDate
-        ? availableDates.find((dateItem) => dateItem.date === selectedDate)?.slots ?? []
+        ? (availableDates.find((dateItem) => dateItem.date === selectedDate)?.slots ?? [])
         : [];
 
     const [setDeliverySlot, {isLoading: isSaving}] = useSetDeliverySlotMutation();

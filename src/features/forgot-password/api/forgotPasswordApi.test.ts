@@ -41,4 +41,3 @@ describe("forgotPasswordApi", () => {
         expect(result.data).toEqual({success: true});
     });
 });
-

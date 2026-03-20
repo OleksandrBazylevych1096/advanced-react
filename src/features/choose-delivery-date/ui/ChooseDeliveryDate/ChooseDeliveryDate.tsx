@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next";
 
 import {cn} from "@/shared/lib";
-import {Button, Modal, Stack, Typography} from "@/shared/ui";
+import {Button, Modal, Spinner, Stack, Typography} from "@/shared/ui";
 
 import {formatDeliveryTriggerLabel} from "../../lib/format/formatDate";
 import {useChooseDeliveryDateController} from "../../model/controllers/useChooseDeliveryDateController";
@@ -14,7 +14,7 @@ interface ChooseDeliveryDateProps {
 }
 
 export const ChooseDeliveryDate = ({className}: ChooseDeliveryDateProps) => {
-    const {i18n} = useTranslation();
+    const {i18n, t} = useTranslation("checkout");
     const {
         data: {
             isAuthenticated,
@@ -38,46 +38,35 @@ export const ChooseDeliveryDate = ({className}: ChooseDeliveryDateProps) => {
             refetchSlots,
         },
     } = useChooseDeliveryDateController();
-    const triggerLabel = formatDeliveryTriggerLabel(i18n.language, savedSelection);
+    const triggerLabel = formatDeliveryTriggerLabel(
+        i18n.language,
+        savedSelection,
+        t("chooseDeliveryDate.trigger"),
+    );
 
     return (
         <Modal isOpen={isOpen} onClose={closeModal}>
             <Modal.Trigger asChild>
                 <Button
                     type="button"
-                    theme="tertiary"
+                    theme="ghost"
                     size="md"
                     className={cn(styles.trigger, className)}
                     onClick={openModal}
                     data-testid="delivery-date-trigger"
                 >
-                    <Stack
-                        direction="column"
-                        align="start"
-                        gap={4}
-                        className={styles.triggerContent}
-                    >
-                        {isLoading ? (
-                            <div className={styles.triggerTextSkeleton}>
-                                <div className={styles.triggerTitleSkeleton}/>
-                                <div className={styles.triggerLabelSkeleton}/>
-                            </div>
-                        ) : (
-                            <>
-                                <Typography as="h4" variant="heading" weight="bold">
-                                    Delivery
-                                </Typography>
-                                <Typography
-                                    as="span"
-                                    variant="body"
-                                    weight="semibold"
-                                    className={styles.triggerLabel}
-                                >
-                                    {triggerLabel}
-                                </Typography>
-                            </>
-                        )}
-                    </Stack>
+                    {isLoading ? (
+                        <Spinner size="sm" data-testid="delivery-date-trigger-spinner" />
+                    ) : (
+                        <Typography
+                            as="span"
+                            variant="body"
+                            weight="semibold"
+                            className={cn(styles.triggerLabel)}
+                        >
+                            {triggerLabel}
+                        </Typography>
+                    )}
                 </Button>
             </Modal.Trigger>
             <Modal.Content className={styles.modalContent} data-testid="choose-delivery-date-modal">
@@ -91,7 +80,7 @@ export const ChooseDeliveryDate = ({className}: ChooseDeliveryDateProps) => {
                         weight="semibold"
                         className={styles.title}
                     >
-                        Choose your delivery date
+                        {t("chooseDeliveryDate.modalTitle")}
                     </Typography>
                 </Modal.Header>
 
@@ -123,7 +112,7 @@ export const ChooseDeliveryDate = ({className}: ChooseDeliveryDateProps) => {
                                 disabled={isSaving}
                                 data-testid="delivery-cancel-btn"
                             >
-                                Cancel
+                                {t("chooseDeliveryDate.cancel")}
                             </Button>
                             <Button
                                 type="button"
@@ -134,7 +123,7 @@ export const ChooseDeliveryDate = ({className}: ChooseDeliveryDateProps) => {
                                 disabled={!canApply}
                                 data-testid="delivery-apply-btn"
                             >
-                                Apply
+                                {t("chooseDeliveryDate.apply")}
                             </Button>
                         </Stack>
                     </Modal.Footer>

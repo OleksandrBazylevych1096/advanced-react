@@ -14,7 +14,7 @@ interface UseResolvedCategoryIdArgs {
 export const useResolvedCategoryIdController = ({
     categoryId,
     slug,
-    locale
+    locale,
 }: UseResolvedCategoryIdArgs) => {
     const shouldResolveCategoryBySlug = !categoryId && Boolean(slug && locale);
     const categoryQueryArgs =

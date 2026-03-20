@@ -34,4 +34,3 @@ describe("clearCartApi", () => {
         expect(fetchSpy).toHaveBeenCalledTimes(1);
     });
 });
-

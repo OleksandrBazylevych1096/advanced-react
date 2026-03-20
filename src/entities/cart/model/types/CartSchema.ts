@@ -15,6 +15,8 @@ export interface CartTotals {
     totalItems: number;
     estimatedShipping: number;
     estimatedTax: number;
+    tipAmount?: number;
+    discountAmount?: number;
     total: number;
 }
 

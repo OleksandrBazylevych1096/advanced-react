@@ -66,4 +66,3 @@ describe("setupTwoFactorApi", () => {
         expect(result.data).toEqual({success: true});
     });
 });
-

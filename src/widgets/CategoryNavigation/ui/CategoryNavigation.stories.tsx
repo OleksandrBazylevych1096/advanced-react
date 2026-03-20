@@ -1,7 +1,11 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {CategoryNavigation} from "@/widgets/CategoryNavigation";
-import {categoryNavigationHandlers} from "@/widgets/CategoryNavigation/api/test/handlers";
+import {
+    categoryNavigationHandlers,
+    topLevelCategoriesExtendedHandlers,
+    topLevelCategoriesHandlers,
+} from "@/widgets/CategoryNavigation/api/test/handlers";
 import {
     mockCategoryNavigationItems,
     mockElectronicsSubcategories,
@@ -20,6 +24,7 @@ type Story = StoryObj<typeof CategoryNavigation>;
 
 const categoryNavigationHandlersMap = {
     categoryNav: categoryNavigationHandlers,
+    topLevelCategories: topLevelCategoriesHandlers,
 };
 
 export const Default: Story = {
@@ -42,6 +47,8 @@ export const DefaultActive: Story = {
 
 export const Subcategories: Story = {
     parameters: {
+        route: `/en/category/${mockCategoryNavigationItems[0].slug}`,
+        routePath: routePaths[AppRoutes.CATEGORY],
         msw: {
             handlers: createHandlersScenario("default", categoryNavigationHandlersMap, {
                 categoryNav: categoryNavigationHandlers.subcategories,
@@ -83,6 +90,7 @@ export const Empty: Story = {
         msw: {
             handlers: createHandlersScenario("default", categoryNavigationHandlersMap, {
                 categoryNav: categoryNavigationHandlers.empty,
+                topLevelCategories: topLevelCategoriesExtendedHandlers.empty,
             }),
         },
     },

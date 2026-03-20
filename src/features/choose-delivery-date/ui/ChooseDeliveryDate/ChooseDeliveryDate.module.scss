@@ -1,46 +1,18 @@
 @import "../../../../app/styles/animations";
 
 .trigger {
-    width: 100%;
-    border-radius: 0;
-    border-bottom: 1px solid var(--gray-100);
     justify-content: flex-start;
-    padding: 16px 24px;
-    background: var(--white);
-}
-
-.triggerContent {
     width: 100%;
 }
 
 .triggerLabel {
     margin: 0;
     text-align: left;
+    color: var(--primary-color);
 }
 
-.triggerTextSkeleton {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    width: 100%;
-}
-
-.triggerTitleSkeleton,
-.triggerLabelSkeleton {
-    @include skeleton-shimmer;
-}
-
-.triggerTitleSkeleton {
-    width: 74px;
-    height: 22px;
-    border-radius: 6px;
-}
-
-.triggerLabelSkeleton {
-    width: min(220px, 80%);
-    height: 18px;
-    border-radius: 6px;
+.triggerLoading {
+    min-height: 18px;
 }
 
 .modalContent {

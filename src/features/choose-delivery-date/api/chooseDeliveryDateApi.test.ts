@@ -86,8 +86,7 @@ describe("chooseDeliveryDateApi", () => {
     test("setDeliverySlot patches /delivery-selection with selected date and time", async () => {
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input, init) => {
             const requestUrl = getRequestUrl(input);
-            const requestMethod =
-                input instanceof Request ? input.method : (init?.method ?? "GET");
+            const requestMethod = input instanceof Request ? input.method : (init?.method ?? "GET");
 
             if (requestUrl.includes("/delivery-selection") && requestMethod === "PATCH") {
                 expect(requestUrl).toContain("locale=en");
@@ -142,4 +141,3 @@ describe("chooseDeliveryDateApi", () => {
         });
     });
 });
-

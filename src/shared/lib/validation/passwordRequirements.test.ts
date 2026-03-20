@@ -1,12 +1,19 @@
 import {describe, expect, it} from "vitest";
 
-import {getPasswordRequirementsState, isPasswordValid, passwordRequirements} from "./passwordRequirements.ts";
+import {
+    getPasswordRequirementsState,
+    isPasswordValid,
+    passwordRequirements,
+} from "./passwordRequirements.ts";
 
 const CYRILLIC_PASSWORD = "Пароль";
 
 const byKey = (password: string): Record<string, boolean> =>
     Object.fromEntries(
-        getPasswordRequirementsState(password).map((requirement) => [requirement.key, requirement.isMet]),
+        getPasswordRequirementsState(password).map((requirement) => [
+            requirement.key,
+            requirement.isMet,
+        ]),
     );
 
 describe("passwordRequirements", () => {
@@ -34,13 +41,17 @@ describe("passwordRequirements", () => {
 
     it("should detect uppercase for latin and cyrillic scripts", () => {
         expect(byKey("Password1!")["register.password.requirements.uppercase"]).toBe(true);
-        expect(byKey(`${CYRILLIC_PASSWORD}1!`)["register.password.requirements.uppercase"]).toBe(true);
+        expect(byKey(`${CYRILLIC_PASSWORD}1!`)["register.password.requirements.uppercase"]).toBe(
+            true,
+        );
         expect(byKey("password1!")["register.password.requirements.uppercase"]).toBe(false);
     });
 
     it("should detect lowercase for latin and cyrillic scripts", () => {
         expect(byKey("password1!")["register.password.requirements.lowercase"]).toBe(true);
-        expect(byKey(`${CYRILLIC_PASSWORD}1!`)["register.password.requirements.lowercase"]).toBe(true);
+        expect(byKey(`${CYRILLIC_PASSWORD}1!`)["register.password.requirements.lowercase"]).toBe(
+            true,
+        );
         expect(byKey("PASSWORD1!")["register.password.requirements.lowercase"]).toBe(false);
     });
 
@@ -51,7 +62,9 @@ describe("passwordRequirements", () => {
 
     it("should not treat letters or digits as special symbols", () => {
         expect(byKey("Password123")["register.password.requirements.special"]).toBe(false);
-        expect(byKey(`${CYRILLIC_PASSWORD}123`)["register.password.requirements.special"]).toBe(false);
+        expect(byKey(`${CYRILLIC_PASSWORD}123`)["register.password.requirements.special"]).toBe(
+            false,
+        );
     });
 
     it("should treat punctuation, whitespace and emoji as special symbols", () => {

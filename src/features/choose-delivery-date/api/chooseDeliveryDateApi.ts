@@ -1,6 +1,9 @@
-import {baseAPI, type ApiLocaleParams} from "@/shared/api";
+import {type ApiLocaleParams, baseAPI} from "@/shared/api";
 
-import type {AvailableDeliveryDate} from "../model/types/availableDeliveryDateTypes";
+import type {
+    AvailableDeliveryDate,
+    DeliverySelection,
+} from "../model/types/availableDeliveryDateTypes";
 
 interface DeliverySlotsResponse {
     availableDates: AvailableDeliveryDate[];
@@ -17,11 +20,6 @@ interface SetDeliverySlotRequest extends ApiLocaleParams {
     addressId?: string;
 }
 
-interface DeliverySelectionResponse {
-    deliveryDate: string;
-    deliveryTime: string;
-}
-
 export const chooseDeliveryDateApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
         getDeliverySlots: build.query<DeliverySlotsResponse, GetDeliverySlotsParams>({
@@ -32,7 +30,7 @@ export const chooseDeliveryDateApi = baseAPI.injectEndpoints({
             providesTags: ["DeliverySelection"],
         }),
 
-        getDeliverySelection: build.query<DeliverySelectionResponse | null, ApiLocaleParams>({
+        getDeliverySelection: build.query<DeliverySelection | null, ApiLocaleParams>({
             query: ({locale}) => ({
                 url: "/delivery-selection",
                 params: {locale},
@@ -40,7 +38,7 @@ export const chooseDeliveryDateApi = baseAPI.injectEndpoints({
             providesTags: ["DeliverySelection"],
         }),
 
-        setDeliverySlot: build.mutation<DeliverySelectionResponse, SetDeliverySlotRequest>({
+        setDeliverySlot: build.mutation<DeliverySelection, SetDeliverySlotRequest>({
             query: ({locale, ...body}) => ({
                 url: "/delivery-selection",
                 method: "PATCH",
@@ -52,8 +50,5 @@ export const chooseDeliveryDateApi = baseAPI.injectEndpoints({
     }),
 });
 
-export const {
-    useGetDeliverySlotsQuery,
-    useGetDeliverySelectionQuery,
-    useSetDeliverySlotMutation,
-} = chooseDeliveryDateApi;
+export const {useGetDeliverySlotsQuery, useGetDeliverySelectionQuery, useSetDeliverySlotMutation} =
+    chooseDeliveryDateApi;

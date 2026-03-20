@@ -12,6 +12,7 @@ const meta: Meta<typeof Price> = {
     args: {
         language: "en",
         currency: "USD",
+        size: "l",
     },
 };
 
@@ -21,8 +22,6 @@ type Story = StoryObj<typeof Price>;
 export const Default: Story = {
     args: {
         price: 99.99,
-        language: "en",
-        currency: "USD",
     },
 };
 
@@ -30,33 +29,29 @@ export const WithDiscount: Story = {
     args: {
         price: 79.99,
         oldPrice: 99.99,
-        language: "en",
-        currency: "USD",
     },
 };
 
-export const LargePrice: Story = {
+export const SizeXL: Story = {
     args: {
         price: 1299.99,
-        language: "en",
-        currency: "USD",
-    },
-};
-
-export const LargePriceWithDiscount: Story = {
-    args: {
-        price: 999.99,
         oldPrice: 1499.99,
-        language: "en",
-        currency: "USD",
+        size: "xl",
     },
 };
 
-export const SmallPrice: Story = {
+export const SizeM: Story = {
+    args: {
+        price: 39.99,
+        size: "m",
+    },
+};
+
+export const SizeS: Story = {
     args: {
         price: 9.99,
-        language: "en",
-        currency: "USD",
+        oldPrice: 12.99,
+        size: "s",
     },
 };
 

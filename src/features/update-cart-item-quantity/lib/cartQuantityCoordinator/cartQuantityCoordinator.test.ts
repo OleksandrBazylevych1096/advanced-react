@@ -165,14 +165,26 @@ describe("cartQuantityCoordinator", () => {
         );
 
         applyCartOptimisticUpdateMock
-            .mockImplementationOnce((_dispatch: unknown, _cartQueryArgs: unknown, updater: (draft: unknown) => void) => {
-                updater({} as never);
-                return {undo: vi.fn()};
-            })
-            .mockImplementationOnce((_dispatch: unknown, _cartQueryArgs: unknown, updater: (draft: unknown) => void) => {
-                updater({} as never);
-                return {undo: vi.fn()};
-            });
+            .mockImplementationOnce(
+                (
+                    _dispatch: unknown,
+                    _cartQueryArgs: unknown,
+                    updater: (draft: unknown) => void,
+                ) => {
+                    updater({} as never);
+                    return {undo: vi.fn()};
+                },
+            )
+            .mockImplementationOnce(
+                (
+                    _dispatch: unknown,
+                    _cartQueryArgs: unknown,
+                    updater: (draft: unknown) => void,
+                ) => {
+                    updater({} as never);
+                    return {undo: vi.fn()};
+                },
+            );
 
         const send = vi.fn(
             (): MutationRequest => ({

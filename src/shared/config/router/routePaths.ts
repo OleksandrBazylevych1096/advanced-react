@@ -12,6 +12,8 @@ export const AppRoutes = {
     CATEGORY: "category",
     PRODUCT: "product",
     CART: "cart",
+    CHECKOUT: "checkout",
+    CHECKOUT_RESULT: "checkout_result",
     NOT_FOUND: "not_found",
 } as const;
 
@@ -31,6 +33,8 @@ export const routePaths: Record<AppRoutes, string> = {
     [AppRoutes.CATEGORY]: "/:lng/category/:slug",
     [AppRoutes.PRODUCT]: "/:lng/product/:slug",
     [AppRoutes.CART]: "/:lng/cart",
+    [AppRoutes.CHECKOUT]: "/:lng/checkout",
+    [AppRoutes.CHECKOUT_RESULT]: "/:lng/checkout/result",
 
     // last
     [AppRoutes.NOT_FOUND]: "*",

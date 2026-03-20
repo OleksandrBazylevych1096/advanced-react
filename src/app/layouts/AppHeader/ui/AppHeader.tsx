@@ -55,7 +55,9 @@ export const AppHeader = () => {
                             ) : (
                                 <Button onClick={openLogin} theme="outline">
                                     <AppIcon Icon={UsersIcon} />
-                                    <Typography as="span" weight="medium">{t("header.login")}</Typography>
+                                    <Typography as="span" weight="medium">
+                                        {t("header.login")}
+                                    </Typography>
                                 </Button>
                             )}
 

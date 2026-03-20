@@ -9,9 +9,7 @@ import ArrowLeft from "@/shared/assets/icons/ArrowLeft.svg?react";
 import {DynamicModuleLoader} from "@/shared/lib";
 import {AppIcon, Button, Modal} from "@/shared/ui";
 
-import {
-    useManageShippingAddressController
-} from "../model/controllers/useManageShippingAddressController/useManageShippingAddressController";
+import {useManageShippingAddressController} from "../model/controllers/useManageShippingAddressController/useManageShippingAddressController";
 
 import {DisplayShippingAddress} from "./DisplayShippingAddress";
 import styles from "./ManageShippingAddress.module.scss";
@@ -25,19 +23,20 @@ export const ManageShippingAddress = () => {
     const {t} = useTranslation();
 
     const {
-        data: {modalTitle, mode, userData, defaultAddress, shouldShowEditForm},
+        data: {modalTitle, mode, userData, defaultAddress, shouldShowEditForm, isModalOpen},
         status: {isLoading, isError},
-        actions: {closeModal, goBack, openSignIn},
+        actions: {closeModal, goBack, openSignIn, openModal},
     } = useManageShippingAddressController();
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <Modal onClose={closeModal}>
+            <Modal isOpen={isModalOpen} onClose={closeModal}>
                 <Modal.Trigger asChild>
                     <Button
                         theme="ghost"
                         size="sm"
                         className={styles.addressButton}
+                        onClick={openModal}
                         data-testid="manage-address-trigger"
                     >
                         <DisplayShippingAddress
@@ -58,7 +57,7 @@ export const ManageShippingAddress = () => {
                                     onClick={goBack}
                                     data-testid="manage-address-back-btn"
                                 >
-                                    <AppIcon Icon={ArrowLeft}/>
+                                    <AppIcon Icon={ArrowLeft} />
                                 </Button>
                             )}
                             {modalTitle}
@@ -80,11 +79,11 @@ export const ManageShippingAddress = () => {
                             </div>
                         </Modal.Body>
                     ) : shouldShowEditForm ? (
-                        <Suspense fallback={<Loader/>}>
-                            <EditAddressAsync/>
+                        <Suspense fallback={<Loader />}>
+                            <EditAddressAsync />
                         </Suspense>
                     ) : (
-                        <ShippingAddressList/>
+                        <ShippingAddressList />
                     )}
                 </Modal.Content>
             </Modal>

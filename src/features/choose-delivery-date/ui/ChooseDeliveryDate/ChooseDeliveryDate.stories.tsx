@@ -1,5 +1,7 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
+import {mockAuthSession} from "@/entities/user/api/test/mockData";
+
 import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario";
 
 import {chooseDeliveryDateHandlers} from "../../api/test/handlers";
@@ -13,8 +15,17 @@ const handlersMap = {
     setDeliverySlot: chooseDeliveryDateHandlers.setDeliverySlot,
 };
 
+const authenticatedState: Partial<StateSchema> = {
+    user: {
+        currency: "USD",
+        userData: mockAuthSession.user,
+        accessToken: mockAuthSession.accessToken,
+        accessTokenExpiresAt: mockAuthSession.accessTokenExpiresAt,
+    },
+};
+
 const meta = {
-    title: "features/ChooseDeliveryDate",
+    title: "features/choose-delivery-date/ChooseDeliveryDate",
     component: ChooseDeliveryDate,
     parameters: {
         layout: "centered",
@@ -34,15 +45,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     parameters: {
-        initialState: {
-            user: {
-                userData: {
-                    id: "u1",
-                    email: "user@example.com",
-                    isVerified: true,
-                },
-            },
-        },
+        initialState: authenticatedState,
         msw: {
             handlers: createHandlersScenario("default", handlersMap),
         },
@@ -51,15 +54,7 @@ export const Default: Story = {
 
 export const Loading: Story = {
     parameters: {
-        initialState: {
-            user: {
-                userData: {
-                    id: "u1",
-                    email: "user@example.com",
-                    isVerified: true,
-                },
-            },
-        },
+        initialState: authenticatedState,
         msw: {
             handlers: createHandlersScenario("loading", handlersMap),
         },
@@ -68,15 +63,7 @@ export const Loading: Story = {
 
 export const Error: Story = {
     parameters: {
-        initialState: {
-            user: {
-                userData: {
-                    id: "u1",
-                    email: "user@example.com",
-                    isVerified: true,
-                },
-            },
-        },
+        initialState: authenticatedState,
         msw: {
             handlers: createHandlersScenario("error", handlersMap),
         },
@@ -87,26 +74,30 @@ export const Guest: Story = {
     parameters: {
         initialState: {
             user: {
+                currency: "USD",
                 userData: undefined,
             },
-        },
+        } as Partial<StateSchema>,
     },
 };
 
 export const NoSlots: Story = {
     parameters: {
-        initialState: {
-            user: {
-                userData: {
-                    id: "u1",
-                    email: "user@example.com",
-                    isVerified: true,
-                },
-            },
-        },
+        initialState: authenticatedState,
         msw: {
             handlers: createHandlersScenario("default", handlersMap, {
                 deliverySlots: chooseDeliveryDateHandlers.deliverySlots.empty,
+            }),
+        },
+    },
+};
+
+export const WithSavedSelection: Story = {
+    parameters: {
+        initialState: authenticatedState,
+        msw: {
+            handlers: createHandlersScenario("default", handlersMap, {
+                deliverySelection: chooseDeliveryDateHandlers.deliverySelection.default,
             }),
         },
     },
