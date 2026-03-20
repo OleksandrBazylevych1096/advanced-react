@@ -1,6 +1,6 @@
 import {useTranslation} from "react-i18next";
 
-import CloseIcon from "@/shared/assets/icons/close.svg?react";
+import CloseIcon from "@/shared/assets/icons/Close.svg?react";
 import {AppIcon, Button, Input, Modal, Stack, Typography} from "@/shared/ui";
 
 import {useApplyCouponController} from "../../model/controllers/useApplyCouponController/useApplyCouponController";
@@ -78,7 +78,7 @@ export const Coupon = () => {
                         onClick={removeCoupon}
                         aria-label={t("coupon.removeAriaLabel")}
                     >
-                        <AppIcon className={styles.icon} Icon={CloseIcon} />
+                        <AppIcon className={styles.icon} Icon={CloseIcon}/>
                     </Button>
                 </Stack>
             )}
