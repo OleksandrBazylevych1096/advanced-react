@@ -14,5 +14,3 @@ export const validateFiltersFromURL = (searchParams: URLSearchParams, facets: Pr
         validBrands: brands.filter((brand) => availableBrands.includes(brand)),
     };
 };
-
-

@@ -22,7 +22,7 @@ vi.mock("@/pages/CheckoutResult/api/checkoutResultApi.ts", () => ({
     ],
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppDispatch: () => testCtx.dispatchMock,
 }));

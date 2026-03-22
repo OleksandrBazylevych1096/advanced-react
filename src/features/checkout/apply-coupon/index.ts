@@ -1,12 +1,11 @@
-export {applyCouponReducer, applyCouponActions} from "./state/slice/applyCouponSlice";
+export {applyCouponReducer, applyCouponActions} from "./model/slice/applyCouponSlice";
 export {
     selectApplyCouponCode,
     selectApplyCouponDraftCode,
     selectApplyCouponIsApplying,
     selectApplyCouponIsModalOpen,
     selectApplyCouponMessage,
-} from "./state/selectors/applyCouponSelectors";
-export {useApplyCouponController} from "./state/controllers/useApplyCouponController/useApplyCouponController";
+} from "./model/selectors/applyCouponSelectors";
+export {useApplyCouponController} from "./model/controllers/useApplyCouponController/useApplyCouponController";
 export {Coupon} from "./ui/Coupon/Coupon";
-export type {ApplyCouponSchema} from "./state/types/applyCouponSchema";
-
+export type {ApplyCouponSchema} from "./model/types/applyCouponSchema";

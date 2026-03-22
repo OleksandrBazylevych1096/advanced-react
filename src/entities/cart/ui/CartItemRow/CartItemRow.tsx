@@ -7,7 +7,7 @@ import {AppImage} from "@/shared/ui/AppImage";
 import {Price} from "@/shared/ui/Price";
 import {Typography} from "@/shared/ui/Typography";
 
-import type {CartItem} from "../../state/types/CartSchema";
+import type {CartItem} from "../../model/types/CartSchema";
 
 import styles from "./CartItemRow.module.scss";
 
@@ -96,4 +96,3 @@ export const CartItemRow = (props: CartItemRowProps) => {
         </div>
     );
 };
-

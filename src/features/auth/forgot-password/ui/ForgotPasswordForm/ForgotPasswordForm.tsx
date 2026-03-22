@@ -10,7 +10,7 @@ import {Input} from "@/shared/ui/Input";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useForgotPasswordFormController} from "../../state/controllers/useForgotPasswordFormController/useForgotPasswordFormController";
+import {useForgotPasswordFormController} from "../../model/controllers/useForgotPasswordFormController/useForgotPasswordFormController";
 
 import styles from "./ForgotPasswordForm.module.scss";
 
@@ -63,4 +63,3 @@ export const ForgotPasswordForm = () => {
         </Grid>
     );
 };
-

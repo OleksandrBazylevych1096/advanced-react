@@ -16,7 +16,7 @@ vi.mock("@/entities/user", () => ({
     selectUserCurrency: () => "USD",
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppSelector: (selector: () => unknown) => selector(),
 }));

@@ -14,4 +14,3 @@ export interface ProductFiltersSchema {
 
 export type SortType = "price" | "rating" | "name";
 export type OrderType = "asc" | "desc";
-

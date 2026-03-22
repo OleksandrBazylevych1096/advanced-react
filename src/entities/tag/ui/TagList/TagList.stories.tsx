@@ -62,4 +62,3 @@ export const ManyTags: Story = {
         currentTagId: "7",
     },
 };
-

@@ -28,6 +28,7 @@ vi.mock("@/shared/lib/errors", () => ({
 }));
 
 vi.mock("@/shared/config", () => ({
+    PROJECT_ENV: "dev",
     AppRoutes: {
         AUTH_2FA: "auth_2fa",
         HOME: "home",
@@ -41,9 +42,12 @@ vi.mock("@/shared/config", () => ({
     },
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppDispatch: () => testCtx.dispatchMock,
+}));
+
+vi.mock("@/shared/lib/routing", () => ({
     useLocalizedRoutePath: () => (path: string) => path.replace(":lng", "en"),
 }));
 

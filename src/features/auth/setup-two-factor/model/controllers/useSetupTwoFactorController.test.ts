@@ -23,7 +23,7 @@ vi.mock("@/entities/user", () => ({
     },
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppDispatch: () => testCtx.dispatchMock,
     useAppSelector: (selector: (state: unknown) => unknown) => selector({}),

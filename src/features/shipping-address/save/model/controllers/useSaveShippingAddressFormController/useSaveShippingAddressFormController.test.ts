@@ -26,23 +26,21 @@ vi.mock("react-i18next", async () => {
     };
 });
 
-vi.mock("@/shared/lib", async () => {
-    const actual = await vi.importActual<typeof import("@/shared/lib")>("@/shared/lib");
+vi.mock("@/shared/lib/state", () => ({
+    createControllerResult: <T>(value: T) => value,
+    useAppDispatch: () => testCtx.dispatchMock,
+    useAppSelector: (selector: (state: StateSchema) => unknown) =>
+        selector(testCtx.mockState as StateSchema),
+}));
 
-    return {
-        ...actual,
-        createControllerResult: <T>(value: T) => value,
-        useAppDispatch: () => testCtx.dispatchMock,
-        useAppSelector: (selector: (state: StateSchema) => unknown) =>
-            selector(testCtx.mockState as StateSchema),
-        useToast: () => ({
-            error: testCtx.toastErrorMock,
-        }),
-    };
-});
-
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/async", () => ({
     useDebounce: <T>(value: T) => value,
+}));
+
+vi.mock("@/shared/lib/notifications", () => ({
+    useToast: () => ({
+        error: testCtx.toastErrorMock,
+    }),
 }));
 
 vi.mock("../../../api/saveShippingAddressApi", () => ({
@@ -159,4 +157,3 @@ describe("useSaveShippingAddressFormController", () => {
         );
     });
 });
-

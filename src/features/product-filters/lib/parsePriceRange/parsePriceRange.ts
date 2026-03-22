@@ -16,4 +16,3 @@ export const parsePriceRange = (
 
     return {min: validMin, max: validMax};
 };
-

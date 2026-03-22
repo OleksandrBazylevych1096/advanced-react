@@ -1,4 +1,4 @@
-import type {Cart} from "../../state/types/CartSchema";
+import type {Cart} from "../../model/types/CartSchema";
 
 export const recalculateCartTotals = (cart: Cart) => {
     const subtotal = cart.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
@@ -12,4 +12,3 @@ export const recalculateCartTotals = (cart: Cart) => {
     cart.totals.estimatedShipping = estimatedShipping;
     cart.totals.total = subtotal + estimatedShipping + estimatedTax;
 };
-

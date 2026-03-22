@@ -13,7 +13,7 @@ import {Carousel, CarouselControls, CarouselSkeleton} from "@/shared/ui/Carousel
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useBestSellingProductsController} from "../state/controllers/useBestSellingProductsController";
+import {useBestSellingProductsController} from "../model/controllers/useBestSellingProductsController";
 
 import styles from "./BestSellingProducts.module.scss";
 
@@ -80,4 +80,3 @@ export const BestSellingProducts = () => {
         </section>
     );
 };
-

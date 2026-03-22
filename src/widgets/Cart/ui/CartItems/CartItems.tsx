@@ -8,7 +8,7 @@ import {Stack} from "@/shared/ui/Stack";
 import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useCartItemsController} from "../../state/controllers/useCartItemsController";
+import {useCartItemsController} from "../../model/controllers/useCartItemsController";
 
 import styles from "./CartItems.module.scss";
 import {CartItemsSkeleton} from "./CartItemsSkeleton";
@@ -95,4 +95,3 @@ export const CartItems = ({compact, className}: CartItemsProps) => {
         </Stack>
     );
 };
-

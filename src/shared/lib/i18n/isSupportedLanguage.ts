@@ -10,4 +10,3 @@ export const isSupportedLanguage = (
 
     return supportedLngs.some((lng) => lng === language);
 };
-

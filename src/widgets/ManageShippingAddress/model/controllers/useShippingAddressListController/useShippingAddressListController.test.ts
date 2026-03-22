@@ -24,7 +24,7 @@ vi.mock("@/entities/user", () => ({
     selectUserData: (state: StateSchema) => state.user?.authData,
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppDispatch: () => testCtx.dispatchMock,
     useAppSelector: (selector: (state: StateSchema) => unknown) =>

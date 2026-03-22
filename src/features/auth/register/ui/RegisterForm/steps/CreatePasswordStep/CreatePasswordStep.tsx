@@ -10,7 +10,7 @@ import {Input} from "@/shared/ui/Input";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useCreatePasswordStepController} from "../../../../state/controllers/useCreatePasswordStepController/useCreatePasswordStepController";
+import {useCreatePasswordStepController} from "../../../../model/controllers/useCreatePasswordStepController/useCreatePasswordStepController";
 
 import styles from "./CreatePasswordStep.module.scss";
 
@@ -93,4 +93,3 @@ export const CreatePasswordStep = () => {
         </form>
     );
 };
-

@@ -174,4 +174,3 @@ export const handlers = {
     defaultAddressLoading: defaultAddressHandlers.loading,
     defaultAddressError: defaultAddressHandlers.error,
 };
-

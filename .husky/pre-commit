@@ -1,0 +1,12 @@
+npm run lint:ts
+npm run lint
+npm run lint:scss
+npm run format:check
+npx steiger ./src
+npm run test:unit -- --run
+
+if [ -n "$CHROMATIC_PROJECT_TOKEN" ]; then
+  npm run test:regression
+else
+  echo "CHROMATIC_PROJECT_TOKEN is not set. Skipping test:regression."
+fi

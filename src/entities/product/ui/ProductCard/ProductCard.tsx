@@ -8,7 +8,7 @@ import {AppImage} from "@/shared/ui/AppImage";
 import {Price} from "@/shared/ui/Price";
 import {Typography} from "@/shared/ui/Typography";
 
-import type {Product} from "../../state/types/Product";
+import type {Product} from "../../model/types/Product";
 
 import styles from "./ProductCard.module.scss";
 
@@ -70,4 +70,3 @@ export const ProductCard = ({product, currency, action}: ProductCardProps) => {
         </div>
     );
 };
-

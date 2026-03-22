@@ -46,11 +46,17 @@ vi.mock("../../api/chooseDeliveryDateApi", () => ({
     useSetDeliverySlotMutation: () => [testCtx.setDeliverySlotMock, {isLoading: false}],
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppSelector: (selector: (state: StateSchema) => unknown) =>
         selector(testCtx.state as StateSchema),
+}));
+
+vi.mock("@/shared/lib/routing", () => ({
     useLocalizedRoutePath: () => testCtx.localizedPathMock,
+}));
+
+vi.mock("@/shared/lib/notifications", () => ({
     useToast: () => ({
         error: testCtx.toastErrorMock,
     }),

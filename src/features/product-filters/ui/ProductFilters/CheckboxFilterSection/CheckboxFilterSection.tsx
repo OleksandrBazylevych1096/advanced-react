@@ -134,4 +134,3 @@ export const CheckboxFilterSection = ({
         </Accordion.Item>
     );
 };
-

@@ -11,7 +11,7 @@ import {Input, PhoneInput} from "@/shared/ui/Input";
 import {Tabs} from "@/shared/ui/Tabs";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useCredentialsStepController} from "../../../../state/controllers/useCredentialsStepController/useCredentialsStepController";
+import {useCredentialsStepController} from "../../../../model/controllers/useCredentialsStepController/useCredentialsStepController";
 
 import styles from "./CredentialsStep.module.scss";
 
@@ -76,4 +76,3 @@ export const CredentialsStep = () => {
         </form>
     );
 };
-

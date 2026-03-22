@@ -1,4 +1,3 @@
-import {selectUserCurrency} from "../state/selectors/selectUserCurrency/selectUserCurrency";
+import {selectUserCurrency} from "../model/selectors/selectUserCurrency/selectUserCurrency";
 
 export {selectUserCurrency};
-

@@ -1,4 +1,4 @@
-import {useSaveShippingAddressFormController} from "../../../state/controllers/useSaveShippingAddressFormController/useSaveShippingAddressFormController";
+import {useSaveShippingAddressFormController} from "../../../model/controllers/useSaveShippingAddressFormController/useSaveShippingAddressFormController";
 
 import {EditAddressFormView} from "./EditAddressFormView";
 
@@ -31,4 +31,3 @@ export const EditAddressForm = () => {
         />
     );
 };
-

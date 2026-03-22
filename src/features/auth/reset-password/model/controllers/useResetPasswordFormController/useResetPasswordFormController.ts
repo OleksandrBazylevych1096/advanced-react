@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router";
 
-import {i18n,AppRoutes, routePaths} from "@/shared/config";
+import {i18n, AppRoutes, routePaths} from "@/shared/config";
 import {extractApiErrorMessage} from "@/shared/lib/errors";
 import {useLocalizedRoutePath} from "@/shared/lib/routing";
 import {createControllerResult} from "@/shared/lib/state";

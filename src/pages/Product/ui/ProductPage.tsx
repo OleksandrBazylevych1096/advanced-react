@@ -6,7 +6,7 @@ import {BestSellingProducts} from "@/widgets/BestSellingProducts";
 import {Breadcrumbs} from "@/shared/ui/Breadcrumbs";
 import {Stack} from "@/shared/ui/Stack";
 
-import {useProductPageController} from "../state/controllers/useProductPageController";
+import {useProductPageController} from "../model/controllers/useProductPageController";
 
 import styles from "./ProductPage.module.scss";
 
@@ -36,5 +36,3 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
-
-

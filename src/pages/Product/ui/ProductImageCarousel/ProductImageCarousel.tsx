@@ -5,7 +5,7 @@ import {ProductImageCarouselSkeleton} from "@/pages/Product/ui/ProductImageCarou
 import type {ProductImage} from "@/entities/product";
 
 import {AppImage} from "@/shared/ui/AppImage";
-import {CarouselThumbnails,useCarouselThumbnails} from "@/shared/ui/Carousel";
+import {CarouselThumbnails, useCarouselThumbnails} from "@/shared/ui/Carousel";
 import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 
 import styles from "./ProductImageCarousel.module.scss";
@@ -61,4 +61,3 @@ export const ProductImageCarousel = ({images, isLoading, error}: ProductImageCar
         </div>
     );
 };
-

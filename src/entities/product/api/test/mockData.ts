@@ -1,6 +1,6 @@
 import {createMockFactory, sequence} from "@/shared/lib/testing";
 
-import type {Product, ProductFacets} from "../../state/types/Product.ts";
+import type {Product, ProductFacets} from "../../model/types/Product.ts";
 
 export const mockProductNames = [
     "Organic Bananas",
@@ -92,5 +92,3 @@ export const emptyFacets: ProductFacets = {
     brands: [],
     priceRange: {min: 0, max: 0},
 };
-
-

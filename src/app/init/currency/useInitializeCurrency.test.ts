@@ -38,15 +38,22 @@ vi.mock("@/entities/user", () => ({
     },
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     useAppDispatch: () => testCtx.dispatchMock,
-    isSupportedLanguage: (language?: string) => language === "en" || language === "de",
-    getFallbackLanguage: () => "en",
 }));
 
 vi.mock("@/shared/config", () => ({
     supportedLngs: ["en", "de"],
+    languageCurrencyList: {
+        en: "USD",
+        de: "EUR",
+    },
     default: testCtx.i18nMock,
+}));
+
+vi.mock("@/shared/lib/i18n", () => ({
+    isSupportedLanguage: (language?: string) => language === "en" || language === "de",
+    getFallbackLanguage: () => "en",
 }));
 
 describe("useInitializeCurrency", () => {
@@ -84,4 +91,3 @@ describe("useInitializeCurrency", () => {
         });
     });
 });
-

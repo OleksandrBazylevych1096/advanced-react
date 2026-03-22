@@ -28,11 +28,11 @@ vi.mock("@/shared/config", () => ({
     },
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/routing", () => ({
     useLocalizedSlugSync: (...args: unknown[]) => testCtx.localizedSlugSyncMock(...args),
 }));
 
@@ -85,4 +85,3 @@ describe("useCategoryPageController", () => {
         expect(testCtx.breadcrumbsQueryMock).toHaveBeenCalledWith(skipToken);
     });
 });
-

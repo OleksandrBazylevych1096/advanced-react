@@ -6,7 +6,7 @@ import {OrderSummaryCard} from "@/entities/order";
 
 import {Stack} from "@/shared/ui/Stack";
 
-import {useCheckoutSidebarController} from "../../state/controllers/useCheckoutSidebarController/useCheckoutSidebarController";
+import {useCheckoutSidebarController} from "../../model/controllers/useCheckoutSidebarController/useCheckoutSidebarController";
 
 import styles from "./CheckoutSidebar.module.scss";
 import {CheckoutSidebarSkeleton} from "./CheckoutSidebarSkeleton";
@@ -40,4 +40,3 @@ export const CheckoutSidebar = () => {
         </Stack>
     );
 };
-

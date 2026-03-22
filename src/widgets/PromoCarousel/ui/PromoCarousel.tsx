@@ -5,7 +5,7 @@ import {useState} from "react";
 import {AppImage} from "@/shared/ui/AppImage";
 import {Carousel, CarouselSkeleton, useAutoScroll} from "@/shared/ui/Carousel";
 
-import {usePromoCarouselController} from "../state/controllers/usePromoCarouselController";
+import {usePromoCarouselController} from "../model/controllers/usePromoCarouselController";
 
 import styles from "./PromoCarousel.module.scss";
 
@@ -64,4 +64,3 @@ export const PromoCarousel = (props: PromoCarouselProps) => {
         </Carousel>
     );
 };
-

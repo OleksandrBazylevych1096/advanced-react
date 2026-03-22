@@ -1,4 +1,4 @@
-import {DEFAULT_LOCATION} from "../../consts/defaults";
+import {DEFAULT_LOCATION} from "../../config/defaults";
 
 export const selectSaveShippingAddressCity = (state: StateSchema) =>
     state.saveShippingAddress?.form?.city ?? "";

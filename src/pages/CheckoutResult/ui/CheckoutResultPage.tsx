@@ -10,7 +10,7 @@ import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
 import {useSessionIdFromParams} from "../lib/useSessionIdFromParams.ts";
-import {usePaymentController} from "../state/controllers/usePaymentController/usePaymentController.ts";
+import {usePaymentController} from "../model/controllers/usePaymentController/usePaymentController.ts";
 
 import styles from "./CheckoutResultPage.module.scss";
 
@@ -83,4 +83,3 @@ const CheckoutResultPage = () => {
 };
 
 export default CheckoutResultPage;
-

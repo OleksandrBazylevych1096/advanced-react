@@ -5,11 +5,11 @@ import {useForm} from "react-hook-form";
 import {AuthMethod} from "@/shared/config";
 
 import {FormSteps, type FormStepsType} from "../../config/formSteps";
-import {RegisterFlowContext} from "../../state/registerFlowContext";
+import {RegisterFlowContext} from "../../model/registerFlowContext";
 import {
     registerFormValidationSchema,
     type RegisterFlowValues,
-} from "../../state/registerFormValidationSchema";
+} from "../../model/registerFormValidationSchema";
 
 interface RegisterFlowProviderProps {
     children: ReactNode;
@@ -78,4 +78,3 @@ export const RegisterFlowProvider = ({children}: RegisterFlowProviderProps) => {
 
     return <RegisterFlowContext value={value}>{children}</RegisterFlowContext>;
 };
-

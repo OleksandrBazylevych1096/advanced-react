@@ -35,7 +35,7 @@ vi.mock("@/entities/user", () => ({
     selectUserCurrency: (state: StateSchema) => state.user?.currency,
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppSelector: (selector: (state: StateSchema) => unknown) =>
         selector(testCtx.state as StateSchema),

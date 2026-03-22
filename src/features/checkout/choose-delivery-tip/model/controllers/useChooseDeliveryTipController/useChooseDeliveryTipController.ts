@@ -1,6 +1,9 @@
 import {useEffect, useMemo, useState} from "react";
 
-import {PRESET_VALUES, TIP_INPUT_DEBOUNCE_MS} from "@/features/checkout/choose-delivery-tip/config/consts";
+import {
+    PRESET_VALUES,
+    TIP_INPUT_DEBOUNCE_MS,
+} from "@/features/checkout/choose-delivery-tip/config/consts";
 
 import {selectUserCurrency} from "@/entities/user";
 
@@ -85,4 +88,3 @@ export const useChooseDeliveryTipController = () => {
         },
     });
 };
-

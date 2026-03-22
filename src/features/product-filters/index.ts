@@ -1,6 +1,6 @@
-import {selectActiveFilters} from "./state/selectors/productFiltersSelectors";
-import {productFiltersActions, productFiltersReducer} from "./state/slice/productFiltersSlice";
-import type {ProductFiltersSchema} from "./state/types/productFiltersSchema";
+import {selectActiveFilters} from "./model/selectors/productFiltersSelectors";
+import {productFiltersActions, productFiltersReducer} from "./model/slice/productFiltersSlice";
+import type {ProductFiltersSchema} from "./model/types/productFiltersSchema";
 import {ProductFilters} from "./ui/ProductFilters/ProductFilters";
 import {ProductFiltersControls} from "./ui/ProductFiltersControls/ProductFiltersControls";
 
@@ -13,4 +13,3 @@ export {
 };
 
 export type {ProductFiltersSchema};
-

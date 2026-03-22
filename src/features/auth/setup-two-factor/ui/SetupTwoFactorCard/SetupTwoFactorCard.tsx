@@ -5,7 +5,7 @@ import {Input} from "@/shared/ui/Input";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useSetupTwoFactorController} from "../../state/controllers/useSetupTwoFactorController";
+import {useSetupTwoFactorController} from "../../model/controllers/useSetupTwoFactorController";
 
 import styles from "./SetupTwoFactorCard.module.scss";
 
@@ -93,4 +93,3 @@ export const SetupTwoFactorCard = () => {
         </Stack>
     );
 };
-

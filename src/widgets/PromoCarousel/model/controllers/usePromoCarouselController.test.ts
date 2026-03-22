@@ -9,6 +9,10 @@ const testCtx = vi.hoisted(() => ({
 }));
 
 vi.mock("react-i18next", () => ({
+    initReactI18next: {
+        type: "3rdParty",
+        init: () => undefined,
+    },
     useTranslation: () => ({t: (key: string) => `t:${key}`}),
 }));
 
@@ -20,7 +24,7 @@ vi.mock("@/widgets/PromoCarousel/lib/generatePlaceholder/generatePlaceholder.ts"
     generatePlaceholder: (...args: unknown[]) => testCtx.generatePlaceholderMock(...args),
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
 }));
 

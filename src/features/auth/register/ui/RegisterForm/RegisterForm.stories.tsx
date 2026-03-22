@@ -4,7 +4,7 @@ import {useEffect} from "react";
 import {AuthMethod} from "@/shared/config";
 
 import {FormSteps, type FormStepsType} from "../../config/formSteps";
-import {useRegisterFlow} from "../../state/registerFlowContext";
+import {useRegisterFlow} from "../../model/registerFlowContext";
 import {RegisterFlowProvider} from "../RegisterFlowProvider/RegisterFlowProvider.tsx";
 
 import {RegisterForm} from "./RegisterForm.tsx";
@@ -77,4 +77,3 @@ export const VerificationStep: Story = {
         step: FormSteps.VERIFICATION,
     },
 };
-

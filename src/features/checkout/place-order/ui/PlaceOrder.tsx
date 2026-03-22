@@ -7,7 +7,7 @@ import {Button} from "@/shared/ui/Button";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {usePlaceOrderController} from "../state/controllers/usePlaceOrderController/usePlaceOrderController.ts";
+import {usePlaceOrderController} from "../model/controllers/usePlaceOrderController/usePlaceOrderController.ts";
 
 interface PlaceOrderProps {
     summary: CheckoutSummary | undefined;
@@ -45,5 +45,3 @@ export const PlaceOrder = ({summary, deliverySelection, tip, couponCode}: PlaceO
         </Stack>
     );
 };
-
-

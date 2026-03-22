@@ -1,6 +1,6 @@
 import type {SelectOption} from "@/shared/ui/Select";
 
-import type {OrderType, SortType} from "../state/types/productFiltersSchema";
+import type {OrderType, SortType} from "../model/types/productFiltersSchema";
 
 export type SortOptionValue = `${SortType}-${OrderType}`;
 
@@ -15,5 +15,3 @@ export const SORT_OPTIONS: SelectOption<SortOptionValue>[] = [
     {label: "Rating (Low to High)", value: "rating-asc"},
     {label: "Rating (High to Low)", value: "rating-desc"},
 ] as const;
-
-

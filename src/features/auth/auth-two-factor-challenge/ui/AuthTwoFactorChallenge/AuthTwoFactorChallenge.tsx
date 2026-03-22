@@ -1,14 +1,17 @@
 import type {FormEvent} from "react";
 import {useTranslation} from "react-i18next";
 
-import {methodKeyMap, otpLengthMap} from "@/features/auth/auth-two-factor-challenge/config/consts.ts";
+import {
+    methodKeyMap,
+    otpLengthMap,
+} from "@/features/auth/auth-two-factor-challenge/config/consts.ts";
 
 import {Button} from "@/shared/ui/Button";
 import {Input, OTPInput} from "@/shared/ui/Input";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useAuthTwoFactorChallengeController} from "../../state/controllers/useAuthTwoFactorChallengeController";
+import {useAuthTwoFactorChallengeController} from "../../model/controllers/useAuthTwoFactorChallengeController";
 
 import styles from "./AuthTwoFactorChallenge.module.scss";
 
@@ -115,4 +118,3 @@ export const AuthTwoFactorChallenge = () => {
         </Stack>
     );
 };
-

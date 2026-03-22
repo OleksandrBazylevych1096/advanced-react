@@ -4,7 +4,12 @@ import {useTranslation} from "react-i18next";
 import {broadcastCartUpdate, cartApi, cartActions, setGuestCart} from "@/entities/cart";
 import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
-import {createControllerResult, useAppDispatch, useAppSelector, useAppStore} from "@/shared/lib/state";
+import {
+    createControllerResult,
+    useAppDispatch,
+    useAppSelector,
+    useAppStore,
+} from "@/shared/lib/state";
 
 import {useUpdateCartItemMutation} from "../../api/updateCartItemApi";
 

@@ -274,5 +274,3 @@ export const useProductFiltersController = ({categoryId}: UseProductFiltersContr
         },
     });
 };
-
-

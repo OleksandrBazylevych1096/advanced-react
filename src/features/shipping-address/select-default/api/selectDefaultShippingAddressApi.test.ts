@@ -66,14 +66,17 @@ vi.mock("@/shared/lib/notifications", async () => {
     };
 });
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     runOptimisticTxn: mocks.runOptimisticTxnMock,
-    isAbortError: (error: unknown) => error instanceof Error && error.name === "AbortError",
     createVersionGuard: () => ({
         next: () => 1,
         isCurrent: () => true,
         clear: () => undefined,
     }),
+}));
+
+vi.mock("@/shared/lib/errors", () => ({
+    isAbortError: (error: unknown) => error instanceof Error && error.name === "AbortError",
 }));
 
 vi.mock("@/entities/shipping-address", async () => {

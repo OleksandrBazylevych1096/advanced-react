@@ -57,4 +57,3 @@ export const chooseDeliveryDateHandlers = {
     }),
     setDeliverySlot: setDeliverySlotBase,
 };
-

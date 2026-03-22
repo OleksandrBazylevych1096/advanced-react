@@ -7,7 +7,7 @@ import {Stack} from "@/shared/ui/Stack";
 import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useManageSessionsController} from "../../state/controllers/useManageSessionsController";
+import {useManageSessionsController} from "../../model/controllers/useManageSessionsController";
 
 import styles from "./ManageSessions.module.scss";
 
@@ -80,4 +80,3 @@ export const ManageSessions = () => {
         </Stack>
     );
 };
-

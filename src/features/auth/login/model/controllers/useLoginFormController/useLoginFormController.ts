@@ -6,7 +6,7 @@ import {useNavigate} from "react-router";
 import {isAuthSessionResponse, isMfaChallengeResponse, userActions} from "@/entities/user";
 
 import type {AuthMethodType} from "@/shared/config";
-import {AuthMethod,AppRoutes, routePaths} from "@/shared/config";
+import {AuthMethod, AppRoutes, routePaths} from "@/shared/config";
 import {extractApiErrorCode, extractApiErrorMessage} from "@/shared/lib/errors";
 import {useLocalizedRoutePath} from "@/shared/lib/routing";
 import {createControllerResult, useAppDispatch} from "@/shared/lib/state";

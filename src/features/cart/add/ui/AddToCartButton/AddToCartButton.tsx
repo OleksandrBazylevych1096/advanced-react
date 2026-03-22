@@ -5,7 +5,7 @@ import ShoppingCartIcon from "@/shared/assets/icons/ShoppingCart.svg?react";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 
-import {useAddToCartController} from "../../state/controllers/useAddToCartController";
+import {useAddToCartController} from "../../model/controllers/useAddToCartController";
 
 import styles from "./AddToCartButton.module.scss";
 
@@ -71,4 +71,3 @@ export const AddToCartButton = ({product, className, compact = false}: AddToCart
         </Button>
     );
 };
-

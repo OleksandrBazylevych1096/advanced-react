@@ -14,7 +14,7 @@ import {Stack} from "@/shared/ui/Stack";
 import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useTrendingProductsController} from "../state/controllers/useTrendingProductsController";
+import {useTrendingProductsController} from "../model/controllers/useTrendingProductsController";
 
 import styles from "./TrendingProducts.module.scss";
 
@@ -87,4 +87,3 @@ export const TrendingProducts = () => {
         </section>
     );
 };
-

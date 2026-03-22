@@ -15,16 +15,16 @@ import {
 import {clearGuestCart, getGuestCart, setGuestCart} from "./lib/cartStorage";
 import {broadcastCartClear, broadcastCartUpdate, onCartSync} from "./lib/cartSync";
 import {recalculateCartTotals} from "./lib/recalculateCartTotals/recalculateCartTotals";
-import {useCartController} from "./state/controllers/useCartController/useCartController";
-import {useCartValidationController} from "./state/controllers/useCartValidationController/useCartValidationController";
+import {useCartController} from "./model/controllers/useCartController/useCartController";
+import {useCartValidationController} from "./model/controllers/useCartValidationController/useCartValidationController";
 import {
     selectGuestCartItemByProductId,
     selectGuestCartItemCount,
     selectGuestCartItems,
     selectGuestCartSubtotal,
     selectIsCartInitialized,
-} from "./state/selectors/cartSelectors";
-import {cartActions, cartReducer} from "./state/slice/cartSlice";
+} from "./model/selectors/cartSelectors";
+import {cartActions, cartReducer} from "./model/slice/cartSlice";
 import type {
     Cart,
     CartItem,
@@ -32,7 +32,7 @@ import type {
     CartTotals,
     CartValidationItem,
     GuestCartItem,
-} from "./state/types/CartSchema";
+} from "./model/types/CartSchema";
 import {CartItemRow} from "./ui/CartItemRow/CartItemRow";
 
 export {
@@ -65,4 +65,3 @@ export {
 };
 
 export type {Cart, CartItem, CartSchema, CartTotals, CartValidationItem, GuestCartItem};
-

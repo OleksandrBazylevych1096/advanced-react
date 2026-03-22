@@ -4,7 +4,7 @@ import {Link} from "react-router";
 import ArrowRight from "@/shared/assets/icons/ArrowRight.svg?react";
 import MailIcon from "@/shared/assets/icons/Mail.svg?react";
 import PhoneIcon from "@/shared/assets/icons/Phone.svg?react";
-import {AuthMethod,AppRoutes, routePaths} from "@/shared/config";
+import {AuthMethod, AppRoutes, routePaths} from "@/shared/config";
 import {useLocalizedRoutePath} from "@/shared/lib/routing";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
@@ -13,7 +13,7 @@ import {Tabs} from "@/shared/ui/Tabs";
 import {Typography} from "@/shared/ui/Typography";
 import "react-international-phone/style.css";
 
-import {useLoginFormController} from "../../state/controllers/useLoginFormController/useLoginFormController";
+import {useLoginFormController} from "../../model/controllers/useLoginFormController/useLoginFormController";
 
 import styles from "./LoginForm.module.scss";
 
@@ -121,4 +121,3 @@ export const LoginForm = () => {
         </form>
     );
 };
-

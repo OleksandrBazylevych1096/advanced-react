@@ -8,7 +8,7 @@ import {OTPInput} from "@/shared/ui/Input";
 import {Spinner} from "@/shared/ui/Spinner";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useVerificationStepController} from "../../../../state/controllers/useVerificationStepController/useVerificationStepController";
+import {useVerificationStepController} from "../../../../model/controllers/useVerificationStepController/useVerificationStepController";
 
 import styles from "./VerificationStep.module.scss";
 
@@ -96,4 +96,3 @@ export const VerificationStep = () => {
         </>
     );
 };
-

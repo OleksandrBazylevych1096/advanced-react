@@ -38,8 +38,11 @@ vi.mock("@/shared/config", () => ({
     },
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
+}));
+
+vi.mock("@/shared/lib/routing", () => ({
     useLocalizedRoutePath: () => (path: string) => path.replace(":lng", "en"),
 }));
 

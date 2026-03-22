@@ -9,7 +9,7 @@ import {
     mockProductCountries,
     mockProducts,
 } from "./api/test/mockData";
-import type {FacetItemType, Product, ProductsApiResponse} from "./state/types/Product";
+import type {FacetItemType, Product, ProductsApiResponse} from "./model/types/Product";
 import {ProductCard, type ProductCardProps} from "./ui/ProductCard/ProductCard";
 import {ProductCardSkeleton} from "./ui/ProductCard/ProductCardSkeleton/ProductCardSkeleton.tsx";
 
@@ -27,4 +27,3 @@ export {
     mockProductCountries,
     mockProducts,
 };
-

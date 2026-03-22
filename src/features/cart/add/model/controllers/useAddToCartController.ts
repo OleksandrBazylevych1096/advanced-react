@@ -14,7 +14,12 @@ import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import {debounceCallback} from "@/shared/lib/async";
 import {useToast} from "@/shared/lib/notifications";
-import {createControllerResult, useAppDispatch, useAppSelector, useAppStore} from "@/shared/lib/state";
+import {
+    createControllerResult,
+    useAppDispatch,
+    useAppSelector,
+    useAppStore,
+} from "@/shared/lib/state";
 
 import {useAddToCartMutation} from "../../api/addToCartApi";
 
@@ -163,4 +168,3 @@ export const useAddToCartController = (product: Product) => {
         },
     });
 };
-

@@ -4,7 +4,7 @@ import {Button} from "@/shared/ui/Button";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useUnlinkGoogleController} from "../../state/controllers/useUnlinkGoogleController";
+import {useUnlinkGoogleController} from "../../model/controllers/useUnlinkGoogleController";
 
 export const UnlinkGoogleButton = () => {
     const {t} = useTranslation("auth");
@@ -36,4 +36,3 @@ export const UnlinkGoogleButton = () => {
         </Stack>
     );
 };
-

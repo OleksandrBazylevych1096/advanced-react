@@ -23,7 +23,7 @@ vi.mock("@/entities/cart", () => ({
     },
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     useAppDispatch: () => testCtx.dispatchMock,
 }));
 

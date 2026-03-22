@@ -109,11 +109,11 @@ vi.mock("@/features/product-filters/model/slice/productFiltersSlice.ts", () => (
     },
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     useDebounce: <T>(value: T) => value,
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     clampOptionalRange: vi.fn((range: unknown) => range),
     createControllerResult: <T>(value: T) => value,
     useAppDispatch: () => testCtx.dispatchMock,
@@ -231,5 +231,3 @@ describe("useProductFiltersController", () => {
         );
     });
 });
-
-

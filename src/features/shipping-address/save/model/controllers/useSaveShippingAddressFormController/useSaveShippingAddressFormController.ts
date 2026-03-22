@@ -18,7 +18,7 @@ import {
     DEBOUNCE_DELAY,
     MIN_CITY_QUERY_LENGTH,
     MIN_STREET_QUERY_LENGTH,
-} from "../../../consts/defaults";
+} from "../../../config/defaults";
 import {buildStreetSearchQuery} from "../../../lib/formatters";
 import {validateForm} from "../../../lib/validateForm";
 import {
@@ -229,4 +229,3 @@ export const useSaveShippingAddressFormController = () => {
         },
     });
 };
-

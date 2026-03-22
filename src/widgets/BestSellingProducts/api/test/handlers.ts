@@ -16,4 +16,3 @@ export const bestSellingProductsHandlers = createHandlers({
     errorData: {error: "Failed to load products"},
     errorStatus: 500,
 });
-

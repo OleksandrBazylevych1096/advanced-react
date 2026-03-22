@@ -8,7 +8,7 @@ import {Modal} from "@/shared/ui/Modal";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useApplyCouponController} from "../../state/controllers/useApplyCouponController/useApplyCouponController";
+import {useApplyCouponController} from "../../model/controllers/useApplyCouponController/useApplyCouponController";
 
 import styles from "./Coupon.module.scss";
 
@@ -83,11 +83,10 @@ export const Coupon = () => {
                         onClick={removeCoupon}
                         aria-label={t("coupon.removeAriaLabel")}
                     >
-                        <AppIcon className={styles.icon} Icon={CloseIcon}/>
+                        <AppIcon className={styles.icon} Icon={CloseIcon} />
                     </Button>
                 </Stack>
             )}
         </Stack>
     );
 };
-

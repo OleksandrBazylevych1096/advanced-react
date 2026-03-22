@@ -1,4 +1,4 @@
-import type {AvailableDeliveryDate} from "../../state/types/availableDeliveryDateTypes";
+import type {AvailableDeliveryDate} from "../../model/types/availableDeliveryDateTypes";
 
 export const mockDeliveryDates: AvailableDeliveryDate[] = [
     {
@@ -21,4 +21,3 @@ export const mockDefaultShippingAddress = {
     latitude: 50.4501,
     longitude: 30.5234,
 };
-

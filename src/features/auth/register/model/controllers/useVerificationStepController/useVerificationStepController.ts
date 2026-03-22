@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router";
 
-import {AuthMethod,AppRoutes, routePaths} from "@/shared/config";
+import {AuthMethod, AppRoutes, routePaths} from "@/shared/config";
 import {extractApiErrorMessage} from "@/shared/lib/errors";
 import {useLocalizedRoutePath} from "@/shared/lib/routing";
 import {createControllerResult} from "@/shared/lib/state";

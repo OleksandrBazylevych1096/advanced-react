@@ -2,7 +2,7 @@ import styles from "@/widgets/BestSellingProducts/ui/BestSellingProducts.module.
 
 import {ProductCardSkeleton} from "@/entities/product";
 
-import {CarouselSkeleton,CarouselControlsSkeleton} from "@/shared/ui/Carousel";
+import {CarouselSkeleton, CarouselControlsSkeleton} from "@/shared/ui/Carousel";
 import {Stack} from "@/shared/ui/Stack";
 
 export const BestSellingProductsSkeleton = () => {
@@ -19,4 +19,3 @@ export const BestSellingProductsSkeleton = () => {
         </section>
     );
 };
-

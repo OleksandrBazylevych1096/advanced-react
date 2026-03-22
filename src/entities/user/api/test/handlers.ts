@@ -119,4 +119,3 @@ export const userAuthHandlers = {
     verifyOtp: verifyOtpBase,
     unlinkGoogle: unlinkGoogleBase,
 };
-

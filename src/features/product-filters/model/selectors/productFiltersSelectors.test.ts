@@ -102,4 +102,3 @@ describe("productFiltersSelectors", () => {
         expect(selectHasFilterChanges(state)).toBe(true);
     });
 });
-

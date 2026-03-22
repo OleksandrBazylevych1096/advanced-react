@@ -7,7 +7,7 @@ import {Button} from "@/shared/ui/Button";
 import {Modal} from "@/shared/ui/Modal";
 import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 
-import {useShippingAddressListController} from "../../state/controllers/useShippingAddressListController/useShippingAddressListController";
+import {useShippingAddressListController} from "../../model/controllers/useShippingAddressListController/useShippingAddressListController";
 import {Loader} from "../Loader/Loader";
 
 import styles from "./ShippingAddressList.module.scss";
@@ -72,4 +72,3 @@ export const ShippingAddressList = () => {
         </>
     );
 };
-

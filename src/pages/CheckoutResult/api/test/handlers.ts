@@ -39,4 +39,3 @@ export const checkoutResultHandlers = {
     }),
     confirmFallback: fallbackConfirmBase,
 };
-

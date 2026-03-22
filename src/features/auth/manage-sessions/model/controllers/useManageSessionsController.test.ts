@@ -31,9 +31,12 @@ vi.mock("@/shared/lib/errors", () => ({
     extractApiErrorMessage: (error: unknown) => testCtx.extractApiErrorMessageMock(error),
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppDispatch: () => testCtx.dispatchMock,
+}));
+
+vi.mock("@/shared/lib/routing", () => ({
     useLocalizedRoutePath: () => (path: string) => path.replace(":lng", "en"),
 }));
 

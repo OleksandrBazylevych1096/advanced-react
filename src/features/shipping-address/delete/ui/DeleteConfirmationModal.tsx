@@ -8,7 +8,7 @@ import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 import {Modal} from "@/shared/ui/Modal";
 
-import {useDeleteConfirmationModalController} from "../state/controllers/useDeleteConfirmationModalController";
+import {useDeleteConfirmationModalController} from "../model/controllers/useDeleteConfirmationModalController";
 
 import styles from "./DeleteConfirmationModal.module.scss";
 
@@ -64,4 +64,3 @@ export const DeleteConfirmationModal = (props: DeleteConfirmationModalProps) => 
         </Modal>
     );
 };
-

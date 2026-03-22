@@ -19,11 +19,14 @@ vi.mock("@/entities/cart", () => ({
     clearCartState: vi.fn(),
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppDispatch: () => testCtx.dispatchMock,
     useAppSelector: (selector: (state: StateSchema) => unknown) =>
         selector(testCtx.state as StateSchema),
+}));
+
+vi.mock("@/shared/lib/notifications", () => ({
     useToast: () => ({
         error: testCtx.toastErrorMock,
     }),

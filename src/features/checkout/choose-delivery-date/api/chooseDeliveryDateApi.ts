@@ -3,7 +3,7 @@ import {type ApiLocaleParams, baseAPI} from "@/shared/api";
 import type {
     AvailableDeliveryDate,
     DeliverySelection,
-} from "../state/types/availableDeliveryDateTypes";
+} from "../model/types/availableDeliveryDateTypes";
 
 interface DeliverySlotsResponse {
     availableDates: AvailableDeliveryDate[];
@@ -52,4 +52,3 @@ export const chooseDeliveryDateApi = baseAPI.injectEndpoints({
 
 export const {useGetDeliverySlotsQuery, useGetDeliverySelectionQuery, useSetDeliverySlotMutation} =
     chooseDeliveryDateApi;
-

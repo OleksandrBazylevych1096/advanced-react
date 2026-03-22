@@ -5,7 +5,7 @@ import {useInitializeEditModeButtonController} from "./useInitializeEditModeButt
 
 const dispatchMock = vi.fn();
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppDispatch: () => dispatchMock,
 }));

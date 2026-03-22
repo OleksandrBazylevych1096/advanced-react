@@ -4,7 +4,7 @@ import type {ShippingAddress} from "@/entities/shipping-address";
 
 import {cn} from "@/shared/lib/styling";
 
-import {useSelectDefaultShippingAddressController} from "../state/controllers/useSelectDefaultShippingAddressController";
+import {useSelectDefaultShippingAddressController} from "../model/controllers/useSelectDefaultShippingAddressController";
 
 import styles from "./SelectableAddressItem.module.scss";
 
@@ -51,4 +51,3 @@ export const SelectableAddressItem = (props: SelectableAddressItemProps) => {
         </div>
     );
 };
-

@@ -8,4 +8,3 @@ export const generateProductBreadcrumbs = (
 
     return [...categoryBreadcrumb, {label: productName}];
 };
-

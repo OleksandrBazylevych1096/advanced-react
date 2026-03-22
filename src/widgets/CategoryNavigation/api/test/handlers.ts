@@ -36,4 +36,3 @@ export const topLevelCategoriesExtendedHandlers = extendHandlers(topLevelCategor
         return HttpResponse.json([]);
     }),
 });
-

@@ -10,4 +10,3 @@ export const trendingProductsHandlers = createHandlers({
     errorData: {error: "Failed to load trending products"},
     errorStatus: 500,
 });
-

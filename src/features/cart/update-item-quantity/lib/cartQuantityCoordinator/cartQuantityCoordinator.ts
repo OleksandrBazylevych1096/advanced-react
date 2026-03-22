@@ -5,7 +5,7 @@ import {applyCartItemQuantityChange, applyCartOptimisticUpdate} from "@/entities
 import type {ApiLocaleCurrencyParams} from "@/shared/api";
 import {isAbortError} from "@/shared/lib/errors";
 
-import {createCartQuantityEngine} from "../../state/services/cartQuantityEngine/cartQuantityEngine";
+import {createCartQuantityEngine} from "../../model/services/cartQuantityEngine/cartQuantityEngine";
 
 const DEFAULT_AGGREGATION_MS = 400;
 type Timer = ReturnType<typeof setTimeout>;
@@ -242,5 +242,3 @@ export const createCartQuantityCoordinator = (
         resetAll,
     };
 };
-
-

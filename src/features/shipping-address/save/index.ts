@@ -1,4 +1,4 @@
-import {ADDRESS_MODE_TITLES} from "./consts/defaults";
+import {ADDRESS_MODE_TITLES} from "./config/defaults";
 import {
     selectSaveShippingAddressMode,
     selectIsManageShippingAddressModalOpen,
@@ -8,11 +8,11 @@ import {
     selectSaveShippingAddressNumberOfApartment,
     selectSaveShippingAddressStreetAddress,
     selectSaveShippingAddressZipCode,
-} from "./state/selectors/saveShippingAddressSelectors";
+} from "./model/selectors/saveShippingAddressSelectors";
 import {
     saveShippingAddressActions,
     saveShippingAddressReducer,
-} from "./state/slice/saveShippingAddressSlice";
+} from "./model/slice/saveShippingAddressSlice";
 import {EditAddressAsync} from "./ui/EditAddress/EditAddress.async";
 import {InitializeEditModeButton} from "./ui/InitializeEditModeButton/InitializeEditModeButton";
 
@@ -33,4 +33,3 @@ export {
     selectSaveShippingAddressStreetAddress,
     selectSaveShippingAddressZipCode,
 };
-

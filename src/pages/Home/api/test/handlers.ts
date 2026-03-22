@@ -10,4 +10,3 @@ export const firstOrderProductsHandlers = createHandlers({
     errorData: {error: "Failed to load first order products"},
     errorStatus: 500,
 });
-

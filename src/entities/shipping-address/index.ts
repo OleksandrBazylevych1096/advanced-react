@@ -7,7 +7,7 @@ import {
 import {
     SHIPPING_ADDRESSES_DOMAIN_KEY,
     shippingAddressOptimisticVersionGuard,
-} from "./state/optimisticVersionGuard";
+} from "./model/optimisticVersionGuard";
 import type {
     ShippingAddress,
     AddressForm,
@@ -18,7 +18,7 @@ import type {
     BaseAddress,
     AddressMode,
     SaveShippingAddressSchema,
-} from "./state/types/types";
+} from "./model/types/types";
 
 export {
     // API
@@ -41,4 +41,3 @@ export type {
     AddressMode,
     SaveShippingAddressSchema,
 };
-

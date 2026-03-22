@@ -92,4 +92,3 @@ export const NoImage: Story = {
         currency: "USD",
     },
 };
-

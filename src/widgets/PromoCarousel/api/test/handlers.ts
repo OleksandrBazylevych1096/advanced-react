@@ -10,4 +10,3 @@ export const promoCarouselHandlers = createHandlers({
     errorData: {error: "Failed to load banners"},
     errorStatus: 500,
 });
-

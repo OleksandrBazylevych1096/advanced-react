@@ -2,7 +2,7 @@ import {type SortOptionValue} from "@/features/product-filters/config/sortOption
 
 import {Select} from "@/shared/ui/Select";
 
-import {useSortOptionsSelectController} from "../../../state/controllers/useSortOptionsSelectController/useSortOptionsSelectController";
+import {useSortOptionsSelectController} from "../../../model/controllers/useSortOptionsSelectController/useSortOptionsSelectController";
 
 export const SortOptionsSelect = () => {
     const {
@@ -21,6 +21,3 @@ export const SortOptionsSelect = () => {
         />
     );
 };
-
-
-

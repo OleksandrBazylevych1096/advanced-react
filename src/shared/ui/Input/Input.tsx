@@ -10,10 +10,11 @@ import {
 } from "react";
 
 import type {CurrencyType, SupportedLngsType} from "@/shared/config";
+import {formatCurrency} from "@/shared/lib/formatting";
+import {cn} from "@/shared/lib/styling";
 
 import HideIcon from "../../assets/icons/Hide.svg?react";
 import ShowIcon from "../../assets/icons/Show.svg?react";
-import {cn, formatCurrency} from "../../lib";
 import {Button} from "../Button/Button";
 import {Spinner} from "../Spinner/Spinner";
 

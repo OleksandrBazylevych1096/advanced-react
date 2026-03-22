@@ -10,11 +10,11 @@ const testCtx = vi.hoisted(() => ({
     clearUserSessionMock: vi.fn(),
 }));
 
-vi.mock("../../state/services/applyUserSession/applyUserSession", () => ({
+vi.mock("../../model/services/applyUserSession/applyUserSession", () => ({
     applyAuthSession: (...args: unknown[]) => testCtx.applyAuthSessionMock(...args),
 }));
 
-vi.mock("../../state/services/clearUserSession/clearUserSession", () => ({
+vi.mock("../../model/services/clearUserSession/clearUserSession", () => ({
     clearUserSession: (...args: unknown[]) => testCtx.clearUserSessionMock(...args),
 }));
 
@@ -67,4 +67,3 @@ describe("sessionApi", () => {
         expect(testCtx.clearUserSessionMock).toHaveBeenCalledTimes(1);
     });
 });
-

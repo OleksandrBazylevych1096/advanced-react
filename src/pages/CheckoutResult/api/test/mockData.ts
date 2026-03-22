@@ -1,6 +1,6 @@
 import {CheckoutSessionStatus, OrderStatus, PaymentStatus} from "@/entities/order";
 
-import type {CheckoutSessionDetails} from "../../state/types/checkoutResultTypes";
+import type {CheckoutSessionDetails} from "../../model/types/checkoutResultTypes";
 
 export const mockCheckoutSessionPending: CheckoutSessionDetails = {
     sessionId: "sess_123",
@@ -36,4 +36,3 @@ export const mockCheckoutSessionFailed: CheckoutSessionDetails = {
         paymentStatus: PaymentStatus.FAILED,
     },
 };
-

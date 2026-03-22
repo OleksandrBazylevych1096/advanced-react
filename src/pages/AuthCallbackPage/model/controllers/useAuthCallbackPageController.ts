@@ -3,7 +3,7 @@ import {useNavigate, useSearchParams} from "react-router";
 
 import {type MfaMethod, userActions, useRefreshSessionMutation} from "@/entities/user";
 
-import {PROJECT_ENV,i18n,AppRoutes, routePaths} from "@/shared/config";
+import {PROJECT_ENV, i18n, AppRoutes, routePaths} from "@/shared/config";
 import {extractApiErrorMessage} from "@/shared/lib/errors";
 import {useLocalizedRoutePath} from "@/shared/lib/routing";
 import {createControllerResult, useAppDispatch} from "@/shared/lib/state";

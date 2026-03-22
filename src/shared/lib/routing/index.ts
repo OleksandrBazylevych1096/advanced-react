@@ -1,2 +1,2 @@
 export {useLocalizedRoutePath} from "./localizedPath/useLocalizedRoutePath";
-export {useLanguageSync, useLocalizedSlugSync} from "./localizedSlug/useLocalizedSlugSync";
+export {useLanguageSync, useLocalizedSlugSync} from "./localizedSlug/useSlugSync";

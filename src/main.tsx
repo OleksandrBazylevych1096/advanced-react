@@ -23,4 +23,3 @@ createRoot(document.getElementById("root")!).render(
         </StoreProvider>
     </StrictMode>,
 );
-

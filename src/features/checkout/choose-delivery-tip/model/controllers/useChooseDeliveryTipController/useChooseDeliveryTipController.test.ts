@@ -12,11 +12,11 @@ vi.mock("@/entities/user", () => ({
     selectUserCurrency: () => "USD",
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     useDebounce: (value: string) => value,
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppDispatch: () => testCtx.dispatchMock,
     useAppSelector: (selector: (state: StateSchema) => unknown) =>
@@ -82,4 +82,3 @@ describe("useChooseDeliveryTipController", () => {
         });
     });
 });
-

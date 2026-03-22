@@ -4,7 +4,7 @@ import UsersIcon from "@/shared/assets/icons/Users.svg?react";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 
-import {useLogoutController} from "../../state/controllers/useLogoutController";
+import {useLogoutController} from "../../model/controllers/useLogoutController";
 
 export const LogoutButton = () => {
     const {t} = useTranslation();
@@ -20,4 +20,3 @@ export const LogoutButton = () => {
         </Button>
     );
 };
-

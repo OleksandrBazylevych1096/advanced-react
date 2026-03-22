@@ -2,7 +2,7 @@ import {describe, expect, test} from "vitest";
 
 import type {DeepPartial} from "@/shared/lib/state/redux/types";
 
-import type {Cart} from "../../state/types/CartSchema";
+import type {Cart} from "../../model/types/CartSchema";
 
 import {recalculateCartTotals} from "./recalculateCartTotals";
 
@@ -54,4 +54,3 @@ describe("recalculateCartTotals", () => {
         });
     });
 });
-

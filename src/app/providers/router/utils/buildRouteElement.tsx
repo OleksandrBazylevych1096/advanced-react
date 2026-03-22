@@ -27,4 +27,3 @@ export const buildRouteElement = ({
 
     return <DefaultPageLayout>{pageElement}</DefaultPageLayout>;
 };
-

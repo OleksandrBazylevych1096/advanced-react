@@ -12,7 +12,7 @@ import {Counter} from "@/shared/ui/Counter";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useFirstOrderSectionController} from "../../state/controllers/useFirstOrderSectionController";
+import {useFirstOrderSectionController} from "../../model/controllers/useFirstOrderSectionController";
 
 import styles from "./FirstOrderSection.module.scss";
 
@@ -117,4 +117,3 @@ export const FirstOrderSection = () => {
         </Stack>
     );
 };
-

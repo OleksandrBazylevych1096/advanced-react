@@ -3,7 +3,7 @@ import styles from "@/widgets/TrendingProducts/ui/TrendingProducts.module.scss";
 import {ProductCardSkeleton} from "@/entities/product";
 import {TagListSkeleton} from "@/entities/tag";
 
-import {CarouselSkeleton,CarouselControlsSkeleton} from "@/shared/ui/Carousel";
+import {CarouselSkeleton, CarouselControlsSkeleton} from "@/shared/ui/Carousel";
 import {Stack} from "@/shared/ui/Stack";
 
 export const TrendingProductsSkeleton = () => {
@@ -23,4 +23,3 @@ export const TrendingProductsSkeleton = () => {
         </section>
     );
 };
-

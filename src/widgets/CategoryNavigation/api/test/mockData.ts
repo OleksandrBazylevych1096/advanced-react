@@ -97,4 +97,3 @@ export const mockCategoryNavigation = {
 };
 
 export const mockElectronicsSubcategories = mockFruitsSubcategories;
-

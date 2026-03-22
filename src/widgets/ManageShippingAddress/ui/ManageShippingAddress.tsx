@@ -11,7 +11,7 @@ import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 import {Modal} from "@/shared/ui/Modal";
 
-import {useManageShippingAddressController} from "../state/controllers/useManageShippingAddressController/useManageShippingAddressController";
+import {useManageShippingAddressController} from "../model/controllers/useManageShippingAddressController/useManageShippingAddressController";
 
 import {DisplayShippingAddress} from "./DisplayShippingAddress";
 import styles from "./ManageShippingAddress.module.scss";
@@ -92,4 +92,3 @@ export const ManageShippingAddress = () => {
         </DynamicModuleLoader>
     );
 };
-

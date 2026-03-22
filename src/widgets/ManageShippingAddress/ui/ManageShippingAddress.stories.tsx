@@ -119,4 +119,3 @@ export const Guest: Story = {
         },
     },
 };
-

@@ -1,5 +1,5 @@
 import {FormSteps} from "../../config/formSteps";
-import {useRegisterFlow} from "../../state/registerFlowContext";
+import {useRegisterFlow} from "../../model/registerFlowContext";
 
 import {CreatePasswordStep} from "./steps/CreatePasswordStep/CreatePasswordStep";
 import {CredentialsStep} from "./steps/CredentialsStep/CredentialStep";
@@ -16,4 +16,3 @@ export const RegisterForm = () => {
         </>
     );
 };
-

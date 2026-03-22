@@ -10,7 +10,7 @@ const testCtx = vi.hoisted(() => ({
     state: undefined as StateSchema | undefined,
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppSelector: (selector: (state: StateSchema) => unknown) =>
         selector(testCtx.state as StateSchema),

@@ -12,4 +12,3 @@ export const createMockTag = createMockFactory<Tag>({
 });
 
 export const mockTags = createMockTag.createList(5);
-

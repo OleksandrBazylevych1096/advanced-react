@@ -6,7 +6,7 @@ import {useUserLocation} from "@/shared/lib/browser";
 import {createControllerResult, useAppDispatch, useAppSelector} from "@/shared/lib/state";
 
 import {useGetReverseGeocodeQuery} from "../../../api/saveShippingAddressApi";
-import {DEFAULT_LOCATION, MAP_CONFIG} from "../../../consts/defaults";
+import {DEFAULT_LOCATION, MAP_CONFIG} from "../../../config/defaults";
 import {formatStreetAddress} from "../../../lib/formatters";
 import {
     selectSaveShippingAddressLocation,
@@ -92,4 +92,3 @@ export const useMapController = () => {
         },
     });
 };
-

@@ -59,4 +59,3 @@ export const ReviewOrderItems = ({items, currency}: ReviewOrderItemsProps) => {
         </Stack>
     );
 };
-

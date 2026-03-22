@@ -65,4 +65,3 @@ describe("extractApiErrorMessage", () => {
         expect(message).toBe("Unknown error (translated)");
     });
 });
-

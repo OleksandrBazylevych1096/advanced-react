@@ -6,7 +6,7 @@ import {ChooseDeliveryDate} from "./ChooseDeliveryDate";
 
 const useChooseDeliveryDateControllerMock = vi.fn();
 
-vi.mock("../../state/controllers/useChooseDeliveryDateController", () => ({
+vi.mock("../../model/controllers/useChooseDeliveryDateController", () => ({
     useChooseDeliveryDateController: () => useChooseDeliveryDateControllerMock(),
 }));
 
@@ -102,4 +102,3 @@ describe("ChooseDeliveryDate", () => {
         expect(() => render(<ChooseDeliveryDate />)).not.toThrow();
     });
 });
-

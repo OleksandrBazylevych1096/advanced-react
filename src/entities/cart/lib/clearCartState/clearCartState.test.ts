@@ -10,7 +10,7 @@ const testCtx = vi.hoisted(() => ({
     dispatchMock: vi.fn(),
 }));
 
-vi.mock("../../state/slice/cartSlice", () => ({
+vi.mock("../../model/slice/cartSlice", () => ({
     cartActions: {
         clearCart: testCtx.clearCartActionMock,
     },
@@ -56,4 +56,3 @@ describe("clearCartState", () => {
         expect(testCtx.dispatchMock).toHaveBeenCalledWith({type: "baseAPI/invalidateTags"});
     });
 });
-

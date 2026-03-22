@@ -26,4 +26,3 @@ export const isValidSortBy = (value: string | null): value is SortType => {
 export const isValidSortOrder = (value: string | null): value is OrderType => {
     return value !== null && VALID_SORT_ORDER_VALUES.includes(value as OrderType);
 };
-

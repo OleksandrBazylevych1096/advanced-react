@@ -32,13 +32,8 @@ vi.mock("@/shared/config", () => ({
     },
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
-    getPasswordRequirementsState: (password: string) => [
-        {key: "len", isMet: password.length >= 8},
-        {key: "digit", isMet: /\d/.test(password)},
-    ],
-    isPasswordValid: (password: string) => password.length >= 8 && /\d/.test(password),
 }));
 
 vi.mock("@/shared/lib/errors", () => ({
@@ -108,7 +103,7 @@ describe("useCreatePasswordStepController", () => {
         const {result} = renderHook(() => useCreatePasswordStepController());
 
         act(() => {
-            result.current.actions.changePassword("Strong123");
+            result.current.actions.changePassword("Strong123!");
         });
         await act(async () => {
             await result.current.actions.submitPassword();
@@ -117,7 +112,7 @@ describe("useCreatePasswordStepController", () => {
         expect(testCtx.registerMutationMock).toHaveBeenCalledWith({
             email: "john@example.com",
             phone: undefined,
-            password: "Strong123",
+            password: "Strong123!",
         });
         expect(testCtx.setVerificationRequiredMock).toHaveBeenCalledWith("email");
         expect(testCtx.goToStepMock).toHaveBeenCalledWith(FormSteps.VERIFICATION);
@@ -131,7 +126,7 @@ describe("useCreatePasswordStepController", () => {
         const {result} = renderHook(() => useCreatePasswordStepController());
 
         act(() => {
-            result.current.actions.changePassword("Strong123");
+            result.current.actions.changePassword("Strong123!");
         });
         await act(async () => {
             await result.current.actions.submitPassword();

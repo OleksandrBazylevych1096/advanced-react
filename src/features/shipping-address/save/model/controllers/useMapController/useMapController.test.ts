@@ -33,19 +33,14 @@ vi.mock("react-i18next", async () => {
     };
 });
 
-vi.mock("@/shared/lib", async () => {
-    const actual = await vi.importActual<typeof import("@/shared/lib")>("@/shared/lib");
+vi.mock("@/shared/lib/state", () => ({
+    createControllerResult: <T>(value: T) => value,
+    useAppDispatch: () => testCtx.dispatchMock,
+    useAppSelector: (selector: (state: StateSchema) => unknown) =>
+        selector(testCtx.mockState as StateSchema),
+}));
 
-    return {
-        ...actual,
-        createControllerResult: <T>(value: T) => value,
-        useAppDispatch: () => testCtx.dispatchMock,
-        useAppSelector: (selector: (state: StateSchema) => unknown) =>
-            selector(testCtx.mockState as StateSchema),
-    };
-});
-
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/browser", () => ({
     useUserLocation: () => ({
         location: testCtx.mockUserLocation,
     }),
@@ -130,4 +125,3 @@ describe("useMapController", () => {
         );
     });
 });
-

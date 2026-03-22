@@ -1,4 +1,4 @@
-import type {GuestCartItem} from "../state/types/CartSchema";
+import type {GuestCartItem} from "../model/types/CartSchema";
 
 import {CART_STORAGE_KEY} from "./cartStorage";
 
@@ -100,4 +100,3 @@ export function destroyCartSync(): void {
 }
 
 export {TAB_ID};
-

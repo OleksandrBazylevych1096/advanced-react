@@ -93,4 +93,3 @@ export const selectHasFilterChanges = createSelector(selectProductFilters, (stat
         filters.sortOrder !== DEFAULT_SORT_ORDER
     );
 });
-

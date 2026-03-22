@@ -101,4 +101,3 @@ export const Guest: Story = {
         } as Partial<StateSchema>,
     },
 };
-

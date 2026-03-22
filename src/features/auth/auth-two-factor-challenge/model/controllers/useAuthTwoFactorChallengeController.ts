@@ -5,7 +5,7 @@ import {DEFAULT_METHODS} from "@/features/auth/auth-two-factor-challenge/config/
 
 import {type MfaMethod, selectPendingMfaChallenge, userActions} from "@/entities/user";
 
-import {i18n,AppRoutes, routePaths} from "@/shared/config";
+import {i18n, AppRoutes, routePaths} from "@/shared/config";
 import {extractApiErrorMessage} from "@/shared/lib/errors";
 import {useLocalizedRoutePath} from "@/shared/lib/routing";
 import {createControllerResult, useAppDispatch, useAppSelector} from "@/shared/lib/state";

@@ -44,9 +44,12 @@ const mocks = vi.hoisted(() => {
     };
 });
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createVersionGuard: () => mocks.mockGuard,
     runOptimisticTxn: mocks.runOptimisticTxnMock,
+}));
+
+vi.mock("@/shared/lib/errors", () => ({
     isAbortError: (error: unknown) => error instanceof Error && error.name === "AbortError",
 }));
 

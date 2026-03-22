@@ -41,7 +41,7 @@ vi.mock("../../../lib/validation/checkIsCheckoutReady.ts", () => ({
     checkIsCheckoutReady: (...args: unknown[]) => testCtx.checkIsCheckoutReadyMock(...args),
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useLocalizedRoutePath: () => testCtx.localizedPathMock,
     useAppSelector: (selector: (state: StateSchema) => unknown) =>

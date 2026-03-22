@@ -6,7 +6,7 @@ import EditIcon from "@/shared/assets/icons/Edit.svg?react";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 
-import {useInitializeEditModeButtonController} from "../../state/controllers/useInitializeEditModeButtonController/useInitializeEditModeButtonController";
+import {useInitializeEditModeButtonController} from "../../model/controllers/useInitializeEditModeButtonController/useInitializeEditModeButtonController";
 
 import styles from "./InitializeEditModeButton.module.scss";
 
@@ -34,4 +34,3 @@ export const InitializeEditModeButton = (props: InitializeEditModeButtonProps) =
         </Button>
     );
 };
-

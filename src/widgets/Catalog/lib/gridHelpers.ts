@@ -7,4 +7,3 @@ export const getColumnCount = (width: number) => {
 export const getRowCount = (columnsCount: number, length: number) => {
     return Math.ceil(length / columnsCount);
 };
-

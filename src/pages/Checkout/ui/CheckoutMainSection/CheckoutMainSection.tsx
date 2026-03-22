@@ -10,7 +10,7 @@ import {Button} from "@/shared/ui/Button";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useCheckoutMainSectionController} from "../../state/controllers/useCheckoutMainSectionController/useCheckoutMainSectionController";
+import {useCheckoutMainSectionController} from "../../model/controllers/useCheckoutMainSectionController/useCheckoutMainSectionController";
 
 import styles from "./CheckoutMainSection.module.scss";
 import {CheckoutMainSectionSkeleton} from "./CheckoutMainSectionSkeleton";
@@ -91,5 +91,3 @@ export const CheckoutMainSection = () => {
         </Stack>
     );
 };
-
-

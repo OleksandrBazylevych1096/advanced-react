@@ -1,6 +1,6 @@
 import {createMockFactory, sequence} from "@/shared/lib/testing";
 
-import type {ReverseGeocodeResult, ShippingAddress} from "../../state/types/types";
+import type {ReverseGeocodeResult, ShippingAddress} from "../../model/types/types";
 
 const createMockGeocodeResult = createMockFactory<ReverseGeocodeResult>({
     label: (i) => `${i} Test Street, London, WC2N ${i}DN`,
@@ -136,5 +136,3 @@ export const mockManyStreetSuggestions = Array.from({length: 10}, (_, i) => ({
         country: "United Kingdom",
     },
 }));
-
-

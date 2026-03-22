@@ -18,4 +18,3 @@ export const categoryBreadcrumbsHandlers = createHandlers({
     errorData: {error: "Failed to load breadcrumbs"},
     errorStatus: 500,
 });
-

@@ -29,4 +29,3 @@ export const Default: Story = {
 export const Error: Story = {
     parameters: {msw: {handlers: createHandlersScenario("error", handlersMap)}},
 };
-

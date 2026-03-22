@@ -5,7 +5,12 @@ import {selectIsAuthenticated} from "@/entities/user";
 
 import {isAbortError} from "@/shared/lib/errors";
 import {useToast} from "@/shared/lib/notifications";
-import {createControllerResult, useAppDispatch, useAppSelector, useAppStore} from "@/shared/lib/state";
+import {
+    createControllerResult,
+    useAppDispatch,
+    useAppSelector,
+    useAppStore,
+} from "@/shared/lib/state";
 
 import {useRemoveFromCartMutation} from "../../api/removeFromCartApi";
 

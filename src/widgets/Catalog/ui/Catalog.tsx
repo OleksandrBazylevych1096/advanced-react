@@ -116,4 +116,3 @@ export const Catalog = ({categoryId}: CatalogProps) => {
         </div>
     );
 };
-

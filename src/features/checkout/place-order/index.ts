@@ -5,8 +5,8 @@ import {
 import {useLazyGetOrderByIdQuery} from "./api/orderApi/orderApi.ts";
 import {buildCheckoutSummaryRows} from "./lib/buildCheckoutSummaryRows/buildCheckoutSummaryRows.ts";
 import {checkIsCheckoutReady} from "./lib/validation/checkIsCheckoutReady.ts";
-import {usePlaceOrderController} from "./state/controllers/usePlaceOrderController/usePlaceOrderController.ts";
-import {calculateCheckoutTotals} from "./state/services/calculateCheckoutTotals/calculateCheckoutTotals.ts";
+import {usePlaceOrderController} from "./model/controllers/usePlaceOrderController/usePlaceOrderController.ts";
+import {calculateCheckoutTotals} from "./model/services/calculateCheckoutTotals/calculateCheckoutTotals.ts";
 import {PlaceOrder} from "./ui/PlaceOrder.tsx";
 
 export {
@@ -27,4 +27,3 @@ export type {
     OrderDetails,
 } from "./types/checkoutTypes";
 export type {OrderStatusType} from "@/entities/order";
-

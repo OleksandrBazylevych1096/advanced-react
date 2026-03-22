@@ -79,5 +79,3 @@ export const productFiltersSlice = createSlice({
 });
 
 export const {actions: productFiltersActions, reducer: productFiltersReducer} = productFiltersSlice;
-
-

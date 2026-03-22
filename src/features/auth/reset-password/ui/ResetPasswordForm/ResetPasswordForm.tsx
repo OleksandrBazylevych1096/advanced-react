@@ -13,7 +13,7 @@ import {Input} from "@/shared/ui/Input";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useResetPasswordFormController} from "../../state/controllers/useResetPasswordFormController/useResetPasswordFormController";
+import {useResetPasswordFormController} from "../../model/controllers/useResetPasswordFormController/useResetPasswordFormController";
 
 import styles from "./ResetPasswordForm.module.scss";
 
@@ -117,4 +117,3 @@ export const ResetPasswordForm = ({token}: ResetPasswordFormProps) => {
         </Grid>
     );
 };
-

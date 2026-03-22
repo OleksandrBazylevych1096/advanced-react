@@ -7,7 +7,7 @@ import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 import {ErrorState} from "@/shared/ui/StateViews";
 
-import {useProductFiltersController} from "../../state/controllers/useProductFiltersController/useProductFiltersController";
+import {useProductFiltersController} from "../../model/controllers/useProductFiltersController/useProductFiltersController";
 
 import {CheckboxFilterSection} from "./CheckboxFilterSection/CheckboxFilterSection";
 import styles from "./ProductFilters.module.scss";
@@ -128,5 +128,3 @@ export const ProductFilters = ({defaultOpenFilters, categoryId}: ProductFiltersP
         </div>
     );
 };
-
-

@@ -6,7 +6,7 @@ import {Input} from "@/shared/ui/Input";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useChooseDeliveryTipController} from "../../state/controllers/useChooseDeliveryTipController/useChooseDeliveryTipController";
+import {useChooseDeliveryTipController} from "../../model/controllers/useChooseDeliveryTipController/useChooseDeliveryTipController";
 
 export const DeliveryTip = () => {
     const {i18n, t} = useTranslation("checkout");
@@ -57,4 +57,3 @@ export const DeliveryTip = () => {
         </Stack>
     );
 };
-

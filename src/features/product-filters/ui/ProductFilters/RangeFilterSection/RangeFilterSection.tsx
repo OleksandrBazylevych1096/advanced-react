@@ -178,4 +178,3 @@ export const RangeFilterSection = ({
         </Accordion.Item>
     );
 };
-

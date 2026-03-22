@@ -2,7 +2,7 @@ import {baseAPI, type ApiLocaleParams} from "@/shared/api";
 import type {BreadcrumbItem} from "@/shared/ui/Breadcrumbs";
 
 import {generateCategoryHref} from "../lib/generateCategoryHref";
-import type {BaseCategory, Category} from "../state/types/Category";
+import type {BaseCategory, Category} from "../model/types/Category";
 
 type CategoryBySlugArgs = ApiLocaleParams & {
     slug: string;
@@ -36,5 +36,3 @@ const categoryApi = baseAPI.injectEndpoints({
 });
 
 export const {useGetCategoryBySlugQuery, useGetCategoryBreadcrumbsQuery} = categoryApi;
-
-

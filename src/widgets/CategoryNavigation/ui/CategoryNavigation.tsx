@@ -5,7 +5,7 @@ import {CategoryNavigationGoBackItem} from "@/widgets/CategoryNavigation/ui/Cate
 import {Carousel, CarouselSkeleton} from "@/shared/ui/Carousel";
 import {ErrorState} from "@/shared/ui/StateViews";
 
-import {useCategoryNavigationController} from "../state/controllers/useCategoryNavigationController";
+import {useCategoryNavigationController} from "../model/controllers/useCategoryNavigationController";
 
 import styles from "./CategoryNavigation.module.scss";
 import {CategoryNavigationItem} from "./CategoryNavigationItem";
@@ -52,4 +52,3 @@ export const CategoryNavigation = () => {
         </Carousel>
     );
 };
-

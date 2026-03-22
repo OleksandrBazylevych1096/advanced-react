@@ -31,9 +31,15 @@ vi.mock("@/shared/config", () => ({
     },
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
+}));
+
+vi.mock("@/shared/lib/routing", () => ({
     useLocalizedRoutePath: () => (path: string) => path.replace(":lng", "en"),
+}));
+
+vi.mock("@/shared/lib/validation", () => ({
     isPasswordValid: (password: string) => password.length >= 8 && /\d/.test(password),
     getPasswordRequirementsState: (password: string) => [
         {key: "len", isMet: password.length >= 8},

@@ -64,4 +64,3 @@ export const cartHandlers = {
     updateItem: updateItemBase,
     removeItem: removeItemBase,
 };
-

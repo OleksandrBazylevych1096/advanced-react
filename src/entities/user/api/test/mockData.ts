@@ -2,7 +2,7 @@ import type {
     AuthSessionResponse,
     AuthSessionsListItem,
     MfaChallengeResponse,
-} from "../../state/types/AuthSession";
+} from "../../model/types/AuthSession";
 
 export const mockUser = {
     id: "u1",
@@ -55,4 +55,3 @@ export const mockSetupTwoFactor = {
     qrCodeDataUrl: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB",
     backupCodes: ["ABCD-1234", "EFGH-5678", "IJKL-9012"],
 };
-

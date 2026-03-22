@@ -46,4 +46,3 @@ export const MissingToken: Story = {
         token: null,
     },
 };
-

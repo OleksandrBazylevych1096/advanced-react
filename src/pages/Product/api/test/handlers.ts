@@ -18,4 +18,3 @@ export const productPageHandlers = {
         empty: http.get(`${API_URL}/products/slug/:slug`, () => HttpResponse.json(null)),
     }),
 };
-

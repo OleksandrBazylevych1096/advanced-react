@@ -14,7 +14,7 @@ vi.mock("react-redux", () => ({
     useSelector: () => testCtx.sortSettings,
 }));
 
-vi.mock("@/shared/lib", () => ({
+vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useAppDispatch: () => testCtx.dispatchMock,
 }));
@@ -78,4 +78,3 @@ describe("useSortOptionsSelectController", () => {
         expect(testCtx.dispatchMock).not.toHaveBeenCalled();
     });
 });
-

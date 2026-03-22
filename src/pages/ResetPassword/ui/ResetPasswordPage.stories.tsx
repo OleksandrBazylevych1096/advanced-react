@@ -31,4 +31,3 @@ export const MissingToken: Story = {
         route: "/en/reset-password",
     },
 };
-

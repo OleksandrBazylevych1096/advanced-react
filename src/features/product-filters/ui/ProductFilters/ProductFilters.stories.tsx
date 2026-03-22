@@ -135,4 +135,3 @@ export const EmptyFacets: Story = {
         },
     },
 };
-

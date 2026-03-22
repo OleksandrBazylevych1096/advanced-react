@@ -1,5 +1,5 @@
 import {useSetDefaultShippingAddressMutation} from "./api/selectDefaultShippingAddressApi";
-import {useSelectDefaultShippingAddressController} from "./state/controllers/useSelectDefaultShippingAddressController";
+import {useSelectDefaultShippingAddressController} from "./model/controllers/useSelectDefaultShippingAddressController";
 import {SelectableAddressItem} from "./ui/SelectableAddressItem";
 
 export {
@@ -7,4 +7,3 @@ export {
     useSelectDefaultShippingAddressController,
     useSetDefaultShippingAddressMutation,
 };
-

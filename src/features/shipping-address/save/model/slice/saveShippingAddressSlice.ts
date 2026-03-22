@@ -7,7 +7,7 @@ import type {
     SaveShippingAddressSchema,
 } from "@/entities/shipping-address";
 
-import {DEFAULT_LOCATION} from "../../consts/defaults";
+import {DEFAULT_LOCATION} from "../../config/defaults";
 
 export const initialState: SaveShippingAddressSchema = {
     form: {

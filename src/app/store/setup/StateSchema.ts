@@ -42,4 +42,3 @@ export interface AppStore extends EnhancedStore<StateSchema> {
     dispatch: AppDispatch;
     services: StoreServices;
 }
-
