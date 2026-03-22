@@ -31,13 +31,15 @@ describe("cartQuantityCoordinator", () => {
 
     const enqueue = (
         coordinator: ReturnType<typeof createCartQuantityCoordinator>,
-        args: Omit<EnqueueArgs, "getConfirmedQuantity"> & {
+        args: Omit<EnqueueArgs, "getConfirmedQuantity" | "cartQueryArgs"> & {
             getConfirmedQuantity?: (productId: string) => number;
+            cartQueryArgs?: EnqueueArgs["cartQueryArgs"];
         },
     ) => {
         coordinator.enqueue({
             ...args,
             getConfirmedQuantity: args.getConfirmedQuantity ?? (() => 0),
+            cartQueryArgs: args.cartQueryArgs ?? {locale: "en", currency: "USD"},
         });
     };
 

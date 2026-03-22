@@ -21,7 +21,7 @@ const testCtx = vi.hoisted(() => {
         setValueMock: vi.fn(),
         setFieldErrorMock: vi.fn(),
         registerMutationMock: vi.fn(),
-        extractApiErrorMessageMock: vi.fn(() => "Request failed"),
+        extractApiErrorMessageMock: vi.fn((_error?: unknown) => "Request failed"),
     };
 });
 
@@ -37,7 +37,7 @@ vi.mock("@/shared/lib/state", () => ({
 }));
 
 vi.mock("@/shared/lib/errors", () => ({
-    extractApiErrorMessage: (...args: unknown[]) => testCtx.extractApiErrorMessageMock(...args),
+    extractApiErrorMessage: (error: unknown) => testCtx.extractApiErrorMessageMock(error),
 }));
 
 vi.mock("../../registerFlowContext", () => ({

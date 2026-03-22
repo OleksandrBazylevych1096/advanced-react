@@ -12,7 +12,7 @@ type CategoryBreadcrumbsArgs = ApiLocaleParams & {
     id: string;
 };
 
-const categoryApi = baseAPI.injectEndpoints({
+export const categoryApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
         getCategoryBySlug: build.query<Category, CategoryBySlugArgs>({
             query: ({slug, locale}) => ({

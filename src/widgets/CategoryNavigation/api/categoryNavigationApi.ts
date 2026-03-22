@@ -15,7 +15,7 @@ export interface CategoryNavigationReturn {
     isShowingSubcategories: boolean;
 }
 
-const categoryNavigationApi = baseAPI.injectEndpoints({
+export const categoryNavigationApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
         getCategoryNavigation: build.query<CategoryNavigationReturn, CategoryNavigationArgs>({
             async queryFn({slug, locale}, _api, _extraOptions, baseQuery) {

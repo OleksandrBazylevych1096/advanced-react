@@ -10,7 +10,9 @@ import {Button} from "@/shared/ui/Button";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useCheckoutMainSectionController} from "../../model/controllers/useCheckoutMainSectionController/useCheckoutMainSectionController";
+import {
+    useCheckoutMainSectionController
+} from "../../model/controllers/useCheckoutMainSectionController/useCheckoutMainSectionController";
 
 import styles from "./CheckoutMainSection.module.scss";
 import {CheckoutMainSectionSkeleton} from "./CheckoutMainSectionSkeleton";
@@ -19,13 +21,13 @@ export const CheckoutMainSection = () => {
     const {t} = useTranslation("checkout");
 
     const {
-        data: {summary, currency, formattedAddress},
+        data: {summary, formattedAddress},
         status: {isLoading, isSummaryError},
         actions: {openManageShippingAddressModal, goToCartPage},
     } = useCheckoutMainSectionController();
 
     if (isLoading) {
-        return <CheckoutMainSectionSkeleton />;
+        return <CheckoutMainSectionSkeleton/>;
     }
 
     if (isSummaryError || !summary) {
@@ -49,7 +51,7 @@ export const CheckoutMainSection = () => {
                     onClick={goToCartPage}
                     data-testid="checkout-go-back-trigger"
                 >
-                    <AppIcon Icon={ArrowLeft} size={18} />
+                    <AppIcon Icon={ArrowLeft} size={18}/>
                 </Button>
                 <Typography as="h1" variant="display" weight="bold">
                     {t("checkoutTitle")}
@@ -83,11 +85,11 @@ export const CheckoutMainSection = () => {
                     <Typography tone="muted" variant="body" className={styles.metaLabel}>
                         {t("checkoutMainSection.deliveryDate")}
                     </Typography>
-                    <ChooseDeliveryDate className={styles.deliveryDateTrigger} />
+                    <ChooseDeliveryDate className={styles.deliveryDateTrigger}/>
                 </Stack>
             </Stack>
 
-            <ReviewOrderItems items={summary.items} currency={currency} />
+            <ReviewOrderItems items={summary.items}/>
         </Stack>
     );
 };

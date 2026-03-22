@@ -1,6 +1,6 @@
 import {CheckoutSessionStatus, OrderStatus, PaymentStatus} from "@/entities/order";
 
-import type {CheckoutSummary, PlaceOrderResponse} from "../../types/checkoutTypes";
+import type {CheckoutSummary, PlaceOrderResponse} from "../../model/types/checkoutTypes";
 
 export const mockCheckoutSummary: CheckoutSummary = {
     items: [

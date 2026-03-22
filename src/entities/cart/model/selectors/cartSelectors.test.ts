@@ -1,5 +1,7 @@
 import {describe, expect, test} from "vitest";
 
+import {createMockProduct} from "@/entities/product/api/test/mockData";
+
 import {
     selectGuestCartItemByProductId,
     selectGuestCartItemCount,
@@ -9,7 +11,7 @@ import {
 } from "./cartSelectors";
 
 describe("cartSelectors", () => {
-    const createState = (cart: StateSchema["cart"]) => ({cart}) as StateSchema;
+    const createState = (cart: StateSchema["cart"]) => ({cart}) as unknown as StateSchema;
 
     test("returns guest items and initialization flag", () => {
         const state = createState({
@@ -19,12 +21,7 @@ describe("cartSelectors", () => {
                     quantity: 2,
                     addedAt: 1,
                     product: {
-                        id: "p1",
-                        name: "Apple",
-                        description: "Phone",
-                        price: 100,
-                        stock: 10,
-                        images: [],
+                        ...createMockProduct({id: "p1", name: "Apple", price: 100}),
                     },
                 },
             ],
@@ -43,12 +40,7 @@ describe("cartSelectors", () => {
                     quantity: 2,
                     addedAt: 1,
                     product: {
-                        id: "p1",
-                        name: "Apple",
-                        description: "Phone",
-                        price: 100,
-                        stock: 10,
-                        images: [],
+                        ...createMockProduct({id: "p1", name: "Apple", price: 100}),
                     },
                 },
                 {
@@ -56,12 +48,7 @@ describe("cartSelectors", () => {
                     quantity: 3,
                     addedAt: 2,
                     product: {
-                        id: "p2",
-                        name: "Samsung",
-                        description: "Phone",
-                        price: 50,
-                        stock: 10,
-                        images: [],
+                        ...createMockProduct({id: "p2", name: "Samsung", price: 50}),
                     },
                 },
             ],
@@ -80,12 +67,7 @@ describe("cartSelectors", () => {
                     quantity: 1,
                     addedAt: 1,
                     product: {
-                        id: "p1",
-                        name: "Apple",
-                        description: "Phone",
-                        price: 100,
-                        stock: 10,
-                        images: [],
+                        ...createMockProduct({id: "p1", name: "Apple", price: 100}),
                     },
                 },
             ],

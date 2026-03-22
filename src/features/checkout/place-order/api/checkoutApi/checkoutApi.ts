@@ -1,10 +1,6 @@
 import {type ApiLocaleCurrencyParams, baseAPI} from "@/shared/api";
 
-import type {
-    CheckoutSummary,
-    PlaceOrderRequest,
-    PlaceOrderResponse,
-} from "../../types/checkoutTypes.ts";
+import type {CheckoutSummary, PlaceOrderRequest, PlaceOrderResponse,} from "../../model/types/checkoutTypes.ts";
 
 interface GetCheckoutSummaryRequest extends ApiLocaleCurrencyParams {
     couponCode?: string;

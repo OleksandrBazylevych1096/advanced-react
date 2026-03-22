@@ -1,6 +1,8 @@
 import {renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
+import {createMockProduct} from "@/entities/product/api/test/mockData";
+
 import type {CartItem, CartValidationItem} from "../../types/CartSchema";
 
 import {useCartValidationController} from "./useCartValidationController";
@@ -35,7 +37,7 @@ vi.mock("../../../api/cartApi", () => ({
 describe("useCartValidationController", () => {
     beforeEach(() => {
         vi.clearAllMocks();
-        testCtx.state = {user: {currency: "USD"}} as StateSchema;
+        testCtx.state = {user: {currency: "USD"}} as unknown as StateSchema;
         testCtx.validateQueryMock.mockReturnValue({
             data: undefined,
             isLoading: false,
@@ -47,25 +49,23 @@ describe("useCartValidationController", () => {
             id: "c1",
             productId: "p1",
             quantity: 5,
-            product: {
+            product: createMockProduct({
                 id: "p1",
                 name: "Product 1",
                 price: 100,
                 stock: 2,
-                images: [],
-            } as CartItem["product"],
+            }),
         },
         {
             id: "c2",
             productId: "p2",
             quantity: 1,
-            product: {
+            product: createMockProduct({
                 id: "p2",
                 name: "Product 2",
                 price: 50,
                 stock: 0,
-                images: [],
-            } as CartItem["product"],
+            }),
         },
     ];
 

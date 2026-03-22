@@ -16,8 +16,8 @@ const testCtx = vi.hoisted(() => {
         dispatchMock: vi.fn(),
         navigateMock: vi.fn(),
         loginMutationMock: vi.fn(),
-        extractCodeMock: vi.fn(() => "UNKNOWN"),
-        extractMessageMock: vi.fn(() => "Unknown error"),
+        extractCodeMock: vi.fn((_error?: unknown) => "UNKNOWN"),
+        extractMessageMock: vi.fn((_error?: unknown) => "Unknown error"),
     };
 });
 

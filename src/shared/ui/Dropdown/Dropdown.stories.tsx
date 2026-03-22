@@ -1,10 +1,10 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Button} from "@/shared/ui/Button";
+import {Dropdown} from "@/shared/ui/Dropdown/Dropdown.tsx";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {Dropdown} from "./Dropdown";
 
 const meta = {
     title: "shared/Dropdown",
@@ -16,6 +16,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+    args: {
+        children: undefined,
+    },
     render: () => (
         <Dropdown>
             <Dropdown.Trigger>Open menu</Dropdown.Trigger>

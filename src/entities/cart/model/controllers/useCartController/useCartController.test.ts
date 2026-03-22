@@ -1,6 +1,8 @@
 import {renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
+import {createMockProduct} from "@/entities/product/api/test/mockData";
+
 import {useCartController} from "./useCartController";
 
 const testCtx = vi.hoisted(() => ({
@@ -32,6 +34,13 @@ vi.mock("../../../api/cartApi", () => ({
 }));
 
 describe("useCartController", () => {
+    const guestProduct = createMockProduct({
+        id: "p1",
+        name: "Product 1",
+        price: 100,
+        stock: 10,
+    });
+
     beforeEach(() => {
         vi.clearAllMocks();
 
@@ -43,18 +52,12 @@ describe("useCartController", () => {
                         productId: "p1",
                         quantity: 2,
                         addedAt: 1,
-                        product: {
-                            id: "p1",
-                            name: "Product 1",
-                            price: 100,
-                            stock: 10,
-                            images: [],
-                        },
+                        product: guestProduct,
                     },
                 ],
                 isInitialized: true,
             },
-        } as StateSchema;
+        } as unknown as StateSchema;
 
         testCtx.refetchMock = vi.fn();
         testCtx.getCartQueryMock.mockReturnValue({

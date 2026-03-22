@@ -1,4 +1,5 @@
-import type {DeliverySelection, PlaceOrderRequest} from "@/features/checkout/place-order";
+import type {DeliverySelection} from "@/features/checkout/choose-delivery-date/@x/checkout/place-order/index.ts";
+import type {PlaceOrderRequest} from "@/features/checkout/place-order";
 
 import type {ShippingAddress} from "@/entities/shipping-address";
 

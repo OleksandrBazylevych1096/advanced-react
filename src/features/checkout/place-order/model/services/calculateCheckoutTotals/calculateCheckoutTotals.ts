@@ -1,4 +1,4 @@
-import type {CheckoutSummary} from "../../../types/checkoutTypes.ts";
+import type {CheckoutSummary} from "../../../model/types/checkoutTypes.ts";
 
 export interface CalculatedCheckoutTotals {
     couponDiscount: number;

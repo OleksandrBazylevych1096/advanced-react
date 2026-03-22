@@ -10,10 +10,13 @@ vi.mock("../../model/controllers/useChooseDeliveryDateController", () => ({
     useChooseDeliveryDateController: () => useChooseDeliveryDateControllerMock(),
 }));
 
-const formatDeliveryTriggerLabelMock = vi.fn(() => "Choose delivery date");
+const formatDeliveryTriggerLabelMock = vi.fn(
+    (_locale: string, _selection: unknown, _defaultLabel?: string) => "Choose delivery date",
+);
 
 vi.mock("../../lib/format/formatDate", () => ({
-    formatDeliveryTriggerLabel: (...args: unknown[]) => formatDeliveryTriggerLabelMock(...args),
+    formatDeliveryTriggerLabel: (locale: string, selection: unknown, defaultLabel?: string) =>
+        formatDeliveryTriggerLabelMock(locale, selection, defaultLabel),
 }));
 
 vi.mock("@/shared/ui", () => {

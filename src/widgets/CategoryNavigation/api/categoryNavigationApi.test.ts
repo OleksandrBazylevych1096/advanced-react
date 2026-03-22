@@ -2,9 +2,10 @@ import {configureStore} from "@reduxjs/toolkit";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
 import {baseAPI} from "@/shared/api";
+import {createMockCategory} from "@/entities/category/api/test/mockData";
 import {parseRequestUrl} from "@/shared/lib/testing/http/requestUrl";
 
-import "./categoryNavigationApi";
+import {categoryNavigationApi} from "./categoryNavigationApi";
 
 const createApiStore = () =>
     configureStore({
@@ -26,22 +27,14 @@ describe("categoryNavigationApi", () => {
             expect(url.searchParams.get("locale")).toBe("en");
 
             return new Response(
-                JSON.stringify([
-                    {
-                        id: "c1",
-                        name: "Phones",
-                        slug: "phones",
-                        slugMap: {en: "phones"},
-                        parentId: null,
-                    },
-                ]),
+                JSON.stringify([createMockCategory({id: "c1", name: "Phones", slug: "phones"})]),
                 {status: 200, headers: {"Content-Type": "application/json"}},
             );
         });
 
         const store = createApiStore();
         const result = await store.dispatch(
-            baseAPI.endpoints.getCategoryNavigation.initiate({
+            categoryNavigationApi.endpoints.getCategoryNavigation.initiate({
                 locale: "en",
             }),
         );
@@ -68,13 +61,7 @@ describe("categoryNavigationApi", () => {
 
             return new Response(
                 JSON.stringify({
-                    currentCategory: {
-                        id: "c1",
-                        name: "Phones",
-                        slug: "phones",
-                        slugMap: {en: "phones"},
-                        parentId: null,
-                    },
+                    currentCategory: createMockCategory({id: "c1", name: "Phones", slug: "phones"}),
                     parentCategory: null,
                     items: [],
                     isShowingSubcategories: true,
@@ -85,7 +72,7 @@ describe("categoryNavigationApi", () => {
 
         const store = createApiStore();
         const result = await store.dispatch(
-            baseAPI.endpoints.getCategoryNavigation.initiate({
+            categoryNavigationApi.endpoints.getCategoryNavigation.initiate({
                 slug: "phones",
                 locale: "en",
             }),
@@ -106,7 +93,7 @@ describe("categoryNavigationApi", () => {
 
         const store = createApiStore();
         const result = await store.dispatch(
-            baseAPI.endpoints.getCategoryNavigation.initiate({
+            categoryNavigationApi.endpoints.getCategoryNavigation.initiate({
                 locale: "en",
             }),
         );
@@ -124,7 +111,7 @@ describe("categoryNavigationApi", () => {
 
         const store = createApiStore();
         const result = await store.dispatch(
-            baseAPI.endpoints.getCategoryNavigation.initiate({
+            categoryNavigationApi.endpoints.getCategoryNavigation.initiate({
                 slug: "phones",
                 locale: "en",
             }),

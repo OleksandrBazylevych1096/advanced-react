@@ -1,6 +1,7 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
 import {createStore} from "@/app/store/setup/store";
+import {mockGeocodeLondon} from "@/entities/shipping-address/api/test/mockData";
 
 import {parseRequestUrl} from "@/shared/lib/testing/http/requestUrl";
 
@@ -46,14 +47,10 @@ describe("saveShippingAddressApi", () => {
             expect(requestUrl.toString()).toContain("/shipping-addresses/reverse-geocode");
             expect(requestUrl.searchParams.get("lat")).toBe("50.45");
             expect(requestUrl.searchParams.get("lon")).toBe("30.52");
-            expect(requestUrl.searchParams.get("locale")).toBe("uk");
+            expect(requestUrl.searchParams.get("locale")).toBe("en");
 
             return new Response(
-                JSON.stringify({
-                    label: "Kyiv",
-                    country: "Ukraine",
-                    city: "Kyiv",
-                }),
+                JSON.stringify(mockGeocodeLondon),
                 {
                     status: 200,
                     headers: {"Content-Type": "application/json"},
@@ -64,11 +61,11 @@ describe("saveShippingAddressApi", () => {
         const result = await store.dispatch(
             saveShippingAddressApi.endpoints.getReverseGeocode.initiate({
                 coords: [50.45, 30.52],
-                locale: "uk",
+                locale: "en",
             }),
         );
 
         expect(fetchSpy).toHaveBeenCalledTimes(1);
-        expect(result.data?.label).toBe("Kyiv");
+        expect(result.data?.label).toBe(mockGeocodeLondon.label);
     });
 });

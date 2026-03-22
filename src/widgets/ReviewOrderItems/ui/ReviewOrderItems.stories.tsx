@@ -19,7 +19,6 @@ const meta = {
     ],
     args: {
         items: mockCart.items,
-        currency: "USD",
     },
 } satisfies Meta<typeof ReviewOrderItems>;
 

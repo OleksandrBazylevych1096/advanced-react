@@ -21,7 +21,7 @@ vi.mock("@/entities/shipping-address", () => ({
 }));
 
 vi.mock("@/entities/user", () => ({
-    selectUserData: (state: StateSchema) => state.user?.authData,
+    selectUserData: (state: StateSchema) => state.user?.userData,
 }));
 
 vi.mock("@/shared/lib/state", () => ({
@@ -35,8 +35,8 @@ describe("useShippingAddressListController", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         testCtx.state = {
-            user: {authData: {id: "u1"}},
-        } as StateSchema;
+            user: {userData: {id: "u1", provider: "LOCAL"}},
+        } as unknown as StateSchema;
         testCtx.refetchMock = vi.fn();
         testCtx.queryMock.mockReturnValue({
             data: [{id: "a1"}],

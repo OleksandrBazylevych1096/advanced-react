@@ -1,6 +1,9 @@
 import {act, renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
+import {mockAuthSession} from "@/entities/user/api/test/mockData";
+import {createMockProduct} from "@/entities/product/api/test/mockData";
+
 import type {Product} from "@/entities/product";
 
 import {useAddToCartController} from "./useAddToCartController";
@@ -77,13 +80,12 @@ vi.mock("../../api/addToCartApi", () => ({
 }));
 
 describe("useAddToCartController", () => {
-    const product = {
+    const product = createMockProduct({
         id: "p1",
         name: "Product 1",
         price: 100,
         stock: 5,
-        images: [],
-    } as Product;
+    }) as Product;
 
     beforeEach(() => {
         vi.clearAllMocks();
@@ -91,7 +93,7 @@ describe("useAddToCartController", () => {
         testCtx.state = {
             user: {userData: undefined, currency: "USD"},
             cart: {guestItems: []},
-        } as StateSchema;
+        } as unknown as StateSchema;
         testCtx.serverCartData = undefined;
         testCtx.storeGetStateMock.mockReturnValue({
             cart: {
@@ -149,7 +151,7 @@ describe("useAddToCartController", () => {
                     },
                 ],
             },
-        } as StateSchema;
+        } as unknown as StateSchema;
 
         const {result} = renderHook(() => useAddToCartController(product));
 
@@ -169,9 +171,9 @@ describe("useAddToCartController", () => {
 
     test("sends authenticated add-to-cart mutation instead of guest dispatch", async () => {
         testCtx.state = {
-            user: {userData: {id: "u1"}, currency: "USD"},
+            user: {userData: mockAuthSession.user, currency: "USD"},
             cart: {guestItems: []},
-        } as StateSchema;
+        } as unknown as StateSchema;
         testCtx.serverCartData = {
             items: [],
         };

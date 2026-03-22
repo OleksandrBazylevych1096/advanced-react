@@ -21,7 +21,7 @@ const testCtx = vi.hoisted(() => {
         setValueMock: vi.fn(),
         verifyOtpMutationMock: vi.fn(),
         sendOtpMutationMock: vi.fn(),
-        extractApiErrorMessageMock: vi.fn(() => "Request failed"),
+        extractApiErrorMessageMock: vi.fn((_error?: unknown) => "Request failed"),
     };
 });
 
@@ -47,7 +47,7 @@ vi.mock("@/shared/lib/routing", () => ({
 }));
 
 vi.mock("@/shared/lib/errors", () => ({
-    extractApiErrorMessage: (...args: unknown[]) => testCtx.extractApiErrorMessageMock(...args),
+    extractApiErrorMessage: (error: unknown) => testCtx.extractApiErrorMessageMock(error),
 }));
 
 vi.mock("../../registerFlowContext", () => ({

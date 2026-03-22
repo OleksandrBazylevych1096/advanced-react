@@ -13,7 +13,7 @@ const testCtx = vi.hoisted(() => ({
     dispatchMock: vi.fn(),
     setupTwoFactorMutationMock: vi.fn(),
     enableTwoFactorMutationMock: vi.fn(),
-    extractApiErrorMessageMock: vi.fn(() => "Request failed"),
+    extractApiErrorMessageMock: vi.fn((_error?: unknown) => "Request failed"),
 }));
 
 vi.mock("@/entities/user", () => ({
@@ -30,7 +30,7 @@ vi.mock("@/shared/lib/state", () => ({
 }));
 
 vi.mock("@/shared/lib/errors", () => ({
-    extractApiErrorMessage: (...args: unknown[]) => testCtx.extractApiErrorMessageMock(...args),
+    extractApiErrorMessage: (error: unknown) => testCtx.extractApiErrorMessageMock(error),
 }));
 
 vi.mock("../../api/setupTwoFactorApi", () => ({

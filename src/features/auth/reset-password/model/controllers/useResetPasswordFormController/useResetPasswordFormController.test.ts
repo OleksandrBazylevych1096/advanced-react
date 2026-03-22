@@ -20,7 +20,7 @@ vi.mock("../../../api/resetPasswordApi", () => ({
 }));
 
 vi.mock("@/shared/lib/errors", () => ({
-    extractApiErrorMessage: (...args: unknown[]) => testCtx.extractApiErrorMessageMock(...args),
+    extractApiErrorMessage: (error: unknown) => testCtx.extractApiErrorMessageMock(error),
 }));
 
 vi.mock("@/shared/config", () => ({

@@ -3,8 +3,9 @@ import {beforeEach, describe, expect, test, vi} from "vitest";
 
 import {baseAPI} from "@/shared/api";
 import {parseRequestUrl} from "@/shared/lib/testing/http/requestUrl";
+import {createMockCategory} from "@/entities/category/api/test/mockData";
 
-import "./categoryApi";
+import {categoryApi} from "./categoryApi";
 
 const createApiStore = () =>
     configureStore({
@@ -26,20 +27,14 @@ describe("categoryApi", () => {
             expect(url.searchParams.get("locale")).toBe("en");
 
             return new Response(
-                JSON.stringify({
-                    id: "c1",
-                    name: "Phones",
-                    slug: "phones",
-                    slugMap: {en: "phones"},
-                    parentId: null,
-                }),
+                JSON.stringify(createMockCategory({id: "c1", name: "Phones", slug: "phones"})),
                 {status: 200, headers: {"Content-Type": "application/json"}},
             );
         });
 
         const store = createApiStore();
         const result = await store.dispatch(
-            baseAPI.endpoints.getCategoryBySlug.initiate({
+            categoryApi.endpoints.getCategoryBySlug.initiate({
                 slug: "phones",
                 locale: "en",
             }),
@@ -57,8 +52,8 @@ describe("categoryApi", () => {
 
             return new Response(
                 JSON.stringify([
-                    {id: "root", name: "Catalog", slug: "catalog", slugMap: {en: "catalog"}},
-                    {id: "c1", name: "Phones", slug: "phones", slugMap: {en: "phones"}},
+                    createMockCategory({id: "root", name: "Catalog", slug: "catalog"}),
+                    createMockCategory({id: "c1", name: "Phones", slug: "phones"}),
                 ]),
                 {status: 200, headers: {"Content-Type": "application/json"}},
             );
@@ -66,7 +61,7 @@ describe("categoryApi", () => {
 
         const store = createApiStore();
         const result = await store.dispatch(
-            baseAPI.endpoints.getCategoryBreadcrumbs.initiate({
+            categoryApi.endpoints.getCategoryBreadcrumbs.initiate({
                 id: "c1",
                 locale: "en",
             }),

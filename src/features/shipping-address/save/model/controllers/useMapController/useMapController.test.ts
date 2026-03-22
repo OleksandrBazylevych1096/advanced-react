@@ -1,12 +1,14 @@
 import {act, renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
+import {mockGeocodeLondon} from "@/entities/shipping-address/api/test/mockData";
+
 import {saveShippingAddressActions} from "../../slice/saveShippingAddressSlice";
 
 import {useMapController} from "./useMapController";
 
 const testCtx = vi.hoisted(() => ({
-    mockState: undefined as StateSchema | undefined,
+    mockState: undefined as Partial<StateSchema> | undefined,
     dispatchMock: vi.fn(),
     mockUserLocation: undefined as [number, number] | undefined,
     mockGeocodeData: undefined as
@@ -69,8 +71,9 @@ describe("useMapController", () => {
                     zipCode: "",
                 },
                 location: [51.505, -0.09],
+                isManageShippingAddressModalOpen: false,
             },
-        } as StateSchema;
+        } as Partial<StateSchema>;
 
         testCtx.mockUserLocation = undefined;
         testCtx.mockGeocodeData = undefined;
@@ -105,9 +108,7 @@ describe("useMapController", () => {
 
     test("maps reverse geocode data into form fields and preserves apartment", () => {
         testCtx.mockGeocodeData = {
-            label: "Some label",
-            country: "UK",
-            city: "London",
+            ...mockGeocodeLondon,
             street: "Baker Street",
             housenumber: "221B",
             postcode: "NW1",

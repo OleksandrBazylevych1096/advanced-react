@@ -1,6 +1,6 @@
 import {type ApiLocaleParams, baseAPI} from "@/shared/api";
 
-import type {OrderDetails} from "../../types/checkoutTypes.ts";
+import type {OrderDetails} from "../../model/types/checkoutTypes";
 
 interface GetOrderByIdRequest extends ApiLocaleParams {
     orderId: string;

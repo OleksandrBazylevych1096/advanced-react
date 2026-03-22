@@ -1,7 +1,4 @@
-import {
-    useCreatePaymentSessionMutation,
-    useGetCheckoutSummaryQuery,
-} from "./api/checkoutApi/checkoutApi.ts";
+import {useCreatePaymentSessionMutation, useGetCheckoutSummaryQuery,} from "./api/checkoutApi/checkoutApi.ts";
 import {useLazyGetOrderByIdQuery} from "./api/orderApi/orderApi.ts";
 import {buildCheckoutSummaryRows} from "./lib/buildCheckoutSummaryRows/buildCheckoutSummaryRows.ts";
 import {checkIsCheckoutReady} from "./lib/validation/checkIsCheckoutReady.ts";
@@ -20,10 +17,9 @@ export {
     PlaceOrder,
 };
 export type {
-    DeliverySelection,
     CheckoutSummary,
     PlaceOrderRequest,
     PlaceOrderResponse,
     OrderDetails,
-} from "./types/checkoutTypes";
+} from "./model/types/checkoutTypes";
 export type {OrderStatusType} from "@/entities/order";

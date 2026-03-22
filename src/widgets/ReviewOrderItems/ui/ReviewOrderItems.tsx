@@ -2,8 +2,9 @@ import {useTranslation} from "react-i18next";
 
 import type {CartItem} from "@/entities/cart";
 import {CartItemRow} from "@/entities/cart";
+import {selectUserCurrency} from "@/entities/user";
 
-import type {CurrencyType} from "@/shared/config";
+import {useAppSelector} from "@/shared/lib/state";
 import {Accordion} from "@/shared/ui/Accordion";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
@@ -12,12 +13,12 @@ import styles from "./ReviewOrderItems.module.scss";
 
 interface ReviewOrderItemsProps {
     items: CartItem[];
-    currency: CurrencyType;
 }
 
-export const ReviewOrderItems = ({items, currency}: ReviewOrderItemsProps) => {
+export const ReviewOrderItems = ({items}: ReviewOrderItemsProps) => {
     const {t} = useTranslation("checkout");
     const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+    const currency = useAppSelector(selectUserCurrency)
 
     return (
         <Stack gap={12} className={styles.card}>

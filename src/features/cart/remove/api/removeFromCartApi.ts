@@ -1,6 +1,8 @@
 import {applyCartItemQuantityChange, applyCartOptimisticUpdate} from "@/entities/cart";
 
 import {baseAPI} from "@/shared/api";
+import type {CurrencyType} from "@/shared/config";
+import {i18n} from "@/shared/config";
 import {isAbortError} from "@/shared/lib/errors";
 import {createVersionGuard, runOptimisticTxn} from "@/shared/lib/state";
 
@@ -14,13 +16,16 @@ export const removeFromCartApi = baseAPI.injectEndpoints({
                 method: "DELETE",
             }),
             invalidatesTags: ["Cart", "CartValidation"],
-            async onQueryStarted(productId, {dispatch, queryFulfilled}) {
+            async onQueryStarted(productId, {dispatch, queryFulfilled, getState}) {
                 const version = versionGuard.next(productId);
+                const state = getState() as {user?: {currency?: CurrencyType}};
+                const currency = state.user?.currency ?? "USD";
+                const cartQueryArgs = {locale: i18n.language, currency};
 
                 await runOptimisticTxn(
                     {
                         apply: () =>
-                            applyCartOptimisticUpdate(dispatch, (draft) => {
+                            applyCartOptimisticUpdate(dispatch, cartQueryArgs, (draft) => {
                                 applyCartItemQuantityChange(draft, productId, 0);
                             }),
                         rollbackOnError: (error: unknown) =>

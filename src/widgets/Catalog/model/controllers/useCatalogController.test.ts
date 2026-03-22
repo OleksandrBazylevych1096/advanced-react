@@ -20,7 +20,15 @@ vi.mock("react-i18next", () => ({
 }));
 
 vi.mock("@/features/product-filters", () => ({
-    selectActiveFilters: (state: StateSchema) => state.productFilters?.activeFilters ?? {},
+    selectActiveFilters: (state: StateSchema) => ({
+        brands: state.productFilters?.filters.brands ?? [],
+        countries: state.productFilters?.filters.countries ?? [],
+        minPrice: state.productFilters?.filters.priceRange.min,
+        maxPrice: state.productFilters?.filters.priceRange.max,
+        inStock: state.productFilters?.filters.inStock ?? true,
+        sortBy: state.productFilters?.filters.sortBy ?? "price",
+        sortOrder: state.productFilters?.filters.sortOrder ?? "asc",
+    }),
 }));
 
 vi.mock("@/entities/category", () => ({
@@ -42,12 +50,32 @@ vi.mock("@/shared/lib/state", () => ({
 }));
 
 describe("useCatalogController", () => {
+    const expectedActiveFilters = {
+        brands: ["Apple"],
+        countries: [],
+        minPrice: undefined,
+        maxPrice: undefined,
+        inStock: true,
+        sortBy: "price",
+        sortOrder: "asc",
+    };
+
     beforeEach(() => {
         vi.clearAllMocks();
         testCtx.state = {
             user: {currency: "USD"},
-            productFilters: {activeFilters: {brands: ["Apple"]}},
-        } as StateSchema;
+            productFilters: {
+                filters: {
+                    brands: ["Apple"],
+                    countries: [],
+                    priceRange: {},
+                    inStock: true,
+                    sortBy: "price",
+                    sortOrder: "asc",
+                },
+                isOpen: false,
+            },
+        } as unknown as StateSchema;
         testCtx.fetchNextPageMock = vi.fn().mockResolvedValue(undefined);
         testCtx.refetchMock = vi.fn();
         testCtx.resolveCategoryIdMock.mockReturnValue({
@@ -79,7 +107,7 @@ describe("useCatalogController", () => {
                 categoryId: "cat-1",
                 locale: "en",
                 currency: "USD",
-                brands: ["Apple"],
+                ...expectedActiveFilters,
             },
             {skip: false},
         );
@@ -128,7 +156,7 @@ describe("useCatalogController", () => {
                 categoryId: "cat-1",
                 locale: "en",
                 currency: "USD",
-                brands: ["Apple"],
+                ...expectedActiveFilters,
             },
             {skip: false},
         );
@@ -158,7 +186,7 @@ describe("useCatalogController", () => {
                 categoryId: undefined,
                 locale: "en",
                 currency: "USD",
-                brands: ["Apple"],
+                ...expectedActiveFilters,
             },
             {skip: true},
         );

@@ -5,7 +5,7 @@ import {useUnlinkGoogleController} from "./useUnlinkGoogleController";
 
 const testCtx = vi.hoisted(() => ({
     unlinkGoogleMutationMock: vi.fn(),
-    extractApiErrorMessageMock: vi.fn(() => "Request failed"),
+    extractApiErrorMessageMock: vi.fn((_error?: unknown) => "Request failed"),
 }));
 
 vi.mock("@/shared/lib", () => ({
@@ -13,7 +13,7 @@ vi.mock("@/shared/lib", () => ({
 }));
 
 vi.mock("@/shared/lib/errors", () => ({
-    extractApiErrorMessage: (...args: unknown[]) => testCtx.extractApiErrorMessageMock(...args),
+    extractApiErrorMessage: (error: unknown) => testCtx.extractApiErrorMessageMock(error),
 }));
 
 vi.mock("../../api/unlinkGoogleApi", () => ({
