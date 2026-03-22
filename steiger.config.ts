@@ -31,4 +31,11 @@ export default defineConfig([
             "fsd/no-public-api-sidestep": "off",
         },
     },
+    {
+        // Allow direct test data/handler imports between slices in api test modules.
+        files: ["./src/**/api/test/handlers.*", "./src/**/api/test/mockData.*"],
+        rules: {
+            "fsd/no-public-api-sidestep": "off",
+        },
+    },
 ]);

@@ -2,12 +2,15 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {firstOrderProductsHandlers} from "@/pages/Home/api/test/handlers";
 
-import {bestSellingProductsHandlers} from "@/widgets/BestSellingProducts";
-import {categoryNavigationHandlers, topLevelCategoriesHandlers} from "@/widgets/CategoryNavigation";
-import {promoCarouselHandlers} from "@/widgets/PromoCarousel";
-import {trendingProductsHandlers} from "@/widgets/TrendingProducts";
+import {bestSellingProductsHandlers} from "@/widgets/BestSellingProducts/api/test/handlers";
+import {
+    categoryNavigationHandlers,
+    topLevelCategoriesHandlers,
+} from "@/widgets/CategoryNavigation/api/test/handlers";
+import {promoCarouselHandlers} from "@/widgets/PromoCarousel/api/test/handlers";
+import {trendingProductsHandlers} from "@/widgets/TrendingProducts/api/test/handlers";
 
-import {productsHandlers} from "@/entities/product";
+import {productsHandlers} from "@/entities/product/api/test/handlers";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

@@ -10,11 +10,10 @@ import {
     deleteAddressHandlers,
     geocodeHandlers,
     listAddressHandlers,
-    mockAddresses,
-    mockSingleAddress,
     searchHandlers,
     setDefaultAddressHandlers,
-} from "@/entities/shipping-address/testing";
+} from "@/entities/shipping-address/api/test/handlers";
+import {mockAddresses, mockSingleAddress} from "@/entities/shipping-address/api/test/mockData";
 
 import type {DeepPartial} from "@/shared/lib/state";
 import {createHandlersScenario} from "@/shared/lib/testing";

@@ -4,8 +4,8 @@ import {productFiltersReducer} from "@/features/product-filters";
 
 import {categoryHandlers} from "@/entities/category/api/test/handlers.ts";
 import {mockCategories} from "@/entities/category/api/test/mockData.ts";
-import {mockProductBrands, mockProductCountries} from "@/entities/product";
 import {productsHandlers} from "@/entities/product/api/test/handlers.ts";
+import {mockProductBrands, mockProductCountries} from "@/entities/product/api/test/mockData";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

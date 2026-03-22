@@ -3,9 +3,9 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {productPageHandlers} from "@/pages/Product/api/test/handlers";
 import {mockProductPageProduct} from "@/pages/Product/api/test/mockData";
 
-import {bestSellingProductsHandlers} from "@/widgets/BestSellingProducts";
+import {bestSellingProductsHandlers} from "@/widgets/BestSellingProducts/api/test/handlers";
 
-import {categoryBreadcrumbsHandlers} from "@/entities/category";
+import {categoryBreadcrumbsHandlers} from "@/entities/category/api/test/handlers";
 
 import {AppRoutes, routePaths} from "@/shared/config";
 

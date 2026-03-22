@@ -1,8 +1,8 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {trendingProductsHandlers} from "@/widgets/TrendingProducts";
+import {trendingProductsHandlers} from "@/widgets/TrendingProducts/api/test/handlers";
 
-import {productsHandlers} from "@/entities/product";
+import {productsHandlers} from "@/entities/product/api/test/handlers";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

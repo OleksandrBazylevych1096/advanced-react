@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {bestSellingProductsHandlers} from "@/widgets/BestSellingProducts";
+import {bestSellingProductsHandlers} from "@/widgets/BestSellingProducts/api/test/handlers";
 
 import {chooseDeliveryDateHandlers} from "@/features/checkout/choose-delivery-date/api/test/handlers";
 

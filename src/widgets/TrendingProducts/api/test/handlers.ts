@@ -1,4 +1,4 @@
-import {mockTags} from "@/entities/tag";
+import {mockTags} from "@/entities/tag/api/test/mockData";
 
 import {API_URL} from "@/shared/config";
 import {createHandlers} from "@/shared/lib/testing";
