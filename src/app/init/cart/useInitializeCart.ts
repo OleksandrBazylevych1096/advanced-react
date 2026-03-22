@@ -2,7 +2,7 @@ import {useEffect} from "react";
 
 import {cartActions, getGuestCart, onCartSync} from "@/entities/cart";
 
-import {useAppDispatch} from "@/shared/lib";
+import {useAppDispatch} from "@/shared/lib/state";
 
 export const useInitializeCart = () => {
     const dispatch = useAppDispatch();

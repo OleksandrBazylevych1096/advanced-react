@@ -4,26 +4,26 @@ import {
     useRevokeAuthSessionMutation,
 } from "./api/authSessionsApi/authSessionsApi";
 import {useRefreshSessionMutation} from "./api/sessionApi/sessionApi";
-import {selectAccessToken} from "./model/selectors/selectAccessToken/selectAccessToken";
-import {selectIsAuthenticated} from "./model/selectors/selectIsAuthenticated/selectIsAuthenticated";
-import {selectPendingMfaChallenge} from "./model/selectors/selectPendingMfaChallenge/selectPendingMfaChallenge";
-import {selectUserCurrency} from "./model/selectors/selectUserCurrency/selectUserCurrency";
-import {selectUserData} from "./model/selectors/selectUserData/selectUserData";
+import {selectAccessToken} from "./state/selectors/selectAccessToken/selectAccessToken";
+import {selectIsAuthenticated} from "./state/selectors/selectIsAuthenticated/selectIsAuthenticated";
+import {selectPendingMfaChallenge} from "./state/selectors/selectPendingMfaChallenge/selectPendingMfaChallenge";
+import {selectUserCurrency} from "./state/selectors/selectUserCurrency/selectUserCurrency";
+import {selectUserData} from "./state/selectors/selectUserData/selectUserData";
 import {
     applyAuthSession,
     applyUserSession,
-} from "./model/services/applyUserSession/applyUserSession";
-import {clearUserSession} from "./model/services/clearUserSession/clearUserSession";
-import {userActions, userReducer} from "./model/slice/userSlice";
+} from "./state/services/applyUserSession/applyUserSession";
+import {clearUserSession} from "./state/services/clearUserSession/clearUserSession";
+import {userActions, userReducer} from "./state/slice/userSlice";
 import type {
     AuthSessionResponse,
     AuthSessionsListItem,
     MfaChallengeResponse,
     MfaMethod,
     PendingMfaChallenge,
-} from "./model/types/AuthSession";
-import {isAuthSessionResponse, isMfaChallengeResponse} from "./model/types/AuthSession";
-import type {User, UserSchema} from "./model/types/UserSchema";
+} from "./state/types/AuthSession";
+import {isAuthSessionResponse, isMfaChallengeResponse} from "./state/types/AuthSession";
+import type {User, UserSchema} from "./state/types/UserSchema";
 
 export {
     userActions,
@@ -52,3 +52,4 @@ export type {
     PendingMfaChallenge,
     AuthSessionsListItem,
 };
+

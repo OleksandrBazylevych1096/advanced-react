@@ -1,8 +1,9 @@
 import {TagListSkeleton} from "@/entities/tag/ui/TagList/TagListSkeleton.tsx";
 
-import {Button, Stack} from "@/shared/ui";
+import {Button} from "@/shared/ui/Button";
+import {Stack} from "@/shared/ui/Stack";
 
-import type {Tag} from "../../model/types/Tag";
+import type {Tag} from "../../state/types/Tag";
 
 import styles from "./TagList.module.scss";
 
@@ -42,3 +43,4 @@ export const TagList = (props: TagListProps) => {
         </Stack>
     );
 };
+

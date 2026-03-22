@@ -20,7 +20,7 @@ vi.mock("react-router", () => ({
     useParams: () => ({lng: "en"}),
 }));
 
-vi.mock("@/features/save-shipping-address", () => ({
+vi.mock("@/features/shipping-address/save", () => ({
     ADDRESS_MODE_TITLES: {
         choose: "shipping.choose",
         add: "shipping.add",

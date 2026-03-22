@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {userAuthHandlers} from "@/entities/user/api/test/handlers";
 
-import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario";
+import {createHandlersScenario} from "@/shared/libScenario";
 
 import ResetPasswordPage from "./ResetPasswordPage";
 
@@ -31,3 +31,4 @@ export const MissingToken: Story = {
         route: "/en/reset-password",
     },
 };
+

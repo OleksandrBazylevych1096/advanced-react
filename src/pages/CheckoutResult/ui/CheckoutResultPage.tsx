@@ -2,11 +2,15 @@ import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router";
 
 import {AppRoutes, routePaths} from "@/shared/config";
-import {useLocalizedRoutePath} from "@/shared/lib";
-import {Button, Container, Spinner, Stack, Typography} from "@/shared/ui";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
+import {Button} from "@/shared/ui/Button";
+import {Container} from "@/shared/ui/Container";
+import {Spinner} from "@/shared/ui/Spinner";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import {useSessionIdFromParams} from "../lib/useSessionIdFromParams.ts";
-import {usePaymentController} from "../model/controllers/usePaymentController/usePaymentController.ts";
+import {usePaymentController} from "../state/controllers/usePaymentController/usePaymentController.ts";
 
 import styles from "./CheckoutResultPage.module.scss";
 
@@ -79,3 +83,4 @@ const CheckoutResultPage = () => {
 };
 
 export default CheckoutResultPage;
+

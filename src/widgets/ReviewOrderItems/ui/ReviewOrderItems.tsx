@@ -4,8 +4,9 @@ import type {CartItem} from "@/entities/cart";
 import {CartItemRow} from "@/entities/cart";
 
 import type {CurrencyType} from "@/shared/config";
-import {Stack, Typography} from "@/shared/ui";
-import {Accordion} from "@/shared/ui/Accordion/Accordion.tsx";
+import {Accordion} from "@/shared/ui/Accordion";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./ReviewOrderItems.module.scss";
 
@@ -58,3 +59,4 @@ export const ReviewOrderItems = ({items, currency}: ReviewOrderItemsProps) => {
         </Stack>
     );
 };
+

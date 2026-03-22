@@ -1,8 +1,9 @@
 import {createContext, type FC, type ReactNode, useContext, useMemo, useState} from "react";
 
 import ChevronRight from "@/shared/assets/icons/ChevronRight.svg?react";
-import {cn} from "@/shared/lib";
-import {AppIcon, Button} from "@/shared/ui";
+import {cn} from "@/shared/lib/styling";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
 
 import styles from "./Accordion.module.scss";
 

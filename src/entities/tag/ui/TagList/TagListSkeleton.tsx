@@ -1,6 +1,6 @@
 import styles from "@/entities/tag/ui/TagList/TagList.module.scss";
 
-import {Stack} from "@/shared/ui";
+import {Stack} from "@/shared/ui/Stack";
 
 interface TagListSkeletonProps {
     count?: number;

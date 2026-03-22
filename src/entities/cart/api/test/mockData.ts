@@ -1,4 +1,4 @@
-import type {Cart, CartValidationItem} from "../../model/types/CartSchema";
+import type {Cart, CartValidationItem} from "../../state/types/CartSchema";
 
 export const mockCart: Cart = {
     items: [
@@ -72,3 +72,4 @@ export const mockCartValidationWithIssues: CartValidationItem[] = [
         issues: ["Only 1 left in stock"],
     },
 ];
+

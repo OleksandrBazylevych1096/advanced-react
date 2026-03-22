@@ -1,7 +1,7 @@
 import {delay, http, HttpResponse} from "msw";
 
 import {API_URL} from "@/shared/config";
-import {createHandlers, extendHandlers} from "@/shared/lib/testing/msw/createHandlers.ts";
+import {createHandlers, extendHandlers} from "@/shared/lib/testing";
 
 import {
     mockAddresses,
@@ -174,3 +174,4 @@ export const handlers = {
     defaultAddressLoading: defaultAddressHandlers.loading,
     defaultAddressError: defaultAddressHandlers.error,
 };
+

@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {userAuthHandlers} from "@/entities/user/api/test/handlers";
 import {mockAuthSession} from "@/entities/user/api/test/mockData";
 
-import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario";
+import {createHandlersScenario} from "@/shared/libScenario";
 
 import SessionsPage from "./SessionsPage";
 
@@ -44,3 +44,4 @@ export const EmptySessions: Story = {
         },
     },
 };
+

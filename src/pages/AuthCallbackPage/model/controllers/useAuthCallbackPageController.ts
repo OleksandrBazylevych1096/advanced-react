@@ -3,9 +3,10 @@ import {useNavigate, useSearchParams} from "react-router";
 
 import {type MfaMethod, userActions, useRefreshSessionMutation} from "@/entities/user";
 
-import {extractApiErrorMessage} from "@/shared/api";
-import {AppRoutes, i18n, routePaths} from "@/shared/config";
-import {createControllerResult, useAppDispatch, useLocalizedRoutePath} from "@/shared/lib";
+import {PROJECT_ENV,i18n,AppRoutes, routePaths} from "@/shared/config";
+import {extractApiErrorMessage} from "@/shared/lib/errors";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
+import {createControllerResult, useAppDispatch} from "@/shared/lib/state";
 
 export const useAuthCallbackPageController = () => {
     const [searchParams] = useSearchParams();
@@ -33,7 +34,7 @@ export const useAuthCallbackPageController = () => {
     const hasStarted = useRef(false);
 
     useEffect(() => {
-        if (import.meta.env.VITE_PROJECT_ENV !== "storybook") {
+        if (PROJECT_ENV !== "storybook") {
             if (hasStarted.current || errorParam) return;
 
             hasStarted.current = true;

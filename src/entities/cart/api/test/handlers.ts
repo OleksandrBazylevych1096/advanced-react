@@ -1,7 +1,7 @@
 import {http, HttpResponse} from "msw";
 
 import {API_URL} from "@/shared/config";
-import {createHandlers, extendHandlers} from "@/shared/lib/testing/msw/createHandlers";
+import {createHandlers, extendHandlers} from "@/shared/lib/testing";
 
 import {mockCart, mockCartValidation, mockCartValidationWithIssues} from "./mockData";
 
@@ -64,3 +64,4 @@ export const cartHandlers = {
     updateItem: updateItemBase,
     removeItem: removeItemBase,
 };
+

@@ -1,0 +1,138 @@
+import {type FormEvent} from "react";
+import {useTranslation} from "react-i18next";
+
+import type {AddressMode, AddressSearchResult} from "@/entities/shipping-address";
+
+import {Button} from "@/shared/ui/Button";
+import {Input} from "@/shared/ui/Input";
+import {Stack} from "@/shared/ui/Stack";
+
+import styles from "./EditAddressForm.module.scss";
+import {SuggestionsList} from "./SuggestionList";
+
+export interface EditAddressFormUIProps {
+    streetAddress: string;
+    city: string;
+    numberOfApartment: string;
+    zipCode: string;
+    streetSuggestions?: AddressSearchResult[];
+    citySuggestions?: AddressSearchResult[];
+    showStreetSuggestions: boolean;
+    showCitySuggestions: boolean;
+    isSubmitting?: boolean;
+    canSave?: boolean;
+    mode: AddressMode;
+    onSubmit: () => void;
+    onStreetAddressChange: (value: string) => void;
+    onCityChange: (value: string) => void;
+    onApartmentChange: (value: string) => void;
+    onZipCodeChange: (value: string) => void;
+    onStreetFocus: () => void;
+    onStreetBlur: () => void;
+    onCityFocus: () => void;
+    onCityBlur: () => void;
+    onSuggestionClick: (suggestion: AddressSearchResult, type: "street" | "city") => void;
+}
+
+export const EditAddressFormView = ({
+    streetAddress,
+    city,
+    numberOfApartment,
+    zipCode,
+    streetSuggestions,
+    citySuggestions,
+    showStreetSuggestions,
+    showCitySuggestions,
+    isSubmitting = false,
+    canSave = false,
+    mode,
+    onSubmit,
+    onStreetAddressChange,
+    onCityChange,
+    onApartmentChange,
+    onZipCodeChange,
+    onStreetFocus,
+    onStreetBlur,
+    onCityFocus,
+    onCityBlur,
+    onSuggestionClick,
+}: EditAddressFormUIProps) => {
+    const {t} = useTranslation();
+    return (
+        <form
+            className={styles.form}
+            onSubmit={(e: FormEvent) => {
+                e.preventDefault();
+                onSubmit();
+            }}
+            data-testid="edit-address-form"
+        >
+            <div className={styles.inputWrapper}>
+                <Input
+                    label={t("manageAddress.streetAddress")}
+                    value={streetAddress}
+                    onChange={onStreetAddressChange}
+                    onFocus={onStreetFocus}
+                    onBlur={onStreetBlur}
+                    required
+                    data-testid="edit-address-street-input"
+                />
+                <SuggestionsList
+                    suggestions={streetSuggestions}
+                    show={showStreetSuggestions}
+                    onSelect={(s) => onSuggestionClick(s, "street")}
+                />
+            </div>
+
+            <div className={styles.containerWrapper}>
+                <Stack className={styles.container} direction="row" gap={12}>
+                    <div className={styles.detailsInput}>
+                        <Input
+                            label={t("manageAddress.city")}
+                            value={city}
+                            onChange={onCityChange}
+                            onFocus={onCityFocus}
+                            onBlur={onCityBlur}
+                            required
+                            data-testid="edit-address-city-input"
+                        />
+                    </div>
+                    <div className={styles.detailsInput}>
+                        <Input
+                            label={t("manageAddress.apartment")}
+                            value={numberOfApartment}
+                            onChange={onApartmentChange}
+                            required
+                            data-testid="edit-address-apartment-input"
+                        />
+                    </div>
+                    <div className={styles.detailsInput}>
+                        <Input
+                            label={t("manageAddress.zipCode")}
+                            value={zipCode}
+                            onChange={onZipCodeChange}
+                            required
+                            data-testid="edit-address-zipcode-input"
+                        />
+                    </div>
+                </Stack>
+
+                <SuggestionsList
+                    suggestions={citySuggestions}
+                    show={showCitySuggestions}
+                    onSelect={(s) => onSuggestionClick(s, "city")}
+                />
+            </div>
+
+            <Button
+                isLoading={isSubmitting}
+                disabled={!canSave || isSubmitting}
+                fullWidth
+                type="submit"
+                data-testid="edit-address-submit-btn"
+            >
+                {mode === "edit" ? t("manageAddress.update") : t("manageAddress.save")}
+            </Button>
+        </form>
+    );
+};

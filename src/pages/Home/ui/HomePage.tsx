@@ -3,7 +3,7 @@ import {CategoryNavigation} from "@/widgets/CategoryNavigation";
 import {PromoCarousel} from "@/widgets/PromoCarousel";
 import {TrendingProducts} from "@/widgets/TrendingProducts";
 
-import {Stack} from "@/shared/ui";
+import {Stack} from "@/shared/ui/Stack";
 
 import {FirstOrderSection} from "./FirstOrderSection/FirstOrderSection";
 

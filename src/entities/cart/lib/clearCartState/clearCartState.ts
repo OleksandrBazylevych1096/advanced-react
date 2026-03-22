@@ -1,5 +1,5 @@
 import {cartApi} from "../../api/cartApi";
-import {cartActions} from "../../model/slice/cartSlice";
+import {cartActions} from "../../state/slice/cartSlice";
 import {clearGuestCart} from "../cartStorage";
 import {broadcastCartClear} from "../cartSync";
 
@@ -36,3 +36,4 @@ export const clearCartState = (
         dispatch(cartApi.util.invalidateTags(["Cart", "CartValidation"]));
     }
 };
+

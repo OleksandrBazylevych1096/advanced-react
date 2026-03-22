@@ -1,12 +1,14 @@
 import {useTranslation} from "react-i18next";
 
-import {AddToCartButton} from "@/features/add-to-cart";
+import {AddToCartButton} from "@/features/cart/add";
 
 import type {Product} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
-import {useAppSelector} from "@/shared/lib";
-import {EmptyState, ErrorState, Price, Typography} from "@/shared/ui";
+import {useAppSelector} from "@/shared/lib/state";
+import {Price} from "@/shared/ui/Price";
+import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./ProductInfo.module.scss";
 import {ProductInfoSkeleton} from "./ProductInfoSkeleton";

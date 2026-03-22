@@ -1,10 +1,10 @@
 import type {CSSProperties, ReactNode} from "react";
 import type {GridCellProps} from "react-virtualized";
 
-import {COLUMN_GAP, COLUMN_WIDTH, ROW_GAP} from "@/widgets/Catalog/consts/defaults.ts";
+import {COLUMN_GAP, COLUMN_WIDTH, ROW_GAP} from "@/widgets/Catalog/config/defaults.ts";
 import type {CatalogItem} from "@/widgets/Catalog/ui/Catalog.tsx";
 
-import {ProductCardWithAddToCart} from "@/features/add-to-cart";
+import {ProductCardWithAddToCart} from "@/features/cart/add";
 
 import {type Product, ProductCardSkeleton} from "@/entities/product";
 
@@ -55,3 +55,4 @@ export const CellRenderer = ({
         </div>
     );
 };
+

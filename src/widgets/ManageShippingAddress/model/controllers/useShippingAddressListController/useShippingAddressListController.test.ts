@@ -10,7 +10,7 @@ const testCtx = vi.hoisted(() => ({
     state: undefined as StateSchema | undefined,
 }));
 
-vi.mock("@/features/save-shipping-address", () => ({
+vi.mock("@/features/shipping-address/save", () => ({
     saveShippingAddressActions: {
         initializeAddMode: (payload: unknown) => ({type: "shipping/initAdd", payload}),
     },

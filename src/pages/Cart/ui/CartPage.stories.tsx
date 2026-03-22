@@ -2,12 +2,12 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {bestSellingProductsHandlers} from "@/widgets/BestSellingProducts";
 
-import {chooseDeliveryDateHandlers} from "@/features/choose-delivery-date/api/test/handlers";
+import {chooseDeliveryDateHandlers} from "@/features/checkout/choose-delivery-date/api/test/handlers";
 
 import {cartHandlers} from "@/entities/cart/api/test/handlers";
 import {mockAuthSession} from "@/entities/user/api/test/mockData";
 
-import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario";
+import {createHandlersScenario} from "@/shared/libScenario";
 
 import CartPage from "./CartPage";
 
@@ -73,3 +73,4 @@ export const Error: Story = {
         },
     },
 };
+

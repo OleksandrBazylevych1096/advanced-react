@@ -2,11 +2,11 @@ import useEmblaCarousel from "embla-carousel-react";
 
 import {ProductImageCarouselSkeleton} from "@/pages/Product/ui/ProductImageCarousel/ProductImageCarouselSkeleton.tsx";
 
-import type {ProductImage} from "@/entities/product/model/types/Product.ts";
+import type {ProductImage} from "@/entities/product";
 
-import {AppImage, EmptyState, ErrorState} from "@/shared/ui";
-import {CarouselThumbnails} from "@/shared/ui/Carousel/CarouselThumbnails.tsx";
-import {useCarouselThumbnails} from "@/shared/ui/Carousel/hooks/useThumbnails.ts";
+import {AppImage} from "@/shared/ui/AppImage";
+import {CarouselThumbnails,useCarouselThumbnails} from "@/shared/ui/Carousel";
+import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 
 import styles from "./ProductImageCarousel.module.scss";
 
@@ -61,3 +61,4 @@ export const ProductImageCarousel = ({images, isLoading, error}: ProductImageCar
         </div>
     );
 };
+

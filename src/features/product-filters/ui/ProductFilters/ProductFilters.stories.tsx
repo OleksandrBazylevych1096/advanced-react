@@ -5,9 +5,9 @@ import {productFiltersReducer} from "@/features/product-filters";
 import {categoryHandlers} from "@/entities/category/api/test/handlers.ts";
 import {mockCategories} from "@/entities/category/api/test/mockData.ts";
 import {productsHandlers} from "@/entities/product/api/test/handlers.ts";
-import {mockProductBrands, mockProductCountries} from "@/entities/product/api/test/mockData.ts";
+import {mockProductBrands, mockProductCountries} from "@/entities/product.ts";
 
-import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario.ts";
+import {createHandlersScenario} from "@/shared/libScenario.ts";
 
 import {ProductFilters} from "./ProductFilters";
 
@@ -135,3 +135,4 @@ export const EmptyFacets: Story = {
         },
     },
 };
+

@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {createMockProduct} from "@/entities/product/api/test/mockData.ts";
+import {createMockProduct} from "@/entities/product.ts";
 
 import {ProductCard} from "./ProductCard";
 
@@ -92,3 +92,4 @@ export const NoImage: Story = {
         currency: "USD",
     },
 };
+

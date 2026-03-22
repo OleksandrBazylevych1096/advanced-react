@@ -12,8 +12,8 @@ import {
     useState,
 } from "react";
 
-import {cn} from "@/shared/lib";
-import {Button} from "@/shared/ui";
+import {cn} from "@/shared/lib/styling";
+import {Button} from "@/shared/ui/Button";
 
 import styles from "./Dropdown.module.scss";
 

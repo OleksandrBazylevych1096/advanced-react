@@ -1,7 +1,7 @@
 import {useEffect, useId, useState} from "react";
 
 import CheckedIcon from "@/shared/assets/icons/Checked.svg?react";
-import {cn} from "@/shared/lib";
+import {cn} from "@/shared/lib/styling";
 import {Stack} from "@/shared/ui/Stack/Stack";
 
 import styles from "./Checkbox.module.scss";

@@ -9,7 +9,7 @@ import {categoryBreadcrumbsHandlers, categoryHandlers} from "@/entities/category
 import {productsHandlers} from "@/entities/product";
 
 import {AppRoutes, routePaths} from "@/shared/config";
-import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario.ts";
+import {createHandlersScenario} from "@/shared/libScenario.ts";
 
 import CategoryPage from "./CategoryPage";
 
@@ -84,3 +84,4 @@ export const Error: Story = {
         },
     },
 };
+

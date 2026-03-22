@@ -22,7 +22,7 @@ vi.mock("@/entities/user", () => ({
     useRefreshSessionMutation: () => [testCtx.refreshSessionMock, {isLoading: false}],
 }));
 
-vi.mock("@/shared/api", () => ({
+vi.mock("@/shared/lib/errors", () => ({
     extractApiErrorMessage: (error: unknown) =>
         error instanceof Error ? error.message : "Request failed",
 }));

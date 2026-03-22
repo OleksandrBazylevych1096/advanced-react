@@ -2,8 +2,9 @@ import {useNavigate} from "react-router";
 
 import ArrowLeft from "@/shared/assets/icons/ArrowLeft.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
-import {useLocalizedRoutePath} from "@/shared/lib";
-import {AppIcon, Button} from "@/shared/ui";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
 
 interface CategoryNavigationGoBackItemProps {
     parentSlug?: string;

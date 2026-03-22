@@ -1,5 +1,5 @@
 import {API_URL} from "@/shared/config";
-import {createHandlers} from "@/shared/lib/testing/msw/createHandlers.ts";
+import {createHandlers} from "@/shared/lib/testing";
 
 import {mockBanners} from "./mockData.ts";
 
@@ -10,3 +10,4 @@ export const promoCarouselHandlers = createHandlers({
     errorData: {error: "Failed to load banners"},
     errorStatus: 500,
 });
+

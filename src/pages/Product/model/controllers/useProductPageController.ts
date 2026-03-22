@@ -6,9 +6,10 @@ import {generateProductBreadcrumbs} from "@/pages/Product/lib/generateProductBre
 
 import {useGetCategoryBreadcrumbsQuery} from "@/entities/category";
 
-import {AppRoutes, routePaths, type SupportedLngsType} from "@/shared/config";
-import {createControllerResult} from "@/shared/lib";
-import {useLocalizedSlugSync} from "@/shared/lib/routing/localizedSlug/useSlugSync.ts";
+import type {SupportedLngsType} from "@/shared/config";
+import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedSlugSync} from "@/shared/lib/routing";
+import {createControllerResult} from "@/shared/lib/state";
 
 export const useProductPageController = () => {
     const {slug, lng} = useParams<{slug: string; lng: SupportedLngsType}>();
@@ -46,3 +47,4 @@ export const useProductPageController = () => {
         },
     });
 };
+

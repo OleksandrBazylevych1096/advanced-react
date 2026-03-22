@@ -44,7 +44,7 @@ vi.mock("@/shared/lib", () => ({
     getFallbackLanguage: () => "en",
 }));
 
-vi.mock("@/shared/config/i18n/i18n", () => ({
+vi.mock("@/shared/config", () => ({
     supportedLngs: ["en", "de"],
     default: testCtx.i18nMock,
 }));
@@ -84,3 +84,4 @@ describe("useInitializeCurrency", () => {
         });
     });
 });
+

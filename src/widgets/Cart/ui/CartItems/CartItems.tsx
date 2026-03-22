@@ -1,12 +1,14 @@
-import {RemoveFromCartButton} from "@/features/remove-from-cart";
-import {CartQuantityStepper} from "@/features/update-cart-item-quantity";
+import {RemoveFromCartButton} from "@/features/cart/remove";
+import {CartQuantityStepper} from "@/features/cart/update-item-quantity";
 
 import {CartItemRow} from "@/entities/cart";
 
-import {cn} from "@/shared/lib";
-import {EmptyState, ErrorState, Stack, Typography} from "@/shared/ui";
+import {cn} from "@/shared/lib/styling";
+import {Stack} from "@/shared/ui/Stack";
+import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
+import {Typography} from "@/shared/ui/Typography";
 
-import {useCartItemsController} from "../../model/controllers/useCartItemsController";
+import {useCartItemsController} from "../../state/controllers/useCartItemsController";
 
 import styles from "./CartItems.module.scss";
 import {CartItemsSkeleton} from "./CartItemsSkeleton";
@@ -93,3 +95,4 @@ export const CartItems = ({compact, className}: CartItemsProps) => {
         </Stack>
     );
 };
+

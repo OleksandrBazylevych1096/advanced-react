@@ -1,6 +1,6 @@
 import {describe, expect, test} from "vitest";
 
-import {DEFAULT_SORT_BY, DEFAULT_SORT_ORDER} from "@/features/product-filters/consts/defaults.ts";
+import {DEFAULT_SORT_BY, DEFAULT_SORT_ORDER} from "@/features/product-filters/config/defaults.ts";
 
 import {
     selectActiveFilters,
@@ -102,3 +102,4 @@ describe("productFiltersSelectors", () => {
         expect(selectHasFilterChanges(state)).toBe(true);
     });
 });
+

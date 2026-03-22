@@ -1,7 +1,7 @@
 import type {FC, ReactNode, SVGProps} from "react";
 
-import {cn} from "@/shared/lib";
-import {AppIcon} from "@/shared/ui/AppIcon/AppIcon";
+import {cn} from "@/shared/lib/styling";
+import {AppIcon} from "@/shared/ui/AppIcon";
 import {Stack} from "@/shared/ui/Stack/Stack";
 import {Typography} from "@/shared/ui/Typography/Typography";
 
@@ -45,3 +45,4 @@ export const EmptyState = ({
         </Stack>
     );
 };
+

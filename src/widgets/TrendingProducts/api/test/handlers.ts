@@ -1,7 +1,7 @@
-import {mockTags} from "@/entities/tag/api/test/mockData.ts";
+import {mockTags} from "@/entities/tag";
 
 import {API_URL} from "@/shared/config";
-import {createHandlers} from "@/shared/lib/testing/msw/createHandlers.ts";
+import {createHandlers} from "@/shared/lib/testing";
 
 export const trendingProductsHandlers = createHandlers({
     endpoint: `${API_URL}/tags/popular`,
@@ -10,3 +10,4 @@ export const trendingProductsHandlers = createHandlers({
     errorData: {error: "Failed to load trending products"},
     errorStatus: 500,
 });
+

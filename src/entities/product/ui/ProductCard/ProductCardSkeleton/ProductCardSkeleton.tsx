@@ -1,4 +1,4 @@
-import {cn} from "@/shared/lib";
+import {cn} from "@/shared/lib/styling";
 
 import styles from "./ProductCardSkeleton.module.scss";
 

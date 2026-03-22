@@ -4,7 +4,7 @@ import {useParams} from "react-router";
 import {useGetCategoryNavigationQuery} from "@/widgets/CategoryNavigation/api/categoryNavigationApi.ts";
 
 import type {SupportedLngsType} from "@/shared/config";
-import {createControllerResult} from "@/shared/lib";
+import {createControllerResult} from "@/shared/lib/state";
 
 export const useCategoryNavigationController = () => {
     const {i18n} = useTranslation();

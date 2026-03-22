@@ -7,7 +7,7 @@ import {
     DEFAULT_SORT_BY,
     DEFAULT_SORT_ORDER,
     URL_PARAMS,
-} from "@/features/product-filters/consts/defaults.ts";
+} from "@/features/product-filters/config/defaults.ts";
 import {parsePriceRange} from "@/features/product-filters/lib/parsePriceRange/parsePriceRange.ts";
 import {
     isValidSortBy,
@@ -32,17 +32,13 @@ import type {
 
 import {useResolvedCategoryIdController} from "@/entities/category";
 import {useGetInfiniteProducts} from "@/entities/product";
-import type {PriceRangeType} from "@/entities/product/model/types/Product.ts";
+import type {PriceRangeType} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
 import type {SupportedLngsType} from "@/shared/config";
-import {
-    clampOptionalRange,
-    createControllerResult,
-    useAppDispatch,
-    useAppSelector,
-} from "@/shared/lib";
-import {useDebounce} from "@/shared/lib/async/debounce/useDebounce.ts";
+import {useDebounce} from "@/shared/lib/async";
+import {clampOptionalRange} from "@/shared/lib/math";
+import {createControllerResult, useAppDispatch, useAppSelector} from "@/shared/lib/state";
 
 interface UseProductFiltersControllerArgs {
     categoryId?: string;
@@ -278,3 +274,5 @@ export const useProductFiltersController = ({categoryId}: UseProductFiltersContr
         },
     });
 };
+
+

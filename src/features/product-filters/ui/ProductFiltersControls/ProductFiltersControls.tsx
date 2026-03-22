@@ -1,6 +1,7 @@
-import {Button, Stack} from "@/shared/ui";
+import {Button} from "@/shared/ui/Button";
+import {Stack} from "@/shared/ui/Stack";
 
-import {useProductFiltersControlsController} from "../../model/controllers/useProductFiltersControlsController/useProductFiltersControlsController";
+import {useProductFiltersControlsController} from "../../state/controllers/useProductFiltersControlsController/useProductFiltersControlsController";
 
 import styles from "./ProductFiltersControls.module.scss";
 import {SortOptionsSelect} from "./SortOptionsSelect/SortOptionsSelect";
@@ -19,3 +20,4 @@ export const ProductFiltersControls = () => {
         </Stack>
     );
 };
+

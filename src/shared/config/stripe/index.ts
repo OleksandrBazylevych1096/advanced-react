@@ -1,0 +1,1 @@
+export {stripePromise} from "./stripe";

@@ -1,4 +1,4 @@
-import {Stack} from "@/shared/ui";
+import {Stack} from "@/shared/ui/Stack";
 
 import styles from "./CartItems.module.scss";
 

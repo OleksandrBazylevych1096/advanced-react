@@ -10,7 +10,7 @@ import {useGetInfiniteProducts} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
 import type {SupportedLngsType} from "@/shared/config";
-import {createControllerResult, useAppSelector} from "@/shared/lib";
+import {createControllerResult, useAppSelector} from "@/shared/lib/state";
 
 interface UseCatalogControllerArgs {
     categoryId?: string;

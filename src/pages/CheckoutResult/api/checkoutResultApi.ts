@@ -1,6 +1,6 @@
 import {baseAPI} from "@/shared/api";
 
-import type {CheckoutSessionDetails} from "../model/types/checkoutResultTypes.ts";
+import type {CheckoutSessionDetails} from "../state/types/checkoutResultTypes.ts";
 
 interface ConfirmPaymentFallbackRequest {
     sessionId: string;
@@ -32,3 +32,4 @@ export const checkoutResultApi = baseAPI.injectEndpoints({
 
 export const {useGetCheckoutPaymentSessionQuery, useConfirmPaymentFallbackMutation} =
     checkoutResultApi;
+

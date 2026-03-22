@@ -6,7 +6,7 @@ import {
     type PhoneInputProps as ReactPhoneInputProps,
 } from "react-international-phone";
 
-import {cn} from "@/shared/lib";
+import {cn} from "@/shared/lib/styling";
 
 import type {HTMLInputProps} from "../Input";
 import styles from "../Input.module.scss";

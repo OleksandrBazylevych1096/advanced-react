@@ -3,8 +3,9 @@ import {BestSellingProducts} from "@/widgets/BestSellingProducts";
 import {useCartController} from "@/entities/cart";
 import {selectIsAuthenticated} from "@/entities/user";
 
-import {useAppSelector} from "@/shared/lib";
-import {Grid, Stack} from "@/shared/ui";
+import {useAppSelector} from "@/shared/lib/state";
+import {Grid} from "@/shared/ui/Grid";
+import {Stack} from "@/shared/ui/Stack";
 
 import styles from "./CartPage.module.scss";
 import {CartPageItemsSection} from "./CartPageItemsSection/CartPageItemsSection";

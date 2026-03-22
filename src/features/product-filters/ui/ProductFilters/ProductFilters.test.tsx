@@ -7,11 +7,11 @@ import {productFiltersReducer} from "@/features/product-filters";
 
 import {categoryHandlers} from "@/entities/category/api/test/handlers.ts";
 import {productsHandlers} from "@/entities/product/api/test/handlers.ts";
-import {mockFacets} from "@/entities/product/api/test/mockData.ts";
+import {mockFacets} from "@/entities/product.ts";
 
-import type {DeepPartial} from "@/shared/lib";
-import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario.ts";
+import type {DeepPartial} from "@/shared/lib/state";
 import {renderWithProviders} from "@/shared/lib/testing/react/renderWithProviders";
+import {createHandlersScenario} from "@/shared/libScenario.ts";
 
 import {ProductFilters} from "./ProductFilters";
 
@@ -547,3 +547,4 @@ describe("ProductFilters Integration Tests", () => {
         });
     });
 });
+

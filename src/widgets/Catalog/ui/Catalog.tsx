@@ -9,7 +9,7 @@ import {
 import {
     CATALOG_PRODUCT_CARDS_SKELETON_COUNT,
     ROW_HEIGHT,
-} from "@/widgets/Catalog/consts/defaults.ts";
+} from "@/widgets/Catalog/config/defaults.ts";
 import {getColumnCount, getRowCount} from "@/widgets/Catalog/lib/gridHelpers.ts";
 import {useCatalogController} from "@/widgets/Catalog/model/controllers/useCatalogController.ts";
 import {CellRenderer} from "@/widgets/Catalog/ui/CellRenderer.tsx";
@@ -17,8 +17,9 @@ import {CellRenderer} from "@/widgets/Catalog/ui/CellRenderer.tsx";
 import {type Product, ProductCardSkeleton} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
-import {useAppSelector} from "@/shared/lib";
-import {EmptyState, ErrorState, Grid} from "@/shared/ui";
+import {useAppSelector} from "@/shared/lib/state";
+import {Grid} from "@/shared/ui/Grid";
+import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 
 import styles from "./Catalog.module.scss";
 
@@ -115,3 +116,4 @@ export const Catalog = ({categoryId}: CatalogProps) => {
         </div>
     );
 };
+

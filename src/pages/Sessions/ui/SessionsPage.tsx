@@ -1,10 +1,12 @@
 import {useTranslation} from "react-i18next";
 
-import {ManageSessions} from "@/features/manage-sessions";
-import {SetupTwoFactorCard} from "@/features/setup-two-factor";
-import {UnlinkGoogleButton} from "@/features/unlink-google";
+import {ManageSessions} from "@/features/auth/manage-sessions";
+import {SetupTwoFactorCard} from "@/features/auth/setup-two-factor";
+import {UnlinkGoogleButton} from "@/features/auth/unlink-google";
 
-import {AppPage, Stack, Typography} from "@/shared/ui";
+import {AppPage} from "@/shared/ui/AppPage";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./SessionsPage.module.scss";
 

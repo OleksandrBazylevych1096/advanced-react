@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {userAuthHandlers} from "@/entities/user/api/test/handlers";
 
-import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario";
+import {createHandlersScenario} from "@/shared/libScenario";
 
 import ForgotPasswordPage from "./ForgotPasswordPage";
 
@@ -29,3 +29,4 @@ export const Default: Story = {
 export const Error: Story = {
     parameters: {msw: {handlers: createHandlersScenario("error", handlersMap)}},
 };
+

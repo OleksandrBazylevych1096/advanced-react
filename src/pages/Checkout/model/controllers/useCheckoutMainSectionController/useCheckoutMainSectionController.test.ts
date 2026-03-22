@@ -25,11 +25,11 @@ vi.mock("react-router", () => ({
     useNavigate: () => testCtx.navigateMock,
 }));
 
-vi.mock("@/features/place-order", () => ({
+vi.mock("@/features/checkout/place-order", () => ({
     useGetCheckoutSummaryQuery: (...args: unknown[]) => testCtx.summaryQueryMock(...args),
 }));
 
-vi.mock("@/features/save-shipping-address", () => ({
+vi.mock("@/features/shipping-address/save", () => ({
     saveShippingAddressActions: {
         openManageShippingAddressModal: () => ({
             type: "shipping/openManageShippingAddressModal",

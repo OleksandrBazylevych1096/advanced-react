@@ -2,10 +2,14 @@ import {type ReactNode} from "react";
 import {useTranslation} from "react-i18next";
 
 import type {CurrencyType, SupportedLngsType} from "@/shared/config";
-import {clampRange} from "@/shared/lib";
-import {Grid, Input, RangeSlider, Stack, Typography} from "@/shared/ui";
-import {Accordion} from "@/shared/ui/Accordion/Accordion.tsx";
-import type {RangeSliderValue} from "@/shared/ui/RangeSlider/RangeSlider.tsx";
+import {clampRange} from "@/shared/lib/math";
+import {Accordion} from "@/shared/ui/Accordion";
+import {Grid} from "@/shared/ui/Grid";
+import {Input} from "@/shared/ui/Input";
+import {RangeSlider} from "@/shared/ui/RangeSlider";
+import type {RangeSliderValue} from "@/shared/ui/RangeSlider";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./RangeFilterSection.module.scss";
 
@@ -174,3 +178,4 @@ export const RangeFilterSection = ({
         </Accordion.Item>
     );
 };
+

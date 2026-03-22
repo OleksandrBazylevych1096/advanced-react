@@ -8,10 +8,10 @@ import {
     productFiltersReducer,
 } from "@/features/product-filters";
 
-import {DynamicModuleLoader} from "@/shared/lib";
-import {Breadcrumbs} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
+import {DynamicModuleLoader} from "@/shared/lib/state";
+import {Breadcrumbs} from "@/shared/ui/Breadcrumbs";
 
-import {useCategoryPageController} from "../model/controllers/useCategoryPageController";
+import {useCategoryPageController} from "../state/controllers/useCategoryPageController";
 
 import styles from "./CategoryPage.module.scss";
 
@@ -37,3 +37,5 @@ const CategoryPage = () => {
 };
 
 export default CategoryPage;
+
+

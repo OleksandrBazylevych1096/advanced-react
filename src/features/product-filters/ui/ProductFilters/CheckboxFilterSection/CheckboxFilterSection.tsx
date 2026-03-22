@@ -1,9 +1,11 @@
 import {type ReactNode} from "react";
 
-import type {FacetItemType} from "@/entities/product/model/types/Product.ts";
+import type {FacetItemType} from "@/entities/product";
 
-import {Checkbox, Stack, Typography} from "@/shared/ui";
-import {Accordion} from "@/shared/ui/Accordion/Accordion.tsx";
+import {Accordion} from "@/shared/ui/Accordion";
+import {Checkbox} from "@/shared/ui/Checkbox";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./CheckboxFilterSection.module.scss";
 
@@ -132,3 +134,4 @@ export const CheckboxFilterSection = ({
         </Accordion.Item>
     );
 };
+

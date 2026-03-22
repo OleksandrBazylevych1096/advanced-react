@@ -1,4 +1,4 @@
-import {Spinner} from "@/shared/ui";
+import {Spinner} from "@/shared/ui/Spinner";
 
 import styles from "./Loader.module.scss";
 

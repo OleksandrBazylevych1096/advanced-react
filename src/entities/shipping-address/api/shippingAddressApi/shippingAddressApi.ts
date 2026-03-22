@@ -1,4 +1,4 @@
-import {baseAPI} from "@/shared/api/rtk/baseAPI";
+import {baseAPI} from "@/shared/api";
 
 import type {ShippingAddress} from "../../model/types/types";
 

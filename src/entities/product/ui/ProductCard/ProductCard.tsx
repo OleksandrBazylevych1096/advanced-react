@@ -2,10 +2,13 @@ import type {ReactNode} from "react";
 import {useTranslation} from "react-i18next";
 import {generatePath, useNavigate} from "react-router";
 
-import {AppRoutes, type CurrencyType, routePaths} from "@/shared/config";
-import {AppImage, Price, Typography} from "@/shared/ui";
+import type {CurrencyType} from "@/shared/config";
+import {AppRoutes, routePaths} from "@/shared/config";
+import {AppImage} from "@/shared/ui/AppImage";
+import {Price} from "@/shared/ui/Price";
+import {Typography} from "@/shared/ui/Typography";
 
-import type {Product} from "../../model/types/Product";
+import type {Product} from "../../state/types/Product";
 
 import styles from "./ProductCard.module.scss";
 
@@ -67,3 +70,4 @@ export const ProductCard = ({product, currency, action}: ProductCardProps) => {
         </div>
     );
 };
+

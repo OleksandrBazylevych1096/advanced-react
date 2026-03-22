@@ -1,11 +1,13 @@
 import {useTranslation} from "react-i18next";
 
 import CloseIcon from "@/shared/assets/icons/Close.svg?react";
-import {cn} from "@/shared/lib";
-import {AppIcon, Button, ErrorState} from "@/shared/ui";
-import {Accordion} from "@/shared/ui/Accordion/Accordion.tsx";
+import {cn} from "@/shared/lib/styling";
+import {Accordion} from "@/shared/ui/Accordion";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
+import {ErrorState} from "@/shared/ui/StateViews";
 
-import {useProductFiltersController} from "../../model/controllers/useProductFiltersController/useProductFiltersController";
+import {useProductFiltersController} from "../../state/controllers/useProductFiltersController/useProductFiltersController";
 
 import {CheckboxFilterSection} from "./CheckboxFilterSection/CheckboxFilterSection";
 import styles from "./ProductFilters.module.scss";
@@ -126,3 +128,5 @@ export const ProductFilters = ({defaultOpenFilters, categoryId}: ProductFiltersP
         </div>
     );
 };
+
+

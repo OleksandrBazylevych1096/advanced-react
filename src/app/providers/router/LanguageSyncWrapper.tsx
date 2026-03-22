@@ -2,7 +2,7 @@ import type {ReactNode} from "react";
 import {useParams} from "react-router";
 
 import type {SupportedLngsType} from "@/shared/config";
-import {useLanguageSync} from "@/shared/lib";
+import {useLanguageSync} from "@/shared/lib/routing";
 
 export const LanguageSyncWrapper = ({
     children,

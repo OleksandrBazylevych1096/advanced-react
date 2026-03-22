@@ -1,5 +1,5 @@
 import type {SupportedLngsType} from "@/shared/config";
-import {supportedLngs} from "@/shared/config/i18n/i18n";
+import {supportedLngs} from "@/shared/config";
 
 export const isSupportedLanguage = (
     language: string | undefined,
@@ -10,3 +10,4 @@ export const isSupportedLanguage = (
 
     return supportedLngs.some((lng) => lng === language);
 };
+

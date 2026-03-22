@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 
 import ImagePlaceholderIcon from "@/shared/assets/icons/ImagePlaceholder.svg?react";
-import {cn} from "@/shared/lib";
-import {AppIcon} from "@/shared/ui";
+import {cn} from "@/shared/lib/styling";
+import {AppIcon} from "@/shared/ui/AppIcon";
 
 import styles from "./AppImage.module.scss";
 

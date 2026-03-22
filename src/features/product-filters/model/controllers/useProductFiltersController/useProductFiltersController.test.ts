@@ -33,7 +33,7 @@ vi.mock("@/entities/user", () => ({
     selectUserCurrency: (state: StateSchema) => state.user?.currency,
 }));
 
-vi.mock("@/features/product-filters/consts/defaults.ts", () => ({
+vi.mock("@/features/product-filters/config/defaults.ts", () => ({
     DEBOUNCE_DELAY: 300,
     DEFAULT_SORT_BY: "createdAt",
     DEFAULT_SORT_ORDER: "desc",
@@ -109,7 +109,7 @@ vi.mock("@/features/product-filters/model/slice/productFiltersSlice.ts", () => (
     },
 }));
 
-vi.mock("@/shared/lib/async/debounce/useDebounce.ts", () => ({
+vi.mock("@/shared/lib", () => ({
     useDebounce: <T>(value: T) => value,
 }));
 
@@ -231,3 +231,5 @@ describe("useProductFiltersController", () => {
         );
     });
 });
+
+

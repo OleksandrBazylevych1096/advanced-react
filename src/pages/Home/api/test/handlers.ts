@@ -1,7 +1,7 @@
-import {createMockProduct} from "@/entities/product/api/test/mockData.ts";
+import {createMockProduct} from "@/entities/product.ts";
 
 import {API_URL} from "@/shared/config";
-import {createHandlers} from "@/shared/lib/testing/msw/createHandlers.ts";
+import {createHandlers} from "@/shared/lib/testing";
 
 export const firstOrderProductsHandlers = createHandlers({
     endpoint: `${API_URL}/products/first-order-discount`,
@@ -10,3 +10,4 @@ export const firstOrderProductsHandlers = createHandlers({
     errorData: {error: "Failed to load first order products"},
     errorStatus: 500,
 });
+

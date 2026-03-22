@@ -1,6 +1,6 @@
-import {RegisterFlowProvider} from "@/features/register";
+import {RegisterFlowProvider} from "@/features/auth/register";
 
-import {AppPage} from "@/shared/ui";
+import {AppPage} from "@/shared/ui/AppPage";
 
 import styles from "./RegisterPage.module.scss";
 import {RegisterPageContent} from "./RegisterPageContent";

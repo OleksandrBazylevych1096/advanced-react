@@ -1,7 +1,7 @@
 import {skipToken} from "@reduxjs/toolkit/query";
 
 import type {SupportedLngsType} from "@/shared/config";
-import {createControllerResult} from "@/shared/lib";
+import {createControllerResult} from "@/shared/lib/state";
 
 import {useGetCategoryBySlugQuery} from "../../api/categoryApi";
 

@@ -1,11 +1,10 @@
 import {useCallback} from "react";
+import {useDispatch} from "react-redux";
 
-import {toastActions} from "@/app/providers";
-
-import {useAppDispatch} from "@/shared/lib/state/redux/hooks";
+import {toastActions} from "./state/slice/toastSlice";
 
 export const useToast = () => {
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
 
     const info = useCallback(
         (message: string, duration?: number) => {
@@ -40,3 +39,4 @@ export const useToast = () => {
         warning,
     };
 };
+

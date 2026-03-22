@@ -2,7 +2,7 @@ import {useTranslation} from "react-i18next";
 
 import {selectUserCurrency} from "@/entities/user";
 
-import {createControllerResult, useAppSelector} from "@/shared/lib";
+import {createControllerResult, useAppSelector} from "@/shared/lib/state";
 
 import {useGetFirstOrderProductsQuery} from "../../api/homePageApi";
 

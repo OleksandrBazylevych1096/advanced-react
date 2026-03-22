@@ -1,14 +1,15 @@
 import {Suspense} from "react";
 
-import {useInitializeApp} from "@/app/init/useInitializeApp.ts";
+import {PageLoader} from "@/widgets/PageLoader";
 
-import {AppRouter} from "./providers";
+import {useInitializeApp} from "./init/useInitializeApp.ts";
+import {AppRouter} from "./providers/router/AppRouter";
 
 function App() {
     useInitializeApp();
 
     return (
-        <Suspense fallback={<></>}>
+        <Suspense fallback={<PageLoader />}>
             <AppRouter />
         </Suspense>
     );

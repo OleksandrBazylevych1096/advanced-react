@@ -1,5 +1,6 @@
-import {cn} from "@/shared/lib";
-import {AppImage, Button} from "@/shared/ui";
+import {cn} from "@/shared/lib/styling";
+import {AppImage} from "@/shared/ui/AppImage";
+import {Button} from "@/shared/ui/Button";
 
 import styles from "./Carousel.module.scss";
 

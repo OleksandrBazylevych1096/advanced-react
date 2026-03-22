@@ -2,9 +2,12 @@ import {useTranslation} from "react-i18next";
 
 import AddIcon from "@/shared/assets/icons/Add.svg?react";
 import MapPinIcon from "@/shared/assets/icons/MapPinFilled.svg?react";
-import {AppIcon, Button, EmptyState, ErrorState, Modal} from "@/shared/ui";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
+import {Modal} from "@/shared/ui/Modal";
+import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 
-import {useShippingAddressListController} from "../../model/controllers/useShippingAddressListController/useShippingAddressListController";
+import {useShippingAddressListController} from "../../state/controllers/useShippingAddressListController/useShippingAddressListController";
 import {Loader} from "../Loader/Loader";
 
 import styles from "./ShippingAddressList.module.scss";
@@ -69,3 +72,4 @@ export const ShippingAddressList = () => {
         </>
     );
 };
+

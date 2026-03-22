@@ -2,9 +2,10 @@ import {useEffect} from "react";
 
 import {userActions} from "@/entities/user";
 
-import {languageCurrencyList, type SupportedLngsType} from "@/shared/config";
-import i18n from "@/shared/config/i18n/i18n";
-import {getFallbackLanguage, isSupportedLanguage, useAppDispatch} from "@/shared/lib";
+import type {SupportedLngsType} from "@/shared/config";
+import i18n, {languageCurrencyList} from "@/shared/config";
+import {getFallbackLanguage, isSupportedLanguage} from "@/shared/lib/i18n";
+import {useAppDispatch} from "@/shared/lib/state";
 
 const resolveSupportedLanguage = (language: string): SupportedLngsType => {
     const normalizedLanguage = language.split("-")[0];
@@ -38,3 +39,4 @@ export const useInitializeCurrency = () => {
         };
     }, [dispatch]);
 };
+

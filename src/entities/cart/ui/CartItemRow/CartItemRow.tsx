@@ -2,10 +2,12 @@ import type {ReactNode} from "react";
 import {useTranslation} from "react-i18next";
 
 import type {CurrencyType} from "@/shared/config";
-import {cn} from "@/shared/lib";
-import {AppImage, Price, Typography} from "@/shared/ui";
+import {cn} from "@/shared/lib/styling";
+import {AppImage} from "@/shared/ui/AppImage";
+import {Price} from "@/shared/ui/Price";
+import {Typography} from "@/shared/ui/Typography";
 
-import type {CartItem} from "../../model/types/CartSchema";
+import type {CartItem} from "../../state/types/CartSchema";
 
 import styles from "./CartItemRow.module.scss";
 
@@ -94,3 +96,4 @@ export const CartItemRow = (props: CartItemRowProps) => {
         </div>
     );
 };
+

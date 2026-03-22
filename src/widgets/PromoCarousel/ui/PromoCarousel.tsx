@@ -2,9 +2,10 @@ import {type EmblaCarouselType, type EmblaOptionsType} from "embla-carousel";
 import AutoScroll, {type AutoScrollOptionsType} from "embla-carousel-auto-scroll";
 import {useState} from "react";
 
-import {AppImage, Carousel, CarouselSkeleton, useAutoScroll} from "@/shared/ui";
+import {AppImage} from "@/shared/ui/AppImage";
+import {Carousel, CarouselSkeleton, useAutoScroll} from "@/shared/ui/Carousel";
 
-import {usePromoCarouselController} from "../model/controllers/usePromoCarouselController";
+import {usePromoCarouselController} from "../state/controllers/usePromoCarouselController";
 
 import styles from "./PromoCarousel.module.scss";
 
@@ -63,3 +64,4 @@ export const PromoCarousel = (props: PromoCarouselProps) => {
         </Carousel>
     );
 };
+

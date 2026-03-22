@@ -3,8 +3,11 @@ import {useNavigate} from "react-router";
 
 import NotFoundIcon from "@/shared/assets/icons/NotFound.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
-import {useLocalizedRoutePath} from "@/shared/lib";
-import {AppPage, Button, Stack, Typography} from "@/shared/ui";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
+import {AppPage} from "@/shared/ui/AppPage";
+import {Button} from "@/shared/ui/Button";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./NotFoundPage.module.scss";
 

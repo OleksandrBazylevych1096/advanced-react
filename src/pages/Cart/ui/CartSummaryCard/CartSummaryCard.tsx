@@ -9,8 +9,12 @@ import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import ShoppingCartIcon from "@/shared/assets/icons/ShoppingCart.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
-import {formatCurrency, useAppSelector, useLocalizedRoutePath} from "@/shared/lib";
-import {AppIcon, Button, Typography} from "@/shared/ui";
+import {formatCurrency} from "@/shared/lib/formatting";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
+import {useAppSelector} from "@/shared/lib/state";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "../CartPage.module.scss";
 

@@ -14,7 +14,7 @@ import {
 } from "react";
 
 import CloseIcon from "@/shared/assets/icons/Close.svg?react";
-import {cn} from "@/shared/lib";
+import {cn} from "@/shared/lib/styling";
 
 import {AppIcon} from "../AppIcon/AppIcon";
 import {Button} from "../Button/Button";

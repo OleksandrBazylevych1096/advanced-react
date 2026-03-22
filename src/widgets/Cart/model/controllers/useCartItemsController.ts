@@ -1,10 +1,11 @@
-import {useRemoveFromCartController} from "@/features/remove-from-cart";
-import {useUpdateCartItemQuantityController} from "@/features/update-cart-item-quantity";
+import {useRemoveFromCartController} from "@/features/cart/remove";
+import {useUpdateCartItemQuantityController} from "@/features/cart/update-item-quantity";
 
 import {useCartController, useCartValidationController} from "@/entities/cart";
 import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
-import {createControllerResult, useAppSelector, useToast} from "@/shared/lib";
+import {useToast} from "@/shared/lib/notifications";
+import {createControllerResult, useAppSelector} from "@/shared/lib/state";
 
 export const useCartItemsController = () => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);

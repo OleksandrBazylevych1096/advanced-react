@@ -1,14 +1,18 @@
 import {useTranslation} from "react-i18next";
 
-import {ProductCardWithAddToCart} from "@/features/add-to-cart";
+import {ProductCardWithAddToCart} from "@/features/cart/add";
 
 import {ProductCardSkeleton} from "@/entities/product";
 
 import ChevronRight from "@/shared/assets/icons/ChevronRight.svg?react";
-import {formatCompactNumber} from "@/shared/lib";
-import {AppIcon, Button, Counter, Stack, Typography} from "@/shared/ui";
+import {formatCompactNumber} from "@/shared/lib/formatting";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
+import {Counter} from "@/shared/ui/Counter";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
-import {useFirstOrderSectionController} from "../../model/controllers/useFirstOrderSectionController";
+import {useFirstOrderSectionController} from "../../state/controllers/useFirstOrderSectionController";
 
 import styles from "./FirstOrderSection.module.scss";
 
@@ -113,3 +117,4 @@ export const FirstOrderSection = () => {
         </Stack>
     );
 };
+

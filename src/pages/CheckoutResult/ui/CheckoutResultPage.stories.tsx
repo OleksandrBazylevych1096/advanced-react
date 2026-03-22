@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {checkoutResultHandlers} from "@/pages/CheckoutResult/api/test/handlers";
 
-import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario";
+import {createHandlersScenario} from "@/shared/libScenario";
 
 import CheckoutResultPage from "./CheckoutResultPage";
 
@@ -78,3 +78,4 @@ export const SystemError: Story = {
         },
     },
 };
+

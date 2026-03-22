@@ -2,7 +2,7 @@ import type {EmblaCarouselType, EmblaOptionsType, EmblaPluginType} from "embla-c
 import useEmblaCarousel from "embla-carousel-react";
 import {Children, useEffect, type ReactNode} from "react";
 
-import {cn} from "@/shared/lib";
+import {cn} from "@/shared/lib/styling";
 
 import styles from "./Carousel.module.scss";
 

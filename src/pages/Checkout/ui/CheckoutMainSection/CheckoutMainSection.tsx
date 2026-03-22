@@ -2,13 +2,15 @@ import {useTranslation} from "react-i18next";
 
 import {ReviewOrderItems} from "@/widgets/ReviewOrderItems";
 
-import {ChooseDeliveryDate} from "@/features/choose-delivery-date";
+import {ChooseDeliveryDate} from "@/features/checkout/choose-delivery-date";
 
 import ArrowLeft from "@/shared/assets/icons/ArrowLeft.svg?react";
-import {Button, Stack, Typography} from "@/shared/ui";
-import {AppIcon} from "@/shared/ui/AppIcon/AppIcon";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
-import {useCheckoutMainSectionController} from "../../model/controllers/useCheckoutMainSectionController/useCheckoutMainSectionController";
+import {useCheckoutMainSectionController} from "../../state/controllers/useCheckoutMainSectionController/useCheckoutMainSectionController";
 
 import styles from "./CheckoutMainSection.module.scss";
 import {CheckoutMainSectionSkeleton} from "./CheckoutMainSectionSkeleton";
@@ -89,3 +91,5 @@ export const CheckoutMainSection = () => {
         </Stack>
     );
 };
+
+

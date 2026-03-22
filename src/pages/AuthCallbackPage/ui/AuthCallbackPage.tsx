@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 import {PageError} from "@/widgets/PageError";
 import {PageLoader} from "@/widgets/PageLoader";
 
-import {useAuthCallbackPageController} from "../model/controllers/useAuthCallbackPageController";
+import {useAuthCallbackPageController} from "../state/controllers/useAuthCallbackPageController";
 
 const AuthCallbackPage = () => {
     const {t} = useTranslation();
@@ -30,3 +30,4 @@ const AuthCallbackPage = () => {
 };
 
 export default AuthCallbackPage;
+

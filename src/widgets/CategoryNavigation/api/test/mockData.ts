@@ -1,6 +1,6 @@
 import type {Category} from "@/entities/category";
 
-import {createMockFactory, sequence} from "@/shared/lib/testing/factories/createMockFactories.ts";
+import {createMockFactory, sequence} from "@/shared/lib/testing";
 
 const categoryNames = ["Fruits", "Vegetables", "Dairy", "Meat", "Bakery"];
 const categorySlugs = ["fruits", "vegetables", "dairy", "meat", "bakery"];
@@ -97,3 +97,4 @@ export const mockCategoryNavigation = {
 };
 
 export const mockElectronicsSubcategories = mockFruitsSubcategories;
+

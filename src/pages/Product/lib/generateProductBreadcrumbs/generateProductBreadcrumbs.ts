@@ -1,4 +1,4 @@
-import type {BreadcrumbItem} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
+import type {BreadcrumbItem} from "@/shared/ui/Breadcrumbs";
 
 export const generateProductBreadcrumbs = (
     categoryBreadcrumb: BreadcrumbItem[] | undefined,
@@ -8,3 +8,4 @@ export const generateProductBreadcrumbs = (
 
     return [...categoryBreadcrumb, {label: productName}];
 };
+

@@ -3,13 +3,15 @@ import {useTranslation} from "react-i18next";
 
 import {Loader} from "@/widgets/ManageShippingAddress/ui/Loader/Loader.tsx";
 
-import {EditAddressAsync, saveShippingAddressReducer} from "@/features/save-shipping-address";
+import {EditAddressAsync, saveShippingAddressReducer} from "@/features/shipping-address/save";
 
 import ArrowLeft from "@/shared/assets/icons/ArrowLeft.svg?react";
-import {DynamicModuleLoader} from "@/shared/lib";
-import {AppIcon, Button, Modal} from "@/shared/ui";
+import {DynamicModuleLoader} from "@/shared/lib/state";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
+import {Modal} from "@/shared/ui/Modal";
 
-import {useManageShippingAddressController} from "../model/controllers/useManageShippingAddressController/useManageShippingAddressController";
+import {useManageShippingAddressController} from "../state/controllers/useManageShippingAddressController/useManageShippingAddressController";
 
 import {DisplayShippingAddress} from "./DisplayShippingAddress";
 import styles from "./ManageShippingAddress.module.scss";
@@ -90,3 +92,4 @@ export const ManageShippingAddress = () => {
         </DynamicModuleLoader>
     );
 };
+

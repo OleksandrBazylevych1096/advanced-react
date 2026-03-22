@@ -1,6 +1,7 @@
 import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
 
-import {LOCAL_STORAGE_USER_KEY, type CurrencyType} from "@/shared/config";
+import {LOCAL_STORAGE_USER_KEY} from "@/shared/config";
+import type {CurrencyType} from "@/shared/config";
 
 import type {User, UserSchema} from "../types/UserSchema";
 

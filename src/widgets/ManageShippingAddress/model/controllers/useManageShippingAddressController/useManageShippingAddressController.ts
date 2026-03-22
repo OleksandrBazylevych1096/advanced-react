@@ -6,18 +6,14 @@ import {
     saveShippingAddressActions,
     selectIsManageShippingAddressModalOpen,
     selectSaveShippingAddressMode,
-} from "@/features/save-shipping-address";
+} from "@/features/shipping-address/save";
 
 import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
 import {selectUserData} from "@/entities/user";
 
 import {AppRoutes, routePaths} from "@/shared/config";
-import {
-    createControllerResult,
-    useAppDispatch,
-    useAppSelector,
-    useLocalizedRoutePath,
-} from "@/shared/lib";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
+import {createControllerResult, useAppDispatch, useAppSelector} from "@/shared/lib/state";
 
 export const useManageShippingAddressController = () => {
     const navigate = useNavigate();

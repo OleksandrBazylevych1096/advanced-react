@@ -1,4 +1,5 @@
-import {clampValue, cn} from "@/shared/lib";
+import {clampValue} from "@/shared/lib/math";
+import {cn} from "@/shared/lib/styling";
 
 import styles from "./Progress.module.scss";
 

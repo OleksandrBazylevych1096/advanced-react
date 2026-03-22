@@ -13,8 +13,12 @@ import React, {
 import ChevronRightIcon from "@/shared/assets/icons/ChevronRight.svg?react";
 import CloseIcon from "@/shared/assets/icons/Close.svg?react";
 import SearchIcon from "@/shared/assets/icons/Search.svg?react";
-import {cn} from "@/shared/lib";
-import {AppIcon, Button, Checkbox, Input, Spinner} from "@/shared/ui";
+import {cn} from "@/shared/lib/styling";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
+import {Checkbox} from "@/shared/ui/Checkbox";
+import {Input} from "@/shared/ui/Input";
+import {Spinner} from "@/shared/ui/Spinner";
 
 import styles from "./Select.module.scss";
 

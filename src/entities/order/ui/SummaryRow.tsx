@@ -1,7 +1,8 @@
 import styles from "@/entities/order/ui/OrderSummaryCard.module.scss";
 
-import {cn} from "@/shared/lib";
-import {Stack, Typography} from "@/shared/ui";
+import {cn} from "@/shared/lib/styling";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 interface SummaryRowProps {
     label: string;

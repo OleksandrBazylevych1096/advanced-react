@@ -1,4 +1,3 @@
-import {API_URL} from "./api/api";
 import {
     AuthProviders,
     AuthMethod,
@@ -6,10 +5,13 @@ import {
     type AuthMethodType,
     type AuthProvidersType,
 } from "./auth/auth";
-import i18n from "./i18n/i18n";
+import {API_URL, PROJECT_ENV, STRIPE_PUBLISHABLE_KEY} from "./env/consts";
+import i18n, {supportedLngs} from "./i18n/i18n";
+import i18nForTests from "./i18n/i18nForTests";
 import {languageCurrencyList, type CurrencyType} from "./i18n/LanguageCurrencyList";
 import {languageIconList, type SupportedLngsType} from "./i18n/LanguageIconList";
 import {routePaths, AppRoutes} from "./router/routePaths";
+import {THEME_DECORATOR_CONTAINER_ID} from "./storybook/decorators/ThemeDecorator";
 import {stripePromise} from "./stripe/stripe";
 import {Theme, ThemeContext, LOCAL_STORAGE_THEME_KEY, type ThemeType} from "./theme/ThemeContext";
 import {useTheme} from "./theme/useTheme";
@@ -26,12 +28,19 @@ export {
     AuthProviders,
     AuthMethod,
     API_URL,
+    PROJECT_ENV,
+    STRIPE_PUBLISHABLE_KEY,
     languageCurrencyList,
     i18n,
+    i18nForTests,
+    supportedLngs,
     stripePromise,
+    THEME_DECORATOR_CONTAINER_ID,
     type CurrencyType,
     type AuthProvidersType,
     type AuthMethodType,
     type ThemeType,
     type SupportedLngsType,
 };
+
+export default i18n;

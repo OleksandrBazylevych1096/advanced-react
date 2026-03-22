@@ -1,10 +1,13 @@
 import {useTranslation} from "react-i18next";
 
 import {SummaryRow} from "@/entities/order/ui/SummaryRow.tsx";
-import {selectUserCurrency} from "@/entities/user";
+import {selectUserCurrency} from "@/entities/user/@x/order";
 
-import {cn, formatCurrency, useAppSelector} from "@/shared/lib";
-import {Stack, Typography} from "@/shared/ui";
+import {formatCurrency} from "@/shared/lib/formatting";
+import {useAppSelector} from "@/shared/lib/state";
+import {cn} from "@/shared/lib/styling";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./OrderSummaryCard.module.scss";
 

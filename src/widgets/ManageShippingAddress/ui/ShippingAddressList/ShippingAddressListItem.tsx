@@ -1,6 +1,6 @@
-import {DeleteConfirmationModal} from "@/features/delete-shipping-address";
-import {InitializeEditModeButton} from "@/features/save-shipping-address";
-import {SelectableAddressItem} from "@/features/select-default-shipping-address";
+import {DeleteConfirmationModal} from "@/features/shipping-address/delete";
+import {InitializeEditModeButton} from "@/features/shipping-address/save";
+import {SelectableAddressItem} from "@/features/shipping-address/select-default";
 
 import type {ShippingAddress} from "@/entities/shipping-address";
 

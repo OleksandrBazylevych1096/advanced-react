@@ -1,9 +1,9 @@
 import type {ReducersMapObject} from "@reduxjs/toolkit";
 import type {Decorator} from "@storybook/react-vite";
 
-import {StoreProvider} from "@/app/providers";
+import {StoreProvider} from "@/app/providers/StoreProvider/StoreProvider";
 
-import type {DeepPartial} from "@/shared/lib";
+import type {DeepPartial} from "@/shared/lib/state";
 
 export const StoreDecorator: Decorator = (Story, context) => {
     const parameters = context.parameters as {

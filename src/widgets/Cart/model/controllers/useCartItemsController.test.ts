@@ -54,7 +54,7 @@ vi.mock("@/entities/cart", () => ({
     }),
 }));
 
-vi.mock("@/features/remove-from-cart", () => ({
+vi.mock("@/features/cart/remove", () => ({
     useRemoveFromCartController: () => ({
         actions: {
             removeItem: testCtx.removeItemMock,
@@ -62,7 +62,7 @@ vi.mock("@/features/remove-from-cart", () => ({
     }),
 }));
 
-vi.mock("@/features/update-cart-item-quantity", () => ({
+vi.mock("@/features/cart/update-item-quantity", () => ({
     useUpdateCartItemQuantityController: (args?: unknown) =>
         testCtx.useUpdateQuantityControllerMock(args),
 }));

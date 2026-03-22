@@ -1,9 +1,9 @@
 import {useMemo} from "react";
 import {useTranslation} from "react-i18next";
 
-import {selectUserCurrency} from "@/entities/user";
+import {selectUserCurrency} from "@/entities/user/@x/cart";
 
-import {createControllerResult, useAppSelector} from "@/shared/lib";
+import {createControllerResult, useAppSelector} from "@/shared/lib/state";
 
 import {useGetCartQuery} from "../../../api/cartApi";
 import {

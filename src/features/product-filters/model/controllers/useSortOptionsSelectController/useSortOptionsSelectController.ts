@@ -2,14 +2,14 @@ import {useCallback} from "react";
 import {useSelector} from "react-redux";
 
 import {productFiltersActions} from "@/features/product-filters";
-import {SORT_OPTIONS, type SortOptionValue} from "@/features/product-filters/consts/sortOptions.ts";
+import {SORT_OPTIONS, type SortOptionValue} from "@/features/product-filters/config/sortOptions.ts";
 import {
     createSortValue,
     parseSortValue,
 } from "@/features/product-filters/lib/sortOptionsHelpers/sortOptionsHelpers.ts";
 import {selectSortSettings} from "@/features/product-filters/model/selectors/productFiltersSelectors.ts";
 
-import {createControllerResult, useAppDispatch} from "@/shared/lib";
+import {createControllerResult, useAppDispatch} from "@/shared/lib/state";
 
 export const useSortOptionsSelectController = () => {
     const dispatch = useAppDispatch();
@@ -39,3 +39,4 @@ export const useSortOptionsSelectController = () => {
         },
     });
 };
+

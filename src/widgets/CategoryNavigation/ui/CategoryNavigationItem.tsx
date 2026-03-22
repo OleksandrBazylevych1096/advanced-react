@@ -2,8 +2,9 @@ import {useTranslation} from "react-i18next";
 import {generatePath, useNavigate, useParams} from "react-router";
 
 import {AppRoutes, routePaths} from "@/shared/config";
-import {cn} from "@/shared/lib";
-import {AppIcon, Button} from "@/shared/ui";
+import {cn} from "@/shared/lib/styling";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
 
 import {CategoriesIconMap} from "../config/categoriesIconMap";
 

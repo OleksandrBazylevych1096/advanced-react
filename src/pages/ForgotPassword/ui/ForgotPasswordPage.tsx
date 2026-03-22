@@ -1,8 +1,10 @@
 import {useTranslation} from "react-i18next";
 
-import {ForgotPasswordForm} from "@/features/forgot-password";
+import {ForgotPasswordForm} from "@/features/auth/forgot-password";
 
-import {AppPage, Stack, Typography} from "@/shared/ui";
+import {AppPage} from "@/shared/ui/AppPage";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./ForgotPasswordPage.module.scss";
 

@@ -1,7 +1,7 @@
 import type {ReactNode} from "react";
 import {createPortal} from "react-dom";
 
-import {THEME_DECORATOR_CONTAINER_ID} from "@/shared/config/storybook/decorators/ThemeDecorator.tsx";
+import {PROJECT_ENV,THEME_DECORATOR_CONTAINER_ID} from "@/shared/config";
 
 interface PortalProps {
     children: ReactNode;
@@ -13,7 +13,7 @@ export const Portal = (props: PortalProps) => {
 
     let container = containerProp;
 
-    if (import.meta.env.VITE_PROJECT_ENV === "storybook") {
+    if (PROJECT_ENV === "storybook") {
         const newContainer = document.getElementById(THEME_DECORATOR_CONTAINER_ID);
 
         if (newContainer !== null) {

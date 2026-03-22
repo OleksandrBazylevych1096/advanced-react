@@ -3,8 +3,11 @@ import {Link} from "react-router";
 
 import LogoIcon from "@/shared/assets/icons/Logo.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
-import {useLocalizedRoutePath} from "@/shared/lib";
-import {Box, Container, Stack, Typography} from "@/shared/ui";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
+import {Box} from "@/shared/ui/Box";
+import {Container} from "@/shared/ui/Container";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./Footer.module.scss";
 

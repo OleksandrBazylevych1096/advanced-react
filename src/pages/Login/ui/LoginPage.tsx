@@ -1,12 +1,14 @@
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router";
 
-import {AuthByGoogleButton} from "@/features/auth-by-google";
-import {LoginForm} from "@/features/login";
+import {AuthByGoogleButton} from "@/features/auth/auth-by-google";
+import {LoginForm} from "@/features/auth/login";
 
 import {AppRoutes, routePaths} from "@/shared/config";
-import {useLocalizedRoutePath} from "@/shared/lib";
-import {AppPage, Stack, Typography} from "@/shared/ui";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
+import {AppPage} from "@/shared/ui/AppPage";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./LoginPage.module.scss";
 

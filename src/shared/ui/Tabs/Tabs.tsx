@@ -1,6 +1,6 @@
 import {createContext, useContext, useState, type HTMLAttributes, type ReactNode} from "react";
 
-import {cn} from "@/shared/lib";
+import {cn} from "@/shared/lib/styling";
 
 import {Button} from "../Button/Button";
 

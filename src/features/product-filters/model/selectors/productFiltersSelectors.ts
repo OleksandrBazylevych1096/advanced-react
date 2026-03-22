@@ -1,6 +1,6 @@
 import {createSelector} from "@reduxjs/toolkit";
 
-import {DEFAULT_SORT_BY, DEFAULT_SORT_ORDER} from "@/features/product-filters/consts/defaults.ts";
+import {DEFAULT_SORT_BY, DEFAULT_SORT_ORDER} from "@/features/product-filters/config/defaults.ts";
 
 export const selectProductFilters = (state: StateSchema) => state.productFilters;
 
@@ -93,3 +93,4 @@ export const selectHasFilterChanges = createSelector(selectProductFilters, (stat
         filters.sortOrder !== DEFAULT_SORT_ORDER
     );
 });
+

@@ -1,7 +1,7 @@
 import {http, HttpResponse} from "msw";
 
 import {API_URL} from "@/shared/config";
-import {createHandlers, extendHandlers} from "@/shared/lib/testing/msw/createHandlers";
+import {createHandlers, extendHandlers} from "@/shared/lib/testing";
 
 import {mockProductPageProduct} from "./mockData";
 
@@ -18,3 +18,4 @@ export const productPageHandlers = {
         empty: http.get(`${API_URL}/products/slug/:slug`, () => HttpResponse.json(null)),
     }),
 };
+

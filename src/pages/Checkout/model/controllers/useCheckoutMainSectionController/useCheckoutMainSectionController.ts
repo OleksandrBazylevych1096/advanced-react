@@ -2,19 +2,15 @@ import {useMemo} from "react";
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router";
 
-import {useGetCheckoutSummaryQuery} from "@/features/place-order";
-import {saveShippingAddressActions} from "@/features/save-shipping-address";
+import {useGetCheckoutSummaryQuery} from "@/features/checkout/place-order";
+import {saveShippingAddressActions} from "@/features/shipping-address/save";
 
 import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
 import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import {AppRoutes, routePaths} from "@/shared/config";
-import {
-    createControllerResult,
-    useAppDispatch,
-    useAppSelector,
-    useLocalizedRoutePath,
-} from "@/shared/lib";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
+import {createControllerResult, useAppDispatch, useAppSelector} from "@/shared/lib/state";
 
 export const useCheckoutMainSectionController = () => {
     const {i18n} = useTranslation();

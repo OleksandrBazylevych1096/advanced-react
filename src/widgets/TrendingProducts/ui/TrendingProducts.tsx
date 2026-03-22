@@ -7,19 +7,14 @@ import {ProductCardSkeleton} from "@/entities/product";
 import {TagList} from "@/entities/tag";
 
 import ArrowRightIcon from "@/shared/assets/icons/ArrowRight.svg?react";
-import {
-    AppIcon,
-    Button,
-    Carousel,
-    CarouselControls,
-    CarouselSkeleton,
-    EmptyState,
-    ErrorState,
-    Stack,
-    Typography,
-} from "@/shared/ui";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
+import {Carousel, CarouselControls, CarouselSkeleton} from "@/shared/ui/Carousel";
+import {Stack} from "@/shared/ui/Stack";
+import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
+import {Typography} from "@/shared/ui/Typography";
 
-import {useTrendingProductsController} from "../model/controllers/useTrendingProductsController";
+import {useTrendingProductsController} from "../state/controllers/useTrendingProductsController";
 
 import styles from "./TrendingProducts.module.scss";
 
@@ -92,3 +87,4 @@ export const TrendingProducts = () => {
         </section>
     );
 };
+

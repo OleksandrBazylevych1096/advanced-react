@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {bestSellingProductsHandlers} from "@/widgets/BestSellingProducts/api/test/handlers";
 
-import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario.ts";
+import {createHandlersScenario} from "@/shared/libScenario.ts";
 
 import {BestSellingProducts} from "./BestSellingProducts";
 
@@ -45,3 +45,4 @@ export const Error: Story = {
         },
     },
 };
+

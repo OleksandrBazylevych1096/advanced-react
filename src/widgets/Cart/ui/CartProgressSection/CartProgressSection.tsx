@@ -2,8 +2,11 @@ import {useTranslation} from "react-i18next";
 
 import {selectUserCurrency} from "@/entities/user";
 
-import {formatCurrency, useAppSelector} from "@/shared/lib";
-import {Progress, Stack, Typography} from "@/shared/ui";
+import {formatCurrency} from "@/shared/lib/formatting";
+import {useAppSelector} from "@/shared/lib/state";
+import {Progress} from "@/shared/ui/Progress";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 interface CartProgressSectionProps {
     value: number;

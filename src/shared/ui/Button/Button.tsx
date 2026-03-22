@@ -1,6 +1,6 @@
 import type {ButtonHTMLAttributes, ReactNode} from "react";
 
-import {cn} from "@/shared/lib";
+import {cn} from "@/shared/lib/styling";
 
 import {Spinner} from "../Spinner/Spinner";
 

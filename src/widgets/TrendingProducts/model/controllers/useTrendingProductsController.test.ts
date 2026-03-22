@@ -15,7 +15,7 @@ vi.mock("react-i18next", () => ({
     useTranslation: () => ({i18n: {language: "en"}}),
 }));
 
-vi.mock("@/features/add-to-cart", () => ({
+vi.mock("@/features/cart/add", () => ({
     ProductCardWithAddToCart: "ProductCardWithAddToCartMock",
 }));
 

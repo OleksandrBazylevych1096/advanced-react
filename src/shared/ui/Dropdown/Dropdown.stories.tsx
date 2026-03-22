@@ -1,6 +1,8 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {Button, Stack, Typography} from "@/shared/ui";
+import {Button} from "@/shared/ui/Button";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import {Dropdown} from "./Dropdown";
 

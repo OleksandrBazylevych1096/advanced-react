@@ -1,8 +1,8 @@
-import {applyCouponReducer} from "@/features/apply-coupon";
-import {chooseDeliveryTipReducer} from "@/features/choose-delivery-tip";
+import {applyCouponReducer} from "@/features/checkout/apply-coupon";
+import {chooseDeliveryTipReducer} from "@/features/checkout/choose-delivery-tip";
 
-import {DynamicModuleLoader} from "@/shared/lib";
-import {Stack} from "@/shared/ui";
+import {DynamicModuleLoader} from "@/shared/lib/state";
+import {Stack} from "@/shared/ui/Stack";
 
 import {CheckoutMainSection} from "./CheckoutMainSection/CheckoutMainSection";
 import styles from "./CheckoutPage.module.scss";

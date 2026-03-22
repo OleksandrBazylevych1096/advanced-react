@@ -26,7 +26,7 @@ vi.mock("@/features/product-filters", () => ({
     },
 }));
 
-vi.mock("@/features/product-filters/consts/sortOptions.ts", () => ({
+vi.mock("@/features/product-filters/config/sortOptions.ts", () => ({
     SORT_OPTIONS: [{label: "Price", value: "price:asc"}],
 }));
 
@@ -78,3 +78,4 @@ describe("useSortOptionsSelectController", () => {
         expect(testCtx.dispatchMock).not.toHaveBeenCalled();
     });
 });
+

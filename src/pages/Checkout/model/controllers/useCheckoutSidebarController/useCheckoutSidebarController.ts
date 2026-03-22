@@ -1,18 +1,18 @@
 import {useMemo} from "react";
 import {useTranslation} from "react-i18next";
 
-import {selectApplyCouponCode} from "@/features/apply-coupon";
-import {useGetDeliverySelectionQuery} from "@/features/choose-delivery-date";
-import {selectChooseDeliveryTipAmount} from "@/features/choose-delivery-tip";
+import {selectApplyCouponCode} from "@/features/checkout/apply-coupon";
+import {useGetDeliverySelectionQuery} from "@/features/checkout/choose-delivery-date";
+import {selectChooseDeliveryTipAmount} from "@/features/checkout/choose-delivery-tip";
 import {
     buildCheckoutSummaryRows,
     calculateCheckoutTotals,
     useGetCheckoutSummaryQuery,
-} from "@/features/place-order";
+} from "@/features/checkout/place-order";
 
 import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
-import {createControllerResult, useAppSelector} from "@/shared/lib";
+import {createControllerResult, useAppSelector} from "@/shared/lib/state";
 
 export const useCheckoutSidebarController = () => {
     const {i18n, t} = useTranslation("checkout");

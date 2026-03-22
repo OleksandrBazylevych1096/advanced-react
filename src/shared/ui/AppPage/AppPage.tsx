@@ -1,6 +1,6 @@
 import type {ReactNode} from "react";
 
-import {cn} from "@/shared/lib";
+import {cn} from "@/shared/lib/styling";
 import {Container} from "@/shared/ui/Container/Container";
 
 import styles from "./AppPage.module.scss";

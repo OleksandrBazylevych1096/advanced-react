@@ -4,7 +4,7 @@ import {
     type SortOptionValue,
     VALID_SORT_BY_VALUES,
     VALID_SORT_ORDER_VALUES,
-} from "@/features/product-filters/consts/sortOptions.ts";
+} from "@/features/product-filters/config/sortOptions.ts";
 import type {
     OrderType,
     SortType,
@@ -199,3 +199,4 @@ describe("combined", () => {
         });
     });
 });
+

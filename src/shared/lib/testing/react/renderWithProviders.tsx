@@ -4,9 +4,9 @@ import type {ReactNode} from "react";
 import {I18nextProvider} from "react-i18next";
 import {MemoryRouter, Route, Routes} from "react-router";
 
-import {StoreProvider} from "@/app/providers";
+import {StoreProvider} from "@/app/providers/StoreProvider/StoreProvider";
 
-import i18n from "@/shared/config/i18n/i18nForTests";
+import i18n from "@/shared/config";
 import type {DeepPartial} from "@/shared/lib/state/redux/types";
 
 interface RenderWithProvidersOptions {

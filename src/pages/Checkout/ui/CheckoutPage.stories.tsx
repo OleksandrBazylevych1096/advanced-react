@@ -1,13 +1,13 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {applyCouponHandlers} from "@/features/apply-coupon/api/test/handlers";
-import {chooseDeliveryDateHandlers} from "@/features/choose-delivery-date/api/test/handlers";
-import {placeOrderHandlers} from "@/features/place-order/api/test/handlers";
+import {applyCouponHandlers} from "@/features/checkout/apply-coupon/api/test/handlers";
+import {chooseDeliveryDateHandlers} from "@/features/checkout/choose-delivery-date/api/test/handlers";
+import {placeOrderHandlers} from "@/features/checkout/place-order/api/test/handlers";
 
 import {shippingAddressHandlers} from "@/entities/shipping-address/api/test/handlers";
 import {mockAuthSession} from "@/entities/user/api/test/mockData";
 
-import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario";
+import {createHandlersScenario} from "@/shared/libScenario";
 
 import CheckoutPage from "./CheckoutPage";
 
@@ -70,3 +70,4 @@ export const SummaryError: Story = {
         },
     },
 };
+

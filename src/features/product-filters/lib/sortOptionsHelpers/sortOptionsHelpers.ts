@@ -2,7 +2,7 @@ import {
     type SortOptionValue,
     VALID_SORT_BY_VALUES,
     VALID_SORT_ORDER_VALUES,
-} from "@/features/product-filters/consts/sortOptions.ts";
+} from "@/features/product-filters/config/sortOptions.ts";
 import type {
     OrderType,
     SortType,
@@ -26,3 +26,4 @@ export const isValidSortBy = (value: string | null): value is SortType => {
 export const isValidSortOrder = (value: string | null): value is OrderType => {
     return value !== null && VALID_SORT_ORDER_VALUES.includes(value as OrderType);
 };
+

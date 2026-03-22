@@ -22,12 +22,12 @@ vi.mock("react-i18next", () => ({
     }),
 }));
 
-vi.mock("@/features/choose-delivery-date", () => ({
+vi.mock("@/features/checkout/choose-delivery-date", () => ({
     useGetDeliverySelectionQuery: (...args: unknown[]) =>
         testCtx.deliverySelectionQueryMock(...args),
 }));
 
-vi.mock("@/features/place-order", () => ({
+vi.mock("@/features/checkout/place-order", () => ({
     useGetCheckoutSummaryQuery: (...args: unknown[]) => testCtx.checkoutSummaryQueryMock(...args),
     calculateCheckoutTotals: (...args: unknown[]) => testCtx.calculateTotalsMock(...args),
     buildCheckoutSummaryRows: (...args: unknown[]) => testCtx.buildRowsMock(...args),

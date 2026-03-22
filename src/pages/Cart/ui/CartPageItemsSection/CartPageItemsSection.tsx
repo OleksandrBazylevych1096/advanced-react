@@ -1,9 +1,10 @@
 import {CartItems} from "@/widgets/Cart";
 
-import {ChooseDeliveryDate} from "@/features/choose-delivery-date";
-import {ClearCartButton, useClearCartController} from "@/features/clear-cart";
+import {ClearCartButton, useClearCartController} from "@/features/cart/clear";
+import {ChooseDeliveryDate} from "@/features/checkout/choose-delivery-date";
 
-import {Stack, Typography} from "@/shared/ui";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "../CartPage.module.scss";
 

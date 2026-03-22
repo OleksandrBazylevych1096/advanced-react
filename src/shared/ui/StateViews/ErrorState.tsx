@@ -1,6 +1,6 @@
 import {useTranslation} from "react-i18next";
 
-import {cn} from "@/shared/lib";
+import {cn} from "@/shared/lib/styling";
 import {Button} from "@/shared/ui/Button/Button";
 import {Stack} from "@/shared/ui/Stack/Stack";
 import {Typography} from "@/shared/ui/Typography/Typography";

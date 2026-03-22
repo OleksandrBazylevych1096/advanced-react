@@ -4,7 +4,8 @@ import {generatePath, useNavigate, useParams} from "react-router";
 
 import type {Category} from "@/entities/category";
 
-import {AppRoutes, routePaths, type SupportedLngsType} from "@/shared/config";
+import type {SupportedLngsType} from "@/shared/config";
+import {AppRoutes, routePaths} from "@/shared/config";
 
 interface Args {
     languageParam?: SupportedLngsType;

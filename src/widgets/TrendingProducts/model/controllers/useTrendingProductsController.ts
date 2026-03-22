@@ -2,12 +2,12 @@ import type {EmblaCarouselType} from "embla-carousel";
 import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 
-import {ProductCardWithAddToCart} from "@/features/add-to-cart";
+import {ProductCardWithAddToCart} from "@/features/cart/add";
 
 import {useGetProducts} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
-import {createControllerResult, useAppSelector} from "@/shared/lib";
+import {createControllerResult, useAppSelector} from "@/shared/lib/state";
 
 import {useGetTrendingProductTagsQuery} from "../../api/trendingProductsApi";
 

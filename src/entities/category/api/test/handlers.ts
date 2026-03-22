@@ -1,7 +1,7 @@
 import {mockCategories} from "@/entities/category/api/test/mockData.ts";
 
 import {API_URL} from "@/shared/config";
-import {createHandlers} from "@/shared/lib/testing/msw/createHandlers.ts";
+import {createHandlers} from "@/shared/lib/testing";
 
 export const categoryHandlers = createHandlers({
     endpoint: `${API_URL}/categories/slug/:slug`,
@@ -18,3 +18,4 @@ export const categoryBreadcrumbsHandlers = createHandlers({
     errorData: {error: "Failed to load breadcrumbs"},
     errorStatus: 500,
 });
+

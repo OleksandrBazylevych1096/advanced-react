@@ -1,7 +1,9 @@
 import {useTranslation} from "react-i18next";
 
 import PageErrorIcon from "@/shared/assets/icons/PageError.svg?react";
-import {Button, Stack, Typography} from "@/shared/ui";
+import {Button} from "@/shared/ui/Button";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./PageError.module.scss";
 

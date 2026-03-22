@@ -2,7 +2,7 @@ import {useCallback} from "react";
 
 import {productFiltersActions} from "@/features/product-filters";
 
-import {createControllerResult, useAppDispatch} from "@/shared/lib";
+import {createControllerResult, useAppDispatch} from "@/shared/lib/state";
 
 export const useProductFiltersControlsController = () => {
     const dispatch = useAppDispatch();

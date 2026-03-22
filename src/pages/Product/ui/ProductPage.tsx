@@ -3,10 +3,10 @@ import {ProductInfo} from "@/pages/Product/ui/ProductInfo/ProductInfo.tsx";
 
 import {BestSellingProducts} from "@/widgets/BestSellingProducts";
 
-import {Stack} from "@/shared/ui";
-import {Breadcrumbs} from "@/shared/ui/Breadcrumbs/Breadcrumbs.tsx";
+import {Breadcrumbs} from "@/shared/ui/Breadcrumbs";
+import {Stack} from "@/shared/ui/Stack";
 
-import {useProductPageController} from "../model/controllers/useProductPageController";
+import {useProductPageController} from "../state/controllers/useProductPageController";
 
 import styles from "./ProductPage.module.scss";
 
@@ -36,3 +36,5 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
+

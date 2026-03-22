@@ -1,13 +1,15 @@
 import type {LatLngTuple} from "leaflet";
 import {useEffect, useState} from "react";
 
+import {PROJECT_ENV} from "@/shared/config";
+
 export const useUserLocation = () => {
     const [location, setLocation] = useState<LatLngTuple | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        if (import.meta.env.VITE_PROJECT_ENV !== "client") {
+        if (PROJECT_ENV !== "client") {
             setLocation([51.5074, -0.1277]);
             setLoading(false);
             return;

@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import {userActions, useRefreshSessionMutation} from "@/entities/user";
 
 import {LOCAL_STORAGE_USER_KEY} from "@/shared/config";
-import {useAppDispatch} from "@/shared/lib";
+import {useAppDispatch} from "@/shared/lib/state";
 
 export const useInitializeUserSession = () => {
     const dispatch = useAppDispatch();

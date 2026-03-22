@@ -1,6 +1,6 @@
 import {baseAPI} from "@/shared/api";
 
-import type {AuthSessionsListItem} from "../../model/types/AuthSession";
+import type {AuthSessionsListItem} from "../../state/types/AuthSession";
 
 type RevokeAllSessionsArgs = {
     includeCurrent?: boolean;
@@ -45,3 +45,4 @@ export const {
     useRevokeAuthSessionMutation,
     useRevokeAllAuthSessionsMutation,
 } = authSessionsApi;
+

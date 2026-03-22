@@ -1,6 +1,6 @@
 import type {ComponentPropsWithoutRef, CSSProperties, ElementType} from "react";
 
-import {cn} from "@/shared/lib";
+import {cn} from "@/shared/lib/styling";
 import type {StackSpace} from "@/shared/ui/Stack/Stack";
 
 import styles from "./Grid.module.scss";

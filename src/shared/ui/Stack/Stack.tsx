@@ -1,6 +1,6 @@
 import type {ComponentPropsWithoutRef, CSSProperties, ElementType} from "react";
 
-import {cn} from "@/shared/lib";
+import {cn} from "@/shared/lib/styling";
 
 import styles from "./Stack.module.scss";
 

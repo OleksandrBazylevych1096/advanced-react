@@ -1,8 +1,8 @@
 import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
 
-import {DEFAULT_SORT_BY, DEFAULT_SORT_ORDER} from "@/features/product-filters/consts/defaults.ts";
+import {DEFAULT_SORT_BY, DEFAULT_SORT_ORDER} from "@/features/product-filters/config/defaults.ts";
 
-import type {PriceRangeType} from "@/entities/product/model/types/Product.ts";
+import type {PriceRangeType} from "@/entities/product";
 
 import type {OrderType, ProductFiltersSchema, SortType} from "../types/productFiltersSchema";
 
@@ -79,3 +79,5 @@ export const productFiltersSlice = createSlice({
 });
 
 export const {actions: productFiltersActions, reducer: productFiltersReducer} = productFiltersSlice;
+
+

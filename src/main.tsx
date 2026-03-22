@@ -6,7 +6,7 @@ import App from "@/app/App.tsx";
 
 import {ErrorBoundary, StoreProvider, ThemeProvider, ToastProvider} from "./app/providers";
 
-import "@/shared/config/i18n/i18n";
+import "@/shared/config";
 import "@/app/styles/index.scss";
 
 createRoot(document.getElementById("root")!).render(
@@ -23,3 +23,4 @@ createRoot(document.getElementById("root")!).render(
         </StoreProvider>
     </StrictMode>,
 );
+

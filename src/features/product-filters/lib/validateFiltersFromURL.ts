@@ -1,6 +1,6 @@
-import {URL_PARAMS} from "@/features/product-filters/consts/defaults.ts";
+import {URL_PARAMS} from "@/features/product-filters/config/defaults.ts";
 
-import type {ProductFacets} from "@/entities/product/model/types/Product.ts";
+import type {ProductFacets} from "@/entities/product";
 
 export const validateFiltersFromURL = (searchParams: URLSearchParams, facets: ProductFacets) => {
     const countries = searchParams.get(URL_PARAMS.COUNTRIES)?.split(",").filter(Boolean) || [];
@@ -14,3 +14,5 @@ export const validateFiltersFromURL = (searchParams: URLSearchParams, facets: Pr
         validBrands: brands.filter((brand) => availableBrands.includes(brand)),
     };
 };
+
+

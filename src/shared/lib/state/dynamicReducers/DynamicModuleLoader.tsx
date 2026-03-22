@@ -1,9 +1,9 @@
 import type {Reducer} from "@reduxjs/toolkit";
 import {useEffect, type ReactNode} from "react";
 
-import type {StateSchemaKey} from "@/app/store";
-
 import {useAppDispatch, useAppStore} from "../redux/hooks";
+
+type StateSchemaKey = keyof StateSchema;
 
 export type ReducersList = {
     [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;

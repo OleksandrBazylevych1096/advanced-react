@@ -7,7 +7,8 @@ import {
     useState,
 } from "react";
 
-import {clampRange, clampValue, cn} from "@/shared/lib";
+import {clampRange, clampValue} from "@/shared/lib/math";
+import {cn} from "@/shared/lib/styling";
 
 import styles from "./RangeSlider.module.scss";
 

@@ -16,7 +16,7 @@ import {CheckoutSessionStatus} from "@/pages/CheckoutResult/model/types/checkout
 
 import {clearCartState} from "@/entities/cart";
 
-import {createControllerResult, useAppDispatch} from "@/shared/lib";
+import {createControllerResult, useAppDispatch} from "@/shared/lib/state";
 
 interface UsePaymentControllerParams {
     sessionId: string | null;

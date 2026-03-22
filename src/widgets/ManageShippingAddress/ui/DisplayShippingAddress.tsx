@@ -1,5 +1,8 @@
 import MapPinIcon from "@/shared/assets/icons/MapPin.svg?react";
-import {AppIcon, Spinner, Stack, Typography} from "@/shared/ui";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Spinner} from "@/shared/ui/Spinner";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./ManageShippingAddress.module.scss";
 

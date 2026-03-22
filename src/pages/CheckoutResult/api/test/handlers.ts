@@ -1,7 +1,7 @@
 import {http, HttpResponse} from "msw";
 
 import {API_URL} from "@/shared/config";
-import {createHandlers, extendHandlers} from "@/shared/lib/testing/msw/createHandlers";
+import {createHandlers, extendHandlers} from "@/shared/lib/testing";
 
 import {
     mockCheckoutSessionFailed,
@@ -39,3 +39,4 @@ export const checkoutResultHandlers = {
     }),
     confirmFallback: fallbackConfirmBase,
 };
+

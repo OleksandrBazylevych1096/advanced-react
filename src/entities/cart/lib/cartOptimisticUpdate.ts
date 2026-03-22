@@ -1,7 +1,7 @@
 import type {ApiLocaleCurrencyParams} from "@/shared/api";
 
 import {cartApi} from "../api/cartApi";
-import type {Cart} from "../model/types/CartSchema";
+import type {Cart} from "../state/types/CartSchema";
 
 import {recalculateCartTotals} from "./recalculateCartTotals/recalculateCartTotals";
 
@@ -30,3 +30,4 @@ export const applyCartOptimisticUpdate = (
     cartQueryArgs: ApiLocaleCurrencyParams,
     updater: (draft: Cart) => void,
 ) => dispatch(cartApi.util.updateQueryData("getCart", cartQueryArgs, updater));
+

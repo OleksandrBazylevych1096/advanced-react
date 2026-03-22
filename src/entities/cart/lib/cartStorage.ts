@@ -1,4 +1,4 @@
-import type {GuestCartItem} from "../model/types/CartSchema";
+import type {GuestCartItem} from "../state/types/CartSchema";
 
 const CART_STORAGE_KEY = "guest_cart_v1";
 const CART_EXPIRY_DAYS = 30;
@@ -72,3 +72,4 @@ export function clearGuestCart(): void {
 }
 
 export {CART_STORAGE_KEY};
+

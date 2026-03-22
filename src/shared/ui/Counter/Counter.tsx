@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-import {useIntersectionObserver} from "@/shared/lib";
+import {useIntersectionObserver} from "@/shared/lib/browser";
 
 interface CounterProps {
     from?: number;

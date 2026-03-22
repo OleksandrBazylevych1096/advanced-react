@@ -1,11 +1,11 @@
 import type {MouseEvent} from "react";
 
-import {saveShippingAddressActions} from "@/features/save-shipping-address";
+import {saveShippingAddressActions} from "@/features/shipping-address/save";
 
 import {useGetShippingAddressesQuery} from "@/entities/shipping-address";
 import {selectUserData} from "@/entities/user";
 
-import {createControllerResult, useAppDispatch, useAppSelector} from "@/shared/lib";
+import {createControllerResult, useAppDispatch, useAppSelector} from "@/shared/lib/state";
 
 export const useShippingAddressListController = () => {
     const dispatch = useAppDispatch();

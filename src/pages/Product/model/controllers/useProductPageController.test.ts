@@ -41,7 +41,7 @@ vi.mock("@/shared/lib", () => ({
     createControllerResult: <T>(value: T) => value,
 }));
 
-vi.mock("@/shared/lib/routing/localizedSlug/useSlugSync.ts", () => ({
+vi.mock("@/shared/lib", () => ({
     useLocalizedSlugSync: (...args: unknown[]) => testCtx.localizedSlugSyncMock(...args),
 }));
 
@@ -110,3 +110,4 @@ describe("useProductPageController", () => {
         expect(testCtx.productBySlugQueryMock).toHaveBeenCalledWith(skipToken);
     });
 });
+

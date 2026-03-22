@@ -2,22 +2,18 @@ import {useTranslation} from "react-i18next";
 
 import {BestSellingProductsSkeleton} from "@/widgets/BestSellingProducts/ui/BestSellingProductsSkeleton.tsx";
 
-import {ProductCardWithAddToCart} from "@/features/add-to-cart";
+import {ProductCardWithAddToCart} from "@/features/cart/add";
 
 import {ProductCardSkeleton} from "@/entities/product";
 
 import ArrowRightIcon from "@/shared/assets/icons/ArrowRight.svg?react";
-import {
-    AppIcon,
-    Button,
-    Carousel,
-    CarouselControls,
-    CarouselSkeleton,
-    Stack,
-    Typography,
-} from "@/shared/ui";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
+import {Carousel, CarouselControls, CarouselSkeleton} from "@/shared/ui/Carousel";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
-import {useBestSellingProductsController} from "../model/controllers/useBestSellingProductsController";
+import {useBestSellingProductsController} from "../state/controllers/useBestSellingProductsController";
 
 import styles from "./BestSellingProducts.module.scss";
 
@@ -84,3 +80,4 @@ export const BestSellingProducts = () => {
         </section>
     );
 };
+

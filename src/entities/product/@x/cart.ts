@@ -1,3 +1,4 @@
-import type {Product} from "../model/types/Product";
+import type {Product} from "../state/types/Product";
 
 export type {Product};
+

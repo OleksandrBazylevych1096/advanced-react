@@ -1,6 +1,8 @@
 import {useTranslation} from "react-i18next";
 
-import {Spinner, Stack, Typography} from "@/shared/ui";
+import {Spinner} from "@/shared/ui/Spinner";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./PageLoader.module.scss";
 

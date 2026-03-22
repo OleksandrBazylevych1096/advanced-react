@@ -1,13 +1,16 @@
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router";
 
-import {AuthByGoogleButton} from "@/features/auth-by-google";
-import {FormSteps, RegisterForm, useRegisterFlow} from "@/features/register";
+import {AuthByGoogleButton} from "@/features/auth/auth-by-google";
+import {FormSteps, RegisterForm, useRegisterFlow} from "@/features/auth/register";
 
 import ArrowLeft from "@/shared/assets/icons/ArrowLeft.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
-import {useLocalizedRoutePath} from "@/shared/lib";
-import {AppIcon, Button, Stack, Typography} from "@/shared/ui";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
+import {AppIcon} from "@/shared/ui/AppIcon";
+import {Button} from "@/shared/ui/Button";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./RegisterPage.module.scss";
 

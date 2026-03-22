@@ -1,8 +1,10 @@
 import {useTranslation} from "react-i18next";
 
-import {AuthTwoFactorChallenge} from "@/features/auth-two-factor-challenge";
+import {AuthTwoFactorChallenge} from "@/features/auth/auth-two-factor-challenge";
 
-import {AppPage, Stack, Typography} from "@/shared/ui";
+import {AppPage} from "@/shared/ui/AppPage";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./AuthTwoFactorPage.module.scss";
 
