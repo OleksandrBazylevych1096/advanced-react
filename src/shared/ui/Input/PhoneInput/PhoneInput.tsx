@@ -77,10 +77,17 @@ export const PhoneInput = (props: PhoneInputProps) => {
                 onChange={changePhone}
                 onFocus={notifyFocus}
                 onBlur={notifyBlur}
-                inputClassName={cn(styles.input, {
-                    [styles.disabled]: disabled,
-                    [styles.error]: hasError,
-                })}
+                inputClassName={cn(
+                    styles.input,
+                    {
+                        [styles.disabled]: disabled,
+                        [styles.error]: hasError,
+                    },
+                    styles.phoneNativeInput,
+                )}
+                countrySelectorStyleProps={{
+                    buttonClassName: styles.phoneCountryButton,
+                }}
                 className={cn(styles.inputContainer, className, {
                     [styles.rounded]: rounded,
                     [styles.disabled]: disabled,

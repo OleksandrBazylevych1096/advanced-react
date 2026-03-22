@@ -36,26 +36,6 @@
             margin: 0;
         }
     }
-
-    :global(.react-international-phone-input) {
-        height: auto;
-        padding: 0;
-        border: none;
-        margin: 0;
-        background-color: inherit;
-        color: var(--gray-800);
-        font: inherit;
-    }
-
-    :global(.react-international-phone-country-selector-button) {
-        height: auto;
-        border: none;
-        background: inherit;
-
-        &:hover {
-            background: inherit;
-        }
-    }
 }
 
 .label {
@@ -99,6 +79,26 @@
 
     &.error {
         background-color: var(--red-50);
+    }
+}
+
+.wrapper .inputContainer .phoneNativeInput {
+    height: auto;
+    padding: 0;
+    border: none;
+    margin: 0;
+    background-color: inherit;
+    color: var(--gray-800);
+    font: inherit;
+}
+
+.wrapper .inputContainer .phoneCountryButton {
+    height: auto;
+    border: none;
+    background: inherit;
+
+    &:hover {
+        background: inherit;
     }
 }
 
