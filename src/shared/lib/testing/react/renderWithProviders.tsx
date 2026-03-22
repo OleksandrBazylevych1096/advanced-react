@@ -6,7 +6,7 @@ import {MemoryRouter, Route, Routes} from "react-router";
 
 import {StoreProvider} from "@/app/providers/StoreProvider/StoreProvider";
 
-import i18n from "@/shared/config";
+import {i18nForTests} from "@/shared/config/test";
 import type {DeepPartial} from "@/shared/lib/state/redux/types";
 
 interface RenderWithProvidersOptions {
@@ -23,7 +23,7 @@ export const renderWithProviders = (
     return render(
         <StoreProvider initialState={initialState} asyncReducers={asyncReducers}>
             <MemoryRouter initialEntries={[route]}>
-                <I18nextProvider i18n={i18n}>
+                <I18nextProvider i18n={i18nForTests}>
                     <Routes>
                         <Route path={path} element={ui} />
                     </Routes>

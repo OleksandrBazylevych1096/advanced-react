@@ -4,8 +4,8 @@ import {PromoCarousel} from "@/widgets/PromoCarousel";
 
 import {
     ProductFilters,
-    ProductFiltersControls,
     productFiltersReducer,
+    ProductFiltersControls,
 } from "@/features/product-filters";
 
 import {DynamicModuleLoader} from "@/shared/lib/state";

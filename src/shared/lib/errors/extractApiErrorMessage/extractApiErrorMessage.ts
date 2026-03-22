@@ -1,7 +1,7 @@
 import type {SerializedError} from "@reduxjs/toolkit";
 import type {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 
-import i18n from "@/shared/config";
+import {i18n} from "@/shared/config/i18n";
 
 import {extractApiErrorCode} from "../extractApiErrorCode/extractApiErrorCode";
 

@@ -5,7 +5,7 @@ import {applyCouponHandlers} from "@/features/checkout/apply-coupon/api/test/han
 
 import {mockAuthSession} from "@/entities/user/api/test/mockData";
 
-import {createHandlersScenario} from "@/shared/libScenario";
+import {createHandlersScenario} from "@/shared/lib/testing";
 
 import {Coupon} from "./Coupon";
 

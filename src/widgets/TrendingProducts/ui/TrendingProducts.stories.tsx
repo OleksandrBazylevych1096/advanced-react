@@ -4,7 +4,7 @@ import {trendingProductsHandlers} from "@/widgets/TrendingProducts";
 
 import {productsHandlers} from "@/entities/product";
 
-import {createHandlersScenario} from "@/shared/libScenario.ts";
+import {createHandlersScenario} from "@/shared/lib/testing";
 
 import {TrendingProducts} from "./TrendingProducts";
 

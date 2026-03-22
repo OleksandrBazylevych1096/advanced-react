@@ -7,7 +7,7 @@ import {chooseDeliveryDateHandlers} from "@/features/checkout/choose-delivery-da
 import {cartHandlers} from "@/entities/cart/api/test/handlers";
 import {mockAuthSession} from "@/entities/user/api/test/mockData";
 
-import {createHandlersScenario} from "@/shared/libScenario";
+import {createHandlersScenario} from "@/shared/lib/testing";
 
 import CartPage from "./CartPage";
 

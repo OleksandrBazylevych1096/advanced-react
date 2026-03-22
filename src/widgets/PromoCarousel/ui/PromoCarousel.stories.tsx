@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {promoCarouselHandlers} from "@/widgets/PromoCarousel/api/test/handlers";
 
-import {createHandlersScenario} from "@/shared/libScenario.ts";
+import {createHandlersScenario} from "@/shared/lib/testing";
 
 import {PromoCarousel} from "./PromoCarousel";
 

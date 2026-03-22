@@ -1,4 +1,4 @@
-import {t} from "i18next";
+import {useTranslation} from "react-i18next";
 
 import type {ShippingAddress} from "@/entities/shipping-address";
 
@@ -18,6 +18,7 @@ interface DeleteConfirmationModalProps {
 
 export const DeleteConfirmationModal = (props: DeleteConfirmationModalProps) => {
     const {address} = props;
+    const {t} = useTranslation();
 
     const {
         data: {isDeleteModalOpen},

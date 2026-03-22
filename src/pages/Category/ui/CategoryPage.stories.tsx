@@ -9,7 +9,7 @@ import {categoryBreadcrumbsHandlers, categoryHandlers} from "@/entities/category
 import {productsHandlers} from "@/entities/product";
 
 import {AppRoutes, routePaths} from "@/shared/config";
-import {createHandlersScenario} from "@/shared/libScenario.ts";
+import {createHandlersScenario} from "@/shared/lib/testing";
 
 import CategoryPage from "./CategoryPage";
 

@@ -5,7 +5,7 @@ import {saveShippingAddressReducer} from "@/features/shipping-address/save";
 import {shippingAddressHandlers} from "@/entities/shipping-address/api/test/handlers";
 import {mockAuthSession} from "@/entities/user/api/test/mockData";
 
-import {createHandlersScenario} from "@/shared/libScenario";
+import {createHandlersScenario} from "@/shared/lib/testing";
 
 import {ManageShippingAddress} from "./ManageShippingAddress";
 

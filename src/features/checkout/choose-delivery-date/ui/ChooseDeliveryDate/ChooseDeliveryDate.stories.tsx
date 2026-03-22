@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {mockAuthSession} from "@/entities/user/api/test/mockData";
 
-import {createHandlersScenario} from "@/shared/libScenario";
+import {createHandlersScenario} from "@/shared/lib/testing";
 
 import {chooseDeliveryDateHandlers} from "../../api/test/handlers";
 

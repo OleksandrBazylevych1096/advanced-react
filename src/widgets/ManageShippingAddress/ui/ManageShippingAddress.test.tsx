@@ -46,7 +46,6 @@ describe("ManageShippingAddress Integration Tests", () => {
             userData: {
                 id: "user-1",
                 email: "test@example.com",
-                isVerified: true,
             },
         },
         saveShippingAddress: {

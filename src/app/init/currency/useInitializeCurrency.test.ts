@@ -48,7 +48,7 @@ vi.mock("@/shared/config", () => ({
         en: "USD",
         de: "EUR",
     },
-    default: testCtx.i18nMock,
+    i18n: testCtx.i18nMock,
 }));
 
 vi.mock("@/shared/lib/i18n", () => ({

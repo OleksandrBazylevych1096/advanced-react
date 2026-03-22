@@ -2,8 +2,8 @@ import {describe, expect, test, vi} from "vitest";
 
 import {extractApiErrorMessage} from "./extractApiErrorMessage";
 
-vi.mock("@/shared/config", () => ({
-    default: {
+vi.mock("@/shared/config/i18n", () => ({
+    i18n: {
         t: (key: string) => {
             const dictionary: Record<string, string> = {
                 "errors.INVALID_CREDENTIALS": "Invalid credentials (translated)",

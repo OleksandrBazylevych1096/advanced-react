@@ -1,7 +1,9 @@
-import i18n from "i18next";
+import {createInstance} from "i18next";
+import type {i18n as I18nInstance} from "i18next";
 import {initReactI18next} from "react-i18next";
 
-i18n.use(initReactI18next).init({
+const i18nForTests = createInstance() as I18nInstance;
+i18nForTests.use(initReactI18next).init({
     lng: "en",
     fallbackLng: "en",
     debug: false,
@@ -11,4 +13,4 @@ i18n.use(initReactI18next).init({
     resources: {en: {translationNS: {}}},
 });
 
-export default i18n;
+export default i18nForTests;

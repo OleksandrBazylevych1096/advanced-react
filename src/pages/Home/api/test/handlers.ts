@@ -1,4 +1,4 @@
-import {createMockProduct} from "@/entities/product.ts";
+import {createMockProduct} from "@/entities/product";
 
 import {API_URL} from "@/shared/config";
 import {createHandlers} from "@/shared/lib/testing";

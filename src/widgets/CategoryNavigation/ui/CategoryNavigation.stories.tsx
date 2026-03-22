@@ -12,7 +12,7 @@ import {
 } from "@/widgets/CategoryNavigation/api/test/mockData.ts";
 
 import {AppRoutes, routePaths} from "@/shared/config";
-import {createHandlersScenario} from "@/shared/libScenario.ts";
+import {createHandlersScenario} from "@/shared/lib/testing";
 
 const meta: Meta<typeof CategoryNavigation> = {
     title: "widgets/CategoryNavigation",

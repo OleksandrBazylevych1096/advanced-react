@@ -1,4 +1,4 @@
-@import "../../../../app/styles/animations";
+@use "../../../../../app/styles/animations" as *;
 
 .trigger {
     justify-content: flex-start;
