@@ -5,7 +5,6 @@ import {Dropdown} from "@/shared/ui/Dropdown/Dropdown.tsx";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-
 const meta = {
     title: "shared/Dropdown",
     component: Dropdown,

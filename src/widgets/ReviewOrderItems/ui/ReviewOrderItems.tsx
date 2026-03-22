@@ -18,7 +18,7 @@ interface ReviewOrderItemsProps {
 export const ReviewOrderItems = ({items}: ReviewOrderItemsProps) => {
     const {t} = useTranslation("checkout");
     const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-    const currency = useAppSelector(selectUserCurrency)
+    const currency = useAppSelector(selectUserCurrency);
 
     return (
         <Stack gap={12} className={styles.card}>

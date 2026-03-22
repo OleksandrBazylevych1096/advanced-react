@@ -1,10 +1,9 @@
 import {act, renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
-import {mockAuthSession} from "@/entities/user/api/test/mockData";
-import {createMockProduct} from "@/entities/product/api/test/mockData";
-
 import type {Product} from "@/entities/product";
+import {createMockProduct} from "@/entities/product/api/test/mockData";
+import {mockAuthSession} from "@/entities/user/api/test/mockData";
 
 import {useAddToCartController} from "./useAddToCartController";
 

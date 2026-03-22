@@ -1,4 +1,7 @@
-import {useCreatePaymentSessionMutation, useGetCheckoutSummaryQuery,} from "./api/checkoutApi/checkoutApi.ts";
+import {
+    useCreatePaymentSessionMutation,
+    useGetCheckoutSummaryQuery,
+} from "./api/checkoutApi/checkoutApi.ts";
 import {useLazyGetOrderByIdQuery} from "./api/orderApi/orderApi.ts";
 import {buildCheckoutSummaryRows} from "./lib/buildCheckoutSummaryRows/buildCheckoutSummaryRows.ts";
 import {checkIsCheckoutReady} from "./lib/validation/checkIsCheckoutReady.ts";

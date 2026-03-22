@@ -2,8 +2,6 @@ import type {OrderSummaryRow} from "@/entities/order";
 
 import type {CheckoutSummary} from "../../model/types/checkoutTypes";
 
-
-
 interface CheckoutSummaryLabels {
     itemsTotal: string;
     deliveryFee: string;

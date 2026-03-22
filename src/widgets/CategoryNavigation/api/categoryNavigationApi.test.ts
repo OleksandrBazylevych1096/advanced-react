@@ -1,8 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
-import {baseAPI} from "@/shared/api";
 import {createMockCategory} from "@/entities/category/api/test/mockData";
+
+import {baseAPI} from "@/shared/api";
 import {parseRequestUrl} from "@/shared/lib/testing/http/requestUrl";
 
 import {categoryNavigationApi} from "./categoryNavigationApi";
