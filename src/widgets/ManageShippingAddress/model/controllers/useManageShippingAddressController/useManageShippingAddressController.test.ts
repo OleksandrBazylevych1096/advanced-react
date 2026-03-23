@@ -43,6 +43,8 @@ vi.mock("@/entities/shipping-address", () => ({
 
 vi.mock("@/entities/user", () => ({
     selectUserData: (state: StateSchema) => state.user?.userData,
+    selectIsAuthenticated: (state: StateSchema) =>
+        Boolean(state.user?.userData && state.user?.accessToken),
 }));
 
 vi.mock("@/shared/lib/state", () => ({
@@ -60,7 +62,7 @@ describe("useManageShippingAddressController", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         testCtx.state = {
-            user: {userData: {id: "u1"}},
+            user: {userData: {id: "u1"}, accessToken: "token-1"},
             saveShippingAddress: {mode: "edit", isManageShippingAddressModalOpen: false},
         } as StateSchema;
         testCtx.defaultAddressQueryMock.mockReturnValue({
@@ -81,7 +83,7 @@ describe("useManageShippingAddressController", () => {
             modalTitle: "t:shipping.edit",
             shouldShowEditForm: true,
             mode: "edit",
-            userData: {id: "u1"},
+            isAuthenticated: true,
             isModalOpen: false,
         });
 

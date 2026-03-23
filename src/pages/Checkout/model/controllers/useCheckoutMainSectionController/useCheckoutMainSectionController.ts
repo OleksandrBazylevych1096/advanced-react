@@ -2,6 +2,8 @@ import {useMemo} from "react";
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router";
 
+import {selectApplyCouponCode} from "@/features/checkout/apply-coupon";
+import {selectChooseDeliveryTipAmount} from "@/features/checkout/choose-delivery-tip";
 import {useGetCheckoutSummaryQuery} from "@/features/checkout/place-order";
 import {saveShippingAddressActions} from "@/features/shipping-address/save";
 
@@ -17,6 +19,8 @@ export const useCheckoutMainSectionController = () => {
     const dispatch = useAppDispatch();
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
     const currency = useAppSelector(selectUserCurrency);
+    const tip = useAppSelector(selectChooseDeliveryTipAmount);
+    const couponCode = useAppSelector(selectApplyCouponCode);
     const navigate = useNavigate();
     const getLocalizedPath = useLocalizedRoutePath();
 
@@ -28,6 +32,8 @@ export const useCheckoutMainSectionController = () => {
         {
             locale: i18n.language,
             currency,
+            tipAmount: tip,
+            couponCode: couponCode,
         },
         {
             skip: !isAuthenticated,

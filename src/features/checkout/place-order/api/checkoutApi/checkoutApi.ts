@@ -1,4 +1,5 @@
 import {type ApiLocaleCurrencyParams, baseAPI} from "@/shared/api";
+import {filterParams} from "@/shared/lib/validation";
 
 import type {
     CheckoutSummary,
@@ -19,8 +20,7 @@ export const checkoutApi = baseAPI.injectEndpoints({
                 params: {
                     locale,
                     currency,
-                    ...(couponCode ? {couponCode} : {}),
-                    ...(typeof tipAmount === "number" ? {tipAmount} : {}),
+                    ...filterParams({couponCode, tipAmount}),
                 },
             }),
             providesTags: ["CartValidation"],

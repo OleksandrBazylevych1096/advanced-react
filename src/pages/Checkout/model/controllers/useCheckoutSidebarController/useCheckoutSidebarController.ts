@@ -38,7 +38,7 @@ export const useCheckoutSidebarController = () => {
             locale: i18n.language,
             currency,
             tipAmount: tip,
-            couponCode,
+            couponCode: couponCode,
         },
         {
             skip: !isAuthenticated,

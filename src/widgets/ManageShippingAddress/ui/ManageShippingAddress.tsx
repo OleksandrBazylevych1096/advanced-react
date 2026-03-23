@@ -25,7 +25,7 @@ export const ManageShippingAddress = () => {
     const {t} = useTranslation();
 
     const {
-        data: {modalTitle, mode, userData, defaultAddress, shouldShowEditForm, isModalOpen},
+        data: {modalTitle, mode, isAuthenticated, defaultAddress, shouldShowEditForm, isModalOpen},
         status: {isLoading, isError},
         actions: {closeModal, goBack, openSignIn, openModal},
     } = useManageShippingAddressController();
@@ -65,7 +65,7 @@ export const ManageShippingAddress = () => {
                             {modalTitle}
                         </div>
                     </Modal.Header>
-                    {!userData ? (
+                    {!isAuthenticated ? (
                         <Modal.Body>
                             <div
                                 className={styles.signInPrompt}

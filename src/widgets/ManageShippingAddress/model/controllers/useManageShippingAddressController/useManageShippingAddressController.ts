@@ -9,7 +9,7 @@ import {
 } from "@/features/shipping-address/save";
 
 import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
-import {selectUserData} from "@/entities/user";
+import {selectIsAuthenticated} from "@/entities/user";
 
 import {AppRoutes, routePaths} from "@/shared/config";
 import {useLocalizedRoutePath} from "@/shared/lib/routing";
@@ -19,7 +19,7 @@ export const useManageShippingAddressController = () => {
     const navigate = useNavigate();
     const getLocalizedPath = useLocalizedRoutePath();
     const dispatch = useAppDispatch();
-    const userData = useAppSelector(selectUserData);
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
     const mode = useAppSelector(selectSaveShippingAddressMode);
     const isModalOpen = useAppSelector(selectIsManageShippingAddressModalOpen);
     const {t} = useTranslation();
@@ -29,7 +29,7 @@ export const useManageShippingAddressController = () => {
         currentData: defaultAddress,
         isError,
     } = useGetDefaultShippingAddressQuery(undefined, {
-        skip: !userData,
+        skip: !isAuthenticated,
     });
 
     const closeModal = () => {
@@ -58,7 +58,7 @@ export const useManageShippingAddressController = () => {
             modalTitle,
             shouldShowEditForm,
             mode,
-            userData,
+            isAuthenticated,
             isModalOpen,
         },
         status: {

@@ -6,7 +6,7 @@ import {buildPlaceOrderPayload} from "@/features/checkout/place-order/lib/transf
 import type {CheckoutSummary} from "@/features/checkout/place-order/model/types/checkoutTypes.ts";
 
 import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
-import {selectUserCurrency} from "@/entities/user";
+import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import {AppRoutes, routePaths} from "@/shared/config";
 import {useLocalizedRoutePath} from "@/shared/lib/routing";
@@ -36,11 +36,14 @@ export const usePlaceOrderController = ({
 }: UsePlaceOrderControllerParams) => {
     const {i18n, t} = useTranslation("checkout");
     const getLocalizedPath = useLocalizedRoutePath();
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
     const currency = useAppSelector(selectUserCurrency);
     const [createPaymentSessionRequest, {isLoading: isPlacingOrder}] =
         useCreatePaymentSessionMutation();
     const [paymentSessionError, setPaymentSessionError] = useState<string | null>(null);
-    const {data: defaultAddress} = useGetDefaultShippingAddressQuery(undefined);
+    const {data: defaultAddress} = useGetDefaultShippingAddressQuery(undefined, {
+        skip: !isAuthenticated,
+    });
     const hasAddress = Boolean(defaultAddress);
     const canPlaceOrder = checkIsCheckoutReady(summary, hasAddress);
     const hasDeliverySelection = Boolean(

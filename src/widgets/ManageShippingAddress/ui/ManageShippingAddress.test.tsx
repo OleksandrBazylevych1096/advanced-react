@@ -46,6 +46,7 @@ describe("ManageShippingAddress Integration Tests", () => {
                 id: "user-1",
                 email: "test@example.com",
             },
+            accessToken: "token-1",
         },
         saveShippingAddress: {
             mode: "choose",

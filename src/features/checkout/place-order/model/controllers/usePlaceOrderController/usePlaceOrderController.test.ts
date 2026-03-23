@@ -35,6 +35,8 @@ vi.mock("@/entities/shipping-address", () => ({
 
 vi.mock("@/entities/user", () => ({
     selectUserCurrency: (state: StateSchema) => state.user?.currency || "USD",
+    selectIsAuthenticated: (state: StateSchema) =>
+        Boolean(state.user?.userData && state.user?.accessToken),
 }));
 
 vi.mock("../../../lib/validation/checkIsCheckoutReady.ts", () => ({
@@ -45,7 +47,9 @@ vi.mock("@/shared/lib/state", () => ({
     createControllerResult: <T>(value: T) => value,
     useLocalizedRoutePath: () => testCtx.localizedPathMock,
     useAppSelector: (selector: (state: StateSchema) => unknown) =>
-        selector({user: {currency: "USD"}} as StateSchema),
+        selector({
+            user: {currency: "USD", userData: {id: "u1"}, accessToken: "token-1"},
+        } as StateSchema),
 }));
 
 describe("usePlaceOrderController", () => {
