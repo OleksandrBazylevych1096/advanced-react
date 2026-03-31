@@ -2,8 +2,8 @@ import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
 import type {LatLngTuple} from "leaflet";
 
 import type {
-    AddressForm,
     AddressMode,
+    BaseShippingAddress,
     SaveShippingAddressSchema,
 } from "@/entities/shipping-address";
 
@@ -38,7 +38,7 @@ export const saveShippingAddressSlice = createSlice({
         setFormZipCode: (state, action: PayloadAction<string>) => {
             state.form.zipCode = action.payload;
         },
-        setForm: (state, action: PayloadAction<AddressForm>) => {
+        setForm: (state, action: PayloadAction<BaseShippingAddress>) => {
             state.form = action.payload;
         },
         resetForm: (state) => {
@@ -60,7 +60,7 @@ export const saveShippingAddressSlice = createSlice({
             state,
             action: PayloadAction<{
                 id: string;
-                form: AddressForm;
+                form: BaseShippingAddress;
                 location: LatLngTuple;
             }>,
         ) => {

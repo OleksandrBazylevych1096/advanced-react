@@ -1,6 +1,7 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {defaultAddressHandlers} from "@/entities/shipping-address/api/test/handlers";
+import {mockAuthSession} from "@/entities/user/api/test/mockData";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 
@@ -19,6 +20,9 @@ const meta = {
         initialState: {
             user: {
                 currency: "USD",
+                userData: mockAuthSession.user,
+                accessToken: mockAuthSession.accessToken,
+                accessTokenExpiresAt: mockAuthSession.accessTokenExpiresAt,
             },
         } as Partial<StateSchema>,
     },

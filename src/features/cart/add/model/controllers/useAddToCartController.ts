@@ -51,9 +51,7 @@ export const useAddToCartController = (product: Product) => {
     const [addToCartMutation] = useAddToCartMutation();
 
     const serverQuantity =
-        serverCart?.items.find(
-            (item) => item.productId === product.id || item.product.id === product.id,
-        )?.quantity ?? 0;
+        serverCart?.items.find((item) => item.product.id === product.id)?.quantity ?? 0;
 
     const currentQuantity = isAuthenticated ? serverQuantity : (guestExistingItem?.quantity ?? 0);
 

@@ -40,7 +40,6 @@ export const useCartController = (options: UseCartOptions) => {
         return {
             items: guestItems.map((gi) => ({
                 id: `guest-${gi.productId}`,
-                productId: gi.productId,
                 quantity: gi.quantity,
                 product: gi.product,
             })),

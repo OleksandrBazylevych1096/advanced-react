@@ -1,3 +1,5 @@
+import {mockSingleAddress} from "@/entities/shipping-address/api/test/mockData";
+
 import type {AvailableDeliveryDate} from "../../model/types/availableDeliveryDateTypes";
 
 export const mockDeliveryDates: AvailableDeliveryDate[] = [
@@ -11,13 +13,4 @@ export const mockDeliveryDates: AvailableDeliveryDate[] = [
     },
 ];
 
-export const mockDefaultShippingAddress = {
-    id: "addr-story-1",
-    streetAddress: "Main Street 10",
-    city: "Kyiv",
-    numberOfApartment: "12",
-    zipCode: "01001",
-    isDefault: true,
-    latitude: 50.4501,
-    longitude: 30.5234,
-};
+export const mockDefaultShippingAddress = mockSingleAddress;

@@ -70,3 +70,13 @@ export const SummaryError: Story = {
         },
     },
 };
+
+export const WithoutDefaultAddress: Story = {
+    parameters: {
+        msw: {
+            handlers: createHandlersScenario("default", handlersMap, {
+                defaultAddress: shippingAddressHandlers.defaultAddress.noDefault,
+            }),
+        },
+    },
+};

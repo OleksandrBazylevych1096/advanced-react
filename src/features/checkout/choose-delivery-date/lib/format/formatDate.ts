@@ -23,18 +23,19 @@ export const formatSelectedDateTitle = (dateValue: string, locale: string) => {
 };
 
 interface DeliverySelectionLike {
-    date: string;
-    time: string;
+    date?: string | null;
+    time?: string | null;
 }
 
-export const formatDeliveryTriggerLabel = (
+export const getDeliveryLabel = (
     locale: string,
     selection: DeliverySelectionLike | null,
     defaultLabel = "Choose delivery date",
 ): string => {
-    if (!selection) return defaultLabel;
+    if (!selection || !selection.time || !selection.date) return defaultLabel;
 
-    const date = new Date(`${selection.date}T00:00:00`);
+    // selection.date can be with time or without
+    const date = new Date(`${selection.date.slice(0, 10)}T00:00:00`);
     const dateLabel = new Intl.DateTimeFormat(locale, {
         weekday: "short",
         day: "2-digit",

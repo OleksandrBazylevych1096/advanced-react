@@ -15,7 +15,7 @@ const formatDeliveryTriggerLabelMock = vi.fn(
 );
 
 vi.mock("../../lib/format/formatDate", () => ({
-    formatDeliveryTriggerLabel: (locale: string, selection: unknown, defaultLabel?: string) =>
+    getDeliveryLabel: (locale: string, selection: unknown, defaultLabel?: string) =>
         formatDeliveryTriggerLabelMock(locale, selection, defaultLabel),
 }));
 

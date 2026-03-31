@@ -46,11 +46,8 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
     const rows: OrderSummaryRow[] = [
         {label: "Items total", amount: cart.totals.subtotal},
         {label: "Delivery fee", amount: cart.totals.estimatedShipping},
+        {label: "Estimated tax", amount: cart.totals.estimatedTax},
     ];
-
-    if (cart.totals.estimatedTax > 0) {
-        rows.push({label: "Estimated tax", amount: cart.totals.estimatedTax});
-    }
 
     return (
         <aside>
@@ -63,11 +60,7 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
                     />
                 </div>
 
-                <OrderSummaryCard
-                    rows={rows}
-                    totalAmount={cart.totals.total}
-                    className={styles.summaryTotals}
-                />
+                <OrderSummaryCard rows={rows} totalAmount={cart.totals.total} />
 
                 <Button
                     fullWidth

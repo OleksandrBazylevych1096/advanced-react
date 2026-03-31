@@ -11,7 +11,7 @@ import {usePlaceOrderController} from "../model/controllers/usePlaceOrderControl
 
 interface PlaceOrderProps {
     summary: CheckoutSummary | undefined;
-    deliverySelection: DeliverySelection | null;
+    deliverySelection: DeliverySelection | null | undefined;
     tip: number;
     couponCode: string;
 }

@@ -14,6 +14,7 @@ export const AppRoutes = {
     CART: "cart",
     CHECKOUT: "checkout",
     CHECKOUT_RESULT: "checkout_result",
+    ORDER: "order",
     NOT_FOUND: "not_found",
 } as const;
 
@@ -35,6 +36,7 @@ export const routePaths: Record<AppRoutes, string> = {
     [AppRoutes.CART]: "/:lng/cart",
     [AppRoutes.CHECKOUT]: "/:lng/checkout",
     [AppRoutes.CHECKOUT_RESULT]: "/:lng/checkout/result",
+    [AppRoutes.ORDER]: "/:lng/order/:id",
 
     // last
     [AppRoutes.NOT_FOUND]: "*",

@@ -10,6 +10,7 @@ import {ForgotPasswordPage} from "@/pages/ForgotPassword";
 import {HomePage} from "@/pages/Home";
 import {LoginPage} from "@/pages/Login";
 import {NotFoundPage} from "@/pages/NotFound";
+import {OrderPage} from "@/pages/Order";
 import {ProductPage} from "@/pages/Product";
 import {RegisterPage} from "@/pages/Register";
 import {ResetPasswordPage} from "@/pages/ResetPassword";
@@ -95,6 +96,10 @@ export const routeConfig: AppRouteConfig[] = [
     {
         path: routePaths[AppRoutes.CHECKOUT_RESULT],
         element: <CheckoutResultPage />,
+    },
+    {
+        path: routePaths[AppRoutes.ORDER],
+        element: <OrderPage />,
     },
     {
         path: routePaths[AppRoutes.NOT_FOUND],

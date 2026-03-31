@@ -1,0 +1,19 @@
+.metaLabel {
+    min-width: 96px;
+}
+
+.deliveryDateTrigger {
+    width: fit-content;
+}
+
+.addressText {
+    color: var(--primary-color);
+    transition: color 0.2s linear;
+}
+
+.addressButton {
+    &:hover .addressText,
+    &:focus-visible .addressText {
+        color: var(--primary-color-dark) !important;
+    }
+}

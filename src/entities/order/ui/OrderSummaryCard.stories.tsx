@@ -35,9 +35,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const CustomTitle: Story = {
+export const CheckoutSummary: Story = {
     args: {
-        title: "Checkout summary",
-        totalLabel: "Grand total",
+        rows: [
+            {label: "Items total", amount: 159},
+            {label: "Delivery fee", amount: 10},
+            {label: "Service fee", amount: 8},
+            {label: "Tip", amount: 5},
+            {label: "Coupon", amount: -20},
+        ],
+        totalAmount: 162,
     },
 };

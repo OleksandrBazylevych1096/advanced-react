@@ -47,7 +47,6 @@ describe("useCartValidationController", () => {
     const items: CartItem[] = [
         {
             id: "c1",
-            productId: "p1",
             quantity: 5,
             product: createMockProduct({
                 id: "p1",
@@ -58,7 +57,6 @@ describe("useCartValidationController", () => {
         },
         {
             id: "c2",
-            productId: "p2",
             quantity: 1,
             product: createMockProduct({
                 id: "p2",

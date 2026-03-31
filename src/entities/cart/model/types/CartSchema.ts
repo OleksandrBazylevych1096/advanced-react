@@ -2,7 +2,6 @@ import type {Product} from "@/entities/product/@x/cart";
 
 export interface CartItem {
     id: string;
-    productId: string;
     quantity: number;
     product: Product;
     createdAt?: string;

@@ -20,24 +20,16 @@ interface OrderSummaryCardProps {
     rows: OrderSummaryRow[];
     totalAmount: number;
     className?: string;
-    title?: string;
-    totalLabel?: string;
 }
 
-export const OrderSummaryCard = ({
-    rows,
-    totalAmount,
-    className,
-    title = "Order Summary",
-    totalLabel = "Total",
-}: OrderSummaryCardProps) => {
-    const {i18n} = useTranslation();
+export const OrderSummaryCard = ({rows, totalAmount, className}: OrderSummaryCardProps) => {
+    const {i18n, t} = useTranslation("checkout");
     const currency = useAppSelector(selectUserCurrency);
 
     return (
         <Stack className={cn(styles.card, className)} gap={16}>
             <Typography as="h3" variant="heading" weight="bold">
-                {title}
+                {t("summary.title")}
             </Typography>
 
             <Stack gap={12}>
@@ -51,7 +43,7 @@ export const OrderSummaryCard = ({
             </Stack>
 
             <SummaryRow
-                label={totalLabel}
+                label={t("summary.total")}
                 value={formatCurrency(currency, i18n.language, totalAmount)}
                 emphasized
             />

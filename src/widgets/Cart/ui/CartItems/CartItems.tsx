@@ -73,16 +73,16 @@ export const CartItems = ({compact, className}: CartItemsProps) => {
                     item={item}
                     currency={currency}
                     compact={compact}
-                    validationIssues={getItemValidation(item.productId)?.issues}
+                    validationIssues={getItemValidation(item.product.id)?.issues}
                     controls={
                         <Stack direction="row" align="center" gap={12}>
                             <RemoveFromCartButton
-                                productId={item.productId}
+                                productId={item.product.id}
                                 onRemove={removeItem}
                                 className={styles.deleteBtn}
                             />
                             <CartQuantityStepper
-                                productId={item.productId}
+                                productId={item.product.id}
                                 quantity={item.quantity}
                                 maxQuantity={item.product.stock}
                                 onQuantityChange={updateQuantity}

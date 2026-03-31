@@ -91,9 +91,7 @@ export const useUpdateCartItemQuantityController = (
                         store.getState(),
                     );
                     const item = cartQueryState.data?.items.find(
-                        (cartItem) =>
-                            cartItem.productId === targetProductId ||
-                            cartItem.product.id === targetProductId,
+                        (cartItem) => cartItem.product.id === targetProductId,
                     );
 
                     return item?.quantity ?? 0;

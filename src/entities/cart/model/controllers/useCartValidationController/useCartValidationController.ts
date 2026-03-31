@@ -45,7 +45,7 @@ export const useCartValidationController = (
             }
 
             return {
-                productId: item.productId,
+                productId: item.product.id,
                 issues,
                 isValid: issues.length === 0,
             };

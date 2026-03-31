@@ -61,6 +61,62 @@
         "success": "Payment successful",
         "failed": "Payment failed. Please contact support.",
         "systemError": "We could not verify payment status because the server is unavailable. Please try again in a moment.",
-        "continueShopping": "Continue shopping"
+        "continueShopping": "Continue shopping",
+        "trackOrder": "Track order"
+    },
+    "order": {
+        "title": "Track Order",
+        "pageTitle": {
+            "inProgress": "Order In Progress",
+            "delivered": "Order Delivered"
+        },
+        "pageOrderNumber": "Order number:",
+        "loading": "Loading order details...",
+        "errorTitle": "Could not load order",
+        "errorDescription": "Please try again in a moment.",
+        "orderNumber": "Order Number:",
+        "orderStatus": "Order Status",
+        "paymentStatusLabel": "Payment Status",
+        "payWith": "Pay with",
+        "deliveryAddress": "Delivery address",
+        "paymentCardMasked": "{{brand}} **** {{last4}}",
+        "promisedDelivery": "Promised Delivery",
+        "copied": "Order number copied",
+        "notAvailable": "Not available",
+        "statusPill": {
+            "inProgress": "In progress",
+            "inComplete": "In complete",
+            "cancelled": "Cancelled",
+            "refunded": "Refunded"
+        },
+        "timeline": {
+            "done": {
+                "confirmed": "Order confirmed",
+                "processing": "Order processed",
+                "shipped": "Order shipped",
+                "delivered": "Order delivered"
+            },
+            "active": {
+                "confirmed": "Confirming order",
+                "processing": "Processing order",
+                "shipped": "Shipping order",
+                "delivered": "Delivering order"
+            }
+        },
+        "status": {
+            "pending": "Pending",
+            "confirmed": "Confirmed",
+            "processing": "Processing",
+            "shipped": "Shipped",
+            "delivered": "Delivered",
+            "cancelled": "Cancelled",
+            "refunded": "Refunded"
+        },
+        "paymentStatus": {
+            "pending": "Pending",
+            "paid": "Paid",
+            "failed": "Failed",
+            "refunded": "Refunded"
+        }
     }
 }

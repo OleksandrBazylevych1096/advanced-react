@@ -4,13 +4,14 @@ import {
     useGetDefaultShippingAddressQuery,
     useLazyGetDefaultShippingAddressQuery,
 } from "./api/shippingAddressApi/shippingAddressApi";
+import {buildShippingAddressLabel} from "./lib/buildShippingAddressLabel";
 import {
     SHIPPING_ADDRESSES_DOMAIN_KEY,
     shippingAddressOptimisticVersionGuard,
 } from "./model/optimisticVersionGuard";
 import type {
     ShippingAddress,
-    AddressForm,
+    BaseShippingAddress,
     CreateShippingAddress,
     UpdateShippingAddress,
     AddressSearchResult,
@@ -28,11 +29,12 @@ export {
     useLazyGetDefaultShippingAddressQuery,
     SHIPPING_ADDRESSES_DOMAIN_KEY,
     shippingAddressOptimisticVersionGuard,
+    buildShippingAddressLabel,
 };
 
 export type {
     ShippingAddress,
-    AddressForm,
+    BaseShippingAddress,
     CreateShippingAddress,
     UpdateShippingAddress,
     AddressSearchResult,

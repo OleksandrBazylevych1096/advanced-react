@@ -56,7 +56,7 @@ export const CartItemRow = (props: CartItemRowProps) => {
                     <ul className={styles.validationList}>
                         {validationIssues.map((issue, index) => (
                             <li
-                                key={`${item.productId}-${index}-${issue}`}
+                                key={`${item.product.id}-${index}-${issue}`}
                                 className={styles.validationIssue}
                             >
                                 <Typography as="span" variant="caption" tone="danger">

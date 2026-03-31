@@ -9,7 +9,7 @@ type AppIconTheme = "clean" | "background";
 interface AppIconProps {
     Icon: FunctionComponent<SVGProps<SVGSVGElement>>;
     theme?: AppIconTheme;
-    size?: number;
+    size?: number | "auto";
     className?: string;
     filled?: boolean;
 }

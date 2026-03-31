@@ -6,7 +6,7 @@ import type {Cart} from "../model/types/CartSchema";
 import {recalculateCartTotals} from "./recalculateCartTotals/recalculateCartTotals";
 
 export const findCartItemIndexByProductId = (cart: Cart, productId: string): number =>
-    cart.items.findIndex((item) => item.productId === productId || item.product.id === productId);
+    cart.items.findIndex((item) => item.product.id === productId);
 
 export const applyCartItemQuantityChange = (
     cart: Cart,

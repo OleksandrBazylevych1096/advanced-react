@@ -1,30 +1,28 @@
 import type {LatLngTuple} from "leaflet";
 
-export interface ShippingAddress {
+export interface ShippingAddress extends BaseShippingAddress {
     id: string;
-    streetAddress: string;
-    city: string;
-    numberOfApartment: string;
-    zipCode: string;
     isDefault: boolean;
     latitude: number;
     longitude: number;
 }
 
-export interface CreateShippingAddress extends AddressForm {
+export interface CreateShippingAddress extends BaseShippingAddress {
     latitude: number;
     longitude: number;
 }
 
-export interface UpdateShippingAddress extends Partial<AddressForm> {
+export interface UpdateShippingAddress extends Partial<BaseShippingAddress> {
     latitude?: number;
     longitude?: number;
 }
 
-export type AddressForm = Pick<
-    ShippingAddress,
-    "streetAddress" | "city" | "numberOfApartment" | "zipCode"
->;
+export interface BaseShippingAddress {
+    streetAddress: string;
+    city: string;
+    numberOfApartment: string;
+    zipCode: string;
+}
 
 export interface AddressSearchResult {
     lat: number;
@@ -51,7 +49,7 @@ export type AddressMode = "choose" | "edit" | "add";
 export interface SaveShippingAddressSchema {
     editingAddressId?: string;
     location: LatLngTuple;
-    form: AddressForm;
+    form: BaseShippingAddress;
     mode: AddressMode;
     isManageShippingAddressModalOpen: boolean;
 }

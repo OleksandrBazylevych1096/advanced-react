@@ -61,6 +61,62 @@
         "success": "Zahlung erfolgreich",
         "failed": "Zahlung fehlgeschlagen. Bitte kontaktieren Sie den Support.",
         "systemError": "Der Zahlungsstatus konnte wegen eines Serverproblems nicht verifiziert werden. Bitte versuchen Sie es gleich erneut.",
-        "continueShopping": "Weiter einkaufen"
+        "continueShopping": "Weiter einkaufen",
+        "trackOrder": "Bestellung verfolgen"
+    },
+    "order": {
+        "title": "Bestellung verfolgen",
+        "pageTitle": {
+            "inProgress": "Bestellung in Bearbeitung",
+            "delivered": "Bestellung zugestellt"
+        },
+        "pageOrderNumber": "Bestellnummer: ",
+        "loading": "Bestelldetails werden geladen...",
+        "errorTitle": "Bestellung konnte nicht geladen werden",
+        "errorDescription": "Bitte versuchen Sie es in einem Moment erneut.",
+        "orderNumber": "Bestellnummer",
+        "orderStatus": "Bestellstatus",
+        "paymentStatusLabel": "Zahlungsstatus",
+        "payWith": "Bezahlt mit",
+        "deliveryAddress": "Lieferadresse",
+        "paymentCardMasked": "{{brand}} **** {{last4}}",
+        "promisedDelivery": "Voraussichtliche Lieferung",
+        "copied": "Bestellnummer kopiert",
+        "notAvailable": "Nicht verfugbar",
+        "statusPill": {
+            "inProgress": "In Bearbeitung",
+            "inComplete": "Abgeschlossen",
+            "cancelled": "Storniert",
+            "refunded": "Erstattet"
+        },
+        "timeline": {
+            "done": {
+                "confirmed": "Bestellung bestatigt",
+                "processing": "Bestellung bearbeitet",
+                "shipped": "Bestellung versandt",
+                "delivered": "Bestellung zugestellt"
+            },
+            "active": {
+                "confirmed": "Bestaetigung der Bestellung",
+                "processing": "Bearbeitung der Bestellung",
+                "shipped": "Versand der Bestellung",
+                "delivered": "Zustellung der Bestellung"
+            }
+        },
+        "status": {
+            "pending": "Ausstehend",
+            "confirmed": "Bestatigt",
+            "processing": "In Bearbeitung",
+            "shipped": "Versandt",
+            "delivered": "Zugestellt",
+            "cancelled": "Storniert",
+            "refunded": "Erstattet"
+        },
+        "paymentStatus": {
+            "pending": "Ausstehend",
+            "paid": "Bezahlt",
+            "failed": "Fehlgeschlagen",
+            "refunded": "Erstattet"
+        }
     }
 }

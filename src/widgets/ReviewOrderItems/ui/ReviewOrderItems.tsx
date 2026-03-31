@@ -21,7 +21,7 @@ export const ReviewOrderItems = ({items}: ReviewOrderItemsProps) => {
     const currency = useAppSelector(selectUserCurrency);
 
     return (
-        <Stack gap={12} className={styles.card}>
+        <Stack gap={12}>
             <Typography as="h3" variant="heading" weight="bold">
                 {t("reviewOrderTitle")}
             </Typography>

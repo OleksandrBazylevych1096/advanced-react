@@ -1,0 +1,71 @@
+.timeline {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.item {
+    flex: 1 1 0;
+    min-width: 170px;
+}
+
+.track {
+    height: 8px;
+    background: var(--gray-200);
+}
+
+.fill {
+    transition: width 0.25s ease;
+}
+
+.fill-done {
+    background: var(--primary-color);
+}
+
+.fill-active {
+    background: var(--primary-color);
+}
+
+.fill-upcoming {
+    background: var(--gray-200);
+}
+
+.event {
+    min-height: 24px;
+}
+
+.marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--gray-300);
+    background: var(--white);
+}
+
+.marker-done {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+}
+
+.marker-active {
+    border-color: var(--primary-color);
+}
+
+.marker-upcoming {
+    border-color: var(--gray-300);
+}
+
+.markerIcon {
+    color: var(--white);
+}
+
+.label {
+    white-space: nowrap;
+}

@@ -25,8 +25,14 @@ const CheckoutResultPage = () => {
         status: {isPolling, isPaymentDeclined, isSystemError},
     } = usePaymentController({sessionId});
 
-    const goToHome = () => {
-        navigate(getLocalizedPath(routePaths[AppRoutes.HOME]));
+    const goToOrder = () => {
+        if (!orderDetails?.id) return;
+
+        navigate(
+            getLocalizedPath(routePaths[AppRoutes.ORDER], {
+                id: orderDetails.id,
+            }),
+        );
     };
 
     if (!sessionId) {
@@ -74,8 +80,14 @@ const CheckoutResultPage = () => {
                     </Typography>
                 )}
 
-                <Button type="button" theme="primary" size="md" onClick={goToHome}>
-                    {t("result.continueShopping")}
+                <Button
+                    type="button"
+                    theme="primary"
+                    size="md"
+                    onClick={goToOrder}
+                    disabled={!orderDetails?.id}
+                >
+                    {t("result.trackOrder")}
                 </Button>
             </Stack>
         </Container>

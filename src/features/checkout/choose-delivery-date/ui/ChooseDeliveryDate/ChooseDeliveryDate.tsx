@@ -7,7 +7,7 @@ import {Spinner} from "@/shared/ui/Spinner";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {formatDeliveryTriggerLabel} from "../../lib/format/formatDate";
+import {getDeliveryLabel} from "../../lib/format/formatDate";
 import {useChooseDeliveryDateController} from "../../model/controllers/useChooseDeliveryDateController";
 import {ChooseDeliveryDateContent} from "../ChooseDeliveryDateContent/ChooseDeliveryDateContent";
 
@@ -42,7 +42,7 @@ export const ChooseDeliveryDate = ({className}: ChooseDeliveryDateProps) => {
             refetchSlots,
         },
     } = useChooseDeliveryDateController();
-    const triggerLabel = formatDeliveryTriggerLabel(
+    const triggerLabel = getDeliveryLabel(
         i18n.language,
         savedSelection,
         t("chooseDeliveryDate.trigger"),

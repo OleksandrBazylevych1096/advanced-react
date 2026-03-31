@@ -81,8 +81,10 @@ describe("useCartController", () => {
             items: [
                 {
                     id: "guest-p1",
-                    productId: "p1",
                     quantity: 2,
+                    product: {
+                        id: "p1",
+                    },
                 },
             ],
             totals: {

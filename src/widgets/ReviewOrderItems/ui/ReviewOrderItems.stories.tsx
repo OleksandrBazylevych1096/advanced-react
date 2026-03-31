@@ -32,3 +32,9 @@ export const SingleItem: Story = {
         items: [mockCart.items[0]],
     },
 };
+
+export const Empty: Story = {
+    args: {
+        items: [],
+    },
+};

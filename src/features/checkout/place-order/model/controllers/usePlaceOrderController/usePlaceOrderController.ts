@@ -17,7 +17,7 @@ import {checkIsCheckoutReady} from "../../../lib/validation/checkIsCheckoutReady
 
 interface UsePlaceOrderControllerParams {
     summary: CheckoutSummary | undefined;
-    deliverySelection: DeliverySelection | null;
+    deliverySelection: DeliverySelection | null | undefined;
     tip: number;
     couponCode: string;
 }

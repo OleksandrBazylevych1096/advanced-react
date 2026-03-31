@@ -1,36 +1,23 @@
 import type {Category} from "@/entities/category";
+import {createMockCategory, mockCategories} from "@/entities/category/api/test/mockData";
 
-import {createMockFactory, sequence} from "@/shared/lib/testing";
-
-const categoryNames = ["Fruits", "Vegetables", "Dairy", "Meat", "Bakery"];
-const categorySlugs = ["fruits", "vegetables", "dairy", "meat", "bakery"];
-
-const createCategory = createMockFactory<Category>({
-    id: sequence("category"),
-    parentId: null,
-    slug: (i) => categorySlugs[i % categorySlugs.length],
-    name: (i) => categoryNames[i % categoryNames.length],
-    slugMap: (i) => ({
-        en: categorySlugs[i % categorySlugs.length],
-        de: categorySlugs[i % categorySlugs.length],
-    }),
-});
-
-export const mockRootCategory: Category = createCategory({
+export const mockRootCategory: Category = createMockCategory({
     id: "0",
     slug: "all",
     name: "All Categories",
     slugMap: {en: "all", de: "alle"},
+    parentId: null,
 });
 
-export const mockFruitsCategory: Category = createCategory({
+export const mockFruitsCategory: Category = createMockCategory({
     id: "1",
     slug: "fruits",
     name: "Fruits",
     slugMap: {en: "fruits", de: "obst"},
+    parentId: null,
 });
 
-export const mockApplesCategory: Category = createCategory({
+export const mockApplesCategory: Category = createMockCategory({
     id: "11",
     parentId: "1",
     slug: "apples",
@@ -38,7 +25,7 @@ export const mockApplesCategory: Category = createCategory({
     slugMap: {en: "apples", de: "apfel"},
 });
 
-export const mockCategoryNavigationItems: Category[] = createCategory.createList(5);
+export const mockCategoryNavigationItems: Category[] = mockCategories;
 
 const subcategoryData: Category[] = [
     {
@@ -71,7 +58,7 @@ const subcategoryData: Category[] = [
     },
 ];
 
-export const mockFruitsSubcategories: Category[] = subcategoryData.map(createCategory);
+export const mockFruitsSubcategories: Category[] = subcategoryData.map(createMockCategory);
 
 export const mockCategoryNavigation = {
     topLevel: {

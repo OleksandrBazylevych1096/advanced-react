@@ -89,6 +89,7 @@ describe("checkoutApi", () => {
                 shippingCity: "Boston",
                 shippingCountry: "US",
                 shippingPostal: "02118",
+                shippingNumberOfApartment: "",
                 billingAddress: "Main",
                 billingCity: "Boston",
                 billingCountry: "US",

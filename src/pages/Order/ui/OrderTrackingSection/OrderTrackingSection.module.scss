@@ -1,0 +1,159 @@
+@use "../../../../app/styles/animations" as *;
+
+.trackingCard {
+    padding-top: 28px;
+    padding-bottom: 24px;
+}
+
+.statusPill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--white);
+    white-space: nowrap;
+}
+
+.statusPillPrimary {
+    border: 1px solid var(--primary-color);
+}
+
+.statusPillSuccess {
+    border: 1px solid var(--green-500);
+    background: var(--green-50);
+}
+
+.statusPillDanger {
+    border: 1px solid var(--red-500);
+    background: var(--red-50);
+}
+
+.currentStatus {
+    margin: 28px auto 18px;
+}
+
+.statusAura {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: rgb(17 126 17 / 20%);
+}
+
+.statusDot {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #2bb52f;
+}
+
+.orderNumberText {
+    color: var(--primary-color);
+}
+
+.copyIcon {
+    color: var(--primary-color);
+    stroke: currentcolor;
+    transition: color 0.2s linear;
+}
+
+.orderNumberButton:hover .copyIcon,
+.orderNumberButton:focus-visible .copyIcon,
+.orderNumberButton:hover .orderNumberText,
+.orderNumberButton:focus-visible .orderNumberText {
+    color: var(--primary-color-dark);
+    stroke: var(--primary-color-dark);
+}
+
+.skeletonTrackingHeading,
+.skeletonTrackingOrderNumber,
+.skeletonTrackingDeliveryLabel,
+.skeletonStatusPill,
+.skeletonStatusAura,
+.skeletonCurrentStatusLabel,
+.skeletonTimelineTrack,
+.skeletonTimelineMarker,
+.skeletonTimelineLabel {
+    @include skeleton-shimmer;
+}
+
+.skeletonTrackingOrderNumber {
+    width: 180px;
+    height: 20px;
+    border-radius: 6px;
+}
+
+.skeletonTrackingDeliveryLabel {
+    width: min(320px, 82%);
+    height: 20px;
+    border-radius: 6px;
+}
+
+.skeletonStatusPill {
+    width: 124px;
+    height: 42px;
+    border-radius: 999px;
+}
+
+.skeletonStatusAura {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+
+.skeletonCurrentStatusLabel {
+    width: 180px;
+    height: 28px;
+    border-radius: 8px;
+}
+
+.skeletonTimelineGrid {
+    width: 100%;
+    gap: 16px;
+}
+
+.skeletonTimelineRow {
+    flex: 1 1 0;
+    min-width: 0;
+    gap: 10px;
+}
+
+.skeletonTimelineTrack {
+    width: 100%;
+    height: 8px;
+    border-radius: 999px;
+}
+
+.skeletonTimelineMarker {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.skeletonTimelineLabel {
+    width: min(160px, 92%);
+    height: 18px;
+    border-radius: 6px;
+}
+
+@media (width <= 980px) {
+    .trackingCard {
+        padding-top: 24px;
+    }
+
+    .statusPill {
+        padding: 8px 14px;
+    }
+
+    .skeletonTimelineGrid {
+        flex-wrap: wrap;
+    }
+
+    .skeletonTimelineRow {
+        min-width: calc(50% - 8px);
+    }
+}

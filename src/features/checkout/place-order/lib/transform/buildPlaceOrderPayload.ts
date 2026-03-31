@@ -14,6 +14,7 @@ export const buildPlaceOrderPayload = (
         shippingCity: address.city,
         shippingCountry: DEFAULT_COUNTRY,
         shippingPostal: address.zipCode,
+        shippingNumberOfApartment: address.numberOfApartment,
         billingAddress: address.streetAddress,
         billingCity: address.city,
         billingCountry: DEFAULT_COUNTRY,

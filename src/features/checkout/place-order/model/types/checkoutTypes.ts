@@ -1,9 +1,5 @@
 import type {CartItem, CartTotals, CartValidationItem} from "@/entities/cart";
-import {
-    type CheckoutSessionStatusType,
-    type OrderStatusType,
-    type PaymentStatusType,
-} from "@/entities/order";
+import {type CheckoutSessionStatusType} from "@/entities/order";
 
 import type {SupportedLngsType} from "@/shared/config";
 
@@ -30,6 +26,7 @@ export interface PlaceOrderRequest {
     shippingCity: string;
     shippingCountry: string;
     shippingPostal: string;
+    shippingNumberOfApartment: string;
     billingAddress?: string;
     billingCity?: string;
     billingCountry?: string;
@@ -58,12 +55,4 @@ export interface PlaceOrderResponse {
     discountAmount?: number;
     couponCode?: string | null;
     expiresAt: string;
-}
-
-export interface OrderDetails {
-    id: string;
-    orderNumber: string;
-    paymentStatus: PaymentStatusType;
-    status: OrderStatusType;
-    totalAmount: number;
 }
