@@ -1,22 +1,28 @@
 import {useTranslation} from "react-i18next";
+import {useParams} from "react-router";
 
+import {useGetCategoryNavigationQuery} from "@/widgets/CategoryNavigation/api/categoryNavigationApi.ts";
 import {CategoryNavigationGoBackItem} from "@/widgets/CategoryNavigation/ui/CategoryNavigationGoBackItem.tsx";
 
+import type {SupportedLngsType} from "@/shared/config";
 import {Carousel, CarouselSkeleton} from "@/shared/ui/Carousel";
 import {ErrorState} from "@/shared/ui/StateViews";
-
-import {useCategoryNavigationController} from "../model/controllers/useCategoryNavigationController";
 
 import styles from "./CategoryNavigation.module.scss";
 import {CategoryNavigationItem} from "./CategoryNavigationItem";
 
 export const CategoryNavigation = () => {
     const {t} = useTranslation();
-    const {
-        data: {data},
-        status: {isLoading, isError},
-        actions: {refetch},
-    } = useCategoryNavigationController();
+    const {i18n} = useTranslation();
+    const {slug, lng} = useParams<{slug: string; lng: SupportedLngsType}>();
+    const locale = lng || i18n.language;
+    const {data, isLoading, isError, refetch} = useGetCategoryNavigationQuery(
+        {
+            slug,
+            locale,
+        },
+        {skip: !locale},
+    );
 
     if (isLoading) {
         return (

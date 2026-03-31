@@ -1,54 +1,63 @@
-import {skipToken} from "@reduxjs/toolkit/query";
 import {renderHook} from "@testing-library/react";
-import {beforeEach, describe, expect, test, vi} from "vitest";
+import {describe, expect, test, vi} from "vitest";
 
 import {useResolvedCategoryIdController} from "./useResolvedCategoryIdController";
 
 const testCtx = vi.hoisted(() => ({
-    queryMock: vi.fn(),
+    getCategoryBySlugMock: vi.fn(),
 }));
 
 vi.mock("../../api/categoryApi", () => ({
-    useGetCategoryBySlugQuery: (...args: unknown[]) => testCtx.queryMock(...args),
+    useGetCategoryBySlugQuery: (...args: unknown[]) => testCtx.getCategoryBySlugMock(...args),
+}));
+
+vi.mock("@/shared/lib/state", () => ({
+    createControllerResult: <T>(value: T) => value,
 }));
 
 describe("useResolvedCategoryIdController", () => {
-    beforeEach(() => {
-        vi.clearAllMocks();
-        testCtx.queryMock.mockImplementation((args: unknown) => ({
-            currentData: args === skipToken ? undefined : {id: "cat-1"},
+    test("requests category by slug when id is not provided", () => {
+        testCtx.getCategoryBySlugMock.mockReturnValue({
+            currentData: {id: "cat-1"},
             isLoading: false,
             isSuccess: true,
-            error: null,
-        }));
-    });
+            error: undefined,
+        });
 
-    test("skips category query when categoryId is already provided", () => {
         const {result} = renderHook(() =>
             useResolvedCategoryIdController({
-                categoryId: "cat-provided",
                 slug: "phones",
                 locale: "en",
             }),
         );
 
-        expect(testCtx.queryMock).toHaveBeenCalledWith(skipToken);
-        expect(result.current.data.resolvedCategoryId).toBe("cat-provided");
-    });
-
-    test("resolves category id by slug when categoryId is not provided", () => {
-        const {result} = renderHook(() =>
-            useResolvedCategoryIdController({slug: "phones", locale: "en"}),
-        );
-
-        expect(testCtx.queryMock).toHaveBeenCalledWith({slug: "phones", locale: "en"});
+        expect(testCtx.getCategoryBySlugMock).toHaveBeenCalledWith({slug: "phones", locale: "en"});
         expect(result.current.data.resolvedCategoryId).toBe("cat-1");
     });
 
-    test("skips query when slug or locale is missing", () => {
+    test("uses provided category id without relying on resolved category data", () => {
+        testCtx.getCategoryBySlugMock.mockReturnValue({
+            currentData: undefined,
+            isLoading: false,
+            isSuccess: false,
+            error: undefined,
+        });
+
+        const {result} = renderHook(() => useResolvedCategoryIdController({categoryId: "cat-1"}));
+
+        expect(result.current.data.resolvedCategoryId).toBe("cat-1");
+    });
+
+    test("returns undefined resolved id when slug data is unavailable", () => {
+        testCtx.getCategoryBySlugMock.mockReturnValue({
+            currentData: undefined,
+            isLoading: false,
+            isSuccess: false,
+            error: undefined,
+        });
+
         const {result} = renderHook(() => useResolvedCategoryIdController({slug: "phones"}));
 
-        expect(testCtx.queryMock).toHaveBeenCalledWith(skipToken);
         expect(result.current.data.resolvedCategoryId).toBeUndefined();
     });
 });

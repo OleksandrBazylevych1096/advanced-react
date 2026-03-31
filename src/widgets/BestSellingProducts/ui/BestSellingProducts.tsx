@@ -1,29 +1,36 @@
+import type {EmblaCarouselType} from "embla-carousel";
+import {useState} from "react";
 import {useTranslation} from "react-i18next";
 
+import {useGetBestSellingProductsQuery} from "@/widgets/BestSellingProducts/api/bestSellingProductsApi";
 import {BestSellingProductsSkeleton} from "@/widgets/BestSellingProducts/ui/BestSellingProductsSkeleton.tsx";
 
 import {ProductCardWithAddToCart} from "@/features/cart/add";
 
 import {ProductCardSkeleton} from "@/entities/product";
+import {selectUserCurrency} from "@/entities/user";
 
 import ArrowRightIcon from "@/shared/assets/icons/ArrowRight.svg?react";
+import {useAppSelector} from "@/shared/lib/state";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 import {Carousel, CarouselControls, CarouselSkeleton} from "@/shared/ui/Carousel";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useBestSellingProductsController} from "../model/controllers/useBestSellingProductsController";
-
 import styles from "./BestSellingProducts.module.scss";
 
 export const BestSellingProducts = () => {
     const {t} = useTranslation();
-    const {
-        data: {products, total, currency, emblaApi},
-        status: {isError, isFetching, isLoading},
-        actions: {refetch, setCarouselApi},
-    } = useBestSellingProductsController();
+    const {i18n} = useTranslation();
+    const currency = useAppSelector(selectUserCurrency);
+    const [emblaApi, setCarouselApi] = useState<EmblaCarouselType | undefined>();
+    const {data, isError, isFetching, isLoading, refetch} = useGetBestSellingProductsQuery({
+        locale: i18n.language,
+        currency,
+    });
+    const products = data?.products;
+    const total = data?.total || 0;
 
     if (isLoading) {
         return <BestSellingProductsSkeleton />;

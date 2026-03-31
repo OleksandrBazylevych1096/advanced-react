@@ -6,7 +6,7 @@ import {useCategoryPageController} from "./useCategoryPageController";
 
 const testCtx = vi.hoisted(() => ({
     params: {slug: "phones", lng: "en"},
-    resolveCategoryControllerMock: vi.fn(),
+    resolveCategoryIdMock: vi.fn(),
     breadcrumbsQueryMock: vi.fn(),
     localizedSlugSyncMock: vi.fn(),
 }));
@@ -16,8 +16,7 @@ vi.mock("react-router", () => ({
 }));
 
 vi.mock("@/entities/category", () => ({
-    useResolvedCategoryIdController: (...args: unknown[]) =>
-        testCtx.resolveCategoryControllerMock(...args),
+    useResolvedCategoryIdController: (...args: unknown[]) => testCtx.resolveCategoryIdMock(...args),
     useGetCategoryBreadcrumbsQuery: (...args: unknown[]) => testCtx.breadcrumbsQueryMock(...args),
 }));
 
@@ -39,7 +38,7 @@ vi.mock("@/shared/lib/routing", () => ({
 describe("useCategoryPageController", () => {
     beforeEach(() => {
         vi.clearAllMocks();
-        testCtx.resolveCategoryControllerMock.mockReturnValue({
+        testCtx.resolveCategoryIdMock.mockReturnValue({
             data: {
                 category: {id: "cat-1", slugMap: {en: "phones"}},
                 resolvedCategoryId: "cat-1",
@@ -54,7 +53,7 @@ describe("useCategoryPageController", () => {
     test("loads breadcrumbs using resolved category id and syncs localized slug", () => {
         const {result} = renderHook(() => useCategoryPageController());
 
-        expect(testCtx.resolveCategoryControllerMock).toHaveBeenCalledWith({
+        expect(testCtx.resolveCategoryIdMock).toHaveBeenCalledWith({
             slug: "phones",
             locale: "en",
         });
@@ -72,7 +71,7 @@ describe("useCategoryPageController", () => {
     });
 
     test("skips breadcrumbs query when category is unresolved", () => {
-        testCtx.resolveCategoryControllerMock.mockReturnValue({
+        testCtx.resolveCategoryIdMock.mockReturnValue({
             data: {
                 category: undefined,
                 resolvedCategoryId: undefined,

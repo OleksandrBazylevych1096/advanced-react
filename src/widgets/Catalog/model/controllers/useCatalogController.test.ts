@@ -5,7 +5,7 @@ import {useCatalogController} from "./useCatalogController";
 
 const testCtx = vi.hoisted(() => ({
     state: undefined as StateSchema | undefined,
-    resolveCategoryIdMock: vi.fn(),
+    resolvedCategoryIdMock: vi.fn(),
     infiniteProductsMock: vi.fn(),
     fetchNextPageMock: vi.fn(),
     refetchMock: vi.fn(),
@@ -32,7 +32,8 @@ vi.mock("@/features/product-filters", () => ({
 }));
 
 vi.mock("@/entities/category", () => ({
-    useResolvedCategoryIdController: (...args: unknown[]) => testCtx.resolveCategoryIdMock(...args),
+    useResolvedCategoryIdController: (...args: unknown[]) =>
+        testCtx.resolvedCategoryIdMock(...args),
 }));
 
 vi.mock("@/entities/product", () => ({
@@ -78,7 +79,7 @@ describe("useCatalogController", () => {
         } as unknown as StateSchema;
         testCtx.fetchNextPageMock = vi.fn().mockResolvedValue(undefined);
         testCtx.refetchMock = vi.fn();
-        testCtx.resolveCategoryIdMock.mockReturnValue({
+        testCtx.resolvedCategoryIdMock.mockReturnValue({
             data: {resolvedCategoryId: "cat-1"},
             status: {isLoading: false, error: null},
         });
@@ -97,7 +98,7 @@ describe("useCatalogController", () => {
     test("returns products and loads more near list end", async () => {
         const {result} = renderHook(() => useCatalogController());
 
-        expect(testCtx.resolveCategoryIdMock).toHaveBeenCalledWith({
+        expect(testCtx.resolvedCategoryIdMock).toHaveBeenCalledWith({
             categoryId: undefined,
             slug: "phones",
             locale: "en",
@@ -146,7 +147,7 @@ describe("useCatalogController", () => {
     test("uses provided category context and skips slug category lookup", () => {
         renderHook(() => useCatalogController({categoryId: "cat-1"}));
 
-        expect(testCtx.resolveCategoryIdMock).toHaveBeenCalledWith({
+        expect(testCtx.resolvedCategoryIdMock).toHaveBeenCalledWith({
             categoryId: "cat-1",
             slug: "phones",
             locale: "en",
@@ -163,7 +164,7 @@ describe("useCatalogController", () => {
     });
 
     test("keeps loading while category id is being resolved", () => {
-        testCtx.resolveCategoryIdMock.mockReturnValue({
+        testCtx.resolvedCategoryIdMock.mockReturnValue({
             data: {resolvedCategoryId: undefined},
             status: {isLoading: true, error: null},
         });
