@@ -1,5 +1,3 @@
-@use "../../../app/styles/animations" as *;
-
 .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 360px;
@@ -30,30 +28,6 @@
 .paymentCardIcon {
     flex-shrink: 0;
     width: 28px;
-}
-
-.skeletonTitle,
-.skeletonBodyLine,
-.skeletonPageTitle {
-    @include skeleton-shimmer;
-}
-
-.skeletonPageTitle {
-    width: min(280px, 70%);
-    height: 40px;
-    border-radius: 10px;
-}
-
-.skeletonTitle {
-    width: min(160px, 90%);
-    height: 24px;
-    border-radius: 6px;
-}
-
-.skeletonBodyLine {
-    width: min(220px, 90%);
-    height: 20px;
-    border-radius: 6px;
 }
 
 @media (width <= 980px) {

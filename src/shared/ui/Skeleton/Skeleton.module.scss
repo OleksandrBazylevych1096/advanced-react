@@ -1,0 +1,16 @@
+@use "../../../app/styles/animations" as *;
+
+.skeleton {
+    display: block;
+
+    @include skeleton-shimmer;
+}
+
+.static {
+    animation: none;
+    background: var(--gray-200);
+}
+
+.circle {
+    border-radius: 50%;
+}

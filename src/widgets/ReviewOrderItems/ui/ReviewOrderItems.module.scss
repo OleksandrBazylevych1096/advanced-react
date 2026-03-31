@@ -1,5 +1,3 @@
-@use "../../../app/styles/animations" as *;
-
 .header {
     width: 100%;
 }
@@ -11,41 +9,6 @@
 
 .content {
     padding-top: 8px;
-}
-
-.skeletonReviewTitle,
-.skeletonItemsNameLabel,
-.skeletonItemsCount,
-.skeletonArrow,
-.skeletonItemImage,
-.skeletonItemName,
-.skeletonItemPrice,
-.skeletonItemQty {
-    @include skeleton-shimmer;
-}
-
-.skeletonReviewTitle {
-    width: 156px;
-    height: 34px;
-    border-radius: 8px;
-}
-
-.skeletonItemsNameLabel {
-    width: 92px;
-    height: 20px;
-    border-radius: 6px;
-}
-
-.skeletonItemsCount {
-    width: 88px;
-    height: 18px;
-    border-radius: 6px;
-}
-
-.skeletonArrow {
-    width: 18px;
-    height: 18px;
-    border-radius: 3px;
 }
 
 .skeletonDivider {
@@ -60,31 +23,10 @@
 }
 
 .skeletonItemImage {
-    width: 64px;
-    height: 64px;
-    border-radius: 12px;
     flex-shrink: 0;
 }
 
 .skeletonItemInfo {
     flex: 1;
     min-width: 0;
-}
-
-.skeletonItemName {
-    width: min(200px, 88%);
-    height: 20px;
-    border-radius: 6px;
-}
-
-.skeletonItemPrice {
-    width: 72px;
-    height: 20px;
-    border-radius: 6px;
-}
-
-.skeletonItemQty {
-    width: 20px;
-    height: 20px;
-    border-radius: 6px;
 }

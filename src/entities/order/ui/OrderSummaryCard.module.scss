@@ -1,5 +1,3 @@
-@use "../../../app/styles/animations" as *;
-
 .row {
     width: 100%;
     font: var(--font-m);
@@ -18,28 +16,10 @@
     }
 }
 
-.skeletonSummaryTitle,
-.skeletonSummaryRow,
-.skeletonTotalRow {
-    @include skeleton-shimmer;
-}
-
 .skeletonSummaryTitle {
-    width: 170px;
-    height: 34px;
-    border-radius: 8px;
     margin-bottom: 16px;
 }
 
-.skeletonSummaryRow {
-    width: 100%;
-    height: 24px;
-    border-radius: 6px;
-}
-
 .skeletonTotalRow {
-    width: 100%;
-    height: 32px;
-    border-radius: 8px;
     margin-top: 16px;
 }

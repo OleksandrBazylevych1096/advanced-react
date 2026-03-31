@@ -9,6 +9,7 @@ import {generatePlaceholder} from "@/widgets/PromoCarousel/lib/generatePlacehold
 import {PROJECT_ENV} from "@/shared/config";
 import {AppImage} from "@/shared/ui/AppImage";
 import {Carousel, CarouselSkeleton, useAutoScroll} from "@/shared/ui/Carousel";
+import {Skeleton} from "@/shared/ui/Skeleton";
 
 import styles from "./PromoCarousel.module.scss";
 
@@ -37,7 +38,11 @@ export const PromoCarousel = (props: PromoCarouselProps) => {
     };
 
     if (isLoading) {
-        return <CarouselSkeleton ItemSkeletonComponent={<div className={styles.skeletonItem} />} />;
+        return (
+            <CarouselSkeleton
+                ItemSkeletonComponent={<Skeleton width={600} height={240} borderRadius={16} />}
+            />
+        );
     }
 
     if (!bannerUrls || bannerUrls.length === 0) {

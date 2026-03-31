@@ -1,5 +1,3 @@
-@use "../../../app/styles/animations" as *;
-
 .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 360px;
@@ -23,82 +21,8 @@
     min-height: 420px;
 }
 
-.skeletonSectionTitle,
-.skeletonBackButton,
-.skeletonPageTitle,
-.skeletonMetaLabel,
-.skeletonAddress,
-.skeletonDate,
-.skeletonBlockTitle,
-.skeletonChip,
-.skeletonCouponButton,
-.skeletonButton {
-    @include skeleton-shimmer;
-}
-
-.skeletonSectionTitle {
-    width: 140px;
-    height: 32px;
-    border-radius: 8px;
-}
-
-.skeletonBackButton {
-    width: 56px;
-    height: 56px;
-    border-radius: 999px;
-    flex-shrink: 0;
-}
-
-.skeletonPageTitle {
-    width: min(220px, 60%);
-    height: 32px;
-    border-radius: 8px;
-}
-
-.skeletonMetaLabel {
-    width: 84px;
-    height: 18px;
-    border-radius: 39px;
-}
-
-.skeletonAddress {
-    width: min(360px, 72%);
-    height: 24px;
-    border-radius: 6px;
-}
-
-.skeletonDate {
-    width: 172px;
-    height: 24px;
-    border-radius: 6px;
-}
-
-.skeletonBlockTitle {
-    width: 120px;
-    height: 32px;
-    border-radius: 8px;
-}
-
 .skeletonChipRow {
     flex-wrap: wrap;
-}
-
-.skeletonChip {
-    width: 78px;
-    height: 40px;
-    border-radius: 39px;
-}
-
-.skeletonCouponButton {
-    width: 124px;
-    height: 34px;
-    border-radius: 39px;
-}
-
-.skeletonButton {
-    width: 100%;
-    height: 58px;
-    border-radius: 39px;
 }
 
 @media (width <= 980px) {

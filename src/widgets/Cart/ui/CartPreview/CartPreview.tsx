@@ -13,6 +13,7 @@ import {cn} from "@/shared/lib/styling";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 import {Dropdown} from "@/shared/ui/Dropdown";
+import {Skeleton} from "@/shared/ui/Skeleton";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
@@ -80,8 +81,13 @@ export const CartPreview = () => {
                         {isLoading ? (
                             <>
                                 <div className={styles.shippingSection}>
-                                    <div className={styles.skeletonShippingLabel} />
-                                    <div className={styles.skeletonShippingTrack} />
+                                    <Skeleton
+                                        width={112}
+                                        height={14}
+                                        borderRadius={8}
+                                        className={styles.skeletonShippingLabel}
+                                    />
+                                    <Skeleton width="100%" height={8} borderRadius={16} />
                                 </div>
 
                                 <Stack
@@ -90,11 +96,11 @@ export const CartPreview = () => {
                                     align="center"
                                     justify="space-between"
                                 >
-                                    <div className={styles.skeletonSubtotalLabel} />
-                                    <div className={styles.skeletonSubtotalValue} />
+                                    <Skeleton width={72} height={14} borderRadius={8} />
+                                    <Skeleton width={94} height={22} borderRadius={8} />
                                 </Stack>
 
-                                <div className={styles.skeletonViewCartBtn} />
+                                <Skeleton width="100%" height={48} borderRadius={16} />
                             </>
                         ) : (
                             <>

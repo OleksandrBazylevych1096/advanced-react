@@ -8,10 +8,9 @@ import {Grid} from "@/shared/ui/Grid";
 import {Input} from "@/shared/ui/Input";
 import {RangeSlider} from "@/shared/ui/RangeSlider";
 import type {RangeSliderValue} from "@/shared/ui/RangeSlider";
+import {Skeleton} from "@/shared/ui/Skeleton";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
-
-import styles from "./RangeFilterSection.module.scss";
 
 export interface RangeValue {
     min?: number;
@@ -115,7 +114,7 @@ export const RangeFilterSection = ({
                 <Accordion.Header>{title}</Accordion.Header>
                 <Accordion.Content>
                     <Stack gap={12} data-testid={dataTestId ? `${dataTestId}-loading` : undefined}>
-                        <div className={styles.skeleton} />
+                        <Skeleton width="100%" height={40} borderRadius={8} />
                     </Stack>
                 </Accordion.Content>
             </Accordion.Item>

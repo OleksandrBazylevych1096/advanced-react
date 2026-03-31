@@ -2,6 +2,7 @@ import {ReviewOrderItemsSkeleton} from "@/widgets/ReviewOrderItems";
 
 import {OrderSummaryCardSkeleton} from "@/entities/order";
 
+import {Skeleton} from "@/shared/ui/Skeleton";
 import {Stack} from "@/shared/ui/Stack";
 
 import styles from "./CheckoutPage.module.scss";
@@ -11,19 +12,19 @@ export const CheckoutPageSkeleton = () => {
         <Stack as="section" className={styles.layout} gap={24}>
             <Stack className={styles.mainColumn} gap={24}>
                 <Stack direction="row" align="center" gap={12}>
-                    <div className={styles.skeletonBackButton} />
-                    <div className={styles.skeletonPageTitle} />
+                    <Skeleton width={56} height={56} shape="circle" />
+                    <Skeleton width="60%" height={32} borderRadius={8} />
                 </Stack>
 
                 <Stack className={styles.cardSurface} gap={16}>
-                    <div className={styles.skeletonSectionTitle} />
+                    <Skeleton width={140} height={32} borderRadius={8} />
                     <Stack direction="row" align="center" gap={12}>
-                        <div className={styles.skeletonMetaLabel} />
-                        <div className={styles.skeletonAddress} />
+                        <Skeleton width={84} height={20} borderRadius={40} />
+                        <Skeleton width="70%" height={24} borderRadius={8} />
                     </Stack>
                     <Stack direction="row" align="center" gap={12}>
-                        <div className={styles.skeletonMetaLabel} />
-                        <div className={styles.skeletonDate} />
+                        <Skeleton width={84} height={20} borderRadius={40} />
+                        <Skeleton width={172} height={24} borderRadius={8} />
                     </Stack>
                 </Stack>
 
@@ -38,25 +39,25 @@ export const CheckoutPageSkeleton = () => {
                 </Stack>
 
                 <Stack gap={12} className={styles.cardSurface}>
-                    <div className={styles.skeletonBlockTitle} />
+                    <Skeleton width={120} height={32} borderRadius={8} />
                     <Stack direction="row" gap={6} className={styles.skeletonChipRow}>
-                        <div className={styles.skeletonChip} />
-                        <div className={styles.skeletonChip} />
-                        <div className={styles.skeletonChip} />
-                        <div className={styles.skeletonChip} />
+                        <Skeleton width={80} height={40} borderRadius={40} />
+                        <Skeleton width={80} height={40} borderRadius={40} />
+                        <Skeleton width={80} height={40} borderRadius={40} />
                     </Stack>
                     <Stack direction="row" gap={6} className={styles.skeletonChipRow}>
-                        <div className={styles.skeletonChip} />
+                        <Skeleton width={80} height={40} borderRadius={40} />
+                        <Skeleton width={80} height={40} borderRadius={40} />
                     </Stack>
                 </Stack>
 
                 <Stack gap={12} className={styles.cardSurface}>
-                    <div className={styles.skeletonBlockTitle} />
-                    <div className={styles.skeletonCouponButton} />
+                    <Skeleton width={120} height={32} borderRadius={8} />
+                    <Skeleton width={124} height={32} borderRadius={40} />
                 </Stack>
 
                 <Stack className={styles.cardSurface}>
-                    <div className={styles.skeletonButton} />
+                    <Skeleton width="100%" height={60} borderRadius={40} />
                 </Stack>
             </Stack>
         </Stack>

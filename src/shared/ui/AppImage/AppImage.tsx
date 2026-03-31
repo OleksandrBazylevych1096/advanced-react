@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import ImagePlaceholderIcon from "@/shared/assets/icons/ImagePlaceholder.svg?react";
 import {cn} from "@/shared/lib/styling";
 import {AppIcon} from "@/shared/ui/AppIcon";
+import {Skeleton} from "@/shared/ui/Skeleton";
 
 import styles from "./AppImage.module.scss";
 
@@ -70,9 +71,13 @@ export const AppImage = (props: AppImageProps) => {
     return (
         <div className={cn(styles.container, containerClassName)}>
             {imageLoading && (
-                <div className={cn(styles.placeholder, styles.loading)}>
-                    <div className={styles.shimmer} />
-                </div>
+                <Skeleton
+                    className={styles.loadingSkeleton}
+                    width="100%"
+                    height="100%"
+                    borderRadius={16}
+                    aria-hidden
+                />
             )}
             <img
                 className={cn(styles.image, styles[objectFit], className, {

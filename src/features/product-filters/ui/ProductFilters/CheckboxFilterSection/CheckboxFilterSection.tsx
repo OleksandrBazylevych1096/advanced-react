@@ -4,6 +4,7 @@ import type {FacetItemType} from "@/entities/product";
 
 import {Accordion} from "@/shared/ui/Accordion";
 import {Checkbox} from "@/shared/ui/Checkbox";
+import {Skeleton} from "@/shared/ui/Skeleton";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
@@ -60,9 +61,9 @@ export const CheckboxFilterSection = ({
                 <Accordion.Header>{title}</Accordion.Header>
                 <Accordion.Content>
                     <Stack gap={12} data-testid={dataTestId ? `${dataTestId}-loading` : undefined}>
-                        <div className={styles.skeleton} />
-                        <div className={styles.skeleton} />
-                        <div className={styles.skeleton} />
+                        <Skeleton width="100%" height={24} borderRadius={8} />
+                        <Skeleton width="100%" height={24} borderRadius={8} />
+                        <Skeleton width="100%" height={24} borderRadius={8} />
                     </Stack>
                 </Accordion.Content>
             </Accordion.Item>

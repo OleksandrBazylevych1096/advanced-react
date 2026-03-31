@@ -1,3 +1,4 @@
+import {Skeleton} from "@/shared/ui/Skeleton";
 import {Stack} from "@/shared/ui/Stack";
 
 import styles from "./ReviewOrderItems.module.scss";
@@ -5,25 +6,30 @@ import styles from "./ReviewOrderItems.module.scss";
 export const ReviewOrderItemsSkeleton = () => {
     return (
         <Stack gap={20}>
-            <div className={styles.skeletonReviewTitle} />
+            <Skeleton width={156} height={32} borderRadius={8} />
 
             <Stack direction="row" justify="space-between" align="center">
-                <div className={styles.skeletonItemsNameLabel} />
+                <Skeleton width={92} height={20} borderRadius={8} />
                 <Stack direction="row" align="center" gap={10}>
-                    <div className={styles.skeletonItemsCount} />
-                    <div className={styles.skeletonArrow} />
+                    <Skeleton width={88} height={20} borderRadius={8} />
+                    <Skeleton width={20} height={20} borderRadius={8} />
                 </Stack>
             </Stack>
 
             <div className={styles.skeletonDivider} />
 
             <Stack direction="row" align="center" className={styles.skeletonItemRow}>
-                <div className={styles.skeletonItemImage} />
+                <Skeleton
+                    width={64}
+                    height={64}
+                    borderRadius={16}
+                    className={styles.skeletonItemImage}
+                />
                 <Stack gap={8} className={styles.skeletonItemInfo}>
-                    <div className={styles.skeletonItemName} />
-                    <div className={styles.skeletonItemPrice} />
+                    <Skeleton width="90%" height={20} borderRadius={8} />
+                    <Skeleton width={72} height={20} borderRadius={8} />
                 </Stack>
-                <div className={styles.skeletonItemQty} />
+                <Skeleton width={20} height={20} borderRadius={8} />
             </Stack>
 
             <div className={styles.skeletonDivider} />

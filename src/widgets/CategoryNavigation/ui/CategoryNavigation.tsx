@@ -6,6 +6,7 @@ import {CategoryNavigationGoBackItem} from "@/widgets/CategoryNavigation/ui/Cate
 
 import type {SupportedLngsType} from "@/shared/config";
 import {Carousel, CarouselSkeleton} from "@/shared/ui/Carousel";
+import {Skeleton} from "@/shared/ui/Skeleton";
 import {ErrorState} from "@/shared/ui/StateViews";
 
 import styles from "./CategoryNavigation.module.scss";
@@ -29,7 +30,7 @@ export const CategoryNavigation = () => {
             <CarouselSkeleton
                 className={styles.categorySkeletonContainer}
                 count={15}
-                ItemSkeletonComponent={<div className={styles.categorySkeleton} />}
+                ItemSkeletonComponent={<Skeleton width={120} height={42} borderRadius={16} />}
             />
         );
     }
