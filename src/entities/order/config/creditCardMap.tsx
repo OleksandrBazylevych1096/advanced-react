@@ -5,7 +5,7 @@ import {CreditCardBrand, type CreditCardBrandType} from "@/entities/order/model/
 import AmexCreditCardIcon from "@/shared/assets/icons/AmexCreditCard.svg?react";
 import CreditCardIcon from "@/shared/assets/icons/CreditCard.svg?react";
 import DiscoverCreditCardIcon from "@/shared/assets/icons/DiscoverCreditCard.svg?react";
-import MasterCardCreditCardIcon from "@/shared/assets/icons/MasterCardCreditCad.svg?react";
+import MasterCardCreditCardIcon from "@/shared/assets/icons/MasterCardCreditCard.svg?react";
 import VisaCreditCardIcon from "@/shared/assets/icons/VisaCreditCard.svg?react";
 
 interface CreditCardMeta {

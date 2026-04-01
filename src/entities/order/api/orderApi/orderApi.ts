@@ -13,6 +13,7 @@ export const orderApi = baseAPI.injectEndpoints({
                 url: `/orders/${orderId}`,
                 params: {locale},
             }),
+            providesTags: (_result, _error, {orderId}) => [{type: "Order", id: orderId}],
         }),
     }),
 });

@@ -50,18 +50,8 @@ export const OrderTimelineState = {
 
 export type OrderTimelineStateType = (typeof OrderTimelineState)[keyof typeof OrderTimelineState];
 
-export const OrderTimelineStatus = {
-    CONFIRMED: "CONFIRMED",
-    PROCESSING: "PROCESSING",
-    SHIPPED: "SHIPPED",
-    DELIVERED: "DELIVERED",
-} as const;
-
-export type OrderTimelineStatusType =
-    (typeof OrderTimelineStatus)[keyof typeof OrderTimelineStatus];
-
 export interface OrderTimelineEvent {
-    status: OrderTimelineStatusType;
+    status: OrderStatusType;
     startedAt: string | null;
     plannedEndAt: string;
     state: OrderTimelineStateType;

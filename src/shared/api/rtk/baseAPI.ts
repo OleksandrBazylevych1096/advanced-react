@@ -12,6 +12,7 @@ export const baseAPI = createApi({
         "CartValidation",
         "UserSession",
         "DeliverySelection",
+        "Order",
     ],
     endpoints: () => ({}),
 });

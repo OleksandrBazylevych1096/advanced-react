@@ -32,20 +32,55 @@
 }
 
 .statusAura {
-    display: inline-flex;
+    --status-aura-size: 124px;
+    --status-icon-circle-size: 68px;
+
+    width: var(--status-aura-size);
+    height: var(--status-aura-size);
+    border-radius: 50%;
+    background: var(--green-50);
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 92px;
-    height: 92px;
-    border-radius: 50%;
-    background: rgb(17 126 17 / 20%);
 }
 
-.statusDot {
-    width: 46px;
-    height: 46px;
+.statusIconCircle {
+    width: var(--status-icon-circle-size);
+    height: var(--status-icon-circle-size);
     border-radius: 50%;
-    background: #2bb52f;
+    background: var(--green-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statusIcon {
+    color: var(--white);
+    fill: currentcolor;
+}
+
+.statusAuraSuccess {
+    background: var(--green-50);
+}
+
+.statusAuraDanger {
+    background: var(--red-50);
+}
+
+.statusAuraPrimary {
+    background: var(--primary-color-light);
+}
+
+.statusIconCircleSuccess {
+    background: var(--green-500);
+}
+
+.statusIconCircleDanger {
+    background: var(--red-500);
+}
+
+.statusIconCirclePrimary {
+    background: var(--primary-color);
 }
 
 .orderNumberText {
@@ -84,6 +119,11 @@
 
     .statusPill {
         padding: 8px 14px;
+    }
+
+    .statusAura {
+        --status-aura-size: 104px;
+        --status-icon-circle-size: 56px;
     }
 
     .skeletonTimelineGrid {

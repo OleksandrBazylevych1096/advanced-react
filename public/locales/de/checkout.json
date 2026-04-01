@@ -83,6 +83,17 @@
         "promisedDelivery": "Voraussichtliche Lieferung",
         "copied": "Bestellnummer kopiert",
         "notAvailable": "Nicht verfugbar",
+        "cancelOrder": {
+            "title": "Mochten Sie diese Bestellung stornieren?",
+            "description": "Eine Stornierung ist nur moglich, solange die Bestellbestatigung noch lauft.",
+            "trigger": "Bestellung stornieren",
+            "modalTitle": "Bestellung stornieren",
+            "modalDescription": "Sind Sie sicher, dass Sie diese Bestellung stornieren mochten?",
+            "keepOrder": "Bestellung behalten",
+            "confirmCancel": "Ja, Bestellung stornieren",
+            "success": "Bestellung wurde erfolgreich storniert.",
+            "error": "Bestellung konnte nicht storniert werden. Bitte versuchen Sie es erneut."
+        },
         "statusPill": {
             "inProgress": "In Bearbeitung",
             "inComplete": "Abgeschlossen",
@@ -94,13 +105,17 @@
                 "confirmed": "Bestellung bestatigt",
                 "processing": "Bestellung bearbeitet",
                 "shipped": "Bestellung versandt",
-                "delivered": "Bestellung zugestellt"
+                "delivered": "Bestellung zugestellt",
+                "cancelled": "Bestellung storniert",
+                "refunded": "Bestellung erstattet"
             },
             "active": {
                 "confirmed": "Bestaetigung der Bestellung",
                 "processing": "Bearbeitung der Bestellung",
                 "shipped": "Versand der Bestellung",
-                "delivered": "Zustellung der Bestellung"
+                "delivered": "Zustellung der Bestellung",
+                "cancelled": "Stornierung der Bestellung",
+                "refunded": "Erstattung wird bearbeitet"
             }
         },
         "status": {

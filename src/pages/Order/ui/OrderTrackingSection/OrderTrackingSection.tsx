@@ -1,5 +1,9 @@
 import {useTranslation} from "react-i18next";
 
+import {
+    resolveOrderStatusIcon,
+    resolveOrderStatusTone,
+} from "@/pages/Order/lib/resolveOrderStatus/resolveOrderStatus.ts";
 import {StatusBadge} from "@/pages/Order/ui/OrderTrackingSection/StatusBadge.tsx";
 
 import {getDeliveryLabel} from "@/features/checkout/choose-delivery-date";
@@ -39,6 +43,14 @@ export const OrderTrackingSection = ({order}: OrderTrackingSectionProps) => {
     );
 
     const latestDoneEvent = timelineEvents.findLast((event) => event.state === "done");
+    const activeRawTimelineEvent = order.timeline.events.find((event) => event.state === "active");
+    const latestDoneRawTimelineEvent = order.timeline.events.findLast(
+        (event) => event.state === "done",
+    );
+    const currentRawTimelineEvent = activeRawTimelineEvent ?? latestDoneRawTimelineEvent;
+    const currentStatus = currentRawTimelineEvent?.status ?? order.status;
+    const CurrentStatusIcon = resolveOrderStatusIcon(currentStatus);
+    const currentStatusTone = resolveOrderStatusTone(currentRawTimelineEvent, order.status);
 
     const currentTimelineLabel =
         timelineEvents.find((event) => event.state === "active")?.label ??
@@ -86,8 +98,22 @@ export const OrderTrackingSection = ({order}: OrderTrackingSectionProps) => {
                 <StatusBadge status={order.status} />
             </Stack>
             <Stack className={styles.currentStatus} gap={12} align="center">
-                <Box className={styles.statusAura}>
-                    <Box className={styles.statusDot} />
+                <Box
+                    className={cn(styles.statusAura, {
+                        [styles.statusAuraPrimary]: currentStatusTone === "primary",
+                        [styles.statusAuraSuccess]: currentStatusTone === "success",
+                        [styles.statusAuraDanger]: currentStatusTone === "danger",
+                    })}
+                >
+                    <Box
+                        className={cn(styles.statusIconCircle, {
+                            [styles.statusIconCirclePrimary]: currentStatusTone === "primary",
+                            [styles.statusIconCircleSuccess]: currentStatusTone === "success",
+                            [styles.statusIconCircleDanger]: currentStatusTone === "danger",
+                        })}
+                    >
+                        <AppIcon Icon={CurrentStatusIcon} size={48} className={styles.statusIcon} />
+                    </Box>
                 </Box>
                 <Typography as="h2" variant="heading" weight="bold">
                     {currentTimelineLabel}

@@ -1,8 +1,11 @@
+.pageLayout {
+    margin-top: 36px;
+}
+
 .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 360px;
     align-items: start;
-    margin-top: 36px;
 }
 
 .mainColumn,
@@ -19,6 +22,11 @@
 
 .centerState {
     min-height: 420px;
+}
+
+.cancelOrderSection {
+    margin-top: 74px;
+    width: 100%;
 }
 
 .paymentCardRow {
