@@ -1,3 +1,3 @@
-import {Catalog} from "@/widgets/Catalog/ui/Catalog.tsx";
+import {Catalog} from "@/widgets/Catalog/ui/Catalog/Catalog.tsx";
 
 export {Catalog};

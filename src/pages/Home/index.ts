@@ -1,3 +1,3 @@
-import {HomePageAsync as HomePage} from "./ui/HomePage.async";
+import {HomePageAsync as HomePage} from "./ui/HomePage/HomePage.async";
 
 export {HomePage};

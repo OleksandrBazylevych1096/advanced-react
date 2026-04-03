@@ -1,3 +1,3 @@
-import {CategoryPageAsync as CategoryPage} from "./ui/CategoryPage.async";
+import {CategoryPageAsync as CategoryPage} from "./ui/CategoryPage/CategoryPage.async";
 
 export {CategoryPage};

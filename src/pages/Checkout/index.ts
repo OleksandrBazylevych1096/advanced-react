@@ -1,3 +1,3 @@
-import {CheckoutPageAsync as CheckoutPage} from "@/pages/Checkout/ui/CheckoutPage.async.ts";
+import {CheckoutPageAsync as CheckoutPage} from "@/pages/Checkout/ui/CheckoutPage/CheckoutPage.async.ts";
 
 export {CheckoutPage};

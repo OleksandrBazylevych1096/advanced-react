@@ -1,5 +1,4 @@
-import {RemoveFromCartButton} from "@/features/cart/remove";
-import {CartQuantityStepper} from "@/features/cart/update-item-quantity";
+import {CartQuantityStepper} from "@/features/update-cart-item-quantity";
 
 import {CartItemRow} from "@/entities/cart";
 
@@ -8,10 +7,11 @@ import {Stack} from "@/shared/ui/Stack";
 import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useCartItemsController} from "../../model/controllers/useCartItemsController";
+import {RemoveFromCartButton} from "../RemoveFromCartButton/RemoveFromCartButton";
 
 import styles from "./CartItems.module.scss";
 import {CartItemsSkeleton} from "./CartItemsSkeleton";
+import {useCartItems} from "./useCartItems/useCartItems.ts";
 
 interface CartItemsProps {
     compact?: boolean;
@@ -24,7 +24,7 @@ export const CartItems = ({compact, className}: CartItemsProps) => {
         derived: {itemsCount},
         status: {isLoading, isError},
         actions: {refetch, removeItem, updateQuantity, getItemValidation},
-    } = useCartItemsController();
+    } = useCartItems();
 
     if (isLoading) {
         return (

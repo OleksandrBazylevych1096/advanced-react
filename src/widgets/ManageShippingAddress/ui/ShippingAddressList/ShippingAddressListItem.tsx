@@ -1,8 +1,9 @@
-import {DeleteConfirmationModal} from "@/features/shipping-address/delete";
-import {InitializeEditModeButton} from "@/features/shipping-address/save";
-import {SelectableAddressItem} from "@/features/shipping-address/select-default";
+import {InitializeEditModeButton} from "@/features/save-shipping-address";
 
 import type {ShippingAddress} from "@/entities/shipping-address";
+
+import {DeleteConfirmationModal} from "../DeleteConfirmationModal/DeleteConfirmationModal";
+import {SelectableAddressItem} from "../SelectableAddressItem/SelectableAddressItem";
 
 import styles from "./ShippingAddressList.module.scss";
 

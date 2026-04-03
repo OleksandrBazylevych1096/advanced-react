@@ -1,3 +1,3 @@
-import {ResetPasswordPageAsync as ResetPasswordPage} from "./ui/ResetPasswordPage.async";
+import {ResetPasswordPageAsync as ResetPasswordPage} from "./ui/ResetPasswordPage/ResetPasswordPage.async";
 
 export {ResetPasswordPage};

@@ -1,0 +1,38 @@
+import type {MouseEvent} from "react";
+
+import {saveShippingAddressActions} from "@/features/save-shipping-address";
+
+import {useGetShippingAddressesQuery} from "@/entities/shipping-address";
+import {selectUserData} from "@/entities/user";
+
+import {useAppDispatch, useAppSelector} from "@/shared/lib/state";
+
+export const useShippingAddressList = () => {
+    const dispatch = useAppDispatch();
+    const userData = useAppSelector(selectUserData);
+    const query = useGetShippingAddressesQuery(undefined, {
+        skip: !userData,
+    });
+
+    const openAddAddress = (e: MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+        dispatch(saveShippingAddressActions.initializeAddMode({}));
+    };
+
+    return {
+        data: {
+            addresses: query.data,
+            userData,
+        },
+        status: {
+            isLoading: query.isLoading,
+            isFetching: query.isFetching,
+            isError: query.isError,
+            error: query.error,
+        },
+        actions: {
+            openAddAddress,
+            refetch: query.refetch,
+        },
+    };
+};

@@ -15,8 +15,8 @@ import {
 import {clearGuestCart, getGuestCart, setGuestCart} from "./lib/cartStorage";
 import {broadcastCartClear, broadcastCartUpdate, onCartSync} from "./lib/cartSync";
 import {recalculateCartTotals} from "./lib/recalculateCartTotals/recalculateCartTotals";
-import {useCartController} from "./model/controllers/useCartController/useCartController";
-import {useCartValidationController} from "./model/controllers/useCartValidationController/useCartValidationController";
+import {useCart} from "./model/controllers/useCart/useCart";
+import {useCartValidation} from "./model/controllers/useCartValidation/useCartValidation";
 import {
     selectGuestCartItemByProductId,
     selectGuestCartItemCount,
@@ -48,8 +48,8 @@ export {
     selectGuestCartSubtotal,
     selectIsCartInitialized,
     selectGuestCartItemByProductId,
-    useCartController,
-    useCartValidationController,
+    useCart,
+    useCartValidation,
     clearGuestCart,
     getGuestCart,
     setGuestCart,

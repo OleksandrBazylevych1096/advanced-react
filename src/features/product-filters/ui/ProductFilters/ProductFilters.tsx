@@ -7,11 +7,11 @@ import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 import {ErrorState} from "@/shared/ui/StateViews";
 
-import {useProductFiltersController} from "../../model/controllers/useProductFiltersController/useProductFiltersController";
+import {CheckboxFilterSection} from "../CheckboxFilterSection/CheckboxFilterSection";
+import {RangeFilterSection} from "../RangeFilterSection/RangeFilterSection";
 
-import {CheckboxFilterSection} from "./CheckboxFilterSection/CheckboxFilterSection";
 import styles from "./ProductFilters.module.scss";
-import {RangeFilterSection} from "./RangeFilterSection/RangeFilterSection";
+import {useProductFilters} from "./useProductFilters/useProductFilters.ts";
 
 export type ProductFiltersSections = "countries" | "brands" | "price";
 
@@ -47,7 +47,7 @@ export const ProductFilters = ({
             closeSidebar,
             refetch,
         },
-    } = useProductFiltersController({categoryId, searchQuery});
+    } = useProductFilters({categoryId, searchQuery});
 
     if (hasError && !facets) {
         return (

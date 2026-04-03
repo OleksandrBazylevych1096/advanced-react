@@ -11,7 +11,7 @@ import type {
     ProductSearchSchema,
     ProductSearchSubmittedEvent,
 } from "./model/types/productSearchSchema";
-import {ProductSearch} from "./ui/ProductSearch";
+import {ProductSearch} from "./ui/ProductSearch/ProductSearch";
 
 export {
     ProductSearch,

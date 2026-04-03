@@ -1,3 +1,3 @@
-import {Footer} from "./ui/Footer";
+import {Footer} from "./ui/Footer/Footer";
 
 export {Footer};

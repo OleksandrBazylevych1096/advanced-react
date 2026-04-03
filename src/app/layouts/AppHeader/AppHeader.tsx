@@ -5,7 +5,7 @@ import {CartPreview} from "@/widgets/Cart";
 import {ManageShippingAddress} from "@/widgets/ManageShippingAddress";
 import {SearchPanel} from "@/widgets/SearchPanel";
 
-import {LogoutButton} from "@/features/auth/logout";
+import {LogoutButton} from "@/features/logout";
 
 import {selectIsAuthenticated} from "@/entities/user";
 

@@ -1,6 +1,6 @@
 import {useTranslation} from "react-i18next";
 
-import {ProductCardWithAddToCart} from "@/features/cart/add";
+import {ProductCardWithAddToCart} from "@/features/add-to-cart";
 
 import {ProductCardSkeleton} from "@/entities/product";
 
@@ -12,9 +12,8 @@ import {Counter} from "@/shared/ui/Counter";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import {useFirstOrderSectionController} from "../../model/controllers/useFirstOrderSectionController";
-
 import styles from "./FirstOrderSection.module.scss";
+import {useFirstOrderSection} from "./useFirstOrderSection";
 
 export const FirstOrderSection = () => {
     const {t} = useTranslation();
@@ -22,7 +21,7 @@ export const FirstOrderSection = () => {
         data: {products, currency},
         status: {isFetching, isError},
         actions: {retry},
-    } = useFirstOrderSectionController();
+    } = useFirstOrderSection();
 
     const renderProductCards = () => {
         if (isFetching) {

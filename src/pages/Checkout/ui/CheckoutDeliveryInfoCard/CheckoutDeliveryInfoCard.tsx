@@ -1,6 +1,6 @@
 import {useTranslation} from "react-i18next";
 
-import {ChooseDeliveryDate} from "@/features/checkout/choose-delivery-date";
+import {ChooseDeliveryDate} from "@/features/choose-delivery-date";
 
 import {buildShippingAddressLabel, type BaseShippingAddress} from "@/entities/shipping-address";
 

@@ -1,7 +1,7 @@
 import type {AnyAction, EnhancedStore, Reducer, ReducersMapObject} from "@reduxjs/toolkit";
 
-import type {ApplyCouponSchema} from "@/features/checkout/apply-coupon";
-import type {ChooseDeliveryTipSchema} from "@/features/checkout/choose-delivery-tip";
+import type {ApplyCouponSchema} from "@/features/apply-coupon";
+import type {ChooseDeliveryTipSchema} from "@/features/choose-delivery-tip";
 import type {ProductFiltersSchema} from "@/features/product-filters";
 import type {ProductSearchSchema} from "@/features/product-search";
 

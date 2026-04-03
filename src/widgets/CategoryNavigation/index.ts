@@ -1,3 +1,3 @@
-import {CategoryNavigation} from "./ui/CategoryNavigation";
+import {CategoryNavigation} from "./ui/CategoryNavigation/CategoryNavigation";
 
 export {CategoryNavigation};

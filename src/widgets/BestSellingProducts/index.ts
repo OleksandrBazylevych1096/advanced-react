@@ -1,3 +1,3 @@
-import {BestSellingProducts} from "./ui/BestSellingProducts";
+import {BestSellingProducts} from "./ui/BestSellingProducts/BestSellingProducts";
 
 export {BestSellingProducts};

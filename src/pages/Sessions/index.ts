@@ -1,3 +1,3 @@
-import {SessionsPageAsync as SessionsPage} from "./ui/SessionsPage.async";
+import {SessionsPageAsync as SessionsPage} from "./ui/SessionsPage/SessionsPage.async";
 
 export {SessionsPage};

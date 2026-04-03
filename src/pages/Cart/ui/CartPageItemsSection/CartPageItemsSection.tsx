@@ -1,12 +1,13 @@
 import {CartItems} from "@/widgets/Cart";
 
-import {ClearCartButton, useClearCartController} from "@/features/cart/clear";
-import {ChooseDeliveryDate} from "@/features/checkout/choose-delivery-date";
+import {ChooseDeliveryDate} from "@/features/choose-delivery-date";
 
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
+import {useClearCart} from "../../model/controllers/useClearCart";
 import styles from "../CartPage.module.scss";
+import {ClearCartButton} from "../ClearCartButton/ClearCartButton";
 
 interface CartPageItemsSectionProps {
     isCartReady?: boolean;
@@ -16,7 +17,7 @@ export const CartPageItemsSection = ({isCartReady = true}: CartPageItemsSectionP
     const {
         status: {isClearing},
         actions: {clearCart},
-    } = useClearCartController();
+    } = useClearCart();
 
     return (
         <div className={styles.itemsSection}>

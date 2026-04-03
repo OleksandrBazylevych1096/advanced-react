@@ -7,11 +7,11 @@ import {Button} from "@/shared/ui/Button";
 import {Modal} from "@/shared/ui/Modal";
 import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 
-import {useShippingAddressListController} from "../../model/controllers/useShippingAddressListController/useShippingAddressListController";
 import {Loader} from "../Loader/Loader";
 
 import styles from "./ShippingAddressList.module.scss";
 import {ShippingAddressListItem} from "./ShippingAddressListItem";
+import {useShippingAddressList} from "./useShippingAddressList/useShippingAddressList.ts";
 
 export const ShippingAddressList = () => {
     const {t} = useTranslation();
@@ -19,7 +19,7 @@ export const ShippingAddressList = () => {
         data: {addresses},
         status: {isLoading, isError},
         actions: {refetch, openAddAddress},
-    } = useShippingAddressListController();
+    } = useShippingAddressList();
 
     if (isLoading) return <Loader />;
 

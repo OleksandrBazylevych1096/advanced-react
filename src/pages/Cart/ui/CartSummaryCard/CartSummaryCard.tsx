@@ -3,7 +3,7 @@ import {useNavigate} from "react-router";
 
 import {CartProgressSection} from "@/widgets/Cart";
 
-import {type Cart, useCartValidationController} from "@/entities/cart";
+import {type Cart, useCartValidation} from "@/entities/cart";
 import {OrderSummaryCard, type OrderSummaryRow} from "@/entities/order";
 import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
@@ -33,7 +33,7 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
     const {
         derived: {hasIssues},
         status: {isValidating},
-    } = useCartValidationController(cart?.items ?? [], {isAuthenticated});
+    } = useCartValidation(cart?.items ?? [], {isAuthenticated});
 
     const proceedToCheckout = () => {
         navigate(getLocalizedPath(routePaths[AppRoutes.CHECKOUT]));

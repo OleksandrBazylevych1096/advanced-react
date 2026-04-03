@@ -6,7 +6,7 @@ import {
 } from "@/pages/Order/lib/resolveOrderStatus/resolveOrderStatus.ts";
 import {StatusBadge} from "@/pages/Order/ui/OrderTrackingSection/StatusBadge.tsx";
 
-import {getDeliveryLabel} from "@/features/checkout/choose-delivery-date";
+import {getDeliveryLabel} from "@/features/choose-delivery-date";
 
 import type {OrderDetails} from "@/entities/order";
 

@@ -1,15 +1,15 @@
 import {Button} from "@/shared/ui/Button";
 import {Stack} from "@/shared/ui/Stack";
 
-import {useProductFiltersControlsController} from "../../model/controllers/useProductFiltersControlsController/useProductFiltersControlsController";
+import {SortOptionsSelect} from "../SortOptionsSelect/SortOptionsSelect";
 
 import styles from "./ProductFiltersControls.module.scss";
-import {SortOptionsSelect} from "./SortOptionsSelect/SortOptionsSelect";
+import {useProductFiltersControls} from "./useProductFiltersControls/useProductFiltersControls.ts";
 
 export const ProductFiltersControls = () => {
     const {
         actions: {toggleProductFilters},
-    } = useProductFiltersControlsController();
+    } = useProductFiltersControls();
 
     return (
         <Stack className={styles.container} direction="row" align="center" justify="space-between">

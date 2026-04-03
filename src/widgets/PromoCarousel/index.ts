@@ -1,3 +1,3 @@
-import {PromoCarousel} from "./ui/PromoCarousel";
+import {PromoCarousel} from "./ui/PromoCarousel/PromoCarousel";
 
 export {PromoCarousel};

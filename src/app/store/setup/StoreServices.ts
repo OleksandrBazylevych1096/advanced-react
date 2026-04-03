@@ -1,4 +1,4 @@
-import {createCartQuantityCoordinator} from "@/features/cart/update-item-quantity";
+import {createCartQuantityCoordinator} from "@/features/update-cart-item-quantity";
 
 export interface StoreServices {
     cartQuantityCoordinator: ReturnType<typeof createCartQuantityCoordinator>;

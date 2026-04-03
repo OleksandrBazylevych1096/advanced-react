@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router";
 
-import {useCartController, useCartValidationController} from "@/entities/cart";
+import {useCart, useCartValidation} from "@/entities/cart";
 import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import ShoppingCartIcon from "@/shared/assets/icons/ShoppingCart.svg?react";
@@ -33,11 +33,11 @@ export const CartPreview = () => {
         data: {cart},
         derived: {itemCount},
         status: {isLoading, isError},
-    } = useCartController({isAuthenticated});
+    } = useCart({isAuthenticated});
 
     const {
         derived: {hasIssues},
-    } = useCartValidationController(cart?.items ?? [], {isAuthenticated});
+    } = useCartValidation(cart?.items ?? [], {isAuthenticated});
 
     const openCart = () => {
         navigate(getLocalizedPath(routePaths[AppRoutes.CART]));

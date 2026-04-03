@@ -12,14 +12,6 @@ export default defineConfig([
             "fsd/public-api": "off",
         },
     },
-
-    {
-        // TODO - remove after refactoring features
-        files: ["./src/**"],
-        rules: {
-            "fsd/insignificant-slice": "off",
-        },
-    },
     {
         // Exception for testing files
         files: [

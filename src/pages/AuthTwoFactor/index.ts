@@ -1,3 +1,3 @@
-import {AuthTwoFactorPageAsync as AuthTwoFactorPage} from "./ui/AuthTwoFactorPage.async";
+import {AuthTwoFactorPageAsync as AuthTwoFactorPage} from "./ui/AuthTwoFactorPage/AuthTwoFactorPage.async";
 
 export {AuthTwoFactorPage};

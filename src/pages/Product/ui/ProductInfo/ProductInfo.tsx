@@ -1,6 +1,6 @@
 import {useTranslation} from "react-i18next";
 
-import {AddToCartButton} from "@/features/cart/add";
+import {AddToCartButton} from "@/features/add-to-cart";
 
 import type {Product} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";

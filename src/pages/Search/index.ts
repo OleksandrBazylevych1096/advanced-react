@@ -1,3 +1,3 @@
-import {SearchPageAsync as SearchPage} from "./ui/SearchPage.async";
+import {SearchPageAsync as SearchPage} from "./ui/SearchPage/SearchPage.async";
 
 export {SearchPage};

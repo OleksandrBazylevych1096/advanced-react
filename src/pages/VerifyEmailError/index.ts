@@ -1,3 +1,3 @@
-import {VerifyEmailErrorPageAsync as VerifyEmailErrorPage} from "./ui/VerifyEmailErrorPage.async";
+import {VerifyEmailErrorPageAsync as VerifyEmailErrorPage} from "./ui/VerifyEmailErrorPage/VerifyEmailErrorPage.async";
 
 export {VerifyEmailErrorPage};

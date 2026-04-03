@@ -1,15 +1,15 @@
 import {Stack} from "@/shared/ui/Stack";
 
-import {useToastNotificationListController} from "../../state/controllers/useToastNotificationListController";
 import {ToastNotificationListItem} from "../ToastNotificationListItem/ToastNotificationListItem";
 
 import styles from "./ToastNotificationList.module.scss";
+import {useToastNotificationList} from "./useToastNotificationList.ts";
 
 export const ToastNotificationList = () => {
     const {
         data: {notifications},
         actions: {removeToast},
-    } = useToastNotificationListController();
+    } = useToastNotificationList();
 
     if (notifications.length === 0) {
         return null;
