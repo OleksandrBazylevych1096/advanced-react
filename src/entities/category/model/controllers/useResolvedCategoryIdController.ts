@@ -6,7 +6,7 @@ import {createControllerResult} from "@/shared/lib/state";
 import {useGetCategoryBySlugQuery} from "../../api/categoryApi";
 
 interface UseResolvedCategoryIdArgs {
-    categoryId?: string;
+    categoryId?: string | null;
     slug?: string;
     locale?: SupportedLngsType;
 }

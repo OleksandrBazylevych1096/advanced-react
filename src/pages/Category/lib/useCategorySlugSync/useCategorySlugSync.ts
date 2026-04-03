@@ -1,4 +1,4 @@
-import {useEffect, useRef} from "react";
+import {useEffect} from "react";
 import {useTranslation} from "react-i18next";
 import {generatePath, useNavigate, useParams} from "react-router";
 
@@ -6,6 +6,7 @@ import type {Category} from "@/entities/category";
 
 import type {SupportedLngsType} from "@/shared/config";
 import {AppRoutes, routePaths} from "@/shared/config";
+import {usePrevious} from "@/shared/lib/react";
 
 interface Args {
     languageParam?: SupportedLngsType;
@@ -17,8 +18,7 @@ export const useCategorySlugSync = ({languageParam, category, enabled}: Args) =>
     const navigate = useNavigate();
     const {i18n} = useTranslation();
     const {slug: currentSlug} = useParams();
-
-    const previousSlugRef = useRef(currentSlug);
+    const previousSlug = usePrevious(currentSlug);
 
     useEffect(() => {
         if (languageParam && i18n.language !== languageParam) {
@@ -32,10 +32,9 @@ export const useCategorySlugSync = ({languageParam, category, enabled}: Args) =>
         const currentLanguage = i18n.language as SupportedLngsType;
         const correctSlug = category.slugMap[currentLanguage];
 
-        const slugChanged = currentSlug !== previousSlugRef.current;
+        const slugChanged = previousSlug !== undefined && currentSlug !== previousSlug;
 
         if (slugChanged) {
-            previousSlugRef.current = currentSlug;
             return;
         }
         const categoryMatchesUrl = Object.values(category.slugMap).includes(currentSlug || "");
@@ -54,5 +53,5 @@ export const useCategorySlugSync = ({languageParam, category, enabled}: Args) =>
             });
             navigate(path, {replace: true});
         }
-    }, [enabled, category, i18n.language, currentSlug, languageParam, navigate]);
+    }, [enabled, category, i18n.language, currentSlug, languageParam, navigate, previousSlug]);
 };

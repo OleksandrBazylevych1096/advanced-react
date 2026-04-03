@@ -14,6 +14,7 @@ import {OrderPage} from "@/pages/Order";
 import {ProductPage} from "@/pages/Product";
 import {RegisterPage} from "@/pages/Register";
 import {ResetPasswordPage} from "@/pages/ResetPassword";
+import {SearchPage} from "@/pages/Search";
 import {SessionsPage} from "@/pages/Sessions";
 import {VerifyEmailErrorPage} from "@/pages/VerifyEmailError";
 import {VerifyEmailSuccessPage} from "@/pages/VerifyEmailSuccess";
@@ -84,6 +85,10 @@ export const routeConfig: AppRouteConfig[] = [
         path: routePaths[AppRoutes.PRODUCT],
         element: <ProductPage />,
         hasLocalizedParams: true,
+    },
+    {
+        path: routePaths[AppRoutes.SEARCH],
+        element: <SearchPage />,
     },
     {
         path: routePaths[AppRoutes.CART],

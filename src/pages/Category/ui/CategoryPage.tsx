@@ -1,3 +1,5 @@
+import {useParams} from "react-router";
+
 import {Catalog} from "@/widgets/Catalog";
 import {CategoryNavigation} from "@/widgets/CategoryNavigation";
 import {PromoCarousel} from "@/widgets/PromoCarousel";
@@ -16,6 +18,7 @@ import {useCategoryPageController} from "../model/controllers/useCategoryPageCon
 import styles from "./CategoryPage.module.scss";
 
 const CategoryPage = () => {
+    const {slug} = useParams<{slug: string}>();
     const {
         data: {breadcrumbs, categoryId},
     } = useCategoryPageController();
@@ -27,7 +30,7 @@ const CategoryPage = () => {
                 <div className={styles.wrapper}>
                     <Breadcrumbs className={styles.breadcrumbs} items={breadcrumbs} />
                     <PromoCarousel />
-                    <CategoryNavigation />
+                    <CategoryNavigation slug={slug} />
                     <ProductFiltersControls />
                     <Catalog categoryId={categoryId} />
                 </div>

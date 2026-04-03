@@ -6,7 +6,7 @@ import {createHandlers, extendHandlers} from "@/shared/lib/testing";
 import {mockCategoryNavigation, mockCategoryNavigationItems} from "./mockData.ts";
 
 const baseHandlers = createHandlers({
-    endpoint: `${API_URL}/categories/navigation/:slug`,
+    endpoint: `${API_URL}/categories/navigation`,
     method: "get",
     defaultData: mockCategoryNavigation.topLevel,
     errorData: {error: "Failed to load category navigation"},
@@ -14,17 +14,17 @@ const baseHandlers = createHandlers({
 });
 
 export const categoryNavigationHandlers = extendHandlers(baseHandlers, {
-    subcategories: http.get(`${API_URL}/categories/navigation/:slug`, () => {
+    subcategories: http.get(`${API_URL}/categories/navigation`, () => {
         return HttpResponse.json(mockCategoryNavigation.withSubcategories);
     }),
 
-    empty: http.get(`${API_URL}/categories/navigation/:slug`, () => {
+    empty: http.get(`${API_URL}/categories/navigation`, () => {
         return HttpResponse.json(mockCategoryNavigation.empty);
     }),
 });
 
 export const topLevelCategoriesHandlers = createHandlers({
-    endpoint: `${API_URL}/categories/top-level`,
+    endpoint: `${API_URL}/categories/navigation`,
     method: "get",
     defaultData: mockCategoryNavigationItems,
     errorData: {error: "Failed to load top-level categories"},
@@ -32,7 +32,7 @@ export const topLevelCategoriesHandlers = createHandlers({
 });
 
 export const topLevelCategoriesExtendedHandlers = extendHandlers(topLevelCategoriesHandlers, {
-    empty: http.get(`${API_URL}/categories/top-level`, () => {
+    empty: http.get(`${API_URL}/categories/navigation`, () => {
         return HttpResponse.json([]);
     }),
 });

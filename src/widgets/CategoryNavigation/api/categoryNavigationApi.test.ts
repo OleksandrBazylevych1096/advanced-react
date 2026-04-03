@@ -24,11 +24,17 @@ describe("categoryNavigationApi", () => {
     test("returns top-level navigation when slug is not provided", async () => {
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input) => {
             const url = parseRequestUrl(input);
-            expect(url.pathname).toContain("/categories/top-level");
+            expect(url.pathname).toContain("/categories/navigation");
             expect(url.searchParams.get("locale")).toBe("en");
+            expect(url.searchParams.get("slug")).toBeNull();
 
             return new Response(
-                JSON.stringify([createMockCategory({id: "c1", name: "Phones", slug: "phones"})]),
+                JSON.stringify({
+                    currentCategory: null,
+                    parentCategory: null,
+                    items: [createMockCategory({id: "c1", name: "Phones", slug: "phones"})],
+                    isShowingSubcategories: false,
+                }),
                 {status: 200, headers: {"Content-Type": "application/json"}},
             );
         });
@@ -57,8 +63,9 @@ describe("categoryNavigationApi", () => {
     test("returns slug navigation when slug is provided", async () => {
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input) => {
             const url = parseRequestUrl(input);
-            expect(url.pathname).toContain("/categories/navigation/phones");
+            expect(url.pathname).toContain("/categories/navigation");
             expect(url.searchParams.get("locale")).toBe("en");
+            expect(url.searchParams.get("slug")).toBe("phones");
 
             return new Response(
                 JSON.stringify({

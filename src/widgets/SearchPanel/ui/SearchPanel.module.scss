@@ -1,0 +1,84 @@
+.wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    border: 1px solid var(--gray-50);
+    border-radius: 24px;
+    background: var(--white);
+    box-shadow: 0 10px 24px rgb(0 0 0 / 8%);
+    z-index: 20;
+    padding: 12px;
+}
+
+.metaText {
+    padding: 10px 12px;
+}
+
+.clearButton {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border: 1px solid transparent;
+}
+
+.tagsWrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tagButton {
+    border: 1px solid var(--gray-100);
+    background: var(--white);
+    padding: 8px 12px;
+    min-height: 36px;
+
+    &:hover {
+        background: var(--primary-color-light);
+        border-color: var(--primary-color-light);
+    }
+}
+
+.tagRemovable {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--gray-100);
+    border-radius: 1000px;
+    background: var(--white);
+    padding-left: 6px;
+
+    &:hover {
+        background: var(--primary-color-light);
+        border-color: var(--primary-color-light);
+    }
+}
+
+.tagRemovable .tagButton {
+    border: none;
+    background: transparent;
+    padding-right: 4px;
+}
+
+.tagRemoveButton {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    margin-right: 4px;
+}
+
+.tagRemoveIcon {
+    width: 12px;
+    height: 12px;
+    stroke: var(--gray-300);
+    transition: stroke 0.2s ease;
+
+    &:hover {
+        stroke: var(--primary-color);
+    }
+}

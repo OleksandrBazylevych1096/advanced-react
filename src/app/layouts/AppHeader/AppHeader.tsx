@@ -3,13 +3,13 @@ import {useNavigate} from "react-router";
 
 import {CartPreview} from "@/widgets/Cart";
 import {ManageShippingAddress} from "@/widgets/ManageShippingAddress";
+import {SearchPanel} from "@/widgets/SearchPanel";
 
 import {LogoutButton} from "@/features/auth/logout";
 
 import {selectIsAuthenticated} from "@/entities/user";
 
 import LogoIcon from "@/shared/assets/icons/Logo.svg?react";
-import SearchIcon from "@/shared/assets/icons/Search.svg?react";
 import UsersIcon from "@/shared/assets/icons/Users.svg?react";
 import {AppRoutes, routePaths} from "@/shared/config";
 import {useLocalizedRoutePath} from "@/shared/lib/routing";
@@ -18,7 +18,6 @@ import {AppIcon} from "@/shared/ui/AppIcon";
 import {Box} from "@/shared/ui/Box";
 import {Button} from "@/shared/ui/Button";
 import {Container} from "@/shared/ui/Container";
-import {Input} from "@/shared/ui/Input";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
@@ -47,12 +46,7 @@ export const AppHeader = () => {
                         </Stack>
 
                         <Stack className={styles.section} direction="row" align="center" gap={20}>
-                            <Input
-                                fullWidth
-                                placeholder={t("header.searchBy")}
-                                Icon={<AppIcon size={18} Icon={SearchIcon} theme="background" />}
-                                rounded
-                            />
+                            <SearchPanel />
                         </Stack>
                         <Stack className={styles.section} direction="row" align="center" gap={20}>
                             <CartPreview />

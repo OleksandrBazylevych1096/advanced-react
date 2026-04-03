@@ -8,6 +8,10 @@ type CategoryBySlugArgs = ApiLocaleParams & {
     slug: string;
 };
 
+type CategoryByIdArgs = ApiLocaleParams & {
+    id: string;
+};
+
 type CategoryBreadcrumbsArgs = ApiLocaleParams & {
     id: string;
 };
@@ -17,6 +21,12 @@ export const categoryApi = baseAPI.injectEndpoints({
         getCategoryBySlug: build.query<Category, CategoryBySlugArgs>({
             query: ({slug, locale}) => ({
                 url: `/categories/slug/${slug}`,
+                params: {locale},
+            }),
+        }),
+        getCategoryById: build.query<Category, CategoryByIdArgs>({
+            query: ({id, locale}) => ({
+                url: `/categories/${id}`,
                 params: {locale},
             }),
         }),
@@ -35,4 +45,5 @@ export const categoryApi = baseAPI.injectEndpoints({
     }),
 });
 
-export const {useGetCategoryBySlugQuery, useGetCategoryBreadcrumbsQuery} = categoryApi;
+export const {useGetCategoryBySlugQuery, useGetCategoryByIdQuery, useGetCategoryBreadcrumbsQuery} =
+    categoryApi;

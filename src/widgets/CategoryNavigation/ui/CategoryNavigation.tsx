@@ -1,10 +1,10 @@
 import {useTranslation} from "react-i18next";
-import {useParams} from "react-router";
+import {generatePath, useNavigate, useSearchParams} from "react-router";
 
 import {useGetCategoryNavigationQuery} from "@/widgets/CategoryNavigation/api/categoryNavigationApi.ts";
 import {CategoryNavigationGoBackItem} from "@/widgets/CategoryNavigation/ui/CategoryNavigationGoBackItem.tsx";
 
-import type {SupportedLngsType} from "@/shared/config";
+import {AppRoutes, routePaths} from "@/shared/config";
 import {Carousel, CarouselSkeleton} from "@/shared/ui/Carousel";
 import {Skeleton} from "@/shared/ui/Skeleton";
 import {ErrorState} from "@/shared/ui/StateViews";
@@ -12,18 +12,46 @@ import {ErrorState} from "@/shared/ui/StateViews";
 import styles from "./CategoryNavigation.module.scss";
 import {CategoryNavigationItem} from "./CategoryNavigationItem";
 
-export const CategoryNavigation = () => {
+interface CategoryNavigationProps {
+    searchQuery?: string;
+    slug?: string;
+}
+
+export const CategoryNavigation = ({searchQuery, slug}: CategoryNavigationProps = {}) => {
     const {t} = useTranslation();
     const {i18n} = useTranslation();
-    const {slug, lng} = useParams<{slug: string; lng: SupportedLngsType}>();
-    const locale = lng || i18n.language;
+    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const selectedCategoryId = searchParams.get("categoryId");
     const {data, isLoading, isError, refetch} = useGetCategoryNavigationQuery(
         {
-            slug,
-            locale,
+            slug: slug,
+            searchQuery,
+            locale: i18n.language,
         },
-        {skip: !locale},
+        {skip: !i18n.language},
     );
+
+    const selectCategory = (item: {id: string; slug: string}) => {
+        if (searchQuery) {
+            const updatedParams = new URLSearchParams(searchParams);
+
+            if (selectedCategoryId === item.id) {
+                updatedParams.delete("categoryId");
+            } else {
+                updatedParams.set("categoryId", item.id);
+            }
+
+            setSearchParams(updatedParams, {replace: true});
+            return;
+        }
+
+        const path = generatePath(routePaths[AppRoutes.CATEGORY], {
+            slug: item.slug,
+            lng: i18n.language,
+        });
+        navigate(path);
+    };
 
     if (isLoading) {
         return (
@@ -50,10 +78,11 @@ export const CategoryNavigation = () => {
             )}
             {data.items.map((item) => (
                 <CategoryNavigationItem
-                    key={item.slug}
+                    key={item.id}
                     title={item.name}
-                    slug={item.slug}
                     icon={item.icon}
+                    isActive={searchQuery ? selectedCategoryId === item.id : item.slug === slug}
+                    onClick={() => selectCategory({id: item.id, slug: item.slug})}
                 />
             ))}
         </Carousel>

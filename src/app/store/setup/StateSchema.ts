@@ -3,6 +3,7 @@ import type {AnyAction, EnhancedStore, Reducer, ReducersMapObject} from "@reduxj
 import type {ApplyCouponSchema} from "@/features/checkout/apply-coupon";
 import type {ChooseDeliveryTipSchema} from "@/features/checkout/choose-delivery-tip";
 import type {ProductFiltersSchema} from "@/features/product-filters";
+import type {ProductSearchSchema} from "@/features/product-search";
 
 import type {CartSchema} from "@/entities/cart";
 import type {SaveShippingAddressSchema} from "@/entities/shipping-address";
@@ -23,6 +24,7 @@ export interface StateSchema {
     // Async reducers
     saveShippingAddress?: SaveShippingAddressSchema;
     productFilters?: ProductFiltersSchema;
+    productSearch?: ProductSearchSchema;
     chooseDeliveryTip?: ChooseDeliveryTipSchema;
     applyCoupon?: ApplyCouponSchema;
 }

@@ -31,8 +31,8 @@ import type {
 } from "@/features/product-filters/model/types/productFiltersSchema.ts";
 
 import {useResolvedCategoryIdController} from "@/entities/category";
-import {useGetInfiniteProducts} from "@/entities/product";
 import type {PriceRangeType} from "@/entities/product";
+import {useGetInfiniteProducts} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
 import type {SupportedLngsType} from "@/shared/config";
@@ -41,10 +41,14 @@ import {clampOptionalRange} from "@/shared/lib/math";
 import {createControllerResult, useAppDispatch, useAppSelector} from "@/shared/lib/state";
 
 interface UseProductFiltersControllerArgs {
-    categoryId?: string;
+    categoryId?: string | null;
+    searchQuery?: string | null;
 }
 
-export const useProductFiltersController = ({categoryId}: UseProductFiltersControllerArgs = {}) => {
+export const useProductFiltersController = ({
+    categoryId,
+    searchQuery,
+}: UseProductFiltersControllerArgs = {}) => {
     const {i18n} = useTranslation();
     const {slug} = useParams<{slug: string; lng: SupportedLngsType}>();
     const locale = i18n.language as SupportedLngsType;
@@ -76,17 +80,20 @@ export const useProductFiltersController = ({categoryId}: UseProductFiltersContr
         slug,
         locale,
     });
+    const normalizedSearchQuery = searchQuery?.trim();
+    const isValidSearchQuery = Boolean(normalizedSearchQuery && normalizedSearchQuery.length >= 2);
 
     const productsQuery = useGetInfiniteProducts(
         {
             categoryId: resolvedCategoryId,
+            ...(isValidSearchQuery ? {searchQuery: normalizedSearchQuery} : {}),
             locale,
             currency,
             ...activeFilters,
             ...sortSettings,
         },
         {
-            skip: !resolvedCategoryId,
+            skip: !resolvedCategoryId && !isValidSearchQuery,
             selectFromResult: ({data, isLoading, error}) => ({
                 facets: data?.pages[0].facets,
                 isLoading,
@@ -148,30 +155,42 @@ export const useProductFiltersController = ({categoryId}: UseProductFiltersContr
     useEffect(() => {
         if (!isInitialized) return;
 
-        const params = new URLSearchParams();
+        const params = new URLSearchParams(searchParams);
 
         if (currentCountries.length > 0) {
             params.set(URL_PARAMS.COUNTRIES, currentCountries.join(","));
+        } else {
+            params.delete(URL_PARAMS.COUNTRIES);
         }
 
         if (currentBrands.length > 0) {
             params.set(URL_PARAMS.BRANDS, currentBrands.join(","));
+        } else {
+            params.delete(URL_PARAMS.BRANDS);
         }
 
         if (currentPriceRange.min !== undefined) {
             params.set(URL_PARAMS.MIN_PRICE, currentPriceRange.min.toString());
+        } else {
+            params.delete(URL_PARAMS.MIN_PRICE);
         }
 
         if (currentPriceRange.max !== undefined) {
             params.set(URL_PARAMS.MAX_PRICE, currentPriceRange.max.toString());
+        } else {
+            params.delete(URL_PARAMS.MAX_PRICE);
         }
 
         if (sortSettings.sortBy !== DEFAULT_SORT_BY) {
             params.set(URL_PARAMS.SORT_BY, sortSettings.sortBy);
+        } else {
+            params.delete(URL_PARAMS.SORT_BY);
         }
 
         if (sortSettings.sortOrder !== DEFAULT_SORT_ORDER) {
             params.set(URL_PARAMS.SORT_ORDER, sortSettings.sortOrder);
+        } else {
+            params.delete(URL_PARAMS.SORT_ORDER);
         }
 
         const newSearch = params.toString();

@@ -3,6 +3,7 @@ import {useTranslation} from "react-i18next";
 import {generatePath, useLocation, useNavigate, useParams} from "react-router";
 
 import type {SupportedLngsType} from "@/shared/config";
+import {usePrevious} from "@/shared/lib/react";
 
 interface UseRouteLanguageSyncArgs {
     languageParam?: SupportedLngsType;
@@ -25,16 +26,15 @@ export const useLanguageSync = ({
     const navigate = useNavigate();
     const location = useLocation();
     const currentLanguage = i18n.language as SupportedLngsType;
-    const previousLanguageParamRef = useRef(languageParam);
+    const previousLanguageParam = usePrevious(languageParam);
     const isRouteSyncInitializedRef = useRef(false);
     const isUrlSyncInitializedRef = useRef(false);
-    const previousLanguageRef = useRef(currentLanguage);
+    const previousLanguage = usePrevious(currentLanguage);
 
     useEffect(() => {
         if (!languageParam) return;
 
-        const routeLanguageChanged = previousLanguageParamRef.current !== languageParam;
-        previousLanguageParamRef.current = languageParam;
+        const routeLanguageChanged = previousLanguageParam !== languageParam;
 
         if (!isRouteSyncInitializedRef.current) {
             isRouteSyncInitializedRef.current = true;
@@ -50,17 +50,14 @@ export const useLanguageSync = ({
     useEffect(() => {
         if (!languageParam || hasLocalizedParams) return;
 
-        const previousLanguage = previousLanguageRef.current;
         const languageChanged = previousLanguage !== currentLanguage;
 
         if (!isUrlSyncInitializedRef.current) {
             isUrlSyncInitializedRef.current = true;
-            previousLanguageRef.current = currentLanguage;
             return;
         }
 
         if (!languageChanged || currentLanguage === languageParam) {
-            previousLanguageRef.current = currentLanguage;
             return;
         }
 
@@ -70,8 +67,6 @@ export const useLanguageSync = ({
         if (pathname !== location.pathname) {
             navigate(`${pathname}${location.search}${location.hash}`, {replace: true});
         }
-
-        previousLanguageRef.current = currentLanguage;
     }, [
         languageParam,
         currentLanguage,
@@ -80,6 +75,7 @@ export const useLanguageSync = ({
         location.pathname,
         location.search,
         navigate,
+        previousLanguage,
     ]);
 };
 
@@ -94,8 +90,7 @@ export const useLocalizedSlugSync = ({
     const {i18n} = useTranslation();
     const params = useParams();
     const currentSlug = params[slugParamName];
-
-    const previousSlugRef = useRef(currentSlug);
+    const previousSlug = usePrevious(currentSlug);
 
     useEffect(() => {
         if (!enabled || !slugMap) return;
@@ -103,10 +98,9 @@ export const useLocalizedSlugSync = ({
         const currentLanguage = i18n.language as SupportedLngsType;
         const correctSlug = slugMap[currentLanguage];
 
-        const slugChanged = currentSlug !== previousSlugRef.current;
+        const slugChanged = previousSlug !== undefined && currentSlug !== previousSlug;
 
         if (slugChanged) {
-            previousSlugRef.current = currentSlug;
             return;
         }
 
@@ -135,5 +129,6 @@ export const useLocalizedSlugSync = ({
         navigate,
         routePath,
         slugParamName,
+        previousSlug,
     ]);
 };

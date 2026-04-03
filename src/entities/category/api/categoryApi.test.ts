@@ -45,6 +45,30 @@ describe("categoryApi", () => {
         expect(result.data?.slug).toBe("phones");
     });
 
+    test("getCategoryById requests category by id with locale", async () => {
+        const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input) => {
+            const url = parseRequestUrl(input);
+            expect(url.pathname).toContain("/categories/c1");
+            expect(url.searchParams.get("locale")).toBe("en");
+
+            return new Response(
+                JSON.stringify(createMockCategory({id: "c1", name: "Phones", slug: "phones"})),
+                {status: 200, headers: {"Content-Type": "application/json"}},
+            );
+        });
+
+        const store = createApiStore();
+        const result = await store.dispatch(
+            categoryApi.endpoints.getCategoryById.initiate({
+                id: "c1",
+                locale: "en",
+            }),
+        );
+
+        expect(fetchSpy).toHaveBeenCalledTimes(1);
+        expect(result.data?.id).toBe("c1");
+    });
+
     test("getCategoryBreadcrumbs maps response into breadcrumb items with href", async () => {
         vi.spyOn(global, "fetch").mockImplementation(async (input) => {
             const url = parseRequestUrl(input);

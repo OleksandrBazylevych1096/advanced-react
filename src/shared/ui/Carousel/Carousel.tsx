@@ -1,6 +1,6 @@
 import type {EmblaCarouselType, EmblaOptionsType, EmblaPluginType} from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
-import {Children, useEffect, type ReactNode} from "react";
+import {Children, type ReactNode, useEffect} from "react";
 
 import {cn} from "@/shared/lib/styling";
 
@@ -32,6 +32,9 @@ export const Carousel = (props: CarouselProps) => {
     } = props;
 
     const [emblaRef, emblaApi] = useEmblaCarousel(options, plugins);
+    const renderableChildren = Children.toArray(children).filter((child) => {
+        return child !== null && child !== undefined;
+    });
 
     useEffect(() => {
         if (emblaApi && onEmblaInit) {
@@ -47,11 +50,13 @@ export const Carousel = (props: CarouselProps) => {
                     onMouseEnter={onMouseEnter}
                     onMouseLeave={onMouseLeave}
                 >
-                    {Children.map(children, (child, index) => (
-                        <div key={index} className={cn(styles.carouselSlide, slideClassName)}>
-                            {child}
-                        </div>
-                    ))}
+                    {renderableChildren.map((child, index) => {
+                        return (
+                            <div key={index} className={cn(styles.carouselSlide, slideClassName)}>
+                                {child}
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>

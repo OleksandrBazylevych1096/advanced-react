@@ -36,7 +36,7 @@ export interface ProductsApiResponse {
 }
 
 export interface ProductQuery {
-    search?: string;
+    searchQuery?: string;
     categorySlug?: string;
     categoryId?: string;
     tagId?: string;

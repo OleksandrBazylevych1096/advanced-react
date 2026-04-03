@@ -1,11 +1,11 @@
-import type {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-
 import type {Category} from "@/entities/category";
 
 import {baseAPI, type ApiLocaleParams} from "@/shared/api";
+import {filterParams} from "@/shared/lib/validation";
 
 interface CategoryNavigationArgs extends ApiLocaleParams {
     slug?: string;
+    searchQuery?: string;
 }
 
 export interface CategoryNavigationReturn {
@@ -18,38 +18,10 @@ export interface CategoryNavigationReturn {
 export const categoryNavigationApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({
         getCategoryNavigation: build.query<CategoryNavigationReturn, CategoryNavigationArgs>({
-            async queryFn({slug, locale}, _api, _extraOptions, baseQuery) {
-                if (!slug) {
-                    const topLevelResponse = await baseQuery({
-                        url: "/categories/top-level",
-                        params: {locale},
-                    });
-
-                    if (topLevelResponse.error) {
-                        return {error: topLevelResponse.error as FetchBaseQueryError};
-                    }
-
-                    return {
-                        data: {
-                            currentCategory: null,
-                            parentCategory: null,
-                            items: topLevelResponse.data as Category[],
-                            isShowingSubcategories: false,
-                        },
-                    };
-                }
-
-                const navigationResponse = await baseQuery({
-                    url: `/categories/navigation/${slug}`,
-                    params: {locale},
-                });
-
-                if (navigationResponse.error) {
-                    return {error: navigationResponse.error as FetchBaseQueryError};
-                }
-
-                return {data: navigationResponse.data as CategoryNavigationReturn};
-            },
+            query: ({slug, searchQuery, locale}) => ({
+                url: "/categories/navigation",
+                params: filterParams({slug, search: searchQuery, locale}),
+            }),
         }),
     }),
 });

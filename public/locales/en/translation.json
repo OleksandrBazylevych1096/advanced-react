@@ -60,6 +60,28 @@
         "login": "Login",
         "logout": "Logout"
     },
+    "search": {
+        "page": {
+            "title": "Search Results",
+            "emptyQuery": "Enter at least 2 characters to search",
+            "titleWithQuery": "Search Results «{{query}}»"
+        },
+        "autocomplete": {
+            "loading": "Searching products...",
+            "empty": "No products found",
+            "enterHint": "Press Enter to open full results"
+        },
+        "history": {
+            "recent": "Recent Search",
+            "popular": "Popular Search ⚡️",
+            "loading": "Loading history...",
+            "popularLoading": "Loading popular searches...",
+            "empty": "No recent searches",
+            "popularEmpty": "No popular searches",
+            "clearAll": "Clear all recent searches",
+            "remove": "Remove query"
+        }
+    },
     "footer": {
         "about": "About",
         "aboutUs": "About Us",

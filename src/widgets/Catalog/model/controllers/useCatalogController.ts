@@ -9,29 +9,30 @@ import {useResolvedCategoryIdController} from "@/entities/category";
 import {useGetInfiniteProducts} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
-import type {SupportedLngsType} from "@/shared/config";
 import {createControllerResult, useAppSelector} from "@/shared/lib/state";
 
 interface UseCatalogControllerArgs {
-    categoryId?: string;
+    categoryId?: string | null;
+    searchQuery?: string;
 }
 
-export const useCatalogController = ({categoryId}: UseCatalogControllerArgs = {}) => {
+export const useCatalogController = ({categoryId, searchQuery}: UseCatalogControllerArgs = {}) => {
     const {i18n} = useTranslation();
-    const {slug} = useParams<{slug: string; lng: SupportedLngsType}>();
+    const {slug} = useParams<{slug: string}>();
     const currency = useAppSelector(selectUserCurrency);
     const activeFilters = useAppSelector(selectActiveFilters);
     const isLoadingMore = useRef(false);
     const gridRef = useRef<GridType>(null);
-    const locale = i18n.language as SupportedLngsType;
     const {
         data: {resolvedCategoryId},
         status: {isLoading: isCategoryLoading, error: categoryError},
     } = useResolvedCategoryIdController({
         categoryId,
         slug,
-        locale,
+        locale: i18n.language,
     });
+    const normalizedSearchQuery = searchQuery?.trim();
+    const isValidSearchQuery = Boolean(normalizedSearchQuery && normalizedSearchQuery.length >= 2);
 
     const {
         data: productsData,
@@ -45,11 +46,12 @@ export const useCatalogController = ({categoryId}: UseCatalogControllerArgs = {}
     } = useGetInfiniteProducts(
         {
             categoryId: resolvedCategoryId,
-            locale,
+            searchQuery: normalizedSearchQuery,
+            locale: i18n.language,
             currency,
             ...activeFilters,
         },
-        {skip: !resolvedCategoryId},
+        {skip: !resolvedCategoryId && !isValidSearchQuery},
     );
 
     const products = productsData?.pages.flatMap((page) => page.products);

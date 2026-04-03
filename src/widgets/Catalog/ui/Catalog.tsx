@@ -26,10 +26,11 @@ import styles from "./Catalog.module.scss";
 export type CatalogItem = Product | undefined;
 
 interface CatalogProps {
-    categoryId?: string;
+    categoryId?: string | null;
+    searchQuery?: string;
 }
 
-export const Catalog = ({categoryId}: CatalogProps) => {
+export const Catalog = ({categoryId, searchQuery}: CatalogProps) => {
     const {t} = useTranslation();
     const currency = useAppSelector(selectUserCurrency);
     const {
@@ -37,7 +38,7 @@ export const Catalog = ({categoryId}: CatalogProps) => {
         status: {isFetchingNextPage, isLoading, error},
         actions: {loadMore, refetch},
         refs: {gridRef},
-    } = useCatalogController({categoryId});
+    } = useCatalogController({categoryId, searchQuery});
 
     if (isLoading) {
         return (

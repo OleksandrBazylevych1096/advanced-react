@@ -60,6 +60,28 @@
         "login": "Einloggen",
         "logout": "Admelden"
     },
+    "search": {
+        "page": {
+            "title": "Suchergebnisse",
+            "emptyQuery": "Geben Sie mindestens 2 Zeichen ein, um zu suchen",
+            "titleWithQuery": "Suchergebnisse «{{query}}»"
+        },
+        "autocomplete": {
+            "loading": "Produkte werden gesucht...",
+            "empty": "Keine Produkte gefunden",
+            "enterHint": "Dr\u00fccken Sie Enter, um alle Ergebnisse zu sehen"
+        },
+        "history": {
+            "recent": "Letzte Suche",
+            "popular": "Beliebte Suche ⚡️",
+            "loading": "Verlauf wird geladen...",
+            "popularLoading": "Beliebte Suchanfragen werden geladen...",
+            "empty": "Keine letzten Suchanfragen",
+            "popularEmpty": "Keine beliebten Suchanfragen",
+            "clearAll": "Alle letzten Suchanfragen löschen",
+            "remove": "Suchanfrage entfernen"
+        }
+    },
     "footer": {
         "about": "Über uns",
         "aboutUs": "Über uns",

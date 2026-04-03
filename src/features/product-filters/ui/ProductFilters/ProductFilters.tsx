@@ -17,10 +17,15 @@ export type ProductFiltersSections = "countries" | "brands" | "price";
 
 interface ProductFiltersProps {
     defaultOpenFilters?: ProductFiltersSections[];
-    categoryId?: string;
+    categoryId?: string | null;
+    searchQuery?: string | null;
 }
 
-export const ProductFilters = ({defaultOpenFilters, categoryId}: ProductFiltersProps) => {
+export const ProductFilters = ({
+    defaultOpenFilters,
+    categoryId,
+    searchQuery,
+}: ProductFiltersProps) => {
     const {t} = useTranslation();
     const {
         data: {
@@ -42,7 +47,7 @@ export const ProductFilters = ({defaultOpenFilters, categoryId}: ProductFiltersP
             closeSidebar,
             refetch,
         },
-    } = useProductFiltersController({categoryId});
+    } = useProductFiltersController({categoryId, searchQuery});
 
     if (hasError && !facets) {
         return (

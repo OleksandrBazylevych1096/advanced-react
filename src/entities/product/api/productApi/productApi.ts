@@ -1,4 +1,5 @@
 import {baseAPI} from "@/shared/api";
+import {filterParams} from "@/shared/lib/validation";
 
 import type {ProductQuery, ProductsApiResponse} from "../../model/types/Product";
 
@@ -21,20 +22,32 @@ export const productApi = baseAPI.injectEndpoints({
                 },
             },
 
-            query: ({queryArg, pageParam}) => ({
-                url: "/products",
-                params: {
-                    ...queryArg,
-                    page: pageParam,
-                    limit: queryArg.limit || 20,
-                },
-            }),
+            query: ({queryArg, pageParam}) => {
+                const {searchQuery, ...restQueryArg} = queryArg;
+
+                return {
+                    url: "/products",
+                    params: filterParams({
+                        ...restQueryArg,
+                        ...(searchQuery ? {q: searchQuery} : {}),
+                        page: pageParam,
+                        limit: queryArg.limit || 20,
+                    }),
+                };
+            },
         }),
         getProducts: build.query<ProductsApiResponse, ProductQuery>({
-            query: (params) => ({
-                url: "/products",
-                params,
-            }),
+            query: (params) => {
+                const {searchQuery, ...restParams} = params;
+
+                return {
+                    url: "/products",
+                    params: filterParams({
+                        ...restParams,
+                        ...(searchQuery ? {q: searchQuery} : {}),
+                    }),
+                };
+            },
         }),
     }),
 });
