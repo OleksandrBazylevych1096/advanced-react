@@ -81,6 +81,7 @@ export const saveShippingAddressSlice = createSlice({
             state.form = initialState.form;
         },
         openManageShippingAddressModal: (state) => {
+            state.mode = "choose";
             state.isManageShippingAddressModalOpen = true;
         },
         closeManageShippingAddressModal: (state) => {

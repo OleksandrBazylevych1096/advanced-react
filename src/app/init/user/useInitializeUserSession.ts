@@ -13,7 +13,11 @@ export const useInitializeUserSession = () => {
         dispatch(userActions.initUserData());
 
         if (localStorage.getItem(LOCAL_STORAGE_USER_KEY)) {
-            void refreshSession();
+            void refreshSession().finally(() => {
+                dispatch(userActions.setSessionReady());
+            });
+        } else {
+            dispatch(userActions.setSessionReady());
         }
     }, [dispatch, refreshSession]);
 };

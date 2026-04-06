@@ -8,7 +8,6 @@ export const AppRoutes = {
     RESET_PASSWORD: "reset_password",
     VERIFY_EMAIL_SUCCESS: "verify_email_success",
     VERIFY_EMAIL_ERROR: "verify_email_error",
-    SESSIONS: "sessions",
     CATEGORY: "category",
     PRODUCT: "product",
     SEARCH: "search",
@@ -16,6 +15,11 @@ export const AppRoutes = {
     CHECKOUT: "checkout",
     CHECKOUT_RESULT: "checkout_result",
     ORDER: "order",
+    SETTINGS_ACCOUNT_DETAILS: "settings_account_details",
+    SETTINGS_ORDERS: "settings_orders",
+    SETTINGS_SECURITY: "settings_security",
+    SETTINGS_ADDRESS: "settings_address",
+    SETTINGS_NOTIFICATIONS: "settings_notifications",
     NOT_FOUND: "not_found",
 } as const;
 
@@ -31,7 +35,6 @@ export const routePaths: Record<AppRoutes, string> = {
     [AppRoutes.RESET_PASSWORD]: "/:lng/reset-password",
     [AppRoutes.VERIFY_EMAIL_SUCCESS]: "/:lng/verify-email-success",
     [AppRoutes.VERIFY_EMAIL_ERROR]: "/:lng/verify-email-error",
-    [AppRoutes.SESSIONS]: "/:lng/sessions",
     [AppRoutes.CATEGORY]: "/:lng/category/:slug",
     [AppRoutes.PRODUCT]: "/:lng/product/:slug",
     [AppRoutes.SEARCH]: "/:lng/search",
@@ -39,6 +42,11 @@ export const routePaths: Record<AppRoutes, string> = {
     [AppRoutes.CHECKOUT]: "/:lng/checkout",
     [AppRoutes.CHECKOUT_RESULT]: "/:lng/checkout/result",
     [AppRoutes.ORDER]: "/:lng/order/:id",
+    [AppRoutes.SETTINGS_ACCOUNT_DETAILS]: "/:lng/settings/account-details",
+    [AppRoutes.SETTINGS_ORDERS]: "/:lng/settings/orders",
+    [AppRoutes.SETTINGS_SECURITY]: "/:lng/settings/security",
+    [AppRoutes.SETTINGS_ADDRESS]: "/:lng/settings/address",
+    [AppRoutes.SETTINGS_NOTIFICATIONS]: "/:lng/settings/notifications",
 
     // last
     [AppRoutes.NOT_FOUND]: "*",

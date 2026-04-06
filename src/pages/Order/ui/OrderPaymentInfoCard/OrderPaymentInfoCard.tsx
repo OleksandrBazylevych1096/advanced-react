@@ -6,7 +6,7 @@ import {AppIcon} from "@/shared/ui/AppIcon";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import styles from "../OrderPage.module.scss";
+import styles from "../OrderPage/OrderPage.module.scss";
 
 interface OrderPaymentInfoCardProps {
     brand?: string | null;
@@ -19,9 +19,9 @@ export const OrderPaymentInfoCard = ({brand, last4}: OrderPaymentInfoCardProps) 
     const hasPaymentCardData = Boolean(last4);
     const paymentCardLabel = hasPaymentCardData
         ? t("order.paymentCardMasked", {
-              brand: creditCardMeta.name,
-              last4: last4,
-          })
+            brand: creditCardMeta.name,
+            last4: last4,
+        })
         : t("order.notAvailable");
 
     return (

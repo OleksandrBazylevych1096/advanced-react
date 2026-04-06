@@ -1,6 +1,6 @@
 import type {FC} from "react";
 
-import type {OrderStatusType, OrderTimelineEvent} from "@/entities/order";
+import type {OrderStatusType} from "@/entities/order";
 
 import CheckedIcon from "@/shared/assets/icons/Checked.svg?react";
 import CloseIcon from "@/shared/assets/icons/Close.svg?react";
@@ -23,14 +23,14 @@ export const resolveOrderStatusIcon = (status: OrderStatusType) =>
     STATUS_ICON_MAP[status] ?? CheckedIcon;
 
 export const resolveOrderStatusTone = (
-    currentEvent: OrderTimelineEvent | undefined,
+    currentStatus: OrderStatusType,
     orderStatus: OrderStatusType,
 ) => {
     if (orderStatus === "CANCELLED" || orderStatus === "REFUNDED") {
         return "danger";
     }
 
-    if (currentEvent?.status === "DELIVERED" && currentEvent.state === "done") {
+    if (currentStatus === "DELIVERED") {
         return "success";
     }
 

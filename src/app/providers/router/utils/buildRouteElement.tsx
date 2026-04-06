@@ -7,13 +7,16 @@ import {PageLoader} from "@/widgets/PageLoader";
 import {LanguageSyncWrapper} from "../LanguageSyncWrapper";
 import type {AppRouteConfig} from "../routerConfig";
 
+import {RequireAuth} from "./RequireAuth";
+
 export const buildRouteElement = ({
     element,
     path,
+    layout,
     hasLocalizedParams,
-    withoutDefaultLayout,
+    requiresAuth,
 }: AppRouteConfig): ReactNode => {
-    const pageElement = (
+    const routeElement = (
         <Suspense key={path} fallback={<PageLoader />}>
             <LanguageSyncWrapper hasLocalizedParams={hasLocalizedParams}>
                 {element}
@@ -21,9 +24,12 @@ export const buildRouteElement = ({
         </Suspense>
     );
 
-    if (withoutDefaultLayout) {
-        return pageElement;
+    const guardedElement = requiresAuth ? <RequireAuth>{routeElement}</RequireAuth> : routeElement;
+    const RouteLayout = layout === undefined ? DefaultPageLayout : layout;
+
+    if (RouteLayout === null) {
+        return guardedElement;
     }
 
-    return <DefaultPageLayout>{pageElement}</DefaultPageLayout>;
+    return <RouteLayout>{guardedElement}</RouteLayout>;
 };

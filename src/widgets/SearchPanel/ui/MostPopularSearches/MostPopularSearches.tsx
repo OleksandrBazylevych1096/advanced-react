@@ -1,13 +1,15 @@
 import {useTranslation} from "react-i18next";
 
-import {useMostPopularSearches} from "@/widgets/SearchPanel/ui/MostPopularSearches/useMostPopularSearches/useMostPopularSearches.ts";
+import {
+    useMostPopularSearches
+} from "@/widgets/SearchPanel/ui/MostPopularSearches/useMostPopularSearches/useMostPopularSearches.ts";
 
 import {Button} from "@/shared/ui/Button";
 import {Skeleton} from "@/shared/ui/Skeleton";
 import {EmptyState} from "@/shared/ui/StateViews";
 import {Typography} from "@/shared/ui/Typography";
 
-import styles from "../SearchPanel.module.scss";
+import styles from "../SearchPanel/SearchPanel.module.scss";
 
 const POPULAR_SEARCH_SKELETON_COUNT = 3;
 
@@ -28,7 +30,7 @@ export const MostPopularSearches = () => {
             {isFetchingPopularSearches ? (
                 <div className={styles.tagsWrap}>
                     {Array.from({length: POPULAR_SEARCH_SKELETON_COUNT}).map((_, index) => (
-                        <Skeleton key={index} width={100} height={36} borderRadius={40} />
+                        <Skeleton key={index} width={100} height={36} borderRadius={40}/>
                     ))}
                 </div>
             ) : popularSearches.length > 0 ? (
@@ -48,7 +50,7 @@ export const MostPopularSearches = () => {
                     ))}
                 </div>
             ) : (
-                <EmptyState title={t("search.history.popularEmpty")} />
+                <EmptyState title={t("search.history.popularEmpty")}/>
             )}
         </>
     );

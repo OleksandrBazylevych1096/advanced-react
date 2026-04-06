@@ -1,30 +1,32 @@
 import {useTranslation} from "react-i18next";
 
 import {ChooseDeliveryDate} from "@/features/choose-delivery-date";
+import {saveShippingAddressActions} from "@/features/save-shipping-address/model/slice/saveShippingAddressSlice";
 
-import {buildShippingAddressLabel, type BaseShippingAddress} from "@/entities/shipping-address";
+import {type BaseShippingAddress, buildShippingAddressLabel} from "@/entities/shipping-address";
 
+import {useAppDispatch} from "@/shared/lib/state/redux/hooks";
 import {Button} from "@/shared/ui/Button";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import pageStyles from "../CheckoutPage.module.scss";
+import pageStyles from "../CheckoutPage/CheckoutPage.module.scss";
 
 import styles from "./CheckoutDeliveryInfoCard.module.scss";
 
 interface CheckoutDeliveryInfoCardProps {
     address: BaseShippingAddress | undefined;
-    onOpenManageShippingAddressModal: () => void;
 }
 
-export const CheckoutDeliveryInfoCard = ({
-    address,
-    onOpenManageShippingAddressModal,
-}: CheckoutDeliveryInfoCardProps) => {
+export const CheckoutDeliveryInfoCard = ({address}: CheckoutDeliveryInfoCardProps) => {
     const {t} = useTranslation("checkout");
-
+    const dispatch = useAppDispatch();
     const fallbackMessage = t("checkoutMainSection.addressNotSpecified");
     const addressLabel = buildShippingAddressLabel(address, fallbackMessage);
+
+    const openManageShippingAddressModal = () => {
+        dispatch(saveShippingAddressActions.openManageShippingAddressModal());
+    };
 
     return (
         <Stack className={pageStyles.cardSurface} gap={12}>
@@ -41,7 +43,7 @@ export const CheckoutDeliveryInfoCard = ({
                         theme="ghost"
                         size="sm"
                         className={styles.addressButton}
-                        onClick={onOpenManageShippingAddressModal}
+                        onClick={openManageShippingAddressModal}
                         data-testid="checkout-delivery-address-trigger"
                     >
                         <Typography variant="body" weight="bold" className={styles.addressText}>
@@ -55,7 +57,7 @@ export const CheckoutDeliveryInfoCard = ({
                 <Typography tone="muted" variant="body" className={styles.metaLabel}>
                     {t("checkoutMainSection.deliveryDate")}
                 </Typography>
-                <ChooseDeliveryDate className={styles.deliveryDateTrigger} />
+                <ChooseDeliveryDate className={styles.deliveryDateTrigger}/>
             </Stack>
         </Stack>
     );

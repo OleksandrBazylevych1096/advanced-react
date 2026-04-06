@@ -1,19 +1,28 @@
+import type {CSSProperties} from "react";
+import {Fragment} from "react";
+
 import CheckedIcon from "@/shared/assets/icons/Checked.svg?react";
+import CloseIcon from "@/shared/assets/icons/Close.svg?react";
 import {cn} from "@/shared/lib/styling";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Box} from "@/shared/ui/Box";
-import {Progress} from "@/shared/ui/Progress";
-import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./Timeline.module.scss";
 
-export type TimelineEventState = "done" | "active" | "upcoming";
+export type TimelineEventState = "done" | "upcoming";
+export type TimelineEventTone = "default" | "danger";
+export type TimelineEventMarker = "default" | "cancelled";
 
 export interface TimelineEvent {
+    id: string;
     state: TimelineEventState;
     label: string;
     progress: number;
+    tone?: TimelineEventTone;
+    marker?: TimelineEventMarker;
+    note?: string;
+    isActive?: boolean;
 }
 
 interface TimelineProps {
@@ -22,54 +31,107 @@ interface TimelineProps {
     itemClassName?: string;
 }
 
-const resolveProgress = (event: TimelineEvent): number => {
-    if (event.state === "done") return 100;
-    if (event.state === "upcoming") return 0;
-    return event.progress;
-};
-
 export const Timeline = ({events, className, itemClassName}: TimelineProps) => {
     if (events.length === 0) return null;
 
+    const cols = events
+        .map((_, i) => (i < events.length - 1 ? "18px 1fr" : "18px"))
+        .join(" ");
+
     return (
-        <Box className={cn(styles.timeline, className)}>
+        <Box
+            className={cn(styles.timeline, className)}
+            style={{"--timeline-cols": cols} as CSSProperties}
+        >
+            {/* Row 1: markers + connectors */}
             {events.map((event, index) => {
+                const isLast = index === events.length - 1;
+                const markerTone = event.tone ?? "default";
+                const connectorTone = markerTone === "danger" ? "danger" : "default";
+                const isCancelledMarker = event.marker === "cancelled";
+                const shouldRenderMarkerIcon = event.state === "done" || isCancelledMarker;
+                const MarkerIcon = isCancelledMarker ? CloseIcon : CheckedIcon;
+
                 return (
-                    <Stack
-                        key={`${event.label}-${index}`}
-                        direction="column"
-                        gap={10}
-                        className={cn(styles.item, itemClassName)}
-                    >
-                        <Progress
-                            value={resolveProgress(event)}
-                            ariaLabel={`${event.label} progress`}
-                            trackClassName={styles.track}
-                            fillClassName={cn(styles.fill, styles[`fill-${event.state}`])}
-                        />
-                        <Stack direction="row" gap={8} align="center" className={styles.event}>
+                    <Fragment key={event.id}>
+                        <span
+                            className={cn(
+                                styles.marker,
+                                styles[`marker-${event.state}`],
+                                styles[`marker-${markerTone}`],
+                                isCancelledMarker && styles["marker-cancelled"],
+                                itemClassName,
+                            )}
+                            aria-hidden
+                        >
+                            {shouldRenderMarkerIcon && (
+                                <AppIcon
+                                    Icon={MarkerIcon}
+                                    size={16}
+                                    className={styles.markerIcon}
+                                />
+                            )}
+                        </span>
+                        {!isLast && (
                             <span
-                                className={cn(styles.marker, styles[`marker-${event.state}`])}
+                                className={cn(styles.connector, styles[`connector-${connectorTone}`])}
                                 aria-hidden
                             >
-                                {event.state === "done" && (
-                                    <AppIcon
-                                        Icon={CheckedIcon}
-                                        size={16}
-                                        className={styles.markerIcon}
-                                    />
-                                )}
+                                <span
+                                    className={styles.connectorFill}
+                                    style={
+                                        {
+                                            "--connector-progress": `${event.progress}%`,
+                                        } as CSSProperties
+                                    }
+                                />
                             </span>
+                        )}
+                    </Fragment>
+                );
+            })}
+
+            {/* Row 2: labels */}
+            {events.map((event, index) => {
+                const isFirst = index === 0;
+                const isLast = index === events.length - 1;
+                const position = isFirst ? "first" : isLast ? "last" : "middle";
+
+                return (
+                    <Fragment key={`label-${event.id}`}>
+                        <div
+                            className={cn(
+                                styles.labelCell,
+                                styles[`labelCell-${position}`],
+                            )}
+                        >
                             <Typography
                                 as="span"
                                 variant="body"
-                                className={styles.label}
-                                tone={event.state === "upcoming" ? "muted" : "default"}
+                                className={cn(
+                                    styles.label,
+                                    styles[`label-${position}`],
+                                )}
+                                tone={event.state === "upcoming" && event.progress === 0 ? "muted" : "default"}
                             >
                                 {event.label}
                             </Typography>
-                        </Stack>
-                    </Stack>
+                            {event.note && !event.isActive && (
+                                <Typography
+                                    as="span"
+                                    variant="caption"
+                                    tone="muted"
+                                    className={cn(
+                                        styles.note,
+                                        styles[`note-${position}`],
+                                    )}
+                                >
+                                    {event.note}
+                                </Typography>
+                            )}
+                        </div>
+                        {!isLast && <span aria-hidden/>}
+                    </Fragment>
                 );
             })}
         </Box>

@@ -25,10 +25,10 @@
 }
 
 .icon {
-    stroke: var(--black);
-    transition: stroke 0.2s linear;
+    fill: var(--black);
+    transition: fill 0.2s linear;
 
     &:hover {
-        stroke: var(--primary-color);
+        fill: var(--primary-color);
     }
 }

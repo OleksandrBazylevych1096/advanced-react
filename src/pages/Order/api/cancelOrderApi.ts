@@ -11,7 +11,10 @@ export const cancelOrderApi = baseAPI.injectEndpoints({
                 url: `/orders/${id}/cancel`,
                 method: "POST",
             }),
-            invalidatesTags: (_result, _error, {id}) => [{type: "Order", id}],
+            invalidatesTags: (_result, _error, {id}) => [
+                {type: "Order", id},
+                {type: "Order", id: "LIST"},
+            ],
         }),
     }),
 });

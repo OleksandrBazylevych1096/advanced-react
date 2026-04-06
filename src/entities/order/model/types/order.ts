@@ -1,6 +1,8 @@
 import type {Product} from "@/entities/product/@x/order";
 import type {BaseShippingAddress} from "@/entities/shipping-address/@x/order";
 
+import type {CurrencyType} from "@/shared/config";
+
 export const CreditCardBrand = {
     VISA: "visa",
     MASTERCARD: "mastercard",
@@ -42,27 +44,15 @@ export const CheckoutSessionStatus = {
 export type CheckoutSessionStatusType =
     (typeof CheckoutSessionStatus)[keyof typeof CheckoutSessionStatus];
 
-export const OrderTimelineState = {
-    DONE: "done",
-    ACTIVE: "active",
-    UPCOMING: "upcoming",
-} as const;
-
-export type OrderTimelineStateType = (typeof OrderTimelineState)[keyof typeof OrderTimelineState];
-
 export interface OrderTimelineEvent {
-    status: OrderStatusType;
-    startedAt: string | null;
-    plannedEndAt: string;
-    state: OrderTimelineStateType;
+    id: string;
+    status: string;
+    timestamp: string | null;
+    progress: number;
+    note?: string;
 }
 
-export interface OrderTimeline {
-    currentStatus: string;
-    promisedDeliveryAt: string | null;
-    hasPromisedDelivery: boolean;
-    events: OrderTimelineEvent[];
-}
+export type OrderTimeline = OrderTimelineEvent[];
 
 export interface OrderDetailsItem {
     id: string;
@@ -86,11 +76,13 @@ export interface OrderDetails {
     discountAmount: number;
     tipAmount: number;
     couponCode?: string | null;
-    currency: string;
+    currency: CurrencyType;
     shippingAddress?: BaseShippingAddress;
     deliveryDate?: string | null;
     deliveryTime?: string | null;
     createdAt?: string;
+    cancelledAt?: string | null;
+    refundedAt?: string | null;
     updatedAt?: string;
     orderItems: OrderDetailsItem[];
     timeline: OrderTimeline;

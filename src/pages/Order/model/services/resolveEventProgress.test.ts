@@ -1,24 +1,15 @@
-import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
+import {describe, expect, test} from "vitest";
 
 import {resolveEventProgress} from "./resolveEventProgress";
 
 describe("resolveEventProgress", () => {
-    beforeEach(() => {
-        vi.useFakeTimers();
-        vi.setSystemTime(new Date("2026-03-24T03:00:00.000Z"));
-    });
-
-    afterEach(() => {
-        vi.useRealTimers();
-    });
-
-    test("returns 100 for done events", () => {
+    test("returns the progress value from the event", () => {
         expect(
             resolveEventProgress({
-                status: "CONFIRMED",
-                state: "done",
-                startedAt: "2026-03-24T00:00:00.000Z",
-                plannedEndAt: "2026-03-24T01:00:00.000Z",
+                id: "order_placed",
+                status: "ORDER_PLACED",
+                timestamp: "2026-03-24T00:00:00.000Z",
+                progress: 100,
             }),
         ).toBe(100);
     });
@@ -26,44 +17,33 @@ describe("resolveEventProgress", () => {
     test("returns 0 for upcoming events", () => {
         expect(
             resolveEventProgress({
+                id: "delivered",
                 status: "DELIVERED",
-                state: "upcoming",
-                startedAt: "2026-03-24T00:00:00.000Z",
-                plannedEndAt: "2026-03-24T01:00:00.000Z",
+                timestamp: null,
+                progress: 0,
             }),
         ).toBe(0);
     });
 
-    test("returns time-based progress for active event", () => {
-        const progress = resolveEventProgress({
-            status: "PROCESSING",
-            state: "active",
-            startedAt: "2026-03-24T02:00:00.000Z",
-            plannedEndAt: "2026-03-24T06:00:00.000Z",
-        });
-
-        expect(progress).toBe(32.5);
-    });
-
-    test("returns base progress for invalid dates", () => {
+    test("returns partial progress for current step", () => {
         expect(
             resolveEventProgress({
+                id: "processing",
                 status: "PROCESSING",
-                state: "active",
-                startedAt: null,
-                plannedEndAt: "invalid-date",
+                timestamp: "2026-03-24T02:00:00.000Z",
+                progress: 15,
             }),
-        ).toBe(10);
+        ).toBe(15);
     });
 
-    test("clamps active progress to 100", () => {
+    test("returns time-based progress for shipped step", () => {
         expect(
             resolveEventProgress({
+                id: "shipped",
                 status: "SHIPPED",
-                state: "active",
-                startedAt: "2026-03-24T00:00:00.000Z",
-                plannedEndAt: "2026-03-24T01:00:00.000Z",
+                timestamp: "2026-03-24T03:00:00.000Z",
+                progress: 45,
             }),
-        ).toBe(100);
+        ).toBe(45);
     });
 });

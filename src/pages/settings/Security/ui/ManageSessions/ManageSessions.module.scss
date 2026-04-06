@@ -1,0 +1,45 @@
+.toolbar {
+    margin-bottom: 4px;
+}
+
+.list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.item {
+    border: 1px solid var(--gray-100);
+    border-radius: 16px;
+    padding: 14px;
+    background: var(--white);
+}
+
+.header {
+    border-bottom: 1px solid var(--gray-100);
+    padding-bottom: 10px;
+}
+
+.meta {
+    width: 100%;
+}
+
+.metaItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.lastActivity {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 4px;
+}
+
+@media (width <= 700px) {
+    .meta {
+        grid-template-columns: 1fr !important;
+    }
+}

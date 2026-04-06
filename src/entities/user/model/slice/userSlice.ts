@@ -10,6 +10,7 @@ const initialState: UserSchema = {
     currency: "USD",
     accessToken: undefined,
     accessTokenExpiresAt: undefined,
+    isSessionReady: false,
     pendingMfaChallenge: undefined,
 };
 
@@ -45,6 +46,9 @@ export const userSlice = createSlice({
             state.accessToken = undefined;
             state.accessTokenExpiresAt = undefined;
             state.pendingMfaChallenge = undefined;
+        },
+        setSessionReady: (state) => {
+            state.isSessionReady = true;
         },
         setCurrency: (state, action: PayloadAction<CurrencyType>) => {
             state.currency = action.payload;

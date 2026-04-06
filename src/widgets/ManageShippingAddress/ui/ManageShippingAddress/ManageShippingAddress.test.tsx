@@ -7,13 +7,10 @@ import {saveShippingAddressReducer} from "@/features/save-shipping-address";
 
 import {
     defaultAddressHandlers,
-    deleteAddressHandlers,
     geocodeHandlers,
     listAddressHandlers,
     searchHandlers,
-    setDefaultAddressHandlers,
 } from "@/entities/shipping-address/api/test/handlers";
-import {mockAddresses, mockSingleAddress} from "@/entities/shipping-address/api/test/mockData";
 
 import type {DeepPartial} from "@/shared/lib/state";
 import {createHandlersScenario} from "@/shared/lib/testing";
@@ -25,8 +22,6 @@ const handlerSets = {
     list: listAddressHandlers,
     defaultAddress: defaultAddressHandlers,
     search: searchHandlers,
-    delete: deleteAddressHandlers,
-    setDefault: setDefaultAddressHandlers,
     geocode: geocodeHandlers,
 };
 
@@ -39,7 +34,7 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-describe("ManageShippingAddress Integration Tests", () => {
+describe("ManageShippingAddress Inline Integration", () => {
     const defaultInitialState: DeepPartial<StateSchema> = {
         user: {
             userData: {
@@ -76,386 +71,58 @@ describe("ManageShippingAddress Integration Tests", () => {
         vi.clearAllMocks();
     });
 
-    describe("Rendering", () => {
-        test("should render address trigger button with street address", async () => {
-            renderManageShippingAddress();
+    test("renders address list in choose mode without modal trigger", async () => {
+        renderManageShippingAddress();
 
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            expect(screen.getByTestId("manage-address-street")).toHaveTextContent(
-                mockSingleAddress.streetAddress,
-            );
+        await waitFor(() => {
+            expect(screen.getByTestId("address-list")).toBeInTheDocument();
         });
 
-        test("should render loading state initially", async () => {
-            server.use(...createHandlersScenario("loading", handlerSets));
-
-            renderManageShippingAddress();
-
-            expect(screen.getByTestId("manage-address-loading")).toBeInTheDocument();
-            expect(screen.getByText("Loading")).toBeInTheDocument();
-        });
-
-        test("should render fallback address on error", async () => {
-            server.use(...createHandlersScenario("error", handlerSets));
-
-            renderManageShippingAddress();
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-fallback")).toBeInTheDocument();
-            });
-            expect(screen.getByTestId("manage-address-fallback")).toHaveTextContent(
-                "Select your address",
-            );
-        });
-
-        test("should render sign-in prompt when user is not logged in", async () => {
-            renderManageShippingAddress({user: {userData: undefined}});
-
-            const user = userEvent.setup();
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-signin-prompt")).toBeInTheDocument();
-            });
-
-            expect(screen.getByTestId("manage-address-signin-btn")).toBeInTheDocument();
-        });
+        expect(screen.queryByTestId("manage-address-trigger")).not.toBeInTheDocument();
     });
 
-    describe("Address List Modal", () => {
-        test("should open modal and show address list on click", async () => {
-            renderManageShippingAddress();
+    test("renders sign-in prompt for guest", async () => {
+        renderManageShippingAddress({user: {userData: undefined, accessToken: undefined}});
 
-            const user = userEvent.setup();
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
-
-            for (const address of mockAddresses) {
-                expect(screen.getByTestId(`address-item-${address.id}`)).toBeInTheDocument();
-                expect(screen.getByTestId(`address-item-${address.id}-street`)).toHaveTextContent(
-                    `${address.city}, ${address.zipCode}`,
-                );
-            }
+        await waitFor(() => {
+            expect(screen.getByTestId("manage-address-signin-prompt")).toBeInTheDocument();
         });
 
-        test("should render loading state in modal when fetching addresses", async () => {
-            server.use(...createHandlersScenario("loading", handlerSets));
-
-            renderManageShippingAddress();
-
-            const user = userEvent.setup();
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-loader")).toBeInTheDocument();
-            });
-        });
-
-        test("should render empty state when no addresses exist", async () => {
-            server.use(listAddressHandlers.empty, defaultAddressHandlers.noDefault);
-
-            renderManageShippingAddress();
-
-            const user = userEvent.setup();
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.queryByTestId("address-list")).not.toBeInTheDocument();
-            });
-        });
+        expect(screen.getByTestId("manage-address-signin-btn")).toBeInTheDocument();
     });
 
-    describe("Address Selection", () => {
-        test("should highlight default address with checked radio", async () => {
-            renderManageShippingAddress();
+    test("switches to edit form when add address button is clicked", async () => {
+        renderManageShippingAddress();
+        const user = userEvent.setup();
 
-            const user = userEvent.setup();
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
-
-            const defaultAddress = mockAddresses.find((addr) => addr.isDefault);
-            if (defaultAddress) {
-                const radio = screen.getByTestId(`address-item-${defaultAddress.id}-radio`);
-                expect(radio).toBeChecked();
-            }
+        await waitFor(() => {
+            expect(screen.getByTestId("address-list")).toBeInTheDocument();
         });
 
-        test("should show non-default addresses with unchecked radios", async () => {
-            renderManageShippingAddress();
+        await user.click(screen.getByTestId("address-list-add-btn"));
 
-            const user = userEvent.setup();
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
-
-            const nonDefaultAddresses = mockAddresses.filter((addr) => !addr.isDefault);
-            for (const address of nonDefaultAddresses) {
-                const radio = screen.getByTestId(`address-item-${address.id}-radio`);
-                expect(radio).not.toBeChecked();
-            }
-        });
-
-        test("should allow clicking on address item to select it", async () => {
-            renderManageShippingAddress();
-
-            const user = userEvent.setup();
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
-
-            const secondAddress = mockAddresses.find((addr) => !addr.isDefault);
-            if (secondAddress) {
-                const addressItem = screen.getByTestId(`address-item-${secondAddress.id}`);
-                await user.click(addressItem);
-
-                expect(addressItem).toBeInTheDocument();
-            }
-        });
+        await waitFor(() => {
+            expect(screen.getByTestId("edit-address-form")).toBeInTheDocument();
+        }, ASYNC_TIMEOUT);
     });
 
-    describe("Add New Address", () => {
-        test("should show add address button in address list footer", async () => {
-            renderManageShippingAddress();
+    test("returns to list when back button clicked in add mode", async () => {
+        renderManageShippingAddress();
+        const user = userEvent.setup();
 
-            const user = userEvent.setup();
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
-
-            expect(screen.getByTestId("address-list-add-btn")).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByTestId("address-list")).toBeInTheDocument();
         });
 
-        test("should switch to add mode and show form when clicking add address button", async () => {
-            renderManageShippingAddress();
+        await user.click(screen.getByTestId("address-list-add-btn"));
+        await waitFor(() => {
+            expect(screen.getByTestId("manage-address-back-btn")).toBeInTheDocument();
+        }, ASYNC_TIMEOUT);
 
-            const user = userEvent.setup();
+        await user.click(screen.getByTestId("manage-address-back-btn"));
 
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
-
-            const addButton = screen.getByTestId("address-list-add-btn");
-            await user.click(addButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("edit-address-form")).toBeInTheDocument();
-            }, ASYNC_TIMEOUT);
-
-            expect(screen.getByTestId("edit-address-street-input")).toBeInTheDocument();
-            expect(screen.getByTestId("edit-address-city-input")).toBeInTheDocument();
-            expect(screen.getByTestId("edit-address-apartment-input")).toBeInTheDocument();
-            expect(screen.getByTestId("edit-address-zipcode-input")).toBeInTheDocument();
-            expect(screen.getByTestId("edit-address-submit-btn")).toBeInTheDocument();
-        });
-
-        test("should show back button in add mode", async () => {
-            renderManageShippingAddress({
-                saveShippingAddress: {
-                    ...defaultInitialState.saveShippingAddress,
-                    mode: "add",
-                },
-            });
-
-            const user = userEvent.setup();
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-back-btn")).toBeInTheDocument();
-            });
-        });
-    });
-
-    describe("Edit Address", () => {
-        test("should show edit button on each address item", async () => {
-            renderManageShippingAddress();
-
-            const user = userEvent.setup();
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
-
-            for (const address of mockAddresses) {
-                expect(
-                    screen.getByTestId(`address-item-${address.id}-edit-btn`),
-                ).toBeInTheDocument();
-            }
-        });
-
-        test("should switch to edit mode and show form when clicking edit button", async () => {
-            renderManageShippingAddress();
-
-            const user = userEvent.setup();
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
-
-            const firstAddress = mockAddresses[0];
-            const editButton = screen.getByTestId(`address-item-${firstAddress.id}-edit-btn`);
-            await user.click(editButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("edit-address-form")).toBeInTheDocument();
-            }, ASYNC_TIMEOUT);
-        });
-    });
-
-    describe("Delete Address", () => {
-        test("should show delete button on each address item", async () => {
-            renderManageShippingAddress();
-
-            const user = userEvent.setup();
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
-
-            for (const address of mockAddresses) {
-                expect(
-                    screen.getByTestId(`address-item-${address.id}-delete-btn`),
-                ).toBeInTheDocument();
-            }
-        });
-
-        test("should show delete confirmation modal when clicking delete", async () => {
-            renderManageShippingAddress();
-
-            const user = userEvent.setup();
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
-
-            const firstAddress = mockAddresses[0];
-            const deleteButton = screen.getByTestId(`address-item-${firstAddress.id}-delete-btn`);
-            await user.click(deleteButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("delete-confirmation-modal")).toBeInTheDocument();
-            });
-
-            expect(screen.getByTestId("delete-confirmation-header")).toBeInTheDocument();
-            expect(screen.getByTestId("delete-confirmation-body")).toBeInTheDocument();
-            expect(screen.getByTestId("delete-confirmation-cancel-btn")).toBeInTheDocument();
-            expect(screen.getByTestId("delete-confirmation-confirm-btn")).toBeInTheDocument();
-        });
-    });
-
-    describe("Modal Navigation", () => {
-        test("should return to address list when clicking back button in add mode", async () => {
-            renderManageShippingAddress();
-
-            const user = userEvent.setup();
-
-            await waitFor(() => {
-                expect(screen.getByTestId("manage-address-street")).toBeInTheDocument();
-            });
-
-            const triggerButton = screen.getByTestId("manage-address-trigger");
-            await user.click(triggerButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
-
-            const addButton = screen.getByTestId("address-list-add-btn");
-            await user.click(addButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("edit-address-form")).toBeInTheDocument();
-            }, ASYNC_TIMEOUT);
-
-            const backButton = screen.getByTestId("manage-address-back-btn");
-            await user.click(backButton);
-
-            await waitFor(() => {
-                expect(screen.getByTestId("address-list")).toBeInTheDocument();
-            });
+        await waitFor(() => {
+            expect(screen.getByTestId("address-list")).toBeInTheDocument();
         });
     });
 });

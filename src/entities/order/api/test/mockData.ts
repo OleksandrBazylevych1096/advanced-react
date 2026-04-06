@@ -48,83 +48,72 @@ export const mockOrderDetailsProcessing: OrderDetails = {
             }),
         ),
     ],
-    timeline: {
-        currentStatus: OrderStatus.PROCESSING,
-        promisedDeliveryAt: "2026-03-24T18:00:00.000Z",
-        hasPromisedDelivery: true,
-        events: [
-            {
-                status: "CONFIRMED",
-                startedAt: "2026-03-24T00:30:00.000Z",
-                plannedEndAt: "2026-03-24T01:30:00.000Z",
-                state: "done",
-            },
-            {
-                status: "PROCESSING",
-                startedAt: "2026-03-24T01:30:00.000Z",
-                plannedEndAt: "2026-03-24T05:30:00.000Z",
-                state: "active",
-            },
-            {
-                status: "SHIPPED",
-                startedAt: null,
-                plannedEndAt: "2026-03-24T17:30:00.000Z",
-                state: "upcoming",
-            },
-            {
-                status: "DELIVERED",
-                startedAt: null,
-                plannedEndAt: "2026-03-24T18:00:00.000Z",
-                state: "upcoming",
-            },
-        ],
-    },
+    timeline: [
+        {
+            id: "pending",
+            status: "PENDING",
+            timestamp: "2026-03-24T00:00:00.000Z",
+        },
+        {
+            id: "confirmed",
+            status: "CONFIRMED",
+            timestamp: "2026-03-24T01:20:00.000Z",
+        },
+        {
+            id: "processing",
+            status: "PROCESSING",
+            timestamp: "2026-03-24T01:20:00.000Z",
+        },
+        {
+            id: "shipped",
+            status: "SHIPPED",
+            timestamp: null,
+        },
+        {
+            id: "delivered",
+            status: "DELIVERED",
+            timestamp: null,
+        },
+    ],
 };
 
 export const mockOrderDetailsDelivered: OrderDetails = {
     ...mockOrderDetailsProcessing,
     status: OrderStatus.DELIVERED,
-    timeline: {
-        ...mockOrderDetailsProcessing.timeline,
-        currentStatus: OrderStatus.DELIVERED,
-        events: [
-            {
-                status: "CONFIRMED",
-                startedAt: "2026-03-24T00:30:00.000Z",
-                plannedEndAt: "2026-03-24T01:30:00.000Z",
-                state: "done",
-            },
-            {
-                status: "PROCESSING",
-                startedAt: "2026-03-24T01:30:00.000Z",
-                plannedEndAt: "2026-03-24T05:30:00.000Z",
-                state: "done",
-            },
-            {
-                status: "SHIPPED",
-                startedAt: "2026-03-24T05:30:00.000Z",
-                plannedEndAt: "2026-03-24T17:30:00.000Z",
-                state: "done",
-            },
-            {
-                status: "DELIVERED",
-                startedAt: "2026-03-24T17:30:00.000Z",
-                plannedEndAt: "2026-03-24T18:00:00.000Z",
-                state: "done",
-            },
-        ],
-    },
+    timeline: [
+        {
+            id: "pending",
+            status: "PENDING",
+            timestamp: "2026-03-24T00:00:00.000Z",
+        },
+        {
+            id: "confirmed",
+            status: "CONFIRMED",
+            timestamp: null,
+        },
+        {
+            id: "processing",
+            status: "PROCESSING",
+            timestamp: null,
+        },
+        {
+            id: "shipped",
+            status: "SHIPPED",
+            timestamp: null,
+        },
+        {
+            id: "delivered",
+            status: "DELIVERED",
+            timestamp: "2026-03-24T05:20:00.000Z",
+        },
+    ],
 };
 
 export const mockOrderDetailsNoDeliveryDate: OrderDetails = {
     ...mockOrderDetailsProcessing,
     deliveryDate: null,
     deliveryTime: null,
-    timeline: {
-        ...mockOrderDetailsProcessing.timeline,
-        promisedDeliveryAt: null,
-        hasPromisedDelivery: false,
-    },
+    timeline: [...mockOrderDetailsProcessing.timeline],
 };
 
 export const mockOrderDetailsNoAddress: OrderDetails = {

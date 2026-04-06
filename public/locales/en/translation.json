@@ -2,7 +2,14 @@
     "common": {
         "errorDefault": "Something went wrong",
         "tryAgain": "Try Again",
-        "noData": "No data available"
+        "noData": "No data available",
+        "copied": "Copied to clipboard"
+    },
+    "orderStatusBadge": {
+        "inProgress": "In progress",
+        "delivered": "Delivered",
+        "cancelled": "Cancelled",
+        "refunded": "Refunded"
     },
     "carousel": {
         "imageError": "error",
@@ -58,7 +65,87 @@
         "cart": "Cart",
         "searchBy": "Search by",
         "login": "Login",
-        "logout": "Logout"
+        "logout": "Logout",
+        "settings": "Settings"
+    },
+    "settings": {
+        "menu": {
+            "accountDetails": "Account details",
+            "orders": "Orders",
+            "security": "Security",
+            "address": "Address",
+            "notifications": "Notifications"
+        },
+        "pages": {
+            "placeholder": "Settings content will be added in the next step.",
+            "accountDetails": {
+                "title": "Account details"
+            },
+            "orders": {
+                "title": "My orders",
+                "filters": {
+                    "all": "All",
+                    "inProgress": "In Progress",
+                    "delivered": "Delivered",
+                    "cancelled": "Cancelled"
+                },
+                "orderLabel": "Order",
+                "itemsLabel": "Items",
+                "itemsCount": "{{count}}x",
+                "viewOrderDetails": "View Order Details",
+                "emptyTitle": "No orders yet",
+                "emptyDescription": "Your recent orders will appear here once you place one.",
+                "error": "Failed to load your orders.",
+                "status": {
+                    "completed": "Completed",
+                    "cancelled": "Cancelled",
+                    "inProgress": "In Progress"
+                }
+            },
+            "security": {
+                "title": "Security",
+                "twoFactorTitle": "Two-factor authentication",
+                "twoFactorEnabled": "Two-factor authentication is enabled.",
+                "twoFactorDisabled": "Two-factor authentication is disabled.",
+                "twoFactorStart": "Set up 2FA",
+                "twoFactorScanHint": "Scan this QR code in your authenticator app.",
+                "twoFactorQrAlt": "Two-factor QR code",
+                "twoFactorBackupHint": "Save your backup codes in a safe place:",
+                "twoFactorCodeLabel": "Verification code",
+                "twoFactorCodePlaceholder": "Enter 6-digit code",
+                "twoFactorEnable": "Enable 2FA",
+                "unlinkGoogle": "Unlink Google account",
+                "unlinkGoogleSuccess": "Google account has been unlinked.",
+                "noActiveSessions": "No active sessions.",
+                "revokeOther": "Revoke other sessions",
+                "revokeAll": "Revoke all sessions",
+                "refreshing": "Refreshing...",
+                "currentSession": "Current session",
+                "thisDevice": "This device",
+                "session": "Session",
+                "browserLabel": "Browser",
+                "osLabel": "Operating system",
+                "deviceLabel": "Device type",
+                "ipLabel": "IP address",
+                "unknownDevice": "Unknown device",
+                "unknownIp": "Unknown IP",
+                "unknown": "Unknown",
+                "deviceDesktop": "Desktop",
+                "deviceMobile": "Mobile",
+                "deviceTablet": "Tablet",
+                "lastActivity": "Last activity",
+                "revoke": "Revoke"
+            },
+            "address": {
+                "title": "Address"
+            },
+            "notifications": {
+                "title": "Notifications",
+                "emailLabel": "Email notifications",
+                "emailDescription": "Receive order updates and store notifications by email.",
+                "updated": "Email notification settings updated."
+            }
+        }
     },
     "search": {
         "page": {

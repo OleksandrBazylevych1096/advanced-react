@@ -1,11 +1,11 @@
 import {useTranslation} from "react-i18next";
 
-import {buildShippingAddressLabel, type BaseShippingAddress} from "@/entities/shipping-address";
+import {type BaseShippingAddress, buildShippingAddressLabel} from "@/entities/shipping-address";
 
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
-import styles from "../OrderPage.module.scss";
+import styles from "../OrderPage/OrderPage.module.scss";
 
 interface OrderDeliveryAddressCardProps {
     shippingAddress: BaseShippingAddress | undefined;

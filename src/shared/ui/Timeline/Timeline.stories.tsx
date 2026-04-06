@@ -15,9 +15,10 @@ const meta = {
     ],
     args: {
         events: [
-            {state: "done", label: "Apr 5, 2022, 10:07 AM", progress: 100},
-            {state: "active", label: "Apr 6, 2022, 12:10 PM", progress: 45},
-            {state: "upcoming", label: "Apr 7, 2022, 03:20 PM", progress: 0},
+            {id: "order_placed", state: "done", label: "Order Placed", progress: 100},
+            {id: "processing", state: "done", label: "Processing", progress: 15},
+            {id: "shipped", state: "upcoming", label: "Shipped", progress: 0},
+            {id: "delivered", state: "upcoming", label: "Delivered", progress: 0},
         ],
     },
 } satisfies Meta<typeof Timeline>;
@@ -27,11 +28,24 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const TwoSteps: Story = {
+export const Shipped: Story = {
     args: {
         events: [
-            {state: "done", label: "Order confirmed", progress: 100},
-            {state: "active", label: "Processing", progress: 65},
+            {id: "order_placed", state: "done", label: "Order Placed", progress: 100},
+            {id: "processing", state: "done", label: "Processing", progress: 100},
+            {id: "shipped", state: "done", label: "Shipped", progress: 45},
+            {id: "delivered", state: "upcoming", label: "Delivered", progress: 0},
+        ],
+    },
+};
+
+export const Delivered: Story = {
+    args: {
+        events: [
+            {id: "order_placed", state: "done", label: "Order Placed", progress: 100},
+            {id: "processing", state: "done", label: "Processing", progress: 100},
+            {id: "shipped", state: "done", label: "Shipped", progress: 100},
+            {id: "delivered", state: "done", label: "Delivered", progress: 100},
         ],
     },
 };

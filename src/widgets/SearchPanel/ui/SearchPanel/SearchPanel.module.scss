@@ -75,10 +75,10 @@
 .tagRemoveIcon {
     width: 12px;
     height: 12px;
-    stroke: var(--gray-300);
-    transition: stroke 0.2s ease;
+    fill: var(--gray-300);
+    transition: fill 0.2s ease;
 
     &:hover {
-        stroke: var(--primary-color);
+        fill: var(--primary-color);
     }
 }

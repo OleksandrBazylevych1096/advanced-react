@@ -101,22 +101,14 @@
             "refunded": "Refunded"
         },
         "timeline": {
-            "done": {
-                "confirmed": "Order confirmed",
-                "processing": "Order processed",
-                "shipped": "Order shipped",
-                "delivered": "Order delivered",
-                "cancelled": "Order cancelled",
-                "refunded": "Order refunded"
-            },
-            "active": {
-                "confirmed": "Confirming order",
-                "processing": "Processing order",
-                "shipped": "Shipping order",
-                "delivered": "Delivering order",
-                "cancelled": "Cancelling order",
-                "refunded": "Processing refund"
-            }
+            "order_placed": "Order Placed",
+            "pending": "Pending",
+            "confirmed": "Confirmed",
+            "processing": "Processing",
+            "shipped": "Shipped",
+            "delivered": "Delivered",
+            "cancelled": "Cancelled",
+            "refunded": "Refunded"
         },
         "status": {
             "pending": "Pending",

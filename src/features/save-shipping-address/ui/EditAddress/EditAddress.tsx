@@ -1,14 +1,14 @@
-import {Modal} from "@/shared/ui/Modal";
+import {Box} from "@/shared/ui/Box";
 
 import {EditAddressForm} from "../EditAddressForm/EditAddressForm";
 import {Map} from "../Map/Map";
 
 const EditAddress = () => {
     return (
-        <Modal.Body>
+        <Box>
             <Map />
             <EditAddressForm />
-        </Modal.Body>
+        </Box>
     );
 };
 

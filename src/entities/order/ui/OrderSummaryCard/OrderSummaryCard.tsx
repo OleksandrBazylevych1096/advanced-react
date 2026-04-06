@@ -1,10 +1,9 @@
 import {useTranslation} from "react-i18next";
 
 import {SummaryRow} from "@/entities/order/ui/SummaryRow/SummaryRow.tsx";
-import {selectUserCurrency} from "@/entities/user/@x/order";
 
+import type {CurrencyType} from "@/shared/config";
 import {formatCurrency} from "@/shared/lib/formatting";
-import {useAppSelector} from "@/shared/lib/state";
 import {cn} from "@/shared/lib/styling";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
@@ -20,11 +19,11 @@ interface OrderSummaryCardProps {
     rows: OrderSummaryRow[];
     totalAmount: number;
     className?: string;
+    currency: CurrencyType
 }
 
-export const OrderSummaryCard = ({rows, totalAmount, className}: OrderSummaryCardProps) => {
+export const OrderSummaryCard = ({rows, totalAmount, className, currency}: OrderSummaryCardProps) => {
     const {i18n, t} = useTranslation("checkout");
-    const currency = useAppSelector(selectUserCurrency);
 
     return (
         <Stack className={cn(styles.card, className)} gap={16}>

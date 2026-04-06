@@ -7,7 +7,6 @@ const testCtx = vi.hoisted(() => ({
     dispatchMock: vi.fn(),
     navigateMock: vi.fn(),
     state: undefined as StateSchema | undefined,
-    defaultAddressQueryMock: vi.fn(),
 }));
 
 vi.mock("react-i18next", () => ({
@@ -28,21 +27,11 @@ vi.mock("@/features/save-shipping-address", () => ({
     },
     saveShippingAddressActions: {
         returnToChoose: () => ({type: "shipping/returnToChoose"}),
-        openManageShippingAddressModal: () => ({type: "shipping/openManageShippingAddressModal"}),
-        closeManageShippingAddressModal: () => ({type: "shipping/closeManageShippingAddressModal"}),
     },
     selectSaveShippingAddressMode: (state: StateSchema) => state.saveShippingAddress?.mode,
-    selectIsManageShippingAddressModalOpen: (state: StateSchema) =>
-        Boolean(state.saveShippingAddress?.isManageShippingAddressModalOpen),
-}));
-
-vi.mock("@/entities/shipping-address", () => ({
-    useGetDefaultShippingAddressQuery: (...args: unknown[]) =>
-        testCtx.defaultAddressQueryMock(...args),
 }));
 
 vi.mock("@/entities/user", () => ({
-    selectUserData: (state: StateSchema) => state.user?.userData,
     selectIsAuthenticated: (state: StateSchema) =>
         Boolean(state.user?.userData && state.user?.accessToken),
 }));
@@ -62,34 +51,22 @@ describe("useManageShippingAddress", () => {
         vi.clearAllMocks();
         testCtx.state = {
             user: {userData: {id: "u1"}, accessToken: "token-1"},
-            saveShippingAddress: {mode: "edit", isManageShippingAddressModalOpen: false},
+            saveShippingAddress: {mode: "edit"},
         } as StateSchema;
-        testCtx.defaultAddressQueryMock.mockReturnValue({
-            isLoading: false,
-            currentData: {id: "addr1"},
-            isError: false,
-        });
     });
 
-    test("exposes modal data and actions", () => {
+    test("exposes inline data and actions", () => {
         const {result} = renderHook(() => useManageShippingAddress());
 
-        expect(testCtx.defaultAddressQueryMock).toHaveBeenCalledWith(undefined, {
-            skip: false,
-        });
         expect(result.current.data).toMatchObject({
-            defaultAddress: {id: "addr1"},
             modalTitle: "t:shipping.edit",
             shouldShowEditForm: true,
             mode: "edit",
             isAuthenticated: true,
-            isModalOpen: false,
         });
 
         act(() => {
             result.current.actions.openSignIn();
-            result.current.actions.openModal();
-            result.current.actions.closeModal();
             result.current.actions.goBack();
         });
 
@@ -97,12 +74,6 @@ describe("useManageShippingAddress", () => {
         expect(testCtx.dispatchMock).toHaveBeenCalledWith({
             type: "shipping/returnToChoose",
         });
-        expect(testCtx.dispatchMock).toHaveBeenCalledWith({
-            type: "shipping/openManageShippingAddressModal",
-        });
-        expect(testCtx.dispatchMock).toHaveBeenCalledWith({
-            type: "shipping/closeManageShippingAddressModal",
-        });
-        expect(testCtx.dispatchMock).toHaveBeenCalledTimes(4);
+        expect(testCtx.dispatchMock).toHaveBeenCalledTimes(1);
     });
 });

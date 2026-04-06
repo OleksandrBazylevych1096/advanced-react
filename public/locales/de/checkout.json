@@ -101,22 +101,14 @@
             "refunded": "Erstattet"
         },
         "timeline": {
-            "done": {
-                "confirmed": "Bestellung bestatigt",
-                "processing": "Bestellung bearbeitet",
-                "shipped": "Bestellung versandt",
-                "delivered": "Bestellung zugestellt",
-                "cancelled": "Bestellung storniert",
-                "refunded": "Bestellung erstattet"
-            },
-            "active": {
-                "confirmed": "Bestaetigung der Bestellung",
-                "processing": "Bearbeitung der Bestellung",
-                "shipped": "Versand der Bestellung",
-                "delivered": "Zustellung der Bestellung",
-                "cancelled": "Stornierung der Bestellung",
-                "refunded": "Erstattung wird bearbeitet"
-            }
+            "order_placed": "Bestellt",
+            "pending": "Ausstehend",
+            "confirmed": "Bestatigt",
+            "processing": "In Bearbeitung",
+            "shipped": "Versandt",
+            "delivered": "Zugestellt",
+            "cancelled": "Storniert",
+            "refunded": "Erstattet"
         },
         "status": {
             "pending": "Ausstehend",

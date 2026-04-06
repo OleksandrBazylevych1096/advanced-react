@@ -4,11 +4,9 @@ import {useNavigate} from "react-router";
 import {
     ADDRESS_MODE_TITLES,
     saveShippingAddressActions,
-    selectIsManageShippingAddressModalOpen,
     selectSaveShippingAddressMode,
 } from "@/features/save-shipping-address";
 
-import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
 import {selectIsAuthenticated} from "@/entities/user";
 
 import {AppRoutes, routePaths} from "@/shared/config";
@@ -21,25 +19,7 @@ export const useManageShippingAddress = () => {
     const dispatch = useAppDispatch();
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
     const mode = useAppSelector(selectSaveShippingAddressMode);
-    const isModalOpen = useAppSelector(selectIsManageShippingAddressModalOpen);
     const {t} = useTranslation();
-
-    const {
-        isLoading,
-        currentData: defaultAddress,
-        isError,
-    } = useGetDefaultShippingAddressQuery(undefined, {
-        skip: !isAuthenticated,
-    });
-
-    const closeModal = () => {
-        dispatch(saveShippingAddressActions.returnToChoose());
-        dispatch(saveShippingAddressActions.closeManageShippingAddressModal());
-    };
-
-    const openModal = () => {
-        dispatch(saveShippingAddressActions.openManageShippingAddressModal());
-    };
 
     const openSignIn = () => {
         navigate(getLocalizedPath(routePaths[AppRoutes.LOGIN]));
@@ -54,21 +34,13 @@ export const useManageShippingAddress = () => {
 
     return {
         data: {
-            defaultAddress,
             modalTitle,
             shouldShowEditForm,
             mode,
             isAuthenticated,
-            isModalOpen,
-        },
-        status: {
-            isLoading,
-            isError,
         },
         actions: {
             openSignIn,
-            openModal,
-            closeModal,
             goBack,
         },
     };

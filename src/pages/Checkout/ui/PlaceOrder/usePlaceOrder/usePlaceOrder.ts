@@ -29,11 +29,11 @@ interface SubmitOrderResult {
 }
 
 export const usePlaceOrder = ({
-    summary,
-    deliverySelection,
-    tip,
-    couponCode,
-}: UsePlaceOrderControllerParams) => {
+                                  summary,
+                                  deliverySelection,
+                                  tip,
+                                  couponCode,
+                              }: UsePlaceOrderControllerParams) => {
     const {i18n, t} = useTranslation("checkout");
     const getLocalizedPath = useLocalizedRoutePath();
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
@@ -67,7 +67,7 @@ export const usePlaceOrder = ({
         const response = await createPaymentSessionRequest({
             ...payload,
             locale: i18n.language,
-            currency: currency.toLowerCase(),
+            currency: currency,
             tipAmount: tip,
             couponCode,
             successUrl,

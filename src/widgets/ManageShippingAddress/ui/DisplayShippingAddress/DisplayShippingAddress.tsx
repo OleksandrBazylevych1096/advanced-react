@@ -1,4 +1,8 @@
+import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
+import {selectIsAuthenticated} from "@/entities/user";
+
 import MapPinIcon from "@/shared/assets/icons/MapPin.svg?react";
+import {useAppSelector} from "@/shared/lib/state";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Spinner} from "@/shared/ui/Spinner";
 import {Stack} from "@/shared/ui/Stack";
@@ -6,19 +10,23 @@ import {Typography} from "@/shared/ui/Typography";
 
 import styles from "../ManageShippingAddress/ManageShippingAddress.module.scss";
 
-interface DisplayShippingAddressProps {
-    isLoading: boolean;
-    isError: boolean;
-    streetAddress?: string;
-}
 
-export const DisplayShippingAddress = (props: DisplayShippingAddressProps) => {
-    const {isLoading, streetAddress, isError} = props;
+export const DisplayShippingAddress = () => {
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
+
+    const {
+        isLoading,
+        currentData: defaultAddress,
+        isError,
+    } = useGetDefaultShippingAddressQuery(undefined, {
+        skip: !isAuthenticated,
+    });
+
 
     if (isLoading) {
         return (
             <Stack direction="row" align="center" gap={8} data-testid="manage-address-loading">
-                <Spinner size="sm" />
+                <Spinner size="sm"/>
                 <Typography as="span" variant="body">
                     Loading
                 </Typography>
@@ -26,10 +34,10 @@ export const DisplayShippingAddress = (props: DisplayShippingAddressProps) => {
         );
     }
 
-    if (isError || !streetAddress) {
+    if (isError || !defaultAddress || !defaultAddress.streetAddress) {
         return (
             <Stack direction="row" align="center" gap={8}>
-                <AppIcon Icon={MapPinIcon} className={styles.addressIcon} />
+                <AppIcon Icon={MapPinIcon} className={styles.addressIcon}/>
                 <Typography
                     as="span"
                     variant="body"
@@ -44,7 +52,7 @@ export const DisplayShippingAddress = (props: DisplayShippingAddressProps) => {
 
     return (
         <Stack direction="row" align="center" gap={8}>
-            <AppIcon Icon={MapPinIcon} className={styles.addressIcon} />
+            <AppIcon Icon={MapPinIcon} className={styles.addressIcon}/>
 
             <Typography
                 as="span"
@@ -52,7 +60,7 @@ export const DisplayShippingAddress = (props: DisplayShippingAddressProps) => {
                 className={styles.address}
                 data-testid="manage-address-street"
             >
-                {streetAddress}
+                {defaultAddress.streetAddress}
             </Typography>
         </Stack>
     );

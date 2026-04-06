@@ -6,7 +6,7 @@ import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
 import {useClearCart} from "../../model/controllers/useClearCart";
-import styles from "../CartPage.module.scss";
+import styles from "../CartPage/CartPage.module.scss";
 import {ClearCartButton} from "../ClearCartButton/ClearCartButton";
 
 interface CartPageItemsSectionProps {
@@ -26,12 +26,12 @@ export const CartPageItemsSection = ({isCartReady = true}: CartPageItemsSectionP
                     <Typography as="h3" variant="body" weight="semibold">
                         Delivery Date
                     </Typography>
-                    <ChooseDeliveryDate className={styles.deliveryDateTrigger} />
+                    <ChooseDeliveryDate className={styles.deliveryDateTrigger}/>
                 </Stack>
             )}
 
             <div className={styles.itemsList}>
-                <CartItems />
+                <CartItems/>
             </div>
 
             {isCartReady && (

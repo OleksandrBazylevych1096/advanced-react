@@ -1,5 +1,7 @@
 import type {AuthProvidersType, CurrencyType} from "@/shared/config";
 
+import type {MfaMethod} from "./AuthSession";
+
 export interface User {
     id: string;
     email?: string;
@@ -8,6 +10,7 @@ export interface User {
     provider: AuthProvidersType;
     isEmailVerified?: boolean;
     isPhoneVerified?: boolean;
+    emailNotificationsEnabled?: boolean;
     isTwoFactorEnabled?: boolean;
 }
 
@@ -16,9 +19,10 @@ export interface UserSchema {
     currency: CurrencyType;
     accessToken?: string;
     accessTokenExpiresAt?: string;
+    isSessionReady: boolean;
     pendingMfaChallenge?: {
         mfaToken: string;
         mfaTokenExpiresAt?: string;
-        availableMethods?: import("./AuthSession").MfaMethod[];
+        availableMethods?: MfaMethod[];
     };
 }

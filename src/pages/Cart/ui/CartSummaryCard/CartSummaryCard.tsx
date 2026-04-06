@@ -16,7 +16,7 @@ import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 import {Typography} from "@/shared/ui/Typography";
 
-import styles from "../CartPage.module.scss";
+import styles from "../CartPage/CartPage.module.scss";
 
 interface CartSummaryCardProps {
     cart: Cart | undefined;
@@ -60,7 +60,7 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
                     />
                 </div>
 
-                <OrderSummaryCard rows={rows} totalAmount={cart.totals.total} />
+                <OrderSummaryCard currency={currency} rows={rows} totalAmount={cart.totals.total}/>
 
                 <Button
                     fullWidth
@@ -70,7 +70,7 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
                     onClick={proceedToCheckout}
                     disabled={hasIssues || isValidating}
                 >
-                    <AppIcon Icon={ShoppingCartIcon} size={18} />
+                    <AppIcon Icon={ShoppingCartIcon} size={18}/>
                     <span>Checkout</span>
                     <span className={styles.checkoutTotal}>
                         {formatCurrency(currency, i18n.language, cart.totals.total)}

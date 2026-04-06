@@ -1,4 +1,7 @@
+import type {ComponentType, ReactNode} from "react";
 import type {RouteProps} from "react-router";
+
+import {SettingsPageLayout} from "@/app/layouts/SettingsPageLayout/SettingsPageLayout";
 
 import {AuthCallbackPage} from "@/pages/AuthCallbackPage";
 import {AuthTwoFactorPage} from "@/pages/AuthTwoFactor";
@@ -15,15 +18,20 @@ import {ProductPage} from "@/pages/Product";
 import {RegisterPage} from "@/pages/Register";
 import {ResetPasswordPage} from "@/pages/ResetPassword";
 import {SearchPage} from "@/pages/Search";
-import {SessionsPage} from "@/pages/Sessions";
+import {SettingsAccountDetailsPage} from "@/pages/settings/AccountDetails";
+import {SettingsAddressPage} from "@/pages/settings/Address";
+import {SettingsNotificationsPage} from "@/pages/settings/Notifications";
+import {SettingsOrdersPage} from "@/pages/settings/Orders";
+import {SettingsSecurityPage} from "@/pages/settings/Security";
 import {VerifyEmailErrorPage} from "@/pages/VerifyEmailError";
 import {VerifyEmailSuccessPage} from "@/pages/VerifyEmailSuccess";
 
 import {AppRoutes, routePaths} from "@/shared/config";
 
 export type AppRouteConfig = RouteProps & {
+    layout?: ComponentType<{children: ReactNode}> | null;
     hasLocalizedParams?: boolean;
-    withoutDefaultLayout?: boolean;
+    requiresAuth?: boolean;
 };
 
 export const routeConfig: AppRouteConfig[] = [
@@ -34,47 +42,42 @@ export const routeConfig: AppRouteConfig[] = [
     {
         path: routePaths[AppRoutes.LOGIN],
         element: <LoginPage />,
-        withoutDefaultLayout: true,
+        layout: null,
     },
     {
         path: routePaths[AppRoutes.REGISTER],
         element: <RegisterPage />,
-        withoutDefaultLayout: true,
+        layout: null,
     },
     {
         path: routePaths[AppRoutes.AUTH_CALLBACK],
         element: <AuthCallbackPage />,
-        withoutDefaultLayout: true,
+        layout: null,
     },
     {
         path: routePaths[AppRoutes.AUTH_2FA],
         element: <AuthTwoFactorPage />,
-        withoutDefaultLayout: true,
+        layout: null,
     },
     {
         path: routePaths[AppRoutes.FORGOT_PASSWORD],
         element: <ForgotPasswordPage />,
-        withoutDefaultLayout: true,
+        layout: null,
     },
     {
         path: routePaths[AppRoutes.RESET_PASSWORD],
         element: <ResetPasswordPage />,
-        withoutDefaultLayout: true,
+        layout: null,
     },
     {
         path: routePaths[AppRoutes.VERIFY_EMAIL_SUCCESS],
         element: <VerifyEmailSuccessPage />,
-        withoutDefaultLayout: true,
+        layout: null,
     },
     {
         path: routePaths[AppRoutes.VERIFY_EMAIL_ERROR],
         element: <VerifyEmailErrorPage />,
-        withoutDefaultLayout: true,
-    },
-    {
-        path: routePaths[AppRoutes.SESSIONS],
-        element: <SessionsPage />,
-        withoutDefaultLayout: true,
+        layout: null,
     },
     {
         path: routePaths[AppRoutes.CATEGORY],
@@ -107,8 +110,38 @@ export const routeConfig: AppRouteConfig[] = [
         element: <OrderPage />,
     },
     {
+        path: routePaths[AppRoutes.SETTINGS_ACCOUNT_DETAILS],
+        element: <SettingsAccountDetailsPage />,
+        layout: SettingsPageLayout,
+        requiresAuth: true,
+    },
+    {
+        path: routePaths[AppRoutes.SETTINGS_ORDERS],
+        element: <SettingsOrdersPage />,
+        layout: SettingsPageLayout,
+        requiresAuth: true,
+    },
+    {
+        path: routePaths[AppRoutes.SETTINGS_SECURITY],
+        element: <SettingsSecurityPage />,
+        layout: SettingsPageLayout,
+        requiresAuth: true,
+    },
+    {
+        path: routePaths[AppRoutes.SETTINGS_ADDRESS],
+        element: <SettingsAddressPage />,
+        layout: SettingsPageLayout,
+        requiresAuth: true,
+    },
+    {
+        path: routePaths[AppRoutes.SETTINGS_NOTIFICATIONS],
+        element: <SettingsNotificationsPage />,
+        layout: SettingsPageLayout,
+        requiresAuth: true,
+    },
+    {
         path: routePaths[AppRoutes.NOT_FOUND],
         element: <NotFoundPage />,
-        withoutDefaultLayout: true,
+        layout: null,
     },
 ];

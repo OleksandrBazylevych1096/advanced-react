@@ -6,9 +6,10 @@ import {applyCouponReducer, Coupon} from "@/features/apply-coupon";
 import {chooseDeliveryTipReducer, DeliveryTip} from "@/features/choose-delivery-tip";
 
 import {OrderSummaryCard} from "@/entities/order";
+import {selectUserCurrency} from "@/entities/user";
 
 import ArrowLeft from "@/shared/assets/icons/ArrowLeft.svg?react";
-import {DynamicModuleLoader} from "@/shared/lib/state";
+import {DynamicModuleLoader, useAppSelector} from "@/shared/lib/state";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 import {Stack} from "@/shared/ui/Stack";
@@ -31,21 +32,22 @@ const CheckoutPage = () => {
     const {
         data: {summary, defaultAddress, deliverySelection, tip, couponCode},
         status: {isLoading, isError},
-        actions: {goToCartPage, openManageShippingAddressModal},
+        actions: {goToCartPage},
     } = useCheckoutPage();
+    const currency = useAppSelector(selectUserCurrency)
 
     const summaryRows = summary
         ? [
-              {label: t("summary.itemsTotal"), amount: summary.totals.subtotal},
-              {label: t("summary.deliveryFee"), amount: summary.totals.estimatedShipping},
-              {label: t("summary.serviceFee"), amount: summary.totals.estimatedTax},
-              {label: t("summary.tip"), amount: tip},
-              {label: t("summary.coupon"), amount: -(summary.totals.discountAmount ?? 0)},
-          ]
+            {label: t("summary.itemsTotal"), amount: summary.totals.subtotal},
+            {label: t("summary.deliveryFee"), amount: summary.totals.estimatedShipping},
+            {label: t("summary.serviceFee"), amount: summary.totals.estimatedTax},
+            {label: t("summary.tip"), amount: tip},
+            {label: t("summary.coupon"), amount: -(summary.totals.discountAmount ?? 0)},
+        ]
         : [];
 
     if (isLoading) {
-        return <CheckoutPageSkeleton />;
+        return <CheckoutPageSkeleton/>;
     }
 
     if (isError || !summary) {
@@ -71,31 +73,28 @@ const CheckoutPage = () => {
                             onClick={goToCartPage}
                             data-testid="checkout-go-back-trigger"
                         >
-                            <AppIcon Icon={ArrowLeft} size={18} />
+                            <AppIcon Icon={ArrowLeft} size={18}/>
                         </Button>
                         <Typography as="h1" variant="display" weight="bold">
                             {t("checkoutTitle")}
                         </Typography>
                     </Stack>
 
-                    <CheckoutDeliveryInfoCard
-                        address={defaultAddress}
-                        onOpenManageShippingAddressModal={openManageShippingAddressModal}
-                    />
+                    <CheckoutDeliveryInfoCard address={defaultAddress}/>
                     <Stack className={styles.cardSurface}>
-                        <ReviewOrderItems items={summary.items} />
+                        <ReviewOrderItems currency={currency} items={summary.items}/>
                     </Stack>
                 </Stack>
 
                 <Stack gap={16} className={styles.sidebarColumn}>
                     <Stack className={styles.cardSurface}>
-                        <OrderSummaryCard rows={summaryRows} totalAmount={summary.totals.total} />
+                        <OrderSummaryCard currency={currency} rows={summaryRows} totalAmount={summary.totals.total}/>
                     </Stack>
                     <Stack className={styles.cardSurface}>
-                        <DeliveryTip />
+                        <DeliveryTip/>
                     </Stack>
                     <Stack className={styles.cardSurface}>
-                        <Coupon />
+                        <Coupon/>
                     </Stack>
                     <Stack className={styles.cardSurface}>
                         <PlaceOrder

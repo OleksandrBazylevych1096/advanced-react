@@ -1,4 +1,5 @@
 import type {GuestCartItem} from "../model/types/CartSchema";
+import {generateUuid} from "@/shared/lib/browser";
 
 import {CART_STORAGE_KEY} from "./cartStorage";
 
@@ -7,7 +8,7 @@ type CartSyncMessage =
     | {type: "CART_CLEARED"; tabId: string};
 
 const CHANNEL_NAME = "cart_sync";
-const TAB_ID = crypto.randomUUID();
+const TAB_ID = generateUuid();
 
 type CartSyncCallback = (items: GuestCartItem[]) => void;
 

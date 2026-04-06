@@ -9,7 +9,7 @@ import {Stack} from "@/shared/ui/Stack";
 import {EmptyState} from "@/shared/ui/StateViews";
 import {Typography} from "@/shared/ui/Typography";
 
-import styles from "../SearchPanel.module.scss";
+import styles from "../SearchPanel/SearchPanel.module.scss";
 
 import {useSearchHistory} from "./useSearchHistory.ts";
 
@@ -41,14 +41,14 @@ export const SearchHistory = () => {
                     }
                     aria-label={t("search.history.clearAll", "Clear all recent searches")}
                 >
-                    <AppIcon filled Icon={DeleteIcon} />
+                    <AppIcon filled Icon={DeleteIcon}/>
                 </Button>
             </Stack>
 
             {isFetchingRecentSearches ? (
                 <div className={styles.tagsWrap}>
                     {Array.from({length: SEARCH_HISTORY_SKELETON_COUNT}).map((_, index) => (
-                        <Skeleton key={index} width={100} height={36} borderRadius={40} />
+                        <Skeleton key={index} width={100} height={36} borderRadius={40}/>
                     ))}
                 </div>
             ) : recentSearches.length > 0 ? (
@@ -74,13 +74,13 @@ export const SearchHistory = () => {
                                 onClick={() => void removeRecentSearchItem(item)}
                                 aria-label={t("search.history.remove", "Remove query")}
                             >
-                                <AppIcon Icon={CloseIcon} className={styles.tagRemoveIcon} />
+                                <AppIcon Icon={CloseIcon} className={styles.tagRemoveIcon}/>
                             </Button>
                         </div>
                     ))}
                 </div>
             ) : (
-                <EmptyState title={t("search.history.empty")} />
+                <EmptyState title={t("search.history.empty")}/>
             )}
         </Stack>
     );

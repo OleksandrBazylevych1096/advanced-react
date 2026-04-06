@@ -1,71 +1,146 @@
 .timeline {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    width: 100%;
-    overflow-x: auto;
+  display: grid;
+  grid-template-columns: var(--timeline-cols);
+  grid-template-rows: auto auto;
+  row-gap: 10px;
+  width: 100%;
 }
 
-.item {
-    flex: 1 1 0;
-    min-width: 170px;
-}
-
-.track {
-    height: 8px;
-    background: var(--gray-200);
-}
-
-.fill {
-    transition: width 0.25s ease;
-}
-
-.fill-done {
-    background: var(--primary-color);
-}
-
-.fill-active {
-    background: var(--primary-color);
-}
-
-.fill-upcoming {
-    background: var(--gray-200);
-}
-
-.event {
-    min-height: 24px;
-}
+/* ── Markers ── */
 
 .marker {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    flex-shrink: 0;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 2px solid var(--gray-300);
-    background: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--gray-300);
+  background: var(--white);
+  align-self: center;
 }
 
 .marker-done {
-    border-color: var(--primary-color);
-    background: var(--primary-color);
-}
-
-.marker-active {
-    border-color: var(--primary-color);
+  border-color: var(--primary-color);
+  background: var(--primary-color);
 }
 
 .marker-upcoming {
-    border-color: var(--gray-300);
+  border-color: var(--gray-300);
+}
+
+.marker-cancelled {
+  border-color: var(--gray-400);
+  background: var(--gray-400);
+}
+
+.marker-danger {
+  border-color: var(--red-500);
+}
+
+.marker-done.marker-danger {
+  background: var(--red-500);
 }
 
 .markerIcon {
-    stroke: var(--white);
+  color: var(--white);
+  fill: currentcolor;
+  stroke: currentcolor;
+}
+
+/* ── Connectors ── */
+
+.connector {
+  position: relative;
+  height: 3px;
+  background: var(--gray-300);
+  border-radius: 2px;
+  overflow: hidden;
+  align-self: center;
+}
+
+.connectorFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--connector-progress, 0%);
+  background: var(--primary-color);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.connector-danger .connectorFill {
+  background: var(--red-500);
+}
+
+/* ── Labels ── */
+
+.labelCell {
+  position: relative;
+  min-width: 0;
+}
+
+.labelCell-last {
+  overflow: visible;
 }
 
 .label {
-    white-space: nowrap;
+  white-space: nowrap;
+  display: block;
+}
+
+.note {
+  margin-top: 2px;
+  white-space: nowrap;
+  display: block;
+}
+
+.label-first {
+  text-align: left;
+}
+
+.label-middle {
+  text-align: center;
+}
+
+.note-first {
+  text-align: left;
+}
+
+.note-middle {
+  text-align: center;
+}
+
+.labelCell-middle {
+  overflow: visible;
+}
+
+.labelCell-middle .label-middle {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.labelCell-middle .note-middle {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+}
+
+.labelCell-last .label-last {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
+}
+
+.labelCell-last .note-last {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  text-align: right;
 }

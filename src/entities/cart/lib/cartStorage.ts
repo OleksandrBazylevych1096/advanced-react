@@ -1,4 +1,5 @@
 import type {GuestCartItem} from "../model/types/CartSchema";
+import {generateUuid} from "@/shared/lib/browser";
 
 const CART_STORAGE_KEY = "guest_cart_v1";
 const CART_EXPIRY_DAYS = 30;
@@ -14,7 +15,7 @@ interface StoredCart {
 function getDeviceId(): string {
     let deviceId = localStorage.getItem(DEVICE_ID_KEY);
     if (!deviceId) {
-        deviceId = crypto.randomUUID();
+        deviceId = generateUuid();
         localStorage.setItem(DEVICE_ID_KEY, deviceId);
     }
     return deviceId;

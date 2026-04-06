@@ -42,8 +42,7 @@ export const useOrderPage = () => {
         : [];
 
     const reviewItems: CartItem[] = order ? mapOrderItemsToCartItems(order.orderItems) : [];
-    const deliveredEvent = order?.timeline.events.find((event) => event.status === "DELIVERED");
-    const isOrderDelivered = deliveredEvent?.state === "done";
+    const isOrderDelivered = order?.status === OrderStatus.DELIVERED;
     const canCancelOrder =
         order?.status === OrderStatus.PENDING || order?.status === OrderStatus.CONFIRMED;
 

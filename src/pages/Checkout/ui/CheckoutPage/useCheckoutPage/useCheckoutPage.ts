@@ -4,20 +4,18 @@ import {useNavigate} from "react-router";
 import {selectApplyCouponCode} from "@/features/apply-coupon";
 import {useGetDeliverySelectionQuery} from "@/features/choose-delivery-date";
 import {selectChooseDeliveryTipAmount} from "@/features/choose-delivery-tip";
-import {saveShippingAddressActions} from "@/features/save-shipping-address";
 
 import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
 import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import {AppRoutes, routePaths} from "@/shared/config";
 import {useLocalizedRoutePath} from "@/shared/lib/routing";
-import {useAppDispatch, useAppSelector} from "@/shared/lib/state";
+import {useAppSelector} from "@/shared/lib/state";
 
 import {useGetCheckoutSummaryQuery} from "../../../api/checkoutApi/checkoutApi.ts";
 
 export const useCheckoutPage = () => {
     const {i18n} = useTranslation("checkout");
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const getLocalizedPath = useLocalizedRoutePath();
 
@@ -50,10 +48,6 @@ export const useCheckoutPage = () => {
     const {data: deliverySelectionResponse, isLoading: isDeliverySelectionLoading} =
         useGetDeliverySelectionQuery({locale: i18n.language}, {skip: !isAuthenticated});
 
-    const openManageShippingAddressModal = () => {
-        dispatch(saveShippingAddressActions.openManageShippingAddressModal());
-    };
-
     const goToCartPage = () => {
         navigate(getLocalizedPath(routePaths[AppRoutes.CART]));
     };
@@ -72,7 +66,6 @@ export const useCheckoutPage = () => {
         },
         actions: {
             goToCartPage,
-            openManageShippingAddressModal,
         },
     };
 };

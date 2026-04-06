@@ -16,7 +16,8 @@ AGENTS.md
 .ai
 .aiassistant
 
-.agent
+.agents
+skills-lock.json
 .env
 
 # Editor directories and files

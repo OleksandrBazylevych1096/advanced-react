@@ -4,6 +4,12 @@
         "tryAgain": "Erneut versuchen",
         "noData": "Keine Daten verfügbar"
     },
+    "orderStatusBadge": {
+        "inProgress": "In Bearbeitung",
+        "delivered": "Geliefert",
+        "cancelled": "Storniert",
+        "refunded": "Erstattet"
+    },
     "carousel": {
         "imageError": "Fehler",
         "imageAlt": "Werbebanner"
@@ -58,7 +64,87 @@
         "cart": "Warenkorb",
         "searchBy": "Suchen nac",
         "login": "Einloggen",
-        "logout": "Admelden"
+        "logout": "Admelden",
+        "settings": "Einstellungen"
+    },
+    "settings": {
+        "menu": {
+            "accountDetails": "Kontodaten",
+            "orders": "Bestellungen",
+            "security": "Sicherheit",
+            "address": "Adresse",
+            "notifications": "Benachrichtigungen"
+        },
+        "pages": {
+            "placeholder": "Inhalte der Einstellungen werden im nГ¤chsten Schritt hinzugefГјgt.",
+            "accountDetails": {
+                "title": "Kontodaten"
+            },
+            "orders": {
+                "title": "Meine Bestellungen",
+                "filters": {
+                    "all": "Alle",
+                    "inProgress": "In Bearbeitung",
+                    "delivered": "Geliefert",
+                    "cancelled": "Storniert"
+                },
+                "orderLabel": "Bestellung",
+                "itemsLabel": "Artikel",
+                "itemsCount": "{{count}}x",
+                "viewOrderDetails": "Bestellung ansehen",
+                "emptyTitle": "Noch keine Bestellungen",
+                "emptyDescription": "Ihre aktuellen Bestellungen erscheinen hier nach dem ersten Kauf.",
+                "error": "Bestellungen konnten nicht geladen werden.",
+                "status": {
+                    "completed": "Abgeschlossen",
+                    "cancelled": "Storniert",
+                    "inProgress": "In Bearbeitung"
+                }
+            },
+            "security": {
+                "title": "Sicherheit",
+                "twoFactorTitle": "Zwei-Faktor-Authentifizierung",
+                "twoFactorEnabled": "Die Zwei-Faktor-Authentifizierung ist aktiviert.",
+                "twoFactorDisabled": "Die Zwei-Faktor-Authentifizierung ist deaktiviert.",
+                "twoFactorStart": "2FA einrichten",
+                "twoFactorScanHint": "Scannen Sie diesen QR-Code in Ihrer Authenticator-App.",
+                "twoFactorQrAlt": "Zwei-Faktor-QR-Code",
+                "twoFactorBackupHint": "Speichern Sie Ihre Backup-Codes sicher:",
+                "twoFactorCodeLabel": "Bestaetigungscode",
+                "twoFactorCodePlaceholder": "6-stelligen Code eingeben",
+                "twoFactorEnable": "2FA aktivieren",
+                "unlinkGoogle": "Google-Konto trennen",
+                "unlinkGoogleSuccess": "Google-Konto wurde getrennt.",
+                "noActiveSessions": "Keine aktiven Sitzungen.",
+                "revokeOther": "Andere Sitzungen beenden",
+                "revokeAll": "Alle Sitzungen beenden",
+                "refreshing": "Wird aktualisiert...",
+                "currentSession": "Aktuelle Sitzung",
+                "thisDevice": "Dieses Geraet",
+                "session": "Sitzung",
+                "browserLabel": "Browser",
+                "osLabel": "Betriebssystem",
+                "deviceLabel": "Geraetetyp",
+                "ipLabel": "IP-Adresse",
+                "unknownDevice": "Unbekanntes Geraet",
+                "unknownIp": "Unbekannte IP",
+                "unknown": "Unbekannt",
+                "deviceDesktop": "Desktop",
+                "deviceMobile": "Mobil",
+                "deviceTablet": "Tablet",
+                "lastActivity": "Letzte Aktivitaet",
+                "revoke": "Beenden"
+            },
+            "address": {
+                "title": "Adresse"
+            },
+            "notifications": {
+                "title": "Benachrichtigungen",
+                "emailLabel": "E-Mail-Benachrichtigungen",
+                "emailDescription": "Erhalte Bestell-Updates und Shop-Benachrichtigungen per E-Mail.",
+                "updated": "E-Mail-Benachrichtigungseinstellungen aktualisiert."
+            }
+        }
     },
     "search": {
         "page": {

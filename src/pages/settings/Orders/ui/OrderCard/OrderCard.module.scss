@@ -1,0 +1,69 @@
+
+.orderCard {
+  padding: 20px 22px;
+  border: 1px solid var(--gray-100);
+  border-radius: 20px;
+  background: var(--white);
+}
+
+.orderCardTop {
+  width: 100%;
+  display: grid;
+  grid-template-columns:
+        minmax(240px, 38%)
+        minmax(170px, 23%)
+        minmax(100px, 12%)
+        minmax(130px, 12%)
+        minmax(170px, 15%);
+  column-gap: 20px;
+  align-items: center;
+}
+
+.orderSummary {
+  min-width: 0;
+}
+
+.orderNumberRow {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.orderNumber {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.orderNumberText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metaItem {
+  min-width: 0;
+}
+
+.statusColumn {
+  justify-self: start;
+}
+
+.actionColumn {
+  justify-self: end;
+}
+
+.detailsLink {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 8px;
+  text-decoration: none;
+  color: var(--gray-800);
+  transition: color 0.2s linear;
+
+  span {
+    color: currentcolor;
+  }
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}

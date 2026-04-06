@@ -47,12 +47,9 @@ export const FallbackWithoutActiveStep: Story = {
     args: {
         order: {
             ...mockOrderDetailsProcessing,
-            timeline: {
-                ...mockOrderDetailsProcessing.timeline,
-                events: mockOrderDetailsProcessing.timeline.events.map((event) =>
-                    event.status === "PROCESSING" ? {...event, state: "upcoming"} : event,
-                ),
-            },
+            timeline: mockOrderDetailsProcessing.timeline.map((event) =>
+                event.id === "processing" ? {...event, timestamp: null} : event,
+            ),
         },
     },
 };
