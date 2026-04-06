@@ -1,3 +1,4 @@
+import type {Pagination} from "@/shared/api";
 import type {CurrencyType, SupportedLngsType} from "@/shared/config";
 
 export interface ProductImage {
@@ -28,10 +29,10 @@ export interface ProductFacets {
     priceRange: PriceRangeType;
 }
 
+
 export interface ProductsApiResponse {
     products: Product[];
-    total: number;
-    hasMore: boolean;
+    pagination: Pagination;
     facets: ProductFacets;
 }
 
@@ -50,5 +51,5 @@ export interface ProductQuery {
     currency?: CurrencyType;
 }
 
-export type FacetItemType = {label?: string; value: string; count: number};
-export type PriceRangeType = {min?: number; max?: number};
+export type FacetItemType = { label?: string; value: string; count: number };
+export type PriceRangeType = { min?: number; max?: number };

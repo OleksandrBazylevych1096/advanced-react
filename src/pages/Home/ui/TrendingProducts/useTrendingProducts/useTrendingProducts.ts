@@ -46,7 +46,7 @@ export const useTrendingProducts = () => {
     }, [currentTagId, tags]);
 
     const products = productsData?.products;
-    const total = productsData?.total || 0;
+    const total = productsData?.pagination.total || 0;
 
     const changeTag = (tagId: string) => {
         setCurrentTagId(tagId);

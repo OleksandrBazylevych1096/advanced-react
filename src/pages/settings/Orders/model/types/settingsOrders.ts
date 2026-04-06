@@ -1,5 +1,7 @@
 import {type OrderDetails} from "@/entities/order";
 
+import type {Pagination} from "@/shared/api";
+
 export const SettingsOrdersStatusFilter = {
     ALL: "all",
     IN_PROGRESS: "in_progress",
@@ -12,14 +14,6 @@ export type SettingsOrderStatusFilterType = (typeof SettingsOrdersStatusFilter)[
 
 export interface SettingsOrdersListResponse {
     orders: OrderDetails[];
-    // TODO - create shared type for pagination
-    pagination: {
-        hasNext: boolean;
-        hasPrev: boolean;
-        limit: number
-        page: number;
-        total: number
-        totalPages: number
-    };
+    pagination: Pagination
 }
 

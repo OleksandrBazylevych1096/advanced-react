@@ -9,11 +9,9 @@ export const productApi = baseAPI.injectEndpoints({
             infiniteQueryOptions: {
                 initialPageParam: 1,
 
-                getNextPageParam: (lastPage, allPages, lastPageParam) => {
-                    const totalPages = Math.ceil(lastPage.total / allPages[0].products.length);
-
-                    if (lastPageParam < totalPages) {
-                        return lastPageParam + 1;
+                getNextPageParam: (lastPage) => {
+                    if (lastPage.pagination.hasNext) {
+                        return lastPage.pagination.page + 1;
                     }
                 },
 

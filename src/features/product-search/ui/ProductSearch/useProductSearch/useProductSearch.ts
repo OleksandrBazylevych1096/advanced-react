@@ -37,6 +37,7 @@ export const useProductSearch = () => {
 
     const trimmedQuery = useMemo(() => query.trim(), [query]);
     const trimmedDebouncedQuery = useMemo(() => debouncedQuery.trim(), [debouncedQuery]);
+    const isDebouncing = trimmedQuery !== trimmedDebouncedQuery;
 
     const isValidQuery = trimmedQuery.length >= MIN_SEARCH_QUERY_LENGTH;
     const shouldFetchSuggestions =
@@ -65,8 +66,16 @@ export const useProductSearch = () => {
         () =>
             isFocused &&
             isValidQuery &&
+            !isDebouncing &&
             (isFetchingSuggestions || suggestions.length > 0 || hasNoSuggestions),
-        [isFocused, isValidQuery, isFetchingSuggestions, suggestions.length, hasNoSuggestions],
+        [
+            isFocused,
+            isValidQuery,
+            isDebouncing,
+            isFetchingSuggestions,
+            suggestions.length,
+            hasNoSuggestions,
+        ],
     );
 
     const setQuery = useCallback(

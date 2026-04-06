@@ -9,9 +9,14 @@ export const bestSellingProductsHandlers = createHandlers({
     defaultData: {
         facets: mockFacets,
         products: mockProducts.slice(0, 20),
-        total: 50,
-        page: 1,
-        limit: 20,
+        pagination: {
+            hasNext: true,
+            hasPrev: false,
+            limit: 20,
+            page: 1,
+            total: 50,
+            totalPages: 3,
+        },
     },
     errorData: {error: "Failed to load products"},
     errorStatus: 500,

@@ -11,7 +11,14 @@ const baseHandlers = createHandlers({
     defaultData: {
         facets: mockFacets,
         products: mockProducts,
-        total: 50,
+        pagination: {
+            hasNext: true,
+            hasPrev: false,
+            limit: 20,
+            page: 1,
+            total: 50,
+            totalPages: 3,
+        },
     },
     errorData: {error: "Failed to load products"},
     errorStatus: 500,
@@ -31,7 +38,14 @@ export const productsHandlers = extendHandlers(baseHandlers, {
         return HttpResponse.json({
             facets: mockFacets,
             products: euroProducts,
-            total: 50,
+            pagination: {
+                hasNext: true,
+                hasPrev: false,
+                limit: 20,
+                page: 1,
+                total: 50,
+                totalPages: 3,
+            },
         });
     }),
 
@@ -39,7 +53,14 @@ export const productsHandlers = extendHandlers(baseHandlers, {
         return HttpResponse.json({
             facets: emptyFacets,
             products: [],
-            total: 0,
+            pagination: {
+                hasNext: false,
+                hasPrev: false,
+                limit: 20,
+                page: 1,
+                total: 0,
+                totalPages: 0,
+            },
         });
     }),
 
@@ -65,7 +86,14 @@ export const productsHandlers = extendHandlers(baseHandlers, {
         return HttpResponse.json({
             facets: mockFacets,
             products,
-            total: 60,
+            pagination: {
+                hasNext: page < 3,
+                hasPrev: page > 1,
+                limit: 20,
+                page,
+                total: 60,
+                totalPages: 3,
+            },
         });
     }),
 
@@ -73,7 +101,14 @@ export const productsHandlers = extendHandlers(baseHandlers, {
         return HttpResponse.json({
             facets: mockFacets,
             products: mockProducts,
-            total: 20,
+            pagination: {
+                hasNext: false,
+                hasPrev: false,
+                limit: 20,
+                page: 1,
+                total: 20,
+                totalPages: 1,
+            },
         });
     }),
 });

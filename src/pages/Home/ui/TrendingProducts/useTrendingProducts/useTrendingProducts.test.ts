@@ -51,7 +51,19 @@ describe("useTrendingProducts", () => {
             isLoading: false,
         });
         testCtx.productsQueryMock.mockImplementation(({tagId}: {tagId: string}) => ({
-            data: tagId ? {products: [{id: "p1"}], total: 1} : undefined,
+            data: tagId
+                ? {
+                      products: [{id: "p1"}],
+                      pagination: {
+                          hasNext: false,
+                          hasPrev: false,
+                          limit: 20,
+                          page: 1,
+                          total: 1,
+                          totalPages: 1,
+                      },
+                  }
+                : undefined,
             isError: false,
             isFetching: false,
             isLoading: false,

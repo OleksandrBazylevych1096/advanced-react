@@ -21,7 +21,7 @@ export const useBestSellingProducts = () => {
     });
 
     const products = data?.products;
-    const total = data?.total || 0;
+    const total = data?.pagination.total || 0;
 
     return {
         data: {

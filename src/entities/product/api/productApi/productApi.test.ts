@@ -28,7 +28,18 @@ describe("productApi", () => {
             expect(url.searchParams.get("locale")).toBe("en");
 
             return new Response(
-                JSON.stringify({products: [], total: 0, hasMore: false, facets: {}}),
+                JSON.stringify({
+                    products: [],
+                    pagination: {
+                        hasNext: false,
+                        hasPrev: false,
+                        limit: 20,
+                        page: 1,
+                        total: 0,
+                        totalPages: 0,
+                    },
+                    facets: {},
+                }),
                 {
                     status: 200,
                     headers: {"Content-Type": "application/json"},
@@ -57,7 +68,18 @@ describe("productApi", () => {
             expect(url.searchParams.get("limit")).toBe("20");
 
             return new Response(
-                JSON.stringify({products: [], total: 0, hasMore: false, facets: {}}),
+                JSON.stringify({
+                    products: [],
+                    pagination: {
+                        hasNext: false,
+                        hasPrev: false,
+                        limit: 20,
+                        page: 1,
+                        total: 0,
+                        totalPages: 0,
+                    },
+                    facets: {},
+                }),
                 {
                     status: 200,
                     headers: {"Content-Type": "application/json"},

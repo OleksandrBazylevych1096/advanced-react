@@ -13,6 +13,8 @@ import {RangeFilterSection} from "../RangeFilterSection/RangeFilterSection";
 import styles from "./ProductFilters.module.scss";
 import {useProductFilters} from "./useProductFilters/useProductFilters.ts";
 
+// TODO - add disabled facets items instead of hiding them if filters changes
+
 export type ProductFiltersSections = "countries" | "brands" | "price";
 
 interface ProductFiltersProps {
@@ -22,10 +24,10 @@ interface ProductFiltersProps {
 }
 
 export const ProductFilters = ({
-    defaultOpenFilters,
-    categoryId,
-    searchQuery,
-}: ProductFiltersProps) => {
+                                   defaultOpenFilters,
+                                   categoryId,
+                                   searchQuery,
+                               }: ProductFiltersProps) => {
     const {t} = useTranslation();
     const {
         data: {
@@ -78,7 +80,7 @@ export const ProductFilters = ({
                     theme={"ghost"}
                     data-testid="product-filters-close-btn"
                 >
-                    <AppIcon className={styles.closeIcon} Icon={CloseIcon} />
+                    <AppIcon className={styles.closeIcon} Icon={CloseIcon}/>
                 </Button>
             </div>
             <Accordion defaultValue={defaultOpenFilters}>
