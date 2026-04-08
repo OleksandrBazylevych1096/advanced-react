@@ -32,7 +32,11 @@ export const OrderCard = ({order}: OrderCardProps) => {
                         <Typography as="h3" variant="heading" weight="semibold">
                             {t("settings.pages.orders.orderLabel")}
                         </Typography>
-                        <Typography variant="heading" copyable copiableTextClassName={styles.orderNumberText}>
+                        <Typography
+                            variant="heading"
+                            copyable
+                            copiableTextClassName={styles.orderNumberText}
+                        >
                             {order.orderNumber}
                         </Typography>
                     </Stack>
@@ -45,7 +49,11 @@ export const OrderCard = ({order}: OrderCardProps) => {
                 <Stack className={styles.metaItem} gap={6}>
                     <Stack gap={6}>
                         <Typography variant="heading" weight="semibold">
-                            <Price price={order.totalAmount} currency={order.currency} language={i18n.language}/>
+                            <Price
+                                price={order.totalAmount}
+                                currency={order.currency}
+                                language={i18n.language}
+                            />
                         </Typography>
                         <Typography variant="body" tone="muted">
                             Paid with {order.paymentCardBrand?.toUpperCase()} ****
@@ -66,17 +74,20 @@ export const OrderCard = ({order}: OrderCardProps) => {
                 </Stack>
 
                 <div className={styles.statusColumn}>
-                    <OrderStatusBadge status={order.status}/>
+                    <OrderStatusBadge status={order.status} />
                 </div>
 
                 <div className={styles.actionColumn}>
-                    <Link className={styles.detailsLink} to={getLocalizedPath(routePaths[AppRoutes.ORDER], {
-                        id: order.id,
-                    })}>
+                    <Link
+                        className={styles.detailsLink}
+                        to={getLocalizedPath(routePaths[AppRoutes.ORDER], {
+                            id: order.id,
+                        })}
+                    >
                         <Typography as="span" weight="semibold">
                             {t("settings.pages.orders.viewOrderDetails")}
                         </Typography>
-                        <AppIcon Icon={ArrowRight} size={16}/>
+                        <AppIcon Icon={ArrowRight} size={16} />
                     </Link>
                 </div>
             </div>

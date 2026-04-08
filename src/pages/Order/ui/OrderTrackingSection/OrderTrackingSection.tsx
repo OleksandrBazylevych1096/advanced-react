@@ -16,9 +16,7 @@ import {Stack} from "@/shared/ui/Stack";
 import {Timeline} from "@/shared/ui/Timeline";
 import {Typography} from "@/shared/ui/Typography";
 
-import {
-    mapOrderTimelineToTimelineEvents
-} from "../../lib/mapOrderTimelineToTimeEvents/mapOrderTimelineToTimelineEvents";
+import {mapOrderTimelineToTimelineEvents} from "../../lib/mapOrderTimelineToTimeEvents/mapOrderTimelineToTimelineEvents";
 import pageStyles from "../OrderPage/OrderPage.module.scss";
 
 import styles from "./OrderTrackingSection.module.scss";
@@ -44,7 +42,6 @@ export const OrderTrackingSection = ({order}: OrderTrackingSectionProps) => {
     const CurrentStatusIcon = resolveOrderStatusIcon(currentStatus);
     const currentStatusTone = resolveOrderStatusTone(currentStatus, order.status);
 
-
     return (
         <Stack className={cn(pageStyles.cardSurface)} gap={16}>
             <Stack direction="row" justify="space-between" align="flex-start" gap={12}>
@@ -59,7 +56,7 @@ export const OrderTrackingSection = ({order}: OrderTrackingSectionProps) => {
                         {`${t("order.promisedDelivery")}: ${deliveryLabel}`}
                     </Typography>
                 </Stack>
-                <OrderStatusBadge status={order.status}/>
+                <OrderStatusBadge status={order.status} />
             </Stack>
             <Stack className={styles.currentStatus} gap={12} align="center">
                 <Box
@@ -76,7 +73,7 @@ export const OrderTrackingSection = ({order}: OrderTrackingSectionProps) => {
                             [styles.statusIconCircleDanger]: currentStatusTone === "danger",
                         })}
                     >
-                        <AppIcon Icon={CurrentStatusIcon} size={48} className={styles.statusIcon}/>
+                        <AppIcon Icon={CurrentStatusIcon} size={48} className={styles.statusIcon} />
                     </Box>
                 </Box>
                 <Typography as="h2" variant="heading" weight="bold">
@@ -88,7 +85,7 @@ export const OrderTrackingSection = ({order}: OrderTrackingSectionProps) => {
                     </Typography>
                 )}
             </Stack>
-            <Timeline events={timelineEvents}/>
+            <Timeline events={timelineEvents} />
         </Stack>
     );
 };

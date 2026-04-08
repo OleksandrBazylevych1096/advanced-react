@@ -1,6 +1,6 @@
 import {
     SettingsOrdersStatusFilter,
-    type SettingsOrderStatusFilterType
+    type SettingsOrderStatusFilterType,
 } from "@/pages/settings/Orders/model/types/settingsOrders.ts";
 
 interface OrderFilterTab {
@@ -26,4 +26,3 @@ export const orderFilterTabs: OrderFilterTab[] = [
         labelKey: "settings.pages.orders.filters.cancelled",
     },
 ];
-

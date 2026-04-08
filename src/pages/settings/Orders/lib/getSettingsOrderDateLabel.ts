@@ -3,30 +3,27 @@ import {type OrderDetails, OrderStatus} from "@/entities/order";
 const FALLBACK_ORDER_DATE = "—";
 
 export const getSettingsOrderDateLabel = (locale: string, order: OrderDetails): string => {
-    let text = null
-    let date = null
+    let text = null;
+    let date = null;
     if (order.status === OrderStatus.REFUNDED && order.refundedAt) {
-        text = "Refunded at"
+        text = "Refunded at";
         date = new Date(order.refundedAt);
-
     }
 
     if (order.status === OrderStatus.CANCELLED && order.cancelledAt) {
-        text = "Cancelled at"
-        date = new Date(order.cancelledAt)
-
+        text = "Cancelled at";
+        date = new Date(order.cancelledAt);
     }
 
     if (order.status === OrderStatus.DELIVERED && order.deliveryDate) {
-        text = "Delivered at"
-        date = new Date(order.deliveryDate)
-
+        text = "Delivered at";
+        date = new Date(order.deliveryDate);
     }
 
     if (!date) {
-        if (!order.createdAt) return FALLBACK_ORDER_DATE
-        text = "Created at"
-        date = new Date(order.createdAt)
+        if (!order.createdAt) return FALLBACK_ORDER_DATE;
+        text = "Created at";
+        date = new Date(order.createdAt);
     }
 
     if (Number.isNaN(date.getTime())) {
@@ -46,4 +43,3 @@ export const getSettingsOrderDateLabel = (locale: string, order: OrderDetails): 
 
     return `${text} ${datePart}, ${timePart}`;
 };
-

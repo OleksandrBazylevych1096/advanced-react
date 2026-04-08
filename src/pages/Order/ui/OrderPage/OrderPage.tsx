@@ -29,7 +29,7 @@ const OrderPage = () => {
     } = useOrderPage();
 
     if (isLoading) {
-        return <OrderPageSkeleton/>;
+        return <OrderPageSkeleton />;
     }
 
     if (hasError || !order) {
@@ -57,24 +57,27 @@ const OrderPage = () => {
                                 onClick={goToHomePage}
                                 data-testid="checkout-go-back-trigger"
                             >
-                                <AppIcon Icon={ArrowLeft} size={18}/>
+                                <AppIcon Icon={ArrowLeft} size={18} />
                             </Button>
                             <Typography as="h1" variant="display" weight="bold">
                                 {pageTitle}
                             </Typography>
                         </Stack>
 
-                        <OrderTrackingSection order={order}/>
+                        <OrderTrackingSection order={order} />
 
                         <Stack className={styles.cardSurface}>
-                            <ReviewOrderItems currency={order.currency} items={reviewItems}/>
+                            <ReviewOrderItems currency={order.currency} items={reviewItems} />
                         </Stack>
                     </Stack>
 
                     <Stack gap={16} className={styles.sidebarColumn}>
                         <Stack className={styles.cardSurface}>
-                            <OrderSummaryCard currency={order.currency} rows={summaryRows}
-                                              totalAmount={order.totalAmount}/>
+                            <OrderSummaryCard
+                                currency={order.currency}
+                                rows={summaryRows}
+                                totalAmount={order.totalAmount}
+                            />
                         </Stack>
                         <OrderPaymentInfoCard
                             brand={order.paymentCardBrand}
@@ -95,7 +98,7 @@ const OrderPage = () => {
                         <Typography weight={"medium"} variant={"heading"}>
                             {t("order.cancelOrder.description")}
                         </Typography>
-                        <CancelOrder orderId={order.id}/>
+                        <CancelOrder orderId={order.id} />
                     </Stack>
                 )}
             </Stack>

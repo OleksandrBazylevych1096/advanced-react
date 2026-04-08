@@ -13,24 +13,10 @@ interface BadgeProps extends ComponentPropsWithoutRef<"span"> {
 }
 
 export const Badge = (props: BadgeProps) => {
-    const {
-        tone = "primary",
-        size = "md",
-        className,
-        children,
-        ...rest
-    } = props;
+    const {tone = "primary", size = "md", className, children, ...rest} = props;
 
     return (
-        <span
-            className={cn(
-                styles.badge,
-                styles[tone],
-                styles[size],
-                className,
-            )}
-            {...rest}
-        >
+        <span className={cn(styles.badge, styles[tone], styles[size], className)} {...rest}>
             {children}
         </span>
     );

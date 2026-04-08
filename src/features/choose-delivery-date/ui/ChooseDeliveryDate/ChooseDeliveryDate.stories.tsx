@@ -21,6 +21,7 @@ const authenticatedState: Partial<StateSchema> = {
         userData: mockAuthSession.user,
         accessToken: mockAuthSession.accessToken,
         accessTokenExpiresAt: mockAuthSession.accessTokenExpiresAt,
+        isSessionReady: true,
     },
 };
 

@@ -19,6 +19,7 @@ const meta = {
         initialState: {
             user: {
                 currency: "USD",
+                isSessionReady: true,
             },
             cart: {
                 guestItems: [],

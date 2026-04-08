@@ -13,7 +13,10 @@ import {selectIsSessionReady} from "./model/selectors/selectIsSessionReady/selec
 import {selectPendingMfaChallenge} from "./model/selectors/selectPendingMfaChallenge/selectPendingMfaChallenge";
 import {selectUserCurrency} from "./model/selectors/selectUserCurrency/selectUserCurrency";
 import {selectUserData} from "./model/selectors/selectUserData/selectUserData";
-import {applyAuthSession, applyUserSession,} from "./model/services/applyUserSession/applyUserSession";
+import {
+    applyAuthSession,
+    applyUserSession,
+} from "./model/services/applyUserSession/applyUserSession";
 import {clearUserSession} from "./model/services/clearUserSession/clearUserSession";
 import {userActions, userReducer} from "./model/slice/userSlice";
 import type {

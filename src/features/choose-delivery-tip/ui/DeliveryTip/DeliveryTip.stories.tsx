@@ -7,6 +7,7 @@ import {DeliveryTip} from "./DeliveryTip";
 const baseInitialState: Partial<StateSchema> = {
     user: {
         currency: "USD",
+        isSessionReady: true,
     },
     chooseDeliveryTip: {
         amount: 0,

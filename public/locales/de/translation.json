@@ -78,7 +78,51 @@
         "pages": {
             "placeholder": "Inhalte der Einstellungen werden im nГ¤chsten Schritt hinzugefГјgt.",
             "accountDetails": {
-                "title": "Kontodaten"
+                "title": "Kontodaten",
+                "emailLabel": "E-Mail",
+                "phoneLabel": "Telefonnummer",
+                "passwordLabel": "Passwort",
+                "changePassword": "Passwort ändern",
+                "addEmail": "E-Mail hinzufügen",
+                "changeEmail": "E-Mail ändern",
+                "addPhone": "Telefonnummer hinzufügen",
+                "changePhone": "Telefonnummer ändern",
+                "removePhone": "Telefonnummer entfernen",
+                "notAdded": "Nicht hinzugefügt",
+                "notAvailable": "Nicht verfügbar",
+                "newEmail": "Neue E-Mail",
+                "newPhone": "Neue Telefonnummer",
+                "sendCode": "Code senden",
+                "resendCode": "Code erneut senden",
+                "verifyCode": "Code bestätigen",
+                "confirm": "Bestätigen",
+                "cancel": "Abbrechen",
+                "useAlternative": "{{contact}} stattdessen verwenden",
+                "channelEmail": "E-Mail",
+                "channelPhone": "Telefonnummer",
+                "flow": {
+                    "emailAddTitle": "E-Mail hinzufügen",
+                    "emailChangeTitle": "E-Mail ändern",
+                    "phoneAddTitle": "Telefonnummer hinzufügen",
+                    "phoneChangeTitle": "Telefonnummer ändern",
+                    "phoneRemoveTitle": "Telefonnummer entfernen",
+                    "verifyCurrentDescription": "Geben Sie den Code ein, der an {{target}} gesendet wurde.",
+                    "enterNewEmail": "Geben Sie eine neue E-Mail ein und senden Sie einen Bestätigungscode.",
+                    "enterNewPhone": "Geben Sie eine neue Telefonnummer ein und senden Sie einen Bestätigungscode.",
+                    "verifyNewDescription": "Geben Sie den Code ein, der an {{target}} gesendet wurde."
+                },
+                "messages": {
+                    "emailAdded": "E-Mail erfolgreich hinzugefügt.",
+                    "emailChanged": "E-Mail erfolgreich geändert.",
+                    "phoneAdded": "Telefonnummer erfolgreich hinzugefügt.",
+                    "phoneChanged": "Telefonnummer erfolgreich geändert.",
+                    "phoneRemoved": "Telefonnummer erfolgreich entfernt."
+                },
+                "errors": {
+                    "codeRequired": "Geben Sie den 4-stelligen Code ein.",
+                    "newValueRequired": "Bitte geben Sie einen Wert ein.",
+                    "flowTokenMissing": "Die Sitzung ist abgelaufen. Bitte erneut starten."
+                }
             },
             "orders": {
                 "title": "Meine Bestellungen",
@@ -220,6 +264,24 @@
         "REFRESH_TOKEN_REVOKED": "Refresh-Token widerrufen",
         "REFRESH_TOKEN_EXPIRED": "Refresh-Token abgelaufen",
         "REFRESH_TOKEN_MISMATCH": "Refresh-Token stimmt nicht überein",
-        "CODE_REQUIRED": "Code ist erforderlich"
+        "CODE_REQUIRED": "Code ist erforderlich",
+        "ACCESS_TOKEN_REQUIRED": "Bitte melden Sie sich erneut an.",
+        "ACCESS_TOKEN_INVALID": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.",
+        "EMAIL_NOT_FOUND": "Für dieses Konto ist keine E-Mail hinterlegt.",
+        "PHONE_NOT_FOUND": "Für dieses Konto ist keine Telefonnummer hinterlegt.",
+        "TARGET_NOT_AVAILABLE": "Der gewählte Bestätigungskanal ist nicht verfügbar.",
+        "EMAIL_ALREADY_EXISTS": "E-Mail ist bereits hinzugefügt.",
+        "PHONE_ALREADY_EXISTS": "Telefonnummer ist bereits hinzugefügt.",
+        "EMAIL_UNCHANGED": "Bitte geben Sie eine andere E-Mail ein.",
+        "PHONE_UNCHANGED": "Bitte geben Sie eine andere Telefonnummer ein.",
+        "EMAIL_TAKEN": "Diese E-Mail wird bereits verwendet.",
+        "PHONE_TAKEN": "Diese Telefonnummer wird bereits verwendet.",
+        "FLOW_TOKEN_REQUIRED": "Die Sitzung ist abgelaufen. Bitte erneut starten.",
+        "FLOW_TOKEN_INVALID": "Die Sitzung ist abgelaufen. Bitte erneut starten.",
+        "CHALLENGE_TOKEN_REQUIRED": "Die Sitzung ist abgelaufen. Fordern Sie einen neuen Code an.",
+        "OTP_CHALLENGE_INVALID": "Die Sitzung ist abgelaufen. Fordern Sie einen neuen Code an.",
+        "INVALID_EMAIL": "Bitte geben Sie eine gültige E-Mail ein.",
+        "INVALID_PHONE": "Bitte geben Sie eine gültige Telefonnummer im E.164-Format ein.",
+        "unknownError": "Unbekannter Fehler"
     }
 }

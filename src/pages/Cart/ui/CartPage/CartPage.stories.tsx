@@ -34,6 +34,7 @@ const meta = {
                 userData: mockAuthSession.user,
                 accessToken: mockAuthSession.accessToken,
                 accessTokenExpiresAt: mockAuthSession.accessTokenExpiresAt,
+                isSessionReady: true,
             },
             cart: {
                 guestItems: [],

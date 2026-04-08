@@ -28,7 +28,7 @@ describe("baseQueryWithReauth", () => {
         vi.restoreAllMocks();
     });
 
-    test("adds Authorization header when access token exists", async () => {
+    test("adds Authorization Header when access token exists", async () => {
         configureBaseQueryWithReauth({
             selectAccessToken: () => "token-123",
             applyAuthSession: vi.fn(),

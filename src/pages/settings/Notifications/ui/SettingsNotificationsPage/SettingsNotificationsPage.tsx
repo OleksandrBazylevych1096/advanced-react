@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 
-import {selectUserData, userActions} from "@/entities/user";
 import {useSettingsUpdateEmailNotificationsMutation} from "@/pages/settings/Notifications/api/updateEmailNotificationsApi";
+
+import {selectUserData, userActions} from "@/entities/user";
 
 import {extractApiErrorMessage} from "@/shared/lib/errors";
 import {useToast} from "@/shared/lib/notifications";

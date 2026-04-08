@@ -16,7 +16,7 @@ export const LogoutButton = () => {
     return (
         <Button theme="outline" onClick={logout} isLoading={isLoading}>
             <AppIcon Icon={UsersIcon} />
-            <span>{t("header.logout")}</span>
+            <span>{t("Header.logout")}</span>
         </Button>
     );
 };

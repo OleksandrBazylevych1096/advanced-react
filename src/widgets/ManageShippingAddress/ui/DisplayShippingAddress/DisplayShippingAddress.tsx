@@ -10,7 +10,6 @@ import {Typography} from "@/shared/ui/Typography";
 
 import styles from "../ManageShippingAddress/ManageShippingAddress.module.scss";
 
-
 export const DisplayShippingAddress = () => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
@@ -22,11 +21,10 @@ export const DisplayShippingAddress = () => {
         skip: !isAuthenticated,
     });
 
-
     if (isLoading) {
         return (
             <Stack direction="row" align="center" gap={8} data-testid="manage-address-loading">
-                <Spinner size="sm"/>
+                <Spinner size="sm" />
                 <Typography as="span" variant="body">
                     Loading
                 </Typography>
@@ -37,7 +35,7 @@ export const DisplayShippingAddress = () => {
     if (isError || !defaultAddress || !defaultAddress.streetAddress) {
         return (
             <Stack direction="row" align="center" gap={8}>
-                <AppIcon Icon={MapPinIcon} className={styles.addressIcon}/>
+                <AppIcon Icon={MapPinIcon} className={styles.addressIcon} />
                 <Typography
                     as="span"
                     variant="body"
@@ -52,7 +50,7 @@ export const DisplayShippingAddress = () => {
 
     return (
         <Stack direction="row" align="center" gap={8}>
-            <AppIcon Icon={MapPinIcon} className={styles.addressIcon}/>
+            <AppIcon Icon={MapPinIcon} className={styles.addressIcon} />
 
             <Typography
                 as="span"

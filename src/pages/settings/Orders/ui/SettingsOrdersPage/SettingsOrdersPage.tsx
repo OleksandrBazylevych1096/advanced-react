@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 import {orderFilterTabs} from "@/pages/settings/Orders/config/orderFilterTabs";
 import {
     SettingsOrdersStatusFilter,
-    type SettingsOrderStatusFilterType
+    type SettingsOrderStatusFilterType,
 } from "@/pages/settings/Orders/model/types/settingsOrders.ts";
 import {OrderList} from "@/pages/settings/Orders/ui/OrderList/OrderList.tsx";
 
@@ -13,7 +13,6 @@ import {Tabs} from "@/shared/ui/Tabs";
 import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./SettingsOrdersPage.module.scss";
-
 
 const SettingsOrdersPage = () => {
     const {t} = useTranslation();
@@ -32,7 +31,6 @@ const SettingsOrdersPage = () => {
                 {t("settings.pages.orders.title")}
             </Typography>
 
-
             <Tabs defaultValue={SettingsOrdersStatusFilter.ALL} onChange={handleFilterChange}>
                 <Tabs.List className={styles.filters}>
                     {orderFilterTabs.map((tab) => (
@@ -43,7 +41,7 @@ const SettingsOrdersPage = () => {
                 </Tabs.List>
             </Tabs>
 
-            <OrderList activeFilter={activeFilter}/>
+            <OrderList activeFilter={activeFilter} />
         </Stack>
     );
 };

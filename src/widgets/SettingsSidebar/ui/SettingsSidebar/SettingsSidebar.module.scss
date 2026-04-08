@@ -1,41 +1,42 @@
 .sidebar {
-  height: calc(100vh - var(--header-height) - var(--page-content-padding-bottom));
-  min-width: var(--sidebar-width);
-  padding: 16px;
-  border: 1px solid var(--gray-100);
-  border-radius: 16px;
-  background-color: var(--white);
-  align-self: flex-start;
+    height: calc(100vh - var(--header-height) - var(--page-content-padding-bottom));
+    min-width: var(--sidebar-width);
+    padding: 16px;
+    border: 1px solid var(--gray-100);
+    border-radius: 16px;
+    background-color: var(--white);
+    align-self: flex-start;
 }
 
 .linkText {
-  color: inherit;
+    color: inherit;
 }
 
 .link {
-  display: flex;
-  width: 100%;
-  text-decoration: none;
-  color: var(--gray-500);
-  padding: 10px 12px;
-  border-radius: 10px;
-  transition: background-color 0.2s linear,
-  color 0.2s linear;
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    color: var(--gray-500);
+    padding: 10px 12px;
+    border-radius: 10px;
+    transition:
+        background-color 0.2s linear,
+        color 0.2s linear;
 
-  &:hover {
-    color: var(--primary-color);
-    background-color: var(--gray-50);
-  }
+    &:hover {
+        color: var(--primary-color);
+        background-color: var(--gray-50);
+    }
 }
 
 .linkActive {
-  color: var(--primary-color);
-  background-color: var(--primary-color-light);
+    color: var(--primary-color);
+    background-color: var(--primary-color-light);
 }
 
 @media (width <= 980px) {
-  .sidebar {
-    width: 100%;
-    min-width: 0;
-  }
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+    }
 }

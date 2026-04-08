@@ -27,18 +27,21 @@ export const useOrderList = ({activeFilter}: UseSettingsOrdersArgs) => {
         hasNextPage,
         fetchNextPage,
         refetch,
-    } = useGetMyOrdersInfiniteQuery({
-        status,
-        limit: SETTINGS_ORDERS_DEFAULT_LIMIT,
-    }, {
-        refetchOnMountOrArgChange: true,
-    });
+    } = useGetMyOrdersInfiniteQuery(
+        {
+            status,
+            limit: SETTINGS_ORDERS_DEFAULT_LIMIT,
+        },
+        {
+            refetchOnMountOrArgChange: true,
+        },
+    );
 
     const orders = data?.pages.flatMap((page) => page.orders) ?? [];
     const isRefetching = isFetching && !isFetchingNextPage && !isLoading;
 
     const loadMore = useCallback(
-        (params: { rowsCount: number; stopIndex: number; threshold?: number }) => {
+        (params: {rowsCount: number; stopIndex: number; threshold?: number}) => {
             const {rowsCount, stopIndex, threshold = LOAD_MORE_THRESHOLD} = params;
 
             if (isLoadingMore.current || !hasNextPage || isFetchingNextPage) {

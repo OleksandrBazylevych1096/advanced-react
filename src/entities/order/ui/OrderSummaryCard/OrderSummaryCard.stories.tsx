@@ -33,10 +33,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+    args: {
+        currency: "USD",
+    },
+};
 
 export const CheckoutSummary: Story = {
     args: {
+        currency: "USD",
         rows: [
             {label: "Items total", amount: 159},
             {label: "Delivery fee", amount: 10},

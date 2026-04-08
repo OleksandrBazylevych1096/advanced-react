@@ -12,7 +12,7 @@ import styles from "./ReviewOrderItems.module.scss";
 
 interface ReviewOrderItemsProps {
     items: CartItem[];
-    currency: CurrencyType
+    currency: CurrencyType;
 }
 
 export const ReviewOrderItems = ({items, currency}: ReviewOrderItemsProps) => {

@@ -26,7 +26,9 @@ export const RequireAuth = ({children}: RequireAuthProps) => {
         return children;
     }
 
-    const localizedLanguage = supportedLngs.includes(lng as SupportedLngsType) ? lng : fallbackLanguage;
+    const localizedLanguage = supportedLngs.includes(lng as SupportedLngsType)
+        ? lng
+        : fallbackLanguage;
     const loginPath = generatePath(routePaths[AppRoutes.LOGIN], {lng: localizedLanguage});
 
     return <Navigate to={loginPath} replace state={{from: location}} />;

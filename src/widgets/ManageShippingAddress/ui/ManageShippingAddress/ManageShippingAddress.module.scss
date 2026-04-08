@@ -3,9 +3,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     transition: color 0.2s linear;
+    color: inherit;
 }
 
 .addressIcon {
+    fill: currentcolor;
     transition: fill 0.2s linear;
 }
 

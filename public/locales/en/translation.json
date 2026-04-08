@@ -79,7 +79,51 @@
         "pages": {
             "placeholder": "Settings content will be added in the next step.",
             "accountDetails": {
-                "title": "Account details"
+                "title": "Account details",
+                "emailLabel": "Email",
+                "phoneLabel": "Phone number",
+                "passwordLabel": "Password",
+                "changePassword": "Change password",
+                "addEmail": "Add email",
+                "changeEmail": "Change email",
+                "addPhone": "Add phone number",
+                "changePhone": "Change phone number",
+                "removePhone": "Remove phone number",
+                "notAdded": "Not added",
+                "notAvailable": "Not available",
+                "newEmail": "New email",
+                "newPhone": "New phone number",
+                "sendCode": "Send code",
+                "resendCode": "Resend code",
+                "verifyCode": "Verify code",
+                "confirm": "Confirm",
+                "cancel": "Cancel",
+                "useAlternative": "Use {{contact}} instead",
+                "channelEmail": "email",
+                "channelPhone": "phone number",
+                "flow": {
+                    "emailAddTitle": "Add email",
+                    "emailChangeTitle": "Change email",
+                    "phoneAddTitle": "Add phone number",
+                    "phoneChangeTitle": "Change phone number",
+                    "phoneRemoveTitle": "Remove phone number",
+                    "verifyCurrentDescription": "Enter the code sent to {{target}}.",
+                    "enterNewEmail": "Enter a new email and send a verification code.",
+                    "enterNewPhone": "Enter a new phone number and send a verification code.",
+                    "verifyNewDescription": "Enter the code sent to {{target}}."
+                },
+                "messages": {
+                    "emailAdded": "Email added successfully.",
+                    "emailChanged": "Email changed successfully.",
+                    "phoneAdded": "Phone number added successfully.",
+                    "phoneChanged": "Phone number changed successfully.",
+                    "phoneRemoved": "Phone number removed successfully."
+                },
+                "errors": {
+                    "codeRequired": "Enter the 4-digit code.",
+                    "newValueRequired": "Enter a value.",
+                    "flowTokenMissing": "Verification session expired. Start again."
+                }
             },
             "orders": {
                 "title": "My orders",
@@ -123,6 +167,7 @@
                 "currentSession": "Current session",
                 "thisDevice": "This device",
                 "session": "Session",
+                "manageSessions": "Manage sessions",
                 "browserLabel": "Browser",
                 "osLabel": "Operating system",
                 "deviceLabel": "Device type",
@@ -221,6 +266,24 @@
         "REFRESH_TOKEN_REVOKED": "Refresh token revoked",
         "REFRESH_TOKEN_EXPIRED": "Refresh token expired",
         "REFRESH_TOKEN_MISMATCH": "Refresh token mismatch",
-        "CODE_REQUIRED": "Code is required"
+        "CODE_REQUIRED": "Code is required",
+        "ACCESS_TOKEN_REQUIRED": "Please sign in again.",
+        "ACCESS_TOKEN_INVALID": "Your session has expired. Please sign in again.",
+        "EMAIL_NOT_FOUND": "Email is not set for this account.",
+        "PHONE_NOT_FOUND": "Phone number is not set for this account.",
+        "TARGET_NOT_AVAILABLE": "Selected verification channel is not available.",
+        "EMAIL_ALREADY_EXISTS": "Email is already added.",
+        "PHONE_ALREADY_EXISTS": "Phone number is already added.",
+        "EMAIL_UNCHANGED": "Enter a different email.",
+        "PHONE_UNCHANGED": "Enter a different phone number.",
+        "EMAIL_TAKEN": "This email is already in use.",
+        "PHONE_TAKEN": "This phone number is already in use.",
+        "FLOW_TOKEN_REQUIRED": "Verification session expired. Start again.",
+        "FLOW_TOKEN_INVALID": "Verification session expired. Start again.",
+        "CHALLENGE_TOKEN_REQUIRED": "Verification session expired. Request a new code.",
+        "OTP_CHALLENGE_INVALID": "Verification session expired. Request a new code.",
+        "INVALID_EMAIL": "Enter a valid email.",
+        "INVALID_PHONE": "Enter a valid phone number in E.164 format.",
+        "unknownError": "Unknown error"
     }
 }

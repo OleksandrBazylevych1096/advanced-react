@@ -44,7 +44,7 @@ startAppListening({
 
             clearCartState(listenerApi.dispatch);
         } catch (error) {
-            console.error("[Cart] Failed to sync guest cart on login:", error);
+            console.error("Failed to sync guest cart on login:", error);
         }
     },
 });

@@ -57,7 +57,7 @@ vi.mock("@/shared/lib/state", () => ({
     useAppStore: () => ({
         getState: testCtx.storeGetStateMock,
         services: {
-            cartQuantityCoordinator: {
+            CartQuantityService: {
                 enqueue: testCtx.enqueueMock,
                 flushAllNow: testCtx.flushAllNowMock,
                 subscribe: testCtx.subscribeMock,

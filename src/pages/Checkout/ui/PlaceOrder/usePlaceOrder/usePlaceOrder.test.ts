@@ -62,7 +62,7 @@ describe("usePlaceOrder", () => {
                 checkoutUrl: "https://stripe.test/checkout/session-1",
                 status: "pending_payment",
                 amount: 18,
-                currency: "usd",
+                currency: "USD",
                 expiresAt: "2026-03-14T10:30:00.000Z",
             }),
         });
@@ -102,7 +102,7 @@ describe("usePlaceOrder", () => {
         expect(testCtx.createPaymentSessionMutationMock).toHaveBeenCalledWith(
             expect.objectContaining({
                 paymentMethod: "stripe",
-                currency: "usd",
+                currency: "USD",
                 tipAmount: 5,
                 couponCode: "SAVE10",
             }),
@@ -134,7 +134,7 @@ describe("usePlaceOrder", () => {
                 checkoutUrl: undefined,
                 status: "pending_payment",
                 amount: 18,
-                currency: "usd",
+                currency: "USD",
                 expiresAt: "2026-03-14T10:30:00.000Z",
             }),
         });

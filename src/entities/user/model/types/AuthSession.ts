@@ -35,5 +35,3 @@ export interface AuthSessionsListItem {
     revokedReason?: string | null;
     isCurrent?: boolean;
 }
-
-

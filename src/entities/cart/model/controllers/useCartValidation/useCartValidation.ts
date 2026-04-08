@@ -66,8 +66,6 @@ export const useCartValidation = (items: CartItem[], options: UseCartValidationO
     return {
         data: {
             validation,
-        },
-        derived: {
             hasIssues,
         },
         status: {

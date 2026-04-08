@@ -19,6 +19,7 @@ const baseInitialState: Partial<StateSchema> = {
         userData: mockAuthSession.user,
         accessToken: mockAuthSession.accessToken,
         accessTokenExpiresAt: mockAuthSession.accessTokenExpiresAt,
+        isSessionReady: true,
     },
     applyCoupon: {
         code: "",

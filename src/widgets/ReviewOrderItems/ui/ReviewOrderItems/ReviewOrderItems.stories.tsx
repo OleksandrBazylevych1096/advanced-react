@@ -25,16 +25,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+    args: {
+        currency: "USD",
+    },
+};
 
 export const SingleItem: Story = {
     args: {
+        currency: "USD",
         items: [mockCart.items[0]],
     },
 };
 
 export const Empty: Story = {
     args: {
+        currency: "USD",
         items: [],
     },
 };

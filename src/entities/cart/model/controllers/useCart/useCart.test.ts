@@ -75,7 +75,7 @@ describe("useCart", () => {
             {locale: "en", currency: "USD"},
             {skip: true},
         );
-        expect(result.current.derived.itemCount).toBe(2);
+        expect(result.current.data.itemCount).toBe(2);
         expect(result.current.data.cart).toMatchObject({
             items: [
                 {
@@ -127,7 +127,7 @@ describe("useCart", () => {
             {skip: false},
         );
         expect(result.current.data.cart).toBe(serverCart);
-        expect(result.current.derived.itemCount).toBe(4);
+        expect(result.current.data.itemCount).toBe(4);
         expect(result.current.status).toEqual({
             isLoading: true,
             isFetching: true,

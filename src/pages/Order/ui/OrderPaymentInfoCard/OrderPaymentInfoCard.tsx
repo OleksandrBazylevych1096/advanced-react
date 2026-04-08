@@ -19,9 +19,9 @@ export const OrderPaymentInfoCard = ({brand, last4}: OrderPaymentInfoCardProps) 
     const hasPaymentCardData = Boolean(last4);
     const paymentCardLabel = hasPaymentCardData
         ? t("order.paymentCardMasked", {
-            brand: creditCardMeta.name,
-            last4: last4,
-        })
+              brand: creditCardMeta.name,
+              last4: last4,
+          })
         : t("order.notAvailable");
 
     return (

@@ -22,12 +22,12 @@ export const ShippingAddressList = () => {
         actions: {refetch, openAddAddress},
     } = useShippingAddressList();
 
-    if (isLoading) return <Loader/>;
+    if (isLoading) return <Loader />;
 
     if (isError) {
         return (
             <Box>
-                <ErrorState message={t("manageAddress.error.title")} onRetry={refetch}/>
+                <ErrorState message={t("manageAddress.error.title")} onRetry={refetch} />
             </Box>
         );
     }
@@ -55,7 +55,7 @@ export const ShippingAddressList = () => {
                 <Box className={styles.body} data-testid="address-list">
                     <div className={styles.addressList}>
                         {addresses.map((address) => (
-                            <ShippingAddressListItem key={address.id} address={address}/>
+                            <ShippingAddressListItem key={address.id} address={address} />
                         ))}
                     </div>
                 </Box>
@@ -66,7 +66,7 @@ export const ShippingAddressList = () => {
                     className={styles.addAddressButton}
                     data-testid="address-list-add-btn"
                 >
-                    <AppIcon Icon={AddIcon} filled/>
+                    <AppIcon Icon={AddIcon} filled />
                     {t("manageAddress.addNew")}
                 </Button>
             </Stack>

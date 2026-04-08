@@ -19,10 +19,15 @@ interface OrderSummaryCardProps {
     rows: OrderSummaryRow[];
     totalAmount: number;
     className?: string;
-    currency: CurrencyType
+    currency: CurrencyType;
 }
 
-export const OrderSummaryCard = ({rows, totalAmount, className, currency}: OrderSummaryCardProps) => {
+export const OrderSummaryCard = ({
+    rows,
+    totalAmount,
+    className,
+    currency,
+}: OrderSummaryCardProps) => {
     const {i18n, t} = useTranslation("checkout");
 
     return (

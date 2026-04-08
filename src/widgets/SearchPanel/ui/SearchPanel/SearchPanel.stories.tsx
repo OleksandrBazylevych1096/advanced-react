@@ -28,6 +28,7 @@ const withProductSearchState = (productSearch: ProductSearchSchema): Partial<Sta
     productSearch,
     user: {
         currency: "USD",
+        isSessionReady: true,
     },
 });
 

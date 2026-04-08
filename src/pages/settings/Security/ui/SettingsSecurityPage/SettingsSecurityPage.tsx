@@ -5,7 +5,7 @@ import {Typography} from "@/shared/ui/Typography";
 
 import {ManageSessions} from "../ManageSessions/ManageSessions";
 import {SetupTwoFactorCard} from "../SetupTwoFactorCard/SetupTwoFactorCard";
-import {UnlinkGoogleButton} from "../UnlinkGoogleButton/UnlinkGoogleButton";
+import {UnlinkGoogle} from "../UnlinkGoogleButton/UnlinkGoogle.tsx";
 
 import styles from "./SettingsSecurityPage.module.scss";
 
@@ -17,11 +17,9 @@ const SettingsSecurityPage = () => {
             <Typography as="h2" variant="heading" weight="semibold">
                 {t("settings.pages.security.title")}
             </Typography>
-            <SetupTwoFactorCard/>
-            <div className={styles.securityBlock}>
-                <UnlinkGoogleButton/>
-            </div>
-            <ManageSessions/>
+            <SetupTwoFactorCard />
+            <UnlinkGoogle />
+            <ManageSessions />
         </Stack>
     );
 };

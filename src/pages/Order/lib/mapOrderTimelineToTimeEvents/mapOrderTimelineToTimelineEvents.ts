@@ -1,5 +1,4 @@
 import type {OrderStatusType, OrderTimelineEvent} from "@/entities/order";
-
 import {OrderStatus} from "@/entities/order";
 
 import {i18n} from "@/shared/config";
@@ -80,8 +79,7 @@ export const mapOrderTimelineToTimelineEvents = (
 
     const currentStepIndex = DISPLAY_STEPS.indexOf(currentDisplayStep);
     const currentSourceEvent =
-        timeline.find((event) => event.status === orderStatus) ??
-        timeline[currentStepIndex];
+        timeline.find((event) => event.status === orderStatus) ?? timeline[currentStepIndex];
 
     return {
         events,

@@ -1,0 +1,31 @@
+.header {
+    height: var(--header-height);
+    background-color: var(--white);
+    width: 100%;
+}
+
+.section {
+    flex: 1;
+    width: 33%;
+
+    &:last-child {
+        justify-content: end;
+    }
+}
+
+.logo {
+    fill: var(--primary-color);
+}
+
+.settings {
+    svg {
+        transition: fill 0.2s ease-in-out;
+        fill: var(--black);
+    }
+
+    &:hover {
+        svg {
+            fill: var(--primary-color-dark);
+        }
+    }
+}

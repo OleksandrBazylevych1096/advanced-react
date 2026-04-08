@@ -1,3 +1,10 @@
+.container {
+    padding: 16px;
+    border: 1px solid var(--gray-100);
+    border-radius: 16px;
+    background: var(--white);
+}
+
 .toolbar {
     margin-bottom: 4px;
 }

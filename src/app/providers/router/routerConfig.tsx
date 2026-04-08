@@ -18,13 +18,10 @@ import {ProductPage} from "@/pages/Product";
 import {RegisterPage} from "@/pages/Register";
 import {ResetPasswordPage} from "@/pages/ResetPassword";
 import {SearchPage} from "@/pages/Search";
-import {SettingsAccountDetailsPage} from "@/pages/settings/AccountDetails";
 import {SettingsAddressPage} from "@/pages/settings/Address";
 import {SettingsNotificationsPage} from "@/pages/settings/Notifications";
 import {SettingsOrdersPage} from "@/pages/settings/Orders";
 import {SettingsSecurityPage} from "@/pages/settings/Security";
-import {VerifyEmailErrorPage} from "@/pages/VerifyEmailError";
-import {VerifyEmailSuccessPage} from "@/pages/VerifyEmailSuccess";
 
 import {AppRoutes, routePaths} from "@/shared/config";
 
@@ -70,16 +67,6 @@ export const routeConfig: AppRouteConfig[] = [
         layout: null,
     },
     {
-        path: routePaths[AppRoutes.VERIFY_EMAIL_SUCCESS],
-        element: <VerifyEmailSuccessPage />,
-        layout: null,
-    },
-    {
-        path: routePaths[AppRoutes.VERIFY_EMAIL_ERROR],
-        element: <VerifyEmailErrorPage />,
-        layout: null,
-    },
-    {
         path: routePaths[AppRoutes.CATEGORY],
         element: <CategoryPage />,
         hasLocalizedParams: true,
@@ -108,12 +95,6 @@ export const routeConfig: AppRouteConfig[] = [
     {
         path: routePaths[AppRoutes.ORDER],
         element: <OrderPage />,
-    },
-    {
-        path: routePaths[AppRoutes.SETTINGS_ACCOUNT_DETAILS],
-        element: <SettingsAccountDetailsPage />,
-        layout: SettingsPageLayout,
-        requiresAuth: true,
     },
     {
         path: routePaths[AppRoutes.SETTINGS_ORDERS],

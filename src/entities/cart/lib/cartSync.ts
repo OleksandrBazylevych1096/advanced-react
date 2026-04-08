@@ -1,5 +1,6 @@
-import type {GuestCartItem} from "../model/types/CartSchema";
 import {generateUuid} from "@/shared/lib/browser";
+
+import type {GuestCartItem} from "../model/types/CartSchema";
 
 import {CART_STORAGE_KEY} from "./cartStorage";
 

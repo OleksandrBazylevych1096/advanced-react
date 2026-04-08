@@ -26,7 +26,7 @@ export const AddToCartButton = ({product, className, compact = false}: AddToCart
 
     const disabled = isOutOfStock || isMaxReached;
 
-    const addSingleItem = () => {
+    const addItem = () => {
         if (disabled) return;
         addToCart(1);
     };
@@ -40,7 +40,7 @@ export const AddToCartButton = ({product, className, compact = false}: AddToCart
     if (compact) {
         return (
             <Button
-                onClick={addSingleItem}
+                onClick={addItem}
                 disabled={disabled}
                 form="circle"
                 size="md"
@@ -56,13 +56,7 @@ export const AddToCartButton = ({product, className, compact = false}: AddToCart
     }
 
     return (
-        <Button
-            fullWidth
-            size="lg"
-            onClick={addSingleItem}
-            disabled={disabled}
-            className={className}
-        >
+        <Button fullWidth size="lg" onClick={addItem} disabled={disabled} className={className}>
             <AppIcon Icon={ShoppingCartIcon} size={16} />
             <span className={styles.text}>{buttonText}</span>
 

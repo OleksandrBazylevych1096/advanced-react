@@ -32,15 +32,6 @@
     border-top: 1px solid var(--gray-100);
 }
 
-.clearBtn {
-    color: var(--red-500);
-
-    &:hover {
-        color: var(--red-600);
-        background: var(--red-50);
-    }
-}
-
 .summaryCard {
     display: flex;
     flex-direction: column;

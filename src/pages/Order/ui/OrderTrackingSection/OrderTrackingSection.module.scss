@@ -1,108 +1,108 @@
 .trackingCard {
-  padding-top: 28px;
-  padding-bottom: 24px;
+    padding-top: 28px;
+    padding-bottom: 24px;
 }
 
 .currentStatus {
-  margin: 28px auto 18px;
+    margin: 28px auto 18px;
 }
 
 .statusAura {
-  --status-aura-size: 124px;
-  --status-icon-circle-size: 68px;
+    --status-aura-size: 124px;
+    --status-icon-circle-size: 68px;
 
-  width: var(--status-aura-size);
-  height: var(--status-aura-size);
-  border-radius: 50%;
-  background: var(--green-50);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: var(--status-aura-size);
+    height: var(--status-aura-size);
+    border-radius: 50%;
+    background: var(--green-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .statusIconCircle {
-  width: var(--status-icon-circle-size);
-  height: var(--status-icon-circle-size);
-  border-radius: 50%;
-  background: var(--green-500);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: var(--status-icon-circle-size);
+    height: var(--status-icon-circle-size);
+    border-radius: 50%;
+    background: var(--green-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .statusIcon {
-  color: var(--white);
-  fill: currentcolor;
+    color: var(--white);
+    fill: currentcolor;
 }
 
 .statusAuraSuccess {
-  background: var(--green-50);
+    background: var(--green-50);
 }
 
 .statusAuraDanger {
-  background: var(--red-50);
+    background: var(--red-50);
 }
 
 .statusAuraPrimary {
-  background: var(--primary-color-light);
+    background: var(--primary-color-light);
 }
 
 .statusIconCircleSuccess {
-  background: var(--green-500);
+    background: var(--green-500);
 }
 
 .statusIconCircleDanger {
-  background: var(--red-500);
+    background: var(--red-500);
 }
 
 .statusIconCirclePrimary {
-  background: var(--primary-color);
+    background: var(--primary-color);
 }
 
 .orderNumberText {
-  color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 .copyIcon {
-  color: var(--primary-color);
-  stroke: currentcolor;
-  transition: color 0.2s linear;
+    color: var(--primary-color);
+    stroke: currentcolor;
+    transition: color 0.2s linear;
 }
 
 .orderNumberButton:hover .copyIcon,
 .orderNumberButton:focus-visible .copyIcon,
 .orderNumberButton:hover .orderNumberText,
 .orderNumberButton:focus-visible .orderNumberText {
-  color: var(--primary-color-dark);
-  stroke: var(--primary-color-dark);
+    color: var(--primary-color-dark);
+    stroke: var(--primary-color-dark);
 }
 
 .skeletonTimelineGrid {
-  width: 100%;
-  gap: 16px;
+    width: 100%;
+    gap: 16px;
 }
 
 .skeletonTimelineRow {
-  flex: 1 1 0;
-  min-width: 0;
-  gap: 10px;
+    flex: 1 1 0;
+    min-width: 0;
+    gap: 10px;
 }
 
 @media (width <= 980px) {
-  .trackingCard {
-    padding-top: 24px;
-  }
+    .trackingCard {
+        padding-top: 24px;
+    }
 
-  .statusAura {
-    --status-aura-size: 104px;
-    --status-icon-circle-size: 56px;
-  }
+    .statusAura {
+        --status-aura-size: 104px;
+        --status-icon-circle-size: 56px;
+    }
 
-  .skeletonTimelineGrid {
-    flex-wrap: wrap;
-  }
+    .skeletonTimelineGrid {
+        flex-wrap: wrap;
+    }
 
-  .skeletonTimelineRow {
-    min-width: calc(50% - 8px);
-  }
+    .skeletonTimelineRow {
+        min-width: calc(50% - 8px);
+    }
 }

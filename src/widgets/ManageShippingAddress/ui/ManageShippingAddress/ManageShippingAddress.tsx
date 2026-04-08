@@ -35,7 +35,7 @@ export const ManageShippingAddress = () => {
                         onClick={goBack}
                         data-testid="manage-address-back-btn"
                     >
-                        <AppIcon Icon={ArrowLeft}/>
+                        <AppIcon Icon={ArrowLeft} />
                     </Button>
                 )}
                 <Typography as="h2" variant="heading" weight="semibold">
@@ -51,11 +51,11 @@ export const ManageShippingAddress = () => {
                     </Button>
                 </Box>
             ) : shouldShowEditForm ? (
-                <Suspense fallback={<Loader/>}>
-                    <EditAddressAsync/>
+                <Suspense fallback={<Loader />}>
+                    <EditAddressAsync />
                 </Suspense>
             ) : (
-                <ShippingAddressList/>
+                <ShippingAddressList />
             )}
         </Stack>
     );

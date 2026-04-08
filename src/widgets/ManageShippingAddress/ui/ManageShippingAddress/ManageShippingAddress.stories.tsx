@@ -24,6 +24,7 @@ const meta = {
         initialState: {
             user: {
                 currency: "USD",
+                isSessionReady: true,
             },
             saveShippingAddress: {
                 mode: "choose",
@@ -100,6 +101,7 @@ export const Guest: Story = {
                 userData: undefined,
                 accessToken: undefined,
                 accessTokenExpiresAt: undefined,
+                isSessionReady: true,
             },
             saveShippingAddress: {
                 mode: "choose",

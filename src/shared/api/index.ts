@@ -3,4 +3,10 @@ import {configureBaseQueryWithReauth} from "./rtk/baseQueryWithReauth/baseQueryW
 import type {Pagination} from "./types/pagination";
 import type {ApiLocaleCurrencyParams, ApiLocaleParams} from "./types/requestParams";
 
-export {baseAPI, configureBaseQueryWithReauth, type ApiLocaleParams, type ApiLocaleCurrencyParams, type Pagination};
+export {
+    baseAPI,
+    configureBaseQueryWithReauth,
+    type ApiLocaleParams,
+    type ApiLocaleCurrencyParams,
+    type Pagination,
+};

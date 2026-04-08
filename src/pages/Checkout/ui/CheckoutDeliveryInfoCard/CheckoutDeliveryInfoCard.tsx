@@ -57,7 +57,7 @@ export const CheckoutDeliveryInfoCard = ({address}: CheckoutDeliveryInfoCardProp
                 <Typography tone="muted" variant="body" className={styles.metaLabel}>
                     {t("checkoutMainSection.deliveryDate")}
                 </Typography>
-                <ChooseDeliveryDate className={styles.deliveryDateTrigger}/>
+                <ChooseDeliveryDate className={styles.deliveryDateTrigger} />
             </Stack>
         </Stack>
     );

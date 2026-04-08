@@ -1,4 +1,4 @@
-import type {AnyAction, EnhancedStore, Reducer, ReducersMapObject} from "@reduxjs/toolkit";
+import type {Action, EnhancedStore, Reducer, ReducersMapObject} from "@reduxjs/toolkit";
 
 import type {ApplyCouponSchema} from "@/features/apply-coupon";
 import type {ChooseDeliveryTipSchema} from "@/features/choose-delivery-tip";
@@ -33,7 +33,7 @@ export type StateSchemaKey = keyof StateSchema;
 
 export interface ReducerManager {
     getReducerMap: () => ReducersMapObject<StateSchema>;
-    reduce: (state: StateSchema | undefined, action: AnyAction) => StateSchema;
+    reduce: (state: StateSchema | undefined, action: Action) => StateSchema;
     add: (key: StateSchemaKey, reducer: Reducer) => void;
     remove: (key: StateSchemaKey) => void;
     getMountedReducers: () => Partial<Record<StateSchemaKey, boolean>>;

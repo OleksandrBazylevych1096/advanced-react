@@ -8,11 +8,11 @@ import type {OrderListItem} from "@/pages/settings/Orders/ui/OrderList/OrderList
 import type {OrderDetails} from "@/entities/order";
 
 export const RowRenderer = ({
-                                index,
-                                key,
-                                style,
-                                allItems
-                            }: {
+    index,
+    key,
+    style,
+    allItems,
+}: {
     index: number;
     key: string;
     style: CSSProperties;
@@ -30,10 +30,7 @@ export const RowRenderer = ({
 
     return (
         <div key={key} style={adjustedStyle}>
-            {isOrder(item) ? <OrderCard
-                order={item}
-            /> : <OrderCardSkeleton/>}
-
+            {isOrder(item) ? <OrderCard order={item} /> : <OrderCardSkeleton />}
         </div>
     );
 };

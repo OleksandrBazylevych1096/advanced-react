@@ -1,8 +1,6 @@
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router";
 
-import {CartProgressSection} from "@/widgets/Cart";
-
 import {type Cart, useCartValidation} from "@/entities/cart";
 import {OrderSummaryCard, type OrderSummaryRow} from "@/entities/order";
 import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
@@ -14,6 +12,8 @@ import {useLocalizedRoutePath} from "@/shared/lib/routing";
 import {useAppSelector} from "@/shared/lib/state";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
+import {Progress} from "@/shared/ui/Progress";
+import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
 
 import styles from "../CartPage/CartPage.module.scss";
@@ -31,7 +31,7 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
     const currency = useAppSelector(selectUserCurrency);
     const {
-        derived: {hasIssues},
+        data: {hasIssues},
         status: {isValidating},
     } = useCartValidation(cart?.items ?? [], {isAuthenticated});
 
@@ -53,14 +53,21 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
         <aside>
             <div className={styles.summaryCard}>
                 <div className={styles.summaryProgress}>
-                    <CartProgressSection
-                        value={cart.totals.subtotal}
-                        target={cart.totals.freeShippingTarget}
-                        ariaLabel="Order completion progress"
-                    />
+                    <Stack direction="column" gap={12}>
+                        <Typography variant="body" weight="semibold">
+                            {cart.totals.subtotal >= cart.totals.freeShippingTarget
+                                ? "Free delivery"
+                                : `Get free delivery (${formatCurrency(currency, i18n.language, cart.totals.freeShippingTarget - cart.totals.subtotal)} more)`}
+                        </Typography>
+                        <Progress
+                            value={cart.totals.subtotal}
+                            max={cart.totals.freeShippingTarget}
+                            ariaLabel={"Order completion progress"}
+                        />
+                    </Stack>
                 </div>
 
-                <OrderSummaryCard currency={currency} rows={rows} totalAmount={cart.totals.total}/>
+                <OrderSummaryCard currency={currency} rows={rows} totalAmount={cart.totals.total} />
 
                 <Button
                     fullWidth
@@ -70,11 +77,11 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
                     onClick={proceedToCheckout}
                     disabled={hasIssues || isValidating}
                 >
-                    <AppIcon Icon={ShoppingCartIcon} size={18}/>
-                    <span>Checkout</span>
-                    <span className={styles.checkoutTotal}>
+                    <AppIcon Icon={ShoppingCartIcon} size={18} />
+                    <Typography>Checkout</Typography>
+                    <Typography>
                         {formatCurrency(currency, i18n.language, cart.totals.total)}
-                    </span>
+                    </Typography>
                 </Button>
 
                 {hasIssues && (

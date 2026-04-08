@@ -174,16 +174,4 @@ describe("useCheckoutPage", () => {
 
         expect(result.current.status.isError).toBe(true);
     });
-
-    test("opens shipping address modal and navigates to cart page", () => {
-        const {result} = renderHook(() => useCheckoutPage());
-
-        result.current.actions.openManageShippingAddressModal();
-        result.current.actions.goToCartPage();
-
-        expect(testCtx.dispatchMock).toHaveBeenCalledWith({
-            type: "shipping/openManageShippingAddressModal",
-        });
-        expect(testCtx.navigateMock).toHaveBeenCalledWith("/en/cart");
-    });
 });

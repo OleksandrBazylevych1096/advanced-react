@@ -7,13 +7,12 @@ export const SettingsOrdersStatusFilter = {
     IN_PROGRESS: "in_progress",
     COMPLETED: "completed",
     CANCELLED: "cancelled",
-}
+};
 
-export type SettingsOrderStatusFilterType = (typeof SettingsOrdersStatusFilter)[keyof typeof SettingsOrdersStatusFilter];
-
+export type SettingsOrderStatusFilterType =
+    (typeof SettingsOrdersStatusFilter)[keyof typeof SettingsOrdersStatusFilter];
 
 export interface SettingsOrdersListResponse {
     orders: OrderDetails[];
-    pagination: Pagination
+    pagination: Pagination;
 }
-

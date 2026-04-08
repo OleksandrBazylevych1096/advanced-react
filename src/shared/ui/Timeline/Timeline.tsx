@@ -34,16 +34,13 @@ interface TimelineProps {
 export const Timeline = ({events, className, itemClassName}: TimelineProps) => {
     if (events.length === 0) return null;
 
-    const cols = events
-        .map((_, i) => (i < events.length - 1 ? "18px 1fr" : "18px"))
-        .join(" ");
+    const cols = events.map((_, i) => (i < events.length - 1 ? "18px 1fr" : "18px")).join(" ");
 
     return (
         <Box
             className={cn(styles.timeline, className)}
             style={{"--timeline-cols": cols} as CSSProperties}
         >
-            {/* Row 1: markers + connectors */}
             {events.map((event, index) => {
                 const isLast = index === events.length - 1;
                 const markerTone = event.tone ?? "default";
@@ -59,7 +56,7 @@ export const Timeline = ({events, className, itemClassName}: TimelineProps) => {
                                 styles.marker,
                                 styles[`marker-${event.state}`],
                                 styles[`marker-${markerTone}`],
-                                isCancelledMarker && styles["marker-cancelled"],
+                                {[styles["marker-cancelled"]]: isCancelledMarker},
                                 itemClassName,
                             )}
                             aria-hidden
@@ -74,7 +71,10 @@ export const Timeline = ({events, className, itemClassName}: TimelineProps) => {
                         </span>
                         {!isLast && (
                             <span
-                                className={cn(styles.connector, styles[`connector-${connectorTone}`])}
+                                className={cn(
+                                    styles.connector,
+                                    styles[`connector-${connectorTone}`],
+                                )}
                                 aria-hidden
                             >
                                 <span
@@ -91,7 +91,6 @@ export const Timeline = ({events, className, itemClassName}: TimelineProps) => {
                 );
             })}
 
-            {/* Row 2: labels */}
             {events.map((event, index) => {
                 const isFirst = index === 0;
                 const isLast = index === events.length - 1;
@@ -99,20 +98,16 @@ export const Timeline = ({events, className, itemClassName}: TimelineProps) => {
 
                 return (
                     <Fragment key={`label-${event.id}`}>
-                        <div
-                            className={cn(
-                                styles.labelCell,
-                                styles[`labelCell-${position}`],
-                            )}
-                        >
+                        <div className={cn(styles.labelCell, styles[`labelCell-${position}`])}>
                             <Typography
                                 as="span"
                                 variant="body"
-                                className={cn(
-                                    styles.label,
-                                    styles[`label-${position}`],
-                                )}
-                                tone={event.state === "upcoming" && event.progress === 0 ? "muted" : "default"}
+                                className={cn(styles.label, styles[`label-${position}`])}
+                                tone={
+                                    event.state === "upcoming" && event.progress === 0
+                                        ? "muted"
+                                        : "default"
+                                }
                             >
                                 {event.label}
                             </Typography>
@@ -121,16 +116,13 @@ export const Timeline = ({events, className, itemClassName}: TimelineProps) => {
                                     as="span"
                                     variant="caption"
                                     tone="muted"
-                                    className={cn(
-                                        styles.note,
-                                        styles[`note-${position}`],
-                                    )}
+                                    className={cn(styles.note, styles[`note-${position}`])}
                                 >
                                     {event.note}
                                 </Typography>
                             )}
                         </div>
-                        {!isLast && <span aria-hidden/>}
+                        {!isLast && <span aria-hidden />}
                     </Fragment>
                 );
             })}

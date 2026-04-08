@@ -1,5 +1,6 @@
-import type {GuestCartItem} from "../model/types/CartSchema";
 import {generateUuid} from "@/shared/lib/browser";
+
+import type {GuestCartItem} from "../model/types/CartSchema";
 
 const CART_STORAGE_KEY = "guest_cart_v1";
 const CART_EXPIRY_DAYS = 30;

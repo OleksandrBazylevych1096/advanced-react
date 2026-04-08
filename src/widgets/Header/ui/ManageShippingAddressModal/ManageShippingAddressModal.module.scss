@@ -1,0 +1,11 @@
+.content {
+    max-width: 680px;
+}
+
+.addressButton {
+    transition: color 0.2s linear;
+
+    &:hover {
+        color: var(--primary-color-dark);
+    }
+}

@@ -20,7 +20,7 @@ export const SetupTwoFactorCard = () => {
 
     return (
         <Stack className={styles.container} gap={12}>
-                <Typography as="h2" variant="heading" weight="semibold">
+            <Typography as="h2" variant="heading" weight="semibold">
                 {t("settings.pages.security.twoFactorTitle")}
             </Typography>
 

@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useMemo} from "react";
 import {useTranslation} from "react-i18next";
 
-import {broadcastCartUpdate, cartApi, cartActions, setGuestCart} from "@/entities/cart";
+import {broadcastCartUpdate, cartActions, cartApi, setGuestCart} from "@/entities/cart";
 import {selectIsAuthenticated, selectUserCurrency} from "@/entities/user";
 
 import {useAppDispatch, useAppSelector, useAppStore} from "@/shared/lib/state";
@@ -19,7 +19,7 @@ export const useUpdateCartItemQuantity = (
     const {onError} = options;
     const dispatch = useAppDispatch();
     const store = useAppStore();
-    const coordinator = store.services.cartQuantityCoordinator;
+    const CartQuantityService = store.services.CartQuantityService;
 
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
     const currency = useAppSelector(selectUserCurrency);
@@ -40,13 +40,13 @@ export const useUpdateCartItemQuantity = (
     }, [store]);
 
     useEffect(() => {
-        const unsubscribe = coordinator.subscribe();
+        const unsubscribe = CartQuantityService.subscribe();
         return unsubscribe;
-    }, [coordinator]);
+    }, [CartQuantityService]);
 
     useEffect(() => {
         const flushPendingUpdates = () => {
-            coordinator.flushAllNow();
+            CartQuantityService.flushAllNow();
         };
 
         const flushOnVisibilityChange = () => {
@@ -64,7 +64,7 @@ export const useUpdateCartItemQuantity = (
             window.removeEventListener("beforeunload", flushPendingUpdates);
             document.removeEventListener("visibilitychange", flushOnVisibilityChange);
         };
-    }, [coordinator]);
+    }, [CartQuantityService]);
 
     const updateQuantity = useCallback(
         (productId: string, quantity: number) => {
@@ -74,7 +74,7 @@ export const useUpdateCartItemQuantity = (
                 return;
             }
 
-            coordinator.enqueue({
+            CartQuantityService.enqueue({
                 productId,
                 quantity,
                 cartQueryArgs,
@@ -95,7 +95,7 @@ export const useUpdateCartItemQuantity = (
         },
         [
             cartQueryArgs,
-            coordinator,
+            CartQuantityService,
             dispatch,
             isAuthenticated,
             onError,

@@ -1,19 +1,21 @@
+import {useClearCart} from "@/pages/Cart/model/controllers/useClearCart.ts";
+
 import {Button} from "@/shared/ui/Button";
 
-interface ClearCartButtonProps {
-    onClear: () => void;
-    isLoading?: boolean;
-    className?: string;
-}
+import styles from "./ClearCartButton.module.scss";
 
-export const ClearCartButton = ({onClear, isLoading = false, className}: ClearCartButtonProps) => {
+export const ClearCartButton = () => {
+    const {
+        status: {isClearing},
+        actions: {clearCart},
+    } = useClearCart();
     return (
         <Button
             theme="ghost"
             size="sm"
-            onClick={onClear}
-            isLoading={isLoading}
-            className={className}
+            onClick={clearCart}
+            isLoading={isClearing}
+            className={styles.clearBtn}
         >
             Clear Cart
         </Button>

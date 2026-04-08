@@ -59,8 +59,6 @@ export const useCart = (options: UseCartOptions) => {
         data: {
             cart,
             isAuthenticated,
-        },
-        derived: {
             itemCount,
         },
         status: {

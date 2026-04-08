@@ -39,7 +39,6 @@ const meta = {
     ],
     args: {
         address: mockSingleAddress,
-        onOpenManageShippingAddressModal: () => undefined,
     },
 } satisfies Meta<typeof CheckoutDeliveryInfoCard>;
 

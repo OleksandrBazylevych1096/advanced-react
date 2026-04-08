@@ -24,10 +24,10 @@ interface ProductFiltersProps {
 }
 
 export const ProductFilters = ({
-                                   defaultOpenFilters,
-                                   categoryId,
-                                   searchQuery,
-                               }: ProductFiltersProps) => {
+    defaultOpenFilters,
+    categoryId,
+    searchQuery,
+}: ProductFiltersProps) => {
     const {t} = useTranslation();
     const {
         data: {
@@ -80,7 +80,7 @@ export const ProductFilters = ({
                     theme={"ghost"}
                     data-testid="product-filters-close-btn"
                 >
-                    <AppIcon className={styles.closeIcon} Icon={CloseIcon}/>
+                    <AppIcon className={styles.closeIcon} Icon={CloseIcon} />
                 </Button>
             </div>
             <Accordion defaultValue={defaultOpenFilters}>

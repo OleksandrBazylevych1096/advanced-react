@@ -1,0 +1,8 @@
+.clearBtn {
+    color: var(--red-500);
+
+    &:hover {
+        color: var(--red-600);
+        background: var(--red-50);
+    }
+}

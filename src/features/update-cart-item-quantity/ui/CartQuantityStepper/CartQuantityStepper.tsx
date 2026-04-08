@@ -1,3 +1,6 @@
+import {useUpdateCartItemQuantity} from "@/features/update-cart-item-quantity";
+
+import {useToast} from "@/shared/lib/notifications";
 import {Button} from "@/shared/ui/Button";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
@@ -8,7 +11,6 @@ interface CartQuantityStepperProps {
     productId: string;
     quantity: number;
     maxQuantity: number;
-    onQuantityChange: (productId: string, quantity: number) => void;
     className?: string;
 }
 
@@ -16,18 +18,25 @@ export const CartQuantityStepper = ({
     productId,
     quantity,
     maxQuantity,
-    onQuantityChange,
     className,
 }: CartQuantityStepperProps) => {
+    const {error} = useToast();
+
+    const {
+        actions: {updateQuantity},
+    } = useUpdateCartItemQuantity({
+        onError: () => error("Failed to update cart"),
+    });
+
     const decrementQuantity = () => {
         if (quantity > 1) {
-            onQuantityChange(productId, quantity - 1);
+            updateQuantity(productId, quantity - 1);
         }
     };
 
     const incrementQuantity = () => {
         if (quantity < maxQuantity) {
-            onQuantityChange(productId, quantity + 1);
+            updateQuantity(productId, quantity + 1);
         }
     };
 
@@ -35,7 +44,7 @@ export const CartQuantityStepper = ({
         <Stack className={className} direction="row" align="center" gap={8}>
             <Button
                 type="button"
-                theme="tertiary"
+                theme="primary"
                 size="xs"
                 form="circle"
                 className={styles.quantityBtn}

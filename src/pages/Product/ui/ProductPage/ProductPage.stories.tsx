@@ -21,6 +21,7 @@ const meta = {
             user: {
                 currency: "USD",
                 userData: undefined,
+                isSessionReady: true,
             },
             cart: {
                 guestItems: [],

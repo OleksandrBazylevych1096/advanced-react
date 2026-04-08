@@ -1,5 +1,10 @@
 import {useTranslation} from "react-i18next";
 
+import {formatSessionDate} from "@/pages/settings/Security/lib/formatSessionDate.ts";
+import {resolveBrowser} from "@/pages/settings/Security/lib/resolveBrowser.ts";
+import {resolveDeviceTypeKey} from "@/pages/settings/Security/lib/resolveDeviceTypeKey.ts";
+import {resolveOperatingSystem} from "@/pages/settings/Security/lib/resolveOperatingSystem.ts";
+
 import {Button} from "@/shared/ui/Button";
 import {Grid} from "@/shared/ui/Grid";
 import {Spinner} from "@/shared/ui/Spinner";
@@ -10,56 +15,6 @@ import {Typography} from "@/shared/ui/Typography";
 import styles from "./ManageSessions.module.scss";
 import {useManageSessions} from "./useManageSessions/useManageSessions.ts";
 
-const resolveBrowser = (userAgent?: string) => {
-    if (!userAgent) return null;
-
-    if (userAgent.includes("Edg/")) return "Microsoft Edge";
-    if (userAgent.includes("OPR/")) return "Opera";
-    if (userAgent.includes("Chrome/")) return "Google Chrome";
-    if (userAgent.includes("Firefox/")) return "Mozilla Firefox";
-    if (userAgent.includes("Safari/")) return "Safari";
-
-    return null;
-};
-
-const resolveOperatingSystem = (userAgent?: string) => {
-    if (!userAgent) return null;
-
-    if (userAgent.includes("Windows NT")) return "Windows";
-    if (userAgent.includes("Android")) return "Android";
-    if (userAgent.includes("iPhone") || userAgent.includes("iPad")) return "iOS";
-    if (userAgent.includes("Mac OS X")) return "macOS";
-    if (userAgent.includes("Linux")) return "Linux";
-
-    return null;
-};
-
-const resolveDeviceTypeKey = (userAgent?: string) => {
-    if (!userAgent) return "settings.pages.security.unknown";
-
-    if (/ipad|tablet/i.test(userAgent)) return "settings.pages.security.deviceTablet";
-    if (/mobi|iphone|android/i.test(userAgent)) return "settings.pages.security.deviceMobile";
-
-    return "settings.pages.security.deviceDesktop";
-};
-
-const formatSessionDate = (isoDate: string | undefined, locale: string) => {
-    if (!isoDate) return null;
-
-    const parsedDate = new Date(isoDate);
-    if (Number.isNaN(parsedDate.getTime())) {
-        return isoDate;
-    }
-
-    return new Intl.DateTimeFormat(locale, {
-        year: "numeric",
-        month: "short",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-    }).format(parsedDate);
-};
-
 export const ManageSessions = () => {
     const {t, i18n} = useTranslation();
     const {
@@ -69,10 +24,11 @@ export const ManageSessions = () => {
     } = useManageSessions();
 
     if (isLoading && sessions.length === 0) {
+        // TODO - add skeleton
         return <Spinner size="lg" />;
     }
 
-    if (error && sessions.length === 0) {
+    if (error || sessions.length === 0) {
         return <ErrorState message={error} onRetry={() => void retry()} />;
     }
 
@@ -81,12 +37,10 @@ export const ManageSessions = () => {
     }
 
     return (
-        <Stack gap={12}>
-            {error && (
-                <Typography variant="bodySm" tone="danger" weight="semibold">
-                    {error}
-                </Typography>
-            )}
+        <Stack gap={12} className={styles.container}>
+            <Typography as="h2" variant="heading" weight="semibold">
+                {t("settings.pages.security.manageSessions")}
+            </Typography>
             <Stack className={styles.toolbar} direction="row" gap={8} align="center" wrap="wrap">
                 <Button type="button" theme="outline" onClick={() => void revokeAll(false)}>
                     {t("settings.pages.security.revokeOther")}
@@ -103,7 +57,12 @@ export const ManageSessions = () => {
             <Grid as="ul" className={styles.list} gap={12}>
                 {sessions.map((session) => (
                     <Grid as="li" key={session.id} className={styles.item} gap={10}>
-                        <Stack className={styles.header} direction="row" justify="space-between" align="center">
+                        <Stack
+                            className={styles.header}
+                            direction="row"
+                            justify="space-between"
+                            align="center"
+                        >
                             <Stack gap={4}>
                                 <Typography as="span" variant="bodySm" weight="bold">
                                     {session.isCurrent
@@ -131,7 +90,8 @@ export const ManageSessions = () => {
                                     {t("settings.pages.security.browserLabel")}
                                 </Typography>
                                 <Typography as="span" variant="bodySm" weight="medium">
-                                    {resolveBrowser(session.userAgent) ?? t("settings.pages.security.unknown")}
+                                    {resolveBrowser(session.userAgent) ??
+                                        t("settings.pages.security.unknown")}
                                 </Typography>
                             </div>
                             <div className={styles.metaItem}>

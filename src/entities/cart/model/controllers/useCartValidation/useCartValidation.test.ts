@@ -76,7 +76,7 @@ describe("useCartValidation", () => {
                 pollingInterval: 60_000,
             },
         );
-        expect(result.current.derived.hasIssues).toBe(true);
+        expect(result.current.data.hasIssues).toBe(true);
         expect(result.current.actions.getItemValidation("p1")?.issues).toEqual([
             "Only 2 available (you have 5)",
         ]);
@@ -130,6 +130,6 @@ describe("useCartValidation", () => {
             issues: ["Server says unavailable"],
             isValid: false,
         });
-        expect(result.current.derived.hasIssues).toBe(true);
+        expect(result.current.data.hasIssues).toBe(true);
     });
 });

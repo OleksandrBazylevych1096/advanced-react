@@ -10,7 +10,6 @@ const meta = {
         productId: "p-1",
         quantity: 2,
         maxQuantity: 8,
-        onQuantityChange: () => undefined,
     },
 } satisfies Meta<typeof CartQuantityStepper>;
 

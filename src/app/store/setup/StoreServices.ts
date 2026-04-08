@@ -1,9 +1,9 @@
-import {createCartQuantityCoordinator} from "@/features/update-cart-item-quantity";
+import {CartQuantityService} from "@/features/update-cart-item-quantity";
 
 export interface StoreServices {
-    cartQuantityCoordinator: ReturnType<typeof createCartQuantityCoordinator>;
+    CartQuantityService: CartQuantityService;
 }
 
 export const createStoreServices = (): StoreServices => ({
-    cartQuantityCoordinator: createCartQuantityCoordinator(),
+    CartQuantityService: new CartQuantityService(),
 });

@@ -29,7 +29,6 @@ export interface ProductFacets {
     priceRange: PriceRangeType;
 }
 
-
 export interface ProductsApiResponse {
     products: Product[];
     pagination: Pagination;
@@ -51,5 +50,5 @@ export interface ProductQuery {
     currency?: CurrencyType;
 }
 
-export type FacetItemType = { label?: string; value: string; count: number };
-export type PriceRangeType = { min?: number; max?: number };
+export type FacetItemType = {label?: string; value: string; count: number};
+export type PriceRangeType = {min?: number; max?: number};

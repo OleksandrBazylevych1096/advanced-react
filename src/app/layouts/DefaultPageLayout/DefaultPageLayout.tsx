@@ -1,10 +1,9 @@
 import type {ReactNode} from "react";
 
 import {Footer} from "@/widgets/Footer";
+import {Header} from "@/widgets/Header";
 
 import {AppPage} from "@/shared/ui/AppPage";
-
-import {AppHeader} from "../AppHeader/AppHeader";
 
 interface DefaultPageLayoutProps {
     children: ReactNode;
@@ -13,7 +12,7 @@ interface DefaultPageLayoutProps {
 export const DefaultPageLayout = ({children}: DefaultPageLayoutProps) => {
     return (
         <AppPage>
-            <AppHeader />
+            <Header />
             <AppPage.Content>{children}</AppPage.Content>
             <Footer />
         </AppPage>

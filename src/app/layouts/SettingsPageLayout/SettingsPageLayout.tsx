@@ -1,7 +1,6 @@
 import type {ReactNode} from "react";
 
-import {AppHeader} from "@/app/layouts/AppHeader/AppHeader.tsx";
-
+import {Header} from "@/widgets/Header/ui/Header/Header.tsx";
 import {SettingsSidebar} from "@/widgets/SettingsSidebar";
 
 import {AppPage} from "@/shared/ui/AppPage";
@@ -16,10 +15,10 @@ interface SettingsPageLayoutProps {
 export const SettingsPageLayout = ({children}: SettingsPageLayoutProps) => {
     return (
         <AppPage>
-            <AppHeader/>
+            <Header />
             <AppPage.Content>
-                <Stack as="section" direction={'row'} gap={12}>
-                    <SettingsSidebar/>
+                <Stack as="section" direction={"row"} gap={12}>
+                    <SettingsSidebar />
                     <div className={styles.content}>{children}</div>
                 </Stack>
             </AppPage.Content>

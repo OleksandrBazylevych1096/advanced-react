@@ -3,12 +3,14 @@ import {useTranslation} from "react-i18next";
 import {AutoSizer, WindowScroller, type WindowScrollerChildProps} from "react-virtualized";
 import {List as VirtualizedList} from "react-virtualized/dist/es/List";
 
-import {SETTINGS_ORDERS_ROW_HEIGHT, SETTINGS_ORDERS_SKELETON_COUNT} from "@/pages/settings/Orders/config/constants.ts";
+import {
+    SETTINGS_ORDERS_ROW_HEIGHT,
+    SETTINGS_ORDERS_SKELETON_COUNT,
+} from "@/pages/settings/Orders/config/constants.ts";
 import type {SettingsOrderStatusFilterType} from "@/pages/settings/Orders/model/types/settingsOrders.ts";
 import {OrderCardSkeleton} from "@/pages/settings/Orders/ui/OrderCard/OrderCardSkeleton.tsx";
 import {RowRenderer} from "@/pages/settings/Orders/ui/OrderList/RowRenderer.tsx";
 import {useOrderList} from "@/pages/settings/Orders/ui/OrderList/useOrderList/useOrderList.ts";
-
 
 import type {OrderDetails} from "@/entities/order";
 
@@ -17,11 +19,10 @@ import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 
 import styles from "./OrderList.module.scss";
 
-
-export type OrderListItem = OrderDetails | undefined
+export type OrderListItem = OrderDetails | undefined;
 
 interface OrderListProps {
-    activeFilter: SettingsOrderStatusFilterType
+    activeFilter: SettingsOrderStatusFilterType;
 }
 
 export const OrderList = (props: OrderListProps) => {
@@ -48,11 +49,10 @@ export const OrderList = (props: OrderListProps) => {
         return (
             <Stack className={styles.cards} gap={12}>
                 {Array.from({length: SETTINGS_ORDERS_SKELETON_COUNT}).map((_, index) => (
-                    <OrderCardSkeleton key={index}/>
+                    <OrderCardSkeleton key={index} />
                 ))}
             </Stack>
-        )
-
+        );
     }
     if (isError) {
         return (
@@ -62,7 +62,7 @@ export const OrderList = (props: OrderListProps) => {
                     void refetch();
                 }}
             />
-        )
+        );
     }
 
     if (!orders || orders.length === 0) {
@@ -71,16 +71,15 @@ export const OrderList = (props: OrderListProps) => {
                 title={t("settings.pages.orders.emptyTitle")}
                 description={t("settings.pages.orders.emptyDescription")}
             />
-        )
+        );
     }
-
 
     return (
         <div className={styles.cards}>
             <WindowScroller>
                 {({height, isScrolling, onChildScroll, scrollTop}: WindowScrollerChildProps) => (
                     <AutoSizer disableHeight>
-                        {({width}: { width: number }) => (
+                        {({width}: {width: number}) => (
                             <VirtualizedList
                                 ref={listRef}
                                 autoHeight
@@ -107,6 +106,5 @@ export const OrderList = (props: OrderListProps) => {
                 )}
             </WindowScroller>
         </div>
-    )
-
-}
+    );
+};

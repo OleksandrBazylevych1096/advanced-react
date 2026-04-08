@@ -8,4 +8,3 @@ export const formatOrderAmount = (locale: string, amount: number, currency: stri
         return amount.toFixed(2);
     }
 };
-

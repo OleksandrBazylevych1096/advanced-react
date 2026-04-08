@@ -209,7 +209,7 @@ async function getResponse(event, client, requestId, requestInterceptedAt) {
         // so the headers can be manipulated with.
         const headers = new Headers(requestClone.headers);
 
-        // Remove the "accept" header value that marked this request as passthrough.
+        // Remove the "accept" Header value that marked this request as passthrough.
         // This prevents request alteration and also keeps it compliant with the
         // user-defined CORS policies.
         const acceptHeader = headers.get("accept");

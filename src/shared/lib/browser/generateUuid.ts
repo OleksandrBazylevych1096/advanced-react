@@ -14,6 +14,9 @@ export const generateUuid = (): string => {
         return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
     }
 
-    const randomChunk = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).slice(1);
+    const randomChunk = () =>
+        Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .slice(1);
     return `${Date.now().toString(16)}-${randomChunk()}-${randomChunk()}-${randomChunk()}-${randomChunk()}${randomChunk()}${randomChunk()}`;
 };

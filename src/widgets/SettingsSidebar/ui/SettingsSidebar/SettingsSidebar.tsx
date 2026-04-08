@@ -11,10 +11,6 @@ import styles from "./SettingsSidebar.module.scss";
 
 const settingsMenuConfig = [
     {
-        route: AppRoutes.SETTINGS_ACCOUNT_DETAILS,
-        labelKey: "settings.menu.accountDetails",
-    },
-    {
         route: AppRoutes.SETTINGS_ORDERS,
         labelKey: "settings.menu.orders",
     },
@@ -49,7 +45,6 @@ export const SettingsSidebar = () => {
                     </Typography>
                 </NavLink>
             ))}
-            
         </Stack>
     );
 };
