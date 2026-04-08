@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 
+coverage
 AGENTS.md
 .ai
 .aiassistant
