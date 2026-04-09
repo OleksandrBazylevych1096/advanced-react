@@ -1,7 +1,7 @@
 import type {SerializedError} from "@reduxjs/toolkit";
 import type {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 
-import {i18n} from "@/shared/config/i18n";
+import {i18n} from "@/shared/config";
 
 import {extractApiErrorCode} from "../extractApiErrorCode/extractApiErrorCode";
 
@@ -92,7 +92,7 @@ export const extractApiErrorMessage = (error: FetchBaseQueryError | SerializedEr
     }
 
     if (typeof error === "object" && error !== null && "message" in error) {
-        const message = (error as {message?: unknown}).message;
+        const message = (error as { message?: unknown }).message;
         if (typeof message === "string" && message) {
             return message;
         }
