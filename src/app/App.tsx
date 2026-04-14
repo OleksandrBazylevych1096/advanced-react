@@ -9,7 +9,7 @@ function App() {
     useInitializeApp();
 
     return (
-        <Suspense fallback={<PageLoader />}>
+        <Suspense fallback={<PageLoader fullscreen />}>
             <AppRouter />
         </Suspense>
     );

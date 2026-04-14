@@ -23,10 +23,10 @@ const AuthCallbackPage = () => {
     }
 
     if (requiresTwoFactor) {
-        return <PageLoader />;
+        return <PageLoader fullscreen />;
     }
 
-    return <PageLoader />;
+    return <PageLoader fullscreen />;
 };
 
 export default AuthCallbackPage;

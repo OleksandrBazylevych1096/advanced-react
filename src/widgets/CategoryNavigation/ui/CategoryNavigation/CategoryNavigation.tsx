@@ -17,7 +17,7 @@ interface CategoryNavigationProps {
 export const CategoryNavigation = ({searchQuery, slug}: CategoryNavigationProps = {}) => {
     const {t} = useTranslation();
     const {
-        data: {navigationData, selectedCategoryId, isSearchMode},
+        data: {navigationData, selectedCategoryId},
         status: {isLoading, isError},
         actions: {refetch, selectCategory},
     } = useCategoryNavigation({searchQuery, slug});
@@ -50,7 +50,7 @@ export const CategoryNavigation = ({searchQuery, slug}: CategoryNavigationProps 
                     key={item.id}
                     title={item.name}
                     icon={item.icon}
-                    isActive={isSearchMode ? selectedCategoryId === item.id : item.slug === slug}
+                    isActive={searchQuery ? selectedCategoryId === item.id : item.slug === slug}
                     onClick={() => selectCategory({id: item.id, slug: item.slug})}
                 />
             ))}

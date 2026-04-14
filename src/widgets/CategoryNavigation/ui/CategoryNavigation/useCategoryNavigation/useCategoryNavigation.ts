@@ -60,7 +60,6 @@ export const useCategoryNavigation = ({searchQuery, slug}: UseCategoryNavigation
             navigationData: data,
             selectedCategoryId,
             slug,
-            isSearchMode: Boolean(searchQuery),
         },
         status: {
             isLoading,
