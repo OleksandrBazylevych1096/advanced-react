@@ -13,12 +13,16 @@ export const ManageSessionsSkeleton = () => {
             <Stack className={styles.toolbar} direction="row" gap={8} align="center" wrap="wrap">
                 <Skeleton width={148} height={40} borderRadius={40} />
                 <Skeleton width={132} height={40} borderRadius={40} />
-                <Skeleton width={96} height={20} borderRadius={8} />
             </Stack>
 
             <Grid as="ul" className={styles.list} gap={12}>
                 {Array.from({length: SKELETON_ITEMS_COUNT}, (_, index) => (
-                    <Grid as="li" key={`manage-session-skeleton-${index}`} className={styles.item} gap={10}>
+                    <Grid
+                        as="li"
+                        key={`manage-session-skeleton-${index}`}
+                        className={styles.item}
+                        gap={10}
+                    >
                         <Stack
                             className={styles.header}
                             direction="row"
@@ -39,7 +43,7 @@ export const ManageSessionsSkeleton = () => {
                                     className={styles.metaItem}
                                 >
                                     <Skeleton width={72} height={14} borderRadius={8} />
-                                    <Skeleton width="80%" height={18} borderRadius={8} />
+                                    <Skeleton width={100} height={18} borderRadius={8} />
                                 </div>
                             ))}
                         </Grid>
