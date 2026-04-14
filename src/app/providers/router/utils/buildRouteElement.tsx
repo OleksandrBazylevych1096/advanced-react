@@ -16,8 +16,9 @@ export const buildRouteElement = ({
     hasLocalizedParams,
     requiresAuth,
 }: AppRouteConfig): ReactNode => {
+    const isFullscreenLoader = layout === null;
     const routeElement = (
-        <Suspense key={path} fallback={<PageLoader />}>
+        <Suspense key={path} fallback={<PageLoader fullscreen={isFullscreenLoader} />}>
             <LanguageSyncWrapper hasLocalizedParams={hasLocalizedParams}>
                 {element}
             </LanguageSyncWrapper>
