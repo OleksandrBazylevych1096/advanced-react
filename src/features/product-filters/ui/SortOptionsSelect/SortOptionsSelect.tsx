@@ -1,3 +1,5 @@
+import {useTranslation} from "react-i18next";
+
 import {type SortOptionValue} from "@/features/product-filters/config/sortOptions.ts";
 
 import {Select} from "@/shared/ui/Select";
@@ -5,6 +7,7 @@ import {Select} from "@/shared/ui/Select";
 import {useSortOptionsSelect} from "./useSortOptionsSelect/useSortOptionsSelect.ts";
 
 export const SortOptionsSelect = () => {
+    const {t} = useTranslation();
     const {
         data: {currentSortValue, options},
         actions: {changeSort},
@@ -14,9 +17,9 @@ export const SortOptionsSelect = () => {
             value={currentSortValue}
             onChange={changeSort}
             options={options}
-            placeholder="Sorting"
+            placeholder={t("productFilters.orderBy")}
             theme="outlined"
-            aria-label="Product Sorting"
+            aria-label={t("productFilters.orderByAria")}
             dropdownAlign={"right"}
         />
     );

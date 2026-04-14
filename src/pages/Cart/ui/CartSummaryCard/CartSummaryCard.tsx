@@ -25,7 +25,7 @@ interface CartSummaryCardProps {
 }
 
 export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
-    const {i18n} = useTranslation();
+    const {i18n, t} = useTranslation();
     const navigate = useNavigate();
     const getLocalizedPath = useLocalizedRoutePath();
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
@@ -44,9 +44,9 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
     }
 
     const rows: OrderSummaryRow[] = [
-        {label: "Items total", amount: cart.totals.subtotal},
-        {label: "Delivery fee", amount: cart.totals.estimatedShipping},
-        {label: "Estimated tax", amount: cart.totals.estimatedTax},
+        {label: t("cart.summary.itemsTotal"), amount: cart.totals.subtotal},
+        {label: t("cart.summary.deliveryFee"), amount: cart.totals.estimatedShipping},
+        {label: t("cart.summary.estimatedTax"), amount: cart.totals.estimatedTax},
     ];
 
     return (
@@ -56,13 +56,19 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
                     <Stack direction="column" gap={12}>
                         <Typography variant="body" weight="semibold">
                             {cart.totals.subtotal >= cart.totals.freeShippingTarget
-                                ? "Free delivery"
-                                : `Get free delivery (${formatCurrency(currency, i18n.language, cart.totals.freeShippingTarget - cart.totals.subtotal)} more)`}
+                                ? t("cart.freeDelivery")
+                                : t("cart.freeDeliveryRemaining", {
+                                      amount: formatCurrency(
+                                          currency,
+                                          i18n.language,
+                                          cart.totals.freeShippingTarget - cart.totals.subtotal,
+                                      ),
+                                  })}
                         </Typography>
                         <Progress
                             value={cart.totals.subtotal}
                             max={cart.totals.freeShippingTarget}
-                            ariaLabel={"Order completion progress"}
+                            ariaLabel={t("cart.orderCompletionProgressAria")}
                         />
                     </Stack>
                 </div>
@@ -78,7 +84,7 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
                     disabled={hasIssues || isValidating}
                 >
                     <AppIcon Icon={ShoppingCartIcon} size={18} />
-                    <Typography>Checkout</Typography>
+                    <Typography>{t("cart.checkout")}</Typography>
                     <Typography>
                         {formatCurrency(currency, i18n.language, cart.totals.total)}
                     </Typography>
@@ -86,7 +92,7 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
 
                 {hasIssues && (
                     <Typography className={styles.checkoutError} variant="bodySm" tone="danger">
-                        Please resolve cart issues before checkout
+                        {t("cart.resolveIssuesBeforeCheckout")}
                     </Typography>
                 )}
             </div>

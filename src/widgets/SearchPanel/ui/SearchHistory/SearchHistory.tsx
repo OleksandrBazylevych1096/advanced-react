@@ -6,7 +6,6 @@ import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 import {Skeleton} from "@/shared/ui/Skeleton";
 import {Stack} from "@/shared/ui/Stack";
-import {EmptyState} from "@/shared/ui/StateViews";
 import {Typography} from "@/shared/ui/Typography";
 
 import styles from "../SearchPanel/SearchPanel.module.scss";
@@ -22,6 +21,10 @@ export const SearchHistory = () => {
         status: {isFetchingRecentSearches, isDeletingRecentItem, isClearingRecentSearches},
         actions: {clearRecentSearches, applyRecentSearchQuery, removeRecentSearchItem},
     } = useSearchHistory();
+
+    if (!isFetchingRecentSearches && recentSearches.length === 0) {
+        return null;
+    }
 
     return (
         <Stack gap={12}>
@@ -51,7 +54,7 @@ export const SearchHistory = () => {
                         <Skeleton key={index} width={100} height={36} borderRadius={40} />
                     ))}
                 </div>
-            ) : recentSearches.length > 0 ? (
+            ) : (
                 <div className={styles.tagsWrap}>
                     {recentSearches.map((item) => (
                         <div key={item.id ?? item.query} className={styles.tagRemovable}>
@@ -79,8 +82,6 @@ export const SearchHistory = () => {
                         </div>
                     ))}
                 </div>
-            ) : (
-                <EmptyState title={t("search.history.empty")} />
             )}
         </Stack>
     );

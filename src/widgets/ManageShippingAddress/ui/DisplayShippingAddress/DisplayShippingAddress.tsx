@@ -1,3 +1,5 @@
+import {useTranslation} from "react-i18next";
+
 import {useGetDefaultShippingAddressQuery} from "@/entities/shipping-address";
 import {selectIsAuthenticated} from "@/entities/user";
 
@@ -11,6 +13,7 @@ import {Typography} from "@/shared/ui/Typography";
 import styles from "../ManageShippingAddress/ManageShippingAddress.module.scss";
 
 export const DisplayShippingAddress = () => {
+    const {t} = useTranslation();
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
     const {
@@ -26,7 +29,7 @@ export const DisplayShippingAddress = () => {
             <Stack direction="row" align="center" gap={8} data-testid="manage-address-loading">
                 <Spinner size="sm" />
                 <Typography as="span" variant="body">
-                    Loading
+                    {t("manageAddress.loading")}
                 </Typography>
             </Stack>
         );
@@ -42,7 +45,7 @@ export const DisplayShippingAddress = () => {
                     className={styles.address}
                     data-testid="manage-address-fallback"
                 >
-                    Select your address
+                    {t("manageAddress.selectAddress")}
                 </Typography>
             </Stack>
         );

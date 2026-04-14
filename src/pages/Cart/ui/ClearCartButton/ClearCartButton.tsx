@@ -1,3 +1,5 @@
+import {useTranslation} from "react-i18next";
+
 import {useClearCart} from "@/pages/Cart/model/controllers/useClearCart.ts";
 
 import {Button} from "@/shared/ui/Button";
@@ -5,6 +7,7 @@ import {Button} from "@/shared/ui/Button";
 import styles from "./ClearCartButton.module.scss";
 
 export const ClearCartButton = () => {
+    const {t} = useTranslation();
     const {
         status: {isClearing},
         actions: {clearCart},
@@ -17,7 +20,7 @@ export const ClearCartButton = () => {
             isLoading={isClearing}
             className={styles.clearBtn}
         >
-            Clear Cart
+            {t("cart.clear")}
         </Button>
     );
 };

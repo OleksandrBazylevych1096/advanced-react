@@ -1,9 +1,9 @@
 import {useTranslation} from "react-i18next";
-import {generatePath, useNavigate, useSearchParams} from "react-router";
+import {generatePath, useNavigate, useParams, useSearchParams} from "react-router";
 
 import {useGetCategoryNavigationQuery} from "@/widgets/CategoryNavigation/api/categoryNavigationApi.ts";
 
-import {AppRoutes, routePaths} from "@/shared/config";
+import {AppRoutes, routePaths, type SupportedLngsType} from "@/shared/config";
 
 interface UseCategoryNavigationParams {
     searchQuery?: string;
@@ -16,18 +16,22 @@ interface CategoryOption {
 }
 
 export const useCategoryNavigation = ({searchQuery, slug}: UseCategoryNavigationParams) => {
+    const {lng} = useParams<{lng: SupportedLngsType}>();
     const {i18n} = useTranslation();
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const selectedCategoryId = searchParams.get("categoryId");
 
+    // should use lng from params to avoid double request when user change language, because slug depends on lng param and i18n updates after lng param changes.
+    const locale = lng || i18n.language;
+
     const {data, isLoading, isError, refetch} = useGetCategoryNavigationQuery(
         {
             slug,
             searchQuery,
-            locale: i18n.language,
+            locale,
         },
-        {skip: !i18n.language},
+        {skip: !locale},
     );
 
     const selectCategory = (item: CategoryOption) => {

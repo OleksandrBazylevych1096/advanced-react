@@ -8,10 +8,9 @@ import {Button} from "@/shared/ui/Button";
 import {Stack} from "@/shared/ui/Stack";
 import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 
-import {Loader} from "../Loader/Loader";
-
 import styles from "./ShippingAddressList.module.scss";
 import {ShippingAddressListItem} from "./ShippingAddressListItem";
+import {ShippingAddressListSkeleton} from "./ShippingAddressListSkeleton.tsx";
 import {useShippingAddressList} from "./useShippingAddressList/useShippingAddressList.ts";
 
 export const ShippingAddressList = () => {
@@ -22,12 +21,12 @@ export const ShippingAddressList = () => {
         actions: {refetch, openAddAddress},
     } = useShippingAddressList();
 
-    if (isLoading) return <Loader />;
+    if (isLoading) return <ShippingAddressListSkeleton />;
 
     if (isError) {
         return (
             <Box>
-                <ErrorState message={t("manageAddress.error.title")} onRetry={refetch} />
+                <ErrorState message={t("manageAddress.failedToLoad")} onRetry={refetch} />
             </Box>
         );
     }
@@ -37,12 +36,12 @@ export const ShippingAddressList = () => {
             <Box>
                 <Stack gap={16}>
                     <EmptyState
-                        title={t("manageAddress.empty.title")}
-                        description={t("manageAddress.empty.description")}
+                        title={t("manageAddress.noAddressesTitle")}
+                        description={t("manageAddress.noAddressesDescription")}
                         icon={MapPinIcon}
                     />
                     <Button onClick={openAddAddress} fullWidth data-testid="add-first-address-btn">
-                        {t("manageAddress.addFirst")}
+                        {t("manageAddress.addAddress")}
                     </Button>
                 </Stack>
             </Box>
@@ -67,7 +66,7 @@ export const ShippingAddressList = () => {
                     data-testid="address-list-add-btn"
                 >
                     <AppIcon Icon={AddIcon} filled />
-                    {t("manageAddress.addNew")}
+                    {t("manageAddress.addNewAddress")}
                 </Button>
             </Stack>
         </Box>

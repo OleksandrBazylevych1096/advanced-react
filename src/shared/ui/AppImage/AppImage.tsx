@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 import ImagePlaceholderIcon from "@/shared/assets/icons/ImagePlaceholder.svg?react";
 import {cn} from "@/shared/lib/styling";
@@ -31,6 +32,7 @@ export const AppImage = (props: AppImageProps) => {
         objectFit = "contain",
         showErrorMessage = true,
     } = props;
+    const {t} = useTranslation();
 
     const [imageError, setImageError] = useState<boolean>(false);
     const [imageLoading, setImageLoading] = useState<boolean>(true);
@@ -62,7 +64,7 @@ export const AppImage = (props: AppImageProps) => {
             <div className={cn(styles.placeholder, containerClassName)}>
                 <AppIcon Icon={ImagePlaceholderIcon} size={48} className={styles.placeholderIcon} />
                 {showErrorMessage && (
-                    <span className={styles.placeholderText}>Image unavailable</span>
+                    <span className={styles.placeholderText}>{t("common.imageUnavailable")}</span>
                 )}
             </div>
         );

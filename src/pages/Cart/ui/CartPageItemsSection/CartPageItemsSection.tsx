@@ -1,3 +1,5 @@
+import {useTranslation} from "react-i18next";
+
 import {CartItemsList} from "@/widgets/CartItemsList";
 
 import {ChooseDeliveryDate} from "@/features/choose-delivery-date";
@@ -13,12 +15,14 @@ interface CartPageItemsSectionProps {
 }
 
 export const CartPageItemsSection = ({isCartReady = true}: CartPageItemsSectionProps) => {
+    const {t} = useTranslation();
+
     return (
         <div className={styles.itemsSection}>
             {isCartReady && (
                 <Stack gap={8} className={styles.deliveryDateSection}>
                     <Typography as="h3" variant="body" weight="semibold">
-                        Delivery Date
+                        {t("cart.deliveryDate")}
                     </Typography>
                     <ChooseDeliveryDate className={styles.deliveryDateTrigger} />
                 </Stack>

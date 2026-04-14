@@ -73,7 +73,7 @@ export const ProductFilters = ({
         >
             <div className={styles.header}>
                 <h4 className={styles.title} data-testid="product-filters-title">
-                    {t("productFilters.title", "Filters")}
+                    {t("productFilters.title")}
                 </h4>
                 <Button
                     onClick={closeSidebar}
@@ -85,7 +85,7 @@ export const ProductFilters = ({
             </div>
             <Accordion defaultValue={defaultOpenFilters}>
                 <CheckboxFilterSection
-                    title={t("productFilters.countries", "Countries")}
+                    title={t("productFilters.countries")}
                     value="countries"
                     options={facets?.countries}
                     selectedValues={currentCountries}
@@ -96,7 +96,7 @@ export const ProductFilters = ({
                 />
 
                 <CheckboxFilterSection
-                    title={t("productFilters.brands", "Brands")}
+                    title={t("productFilters.brands")}
                     value="brands"
                     options={facets?.brands}
                     selectedValues={currentBrands}
@@ -107,7 +107,7 @@ export const ProductFilters = ({
                 />
 
                 <RangeFilterSection
-                    title={t("productFilters.price", "Price")}
+                    title={t("productFilters.price")}
                     value="price"
                     rangeValue={localPriceRange}
                     availableRange={facets?.priceRange}
@@ -130,7 +130,7 @@ export const ProductFilters = ({
                 onClick={resetFilters}
                 data-testid="product-filters-reset-btn"
             >
-                {t("productFilters.reset", "Reset")}
+                {t("productFilters.reset")}
             </Button>
         </div>
     );

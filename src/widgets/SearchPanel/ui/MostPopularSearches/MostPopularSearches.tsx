@@ -4,7 +4,6 @@ import {useMostPopularSearches} from "@/widgets/SearchPanel/ui/MostPopularSearch
 
 import {Button} from "@/shared/ui/Button";
 import {Skeleton} from "@/shared/ui/Skeleton";
-import {EmptyState} from "@/shared/ui/StateViews";
 import {Typography} from "@/shared/ui/Typography";
 
 import styles from "../SearchPanel/SearchPanel.module.scss";
@@ -19,6 +18,10 @@ export const MostPopularSearches = () => {
         actions: {applyPopularSearchQuery},
     } = useMostPopularSearches();
 
+    if (!isFetchingPopularSearches && popularSearches.length === 0) {
+        return null;
+    }
+
     return (
         <>
             <Typography as="h6" variant="bodySm" weight="semibold">
@@ -31,7 +34,7 @@ export const MostPopularSearches = () => {
                         <Skeleton key={index} width={100} height={36} borderRadius={40} />
                     ))}
                 </div>
-            ) : popularSearches.length > 0 ? (
+            ) : (
                 <div className={styles.tagsWrap}>
                     {popularSearches.map((item) => (
                         <Button
@@ -47,8 +50,6 @@ export const MostPopularSearches = () => {
                         </Button>
                     ))}
                 </div>
-            ) : (
-                <EmptyState title={t("search.history.popularEmpty")} />
             )}
         </>
     );

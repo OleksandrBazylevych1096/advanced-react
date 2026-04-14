@@ -7,12 +7,12 @@ import {resolveOperatingSystem} from "@/pages/settings/Security/lib/resolveOpera
 
 import {Button} from "@/shared/ui/Button";
 import {Grid} from "@/shared/ui/Grid";
-import {Spinner} from "@/shared/ui/Spinner";
 import {Stack} from "@/shared/ui/Stack";
 import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./ManageSessions.module.scss";
+import {ManageSessionsSkeleton} from "./ManageSessionsSkeleton.tsx";
 import {useManageSessions} from "./useManageSessions/useManageSessions.ts";
 
 export const ManageSessions = () => {
@@ -24,8 +24,7 @@ export const ManageSessions = () => {
     } = useManageSessions();
 
     if (isLoading && sessions.length === 0) {
-        // TODO - add skeleton
-        return <Spinner size="lg" />;
+        return <ManageSessionsSkeleton />;
     }
 
     if (error || sessions.length === 0) {

@@ -1,5 +1,9 @@
 import type {ReactNode} from "react";
+import {useTranslation} from "react-i18next";
 import {Link} from "react-router";
+
+import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
 
 import styles from "./Breadcrumbs.module.scss";
 
@@ -15,14 +19,18 @@ interface BreadcrumbsProps {
 }
 
 export const Breadcrumbs = ({items, className, Separator = "/"}: BreadcrumbsProps) => {
+    const {t} = useTranslation();
+    const getLocalizedPath = useLocalizedRoutePath();
+    const homePath = getLocalizedPath(routePaths[AppRoutes.HOME]);
+
     if (!items?.length) return null;
 
     return (
         <nav className={`${styles.root} ${className ?? ""}`}>
             <ol className={styles.list}>
                 <li className={styles.item}>
-                    <Link to="/" className={styles.link}>
-                        Home
+                    <Link to={homePath} className={styles.link}>
+                        {t("breadcrumbs.home")}
                     </Link>
                     <span className={styles.separator}>{Separator}</span>
                 </li>

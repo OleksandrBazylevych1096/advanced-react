@@ -3,7 +3,9 @@
         "errorDefault": "Something went wrong",
         "tryAgain": "Try Again",
         "noData": "No data available",
-        "copied": "Copied to clipboard"
+        "copied": "Copied to clipboard",
+        "imageUnavailable": "Image unavailable",
+        "back": "Back"
     },
     "orderStatusBadge": {
         "inProgress": "In progress",
@@ -59,7 +61,9 @@
             "edit": "Edit Address"
         },
         "signInPrompt": "Please sign in to manage your addresses.",
-        "signIn": "Sign in"
+        "signIn": "Sign in",
+        "loading": "Loading",
+        "selectAddress": "Select your address"
     },
     "header": {
         "cart": "Cart",
@@ -223,7 +227,7 @@
         "faqs": "FAQs",
         "recipes": "Recipes",
         "contactUs": "Contact Us",
-        "helpSupport": "Help \u0026 Support",
+        "helpSupport": "Help & Support",
         "termsOfService": "Terms of Service",
         "privacyPolicy": "Privacy Policy",
         "security": "Security",
@@ -241,7 +245,7 @@
     },
     "notFound": {
         "title": "Page Not Found",
-        "description": "The page you\u0027re looking for isn\u0027t available. Try to search again or use the go back button below.",
+        "description": "The page you're looking for isn't available. Try to search again or use the go back button below.",
         "goBack": "Go Back"
     },
     "pageError": {
@@ -285,5 +289,53 @@
         "INVALID_EMAIL": "Enter a valid email.",
         "INVALID_PHONE": "Enter a valid phone number in E.164 format.",
         "unknownError": "Unknown error"
+    },
+    "productFilters": {
+        "title": "Filters",
+        "countries": "Countries",
+        "brands": "Brands",
+        "price": "Price",
+        "reset": "Reset",
+        "orderBy": "Order by",
+        "orderByAria": "Product sorting",
+        "sort": {
+            "nameAsc": "Name (A-Z)",
+            "nameDesc": "Name (Z-A)",
+            "priceAsc": "Price (Low to High)",
+            "priceDesc": "Price (High to Low)",
+            "ratingAsc": "Rating (Low to High)",
+            "ratingDesc": "Rating (High to Low)"
+        }
+    },
+    "breadcrumbs": {
+        "home": "Home"
+    },
+    "cart": {
+        "title": "My Cart",
+        "clear": "Clear Cart",
+        "deliveryDate": "Delivery Date",
+        "errorLoad": "Failed to load cart",
+        "emptyTitle": "Your cart is empty",
+        "emptyDescription": "Add some products to your cart to see them here.",
+        "itemsCount": "{{count}} Items",
+        "summary": {
+            "itemsTotal": "Items total",
+            "deliveryFee": "Delivery fee",
+            "estimatedTax": "Estimated tax"
+        },
+        "freeDelivery": "Free delivery",
+        "freeDeliveryRemaining": "Get free delivery ({{amount}} more)",
+        "orderCompletionProgressAria": "Order completion progress",
+        "checkout": "Checkout",
+        "resolveIssuesBeforeCheckout": "Please resolve cart issues before checkout"
+    },
+    "select": {
+        "placeholder": "Choose...",
+        "noOptionsMessage": "Nothing has been found",
+        "loadingMessage": "Loading...",
+        "removeValueAria": "Remove {{value}}",
+        "clearAria": "Clear",
+        "searchPlaceholder": "Search...",
+        "searchAria": "Search options"
     }
 }

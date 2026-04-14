@@ -1,3 +1,5 @@
+import {useTranslation} from "react-i18next";
+
 import {CartQuantityStepper} from "@/features/update-cart-item-quantity";
 
 import {CartItemRow, useCart, useCartValidation} from "@/entities/cart";
@@ -20,6 +22,7 @@ interface CartItemsProps {
 }
 
 export const CartItemsList = ({compact, className}: CartItemsProps) => {
+    const {t} = useTranslation();
     const currency = useAppSelector(selectUserCurrency);
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
@@ -45,7 +48,7 @@ export const CartItemsList = ({compact, className}: CartItemsProps) => {
         return (
             <Stack className={cn(styles.root, className)}>
                 <Stack className={styles.stateContainer} align="center" justify="center">
-                    <ErrorState message="Failed to load cart" onRetry={refetch} />
+                    <ErrorState message={t("cart.errorLoad")} onRetry={refetch} />
                 </Stack>
             </Stack>
         );
@@ -56,8 +59,8 @@ export const CartItemsList = ({compact, className}: CartItemsProps) => {
             <Stack className={cn(styles.root, className)}>
                 <Stack className={styles.stateContainer} align="center" justify="center">
                     <EmptyState
-                        title="Your cart is empty"
-                        description="Add some products to your cart to see them here."
+                        title={t("cart.emptyTitle")}
+                        description={t("cart.emptyDescription")}
                     />
                 </Stack>
             </Stack>
@@ -68,10 +71,10 @@ export const CartItemsList = ({compact, className}: CartItemsProps) => {
         <Stack className={cn(styles.root, className)}>
             <Stack className={styles.panelHeader}>
                 <Typography as="h3" className={styles.title} variant="heading" weight="semibold">
-                    My Cart
+                    {t("cart.title")}
                 </Typography>
                 <Typography as="span" variant="caption" tone="muted">
-                    {cart?.items.length} Items
+                    {t("cart.itemsCount", {count: cart?.items.length ?? 0})}
                 </Typography>
             </Stack>
             {cart?.items.map((item) => (

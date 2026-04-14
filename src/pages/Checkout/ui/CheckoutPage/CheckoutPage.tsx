@@ -71,6 +71,7 @@ const CheckoutPage = () => {
                             form="circle"
                             size="lg"
                             onClick={goToCartPage}
+                            aria-label={t("checkoutMainSection.goBack")}
                             data-testid="checkout-go-back-trigger"
                         >
                             <AppIcon Icon={ArrowLeft} size={18} />

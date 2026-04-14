@@ -2,7 +2,10 @@
     "common": {
         "errorDefault": "Etwas ist schiefgelaufen",
         "tryAgain": "Erneut versuchen",
-        "noData": "Keine Daten verfügbar"
+        "noData": "Keine Daten verfügbar",
+        "copied": "In Zwischenablage kopiert",
+        "imageUnavailable": "Bild nicht verfuegbar",
+        "back": "Zurueck"
     },
     "orderStatusBadge": {
         "inProgress": "In Bearbeitung",
@@ -22,7 +25,8 @@
         "tryAgain": "Erneut versuchen",
         "noProducts": "Keine Produkte",
         "itemsLeft": "Noch {{count}} verfügbar",
-        "loadCategoriesError": "Kategorien konnten nicht geladen werden"
+        "loadCategoriesError": "Kategorien konnten nicht geladen werden",
+        "trendingProducts": "Beliebte Produkte"
     },
     "firstOrderSection": {
         "errorLoading": "Fehler beim Laden der Produkte",
@@ -58,7 +62,9 @@
             "edit": "Adresse bearbeiten"
         },
         "signInPrompt": "Bitte melden Sie sich an, um Ihre Adressen zu verwalten.",
-        "signIn": "Anmelden"
+        "signIn": "Anmelden",
+        "loading": "Wird geladen",
+        "selectAddress": "Waehlen Sie Ihre Adresse"
     },
     "header": {
         "cart": "Warenkorb",
@@ -177,7 +183,8 @@
                 "deviceMobile": "Mobil",
                 "deviceTablet": "Tablet",
                 "lastActivity": "Letzte Aktivitaet",
-                "revoke": "Beenden"
+                "revoke": "Beenden",
+                "manageSessions": "Sitzungen verwalten"
             },
             "address": {
                 "title": "Adresse"
@@ -199,7 +206,7 @@
         "autocomplete": {
             "loading": "Produkte werden gesucht...",
             "empty": "Keine Produkte gefunden",
-            "enterHint": "Dr\u00fccken Sie Enter, um alle Ergebnisse zu sehen"
+            "enterHint": "Drücken Sie Enter, um alle Ergebnisse zu sehen"
         },
         "history": {
             "recent": "Letzte Suche",
@@ -221,7 +228,7 @@
         "faqs": "Häufige Fragen",
         "recipes": "Rezepte",
         "contactUs": "Kontakt",
-        "helpSupport": "Hilfe \u0026 Support",
+        "helpSupport": "Hilfe & Support",
         "termsOfService": "Nutzungsbedingungen",
         "privacyPolicy": "Datenschutzerklärung",
         "security": "Sicherheit",
@@ -283,5 +290,53 @@
         "INVALID_EMAIL": "Bitte geben Sie eine gültige E-Mail ein.",
         "INVALID_PHONE": "Bitte geben Sie eine gültige Telefonnummer im E.164-Format ein.",
         "unknownError": "Unbekannter Fehler"
+    },
+    "productFilters": {
+        "title": "Filter",
+        "countries": "Laender",
+        "brands": "Marken",
+        "price": "Preis",
+        "reset": "Zuruecksetzen",
+        "orderBy": "Sortieren nach",
+        "orderByAria": "Produktsortierung",
+        "sort": {
+            "nameAsc": "Name (A-Z)",
+            "nameDesc": "Name (Z-A)",
+            "priceAsc": "Preis (Niedrig bis Hoch)",
+            "priceDesc": "Preis (Hoch bis Niedrig)",
+            "ratingAsc": "Bewertung (Niedrig bis Hoch)",
+            "ratingDesc": "Bewertung (Hoch bis Niedrig)"
+        }
+    },
+    "breadcrumbs": {
+        "home": "Startseite"
+    },
+    "cart": {
+        "title": "Mein Warenkorb",
+        "clear": "Warenkorb leeren",
+        "deliveryDate": "Lieferdatum",
+        "errorLoad": "Warenkorb konnte nicht geladen werden",
+        "emptyTitle": "Ihr Warenkorb ist leer",
+        "emptyDescription": "Fuegen Sie Produkte hinzu, um sie hier zu sehen.",
+        "itemsCount": "{{count}} Artikel",
+        "summary": {
+            "itemsTotal": "Zwischensumme",
+            "deliveryFee": "Liefergebuehr",
+            "estimatedTax": "Geschaetzte Steuer"
+        },
+        "freeDelivery": "Kostenlose Lieferung",
+        "freeDeliveryRemaining": "Kostenlose Lieferung erhalten (noch {{amount}})",
+        "orderCompletionProgressAria": "Bestellfortschritt",
+        "checkout": "Zur Kasse",
+        "resolveIssuesBeforeCheckout": "Bitte beheben Sie die Warenkorbprobleme vor dem Checkout"
+    },
+    "select": {
+        "placeholder": "Auswaehlen...",
+        "noOptionsMessage": "Nichts gefunden",
+        "loadingMessage": "Wird geladen...",
+        "removeValueAria": "{{value}} entfernen",
+        "clearAria": "Leeren",
+        "searchPlaceholder": "Suchen...",
+        "searchAria": "Optionen suchen"
     }
 }

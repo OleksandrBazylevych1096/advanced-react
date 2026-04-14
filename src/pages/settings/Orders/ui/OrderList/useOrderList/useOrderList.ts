@@ -27,15 +27,10 @@ export const useOrderList = ({activeFilter}: UseSettingsOrdersArgs) => {
         hasNextPage,
         fetchNextPage,
         refetch,
-    } = useGetMyOrdersInfiniteQuery(
-        {
-            status,
-            limit: SETTINGS_ORDERS_DEFAULT_LIMIT,
-        },
-        {
-            refetchOnMountOrArgChange: true,
-        },
-    );
+    } = useGetMyOrdersInfiniteQuery({
+        status,
+        limit: SETTINGS_ORDERS_DEFAULT_LIMIT,
+    });
 
     const orders = data?.pages.flatMap((page) => page.orders) ?? [];
     const isRefetching = isFetching && !isFetchingNextPage && !isLoading;

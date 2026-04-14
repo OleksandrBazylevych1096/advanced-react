@@ -63,7 +63,7 @@ export const Header = () => {
                                         onClick={openSettings}
                                         size={"lg"}
                                         theme="ghost"
-                                        aria-label={t("Header.settings")}
+                                        aria-label={t("header.settings")}
                                     >
                                         <AppIcon Icon={SettingIcon} />
                                     </Button>
@@ -73,7 +73,7 @@ export const Header = () => {
                                 <Button onClick={openLogin} theme="outline">
                                     <AppIcon Icon={UsersIcon} />
                                     <Typography as="span" weight="medium">
-                                        {t("Header.login")}
+                                        {t("header.login")}
                                     </Typography>
                                 </Button>
                             )}

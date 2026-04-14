@@ -9,6 +9,7 @@ import React, {
     useRef,
     useState,
 } from "react";
+import {useTranslation} from "react-i18next";
 
 import ChevronRightIcon from "@/shared/assets/icons/ChevronRight.svg?react";
 import CloseIcon from "@/shared/assets/icons/Close.svg?react";
@@ -113,11 +114,11 @@ export function Select<T = string | number>({
     filterOption,
     onFocus,
     onBlur,
-    placeholder = "Choose...",
+    placeholder,
     helperText,
     errorMessage,
-    noOptionsMessage = "Nothing has been found",
-    loadingMessage = "Loading...",
+    noOptionsMessage,
+    loadingMessage,
     className,
     size = "sm",
     theme = "outlined",
@@ -135,6 +136,11 @@ export function Select<T = string | number>({
     "aria-describedby": ariaDescribedby,
     "data-testid": dataTestId = "select",
 }: SelectProps<T>) {
+    const {t} = useTranslation();
+    const resolvedPlaceholder = placeholder ?? t("select.placeholder");
+    const resolvedNoOptionsMessage = noOptionsMessage ?? t("select.noOptionsMessage");
+    const resolvedLoadingMessage = loadingMessage ?? t("select.loadingMessage");
+
     const [internalValue, setInternalValue] = useState<T | T[]>(
         defaultValue ?? (multiple ? [] : ("" as T)),
     );
@@ -438,7 +444,7 @@ export function Select<T = string | number>({
                 return renderPlaceholder ? (
                     renderPlaceholder()
                 ) : (
-                    <span className={styles.placeholder}>{placeholder}</span>
+                    <span className={styles.placeholder}>{resolvedPlaceholder}</span>
                 );
             }
 
@@ -456,7 +462,7 @@ export function Select<T = string | number>({
                             type="button"
                             onClick={(e) => removeSelectedValue(opt.value, e)}
                             data-testid={`${dataTestId}-remove-value-${opt.value}`}
-                            aria-label={`Видалити ${opt.label}`}
+                            aria-label={t("select.removeValueAria", {value: String(opt.label)})}
                         >
                             <AppIcon Icon={CloseIcon} />
                         </Button>
@@ -470,7 +476,7 @@ export function Select<T = string | number>({
             return renderPlaceholder ? (
                 renderPlaceholder()
             ) : (
-                <span className={styles.placeholder}>{placeholder}</span>
+                <span className={styles.placeholder}>{resolvedPlaceholder}</span>
             );
         }
 
@@ -500,7 +506,7 @@ export function Select<T = string | number>({
         if (loading) {
             return (
                 <div data-testid={`${dataTestId}-loading-message`} className={styles.noOptions}>
-                    {loadingMessage}
+                    {resolvedLoadingMessage}
                 </div>
             );
         }
@@ -508,7 +514,7 @@ export function Select<T = string | number>({
         if (visibleOptions.length === 0) {
             return (
                 <div data-testid={`${dataTestId}-no-options`} className={styles.noOptions}>
-                    {noOptionsMessage}
+                    {resolvedNoOptionsMessage}
                 </div>
             );
         }
@@ -633,7 +639,7 @@ export function Select<T = string | number>({
                             theme={"ghost"}
                             className={styles.clearIndicator}
                             onClick={clearSelection}
-                            aria-label="Clear"
+                            aria-label={t("select.clearAria")}
                             data-testid={`${dataTestId}-clear-button`}
                         >
                             <AppIcon Icon={CloseIcon} />
@@ -667,8 +673,8 @@ export function Select<T = string | number>({
                             value={searchValue}
                             onChange={changeSearchQuery}
                             Icon={<AppIcon size={18} Icon={SearchIcon} theme="background" />}
-                            placeholder="Search..."
-                            aria-label="Search options"
+                            placeholder={t("select.searchPlaceholder")}
+                            aria-label={t("select.searchAria")}
                             data-testid={`${dataTestId}-search-input`}
                         />
                     </div>

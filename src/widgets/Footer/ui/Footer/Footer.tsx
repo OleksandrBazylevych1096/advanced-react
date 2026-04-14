@@ -53,7 +53,7 @@ export const Footer = () => {
                                     <li>
                                         <Link className={styles.link} to={homePath}>
                                             <Typography as="span" variant="bodySm" tone="muted">
-                                                {t("footer.changeLog")}
+                                                {t("footer.changelog")}
                                             </Typography>
                                         </Link>
                                     </li>

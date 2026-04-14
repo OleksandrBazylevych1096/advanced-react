@@ -1,3 +1,4 @@
+import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router";
 
 import ArrowLeft from "@/shared/assets/icons/ArrowLeft.svg?react";
@@ -12,6 +13,7 @@ interface CategoryNavigationGoBackItemProps {
 
 export const CategoryNavigationGoBackItem = (props: CategoryNavigationGoBackItemProps) => {
     const {parentSlug} = props;
+    const {t} = useTranslation();
     const navigate = useNavigate();
     const getLocalizedPath = useLocalizedRoutePath();
 
@@ -30,7 +32,7 @@ export const CategoryNavigationGoBackItem = (props: CategoryNavigationGoBackItem
     return (
         <Button theme={"secondary"} onClick={goBack}>
             <AppIcon Icon={ArrowLeft} />
-            Back
+            {t("common.back")}
         </Button>
     );
 };

@@ -27,7 +27,7 @@ export const ChooseDeliveryDateContentSkeleton = () => {
                             key={`slot-skeleton-${idx}`}
                             width={96}
                             height={40}
-                            shape="circle"
+                            borderRadius={40}
                         />
                     ))}
                 </Stack>

@@ -1,4 +1,5 @@
 import {useCallback} from "react";
+import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 
 import {productFiltersActions} from "@/features/product-filters";
@@ -12,10 +13,15 @@ import {selectSortSettings} from "@/features/product-filters/model/selectors/pro
 import {useAppDispatch} from "@/shared/lib/state";
 
 export const useSortOptionsSelect = () => {
+    const {t} = useTranslation();
     const dispatch = useAppDispatch();
     const {sortBy, sortOrder} = useSelector(selectSortSettings);
 
     const currentSortValue = createSortValue(sortBy, sortOrder);
+    const options = SORT_OPTIONS.map((option) => ({
+        value: option.value,
+        label: t(option.labelKey),
+    }));
 
     const changeSort = useCallback(
         (value: SortOptionValue | SortOptionValue[]) => {
@@ -32,7 +38,7 @@ export const useSortOptionsSelect = () => {
     return {
         data: {
             currentSortValue,
-            options: SORT_OPTIONS,
+            options,
         },
         actions: {
             changeSort,

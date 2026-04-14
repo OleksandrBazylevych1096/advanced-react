@@ -13,7 +13,6 @@ export const OrderCardSkeleton = () => {
                 </Stack>
 
                 <Stack className={styles.metaItem} direction="row" align="center" gap={10}>
-                    <Skeleton width={34} height={34} borderRadius={40} />
                     <Stack gap={6}>
                         <Skeleton width={90} height={24} borderRadius={8} />
                         <Skeleton width={120} height={18} borderRadius={8} />
@@ -21,7 +20,6 @@ export const OrderCardSkeleton = () => {
                 </Stack>
 
                 <Stack className={styles.metaItem} direction="row" align="center" gap={10}>
-                    <Skeleton width={34} height={34} borderRadius={40} />
                     <Stack gap={6}>
                         <Skeleton width={60} height={24} borderRadius={8} />
                         <Skeleton width={50} height={18} borderRadius={8} />

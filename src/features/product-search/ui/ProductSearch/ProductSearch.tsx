@@ -25,7 +25,7 @@ export const ProductSearch = () => {
                 onChange={setQuery}
                 onFocus={onFocusInput}
                 onKeyDown={onKeyDown}
-                placeholder={t("Header.searchBy")}
+                placeholder={t("header.searchBy")}
                 Icon={<AppIcon size={18} Icon={SearchIcon} theme="background" />}
                 data-testid="header-product-search-input"
             />

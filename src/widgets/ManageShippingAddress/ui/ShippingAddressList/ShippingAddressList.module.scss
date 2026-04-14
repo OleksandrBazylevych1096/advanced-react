@@ -5,6 +5,37 @@
     margin-bottom: 16px;
 }
 
+.addressSkeletonItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.addressSkeletonInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.addressSkeletonDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+}
+
+.addressSkeletonActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .actions {
     display: flex;
     align-items: center;
