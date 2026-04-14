@@ -21,36 +21,35 @@ export const OrderTrackingSectionSkeleton = () => {
                 <Skeleton width={180} height={28} borderRadius={8} />
             </Stack>
 
-            <Stack gap={16} direction="row" className={styles.skeletonTimelineGrid}>
-                <Stack className={styles.skeletonTimelineRow}>
-                    <Skeleton width="100%" height={8} shape="circle" />
-                    <Stack direction="row" align="center" gap={8}>
-                        <Skeleton width={20} height={20} shape="circle" />
-                        <Skeleton width="90%" height={20} borderRadius={8} />
-                    </Stack>
-                </Stack>
-                <Stack className={styles.skeletonTimelineRow}>
-                    <Skeleton width="100%" height={8} shape="circle" />
-                    <Stack direction="row" align="center" gap={8}>
-                        <Skeleton width={20} height={20} shape="circle" />
-                        <Skeleton width="90%" height={20} borderRadius={8} />
-                    </Stack>
-                </Stack>
-                <Stack className={styles.skeletonTimelineRow}>
-                    <Skeleton width="100%" height={8} shape="circle" />
-                    <Stack direction="row" align="center" gap={8}>
-                        <Skeleton width={20} height={20} shape="circle" />
-                        <Skeleton width="90%" height={20} borderRadius={8} />
-                    </Stack>
-                </Stack>
-                <Stack className={styles.skeletonTimelineRow}>
-                    <Skeleton width="100%" height={8} shape="circle" />
-                    <Stack direction="row" align="center" gap={8}>
-                        <Skeleton width={20} height={20} shape="circle" />
-                        <Skeleton width="90%" height={20} borderRadius={8} />
-                    </Stack>
-                </Stack>
-            </Stack>
+            <div className={styles.skeletonTimeline}>
+                <div className={styles.skeletonTimelineTrack} aria-hidden>
+                    <Skeleton width="100%" height={4} borderRadius={999} />
+                    <div className={styles.skeletonTimelineMarkers}>
+                        <Skeleton width={18} height={18} shape="circle" />
+                        <Skeleton width={18} height={18} shape="circle" />
+                        <Skeleton width={18} height={18} shape="circle" />
+                        <Skeleton width={18} height={18} shape="circle" />
+                    </div>
+                </div>
+
+                <div className={styles.skeletonTimelineLabels}>
+                    <div className={styles.skeletonTimelineLabelCell}>
+                        <Skeleton width={96} height={20} borderRadius={8} />
+                    </div>
+                    <span aria-hidden />
+                    <div className={styles.skeletonTimelineLabelCell}>
+                        <Skeleton width={88} height={20} borderRadius={8} />
+                    </div>
+                    <span aria-hidden />
+                    <div className={styles.skeletonTimelineLabelCell}>
+                        <Skeleton width={72} height={20} borderRadius={8} />
+                    </div>
+                    <span aria-hidden />
+                    <div className={styles.skeletonTimelineLabelCell}>
+                        <Skeleton width={80} height={20} borderRadius={8} />
+                    </div>
+                </div>
+            </div>
         </Stack>
     );
 };

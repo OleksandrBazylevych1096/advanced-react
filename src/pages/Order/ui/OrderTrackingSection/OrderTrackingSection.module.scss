@@ -77,15 +77,65 @@
     stroke: var(--primary-color-dark);
 }
 
-.skeletonTimelineGrid {
+.skeletonTimeline {
     width: 100%;
-    gap: 16px;
+    position: relative;
+    padding-top: 18px;
 }
 
-.skeletonTimelineRow {
-    flex: 1 1 0;
+.skeletonTimelineActiveMarker {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.skeletonTimelineTrack {
+    position: relative;
+}
+
+.skeletonTimelineMarkers {
+    position: absolute;
+    inset: 50% 0 auto;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.skeletonTimelineLabels {
+    display: grid;
+    grid-template-columns: 18px 1fr 18px 1fr 18px 1fr 18px;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.skeletonTimelineLabelCell {
     min-width: 0;
-    gap: 10px;
+}
+
+.skeletonTimelineLabelCell:first-child {
+    grid-column: 1;
+    justify-self: start;
+}
+
+.skeletonTimelineLabelCell:nth-child(3),
+.skeletonTimelineLabelCell:nth-child(5) {
+    justify-self: center;
+}
+
+.skeletonTimelineLabelCell:nth-child(3) {
+    grid-column: 3;
+}
+
+.skeletonTimelineLabelCell:nth-child(5) {
+    grid-column: 5;
+    justify-self: center;
+}
+
+.skeletonTimelineLabelCell:last-child {
+    grid-column: 7;
+    justify-self: end;
 }
 
 @media (width <= 980px) {
@@ -98,11 +148,7 @@
         --status-icon-circle-size: 56px;
     }
 
-    .skeletonTimelineGrid {
-        flex-wrap: wrap;
-    }
-
-    .skeletonTimelineRow {
-        min-width: calc(50% - 8px);
+    .skeletonTimelineLabels {
+        gap: 8px;
     }
 }

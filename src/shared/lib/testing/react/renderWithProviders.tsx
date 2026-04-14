@@ -6,7 +6,7 @@ import {MemoryRouter, Route, Routes} from "react-router";
 
 import {StoreProvider} from "@/app/providers/StoreProvider/StoreProvider";
 
-import {i18nForTests} from "@/shared/config/test";
+import i18nForTests from "@/shared/config/i18n/i18nForTests";
 import type {DeepPartial} from "@/shared/lib/state/redux/types";
 
 interface RenderWithProvidersOptions {
