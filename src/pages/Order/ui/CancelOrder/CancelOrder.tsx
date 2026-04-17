@@ -21,12 +21,18 @@ export const CancelOrder = ({orderId}: CancelOrderProps) => {
     return (
         <Modal isOpen={isCancelOrderModalOpen} onClose={closeCancelOrderModal}>
             <Modal.Trigger asChild>
-                <Button type="button" theme="outline" size="lg" onClick={openCancelOrderModal}>
+                <Button
+                    type="button"
+                    theme="outline"
+                    size="lg"
+                    onClick={openCancelOrderModal}
+                    data-testid="order-cancel-trigger"
+                >
                     {t("order.cancelOrder.trigger")}
                 </Button>
             </Modal.Trigger>
 
-            <Modal.Content>
+            <Modal.Content data-testid="order-cancel-modal">
                 <Modal.Header>{t("order.cancelOrder.modalTitle")}</Modal.Header>
                 <Modal.Body>{t("order.cancelOrder.modalDescription")}</Modal.Body>
                 <Modal.Footer>
@@ -36,6 +42,7 @@ export const CancelOrder = ({orderId}: CancelOrderProps) => {
                             theme="outline"
                             onClick={closeCancelOrderModal}
                             disabled={isCancellingOrder}
+                            data-testid="order-cancel-keep-btn"
                         >
                             {t("order.cancelOrder.keepOrder")}
                         </Button>
@@ -44,6 +51,7 @@ export const CancelOrder = ({orderId}: CancelOrderProps) => {
                             onClick={confirmOrderCancellation}
                             isLoading={isCancellingOrder}
                             disabled={isCancellingOrder}
+                            data-testid="order-cancel-confirm-btn"
                         >
                             {t("order.cancelOrder.confirmCancel")}
                         </Button>

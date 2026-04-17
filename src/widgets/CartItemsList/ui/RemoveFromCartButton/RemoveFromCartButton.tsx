@@ -26,6 +26,7 @@ export const RemoveFromCartButton = ({
             onClick={() => removeItem(productId)}
             className={className}
             aria-label={ariaLabel}
+            data-testid={`cart-item-${productId}-remove`}
         >
             <AppIcon Icon={DeleteIcon} size={16} />
         </Button>

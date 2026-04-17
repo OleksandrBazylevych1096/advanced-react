@@ -13,6 +13,8 @@ dist-ssr
 *.local
 
 coverage
+playwright-report
+test-results
 AGENTS.md
 .ai
 .aiassistant

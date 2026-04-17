@@ -19,7 +19,7 @@ const LoginPage = () => {
 
     return (
         <AppPage className={styles.wrapper}>
-            <Stack gap={16}>
+            <Stack gap={16} data-testid="login-page">
                 <Typography as="h1" variant="display" weight="semibold">
                     {t("login.signIn")}
                 </Typography>

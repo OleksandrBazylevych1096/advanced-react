@@ -51,7 +51,12 @@ export const CartPreview = () => {
         <Dropdown className={styles.headerCart}>
             <Dropdown.Trigger className={styles.cartTrigger}>
                 <Stack className={styles.trigger} direction="row" align="center" gap={6}>
-                    <Stack className={styles.cartIcon} align="center" justify="center">
+                    <Stack
+                        className={styles.cartIcon}
+                        align="center"
+                        justify="center"
+                        data-testid="cart-preview-trigger"
+                    >
                         <AppIcon Icon={ShoppingCartIcon} size={22} />
                         {itemCount > 0 && (
                             <span className={cn(styles.badge, {[styles.error]: hasIssues})}>
@@ -142,6 +147,7 @@ export const CartPreview = () => {
                                         theme="primary"
                                         size="md"
                                         className={styles.viewCartBtn}
+                                        data-testid="cart-preview-view-cart"
                                     >
                                         <AppIcon Icon={ShoppingCartIcon} size={16} />
                                         View Cart

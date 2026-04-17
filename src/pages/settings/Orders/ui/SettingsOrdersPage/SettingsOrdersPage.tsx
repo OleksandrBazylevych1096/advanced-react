@@ -26,7 +26,7 @@ const SettingsOrdersPage = () => {
     };
 
     return (
-        <Stack className={styles.page} gap={20}>
+        <Stack className={styles.page} gap={20} data-testid="settings-orders-page">
             <Typography as="h2" variant="heading" weight="semibold">
                 {t("settings.pages.orders.title")}
             </Typography>
@@ -34,7 +34,11 @@ const SettingsOrdersPage = () => {
             <Tabs defaultValue={SettingsOrdersStatusFilter.ALL} onChange={handleFilterChange}>
                 <Tabs.List className={styles.filters}>
                     {orderFilterTabs.map((tab) => (
-                        <Tabs.Trigger key={tab.value} value={tab.value}>
+                        <Tabs.Trigger
+                            key={tab.value}
+                            value={tab.value}
+                            data-testid={`settings-orders-filter-${tab.value.toLowerCase()}`}
+                        >
                             {t(tab.labelKey)}
                         </Tabs.Trigger>
                     ))}

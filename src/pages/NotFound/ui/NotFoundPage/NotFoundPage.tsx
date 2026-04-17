@@ -25,7 +25,7 @@ const NotFoundPage = () => {
     };
 
     return (
-        <AppPage className={styles.wrapper}>
+        <AppPage className={styles.wrapper} data-testid="not-found-page">
             <Stack className={styles.content} gap={16}>
                 <NotFoundIcon className={styles.icon} />
                 <Typography as="h3" variant="display" tone="primary" weight="bold">

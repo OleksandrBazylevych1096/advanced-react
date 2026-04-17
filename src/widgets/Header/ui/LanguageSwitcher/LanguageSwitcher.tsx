@@ -15,7 +15,12 @@ export const LanguageSwitcher = () => {
     };
 
     return (
-        <Button onClick={toggleLanguage} theme="ghost">
+        <Button
+            onClick={toggleLanguage}
+            theme="ghost"
+            data-testid="language-switcher"
+            data-current-language={currentLanguage}
+        >
             <AppIcon Icon={languageIconList[currentLanguage]} />
         </Button>
     );

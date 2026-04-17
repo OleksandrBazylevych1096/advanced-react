@@ -46,7 +46,7 @@ export const OrderStatusBadge = ({status}: OrderStatusBadgeProps) => {
     const badgeView = getOrderStatusBadgeView(status);
 
     return (
-        <Badge tone={badgeView.tone} size="lg">
+        <Badge tone={badgeView.tone} size="lg" data-testid={`order-status-badge-${status.toLowerCase()}`}>
             <Typography as="span" variant="bodySm" weight="medium" tone={badgeView.tone}>
                 {t(badgeView.labelKey)}
             </Typography>

@@ -82,6 +82,7 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
                     className={styles.checkoutBtn}
                     onClick={proceedToCheckout}
                     disabled={hasIssues || isValidating}
+                    data-testid="cart-proceed-to-checkout"
                 >
                     <AppIcon Icon={ShoppingCartIcon} size={18} />
                     <Typography>{t("cart.checkout")}</Typography>

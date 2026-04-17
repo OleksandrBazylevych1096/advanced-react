@@ -53,7 +53,12 @@ const CheckoutPage = () => {
     if (isError || !summary) {
         return (
             <Stack className={styles.centerState} align="center" justify="center" gap={8}>
-                <Typography tone="danger" variant="heading" weight="bold">
+                <Typography
+                    tone="danger"
+                    variant="heading"
+                    weight="bold"
+                    data-testid="checkout-summary-error"
+                >
                     {t("checkoutMainSection.failedToLoadSummary")}
                 </Typography>
             </Stack>
@@ -62,7 +67,7 @@ const CheckoutPage = () => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <Stack as="section" className={styles.layout} gap={24}>
+            <Stack as="section" className={styles.layout} gap={24} data-testid="checkout-page">
                 <Stack className={styles.mainColumn} gap={24}>
                     <Stack direction="row" align="center" gap={12}>
                         <Button

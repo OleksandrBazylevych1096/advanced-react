@@ -51,6 +51,7 @@ export const CartQuantityStepper = ({
                 onClick={decrementQuantity}
                 disabled={quantity <= 1}
                 aria-label="Decrease quantity"
+                data-testid={`cart-item-${productId}-decrease`}
             >
                 -
             </Button>
@@ -66,6 +67,7 @@ export const CartQuantityStepper = ({
                 onClick={incrementQuantity}
                 disabled={quantity >= maxQuantity}
                 aria-label="Increase quantity"
+                data-testid={`cart-item-${productId}-increase`}
             >
                 +
             </Button>

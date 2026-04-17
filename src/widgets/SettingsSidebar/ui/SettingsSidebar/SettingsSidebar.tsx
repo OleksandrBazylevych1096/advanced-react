@@ -33,12 +33,13 @@ export const SettingsSidebar = () => {
     const getLocalizedPath = useLocalizedRoutePath();
 
     return (
-        <Stack as="aside" gap={4} className={styles.sidebar}>
+        <Stack as="aside" gap={4} className={styles.sidebar} data-testid="settings-sidebar">
             {settingsMenuConfig.map((item) => (
                 <NavLink
                     key={item.route}
                     to={getLocalizedPath(routePaths[item.route])}
                     className={({isActive}) => cn(styles.link, {[styles.linkActive]: isActive})}
+                    data-testid={`settings-sidebar-link-${item.route}`}
                 >
                     <Typography as="span" weight="medium" className={styles.linkText}>
                         {t(item.labelKey)}

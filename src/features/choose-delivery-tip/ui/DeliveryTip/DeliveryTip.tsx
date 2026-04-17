@@ -29,6 +29,7 @@ export const DeliveryTip = () => {
                         theme={amount === preset ? "primary" : "tertiary"}
                         size="sm"
                         onClick={() => selectPresetTip(preset)}
+                        data-testid={`delivery-tip-preset-${preset}`}
                     >
                         {formatCurrency(currency, i18n.language, preset)}
                     </Button>
@@ -38,6 +39,7 @@ export const DeliveryTip = () => {
                     theme={shouldShowCustomInput ? "primary" : "tertiary"}
                     size="sm"
                     onClick={selectCustomTip}
+                    data-testid="delivery-tip-custom-trigger"
                 >
                     {t("deliveryTip.other")}
                 </Button>
@@ -52,6 +54,7 @@ export const DeliveryTip = () => {
                     onChange={setCustomTipValue}
                     placeholder={t("deliveryTip.customPlaceholder")}
                     fullWidth
+                    data-testid="delivery-tip-custom-input"
                 />
             )}
         </Stack>

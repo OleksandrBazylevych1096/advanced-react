@@ -27,13 +27,19 @@ export const Coupon = () => {
             <Modal isOpen={isModalOpen} onClose={closeModal}>
                 {!code && (
                     <Modal.Trigger asChild>
-                        <Button type="button" theme="tertiary" size="sm" onClick={openModal}>
+                        <Button
+                            type="button"
+                            theme="tertiary"
+                            size="sm"
+                            onClick={openModal}
+                            data-testid="coupon-open-modal"
+                        >
                             {t("coupon.add")}
                         </Button>
                     </Modal.Trigger>
                 )}
 
-                <Modal.Content className={styles.modalContent}>
+                <Modal.Content className={styles.modalContent} data-testid="coupon-modal">
                     <Modal.Header>
                         <Typography as="h4" variant="heading" weight="semibold">
                             {t("coupon.add")}
@@ -47,12 +53,19 @@ export const Coupon = () => {
                                 placeholder={t("coupon.enterCode")}
                                 errorText={validationMessage || ""}
                                 fullWidth
+                                data-testid="coupon-input"
                             />
                         </Stack>
                     </Modal.Body>
                     <Modal.Footer className={styles.modalFooter}>
                         <Stack direction="row" justify="flex-end" gap={8}>
-                            <Button type="button" theme="tertiary" size="sm" onClick={closeModal}>
+                            <Button
+                                type="button"
+                                theme="tertiary"
+                                size="sm"
+                                onClick={closeModal}
+                                data-testid="coupon-cancel-btn"
+                            >
                                 {t("coupon.cancel")}
                             </Button>
                             <Button
@@ -61,6 +74,7 @@ export const Coupon = () => {
                                 size="sm"
                                 onClick={applyCoupon}
                                 isLoading={isApplying && isValidationLoading}
+                                data-testid="coupon-apply-btn"
                             >
                                 {t("coupon.apply")}
                             </Button>
@@ -70,7 +84,13 @@ export const Coupon = () => {
             </Modal>
 
             {code && (
-                <Stack className={styles.badge} direction="row" align="center" gap={8}>
+                <Stack
+                    className={styles.badge}
+                    direction="row"
+                    align="center"
+                    gap={8}
+                    data-testid="coupon-badge"
+                >
                     <Typography as="span" variant="body" weight="medium">
                         {code}
                     </Typography>
@@ -81,6 +101,7 @@ export const Coupon = () => {
                         className={styles.removeBadgeButton}
                         onClick={removeCoupon}
                         aria-label={t("coupon.removeAriaLabel")}
+                        data-testid="coupon-remove-btn"
                     >
                         <AppIcon className={styles.icon} Icon={CloseIcon} />
                     </Button>

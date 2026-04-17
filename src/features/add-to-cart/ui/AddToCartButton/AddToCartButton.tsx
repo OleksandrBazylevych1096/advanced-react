@@ -45,6 +45,7 @@ export const AddToCartButton = ({product, className, compact = false}: AddToCart
                 form="circle"
                 size="md"
                 className={className}
+                data-testid={`add-to-cart-${product.id}`}
             >
                 {pendingCount > 0 ? (
                     <span className={styles.pendingText}>+{pendingCount}</span>
@@ -56,7 +57,14 @@ export const AddToCartButton = ({product, className, compact = false}: AddToCart
     }
 
     return (
-        <Button fullWidth size="lg" onClick={addItem} disabled={disabled} className={className}>
+        <Button
+            fullWidth
+            size="lg"
+            onClick={addItem}
+            disabled={disabled}
+            className={className}
+            data-testid={`add-to-cart-${product.id}`}
+        >
             <AppIcon Icon={ShoppingCartIcon} size={16} />
             <span className={styles.text}>{buttonText}</span>
 

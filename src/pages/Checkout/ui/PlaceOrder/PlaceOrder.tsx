@@ -39,10 +39,15 @@ export const PlaceOrder = ({summary, deliverySelection, tip, couponCode}: PlaceO
                 onClick={proceedToStripeCheckout}
                 fullWidth
                 disabled={!canProceedToStripe || isPlacingOrder}
+                data-testid="checkout-place-order"
             >
                 {isPlacingOrder ? t("preparingPayment") : t("proceedToStripe")}
             </Button>
-            {paymentSessionError && <Typography tone="danger">{paymentSessionError}</Typography>}
+            {paymentSessionError && (
+                <Typography tone="danger" data-testid="checkout-payment-session-error">
+                    {paymentSessionError}
+                </Typography>
+            )}
         </Stack>
     );
 };

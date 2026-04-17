@@ -234,7 +234,14 @@ export const Input = (props: InputProps) => {
 
                 {isLoading && <Spinner size="sm" theme="primary" />}
             </div>
-            {errorText && <div className={styles.errorText}>{errorText}</div>}
+            {errorText && (
+                <div
+                    className={styles.errorText}
+                    data-testid={dataTestId ? `${dataTestId}-error` : undefined}
+                >
+                    {errorText}
+                </div>
+            )}
         </div>
     );
 };

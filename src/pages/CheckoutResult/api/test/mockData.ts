@@ -1,4 +1,8 @@
-import {CheckoutSessionStatus, OrderStatus, PaymentStatus} from "@/entities/order";
+import {
+    CheckoutSessionStatus,
+    OrderStatus,
+    PaymentStatus,
+} from "@/entities/order/model/types/order";
 
 import type {CheckoutSessionDetails} from "../../model/types/checkoutResultTypes";
 

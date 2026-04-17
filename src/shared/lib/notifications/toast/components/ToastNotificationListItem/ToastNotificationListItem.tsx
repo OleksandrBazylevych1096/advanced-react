@@ -44,6 +44,7 @@ export const ToastNotificationListItem = (props: ToastNotificationListItemProps)
             direction="row"
             align="flex-start"
             gap={12}
+            data-testid={`toast-notification-${notification.type}`}
         >
             <AppIcon Icon={Icon} className={styles.icon} size={20} />
             <div className={styles.content}>

@@ -19,6 +19,7 @@ export const ClearCartButton = () => {
             onClick={clearCart}
             isLoading={isClearing}
             className={styles.clearBtn}
+            data-testid="cart-clear-button"
         >
             {t("cart.clear")}
         </Button>

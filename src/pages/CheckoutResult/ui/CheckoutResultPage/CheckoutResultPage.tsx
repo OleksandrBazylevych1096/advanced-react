@@ -38,7 +38,9 @@ const CheckoutResultPage = () => {
     if (!sessionId) {
         return (
             <Container>
-                <Typography tone="danger">{t("result.missingSessionId")}</Typography>
+                <Typography tone="danger" data-testid="checkout-result-missing-session">
+                    {t("result.missingSessionId")}
+                </Typography>
             </Container>
         );
     }
@@ -70,12 +72,22 @@ const CheckoutResultPage = () => {
                 )}
 
                 {!isPolling && (paymentStatus === "FAILED" || isPaymentDeclined) && (
-                    <Typography variant="heading" tone="danger" weight="bold">
+                    <Typography
+                        variant="heading"
+                        tone="danger"
+                        weight="bold"
+                        data-testid="checkout-result-payment-failed"
+                    >
                         {t("result.failed")}
                     </Typography>
                 )}
                 {!isPolling && isSystemError && (
-                    <Typography variant="heading" tone="danger" weight="bold">
+                    <Typography
+                        variant="heading"
+                        tone="danger"
+                        weight="bold"
+                        data-testid="checkout-result-system-error"
+                    >
                         {t("result.systemError")}
                     </Typography>
                 )}
@@ -86,6 +98,7 @@ const CheckoutResultPage = () => {
                     size="md"
                     onClick={goToOrder}
                     disabled={!orderDetails?.id}
+                    data-testid="checkout-result-track-order"
                 >
                     {t("result.trackOrder")}
                 </Button>

@@ -55,7 +55,7 @@ const SettingsNotificationsPage = () => {
     };
 
     return (
-        <Stack className={styles.page} gap={16}>
+        <Stack className={styles.page} gap={16} data-testid="settings-notifications-page">
             <Typography as="h2" variant="heading" weight="semibold">
                 {t("settings.pages.notifications.title")}
             </Typography>

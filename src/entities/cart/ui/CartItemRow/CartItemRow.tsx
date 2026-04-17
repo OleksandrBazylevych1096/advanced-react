@@ -29,7 +29,11 @@ export const CartItemRow = (props: CartItemRowProps) => {
     const lineTotal = product.price * quantity;
 
     return (
-        <div className={styles.row} aria-invalid={hasValidationIssues}>
+        <div
+            className={styles.row}
+            aria-invalid={hasValidationIssues}
+            data-testid={`cart-item-${product.id}`}
+        >
             <div className={styles.imageWrapper}>
                 <AppImage
                     src={mainImage?.url}
