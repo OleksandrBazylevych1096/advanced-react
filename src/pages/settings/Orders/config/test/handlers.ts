@@ -1,13 +1,9 @@
 import {http, HttpResponse} from "msw";
 
+import {API_URL} from "@/shared/config";
 import {createHandlers, extendHandlers} from "@/shared/lib/testing";
 
-import {API_URL} from "@/shared/config";
-
-import {
-    mockEmptySettingsOrdersListResponse,
-    mockSettingsOrdersListResponse,
-} from "./mockData";
+import {mockEmptySettingsOrdersListResponse, mockSettingsOrdersListResponse} from "./mockData";
 
 const getMyOrdersBase = createHandlers({
     endpoint: `${API_URL}/orders/my-orders`,

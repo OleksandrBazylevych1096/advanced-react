@@ -3,4 +3,5 @@ export {
     mockCheckoutSummaryWithCoupon,
     mockOrderDetails,
     mockPlaceOrderResponse,
-} from "./api/test/mockData";
+} from "./config/test/mockData";
+export {placeOrderHandlers} from "./config/test/handlers";

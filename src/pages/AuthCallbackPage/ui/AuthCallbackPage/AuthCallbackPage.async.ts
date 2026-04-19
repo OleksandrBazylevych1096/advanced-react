@@ -1,4 +1,3 @@
 import {lazy} from "react";
 
-export const AuthCallbackPageAsync = lazy(() => import("./AuthCallbackPage")
-);
+export const AuthCallbackPageAsync = lazy(() => import("./AuthCallbackPage"));

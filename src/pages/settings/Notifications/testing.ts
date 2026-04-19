@@ -1,4 +1,5 @@
 export {
     mockUpdateEmailNotificationsDisabledResponse,
     mockUpdateEmailNotificationsEnabledResponse,
-} from "./api/test/mockData";
+} from "./config/test/mockData";
+export {settingsNotificationsHandlers} from "./config/test/handlers";

@@ -9,7 +9,10 @@ const assertLocalizedLayout = async (page: Page): Promise<void> => {
 };
 
 const waitForGermanRouteUi = async (page: Page): Promise<void> => {
-    await expect(page.getByTestId("language-switcher")).toHaveAttribute("data-current-language", "de");
+    await expect(page.getByTestId("language-switcher")).toHaveAttribute(
+        "data-current-language",
+        "de",
+    );
 };
 
 test.describe("localized slug switching", () => {

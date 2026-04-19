@@ -11,7 +11,7 @@ import {ToastProvider} from "@/app/providers/toast/ToastProvider.tsx";
 import {i18n} from "@/shared/config";
 import "@/app/styles/index.scss";
 
-void i18n
+void i18n;
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
@@ -19,8 +19,8 @@ createRoot(document.getElementById("root")!).render(
             <BrowserRouter>
                 <ThemeProvider>
                     <ErrorBoundary>
-                        <ToastProvider/>
-                        <App/>
+                        <ToastProvider />
+                        <App />
                     </ErrorBoundary>
                 </ThemeProvider>
             </BrowserRouter>

@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {userAuthHandlers} from "@/entities/user/api/test/handlers";
+import {userAuthHandlers} from "@/entities/user/testing";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

@@ -5,13 +5,9 @@ import {
     categoryNavigationHandlers,
     topLevelCategoriesExtendedHandlers,
     topLevelCategoriesHandlers,
-} from "@/widgets/CategoryNavigation/api/test/handlers";
-import {
-    mockCategoryNavigationItems,
-    mockElectronicsSubcategories,
-} from "@/widgets/CategoryNavigation/api/test/mockData.ts";
+    mockCategoryNavigation,
+} from "@/widgets/CategoryNavigation/testing";
 
-import {AppRoutes, routePaths} from "@/shared/config";
 import {createHandlersScenario} from "@/shared/lib/testing";
 
 const meta: Meta<typeof CategoryNavigation> = {
@@ -37,18 +33,17 @@ export const Default: Story = {
 
 export const DefaultActive: Story = {
     parameters: {
-        route: `/en/category/${mockCategoryNavigationItems[0].slug}`,
-        routePath: routePaths[AppRoutes.CATEGORY],
         msw: {
             handlers: createHandlersScenario("default", categoryNavigationHandlersMap),
         },
+    },
+    args: {
+        slug: mockCategoryNavigation.topLevel.items[0].slug,
     },
 };
 
 export const Subcategories: Story = {
     parameters: {
-        route: `/en/category/${mockCategoryNavigationItems[0].slug}`,
-        routePath: routePaths[AppRoutes.CATEGORY],
         msw: {
             handlers: createHandlersScenario("default", categoryNavigationHandlersMap, {
                 categoryNav: categoryNavigationHandlers.subcategories,
@@ -59,13 +54,14 @@ export const Subcategories: Story = {
 
 export const SubcategoriesActive: Story = {
     parameters: {
-        route: `/en/category/${mockElectronicsSubcategories[0].slug}`,
-        routePath: routePaths[AppRoutes.CATEGORY],
         msw: {
             handlers: createHandlersScenario("default", categoryNavigationHandlersMap, {
                 categoryNav: categoryNavigationHandlers.subcategories,
             }),
         },
+    },
+    args: {
+        slug: mockCategoryNavigation.withSubcategories.items[0].slug,
     },
 };
 

@@ -1,12 +1,12 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {placeOrderHandlers} from "@/pages/Checkout/api/test/handlers";
+import {placeOrderHandlers} from "@/pages/Checkout/testing";
 
-import {applyCouponHandlers} from "@/features/apply-coupon/api/test/handlers";
-import {chooseDeliveryDateHandlers} from "@/features/choose-delivery-date/api/test/handlers";
+import {applyCouponHandlers} from "@/features/apply-coupon/testing";
+import {chooseDeliveryDateHandlers} from "@/features/choose-delivery-date/testing";
 
-import {shippingAddressHandlers} from "@/entities/shipping-address/api/test/handlers";
-import {mockAuthSession} from "@/entities/user/api/test/mockData";
+import {shippingAddressHandlers} from "@/entities/shipping-address/testing";
+import {mockAuthSession} from "@/entities/user/testing";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

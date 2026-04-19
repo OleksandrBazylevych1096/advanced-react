@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {mockCart} from "@/entities/cart/api/test/mockData";
+import {mockCart} from "@/entities/cart/testing";
 
 import {CartItemRow} from "./CartItemRow";
 

@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {bestSellingProductsHandlers} from "@/widgets/BestSellingProducts/api/test/handlers";
+import {bestSellingProductsHandlers} from "@/widgets/BestSellingProducts/testing";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

@@ -2,7 +2,7 @@ import {describe, expect, test, vi} from "vitest";
 
 import {extractApiErrorMessage} from "./extractApiErrorMessage";
 
-vi.mock("@/shared/config/i18n", () => ({
+vi.mock("@/shared/config", () => ({
     i18n: {
         t: (key: string) => {
             const dictionary: Record<string, string> = {

@@ -2,4 +2,5 @@ export {
     mockCheckoutSessionFailed,
     mockCheckoutSessionPaid,
     mockCheckoutSessionPending,
-} from "./api/test/mockData";
+} from "./config/test/mockData";
+export {checkoutResultHandlers} from "./config/test/handlers";

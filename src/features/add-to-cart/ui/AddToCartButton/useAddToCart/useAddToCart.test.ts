@@ -2,8 +2,8 @@ import {act, renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
 import type {Product} from "@/entities/product";
-import {createMockProduct} from "@/entities/product/api/test/mockData.ts";
-import {mockAuthSession} from "@/entities/user/api/test/mockData.ts";
+import {createMockProduct} from "@/entities/product/testing";
+import {mockAuthSession} from "@/entities/user/testing";
 
 import {useAddToCart} from "./useAddToCart.ts";
 

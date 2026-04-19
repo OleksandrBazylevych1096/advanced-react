@@ -8,4 +8,5 @@ export {
     mockProductDescriptions,
     mockProductNames,
     mockProducts,
-} from "./api/test/mockData";
+} from "./config/test/mockData";
+export {productsHandlers} from "./config/test/handlers";

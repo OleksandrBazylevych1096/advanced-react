@@ -23,7 +23,10 @@ export class CheckoutPage {
             this.page.waitForResponse((response) => {
                 const url = new URL(response.url());
 
-                return url.pathname === "/checkout/payment-session" && response.request().method() === "POST";
+                return (
+                    url.pathname === "/checkout/payment-session" &&
+                    response.request().method() === "POST"
+                );
             }),
             placeOrderButton.click(),
         ]);

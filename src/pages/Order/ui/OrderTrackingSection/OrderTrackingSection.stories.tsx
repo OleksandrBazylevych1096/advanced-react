@@ -4,7 +4,7 @@ import {
     mockOrderDetailsDelivered,
     mockOrderDetailsNoDeliveryDate,
     mockOrderDetailsProcessing,
-} from "@/entities/order/api/test/mockData";
+} from "@/entities/order/testing";
 
 import {OrderTrackingSection} from "./OrderTrackingSection";
 

@@ -1,4 +1,4 @@
-import {mockCategories} from "@/entities/category/api/test/mockData.ts";
+import {mockCategories} from "@/entities/category/config/test/mockData.ts";
 
 import {API_URL} from "@/shared/config";
 import {createHandlers} from "@/shared/lib/testing";

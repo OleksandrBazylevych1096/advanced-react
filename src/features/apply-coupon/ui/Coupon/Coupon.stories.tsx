@@ -1,9 +1,9 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {applyCouponReducer} from "@/features/apply-coupon";
-import {applyCouponHandlers} from "@/features/apply-coupon/api/test/handlers";
+import {applyCouponHandlers} from "@/features/apply-coupon/testing";
 
-import {mockAuthSession} from "@/entities/user/api/test/mockData";
+import {mockAuthSession} from "@/entities/user/testing";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

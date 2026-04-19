@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {trendingProductsHandlers} from "@/pages/Home/api/trendingProductsApi/test/handlers";
 
-import {productsHandlers} from "@/entities/product/api/test/handlers";
+import {productsHandlers} from "@/entities/product/testing";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

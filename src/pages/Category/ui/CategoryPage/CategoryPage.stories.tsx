@@ -1,12 +1,12 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {categoryNavigationHandlers} from "@/widgets/CategoryNavigation/api/test/handlers";
-import {promoCarouselHandlers} from "@/widgets/PromoCarousel/api/test/handlers";
+import {categoryNavigationHandlers} from "@/widgets/CategoryNavigation/testing";
+import {promoCarouselHandlers} from "@/widgets/PromoCarousel/testing";
 
 import {productFiltersReducer} from "@/features/product-filters";
 
-import {categoryBreadcrumbsHandlers, categoryHandlers} from "@/entities/category/api/test/handlers";
-import {productsHandlers} from "@/entities/product/api/test/handlers";
+import {categoryBreadcrumbsHandlers, categoryHandlers} from "@/entities/category/testing";
+import {productsHandlers} from "@/entities/product/testing";
 
 import {AppRoutes, routePaths} from "@/shared/config";
 import {createHandlersScenario} from "@/shared/lib/testing";

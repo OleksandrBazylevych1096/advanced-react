@@ -1,13 +1,14 @@
+import {mockSettingsOrdersListResponse} from "@/pages/settings/Orders/testing";
+
 import {mockDeliveryDates} from "@/features/choose-delivery-date/testing";
 
 import {mockCategories} from "@/entities/category/testing";
 import {mockFacets, mockProducts} from "@/entities/product/testing";
 import {mockSingleAddress} from "@/entities/shipping-address/testing";
 import {mockAuthSession} from "@/entities/user/testing";
-import {mockSettingsOrdersListResponse} from "@/pages/settings/Orders/testing";
 
-import {TEST_COUNTRY} from "./constants";
 import {cloneValue} from "./cloneValue";
+import {TEST_COUNTRY} from "./constants";
 import type {ApiScenario, ApiScenarioOptions} from "./types";
 
 const createScenarioCategories = (): ApiScenario["categories"] => {
@@ -69,7 +70,10 @@ const createAuthScenario = (
     authSession: cloneValue(mockAuthSession),
 });
 
-const createCatalogScenario = (): Pick<ApiScenario, "categories" | "products" | "productFacets"> => {
+const createCatalogScenario = (): Pick<
+    ApiScenario,
+    "categories" | "products" | "productFacets"
+> => {
     const categories = createScenarioCategories();
 
     return {
