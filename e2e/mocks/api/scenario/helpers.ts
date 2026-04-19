@@ -1,7 +1,10 @@
-import {mockInvalidCouponResponse, mockValidCouponResponse} from "@/features/apply-coupon/testing";
+import {
+    mockInvalidCouponResponse,
+    mockValidCouponResponse,
+} from "@/features/apply-coupon/config/test/mockData";
 
-import type {Cart, CartTotals} from "@/entities/cart/index.ts";
-import {mockCart} from "@/entities/cart/testing";
+import {mockCart} from "@/entities/cart/config/test/mockData";
+import type {Cart, CartTotals} from "@/entities/cart/model/types/CartSchema";
 
 import {DEFAULT_TIP_AMOUNT} from "./constants";
 import type {CheckoutOptions} from "./types";

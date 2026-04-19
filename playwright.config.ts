@@ -5,6 +5,7 @@ const PORT = 4173;
 export default defineConfig({
     testDir: "./e2e/specs",
     fullyParallel: false,
+    workers: 1,
     reporter: [["list"], ["html", {open: "never"}]],
     timeout: 30_000,
     use: {

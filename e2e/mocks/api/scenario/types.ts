@@ -6,12 +6,12 @@ import type {
     DeliverySelection,
 } from "@/features/choose-delivery-date/model/types/availableDeliveryDateTypes.ts";
 
-import type {CartItem} from "@/entities/cart/index.ts";
+import type {CartItem} from "@/entities/cart/model/types/CartSchema";
 import type {Category} from "@/entities/category/model/types/Category.ts";
-import type {OrderDetails, OrderStatusType} from "@/entities/order/testing";
-import type {Product, ProductFacets} from "@/entities/product/index.ts";
-import type {ShippingAddress} from "@/entities/shipping-address/index.ts";
-import type {AuthSessionResponse} from "@/entities/user/index.ts";
+import type {OrderDetails, OrderStatusType} from "@/entities/order/model/types/order";
+import type {Product, ProductFacets} from "@/entities/product/model/types/Product";
+import type {ShippingAddress} from "@/entities/shipping-address/model/types/types";
+import type {AuthSessionResponse} from "@/entities/user/model/types/AuthSession";
 
 export interface ApiScenario {
     authState: "authenticated" | "guest";

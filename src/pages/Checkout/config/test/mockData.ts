@@ -1,5 +1,9 @@
 import {createMockCartItem} from "@/entities/cart/@x/order";
-import {CheckoutSessionStatus, OrderStatus, PaymentStatus} from "@/entities/order";
+import {
+    CheckoutSessionStatus,
+    OrderStatus,
+    PaymentStatus,
+} from "@/entities/order/model/types/order";
 
 import type {CheckoutSummary, PlaceOrderResponse} from "../../model/types/checkoutTypes";
 

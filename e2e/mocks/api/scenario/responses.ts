@@ -1,14 +1,15 @@
+import {mockCheckoutSummary, mockPlaceOrderResponse} from "@/pages/Checkout/config/test/mockData";
 import type {
     CheckoutSummary,
     PlaceOrderResponse,
 } from "@/pages/Checkout/model/types/checkoutTypes.ts";
-import {mockCheckoutSummary, mockPlaceOrderResponse} from "@/pages/Checkout/testing";
-import {mockCheckoutSessionPaid} from "@/pages/CheckoutResult/testing";
+import {mockCheckoutSessionPaid} from "@/pages/CheckoutResult/config/test/mockData";
 
-import type {Cart} from "@/entities/cart/index.ts";
-import {mockCartValidation} from "@/entities/cart/testing";
-import {mockOrderDetailsProcessing, OrderStatus, type OrderDetails} from "@/entities/order/testing";
-import type {ProductsApiResponse} from "@/entities/product/index.ts";
+import {mockCartValidation} from "@/entities/cart/config/test/mockData";
+import type {Cart} from "@/entities/cart/model/types/CartSchema";
+import {mockOrderDetailsProcessing} from "@/entities/order/config/test/mockData";
+import {OrderStatus, type OrderDetails} from "@/entities/order/model/types/order";
+import type {ProductsApiResponse} from "@/entities/product/model/types/Product";
 
 import {cloneValue} from "./cloneValue";
 import {DEFAULT_TIP_AMOUNT} from "./constants";

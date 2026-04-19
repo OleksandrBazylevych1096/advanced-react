@@ -1,9 +1,12 @@
 import type {BrowserContext, Route} from "@playwright/test";
 
-import {mockInvalidCouponResponse, mockValidCouponResponse} from "@/features/apply-coupon/testing";
+import {
+    mockInvalidCouponResponse,
+    mockValidCouponResponse,
+} from "@/features/apply-coupon/config/test/mockData";
 
-import {OrderStatus} from "@/entities/order/testing";
-import {mockMfaChallenge} from "@/entities/user/testing";
+import {OrderStatus} from "@/entities/order/model/types/order";
+import {mockMfaChallenge} from "@/entities/user/config/test/mockData";
 
 import {
     type ApiScenario,

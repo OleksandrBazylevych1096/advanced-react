@@ -1,7 +1,11 @@
-import type {CartItem, CartTotals, CartValidationItem} from "@/entities/cart";
-import {type CheckoutSessionStatusType} from "@/entities/order";
+import type {
+    CartItem,
+    CartTotals,
+    CartValidationItem,
+} from "@/entities/cart/model/types/CartSchema";
+import type {CheckoutSessionStatusType} from "@/entities/order/model/types/order";
 
-import type {SupportedLngsType} from "@/shared/config";
+import type {SupportedLngsType} from "@/shared/config/i18n/LanguageIconList";
 
 export const PaymentMethod = {
     STRIPE: "stripe",

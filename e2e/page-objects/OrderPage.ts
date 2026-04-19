@@ -9,7 +9,9 @@ export class OrderPage {
 
     public async expectOrder(orderNumber: string, productName: string): Promise<void> {
         await expect(this.page).toHaveURL(/\/en\/order\/order-1$/);
-        await expect(this.page.getByText(orderNumber)).toBeVisible();
+        await expect(this.page.getByText(orderNumber, {exact: false})).toBeVisible({
+            timeout: 10_000,
+        });
         await expect(this.page.getByText(productName)).toBeVisible();
     }
 

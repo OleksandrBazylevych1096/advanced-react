@@ -46,6 +46,13 @@ const seedAuthenticatedUser = async (
     );
 };
 
+const seedGuestUser = async (context: BrowserContext): Promise<void> => {
+    await context.addInitScript(() => {
+        localStorage.clear();
+        sessionStorage.clear();
+    });
+};
+
 export const test = base.extend<AppOptions & AppFixtures>({
     authState: ["authenticated", {option: true}],
     loginMode: ["success", {option: true}],
@@ -78,6 +85,8 @@ export const test = base.extend<AppOptions & AppFixtures>({
 
             if (authState === "authenticated") {
                 await seedAuthenticatedUser(context, scenario);
+            } else {
+                await seedGuestUser(context);
             }
             await registerApiMocks(context, scenario);
 

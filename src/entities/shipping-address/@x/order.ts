@@ -1,3 +1,3 @@
-import type {BaseShippingAddress} from "@/entities/shipping-address";
+import type {BaseShippingAddress} from "../model/types/types";
 
 export type {BaseShippingAddress};

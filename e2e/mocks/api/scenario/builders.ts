@@ -1,11 +1,11 @@
-import {mockSettingsOrdersListResponse} from "@/pages/settings/Orders/testing";
+import {mockSettingsOrdersListResponse} from "@/pages/settings/Orders/config/test/mockData";
 
-import {mockDeliveryDates} from "@/features/choose-delivery-date/testing";
+import {mockDeliveryDates} from "@/features/choose-delivery-date/config/test/mockData";
 
-import {mockCategories} from "@/entities/category/testing";
-import {mockFacets, mockProducts} from "@/entities/product/testing";
-import {mockSingleAddress} from "@/entities/shipping-address/testing";
-import {mockAuthSession} from "@/entities/user/testing";
+import {mockCategories} from "@/entities/category/config/test/mockData";
+import {mockFacets, mockProducts} from "@/entities/product/config/test/mockData";
+import {mockSingleAddress} from "@/entities/shipping-address/config/test/mockData";
+import {mockAuthSession} from "@/entities/user/config/test/mockData";
 
 import {cloneValue} from "./cloneValue";
 import {TEST_COUNTRY} from "./constants";

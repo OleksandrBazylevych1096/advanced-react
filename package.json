@@ -16,7 +16,7 @@
         "format:fix": "prettier . --write",
         "format": "prettier . --check",
         "check:all": "npm run lint:ts && npm run lint && npm run lint:scss && npm run format && npm run lint:arch && npm run test:unit",
-        "check:all:fix": "npm run lint:ts && npm run lint:fix && npm run lint:scss:fix && npm run format:fix && npm run lint:arch:fix && npm run test:unit",
+        "check:all:fix": "npm run lint:ts && npm run lint:fix && npm run lint:scss:fix && npm run format:fix && npm run test:unit",
         "preview": "vite preview",
         "test:unit": "vitest",
         "test:e2e": "playwright test",

@@ -1,4 +1,4 @@
-import {OrderStatus, PaymentStatus, type OrderDetails} from "@/entities/order";
+import {OrderStatus, PaymentStatus, type OrderDetails} from "@/entities/order/model/types/order";
 
 import type {SettingsOrdersListResponse} from "../../model/types/settingsOrders";
 

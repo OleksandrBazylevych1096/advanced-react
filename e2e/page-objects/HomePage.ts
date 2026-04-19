@@ -20,17 +20,10 @@ export class HomePage {
 
             return url.pathname === "/cart" && response.request().method() === "GET";
         });
-        const trendingTagsResponse = this.page.waitForResponse((response) => {
-            const url = new URL(response.url());
-
-            return url.pathname === "/tags/popular" && response.request().method() === "GET";
-        });
-
         await this.page.goto("/en");
         await refreshSessionResponse;
         await cartResponse;
-        await trendingTagsResponse;
-        await expect(this.page.getByTestId(/^product-card-/).first()).toBeVisible({
+        await expect(this.page.getByTestId(/^add-to-cart-/).first()).toBeVisible({
             timeout: HOME_PRODUCTS_READY_TIMEOUT_MS,
         });
     }

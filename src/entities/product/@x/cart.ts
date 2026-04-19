@@ -1,5 +1,5 @@
 import type {Product} from "../model/types/Product";
 
-export {createMockProduct, mockProducts} from "../testing";
+export {createMockProduct, mockProducts} from "../config/test/mockData";
 
 export type {Product};

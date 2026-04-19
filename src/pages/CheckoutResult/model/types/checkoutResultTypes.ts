@@ -4,7 +4,7 @@ import {
     type OrderStatusType,
     PaymentStatus,
     type PaymentStatusType,
-} from "@/entities/order";
+} from "@/entities/order/model/types/order";
 
 export {CheckoutSessionStatus, PaymentStatus};
 export type {CheckoutSessionStatusType, PaymentStatusType};
