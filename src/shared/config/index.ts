@@ -5,7 +5,7 @@ import {
     type AuthProvidersType,
     LOCAL_STORAGE_USER_KEY,
 } from "@/shared/config/auth/auth.ts";
-import {API_URL, PROJECT_ENV, STRIPE_PUBLISHABLE_KEY} from "@/shared/config/env/consts.ts";
+import {API_URL, PROJECT_ENV} from "@/shared/config/env/consts.ts";
 import type {CurrencyType} from "@/shared/config/i18n/LanguageCurrencyList.ts";
 import {languageCurrencyList} from "@/shared/config/i18n/LanguageCurrencyList.ts";
 import {languageIconList, type SupportedLngsType} from "@/shared/config/i18n/LanguageIconList.ts";
@@ -33,7 +33,6 @@ export {
     AuthMethod,
     API_URL,
     PROJECT_ENV,
-    STRIPE_PUBLISHABLE_KEY,
     languageCurrencyList,
     THEME_DECORATOR_CONTAINER_ID,
     type CurrencyType,
