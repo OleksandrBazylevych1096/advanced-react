@@ -1,1 +1,2 @@
-export {createMockCategory, mockCategories} from "./api/test/mockData";
+export {createMockCategory, mockCategories} from "./config/test/mockData";
+export {categoryBreadcrumbsHandlers, categoryHandlers} from "./config/test/handlers";

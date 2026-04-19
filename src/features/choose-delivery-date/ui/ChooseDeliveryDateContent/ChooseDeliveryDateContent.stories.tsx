@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {mockDeliveryDates} from "../../api/test/mockData";
+import {mockDeliveryDates} from "../../testing";
 
 import {ChooseDeliveryDateContent} from "./ChooseDeliveryDateContent";
 

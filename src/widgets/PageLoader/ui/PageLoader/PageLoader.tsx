@@ -2,7 +2,6 @@ import type {ReactElement} from "react";
 import {useTranslation} from "react-i18next";
 
 import {cn} from "@/shared/lib/styling";
-
 import {Spinner} from "@/shared/ui/Spinner";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";

@@ -2,10 +2,12 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {productFiltersReducer} from "@/features/product-filters";
 
-import {categoryHandlers} from "@/entities/category/api/test/handlers.ts";
-import {mockCategories} from "@/entities/category/api/test/mockData.ts";
-import {productsHandlers} from "@/entities/product/api/test/handlers.ts";
-import {mockProductBrands, mockProductCountries} from "@/entities/product/api/test/mockData";
+import {categoryHandlers, mockCategories} from "@/entities/category/testing";
+import {
+    productsHandlers,
+    mockProductBrands,
+    mockProductCountries,
+} from "@/entities/product/testing";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

@@ -19,10 +19,7 @@ test("updates email notification preference after a successful toggle", async ({
 test.describe("notifications rollback", () => {
     test.use({notificationsUpdateFails: true});
 
-    test("restores the previous checkbox value when update fails", async ({
-        homePage,
-        page,
-    }) => {
+    test("restores the previous checkbox value when update fails", async ({homePage, page}) => {
         await homePage.goto();
         await page.goto("/en/settings/notifications");
 

@@ -2,7 +2,7 @@ import {beforeEach, describe, expect, test, vi} from "vitest";
 
 import {createStore} from "@/app/store/setup/store";
 
-import {mockGeocodeLondon} from "@/entities/shipping-address/api/test/mockData";
+import {mockGeocodeLondon} from "@/entities/shipping-address/testing";
 
 import {parseRequestUrl} from "@/shared/lib/testing/http/requestUrl";
 

@@ -10,7 +10,7 @@ import {
     geocodeHandlers,
     listAddressHandlers,
     searchHandlers,
-} from "@/entities/shipping-address/api/test/handlers";
+} from "@/entities/shipping-address/testing";
 
 import type {DeepPartial} from "@/shared/lib/state";
 import {createHandlersScenario} from "@/shared/lib/testing";

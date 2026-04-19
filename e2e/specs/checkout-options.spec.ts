@@ -93,8 +93,7 @@ test("applies a valid coupon and refreshes checkout summary", async ({
         const url = new URL(response.url());
 
         return (
-            url.pathname === "/checkout/summary" &&
-            url.searchParams.get("couponCode") === "SAVE20"
+            url.pathname === "/checkout/summary" && url.searchParams.get("couponCode") === "SAVE20"
         );
     });
 
@@ -181,7 +180,5 @@ test("updates saved delivery date and time", async ({
 
     await checkoutPage.chooseDeliverySlot("2026-03-13", "16:00");
 
-    await expect
-        .poll(() => scenario.deliverySelection.deliveryTime)
-        .toBe("16:00");
+    await expect.poll(() => scenario.deliverySelection.deliveryTime).toBe("16:00");
 });

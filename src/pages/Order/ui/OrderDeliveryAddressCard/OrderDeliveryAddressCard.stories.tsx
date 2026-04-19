@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {mockSingleAddress} from "@/entities/shipping-address/api/test/mockData";
+import {mockSingleAddress} from "@/entities/shipping-address/testing";
 
 import {OrderDeliveryAddressCard} from "./OrderDeliveryAddressCard";
 

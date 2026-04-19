@@ -1,11 +1,11 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {defaultAddressHandlers} from "@/entities/shipping-address/api/test/handlers";
-import {mockAuthSession} from "@/entities/user/api/test/mockData";
+import {defaultAddressHandlers} from "@/entities/shipping-address/testing";
+import {mockAuthSession} from "@/entities/user/testing";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 
-import {mockCheckoutSummary} from "../../api/test/mockData";
+import {mockCheckoutSummary} from "../../testing";
 
 import {PlaceOrder} from "./PlaceOrder";
 

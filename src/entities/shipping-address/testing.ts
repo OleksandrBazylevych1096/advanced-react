@@ -6,4 +6,11 @@ export {
     mockManyStreetSuggestions,
     mockSingleAddress,
     mockStreetSuggestions,
-} from "./api/test/mockData";
+} from "./config/test/mockData";
+export {
+    defaultAddressHandlers,
+    geocodeHandlers,
+    listAddressHandlers,
+    searchHandlers,
+    shippingAddressHandlers,
+} from "./config/test/handlers";

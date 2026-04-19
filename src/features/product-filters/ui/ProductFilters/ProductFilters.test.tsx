@@ -5,9 +5,8 @@ import {afterAll, afterEach, beforeAll, beforeEach, describe, expect, test, vi} 
 
 import {productFiltersReducer} from "@/features/product-filters";
 
-import {categoryHandlers} from "@/entities/category/api/test/handlers.ts";
-import {productsHandlers} from "@/entities/product/api/test/handlers.ts";
-import {mockFacets} from "@/entities/product/api/test/mockData.ts";
+import {categoryHandlers} from "@/entities/category/testing";
+import {productsHandlers, mockFacets} from "@/entities/product/testing";
 
 import type {DeepPartial} from "@/shared/lib/state";
 import {createHandlersScenario} from "@/shared/lib/testing/msw/createHandlersScenario.ts";

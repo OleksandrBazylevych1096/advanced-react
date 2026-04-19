@@ -1,12 +1,22 @@
 import type {Category} from "@/entities/category";
-import {createMockCategory, mockCategories} from "@/entities/category/api/test/mockData";
+
+const createMockCategory = (overrides?: Partial<Category>): Category => ({
+    id: "cat-1",
+    slug: "fruits",
+    name: "Fruits",
+    parentId: null,
+    slugMap: {
+        en: "fruits",
+        de: "fruits",
+    },
+    ...overrides,
+});
 
 export const mockRootCategory: Category = createMockCategory({
     id: "0",
     slug: "all",
     name: "All Categories",
     slugMap: {en: "all", de: "alle"},
-    parentId: null,
 });
 
 export const mockFruitsCategory: Category = createMockCategory({
@@ -25,7 +35,27 @@ export const mockApplesCategory: Category = createMockCategory({
     slugMap: {en: "apples", de: "apfel"},
 });
 
-export const mockCategoryNavigationItems: Category[] = mockCategories;
+export const mockCategoryNavigationItems: Category[] = [
+    mockFruitsCategory,
+    createMockCategory({
+        id: "2",
+        slug: "vegetables",
+        name: "Vegetables",
+        slugMap: {en: "vegetables", de: "gemuse"},
+    }),
+    createMockCategory({
+        id: "3",
+        slug: "dairy",
+        name: "Dairy",
+        slugMap: {en: "dairy", de: "milchprodukte"},
+    }),
+    createMockCategory({
+        id: "4",
+        slug: "bakery",
+        name: "Bakery",
+        slugMap: {en: "bakery", de: "backerei"},
+    }),
+];
 
 const subcategoryData: Category[] = [
     {
@@ -82,5 +112,3 @@ export const mockCategoryNavigation = {
         isShowingSubcategories: false,
     },
 };
-
-export const mockElectronicsSubcategories = mockFruitsSubcategories;

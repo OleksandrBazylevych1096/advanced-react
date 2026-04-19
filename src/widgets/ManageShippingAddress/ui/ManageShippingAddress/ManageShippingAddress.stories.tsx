@@ -2,8 +2,8 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {saveShippingAddressReducer} from "@/features/save-shipping-address";
 
-import {shippingAddressHandlers} from "@/entities/shipping-address/api/test/handlers";
-import {mockAuthSession} from "@/entities/user/api/test/mockData";
+import {shippingAddressHandlers} from "@/entities/shipping-address/testing";
+import {mockAuthSession} from "@/entities/user/testing";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

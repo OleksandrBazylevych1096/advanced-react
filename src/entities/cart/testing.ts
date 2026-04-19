@@ -3,4 +3,5 @@ export {
     mockCart,
     mockCartValidation,
     mockCartValidationWithIssues,
-} from "./api/test/mockData";
+} from "./config/test/mockData";
+export {cartHandlers} from "./config/test/handlers";

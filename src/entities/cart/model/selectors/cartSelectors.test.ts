@@ -1,6 +1,6 @@
 import {describe, expect, test} from "vitest";
 
-import {createMockProduct} from "@/entities/product/api/test/mockData";
+import {createMockProduct} from "@/entities/product/testing";
 
 import {
     selectGuestCartItemByProductId,

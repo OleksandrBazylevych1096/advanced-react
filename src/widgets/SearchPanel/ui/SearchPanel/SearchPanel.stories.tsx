@@ -2,11 +2,11 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {productSearchReducer, type ProductSearchSchema} from "@/features/product-search";
 
-import {productsHandlers} from "@/entities/product/api/test/handlers";
+import {productsHandlers} from "@/entities/product/testing";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 
-import {popularSearchesHandlers, searchHistoryHandlers} from "../../api/test/handlers";
+import {popularSearchesHandlers, searchHistoryHandlers} from "../../testing";
 
 import {SearchPanel} from "./SearchPanel";
 

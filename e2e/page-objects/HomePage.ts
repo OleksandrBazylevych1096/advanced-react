@@ -32,7 +32,10 @@ export class HomePage {
 
                 return url.pathname === "/cart/add" && response.request().method() === "POST";
             }),
-            this.page.getByTestId(/^add-to-cart-/).first().click(),
+            this.page
+                .getByTestId(/^add-to-cart-/)
+                .first()
+                .click(),
         ]);
     }
 

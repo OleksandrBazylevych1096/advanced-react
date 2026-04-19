@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {mockMfaChallenge} from "@/entities/user/api/test/mockData";
+import {mockMfaChallenge} from "@/entities/user/testing";
 
 import {AuthTwoFactorChallenge} from "./AuthTwoFactorChallenge";
 

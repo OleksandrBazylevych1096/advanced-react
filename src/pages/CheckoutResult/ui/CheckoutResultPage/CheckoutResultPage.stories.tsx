@@ -1,8 +1,7 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {http, HttpResponse} from "msw";
 
-import {checkoutResultHandlers} from "@/pages/CheckoutResult/api/test/handlers";
-import {mockCheckoutSessionPaid} from "@/pages/CheckoutResult/api/test/mockData";
+import {checkoutResultHandlers, mockCheckoutSessionPaid} from "@/pages/CheckoutResult/testing";
 
 import {API_URL} from "@/shared/config";
 import {createHandlersScenario} from "@/shared/lib/testing";

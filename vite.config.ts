@@ -17,6 +17,8 @@ export default defineConfig({
         globals: true,
         environment: "jsdom",
         setupFiles: ["./src/shared/config/test/setupTests.ts"],
+        include: ["src/**/*.{test,spec}.{ts,tsx}"],
+        exclude: ["e2e/**", "node_modules/**", "dist/**"],
         env: {
             VITE_API_URL: "http://localhost:3000",
         },

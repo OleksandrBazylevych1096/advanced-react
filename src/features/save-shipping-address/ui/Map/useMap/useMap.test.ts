@@ -1,7 +1,7 @@
 import {act, renderHook} from "@testing-library/react";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
-import {mockGeocodeLondon} from "@/entities/shipping-address/api/test/mockData.ts";
+import {mockGeocodeLondon} from "@/entities/shipping-address/testing";
 
 import {saveShippingAddressActions} from "../../../model/slice/saveShippingAddressSlice.ts";
 

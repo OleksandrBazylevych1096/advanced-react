@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {createMockProduct} from "@/entities/product/api/test/mockData";
+import {createMockProduct} from "@/entities/product/testing";
 
 import {ProductCard} from "./ProductCard";
 

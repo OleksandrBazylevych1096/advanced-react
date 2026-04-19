@@ -4,4 +4,5 @@ export {
     mockMfaChallenge,
     mockSetupTwoFactor,
     mockUser,
-} from "./api/test/mockData";
+} from "./config/test/mockData";
+export {userAuthHandlers} from "./config/test/handlers";

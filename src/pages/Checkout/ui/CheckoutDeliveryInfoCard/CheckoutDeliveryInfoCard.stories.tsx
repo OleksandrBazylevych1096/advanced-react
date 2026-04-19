@@ -1,9 +1,9 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {chooseDeliveryDateHandlers} from "@/features/choose-delivery-date/api/test/handlers";
+import {chooseDeliveryDateHandlers} from "@/features/choose-delivery-date/testing";
 
-import {mockSingleAddress} from "@/entities/shipping-address/api/test/mockData";
-import {mockAuthSession} from "@/entities/user/api/test/mockData";
+import {mockSingleAddress} from "@/entities/shipping-address/testing";
+import {mockAuthSession} from "@/entities/user/testing";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

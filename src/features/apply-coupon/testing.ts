@@ -1,1 +1,2 @@
-export {mockInvalidCouponResponse, mockValidCouponResponse} from "./api/test/mockData";
+export {mockInvalidCouponResponse, mockValidCouponResponse} from "./config/test/mockData";
+export {applyCouponHandlers} from "./config/test/handlers";

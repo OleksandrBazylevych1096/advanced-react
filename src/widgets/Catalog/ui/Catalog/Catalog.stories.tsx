@@ -1,8 +1,7 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {categoryHandlers} from "@/entities/category/api/test/handlers";
-import {mockCategories} from "@/entities/category/api/test/mockData";
-import {productsHandlers} from "@/entities/product/api/test/handlers";
+import {categoryHandlers, mockCategories} from "@/entities/category/testing";
+import {productsHandlers} from "@/entities/product/testing";
 
 import {createHandlersScenario} from "@/shared/lib/testing";
 

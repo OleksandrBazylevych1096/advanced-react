@@ -1,4 +1,5 @@
 export {
     mockEmptySettingsOrdersListResponse,
     mockSettingsOrdersListResponse,
-} from "./api/test/mockData";
+} from "./config/test/mockData";
+export {settingsOrdersHandlers} from "./config/test/handlers";

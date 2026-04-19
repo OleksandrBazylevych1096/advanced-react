@@ -17,8 +17,7 @@ import {
 type JsonObject = {[key: string]: unknown};
 
 const createCorsHeaders = async (route: Route): Promise<Record<string, string>> => {
-    const origin =
-        (await route.request().headerValue("origin")) ?? "http://127.0.0.1:4173";
+    const origin = (await route.request().headerValue("origin")) ?? "http://127.0.0.1:4173";
     const requestHeaders =
         (await route.request().headerValue("access-control-request-headers")) ?? "content-type";
 
@@ -191,10 +190,7 @@ const handleCartItemDelete = async (route: Route, scenario: ApiScenario): Promis
     await fulfillJson(route, {});
 };
 
-const handleDeliverySelectionPatch = async (
-    route: Route,
-    scenario: ApiScenario,
-): Promise<void> => {
+const handleDeliverySelectionPatch = async (route: Route, scenario: ApiScenario): Promise<void> => {
     const body = parseRequestBody(route);
     const deliveryDate = body.deliveryDate;
     const deliveryTime = body.deliveryTime;
@@ -212,10 +208,7 @@ const handleDeliverySelectionPatch = async (
     await fulfillJson(route, scenario.deliverySelection);
 };
 
-const handleCheckoutPaymentSession = async (
-    route: Route,
-    scenario: ApiScenario,
-): Promise<void> => {
+const handleCheckoutPaymentSession = async (route: Route, scenario: ApiScenario): Promise<void> => {
     if (scenario.paymentSessionFails) {
         await fulfillJson(route, {message: "Unable to create payment session"}, 500);
         return;
@@ -307,7 +300,10 @@ const handleApiRequest = async (route: Route, scenario: ApiScenario): Promise<vo
     }
 
     if (pathname === "/promo-banners/active" && method === "GET") {
-        await fulfillJson(route, scenario.products.map((product) => product.images[0]?.url ?? ""));
+        await fulfillJson(
+            route,
+            scenario.products.map((product) => product.images[0]?.url ?? ""),
+        );
         return;
     }
 

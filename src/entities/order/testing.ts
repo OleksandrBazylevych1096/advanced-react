@@ -4,6 +4,7 @@ export {
     mockOrderDetailsNoDeliveryDate,
     mockOrderDetailsNoPaymentCard,
     mockOrderDetailsProcessing,
-} from "./api/test/mockData";
+} from "./config/test/mockData";
+export {orderHandlers} from "./config/test/handlers";
 export {OrderStatus} from "./model/types/order";
 export type {OrderDetails, OrderStatusType} from "./model/types/order";
