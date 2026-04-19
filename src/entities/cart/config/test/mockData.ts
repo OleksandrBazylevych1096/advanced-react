@@ -1,4 +1,4 @@
-import {createMockProduct} from "@/entities/product/@x/cart";
+import {createMockProduct} from "@/entities/product/config/test/mockData";
 
 import {createMockFactory, sequence} from "@/shared/lib/testing";
 

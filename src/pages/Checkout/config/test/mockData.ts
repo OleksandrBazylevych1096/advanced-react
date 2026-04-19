@@ -1,4 +1,4 @@
-import {createMockCartItem} from "@/entities/cart/@x/order";
+import {createMockCartItem} from "@/entities/cart/config/test/mockData";
 import {
     CheckoutSessionStatus,
     OrderStatus,
