@@ -21,6 +21,7 @@ describe("useInitializeEditModeButton", () => {
             id: "a1",
             streetAddress: "Baker St",
             city: "London",
+            country: "GB",
             numberOfApartment: "12A",
             zipCode: "NW1",
             latitude: 51.5,
@@ -42,6 +43,7 @@ describe("useInitializeEditModeButton", () => {
                 form: {
                     streetAddress: "Baker St",
                     city: "London",
+                    country: "GB",
                     numberOfApartment: "12A",
                     zipCode: "NW1",
                 },

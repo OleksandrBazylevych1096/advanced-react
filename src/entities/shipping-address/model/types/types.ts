@@ -20,6 +20,7 @@ export interface UpdateShippingAddress extends Partial<BaseShippingAddress> {
 export interface BaseShippingAddress {
     streetAddress: string;
     city: string;
+    country: string;
     numberOfApartment: string;
     zipCode: string;
 }

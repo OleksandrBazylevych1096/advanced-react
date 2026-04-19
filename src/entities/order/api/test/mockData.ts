@@ -29,6 +29,7 @@ export const mockOrderDetailsProcessing: OrderDetails = {
     shippingAddress: {
         streetAddress: "1 Trafalgar Square",
         city: "London",
+        country: "GB",
         numberOfApartment: "5",
         zipCode: "WC2N 5DN",
     },

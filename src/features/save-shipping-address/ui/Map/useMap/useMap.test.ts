@@ -65,6 +65,7 @@ describe("useMap", () => {
                 editingAddressId: undefined,
                 form: {
                     city: "",
+                    country: "",
                     streetAddress: "",
                     numberOfApartment: "12A",
                     zipCode: "",
@@ -118,6 +119,7 @@ describe("useMap", () => {
         expect(testCtx.dispatchMock).toHaveBeenCalledWith(
             saveShippingAddressActions.setForm({
                 city: "London",
+                country: "United Kingdom",
                 streetAddress: "221B, Baker Street",
                 zipCode: "NW1",
                 numberOfApartment: "12A",

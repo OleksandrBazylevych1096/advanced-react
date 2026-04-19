@@ -66,4 +66,62 @@ describe("saveShippingAddressApi", () => {
         expect(fetchSpy).toHaveBeenCalledTimes(1);
         expect(result.data?.label).toBe(mockGeocodeLondon.label);
     });
+
+    test("createShippingAddress posts country in request body", async () => {
+        const store = createStore();
+        const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input, init) => {
+            const bodyText =
+                input instanceof Request ? await input.clone().text() : String(init?.body ?? "{}");
+            const body = JSON.parse(bodyText) as {country?: string};
+
+            expect(body.country).toBe("GB");
+
+            return new Response(JSON.stringify({id: "addr-1", ...body}), {
+                status: 200,
+                headers: {"Content-Type": "application/json"},
+            });
+        });
+
+        await store.dispatch(
+            saveShippingAddressApi.endpoints.createShippingAddress.initiate({
+                streetAddress: "Baker Street",
+                city: "London",
+                country: "GB",
+                numberOfApartment: "221B",
+                zipCode: "NW1",
+                latitude: 51.5237,
+                longitude: -0.1585,
+            }),
+        );
+
+        expect(fetchSpy).toHaveBeenCalledTimes(1);
+    });
+
+    test("editShippingAddress patches country in request body", async () => {
+        const store = createStore();
+        const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input, init) => {
+            const bodyText =
+                input instanceof Request ? await input.clone().text() : String(init?.body ?? "{}");
+            const body = JSON.parse(bodyText) as {country?: string};
+
+            expect(body.country).toBe("UA");
+
+            return new Response(JSON.stringify({id: "addr-1", ...body}), {
+                status: 200,
+                headers: {"Content-Type": "application/json"},
+            });
+        });
+
+        await store.dispatch(
+            saveShippingAddressApi.endpoints.editShippingAddress.initiate({
+                id: "addr-1",
+                body: {
+                    city: "Kyiv",
+                    country: "UA",
+                },
+            }),
+        );
+
+        expect(fetchSpy).toHaveBeenCalledTimes(1);
+    });
 });

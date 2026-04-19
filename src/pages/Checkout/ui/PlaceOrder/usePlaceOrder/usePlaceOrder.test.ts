@@ -71,6 +71,7 @@ describe("usePlaceOrder", () => {
                 id: "addr-1",
                 streetAddress: "Main st",
                 city: "Boston",
+                country: "US",
                 numberOfApartment: "1",
                 zipCode: "02118",
                 isDefault: true,
@@ -103,6 +104,8 @@ describe("usePlaceOrder", () => {
             expect.objectContaining({
                 paymentMethod: "stripe",
                 currency: "USD",
+                shippingCountry: "US",
+                billingCountry: "US",
                 tipAmount: 5,
                 couponCode: "SAVE10",
             }),

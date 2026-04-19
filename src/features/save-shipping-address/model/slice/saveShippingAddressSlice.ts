@@ -12,6 +12,7 @@ import {DEFAULT_LOCATION} from "../../config/defaults";
 export const initialState: SaveShippingAddressSchema = {
     form: {
         city: "",
+        country: "",
         numberOfApartment: "",
         streetAddress: "",
         zipCode: "",

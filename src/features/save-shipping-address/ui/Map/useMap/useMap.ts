@@ -51,6 +51,7 @@ export const useMap = () => {
             dispatch(
                 saveShippingAddressActions.setForm({
                     city: geocodeData.city || "",
+                    country: geocodeData.country || "",
                     streetAddress,
                     zipCode: geocodeData.postcode || "",
                     numberOfApartment: numberOfApartments || "",

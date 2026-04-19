@@ -15,6 +15,7 @@ describe("buildShippingAddressLabel", () => {
                 {
                     streetAddress: "Main st 1",
                     city: "Boston",
+                    country: "US",
                     zipCode: "02118",
                     numberOfApartment: "12",
                 },
@@ -29,6 +30,7 @@ describe("buildShippingAddressLabel", () => {
                 {
                     streetAddress: "Main st 1",
                     city: "Boston",
+                    country: "US",
                     zipCode: "02118",
                     numberOfApartment: "",
                 },

@@ -4,8 +4,6 @@ import type {ShippingAddress} from "@/entities/shipping-address";
 
 import type {PlaceOrderRequest} from "../../model/types/checkoutTypes";
 
-const DEFAULT_COUNTRY = "US";
-
 export const buildPlaceOrderPayload = (
     address: ShippingAddress,
     deliverySelection?: DeliverySelection | null,
@@ -13,12 +11,12 @@ export const buildPlaceOrderPayload = (
     return {
         shippingAddress: address.streetAddress,
         shippingCity: address.city,
-        shippingCountry: DEFAULT_COUNTRY,
+        shippingCountry: address.country,
         shippingPostal: address.zipCode,
         shippingNumberOfApartment: address.numberOfApartment,
         billingAddress: address.streetAddress,
         billingCity: address.city,
-        billingCountry: DEFAULT_COUNTRY,
+        billingCountry: address.country,
         billingPostal: address.zipCode,
         paymentMethod: "stripe",
         deliveryDate: deliverySelection?.deliveryDate,

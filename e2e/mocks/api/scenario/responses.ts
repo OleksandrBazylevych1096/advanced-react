@@ -81,6 +81,7 @@ export const createOrderFromScenario = (
         shippingAddress: {
             streetAddress: scenario.defaultAddress.streetAddress,
             city: scenario.defaultAddress.city,
+            country: scenario.defaultAddress.country,
             numberOfApartment: scenario.defaultAddress.numberOfApartment,
             zipCode: scenario.defaultAddress.zipCode,
         },

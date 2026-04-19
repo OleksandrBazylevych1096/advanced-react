@@ -19,6 +19,7 @@ export const useInitializeEditModeButton = (address: ShippingAddress) => {
                     form: {
                         streetAddress: address.streetAddress,
                         city: address.city,
+                        country: address.country,
                         numberOfApartment: address.numberOfApartment,
                         zipCode: address.zipCode,
                     },

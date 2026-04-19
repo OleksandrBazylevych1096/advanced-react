@@ -9,6 +9,7 @@ describe("buildPlaceOrderPayload", () => {
                 id: "addr-1",
                 streetAddress: "Main st 1",
                 city: "Boston",
+                country: "US",
                 zipCode: "02118",
                 numberOfApartment: "12A",
                 isDefault: true,
@@ -43,6 +44,7 @@ describe("buildPlaceOrderPayload", () => {
                 id: "addr-1",
                 streetAddress: "Main st 1",
                 city: "Boston",
+                country: "CA",
                 zipCode: "02118",
                 numberOfApartment: "",
                 isDefault: true,
@@ -54,7 +56,7 @@ describe("buildPlaceOrderPayload", () => {
 
         expect(payload.deliveryDate).toBeUndefined();
         expect(payload.deliveryTime).toBeUndefined();
-        expect(payload.shippingCountry).toBe("US");
-        expect(payload.billingCountry).toBe("US");
+        expect(payload.shippingCountry).toBe("CA");
+        expect(payload.billingCountry).toBe("CA");
     });
 });

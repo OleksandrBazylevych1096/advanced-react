@@ -72,6 +72,7 @@ export const useSaveShippingAddressForm = () => {
     const city = useAppSelector(selectSaveShippingAddressCity);
     const numberOfApartment = useAppSelector(selectSaveShippingAddressNumberOfApartment);
     const zipCode = useAppSelector(selectSaveShippingAddressZipCode);
+    const country = useAppSelector((state) => state.saveShippingAddress?.form?.country ?? "");
 
     const [showStreetSuggestions, setShowStreetSuggestions] = useState(false);
     const [showCitySuggestions, setShowCitySuggestions] = useState(false);
@@ -79,6 +80,7 @@ export const useSaveShippingAddressForm = () => {
     const [initialValues] = useState(() => ({
         streetAddress,
         city,
+        country,
         numberOfApartment,
         zipCode,
         location: [...location] as LatLngTuple,
@@ -92,6 +94,7 @@ export const useSaveShippingAddressForm = () => {
         initialValues.streetAddress !== streetAddress ||
         initialValues.city !== city ||
         initialValues.numberOfApartment !== numberOfApartment ||
+        initialValues.country !== country ||
         initialValues.zipCode !== zipCode ||
         initialValues.location[0] !== location[0] ||
         initialValues.location[1] !== location[1];
@@ -174,6 +177,7 @@ export const useSaveShippingAddressForm = () => {
 
         const addressData = {
             city,
+            country,
             numberOfApartment,
             streetAddress,
             zipCode,

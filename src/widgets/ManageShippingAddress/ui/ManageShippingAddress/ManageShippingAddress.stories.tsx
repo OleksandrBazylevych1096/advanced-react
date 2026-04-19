@@ -33,6 +33,7 @@ const meta = {
                 location: [51.5074, -0.1278],
                 form: {
                     city: "",
+                    country: "",
                     numberOfApartment: "",
                     streetAddress: "",
                     zipCode: "",
@@ -110,6 +111,7 @@ export const Guest: Story = {
                 location: [51.5074, -0.1278],
                 form: {
                     city: "",
+                    country: "",
                     numberOfApartment: "",
                     streetAddress: "",
                     zipCode: "",

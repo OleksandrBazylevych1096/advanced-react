@@ -28,10 +28,13 @@ const mockOrderResponse = {
     tipAmount: 3,
     couponCode: "SAVE5",
     currency: "usd",
-    shippingAddress: "Main street 1",
-    shippingCity: "Kyiv",
-    shippingCountry: "UA",
-    shippingPostal: "01001",
+    shippingAddress: {
+        streetAddress: "Main street 1",
+        city: "Kyiv",
+        country: "UA",
+        numberOfApartment: "1",
+        zipCode: "01001",
+    },
     deliveryDate: "2026-03-24T00:00:00.000Z",
     deliveryTime: "18:00",
     createdAt: "2026-03-24T01:00:00.000Z",
@@ -130,6 +133,7 @@ describe("entities/orderApi", () => {
         expect(result.data?.totalAmount).toBe(177.9);
         expect(result.data?.paymentCardBrand).toBe("visa");
         expect(result.data?.paymentCardLast4).toBe("4242");
+        expect(result.data?.shippingAddress?.country).toBe("UA");
         expect(result.data?.orderItems[0]?.price).toBe(35.5);
         expect(result.data?.orderItems[0]?.total).toBe(71);
     });

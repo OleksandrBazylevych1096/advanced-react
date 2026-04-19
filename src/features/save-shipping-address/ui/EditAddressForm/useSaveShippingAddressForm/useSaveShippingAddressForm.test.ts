@@ -58,6 +58,7 @@ describe("useSaveShippingAddressForm", () => {
                 editingAddressId: "addr-1",
                 form: {
                     city: "London",
+                    country: "United Kingdom",
                     streetAddress: "Baker Street",
                     numberOfApartment: "221B",
                     zipCode: "NW1",
@@ -108,6 +109,7 @@ describe("useSaveShippingAddressForm", () => {
             id: "addr-1",
             body: {
                 city: "London City",
+                country: "United Kingdom",
                 numberOfApartment: "221B",
                 streetAddress: "Baker Street",
                 zipCode: "NW1",
