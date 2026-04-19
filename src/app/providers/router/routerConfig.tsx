@@ -87,14 +87,17 @@ export const routeConfig: AppRouteConfig[] = [
     {
         path: routePaths[AppRoutes.CHECKOUT],
         element: <CheckoutPage />,
+        requiresAuth: true,
     },
     {
         path: routePaths[AppRoutes.CHECKOUT_RESULT],
         element: <CheckoutResultPage />,
+        requiresAuth: true,
     },
     {
         path: routePaths[AppRoutes.ORDER],
         element: <OrderPage />,
+        requiresAuth: true,
     },
     {
         path: routePaths[AppRoutes.SETTINGS_ORDERS],

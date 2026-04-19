@@ -34,6 +34,7 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
         data: {hasIssues},
         status: {isValidating},
     } = useCartValidation(cart?.items ?? [], {isAuthenticated});
+    const isCheckoutBlocked = !isAuthenticated || hasIssues || isValidating;
 
     const proceedToCheckout = () => {
         navigate(getLocalizedPath(routePaths[AppRoutes.CHECKOUT]));
@@ -81,7 +82,7 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
                     size="lg"
                     className={styles.checkoutBtn}
                     onClick={proceedToCheckout}
-                    disabled={hasIssues || isValidating}
+                    disabled={isCheckoutBlocked}
                     data-testid="cart-proceed-to-checkout"
                 >
                     <AppIcon Icon={ShoppingCartIcon} size={18} />
@@ -91,7 +92,13 @@ export const CartSummaryCard = ({cart, error}: CartSummaryCardProps) => {
                     </Typography>
                 </Button>
 
-                {hasIssues && (
+                {!isAuthenticated && (
+                    <Typography className={styles.checkoutError} variant="bodySm" tone="danger">
+                        {t("cart.signInToCheckout")}
+                    </Typography>
+                )}
+
+                {isAuthenticated && hasIssues && (
                     <Typography className={styles.checkoutError} variant="bodySm" tone="danger">
                         {t("cart.resolveIssuesBeforeCheckout")}
                     </Typography>

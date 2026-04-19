@@ -327,6 +327,7 @@
         "freeDeliveryRemaining": "Get free delivery ({{amount}} more)",
         "orderCompletionProgressAria": "Order completion progress",
         "checkout": "Checkout",
+        "signInToCheckout": "Please sign in to proceed to checkout",
         "resolveIssuesBeforeCheckout": "Please resolve cart issues before checkout"
     },
     "select": {

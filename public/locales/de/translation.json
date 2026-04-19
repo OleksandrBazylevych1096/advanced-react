@@ -328,6 +328,7 @@
         "freeDeliveryRemaining": "Kostenlose Lieferung erhalten (noch {{amount}})",
         "orderCompletionProgressAria": "Bestellfortschritt",
         "checkout": "Zur Kasse",
+        "signInToCheckout": "Bitte melden Sie sich an, um mit dem Checkout fortzufahren",
         "resolveIssuesBeforeCheckout": "Bitte beheben Sie die Warenkorbprobleme vor dem Checkout"
     },
     "select": {
