@@ -1,6 +1,6 @@
 import {useCallback} from "react";
 
-import {productFiltersActions} from "@/features/product-filters";
+import {productFiltersActions} from "@/features/product-filters/model/slice/productFiltersSlice";
 
 import {useAppDispatch} from "@/shared/lib/state";
 

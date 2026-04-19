@@ -3,9 +3,10 @@ import type {CSSProperties} from "react";
 import {SETTINGS_ORDERS_ROW_GAP} from "@/pages/settings/Orders/config/constants.ts";
 import {OrderCard} from "@/pages/settings/Orders/ui/OrderCard/OrderCard.tsx";
 import {OrderCardSkeleton} from "@/pages/settings/Orders/ui/OrderCard/OrderCardSkeleton.tsx";
-import type {OrderListItem} from "@/pages/settings/Orders/ui/OrderList/OrderList.tsx";
 
 import type {OrderDetails} from "@/entities/order";
+
+type OrderListItem = OrderDetails | undefined;
 
 export const RowRenderer = ({
     index,

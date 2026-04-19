@@ -2,7 +2,7 @@ import {useCallback} from "react";
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 
-import {productFiltersActions} from "@/features/product-filters";
+import {productFiltersActions} from "@/features/product-filters/model/slice/productFiltersSlice";
 import {SORT_OPTIONS, type SortOptionValue} from "@/features/product-filters/config/sortOptions.ts";
 import {
     createSortValue,

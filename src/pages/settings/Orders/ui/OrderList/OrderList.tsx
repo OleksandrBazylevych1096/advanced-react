@@ -19,8 +19,6 @@ import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 
 import styles from "./OrderList.module.scss";
 
-export type OrderListItem = OrderDetails | undefined;
-
 interface OrderListProps {
     activeFilter: SettingsOrderStatusFilterType;
 }
@@ -35,7 +33,7 @@ export const OrderList = (props: OrderListProps) => {
         refs: {listRef},
     } = useOrderList({activeFilter});
 
-    const allItems = useMemo<OrderListItem[]>(
+    const allItems = useMemo<Array<OrderDetails | undefined>>(
         () => [
             ...orders,
             ...(isFetchingNextPage

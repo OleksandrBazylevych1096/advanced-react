@@ -12,7 +12,6 @@ import type {UserSchema} from "@/entities/user";
 import type {baseAPI} from "@/shared/api";
 import type {ToastSchema} from "@/shared/lib/notifications";
 
-import type {AppDispatch} from "./store";
 import type {StoreServices} from "./StoreServices";
 
 export interface StateSchema {
@@ -41,6 +40,6 @@ export interface ReducerManager {
 
 export interface AppStore extends EnhancedStore<StateSchema> {
     reducerManager: ReducerManager;
-    dispatch: AppDispatch;
+    dispatch: EnhancedStore<StateSchema>["dispatch"];
     services: StoreServices;
 }

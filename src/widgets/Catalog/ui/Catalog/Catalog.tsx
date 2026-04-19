@@ -23,8 +23,6 @@ import styles from "./Catalog.module.scss";
 import {CellRenderer} from "./CellRenderer.tsx";
 import {useCatalog} from "./useCatalog/useCatalog.ts";
 
-export type CatalogItem = Product | undefined;
-
 interface CatalogProps {
     categoryId?: string | null;
     searchQuery?: string;
@@ -64,7 +62,7 @@ export const Catalog = ({categoryId, searchQuery}: CatalogProps) => {
         return <EmptyState title={t("products.noProducts")} data-testid="catalog-empty" />;
     }
 
-    const allItems: CatalogItem[] = [
+    const allItems: Array<Product | undefined> = [
         ...products,
         ...(isFetchingNextPage
             ? Array.from<undefined>({

@@ -1,4 +1,4 @@
-import {useUpdateCartItemQuantity} from "@/features/update-cart-item-quantity";
+import {useUpdateCartItemQuantity} from "../../model/controllers/useUpdateCartItemQuantity";
 
 import {useToast} from "@/shared/lib/notifications";
 import {Button} from "@/shared/ui/Button";

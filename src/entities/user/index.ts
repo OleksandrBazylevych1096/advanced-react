@@ -23,9 +23,9 @@ import type {
     AuthSessionResponse,
     AuthSessionsListItem,
     MfaChallengeResponse,
-    MfaMethod,
     PendingMfaChallenge,
 } from "./model/types/AuthSession";
+import type {MfaMethod} from "./model/types/MfaMethod.ts";
 import type {User, UserSchema} from "./model/types/UserSchema";
 
 export {

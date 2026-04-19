@@ -5,7 +5,7 @@ import DangerIcon from "@/shared/assets/icons/Danger.svg?react";
 import ErrorIcon from "@/shared/assets/icons/Error.svg?react";
 import InfoIcon from "@/shared/assets/icons/Info.svg?react";
 import SuccessIcon from "@/shared/assets/icons/Success.svg?react";
-import type {Toast} from "@/shared/lib/notifications";
+import type {Toast} from "@/shared/lib/notifications/toast/state/types/toast";
 import {cn} from "@/shared/lib/styling";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";

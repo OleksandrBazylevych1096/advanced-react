@@ -2,9 +2,10 @@ import type {ComponentPropsWithoutRef, ElementType} from "react";
 import {useTranslation} from "react-i18next";
 
 import CopyIcon from "@/shared/assets/icons/Copy.svg?react";
-import {useToast} from "@/shared/lib/notifications";
+import {useToast} from "@/shared/lib/notifications/toast/useToast";
 import {cn} from "@/shared/lib/styling";
-import {AppIcon} from "@/shared/ui/AppIcon";
+
+import {AppIcon} from "../AppIcon";
 
 import styles from "./Typography.module.scss";
 

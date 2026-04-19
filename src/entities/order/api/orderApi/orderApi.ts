@@ -1,4 +1,4 @@
-import type {OrderDetails} from "@/entities/order";
+import type {OrderDetails} from "@/entities/order/model/types/order";
 
 import {type ApiLocaleParams, baseAPI} from "@/shared/api";
 

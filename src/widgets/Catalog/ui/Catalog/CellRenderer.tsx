@@ -9,7 +9,7 @@ import {type Product, ProductCardSkeleton} from "@/entities/product";
 
 import type {CurrencyType} from "@/shared/config";
 
-import type {CatalogItem} from "./Catalog.tsx";
+type CatalogItem = Product | undefined;
 
 interface CellRendererProps extends GridCellProps {
     allItems: CatalogItem[];

@@ -33,6 +33,7 @@ skills-lock.json
 *.njsproj
 *.sln
 *.sw?
+build-output.txt
 
 *storybook.log
 storybook-static

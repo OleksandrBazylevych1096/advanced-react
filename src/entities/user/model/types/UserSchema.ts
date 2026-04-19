@@ -1,6 +1,6 @@
 import type {AuthProvidersType, CurrencyType} from "@/shared/config";
 
-import type {MfaMethod} from "./AuthSession";
+import type {MfaMethod} from "./MfaMethod.ts";
 
 export interface User {
     id: string;

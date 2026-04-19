@@ -1,0 +1,1 @@
+export type MfaMethod = "totp" | "otp_email" | "otp_sms" | "backup_code";

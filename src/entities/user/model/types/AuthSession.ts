@@ -1,6 +1,5 @@
+import type {MfaMethod} from "./MfaMethod.ts";
 import type {User} from "./UserSchema";
-
-export type MfaMethod = "totp" | "otp_email" | "otp_sms" | "backup_code";
 
 export interface AuthSessionResponse {
     user: User;

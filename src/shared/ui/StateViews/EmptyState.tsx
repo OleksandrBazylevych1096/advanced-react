@@ -2,8 +2,8 @@ import type {FC, ReactNode, SVGProps} from "react";
 
 import {cn} from "@/shared/lib/styling";
 import {AppIcon} from "@/shared/ui/AppIcon";
-import {Stack} from "@/shared/ui/Stack/Stack";
-import {Typography} from "@/shared/ui/Typography/Typography";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./StateViews.module.scss";
 
@@ -17,13 +17,13 @@ interface EmptyStateProps {
 }
 
 export const EmptyState = ({
-    icon,
-    title,
-    description,
-    action,
-    className,
-    "data-testid": dataTestId = "empty-state",
-}: EmptyStateProps) => {
+                               icon,
+                               title,
+                               description,
+                               action,
+                               className,
+                               "data-testid": dataTestId = "empty-state",
+                           }: EmptyStateProps) => {
     return (
         <Stack
             className={cn(styles.container, className)}
@@ -32,7 +32,7 @@ export const EmptyState = ({
             justify="center"
             data-testid={dataTestId}
         >
-            {icon && <AppIcon Icon={icon} className={styles.icon} />}
+            {icon && <AppIcon Icon={icon} className={styles.icon}/>}
             <Typography variant="heading" weight="semibold">
                 {title}
             </Typography>

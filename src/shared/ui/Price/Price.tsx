@@ -1,7 +1,7 @@
 import type {CurrencyType, SupportedLngsType} from "@/shared/config";
 import {formatCurrency} from "@/shared/lib/formatting";
-import {Stack} from "@/shared/ui/Stack/Stack";
-import {Typography} from "@/shared/ui/Typography/Typography";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./Price.module.scss";
 

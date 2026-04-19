@@ -1,9 +1,9 @@
 import {useTranslation} from "react-i18next";
 
 import {cn} from "@/shared/lib/styling";
-import {Button} from "@/shared/ui/Button/Button";
-import {Stack} from "@/shared/ui/Stack/Stack";
-import {Typography} from "@/shared/ui/Typography/Typography";
+import {Button} from "@/shared/ui/Button";
+import {Stack} from "@/shared/ui/Stack";
+import {Typography} from "@/shared/ui/Typography";
 
 import styles from "./StateViews.module.scss";
 
@@ -16,12 +16,12 @@ interface ErrorStateProps {
 }
 
 export const ErrorState = ({
-    message,
-    onRetry,
-    retryText,
-    className,
-    "data-testid": datatestId = "error-state",
-}: ErrorStateProps) => {
+                               message,
+                               onRetry,
+                               retryText,
+                               className,
+                               "data-testid": datatestId = "error-state",
+                           }: ErrorStateProps) => {
     const {t} = useTranslation();
 
     return (

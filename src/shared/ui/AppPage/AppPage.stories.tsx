@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {Typography} from "@/shared/ui/Typography/Typography";
+import {Typography} from "@/shared/ui/Typography";
 
 import {AppPage} from "./AppPage";
 
