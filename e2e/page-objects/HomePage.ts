@@ -1,5 +1,7 @@
 import {expect, type Page} from "@playwright/test";
 
+const HOME_PRODUCTS_READY_TIMEOUT_MS = 15_000;
+
 export class HomePage {
     private readonly page: Page;
 
@@ -18,11 +20,19 @@ export class HomePage {
 
             return url.pathname === "/cart" && response.request().method() === "GET";
         });
+        const trendingTagsResponse = this.page.waitForResponse((response) => {
+            const url = new URL(response.url());
+
+            return url.pathname === "/tags/popular" && response.request().method() === "GET";
+        });
 
         await this.page.goto("/en");
         await refreshSessionResponse;
         await cartResponse;
-        await expect(this.page.getByTestId(/^product-card-/).first()).toBeVisible();
+        await trendingTagsResponse;
+        await expect(this.page.getByTestId(/^product-card-/).first()).toBeVisible({
+            timeout: HOME_PRODUCTS_READY_TIMEOUT_MS,
+        });
     }
 
     public async addFirstProductToCart(): Promise<void> {
