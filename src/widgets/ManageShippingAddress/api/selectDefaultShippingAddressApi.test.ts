@@ -1,6 +1,6 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
-import {createStore} from "@/app/store/setup/store";
+import {createStore, type AppDispatch} from "@/app/store/setup/store";
 
 const mocks = vi.hoisted(() => {
     const capturedTxns: Array<{
@@ -114,13 +114,14 @@ describe("selectDefaultShippingAddressApi", () => {
 
     test("ignores stale rollback and stale error toast", async () => {
         const store = createStore();
+        const dispatch = store.dispatch as AppDispatch;
 
-        const first = store.dispatch(
+        const first = dispatch(
             selectDefaultShippingAddressApi.endpoints.setDefaultShippingAddress.initiate({
                 id: "a1",
             }),
         );
-        const second = store.dispatch(
+        const second = dispatch(
             selectDefaultShippingAddressApi.endpoints.setDefaultShippingAddress.initiate({
                 id: "a2",
             }),
@@ -148,7 +149,8 @@ describe("selectDefaultShippingAddressApi", () => {
 
     test("treats AbortError as cancel without rollback or toast", async () => {
         const store = createStore();
-        const pending = store.dispatch(
+        const dispatch = store.dispatch as AppDispatch;
+        const pending = dispatch(
             selectDefaultShippingAddressApi.endpoints.setDefaultShippingAddress.initiate({
                 id: "a1",
             }),

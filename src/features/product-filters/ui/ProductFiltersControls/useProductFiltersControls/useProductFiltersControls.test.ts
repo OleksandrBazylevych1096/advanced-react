@@ -11,7 +11,7 @@ vi.mock("@/shared/lib/state", () => ({
 
 vi.mock("@/features/product-filters", () => ({
     productFiltersActions: {
-        toggleIsOpen: () => ({type: "filters/toggleIsOpen"}),
+        toggleIsOpen: () => ({type: "productFilters/toggleIsOpen", payload: undefined}),
     },
 }));
 
@@ -23,6 +23,9 @@ describe("useProductFiltersControls", () => {
             result.current.actions.toggleProductFilters();
         });
 
-        expect(dispatchMock).toHaveBeenCalledWith({type: "filters/toggleIsOpen"});
+        expect(dispatchMock).toHaveBeenCalledWith({
+            type: "productFilters/toggleIsOpen",
+            payload: undefined,
+        });
     });
 });

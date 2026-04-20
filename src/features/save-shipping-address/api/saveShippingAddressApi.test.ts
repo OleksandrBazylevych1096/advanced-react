@@ -1,6 +1,6 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
-import {createStore} from "@/app/store/setup/store";
+import {createStore, type AppDispatch} from "@/app/store/setup/store";
 
 import {mockGeocodeLondon} from "@/entities/shipping-address/testing";
 
@@ -15,6 +15,7 @@ describe("saveShippingAddressApi", () => {
 
     test("searchAddresses sends default limit and locale query params", async () => {
         const store = createStore();
+        const dispatch = store.dispatch as AppDispatch;
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input) => {
             const requestUrl = parseRequestUrl(input);
 
@@ -29,7 +30,7 @@ describe("saveShippingAddressApi", () => {
             });
         });
 
-        const result = await store.dispatch(
+        const result = await dispatch(
             saveShippingAddressApi.endpoints.searchAddresses.initiate({
                 searchQuery: "Main St, London",
                 locale: "en",
@@ -42,6 +43,7 @@ describe("saveShippingAddressApi", () => {
 
     test("getReverseGeocode maps tuple coords to lat/lon params", async () => {
         const store = createStore();
+        const dispatch = store.dispatch as AppDispatch;
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input) => {
             const requestUrl = parseRequestUrl(input);
 
@@ -56,7 +58,7 @@ describe("saveShippingAddressApi", () => {
             });
         });
 
-        const result = await store.dispatch(
+        const result = await dispatch(
             saveShippingAddressApi.endpoints.getReverseGeocode.initiate({
                 coords: [50.45, 30.52],
                 locale: "en",
@@ -69,6 +71,7 @@ describe("saveShippingAddressApi", () => {
 
     test("createShippingAddress posts country in request body", async () => {
         const store = createStore();
+        const dispatch = store.dispatch as AppDispatch;
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input, init) => {
             const bodyText =
                 input instanceof Request ? await input.clone().text() : String(init?.body ?? "{}");
@@ -82,7 +85,7 @@ describe("saveShippingAddressApi", () => {
             });
         });
 
-        await store.dispatch(
+        await dispatch(
             saveShippingAddressApi.endpoints.createShippingAddress.initiate({
                 streetAddress: "Baker Street",
                 city: "London",
@@ -99,6 +102,7 @@ describe("saveShippingAddressApi", () => {
 
     test("editShippingAddress patches country in request body", async () => {
         const store = createStore();
+        const dispatch = store.dispatch as AppDispatch;
         const fetchSpy = vi.spyOn(global, "fetch").mockImplementation(async (input, init) => {
             const bodyText =
                 input instanceof Request ? await input.clone().text() : String(init?.body ?? "{}");
@@ -112,7 +116,7 @@ describe("saveShippingAddressApi", () => {
             });
         });
 
-        await store.dispatch(
+        await dispatch(
             saveShippingAddressApi.endpoints.editShippingAddress.initiate({
                 id: "addr-1",
                 body: {

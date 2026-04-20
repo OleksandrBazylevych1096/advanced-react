@@ -1,9 +1,9 @@
-import {useUpdateCartItemQuantity} from "../../model/controllers/useUpdateCartItemQuantity";
-
 import {useToast} from "@/shared/lib/notifications";
 import {Button} from "@/shared/ui/Button";
 import {Stack} from "@/shared/ui/Stack";
 import {Typography} from "@/shared/ui/Typography";
+
+import {useUpdateCartItemQuantity} from "../../model/controllers/useUpdateCartItemQuantity";
 
 import styles from "./CartQuantityStepper.module.scss";
 

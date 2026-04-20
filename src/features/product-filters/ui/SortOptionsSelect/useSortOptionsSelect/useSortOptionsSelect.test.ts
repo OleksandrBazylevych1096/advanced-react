@@ -26,8 +26,8 @@ vi.mock("@/shared/lib/state", () => ({
 
 vi.mock("@/features/product-filters", () => ({
     productFiltersActions: {
-        setSortBy: (value: string) => ({type: "filters/setSortBy", payload: value}),
-        setSortOrder: (value: string) => ({type: "filters/setSortOrder", payload: value}),
+        setSortBy: (value: string) => ({type: "productFilters/setSortBy", payload: value}),
+        setSortOrder: (value: string) => ({type: "productFilters/setSortOrder", payload: value}),
     },
 }));
 
@@ -65,11 +65,11 @@ describe("useSortOptionsSelect", () => {
 
         expect(testCtx.parseSortValueMock).toHaveBeenCalledWith("rating-desc");
         expect(testCtx.dispatchMock).toHaveBeenCalledWith({
-            type: "filters/setSortBy",
+            type: "productFilters/setSortBy",
             payload: "rating",
         });
         expect(testCtx.dispatchMock).toHaveBeenCalledWith({
-            type: "filters/setSortOrder",
+            type: "productFilters/setSortOrder",
             payload: "desc",
         });
     });

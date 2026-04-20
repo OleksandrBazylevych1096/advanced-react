@@ -16,12 +16,12 @@ interface ErrorStateProps {
 }
 
 export const ErrorState = ({
-                               message,
-                               onRetry,
-                               retryText,
-                               className,
-                               "data-testid": datatestId = "error-state",
-                           }: ErrorStateProps) => {
+    message,
+    onRetry,
+    retryText,
+    className,
+    "data-testid": datatestId = "error-state",
+}: ErrorStateProps) => {
     const {t} = useTranslation();
 
     return (

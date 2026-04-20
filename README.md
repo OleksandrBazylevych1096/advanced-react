@@ -57,7 +57,7 @@ npm run dev
 The project uses the following environment variables:
 
 | Variable                  | Required | Description                                                                                       |
-|---------------------------|----------|---------------------------------------------------------------------------------------------------|
+| ------------------------- | -------- | ------------------------------------------------------------------------------------------------- |
 | `VITE_API_URL`            | Yes      | Base URL for backend API.                                                                         |
 | `VITE_PROJECT_ENV`        | Yes      | Current runtime mode identifier.                                                                  |
 | `CHROMATIC_PROJECT_TOKEN` | Optional | Token for publishing Storybook builds to Chromatic. Required only for visual regression workflow. |
@@ -65,7 +65,7 @@ The project uses the following environment variables:
 ## Scripts
 
 | Script                    | Description                                                 |
-|---------------------------|-------------------------------------------------------------|
+| ------------------------- | ----------------------------------------------------------- |
 | `npm run dev`             | Starts the Vite development server.                         |
 | `npm run build`           | Builds the production bundle into `dist/`.                  |
 | `npm run preview`         | Serves the production build locally for preview.            |
@@ -101,7 +101,7 @@ The project follows Feature-Sliced Design v2.1 with a pages-first approach.
 |   |-- pages/                 # Route-level pages and page-specific logic
 |   |-- widgets/               # Large reusable UI blocks composed from lower layers
 |   |-- features/              # Reusable user actions and interaction flows
-|   |-- entities/              # Domain entities 
+|   |-- entities/              # Domain entities
 |   |-- shared/                # Shared UI kit, config, api layer, utilities, assets
 |-- eslint.config.js           # ESLint flat config
 |-- playwright.config.ts       # Playwright configuration
@@ -150,4 +150,3 @@ Full local quality check:
 ```bash
 npm run check:all
 ```
-

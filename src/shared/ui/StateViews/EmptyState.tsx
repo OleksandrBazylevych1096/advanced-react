@@ -17,13 +17,13 @@ interface EmptyStateProps {
 }
 
 export const EmptyState = ({
-                               icon,
-                               title,
-                               description,
-                               action,
-                               className,
-                               "data-testid": dataTestId = "empty-state",
-                           }: EmptyStateProps) => {
+    icon,
+    title,
+    description,
+    action,
+    className,
+    "data-testid": dataTestId = "empty-state",
+}: EmptyStateProps) => {
     return (
         <Stack
             className={cn(styles.container, className)}
@@ -32,7 +32,7 @@ export const EmptyState = ({
             justify="center"
             data-testid={dataTestId}
         >
-            {icon && <AppIcon Icon={icon} className={styles.icon}/>}
+            {icon && <AppIcon Icon={icon} className={styles.icon} />}
             <Typography variant="heading" weight="semibold">
                 {title}
             </Typography>

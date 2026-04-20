@@ -1,6 +1,6 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
-import {createStore} from "@/app/store/setup/store";
+import {createStore, type AppDispatch} from "@/app/store/setup/store";
 
 const mocks = vi.hoisted(() => {
     const capturedTxns: Array<{
@@ -76,13 +76,10 @@ describe("removeFromCartApi", () => {
 
     test("uses last-write-wins checks so stale rollback/error handlers are ignored", async () => {
         const store = createStore();
+        const dispatch = store.dispatch as AppDispatch;
 
-        const first = store.dispatch(
-            removeFromCartApi.endpoints.removeFromCart.initiate("product-1"),
-        );
-        const second = store.dispatch(
-            removeFromCartApi.endpoints.removeFromCart.initiate("product-1"),
-        );
+        const first = dispatch(removeFromCartApi.endpoints.removeFromCart.initiate("product-1"));
+        const second = dispatch(removeFromCartApi.endpoints.removeFromCart.initiate("product-1"));
 
         await vi.waitFor(() => {
             expect(mocks.capturedTxns).toHaveLength(2);
@@ -101,9 +98,8 @@ describe("removeFromCartApi", () => {
 
     test("treats AbortError as cancel without rollback or controller-side effects", async () => {
         const store = createStore();
-        const pending = store.dispatch(
-            removeFromCartApi.endpoints.removeFromCart.initiate("product-1"),
-        );
+        const dispatch = store.dispatch as AppDispatch;
+        const pending = dispatch(removeFromCartApi.endpoints.removeFromCart.initiate("product-1"));
 
         await vi.waitFor(() => {
             expect(mocks.capturedTxns).toHaveLength(1);

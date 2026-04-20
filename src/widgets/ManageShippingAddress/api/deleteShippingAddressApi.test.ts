@@ -1,6 +1,6 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
-import {createStore} from "@/app/store/setup/store";
+import {createStore, type AppDispatch} from "@/app/store/setup/store";
 
 const mocks = vi.hoisted(() => {
     const capturedTxns: Array<{
@@ -114,13 +114,14 @@ describe("deleteShippingAddressApi", () => {
 
     test("ignores stale rollback and stale error toast", async () => {
         const store = createStore();
+        const dispatch = store.dispatch as AppDispatch;
 
-        const first = store.dispatch(
+        const first = dispatch(
             deleteShippingAddressApi.endpoints.deleteShippingAddress.initiate({
                 id: "a1",
             }),
         );
-        const second = store.dispatch(
+        const second = dispatch(
             deleteShippingAddressApi.endpoints.deleteShippingAddress.initiate({
                 id: "a2",
             }),
@@ -148,7 +149,8 @@ describe("deleteShippingAddressApi", () => {
 
     test("treats AbortError as cancel without rollback or toast", async () => {
         const store = createStore();
-        const pending = store.dispatch(
+        const dispatch = store.dispatch as AppDispatch;
+        const pending = dispatch(
             deleteShippingAddressApi.endpoints.deleteShippingAddress.initiate({
                 id: "a1",
             }),
@@ -171,8 +173,9 @@ describe("deleteShippingAddressApi", () => {
 
     test("uses shared concurrency guard key with other shipping-address mutations", async () => {
         const store = createStore();
+        const dispatch = store.dispatch as AppDispatch;
         mocks.shippingGuardMock.next("shipping-addresses-domain");
-        const deletePending = store.dispatch(
+        const deletePending = dispatch(
             deleteShippingAddressApi.endpoints.deleteShippingAddress.initiate({
                 id: "a2",
             }),
