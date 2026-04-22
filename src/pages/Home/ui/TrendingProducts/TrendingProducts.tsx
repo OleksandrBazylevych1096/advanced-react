@@ -1,9 +1,12 @@
 import type {EmblaCarouselType} from "embla-carousel";
 import {useTranslation} from "react-i18next";
+import {useNavigate} from "react-router";
 
 import {ProductCardSkeleton} from "@/entities/product";
 
 import ArrowRightIcon from "@/shared/assets/icons/ArrowRight.svg?react";
+import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 import {Carousel, CarouselControls, CarouselSkeleton} from "@/shared/ui/Carousel";
@@ -19,8 +22,19 @@ import {useTrendingProducts} from "./useTrendingProducts/useTrendingProducts.ts"
 
 export const TrendingProducts = () => {
     const {t} = useTranslation();
+    const navigate = useNavigate();
+    const getLocalizedPath = useLocalizedRoutePath();
     const {
-        data: {tags, products, total, currentTagId, currency, emblaApi, ProductCardWithAddToCart},
+        data: {
+            tags,
+            currentTag,
+            products,
+            total,
+            currentTagId,
+            currency,
+            emblaApi,
+            ProductCardWithAddToCart,
+        },
         status: {
             tagsIsError,
             tagsIsFetching,
@@ -31,6 +45,16 @@ export const TrendingProducts = () => {
         },
         actions: {refetch, changeTag, setCarouselApi},
     } = useTrendingProducts();
+
+    const openCurrentTagPage = () => {
+        if (!currentTag) return;
+
+        navigate(
+            getLocalizedPath(routePaths[AppRoutes.TAG], {
+                slug: currentTag.slug,
+            }),
+        );
+    };
 
     if (productsIsLoading || tagsIsLoading) {
         return <TrendingProductsSkeleton />;
@@ -51,7 +75,12 @@ export const TrendingProducts = () => {
                     {t("products.trendingProducts")}
                 </Typography>
                 <Stack direction="row" gap={16} align="center">
-                    <Button size="sm" theme="outline">
+                    <Button
+                        size="sm"
+                        theme="outline"
+                        onClick={openCurrentTagPage}
+                        disabled={!currentTag}
+                    >
                         {t("products.viewAll")}{" "}
                         {!productsIsFetching && <>({total < 100 ? total : "99+"})</>}
                         <AppIcon Icon={ArrowRightIcon} />

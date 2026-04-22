@@ -12,9 +12,11 @@ interface ApiErrorData {
 }
 
 interface NestApiErrorEnvelope {
+    code?: string;
     message?: ApiErrorData | string;
     error?: string;
     statusCode?: number;
+    details?: unknown;
 }
 
 const isApiErrorData = (value: unknown): value is ApiErrorData => {
@@ -72,6 +74,15 @@ export const extractApiErrorMessage = (error: FetchBaseQueryError | SerializedEr
             }
 
             if (isNestApiErrorEnvelope(responseData)) {
+                if (typeof responseData.code === "string" && responseData.code) {
+                    return (
+                        extractTranslatedCodeMessage(responseData.code) ??
+                        (typeof responseData.message === "string" && responseData.message
+                            ? responseData.message
+                            : i18n.t("errors.unknownError"))
+                    );
+                }
+
                 if (isApiErrorData(responseData.message)) {
                     return (
                         extractTranslatedCodeMessage(responseData.message.code) ??

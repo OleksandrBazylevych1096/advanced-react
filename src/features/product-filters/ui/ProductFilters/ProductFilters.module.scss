@@ -1,27 +1,57 @@
-.sidebar {
-    width: 0;
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--modal-z-index);
+    pointer-events: none;
+}
+
+.backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 28%);
     opacity: 0;
-    visibility: hidden;
-    overflow: hidden;
-    padding: 0;
+    transition: opacity 0.22s ease;
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: min(var(--sidebar-width), 100vw);
+    height: 100vh;
+    min-height: 100dvh;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden auto;
+    padding: 24px 16px;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    transform: translateX(-10px);
+    background: var(--surface-color);
+    box-shadow: 0 16px 40px rgb(0 0 0 / 12%);
+    transform: translateX(-100%);
     transition:
-        width 0.3s ease,
-        opacity 0.2s ease,
-        visibility 0.2s ease,
-        transform 0.3s ease,
-        padding 0.2s ease;
+        opacity 0.22s ease,
+        transform 0.28s ease;
+    will-change: transform, opacity;
+}
 
-    &.open {
-        width: var(--sidebar-width);
-        opacity: 1;
-        visibility: visible;
-        padding: 0 16px;
-        transform: translateX(0);
-    }
+.open {
+    pointer-events: auto;
+}
+
+.overlay.open {
+    pointer-events: auto;
+}
+
+.overlay.open .backdrop {
+    opacity: 1;
+}
+
+.sidebar.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
 }
 
 .header {

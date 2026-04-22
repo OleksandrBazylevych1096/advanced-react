@@ -101,4 +101,28 @@ describe("productFiltersSelectors", () => {
         expect(selectActiveFiltersCount(state)).toBe(0);
         expect(selectHasFilterChanges(state)).toBe(true);
     });
+
+    test("keeps active filters memoized when only sidebar visibility changes", () => {
+        const filters = {
+            brands: ["Apple"],
+            countries: ["US"],
+            priceRange: {min: 10, max: 200},
+            inStock: true,
+            sortBy: DEFAULT_SORT_BY,
+            sortOrder: DEFAULT_SORT_ORDER,
+        };
+        const closedState = createState({
+            isOpen: false,
+            filters,
+        });
+        const openState = createState({
+            isOpen: true,
+            filters,
+        });
+
+        const closedFilters = selectActiveFilters(closedState);
+        const openFilters = selectActiveFilters(openState);
+
+        expect(openFilters).toBe(closedFilters);
+    });
 });

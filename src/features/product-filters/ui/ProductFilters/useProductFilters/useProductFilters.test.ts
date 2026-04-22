@@ -7,7 +7,6 @@ const testCtx = vi.hoisted(() => ({
     state: undefined as StateSchema | undefined,
     dispatchMock: vi.fn(),
     setSearchParamsMock: vi.fn(),
-    resolvedCategoryIdMock: vi.fn(),
     infiniteProductsMock: vi.fn(),
     refetchMock: vi.fn(),
 }));
@@ -17,12 +16,7 @@ vi.mock("react-i18next", () => ({
 }));
 
 vi.mock("react-router", () => ({
-    useParams: () => ({slug: "phones"}),
     useSearchParams: () => [new URLSearchParams(), testCtx.setSearchParamsMock],
-}));
-
-vi.mock("@/entities/category", () => ({
-    useResolvedCategoryId: (...args: unknown[]) => testCtx.resolvedCategoryIdMock(...args),
 }));
 
 vi.mock("@/entities/product", () => ({
@@ -109,12 +103,15 @@ vi.mock("@/features/product-filters/model/slice/productFiltersSlice.ts", () => (
     },
 }));
 
-vi.mock("@/shared/lib/state", () => ({
+vi.mock("@/shared/lib/async", () => ({
     useDebounce: <T>(value: T) => value,
 }));
 
-vi.mock("@/shared/lib/state", () => ({
+vi.mock("@/shared/lib/math", () => ({
     clampOptionalRange: vi.fn((range: unknown) => range),
+}));
+
+vi.mock("@/shared/lib/state", () => ({
     useAppDispatch: () => testCtx.dispatchMock,
     useAppSelector: (selector: (state: StateSchema) => unknown) =>
         selector(testCtx.state as StateSchema),
@@ -141,10 +138,6 @@ describe("useProductFilters", () => {
                 isOpen: true,
             },
         } as unknown as StateSchema;
-        testCtx.resolvedCategoryIdMock.mockReturnValue({
-            data: {resolvedCategoryId: "cat-1"},
-            status: {isLoading: false, error: null},
-        });
         testCtx.infiniteProductsMock.mockReturnValue({
             facets: undefined,
             isLoading: false,
@@ -154,7 +147,7 @@ describe("useProductFilters", () => {
     });
 
     test("returns filters state and dispatches filter actions", () => {
-        const {result} = renderHook(() => useProductFilters());
+        const {result} = renderHook(() => useProductFilters({categoryId: "cat-1"}));
 
         expect(result.current.data.currency).toBe("USD");
         expect(result.current.data.isSidebarOpen).toBe(true);
@@ -202,14 +195,9 @@ describe("useProductFilters", () => {
         expect(result.current.data.localPriceRange).toEqual({min: 10, max: 20});
     });
 
-    test("uses provided category context and skips slug category lookup", () => {
+    test("uses provided category context directly", () => {
         renderHook(() => useProductFilters({categoryId: "cat-1"}));
 
-        expect(testCtx.resolvedCategoryIdMock).toHaveBeenCalledWith({
-            categoryId: "cat-1",
-            slug: "phones",
-            locale: "en",
-        });
         expect(testCtx.infiniteProductsMock).toHaveBeenCalledWith(
             {
                 categoryId: "cat-1",
@@ -228,5 +216,76 @@ describe("useProductFilters", () => {
                 selectFromResult: expect.any(Function),
             },
         );
+    });
+
+    test("uses provided tag context directly", () => {
+        renderHook(() => useProductFilters({tagId: "tag-1"}));
+
+        expect(testCtx.infiniteProductsMock).toHaveBeenCalledWith(
+            {
+                categoryId: undefined,
+                tagId: "tag-1",
+                locale: "en",
+                currency: "USD",
+                brands: [],
+                countries: [],
+                minPrice: undefined,
+                maxPrice: undefined,
+                inStock: true,
+                sortBy: "price",
+                sortOrder: "asc",
+            },
+            {
+                skip: false,
+                selectFromResult: expect.any(Function),
+            },
+        );
+    });
+
+    test("loads products for bestseller special without explicit context", () => {
+        renderHook(() => useProductFilters({special: "bestseller"}));
+
+        expect(testCtx.infiniteProductsMock).toHaveBeenCalledWith(
+            {
+                categoryId: undefined,
+                locale: "en",
+                currency: "USD",
+                brands: [],
+                countries: [],
+                minPrice: undefined,
+                maxPrice: undefined,
+                inStock: true,
+                sortBy: "price",
+                sortOrder: "asc",
+            },
+            {
+                skip: false,
+                selectFromResult: expect.any(Function),
+            },
+        );
+    });
+
+    test("skips product query without category, tag, search, or special", () => {
+        const {result} = renderHook(() => useProductFilters());
+
+        expect(testCtx.infiniteProductsMock).toHaveBeenCalledWith(
+            {
+                categoryId: undefined,
+                locale: "en",
+                currency: "USD",
+                brands: [],
+                countries: [],
+                minPrice: undefined,
+                maxPrice: undefined,
+                inStock: true,
+                sortBy: "price",
+                sortOrder: "asc",
+            },
+            {
+                skip: true,
+                selectFromResult: expect.any(Function),
+            },
+        );
+        expect(result.current.status.isLoading).toBe(true);
     });
 });

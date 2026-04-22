@@ -30,8 +30,8 @@ vi.mock("react-router", () => ({
 }));
 
 vi.mock("@/shared/config", () => ({
-    AppRoutes: {LOGIN: "login"},
-    routePaths: {login: "/:lng/login"},
+    AppRoutes: {LOGIN: "login", HOME: "home"},
+    routePaths: {login: "/:lng/login", home: "/:lng"},
     AuthMethod: {
         EMAIL: "email",
         PHONE: "phone",
@@ -84,7 +84,11 @@ describe("useVerificationStep", () => {
         testCtx.verificationRequired = "email";
         testCtx.error = undefined;
         testCtx.verifyOtpMutationMock.mockReturnValue({
-            unwrap: vi.fn().mockResolvedValue({success: true}),
+            unwrap: vi.fn().mockResolvedValue({
+                accessToken: "token-1",
+                accessTokenExpiresAt: "2099-01-01T00:00:00.000Z",
+                user: {id: "u1", provider: "LOCAL"},
+            }),
         });
         testCtx.sendOtpMutationMock.mockReturnValue({
             unwrap: vi.fn().mockResolvedValue({success: true}),
@@ -114,7 +118,7 @@ describe("useVerificationStep", () => {
         expect(testCtx.verifyOtpMutationMock).not.toHaveBeenCalled();
     });
 
-    test("submitVerification verifies and navigates to localized login", async () => {
+    test("submitVerification verifies and navigates to localized home", async () => {
         const {result} = renderHook(() => useVerificationStep());
 
         await act(async () => {
@@ -126,7 +130,7 @@ describe("useVerificationStep", () => {
             identifier: "john@example.com",
             code: "1234",
         });
-        expect(testCtx.navigateMock).toHaveBeenCalledWith("/en/login");
+        expect(testCtx.navigateMock).toHaveBeenCalledWith("/en");
     });
 
     test("resendCode stores extracted api error when request fails", async () => {

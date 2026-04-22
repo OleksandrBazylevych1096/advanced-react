@@ -1,3 +1,4 @@
+import {skipToken} from "@reduxjs/toolkit/query";
 import {renderHook} from "@testing-library/react";
 import {describe, expect, test, vi} from "vitest";
 
@@ -57,5 +58,24 @@ describe("useResolvedCategoryId", () => {
         const {result} = renderHook(() => useResolvedCategoryId({slug: "phones"}));
 
         expect(result.current.data.resolvedCategoryId).toBeUndefined();
+    });
+
+    test("skips category lookup when explicitly disabled", () => {
+        testCtx.getCategoryBySlugMock.mockReturnValue({
+            currentData: undefined,
+            isLoading: false,
+            isSuccess: false,
+            error: undefined,
+        });
+
+        renderHook(() =>
+            useResolvedCategoryId({
+                slug: "phones",
+                locale: "en",
+                skip: true,
+            }),
+        );
+
+        expect(testCtx.getCategoryBySlugMock).toHaveBeenCalledWith(skipToken);
     });
 });

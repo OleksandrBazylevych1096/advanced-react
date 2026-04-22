@@ -19,7 +19,7 @@ export const useSearchPage = () => {
     const activeCategoryId = categoryId || undefined;
     const isValidSearch = searchQuery.length >= MIN_SEARCH_QUERY_LENGTH;
 
-    const {data: categoryData} = useGetCategoryByIdQuery(
+    const {data: categoryData, isLoading: isCategoryLoading} = useGetCategoryByIdQuery(
         {
             id: categoryId,
             locale: i18n.language,
@@ -48,6 +48,9 @@ export const useSearchPage = () => {
             activeCategoryId,
             isValidSearch,
             breadcrumbs,
+        },
+        status: {
+            isLoading: isCategoryLoading,
         },
     };
 };

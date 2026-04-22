@@ -114,6 +114,15 @@ const getCategoryBySlug = (
     );
 };
 
+const getTagBySlug = (
+    scenario: ApiScenario,
+    tagSlug: string,
+): ApiScenario["tags"][number] | undefined => {
+    return scenario.tags.find(
+        (tag) => tag.slug === tagSlug || Object.values(tag.slugMap).includes(tagSlug),
+    );
+};
+
 const upsertCartItem = (
     cartItems: ApiScenario["cartItems"],
     product: ApiScenario["products"][number],
@@ -346,10 +355,20 @@ const handleApiRequest = async (route: Route, scenario: ApiScenario): Promise<vo
     }
 
     if (pathname === "/tags/popular" && method === "GET") {
-        await fulfillJson(route, [
-            {id: "tag-trending", name: "Trending", slug: "trending"},
-            {id: "tag-fresh", name: "Fresh", slug: "fresh"},
-        ]);
+        await fulfillJson(route, scenario.tags);
+        return;
+    }
+
+    if (pathname.startsWith("/tags/slug/") && method === "GET") {
+        const slug = pathname.split("/").pop();
+        const tag = slug ? getTagBySlug(scenario, slug) : undefined;
+
+        if (!tag) {
+            await fulfillJson(route, {error: "Tag not found"}, 404);
+            return;
+        }
+
+        await fulfillJson(route, tag);
         return;
     }
 

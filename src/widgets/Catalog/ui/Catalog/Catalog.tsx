@@ -21,24 +21,26 @@ import {EmptyState, ErrorState} from "@/shared/ui/StateViews";
 
 import styles from "./Catalog.module.scss";
 import {CellRenderer} from "./CellRenderer.tsx";
-import {useCatalog} from "./useCatalog/useCatalog.ts";
+import {useCatalog, type CatalogSpecialType} from "./useCatalog/useCatalog.ts";
 
 interface CatalogProps {
     categoryId?: string | null;
+    tagId?: string | null;
     searchQuery?: string;
+    special?: CatalogSpecialType;
 }
 
-export const Catalog = ({categoryId, searchQuery}: CatalogProps) => {
+export const Catalog = ({categoryId, tagId, searchQuery, special}: CatalogProps) => {
     const {t} = useTranslation();
     const currency = useAppSelector(selectUserCurrency);
     const {
         data: {products, hasNextPage},
-        status: {isFetchingNextPage, isLoading, error},
+        status: {isFetchingNextPage, isLoading: isCatalogLoading, error},
         actions: {loadMore, refetch},
         refs: {gridRef},
-    } = useCatalog({categoryId, searchQuery});
+    } = useCatalog({categoryId, tagId, searchQuery, special});
 
-    if (isLoading) {
+    if (isCatalogLoading) {
         return (
             <Grid className={styles.grid} gap={16} data-testid="catalog-loading">
                 {Array.from({length: CATALOG_PRODUCT_CARDS_SKELETON_COUNT}).map((_, index) => (

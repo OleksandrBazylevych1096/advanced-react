@@ -1,6 +1,6 @@
-import {baseAPI, type ApiLocaleParams} from "@/shared/api";
+import type {Tag} from "@/entities/tag";
 
-import type {Tag} from "../../model/types/Tag";
+import {baseAPI, type ApiLocaleParams} from "@/shared/api";
 
 const trendingProductsApi = baseAPI.injectEndpoints({
     endpoints: (build) => ({

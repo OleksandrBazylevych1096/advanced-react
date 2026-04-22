@@ -89,4 +89,41 @@ test.describe("localized slug switching", () => {
         await expect(page.getByRole("heading", {name: product.name}).first()).toBeVisible();
         await assertLocalizedLayout(page);
     });
+
+    test("switches tag route from en slug to de slug when language changes", async ({
+        page,
+        scenario,
+    }) => {
+        const tag = scenario.tags[0];
+
+        expect(tag.slugMap.en).not.toBe(tag.slugMap.de);
+
+        await page.goto(`/en/tag/${tag.slugMap.en}`);
+        await expect(page.getByTestId("catalog-grid")).toBeVisible({timeout: 15_000});
+
+        await page.getByTestId("language-switcher").click();
+
+        await expect(page).toHaveURL(new RegExp(`/de/tag/${tag.slugMap.de}$`));
+        await expect(page.getByTestId("catalog-grid")).toBeVisible({timeout: 15_000});
+        await assertLocalizedLayout(page);
+    });
+
+    test("switches tag route from de slug to en slug when language changes", async ({
+        page,
+        scenario,
+    }) => {
+        const tag = scenario.tags[0];
+
+        expect(tag.slugMap.en).not.toBe(tag.slugMap.de);
+
+        await page.goto(`/de/tag/${tag.slugMap.de}`);
+        await expect(page.getByTestId("catalog-grid")).toBeVisible({timeout: 15_000});
+        await waitForGermanRouteUi(page);
+
+        await page.getByTestId("language-switcher").click();
+
+        await expect(page).toHaveURL(new RegExp(`/en/tag/${tag.slugMap.en}$`));
+        await expect(page.getByTestId("catalog-grid")).toBeVisible({timeout: 15_000});
+        await assertLocalizedLayout(page);
+    });
 });

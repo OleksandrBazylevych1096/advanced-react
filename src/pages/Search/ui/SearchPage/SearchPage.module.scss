@@ -4,11 +4,13 @@
 
 .content {
     display: flex;
+    position: relative;
 }
 
 .wrapper {
     flex: 1;
-    width: calc(100% - var(--sidebar-width));
+    width: 100%;
+    min-width: 0;
 }
 
 .title {

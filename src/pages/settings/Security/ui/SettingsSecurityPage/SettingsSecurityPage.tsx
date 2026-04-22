@@ -5,7 +5,6 @@ import {Typography} from "@/shared/ui/Typography";
 
 import {ManageSessions} from "../ManageSessions/ManageSessions";
 import {SetupTwoFactorCard} from "../SetupTwoFactorCard/SetupTwoFactorCard";
-import {UnlinkGoogle} from "../UnlinkGoogleButton/UnlinkGoogle.tsx";
 
 import styles from "./SettingsSecurityPage.module.scss";
 
@@ -18,7 +17,7 @@ const SettingsSecurityPage = () => {
                 {t("settings.pages.security.title")}
             </Typography>
             <SetupTwoFactorCard />
-            <UnlinkGoogle />
+            {/* <UnlinkGoogle /> */}
             <ManageSessions />
         </Stack>
     );

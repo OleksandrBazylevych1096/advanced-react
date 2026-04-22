@@ -11,7 +11,7 @@ export const useCategoryPage = () => {
     const {slug, lng} = useParams<{slug: string; lng: SupportedLngsType}>();
     const {
         data: {category, resolvedCategoryId},
-        status: {isSuccess: isCategorySuccess},
+        status: {isLoading: isCategoryLoading, isSuccess: isCategorySuccess},
     } = useResolvedCategoryId({
         slug,
         locale: lng,
@@ -32,6 +32,9 @@ export const useCategoryPage = () => {
         data: {
             breadcrumbs,
             categoryId: category?.id,
+        },
+        status: {
+            isLoading: isCategoryLoading,
         },
     };
 };

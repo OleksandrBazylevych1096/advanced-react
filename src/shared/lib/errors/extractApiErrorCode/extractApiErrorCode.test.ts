@@ -26,6 +26,18 @@ describe("extractApiErrorCode", () => {
         expect(code).toBe("TOKEN_EXPIRED");
     });
 
+    test("returns code from top-level backend envelope", () => {
+        const code = extractApiErrorCode({
+            status: 401,
+            data: {
+                code: "REFRESH_TOKEN_REVOKED",
+                message: "Refresh token revoked",
+            },
+        });
+
+        expect(code).toBe("REFRESH_TOKEN_REVOKED");
+    });
+
     test("returns undefined for non-fetch-base-query error", () => {
         const code = extractApiErrorCode({message: "plain error"});
 

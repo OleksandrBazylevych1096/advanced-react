@@ -56,7 +56,10 @@ describe("ProductFilters Integration Tests", () => {
     describe("Rendering", () => {
         test("should render filter sidebar with title", async () => {
             renderWithProviders(
-                <ProductFilters defaultOpenFilters={["price", "brands", "countries"]} />,
+                <ProductFilters
+                    categoryId="cat-1"
+                    defaultOpenFilters={["price", "brands", "countries"]}
+                />,
                 {
                     route: "/en/category/electronics",
                     path: "/:locale/category/:slug",
@@ -73,7 +76,10 @@ describe("ProductFilters Integration Tests", () => {
             server.use(...createHandlersScenario("loading", handlerSets));
 
             renderWithProviders(
-                <ProductFilters defaultOpenFilters={["countries", "brands", "price"]} />,
+                <ProductFilters
+                    categoryId="cat-1"
+                    defaultOpenFilters={["countries", "brands", "price"]}
+                />,
                 {
                     route: "/en/category/electronics",
                     path: "/:locale/category/:slug",
@@ -89,7 +95,10 @@ describe("ProductFilters Integration Tests", () => {
 
         test("should render facets after loading", async () => {
             renderWithProviders(
-                <ProductFilters defaultOpenFilters={["countries", "brands", "price"]} />,
+                <ProductFilters
+                    categoryId="cat-1"
+                    defaultOpenFilters={["countries", "brands", "price"]}
+                />,
                 {
                     route: "/en/category/electronics",
                     path: "/:locale/category/:slug",
@@ -119,7 +128,10 @@ describe("ProductFilters Integration Tests", () => {
             server.use(...createHandlersScenario("error", handlerSets));
 
             renderWithProviders(
-                <ProductFilters defaultOpenFilters={["countries", "brands", "price"]} />,
+                <ProductFilters
+                    categoryId="cat-1"
+                    defaultOpenFilters={["countries", "brands", "price"]}
+                />,
                 {
                     route: "/en/category/electronics",
                     path: "/:locale/category/:slug",
@@ -138,12 +150,15 @@ describe("ProductFilters Integration Tests", () => {
         test("should toggle country filter when clicking checkbox", async () => {
             const user = userEvent.setup();
 
-            renderWithProviders(<ProductFilters defaultOpenFilters={["countries"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: defaultInitialState as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["countries"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: defaultInitialState as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getCountryTestId(country1))).toBeInTheDocument();
@@ -171,12 +186,15 @@ describe("ProductFilters Integration Tests", () => {
                 },
             };
 
-            renderWithProviders(<ProductFilters defaultOpenFilters={["countries"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: stateWithSelectedCountry as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["countries"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: stateWithSelectedCountry as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getCountryTestId(country1))).toBeInTheDocument();
@@ -193,12 +211,15 @@ describe("ProductFilters Integration Tests", () => {
         test("should allow selecting multiple countries", async () => {
             const user = userEvent.setup();
 
-            renderWithProviders(<ProductFilters defaultOpenFilters={["countries"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: defaultInitialState as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["countries"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: defaultInitialState as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getCountryTestId(country1))).toBeInTheDocument();
@@ -222,12 +243,15 @@ describe("ProductFilters Integration Tests", () => {
         test("should toggle brand filter when clicking checkbox", async () => {
             const user = userEvent.setup();
 
-            renderWithProviders(<ProductFilters defaultOpenFilters={["brands"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: defaultInitialState as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["brands"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: defaultInitialState as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getBrandTestId(brand1))).toBeInTheDocument();
@@ -244,12 +268,15 @@ describe("ProductFilters Integration Tests", () => {
         test("should allow selecting multiple brands", async () => {
             const user = userEvent.setup();
 
-            renderWithProviders(<ProductFilters defaultOpenFilters={["brands"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: defaultInitialState as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["brands"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: defaultInitialState as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getBrandTestId(brand1))).toBeInTheDocument();
@@ -268,12 +295,15 @@ describe("ProductFilters Integration Tests", () => {
 
     describe("Price Filter Interactions", () => {
         test("should render price range inputs", async () => {
-            renderWithProviders(<ProductFilters defaultOpenFilters={["price"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: defaultInitialState as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["price"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: defaultInitialState as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId("filter-section-price-min-input")).toBeInTheDocument();
@@ -283,12 +313,15 @@ describe("ProductFilters Integration Tests", () => {
         });
 
         test("should render price slider", async () => {
-            renderWithProviders(<ProductFilters defaultOpenFilters={["price"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: defaultInitialState as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["price"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: defaultInitialState as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId("range-slider")).toBeInTheDocument();
@@ -302,7 +335,10 @@ describe("ProductFilters Integration Tests", () => {
     describe("Reset Filters", () => {
         test("should show disabled reset button when no filters are active", async () => {
             renderWithProviders(
-                <ProductFilters defaultOpenFilters={["countries", "brands", "price"]} />,
+                <ProductFilters
+                    categoryId="cat-1"
+                    defaultOpenFilters={["countries", "brands", "price"]}
+                />,
                 {
                     route: "/en/category/electronics",
                     path: "/:locale/category/:slug",
@@ -332,7 +368,10 @@ describe("ProductFilters Integration Tests", () => {
             };
 
             renderWithProviders(
-                <ProductFilters defaultOpenFilters={["countries", "brands", "price"]} />,
+                <ProductFilters
+                    categoryId="cat-1"
+                    defaultOpenFilters={["countries", "brands", "price"]}
+                />,
                 {
                     route: "/en/category/electronics",
                     path: "/:locale/category/:slug",
@@ -364,12 +403,15 @@ describe("ProductFilters Integration Tests", () => {
                 },
             };
 
-            renderWithProviders(<ProductFilters defaultOpenFilters={["countries", "brands"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: stateWithActiveFilters as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["countries", "brands"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: stateWithActiveFilters as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getCountryTestId(country1))).toBeInTheDocument();
@@ -396,12 +438,15 @@ describe("ProductFilters Integration Tests", () => {
 
     describe("Sidebar Toggle", () => {
         test("should render close button in sidebar", async () => {
-            renderWithProviders(<ProductFilters defaultOpenFilters={["countries"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: defaultInitialState as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["countries"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: defaultInitialState as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getCountryTestId(country1))).toBeInTheDocument();
@@ -411,12 +456,15 @@ describe("ProductFilters Integration Tests", () => {
         });
 
         test("should render sidebar in open state when isOpen is true", async () => {
-            renderWithProviders(<ProductFilters defaultOpenFilters={["countries"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: defaultInitialState as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["countries"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: defaultInitialState as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getCountryTestId(country1))).toBeInTheDocument();
@@ -435,12 +483,15 @@ describe("ProductFilters Integration Tests", () => {
                 },
             };
 
-            renderWithProviders(<ProductFilters defaultOpenFilters={["countries"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: closedState as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["countries"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: closedState as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getCountryTestId(country1))).toBeInTheDocument();
@@ -464,12 +515,15 @@ describe("ProductFilters Integration Tests", () => {
                 },
             };
 
-            renderWithProviders(<ProductFilters defaultOpenFilters={["countries"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: stateWithPreselectedFilters as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["countries"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: stateWithPreselectedFilters as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getCountryTestId(country1))).toBeInTheDocument();
@@ -496,12 +550,15 @@ describe("ProductFilters Integration Tests", () => {
                 },
             };
 
-            renderWithProviders(<ProductFilters defaultOpenFilters={["brands"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: stateWithPreselectedFilters as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["brands"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: stateWithPreselectedFilters as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getBrandTestId(brand1))).toBeInTheDocument();
@@ -521,12 +578,15 @@ describe("ProductFilters Integration Tests", () => {
         test("should allow selecting both countries and brands", async () => {
             const user = userEvent.setup();
 
-            renderWithProviders(<ProductFilters defaultOpenFilters={["countries", "brands"]} />, {
-                route: "/en/category/electronics",
-                path: "/:locale/category/:slug",
-                initialState: defaultInitialState as StateSchema,
-                asyncReducers: {productFilters: productFiltersReducer},
-            });
+            renderWithProviders(
+                <ProductFilters categoryId="cat-1" defaultOpenFilters={["countries", "brands"]} />,
+                {
+                    route: "/en/category/electronics",
+                    path: "/:locale/category/:slug",
+                    initialState: defaultInitialState as StateSchema,
+                    asyncReducers: {productFilters: productFiltersReducer},
+                },
+            );
 
             await waitFor(() => {
                 expect(screen.getByTestId(getCountryTestId(country1))).toBeInTheDocument();

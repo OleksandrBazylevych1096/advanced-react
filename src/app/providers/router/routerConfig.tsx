@@ -5,6 +5,7 @@ import {SettingsPageLayout} from "@/app/layouts/SettingsPageLayout/SettingsPageL
 
 import {AuthCallbackPage} from "@/pages/AuthCallbackPage";
 import {AuthTwoFactorPage} from "@/pages/AuthTwoFactor";
+import {BestsellersPage} from "@/pages/Bestsellers";
 import {CartPage} from "@/pages/Cart";
 import {CategoryPage} from "@/pages/Category";
 import {CheckoutPage} from "@/pages/Checkout";
@@ -22,6 +23,7 @@ import {SettingsAddressPage} from "@/pages/settings/Address";
 import {SettingsNotificationsPage} from "@/pages/settings/Notifications";
 import {SettingsOrdersPage} from "@/pages/settings/Orders";
 import {SettingsSecurityPage} from "@/pages/settings/Security";
+import {TagPage} from "@/pages/Tag";
 
 import {AppRoutes, routePaths} from "@/shared/config";
 
@@ -70,6 +72,15 @@ export const routeConfig: AppRouteConfig[] = [
         path: routePaths[AppRoutes.CATEGORY],
         element: <CategoryPage />,
         hasLocalizedParams: true,
+    },
+    {
+        path: routePaths[AppRoutes.TAG],
+        element: <TagPage />,
+        hasLocalizedParams: true,
+    },
+    {
+        path: routePaths[AppRoutes.BESTSELLERS],
+        element: <BestsellersPage />,
     },
     {
         path: routePaths[AppRoutes.PRODUCT],

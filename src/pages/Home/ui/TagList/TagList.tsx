@@ -1,7 +1,7 @@
+import type {Tag} from "@/entities/tag";
+
 import {Button} from "@/shared/ui/Button";
 import {Stack} from "@/shared/ui/Stack";
-
-import type {Tag} from "../../model/types/Tag";
 
 import styles from "./TagList.module.scss";
 import {TagListSkeleton} from "./TagListSkeleton";

@@ -1,4 +1,8 @@
-import {useGetInfiniteProducts, useGetProducts} from "./api/productApi/productApi";
+import {
+    useGetInfiniteBestSellers,
+    useGetInfiniteProducts,
+    useGetProducts,
+} from "./api/productApi/productApi";
 import type {
     FacetItemType,
     PriceRangeType,
@@ -10,7 +14,13 @@ import type {
 import {ProductCard, type ProductCardProps} from "./ui/ProductCard/ProductCard";
 import {ProductCardSkeleton} from "./ui/ProductCardSkeleton/ProductCardSkeleton.tsx";
 
-export {ProductCard, ProductCardSkeleton, useGetInfiniteProducts, useGetProducts};
+export {
+    ProductCard,
+    ProductCardSkeleton,
+    useGetInfiniteBestSellers,
+    useGetInfiniteProducts,
+    useGetProducts,
+};
 
 export type {
     FacetItemType,

@@ -1,3 +1,5 @@
+import {applyAuthSession, type AuthSessionResponse} from "@/entities/user";
+
 import {baseAPI} from "@/shared/api";
 
 type RegisterArgs = {
@@ -38,12 +40,21 @@ export const registerApi = baseAPI.injectEndpoints({
                 body,
             }),
         }),
-        verifyRegistrationOtp: build.mutation<SuccessResponse, RegistrationVerifyOtpArgs>({
+        verifyRegistrationOtp: build.mutation<AuthSessionResponse, RegistrationVerifyOtpArgs>({
             query: (body) => ({
                 url: "/auth/otp/verify",
                 method: "POST",
                 body,
             }),
+            invalidatesTags: ["UserSession"],
+            async onQueryStarted(_, {dispatch, queryFulfilled}) {
+                try {
+                    const {data} = await queryFulfilled;
+                    applyAuthSession(data, dispatch);
+                } catch {
+                    // UI handles error.
+                }
+            },
         }),
     }),
 });

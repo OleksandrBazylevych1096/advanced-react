@@ -32,7 +32,7 @@ describe("useSearchPage", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         testCtx.searchParams = new URLSearchParams();
-        testCtx.getCategoryByIdQueryMock.mockReturnValue({data: undefined});
+        testCtx.getCategoryByIdQueryMock.mockReturnValue({data: undefined, isLoading: false});
     });
 
     test("returns invalid state for short query", () => {
@@ -43,6 +43,7 @@ describe("useSearchPage", () => {
         expect(result.current.data.searchQuery).toBe("a");
         expect(result.current.data.isValidSearch).toBe(false);
         expect(result.current.data.breadcrumbs).toEqual([]);
+        expect(result.current.status.isLoading).toBe(false);
 
         expect(testCtx.getCategoryByIdQueryMock).toHaveBeenCalledWith(
             {id: "", locale: "en"},
@@ -54,6 +55,7 @@ describe("useSearchPage", () => {
         testCtx.searchParams = new URLSearchParams("q=milk&categoryId=cat-1");
         testCtx.getCategoryByIdQueryMock.mockReturnValue({
             data: {name: "Dairy"},
+            isLoading: false,
         });
 
         const {result} = renderHook(() => useSearchPage());
@@ -65,6 +67,7 @@ describe("useSearchPage", () => {
             {label: "milk", href: "/en/search?q=milk"},
             {label: "Dairy"},
         ]);
+        expect(result.current.status.isLoading).toBe(false);
 
         expect(testCtx.getCategoryByIdQueryMock).toHaveBeenCalledWith(
             {id: "cat-1", locale: "en"},

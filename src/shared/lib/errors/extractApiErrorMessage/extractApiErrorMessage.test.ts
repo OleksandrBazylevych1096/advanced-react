@@ -8,6 +8,7 @@ vi.mock("@/shared/config", () => ({
             const dictionary: Record<string, string> = {
                 "errors.INVALID_CREDENTIALS": "Invalid credentials (translated)",
                 "auth:errors.AUTH_LOCKED": "Auth locked (translated)",
+                "errors.RATE_LIMITED": "Too many attempts (translated)",
                 "errors.unknownError": "Unknown error (translated)",
             };
 
@@ -51,6 +52,15 @@ describe("extractApiErrorMessage", () => {
         });
 
         expect(message).toBe("Invalid request body");
+    });
+
+    test("returns translated message for top-level backend envelope code", () => {
+        const message = extractApiErrorMessage({
+            status: 429,
+            data: {code: "RATE_LIMITED", message: "Too many requests"},
+        });
+
+        expect(message).toBe("Too many attempts (translated)");
     });
 
     test("returns error.message for plain Error-like objects", () => {

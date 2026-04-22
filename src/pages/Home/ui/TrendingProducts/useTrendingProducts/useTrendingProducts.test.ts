@@ -80,6 +80,7 @@ describe("useTrendingProducts", () => {
             expect(result.current.data.currentTagId).toBe("tag-1");
         });
 
+        expect(result.current.data.currentTag).toEqual({id: "tag-1", name: "Hot"});
         expect(result.current.data.products).toEqual([{id: "p1"}]);
         expect(result.current.data.total).toBe(1);
         expect(result.current.data.ProductCardWithAddToCart).toBe("ProductCardWithAddToCartMock");
@@ -97,6 +98,7 @@ describe("useTrendingProducts", () => {
         });
 
         expect(result.current.data.currentTagId).toBe("tag-2");
+        expect(result.current.data.currentTag).toBeUndefined();
 
         const embla = {scrollTo: vi.fn()} as never;
         act(() => {

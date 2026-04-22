@@ -47,6 +47,7 @@ export const useTrendingProducts = () => {
 
     const products = productsData?.products;
     const total = productsData?.pagination.total || 0;
+    const currentTag = tags?.find((tag) => tag.id === currentTagId);
 
     const changeTag = (tagId: string) => {
         setCurrentTagId(tagId);
@@ -59,6 +60,7 @@ export const useTrendingProducts = () => {
     return {
         data: {
             tags,
+            currentTag,
             products,
             total,
             currentTagId,

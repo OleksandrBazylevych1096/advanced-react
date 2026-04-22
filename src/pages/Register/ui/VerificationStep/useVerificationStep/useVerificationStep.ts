@@ -53,7 +53,7 @@ export const useVerificationStep = () => {
                 identifier,
                 code,
             }).unwrap();
-            navigate(getLocalizedPath(routePaths[AppRoutes.LOGIN]));
+            navigate(getLocalizedPath(routePaths[AppRoutes.HOME]));
         } catch (requestError) {
             setError(extractApiErrorMessage(requestError));
         }

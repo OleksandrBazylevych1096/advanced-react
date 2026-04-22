@@ -40,7 +40,7 @@ export const Price = (props: PriceProps) => {
     const oldPriceTypography = oldPriceTypographyBySize[size];
 
     return (
-        <Stack className={styles.prices} direction="row" gap={8} align="center">
+        <Stack as="span" className={styles.prices} direction="row" gap={8} align="center">
             <Typography
                 as="span"
                 variant={currentPriceTypography.variant}

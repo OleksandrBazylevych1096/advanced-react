@@ -5,6 +5,7 @@ import {mockDeliveryDates} from "@/features/choose-delivery-date/config/test/moc
 import {mockCategories} from "@/entities/category/config/test/mockData";
 import {mockFacets, mockProducts} from "@/entities/product/config/test/mockData";
 import {mockSingleAddress} from "@/entities/shipping-address/config/test/mockData";
+import type {Tag} from "@/entities/tag";
 import {mockAuthSession} from "@/entities/user/config/test/mockData";
 
 import {cloneValue} from "./cloneValue";
@@ -61,6 +62,27 @@ const createScenarioProducts = (categories: ApiScenario["categories"]): ApiScena
     });
 };
 
+const createScenarioTags = (): Tag[] => [
+    {
+        id: "tag-organic",
+        name: "Organic",
+        slug: "organic",
+        slugMap: {
+            en: "organic",
+            de: "bio",
+        },
+    },
+    {
+        id: "tag-fresh",
+        name: "Fresh",
+        slug: "fresh",
+        slugMap: {
+            en: "fresh",
+            de: "frisch",
+        },
+    },
+];
+
 const createAuthScenario = (
     options: ApiScenarioOptions,
 ): Pick<ApiScenario, "authState" | "loginMode" | "refreshSessionFails" | "authSession"> => ({
@@ -72,12 +94,13 @@ const createAuthScenario = (
 
 const createCatalogScenario = (): Pick<
     ApiScenario,
-    "categories" | "products" | "productFacets"
+    "categories" | "tags" | "products" | "productFacets"
 > => {
     const categories = createScenarioCategories();
 
     return {
         categories,
+        tags: createScenarioTags(),
         products: createScenarioProducts(categories),
         productFacets: cloneValue(mockFacets),
     };

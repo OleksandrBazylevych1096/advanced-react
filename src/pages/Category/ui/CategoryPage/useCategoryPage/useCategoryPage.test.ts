@@ -41,7 +41,7 @@ describe("useCategoryPage", () => {
                 category: {id: "cat-1", slugMap: {en: "phones"}},
                 resolvedCategoryId: "cat-1",
             },
-            status: {isSuccess: true},
+            status: {isLoading: false, isSuccess: true},
         });
         testCtx.breadcrumbsQueryMock.mockReturnValue({
             data: [{id: "root", name: "Root"}],
@@ -66,6 +66,9 @@ describe("useCategoryPage", () => {
             breadcrumbs: [{id: "root", name: "Root"}],
             categoryId: "cat-1",
         });
+        expect(result.current.status).toEqual({
+            isLoading: false,
+        });
     });
 
     test("skips breadcrumbs query when category is unresolved", () => {
@@ -74,7 +77,7 @@ describe("useCategoryPage", () => {
                 category: undefined,
                 resolvedCategoryId: undefined,
             },
-            status: {isSuccess: false},
+            status: {isLoading: true, isSuccess: false},
         });
 
         renderHook(() => useCategoryPage());

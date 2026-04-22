@@ -3,6 +3,7 @@ import {createSelector} from "@reduxjs/toolkit";
 import {DEFAULT_SORT_BY, DEFAULT_SORT_ORDER} from "@/features/product-filters/config/defaults.ts";
 
 export const selectProductFilters = (state: StateSchema) => state.productFilters;
+const selectProductFiltersState = (state: StateSchema) => state.productFilters?.filters;
 
 export const selectProductFiltersIsOpen = createSelector(
     selectProductFilters,
@@ -10,52 +11,51 @@ export const selectProductFiltersIsOpen = createSelector(
 );
 
 export const selectSelectedPriceRange = createSelector(
-    selectProductFilters,
-    (state) => state?.filters.priceRange ?? {min: undefined, max: undefined},
+    selectProductFiltersState,
+    (filters) => filters?.priceRange ?? {min: undefined, max: undefined},
 );
 
 export const selectSelectedBrands = createSelector(
-    selectProductFilters,
-    (state) => state?.filters.brands ?? [],
+    selectProductFiltersState,
+    (filters) => filters?.brands ?? [],
 );
 
 export const selectSelectedCountries = createSelector(
-    selectProductFilters,
-    (state) => state?.filters.countries ?? [],
+    selectProductFiltersState,
+    (filters) => filters?.countries ?? [],
 );
 
 export const selectInStock = createSelector(
-    selectProductFilters,
-    (state) => state?.filters.inStock ?? true,
+    selectProductFiltersState,
+    (filters) => filters?.inStock ?? true,
 );
 
-export const selectSortSettings = createSelector(selectProductFilters, (state) => ({
-    sortBy: state?.filters.sortBy ?? DEFAULT_SORT_BY,
-    sortOrder: state?.filters.sortOrder ?? DEFAULT_SORT_ORDER,
+export const selectSortSettings = createSelector(selectProductFiltersState, (filters) => ({
+    sortBy: filters?.sortBy ?? DEFAULT_SORT_BY,
+    sortOrder: filters?.sortOrder ?? DEFAULT_SORT_ORDER,
 }));
 
 export const selectSortBy = createSelector(
-    selectProductFilters,
-    (state) => state?.filters.sortBy ?? DEFAULT_SORT_BY,
+    selectProductFiltersState,
+    (filters) => filters?.sortBy ?? DEFAULT_SORT_BY,
 );
 
 export const selectSortOrder = createSelector(
-    selectProductFilters,
-    (state) => state?.filters.sortOrder ?? DEFAULT_SORT_ORDER,
+    selectProductFiltersState,
+    (filters) => filters?.sortOrder ?? DEFAULT_SORT_ORDER,
 );
 
-export const selectActiveFilters = createSelector(selectProductFilters, (state) => ({
-    brands: state?.filters.brands ?? [],
-    countries: state?.filters.countries ?? [],
-    minPrice: state?.filters.priceRange.min,
-    maxPrice: state?.filters.priceRange.max,
-    inStock: state?.filters.inStock ?? true,
-    sortBy: state?.filters.sortBy ?? DEFAULT_SORT_BY,
-    sortOrder: state?.filters.sortOrder ?? DEFAULT_SORT_ORDER,
+export const selectActiveFilters = createSelector(selectProductFiltersState, (filters) => ({
+    brands: filters?.brands ?? [],
+    countries: filters?.countries ?? [],
+    minPrice: filters?.priceRange.min,
+    maxPrice: filters?.priceRange.max,
+    inStock: filters?.inStock ?? true,
+    sortBy: filters?.sortBy ?? DEFAULT_SORT_BY,
+    sortOrder: filters?.sortOrder ?? DEFAULT_SORT_ORDER,
 }));
 
-export const selectHasActiveFilters = createSelector(selectProductFilters, (state) => {
-    const filters = state?.filters;
+export const selectHasActiveFilters = createSelector(selectProductFiltersState, (filters) => {
     if (!filters) return false;
 
     return (
@@ -66,8 +66,7 @@ export const selectHasActiveFilters = createSelector(selectProductFilters, (stat
     );
 });
 
-export const selectActiveFiltersCount = createSelector(selectProductFilters, (state) => {
-    const filters = state?.filters;
+export const selectActiveFiltersCount = createSelector(selectProductFiltersState, (filters) => {
     if (!filters) return 0;
 
     let count = 0;
@@ -80,8 +79,7 @@ export const selectActiveFiltersCount = createSelector(selectProductFilters, (st
     return count;
 });
 
-export const selectHasFilterChanges = createSelector(selectProductFilters, (state) => {
-    const filters = state?.filters;
+export const selectHasFilterChanges = createSelector(selectProductFiltersState, (filters) => {
     if (!filters) return false;
 
     return (

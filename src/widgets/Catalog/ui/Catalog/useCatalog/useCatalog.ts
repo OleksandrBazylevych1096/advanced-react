@@ -1,62 +1,64 @@
 import {useCallback, useEffect, useRef} from "react";
 import {useTranslation} from "react-i18next";
-import {useParams} from "react-router";
 import type {Grid as GridType} from "react-virtualized";
 
 import {selectActiveFilters} from "@/features/product-filters";
 
-import {useResolvedCategoryId} from "@/entities/category";
 import {useGetInfiniteProducts} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
 import {useAppSelector} from "@/shared/lib/state";
 
+export type CatalogSpecialType = "bestseller";
+
 interface UseCatalogControllerArgs {
     categoryId?: string | null;
+    tagId?: string | null;
     searchQuery?: string;
+    special?: CatalogSpecialType;
 }
 
-export const useCatalog = ({categoryId, searchQuery}: UseCatalogControllerArgs = {}) => {
+export const useCatalog = ({
+    categoryId,
+    tagId,
+    searchQuery,
+    special,
+}: UseCatalogControllerArgs = {}) => {
     const {i18n} = useTranslation();
-    const {slug} = useParams<{slug: string}>();
     const currency = useAppSelector(selectUserCurrency);
     const activeFilters = useAppSelector(selectActiveFilters);
     const isLoadingMore = useRef(false);
     const gridRef = useRef<GridType>(null);
-    const {
-        data: {resolvedCategoryId},
-        status: {isLoading: isCategoryLoading, error: categoryError},
-    } = useResolvedCategoryId({
-        categoryId,
-        slug,
-        locale: i18n.language,
-    });
     const normalizedSearchQuery = searchQuery?.trim();
     const isValidSearchQuery = Boolean(normalizedSearchQuery && normalizedSearchQuery.length >= 2);
+    const queryArgs = {
+        categoryId: categoryId ?? undefined,
+        tagId: tagId ?? undefined,
+        searchQuery: normalizedSearchQuery,
+        locale: i18n.language,
+        currency,
+        ...activeFilters,
+    };
+
+    const shouldLoadProducts =
+        special === "bestseller" || categoryId || tagId || isValidSearchQuery;
 
     const {
         data: productsData,
-        isLoading,
+        isLoading: isProductsLoading,
         isFetching,
         error,
         isFetchingNextPage,
         hasNextPage,
         fetchNextPage,
         refetch,
-    } = useGetInfiniteProducts(
-        {
-            categoryId: resolvedCategoryId,
-            searchQuery: normalizedSearchQuery,
-            locale: i18n.language,
-            currency,
-            ...activeFilters,
-        },
-        {skip: !resolvedCategoryId && !isValidSearchQuery},
-    );
+    } = useGetInfiniteProducts(queryArgs, {
+        skip: !shouldLoadProducts,
+    });
 
     const products = productsData?.pages.flatMap((page) => page.products);
 
-    const isRefetching = isFetching && !isFetchingNextPage && !isLoading;
+    const isRefetching = isFetching && !isFetchingNextPage && !isProductsLoading;
 
     const loadMore = useCallback(
         (params: {rowsCount: number; stopIndex: number; threshold?: number}) => {
@@ -82,14 +84,19 @@ export const useCatalog = ({categoryId, searchQuery}: UseCatalogControllerArgs =
         gridRef.current?.recomputeGridSize();
     }, [products]);
 
+    const isLoading =
+        isProductsLoading ||
+        isRefetching ||
+        (special !== "bestseller" && !categoryId && !tagId && !isValidSearchQuery);
+
     return {
         data: {
             products,
             hasNextPage,
         },
         status: {
-            isLoading: isCategoryLoading || isLoading || isRefetching,
-            error: categoryError ?? error,
+            isLoading,
+            error,
             isFetchingNextPage,
         },
         actions: {

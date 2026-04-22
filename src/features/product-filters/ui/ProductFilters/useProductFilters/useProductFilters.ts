@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
-import {useParams, useSearchParams} from "react-router";
+import {useSearchParams} from "react-router";
 
 import {
     DEBOUNCE_DELAY,
@@ -30,28 +30,31 @@ import type {
     SortType,
 } from "@/features/product-filters/model/types/productFiltersSchema.ts";
 
-import {useResolvedCategoryId} from "@/entities/category";
 import type {PriceRangeType} from "@/entities/product";
 import {useGetInfiniteProducts} from "@/entities/product";
 import {selectUserCurrency} from "@/entities/user";
 
-import type {SupportedLngsType} from "@/shared/config";
 import {useDebounce} from "@/shared/lib/async";
 import {clampOptionalRange} from "@/shared/lib/math";
 import {useAppDispatch, useAppSelector} from "@/shared/lib/state";
 
+export type ProductFiltersSpecialType = "bestseller";
+
 interface UseProductFiltersControllerArgs {
     categoryId?: string | null;
+    tagId?: string | null;
     searchQuery?: string | null;
+    special?: ProductFiltersSpecialType;
 }
 
 export const useProductFilters = ({
     categoryId,
+    tagId,
     searchQuery,
+    special,
 }: UseProductFiltersControllerArgs = {}) => {
     const {i18n} = useTranslation();
-    const {slug} = useParams<{slug: string; lng: SupportedLngsType}>();
-    const locale = i18n.language as SupportedLngsType;
+    const locale = i18n.language;
     const dispatch = useAppDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -72,20 +75,15 @@ export const useProductFilters = ({
     const isReducerReady = filtersState !== undefined;
 
     const debouncedPriceRange = useDebounce(localPriceRange, DEBOUNCE_DELAY);
-    const {
-        data: {resolvedCategoryId},
-        status: {isLoading: isCategoryLoading, error: categoryError},
-    } = useResolvedCategoryId({
-        categoryId,
-        slug,
-        locale,
-    });
     const normalizedSearchQuery = searchQuery?.trim();
     const isValidSearchQuery = Boolean(normalizedSearchQuery && normalizedSearchQuery.length >= 2);
+    const shouldLoadProducts =
+        special === "bestseller" || Boolean(categoryId) || Boolean(tagId) || isValidSearchQuery;
 
     const productsQuery = useGetInfiniteProducts(
         {
-            categoryId: resolvedCategoryId,
+            categoryId: categoryId ?? undefined,
+            ...(tagId ? {tagId} : {}),
             ...(isValidSearchQuery ? {searchQuery: normalizedSearchQuery} : {}),
             locale,
             currency,
@@ -93,7 +91,7 @@ export const useProductFilters = ({
             ...sortSettings,
         },
         {
-            skip: !resolvedCategoryId && !isValidSearchQuery,
+            skip: !shouldLoadProducts,
             selectFromResult: ({data, isLoading, error}) => ({
                 facets: data?.pages[0].facets,
                 isLoading,
@@ -261,8 +259,10 @@ export const useProductFilters = ({
         dispatch(productFiltersActions.setIsOpen(false));
     };
 
-    const isLoading = isCategoryLoading || isProductsLoading;
-    const hasError = Boolean(categoryError || productsError);
+    const isLoading =
+        isProductsLoading ||
+        (special !== "bestseller" && !categoryId && !tagId && !isValidSearchQuery);
+    const hasError = Boolean(productsError);
 
     return {
         data: {

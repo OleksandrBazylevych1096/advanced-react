@@ -11,6 +11,7 @@ import type {Category} from "@/entities/category/model/types/Category.ts";
 import type {OrderDetails, OrderStatusType} from "@/entities/order/model/types/order";
 import type {Product, ProductFacets} from "@/entities/product/model/types/Product";
 import type {ShippingAddress} from "@/entities/shipping-address/model/types/types";
+import type {Tag} from "@/entities/tag";
 import type {AuthSessionResponse} from "@/entities/user/model/types/AuthSession";
 
 export interface ApiScenario {
@@ -22,6 +23,7 @@ export interface ApiScenario {
     notificationsUpdateFails: boolean;
     authSession: AuthSessionResponse;
     categories: Category[];
+    tags: Tag[];
     products: Product[];
     productFacets: ProductFacets;
     cartItems: CartItem[];

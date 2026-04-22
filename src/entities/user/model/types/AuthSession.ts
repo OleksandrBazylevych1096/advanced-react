@@ -6,6 +6,7 @@ export interface AuthSessionResponse {
     accessToken: string;
     accessTokenExpiresAt: string;
     sessionId?: string;
+    refreshTokenExpiresAt?: string;
 }
 
 export interface MfaChallengeResponse {

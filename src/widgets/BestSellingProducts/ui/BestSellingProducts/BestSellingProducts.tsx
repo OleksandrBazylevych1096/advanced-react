@@ -1,8 +1,11 @@
 import {useTranslation} from "react-i18next";
+import {useNavigate} from "react-router";
 
 import {ProductCardSkeleton} from "@/entities/product";
 
 import ArrowRightIcon from "@/shared/assets/icons/ArrowRight.svg?react";
+import {AppRoutes, routePaths} from "@/shared/config";
+import {useLocalizedRoutePath} from "@/shared/lib/routing";
 import {AppIcon} from "@/shared/ui/AppIcon";
 import {Button} from "@/shared/ui/Button";
 import {Carousel, CarouselControls, CarouselSkeleton} from "@/shared/ui/Carousel";
@@ -15,11 +18,17 @@ import {useBestSellingProducts} from "./useBestSellingProducts/useBestSellingPro
 
 export const BestSellingProducts = () => {
     const {t} = useTranslation();
+    const navigate = useNavigate();
+    const getLocalizedPath = useLocalizedRoutePath();
     const {
         data: {products, total, currency, emblaApi, ProductCardWithAddToCart},
         status: {isError, isFetching, isLoading},
         actions: {refetch, setCarouselApi},
     } = useBestSellingProducts();
+
+    const openBestSellersPage = () => {
+        navigate(getLocalizedPath(routePaths[AppRoutes.BESTSELLERS]));
+    };
 
     if (isLoading) {
         return <BestSellingProductsSkeleton />;
@@ -52,7 +61,7 @@ export const BestSellingProducts = () => {
                     {t("products.bestSellers")}
                 </Typography>
                 <Stack direction="row" gap={16} align="center">
-                    <Button size="sm" theme="outline">
+                    <Button size="sm" theme="outline" onClick={openBestSellersPage}>
                         {t("products.viewAll")}{" "}
                         {!isFetching && <>({total < 100 ? total : "99+"})</>}
                         <AppIcon Icon={ArrowRightIcon} />

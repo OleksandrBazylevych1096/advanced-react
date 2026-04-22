@@ -7,6 +7,7 @@ interface ApiErrorData {
 }
 
 interface NestApiErrorEnvelope {
+    code?: string;
     message?: ApiErrorData | string;
 }
 
@@ -34,6 +35,14 @@ export const extractApiErrorCode = (error: FetchBaseQueryError | SerializedError
 
     const responseData = error.data;
     if (isApiErrorData(responseData)) {
+        return responseData.code;
+    }
+
+    if (
+        isNestApiErrorEnvelope(responseData) &&
+        typeof responseData.code === "string" &&
+        responseData.code
+    ) {
         return responseData.code;
     }
 

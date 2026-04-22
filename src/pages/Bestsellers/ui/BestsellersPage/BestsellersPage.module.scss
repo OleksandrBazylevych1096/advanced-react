@@ -1,0 +1,18 @@
+.content {
+    display: flex;
+    position: relative;
+}
+
+.wrapper {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+}
+
+.breadcrumbs {
+    margin-bottom: 16px;
+}
+
+.title {
+    margin-bottom: 12px;
+}

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 
 import ImagePlaceholderIcon from "@/shared/assets/icons/ImagePlaceholder.svg?react";
@@ -37,12 +37,40 @@ export const AppImage = (props: AppImageProps) => {
     const [imageError, setImageError] = useState<boolean>(false);
     const [imageLoading, setImageLoading] = useState<boolean>(true);
     const [useFallback, setUseFallback] = useState<boolean>(false);
+    const imageRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
         setImageError(false);
         setImageLoading(true);
         setUseFallback(false);
     }, [src]);
+
+    const currentSrc = useFallback ? fallbackSrc : src;
+
+    useEffect(() => {
+        const image = imageRef.current;
+
+        if (!image || !currentSrc) {
+            return;
+        }
+
+        // Virtualized lists remount image nodes frequently; cached images can be complete
+        // before a new load event reaches React, so we need to reconcile that state manually.
+        if (image.complete) {
+            if (image.naturalWidth > 0) {
+                setImageLoading(false);
+                setImageError(false);
+                return;
+            }
+
+            if (!useFallback && fallbackSrc) {
+                setUseFallback(true);
+            } else {
+                setImageError(true);
+                setImageLoading(false);
+            }
+        }
+    }, [currentSrc, fallbackSrc, useFallback]);
 
     const showFallbackOnError = () => {
         if (!useFallback && fallbackSrc) {
@@ -56,8 +84,6 @@ export const AppImage = (props: AppImageProps) => {
     const markImageLoaded = () => {
         setImageLoading(false);
     };
-
-    const currentSrc = useFallback ? fallbackSrc : src;
 
     if (imageError || !currentSrc) {
         return (
@@ -82,6 +108,7 @@ export const AppImage = (props: AppImageProps) => {
                 />
             )}
             <img
+                ref={imageRef}
                 className={cn(styles.image, styles[objectFit], className, {
                     [styles.hidden]: imageLoading,
                 })}

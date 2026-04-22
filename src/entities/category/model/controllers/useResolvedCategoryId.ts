@@ -8,10 +8,16 @@ interface UseResolvedCategoryIdArgs {
     categoryId?: string | null;
     slug?: string;
     locale?: SupportedLngsType;
+    skip?: boolean;
 }
 
-export const useResolvedCategoryId = ({categoryId, slug, locale}: UseResolvedCategoryIdArgs) => {
-    const shouldResolveCategoryBySlug = !categoryId && Boolean(slug && locale);
+export const useResolvedCategoryId = ({
+    categoryId,
+    slug,
+    locale,
+    skip = false,
+}: UseResolvedCategoryIdArgs) => {
+    const shouldResolveCategoryBySlug = !skip && !categoryId && Boolean(slug && locale);
     const categoryQueryArgs =
         shouldResolveCategoryBySlug && slug && locale ? {slug, locale} : skipToken;
 
