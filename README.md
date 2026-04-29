@@ -33,7 +33,11 @@ https://shiny-alpaca-ae2ffc.netlify.app/ (cold start 60s)
 1. Clone the repository:
 
 ```bash
-git clone advanced-react
+# HTTPS
+git clone https://github.com/OleksandrBazylevych1096/advanced-react.git
+
+# or SSH
+git clone git@github.com:OleksandrBazylevych1096/advanced-react.git
 ```
 
 2. Install dependencies:
